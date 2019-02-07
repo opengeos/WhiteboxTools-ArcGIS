@@ -1,5 +1,6 @@
 # WhiteboxTools-ArcGIS
 
+[![docs](https://img.shields.io/badge/docs-passing-brightgreen.svg)](https://jblindsay.github.io/wbt_book)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ArcGIS Python Toolbox for WhiteboxTools.
