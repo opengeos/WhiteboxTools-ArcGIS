@@ -12,4 +12,8 @@ ArcGIS Python Toolbox for WhiteboxTools.
 * User Manual: <https://jblindsay.github.io/wbt_book>
 * Free software: [MIT license](https://opensource.org/licenses/MIT)
 
-**Work in progress! Not ready for use yet.**
+
+
+WhiteboxTools-ArcGIS Toolbox Preview. **Work in progress! Not ready for use yet.**
+
+![Imgur](https://i.imgur.com/wIs8YRT.png)

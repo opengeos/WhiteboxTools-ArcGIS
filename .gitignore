@@ -18,6 +18,8 @@ WhiteboxTools_win_amd64.zip
 **/*.db
 **/*.db:encryptable
 
+
+
 # C extensions
 *.so
 

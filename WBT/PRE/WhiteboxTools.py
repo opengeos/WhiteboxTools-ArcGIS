@@ -1,6 +1,8 @@
 import arcpy
 import os
 from os import path
+from WBT.whitebox_tools import WhiteboxTools
+wbt = WhiteboxTools()
 
 exe_name = "whitebox_tools.exe"
 exe_path = path.join(path.dirname(path.abspath(__file__)), "WBT", exe_name)
@@ -70,6 +72,6 @@ class AbsoluteValue(object):
         output = parameters[1].valueAsText
 
         cmd = exe_path + " --run=AbsoluteValue" + " --input=" + input + " --output=" + output
-        os.popen(cmd)
+        msg = os.popen(cmd).read()
 
         return
