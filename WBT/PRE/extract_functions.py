@@ -1,11 +1,6 @@
 import os 
 import re
-
-dir_path = os.path.dirname(os.path.realpath(__file__))
-wbt_py = os.path.join(dir_path, "whitebox_tools.py")
-tools_py = os.path.join(dir_path, "tools.py")
-tool_template_py = os.path.join(dir_path, "tool_template.py")
-toolbox_template_py = os.path.join(dir_path, "toolbox_template.py")
+import shutil
 
 def to_camelcase(name):
     '''
@@ -15,7 +10,7 @@ def to_camelcase(name):
 
 def to_label(name):
     '''
-    Convert snake_case name to CamelCase name 
+    Convert snake_case name to Title case label 
     '''
     return ' '.join(x.title() for x in name.split('_'))
 
@@ -25,6 +20,18 @@ def to_snakecase(name):
     '''
     s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
     return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
+
+
+dir_path = os.path.dirname(os.path.realpath(__file__))
+wbt_py = os.path.join(dir_path, "whitebox_tools.py")
+wbt_pyt = os.path.join(os.path.dirname(os.path.dirname(dir_path)), "WhiteboxTools.pyt")
+
+
+tool_template_py = os.path.join(dir_path, "tool_template.py")           # code chuck for each tool
+toolbox_template_py = os.path.join(dir_path, "toolbox_template.py")     # code chuck for toolbox header
+
+tools_py = os.path.join(dir_path, "tools.py")
+toolbox_py = os.path.join(dir_path, "toolbox.py")
 
 
 toolboxes = {
@@ -38,15 +45,26 @@ toolboxes = {
     "# Stream Network Analysis #": "Stream Network Analysis"
 }
 
-category = None
+
+f_tool_template = open(tool_template_py)
+f_toolbox_template = open(toolbox_template_py)
+f_tools = open(tools_py, "w")
+f_toolbox = open(toolbox_py, "w")
+
+lines_toolbox_template = f_toolbox_template.readlines()
+f_toolbox_template.close()
+
+# write toolbox header to final toolbox Python script
+for line in lines_toolbox_template:
+    f_toolbox.write(line)
+f_toolbox.write("\n\n")
 
 
-ff = open(tools_py, "w")
-f_temp = open(tool_template_py)
-tool_template_lines = f_temp.readlines()
-f_temp.close()
+lines_tool_template = f_tool_template.readlines()
+f_tool_template.close()
 
-f_toolbox = open(toolbox_template_py, "a")
+category = None  #default tool category
+
 
 with open(wbt_py) as f:
     lines = f.readlines()
@@ -70,7 +88,7 @@ with open(wbt_py) as f:
                 f_toolbox.write("        tools.append({})\n".format(name))
 
                 cur_line = ""
-                for tool_line in tool_template_lines:
+                for tool_line in lines_tool_template:
                     if tool_line.strip() == "class Tool(object):":
                         cur_line = tool_line.replace("Tool", name)
                     elif tool_line.strip() == 'self.label = "Tool"':
@@ -83,12 +101,22 @@ with open(wbt_py) as f:
                     else:
                         cur_line = tool_line
                     
-                    ff.write(cur_line)
+                    f_tools.write(cur_line)
                 
-                ff.write("\n\n")
+                f_tools.write("\n\n\n")
 
 
-f_toolbox.write("        self.tools = tools")
+f_toolbox.write("\n        self.tools = tools\n\n\n")
 
-ff.close()
+f_tools.close()
+f_tools = open(tools_py)
+
+for line in f_tools.readlines():
+    f_toolbox.write(line)
+
+f_tools.close()
 f_toolbox.close()
+
+if os.path.exists(wbt_pyt):
+    os.remove(wbt_pyt)
+    shutil.copyfile(toolbox_py, wbt_pyt)
