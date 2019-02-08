@@ -16,4 +16,4 @@ ArcGIS Python Toolbox for WhiteboxTools.
 
 WhiteboxTools-ArcGIS Toolbox Preview. **Work in progress! Not ready for use yet.**
 
-![Imgur](https://i.imgur.com/wIs8YRT.png)
+![Imgur](https://i.imgur.com/5nKri4g.png)

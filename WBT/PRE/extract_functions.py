@@ -29,6 +29,7 @@ wbt_pyt = os.path.join(os.path.dirname(os.path.dirname(dir_path)), "WhiteboxTool
 
 tool_template_py = os.path.join(dir_path, "tool_template.py")           # code chuck for each tool
 toolbox_template_py = os.path.join(dir_path, "toolbox_template.py")     # code chuck for toolbox header
+about_py = os.path.join(dir_path, "about.py")  
 
 tools_py = os.path.join(dir_path, "tools.py")
 toolbox_py = os.path.join(dir_path, "toolbox.py")
@@ -106,11 +107,17 @@ with open(wbt_py) as f:
                 f_tools.write("\n\n\n")
 
 
-f_toolbox.write("\n        self.tools = tools\n\n\n")
+f_toolbox.write("\n        self.tools = tools\n\n")
 
 f_tools.close()
-f_tools = open(tools_py)
 
+f_about = open(about_py)
+for line in f_about.readlines():
+    f_toolbox.write(line)
+f_toolbox.write('\n')
+f_about.close()
+
+f_tools = open(tools_py)
 for line in f_tools.readlines():
     f_toolbox.write(line)
 
