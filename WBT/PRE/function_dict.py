@@ -131,6 +131,23 @@ def get_param_types(tools):
     return parameter_types
 
 
+def define_tool_params(tool):
+    lines = []
+    lines.append('class {}(object):\n'.format(tool['name']))
+    lines.append('    def __init__(self):\n')
+    lines.append('        self.label = "{}"\n'.format(tool['label']))
+    lines.append('        self.description = "{}"\n'.format(tool['description']))
+    lines.append('        self.category = "{}"\n\n'.format(tool['category']))
+    lines.append('    def getParameterInfo(self):\n')
+    lines.append('        params = None\n')
+    lines.append('        return params\n\n')
+    lines.append('    def updateParameters(self, parameters):\n')
+    lines.append('        return\n\n')
+    lines.append('    def updateMessages(self, parameters):\n')
+    lines.append('        return\n\n')
+    lines.append('    def execute(self, parameters, messages):\n')
+    lines.append('        return\n\n\n')
+    return lines
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 wbt_py = os.path.join(dir_path, "whitebox_tools.py")
@@ -192,6 +209,7 @@ with open(wbt_py) as f:
                 func_desc = lines[index+1].replace('"""', '').strip()
 
                 func_dict = {}
+                func_dict['name'] = func_name
                 func_dict["category"] = category
                 func_dict["label"] = func_label
                 func_dict["description"] = func_desc
@@ -225,12 +243,16 @@ with open(file_toolbox_py) as f:
     lines = f.readlines()
     f_wbt.writelines(lines)
 
-# for tool_name in tools_dict.keys():
-#     f_wbt.write("        tools.append({})\n".format(tool_name))
+for tool_name in tools_dict.keys():
+    f_wbt.write("        tools.append({})\n".format(tool_name))
 f_wbt.write("\n        self.tools = tools\n\n\n")
 
 with open(file_about_py) as f:
     lines = f.readlines()
+    f_wbt.writelines(lines)
+
+for tool_name in tools_dict:
+    lines = define_tool_params(tools_dict[tool_name])
     f_wbt.writelines(lines)
 
 f_wbt.close()
@@ -238,3 +260,10 @@ f_wbt.close()
 if os.path.exists(file_wbt_pyt):
     os.remove(file_wbt_pyt)
     shutil.copyfile(file_wbt_py, file_wbt_pyt)
+
+
+# print(tools_dict["AddPointCoordinatesToTable"])
+
+# lines = define_tool_params(tools_dict['AddPointCoordinatesToTable'])
+# for line in lines:
+#     print(line)

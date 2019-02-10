@@ -108,7 +108,7 @@ class ListTools(object):
     def getParameterInfo(self):
         """Define parameter definitions"""
 
-            # First parameter
+        # First parameter
         param0 = arcpy.Parameter(
             displayName="Keywords",
             name="keywords",

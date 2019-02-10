@@ -111,7 +111,7 @@ class ListTools(object):
     def getParameterInfo(self):
         """Define parameter definitions"""
 
-            # First parameter
+        # First parameter
         param0 = arcpy.Parameter(
             displayName="Keywords",
             name="keywords",
@@ -216,7 +216,6 @@ class ToolParameters(object):
             parameterType="Required",
             direction="Input")
 
-        # Set a value list of 1, 10 and 100
         tool_name.value = "Lidar Info"
         tool_name.filter.type = "ValueList"
         tool_name.filter.list = tool_labels
@@ -311,7 +310,6 @@ class RunTool(object):
             parameterType="Required",
             direction="Input")
 
-        # Set a value list of 1, 10 and 100
         tool_name.value = "Lidar Info"
         tool_name.filter.type = "ValueList"
         tool_name.filter.list = tool_labels
