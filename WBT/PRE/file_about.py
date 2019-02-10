@@ -4,6 +4,7 @@ class Help(object):
         self.label = "Help"
         self.description = "Help description for WhiteboxTools"
         self.category = "About WhiteboxTools"
+        self.canRunInBackground = False
 
     def getParameterInfo(self):
         """Define parameter definitions"""
@@ -37,6 +38,7 @@ class License(object):
         self.label = "License"
         self.description = "License information for WhiteboxTools."
         self.category = "About WhiteboxTools"
+        self.canRunInBackground = False
 
     def getParameterInfo(self):
         """Define parameter definitions"""
@@ -70,6 +72,7 @@ class Version(object):
         self.label = "Version"
         self.description = "Version information for WhiteboxTools."
         self.category = "About WhiteboxTools"
+        self.canRunInBackground = False
 
     def getParameterInfo(self):
         """Define parameter definitions"""
@@ -97,13 +100,13 @@ class Version(object):
         return
 
 
-
 class ListTools(object):
     def __init__(self):
         """Define the tool (tool name is the name of the class)."""
         self.label = "List Tools"
         self.description = "All available tools in WhiteboxTools."
         self.category = "About WhiteboxTools"
+        self.canRunInBackground = False
 
     def getParameterInfo(self):
         """Define parameter definitions"""
@@ -115,7 +118,8 @@ class ListTools(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
-
+        # param0.multiValue = True
+        param0.value = "lidar"
         params = [param0]
         return params
 
@@ -144,40 +148,8 @@ class ListTools(object):
             tools = wbt.list_tools([param0])
             
         for index, tool in enumerate(tools):
-            messages.addMessage("{}. {}: {}".format(index, tool, tools[tool]))
+            messages.addMessage("{}. {}: {}".format(index + 1, tool, tools[tool]))
         return
-
-## name conflict with ArcGIS Python Toolbox
-# class Toolbox(object):
-#     def __init__(self):
-#         """Define the tool (tool name is the name of the class)."""
-#         self.label = "Toolbox"
-#         self.description = "The toolbox for a specific tool."
-#         self.category = "About WhiteboxTools"
-
-#     def getParameterInfo(self):
-#         """Define parameter definitions"""
-#         params = None
-#         return params
-
-#     def isLicensed(self):
-#         """Set whether tool is licensed to execute."""
-#         return True
-
-#     def updateParameters(self, parameters):
-#         """Modify the values and properties of parameters before internal
-#         validation is performed.  This method is called whenever a parameter
-#         has been changed."""
-#         return
-
-#     def updateMessages(self, parameters):
-#         """Modify the messages created by internal validation for each tool
-#         parameter.  This method is called after internal validation."""
-#         return
-
-#     def execute(self, parameters, messages):
-#         """The source code of the tool."""
-#         return
 
 
 class ToolHelp(object):
@@ -186,10 +158,22 @@ class ToolHelp(object):
         self.label = "Tool Help"
         self.description = "Help description for a specific tool."
         self.category = "About WhiteboxTools"
+        self.canRunInBackground = False
 
     def getParameterInfo(self):
         """Define parameter definitions"""
-        params = None
+        tool_name = arcpy.Parameter(
+            displayName="Select a tool",
+            name="tool_name",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        tool_name.value = "Lidar Info"
+        tool_name.filter.type = "ValueList"
+        tool_name.filter.list = tool_labels
+
+        params = [tool_name]
         return params
 
     def isLicensed(self):
@@ -209,6 +193,9 @@ class ToolHelp(object):
 
     def execute(self, parameters, messages):
         """The source code of the tool."""
+        param0 = parameters[0].valueAsText
+        tool_name = param0.replace(" ", "").strip()
+        messages.addMessage(wbt.tool_help(tool_name))
         return
 
 
@@ -218,38 +205,7 @@ class ToolParameters(object):
         self.label = "Tool Parameters"
         self.description = "Tool parameter descriptions for a specific tool."
         self.category = "About WhiteboxTools"
-
-    def getParameterInfo(self):
-        """Define parameter definitions"""
-        params = None
-        return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
-    def updateParameters(self, parameters):
-        """Modify the values and properties of parameters before internal
-        validation is performed.  This method is called whenever a parameter
-        has been changed."""
-        return
-
-    def updateMessages(self, parameters):
-        """Modify the messages created by internal validation for each tool
-        parameter.  This method is called after internal validation."""
-        return
-
-    def execute(self, parameters, messages):
-        """The source code of the tool."""
-        return
-
-
-class ViewCode(object):
-    def __init__(self):
-        """Define the tool (tool name is the name of the class)."""
-        self.label = "View Code"
-        self.description = "Source code for a specific tool."
-        self.category = "About WhiteboxTools"
+        self.canRunInBackground = False
 
     def getParameterInfo(self):
         """Define parameter definitions"""
@@ -263,7 +219,54 @@ class ViewCode(object):
         # Set a value list of 1, 10 and 100
         tool_name.value = "Lidar Info"
         tool_name.filter.type = "ValueList"
-        tool_name.filter.list = ["Lidar Info", "And", "Or", "Not"]
+        tool_name.filter.list = tool_labels
+
+        params = [tool_name]
+        return params
+
+    def isLicensed(self):
+        """Set whether tool is licensed to execute."""
+        return True
+
+    def updateParameters(self, parameters):
+        """Modify the values and properties of parameters before internal
+        validation is performed.  This method is called whenever a parameter
+        has been changed."""
+        return
+
+    def updateMessages(self, parameters):
+        """Modify the messages created by internal validation for each tool
+        parameter.  This method is called after internal validation."""
+        return
+
+    def execute(self, parameters, messages):
+        """The source code of the tool."""
+        param0 = parameters[0].valueAsText
+        tool_name = param0.replace(" ", "").strip()
+        messages.addMessage(wbt.tool_parameters(tool_name))
+        return
+
+
+class ViewCode(object):
+    def __init__(self):
+        """Define the tool (tool name is the name of the class)."""
+        self.label = "View Code"
+        self.description = "Source code for a specific tool."
+        self.category = "About WhiteboxTools"
+        self.canRunInBackground = False
+
+    def getParameterInfo(self):
+        """Define parameter definitions"""
+        tool_name = arcpy.Parameter(
+            displayName="Select a tool",
+            name="tool_name",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        tool_name.value = "Lidar Info"
+        tool_name.filter.type = "ValueList"
+        tool_name.filter.list = tool_labels
 
         params = [tool_name]
         return params
@@ -297,10 +300,23 @@ class RunTool(object):
         self.label = "Run Tool"
         self.description = "Runs a tool and specifies tool arguments."
         self.category = "About WhiteboxTools"
+        self.canRunInBackground = False
 
     def getParameterInfo(self):
         """Define parameter definitions"""
-        params = None
+        tool_name = arcpy.Parameter(
+            displayName="Select a tool",
+            name="tool_name",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        # Set a value list of 1, 10 and 100
+        tool_name.value = "Lidar Info"
+        tool_name.filter.type = "ValueList"
+        tool_name.filter.list = tool_labels
+
+        params = [tool_name]
         return params
 
     def isLicensed(self):
@@ -319,37 +335,9 @@ class RunTool(object):
         return
 
     def execute(self, parameters, messages):
-        """The source code of the tool."""
+        param0 = parameters[0].valueAsText
+        tool_name = param0.replace(" ", "").strip()
+        messages.addMessage(wbt.run_tool(tool_name))
         return
 
 
-class Update(object):
-    def __init__(self):
-        """Define the tool (tool name is the name of the class)."""
-        self.label = "Update"
-        self.description = "Download the latest version of WhiteboxTools"
-        self.category = "About WhiteboxTools"
-
-    def getParameterInfo(self):
-        """Define parameter definitions"""
-        params = None
-        return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
-    def updateParameters(self, parameters):
-        """Modify the values and properties of parameters before internal
-        validation is performed.  This method is called whenever a parameter
-        has been changed."""
-        return
-
-    def updateMessages(self, parameters):
-        """Modify the messages created by internal validation for each tool
-        parameter.  This method is called after internal validation."""
-        return
-
-    def execute(self, parameters, messages):
-        """The source code of the tool."""
-        return

@@ -1,8 +1,3 @@
-import arcpy
-from WBT.whitebox_tools import WhiteboxTools
-wbt = WhiteboxTools()
-
-
 class Toolbox(object):
     def __init__(self):
         """Define the toolbox (the name of the toolbox is the name of the .pyt file)."""
@@ -19,4 +14,4 @@ class Toolbox(object):
         tools.append(ToolParameters)
         tools.append(ViewCode)
         tools.append(RunTool)
-        tools.append(Update)
+

@@ -4,7 +4,6 @@ class Tool(object):
         self.label = "Tool"
         self.description = ""
         self.category = ""
-        self.canRunInBackground = False
 
     def getParameterInfo(self):
         """Define parameter definitions"""
@@ -25,3 +24,6 @@ class Tool(object):
     def execute(self, parameters, messages):
         """The source code of the tool."""
         return
+
+
+        

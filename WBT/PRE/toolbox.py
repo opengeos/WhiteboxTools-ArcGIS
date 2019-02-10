@@ -1,5 +1,6 @@
 import arcpy
-
+from WBT.whitebox_tools import WhiteboxTools
+wbt = WhiteboxTools()
 
 class Toolbox(object):
     def __init__(self):
@@ -451,6 +452,7 @@ class Help(object):
 
     def execute(self, parameters, messages):
         """The source code of the tool."""
+        messages.addMessage(wbt.help())
         return
 
 
@@ -483,6 +485,7 @@ class License(object):
 
     def execute(self, parameters, messages):
         """The source code of the tool."""
+        messages.addMessage(wbt.license())
         return
 
 
@@ -515,6 +518,7 @@ class Version(object):
 
     def execute(self, parameters, messages):
         """The source code of the tool."""
+        messages.addMessage(wbt.version())
         return
 
 
@@ -528,7 +532,16 @@ class ListTools(object):
 
     def getParameterInfo(self):
         """Define parameter definitions"""
-        params = None
+
+            # First parameter
+        param0 = arcpy.Parameter(
+            displayName="Keywords",
+            name="keywords",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [param0]
         return params
 
     def isLicensed(self):
@@ -548,6 +561,15 @@ class ListTools(object):
 
     def execute(self, parameters, messages):
         """The source code of the tool."""
+        param0 = parameters[0].valueAsText
+
+        if param0 is None:
+            tools = wbt.list_tools()
+        else:
+            tools = wbt.list_tools([param0])
+            
+        for index, tool in enumerate(tools):
+            messages.addMessage("{}. {}: {}".format(index, tool, tools[tool]))
         return
 
 ## name conflict with ArcGIS Python Toolbox
@@ -647,7 +669,6 @@ class ToolParameters(object):
         return
 
 
-
 class ViewCode(object):
     def __init__(self):
         """Define the tool (tool name is the name of the class)."""
@@ -657,7 +678,19 @@ class ViewCode(object):
 
     def getParameterInfo(self):
         """Define parameter definitions"""
-        params = None
+        tool_name = arcpy.Parameter(
+            displayName="Select a tool",
+            name="tool_name",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        # Set a value list of 1, 10 and 100
+        tool_name.value = "Lidar Info"
+        tool_name.filter.type = "ValueList"
+        tool_name.filter.list = ["Lidar Info", "And", "Or", "Not"]
+
+        params = [tool_name]
         return params
 
     def isLicensed(self):
@@ -677,6 +710,9 @@ class ViewCode(object):
 
     def execute(self, parameters, messages):
         """The source code of the tool."""
+        param0 = parameters[0].valueAsText
+        tool_name = param0.replace(" ", "").strip()
+        messages.addMessage(wbt.view_code(tool_name))
         return
 
 
@@ -754,10 +790,6 @@ class AddPointCoordinatesToTable(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -785,10 +817,6 @@ class ConvertNodataToZero(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -818,10 +846,6 @@ class ConvertRasterFormat(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -849,10 +873,6 @@ class ExportTableToCsv(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -882,10 +902,6 @@ class JoinTables(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -913,10 +929,6 @@ class LinesToPolygons(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -946,10 +958,6 @@ class MergeTableWithCsv(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -977,10 +985,6 @@ class MergeVectors(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -1010,10 +1014,6 @@ class MultiPartToSinglePart(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -1041,10 +1041,6 @@ class NewRasterFromBase(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -1074,10 +1070,6 @@ class PolygonsToLines(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -1105,10 +1097,6 @@ class PrintGeoTiffTags(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -1138,10 +1126,6 @@ class RasterToVectorLines(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -1169,10 +1153,6 @@ class RasterToVectorPoints(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -1202,10 +1182,6 @@ class ReinitializeAttributeTable(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -1233,10 +1209,6 @@ class RemovePolygonHoles(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -1266,10 +1238,6 @@ class SetNodataValue(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -1297,10 +1265,6 @@ class SinglePartToMultiPart(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -1330,10 +1294,6 @@ class VectorLinesToRaster(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -1361,10 +1321,6 @@ class VectorPointsToRaster(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -1394,10 +1350,6 @@ class VectorPolygonsToRaster(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -1425,10 +1377,6 @@ class AggregateRaster(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -1458,10 +1406,6 @@ class BlockMaximumGridding(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -1489,10 +1433,6 @@ class BlockMinimumGridding(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -1522,10 +1462,6 @@ class Centroid(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -1553,10 +1489,6 @@ class CentroidVector(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -1586,10 +1518,6 @@ class Clump(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -1617,10 +1545,6 @@ class ConstructVectorTin(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -1650,10 +1574,6 @@ class CreateHexagonalVectorGrid(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -1681,10 +1601,6 @@ class CreatePlane(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -1714,10 +1630,6 @@ class CreateRectangularVectorGrid(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -1745,10 +1657,6 @@ class Dissolve(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -1778,10 +1686,6 @@ class EliminateCoincidentPoints(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -1809,10 +1713,6 @@ class ExtendVectorLines(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -1842,10 +1742,6 @@ class ExtractNodes(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -1873,10 +1769,6 @@ class ExtractRasterValuesAtPoints(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -1906,10 +1798,6 @@ class FindLowestOrHighestPoints(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -1937,10 +1825,6 @@ class IdwInterpolation(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -1970,10 +1854,6 @@ class LayerFootprint(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -2001,10 +1881,6 @@ class Medoid(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -2034,10 +1910,6 @@ class MinimumBoundingBox(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -2065,10 +1937,6 @@ class MinimumBoundingCircle(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -2098,10 +1966,6 @@ class MinimumBoundingEnvelope(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -2129,10 +1993,6 @@ class MinimumConvexHull(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -2162,10 +2022,6 @@ class NearestNeighbourGridding(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -2193,10 +2049,6 @@ class PolygonArea(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -2226,10 +2078,6 @@ class PolygonLongAxis(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -2257,10 +2105,6 @@ class PolygonPerimeter(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -2290,10 +2134,6 @@ class PolygonShortAxis(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -2321,10 +2161,6 @@ class RasterCellAssignment(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -2354,10 +2190,6 @@ class Reclass(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -2385,10 +2217,6 @@ class ReclassEqualInterval(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -2418,10 +2246,6 @@ class ReclassFromFile(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -2449,10 +2273,6 @@ class SmoothVectors(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -2482,10 +2302,6 @@ class TinGridding(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -2513,10 +2329,6 @@ class VectorHexBinning(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -2546,10 +2358,6 @@ class VoronoiDiagram(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -2577,10 +2385,6 @@ class BufferRaster(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -2610,10 +2414,6 @@ class CostAllocation(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -2641,10 +2441,6 @@ class CostDistance(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -2674,10 +2470,6 @@ class CostPathway(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -2705,10 +2497,6 @@ class EuclideanAllocation(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -2738,10 +2526,6 @@ class EuclideanDistance(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -2769,10 +2553,6 @@ class AverageOverlay(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -2802,10 +2582,6 @@ class Clip(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -2833,10 +2609,6 @@ class ClipRasterToPolygon(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -2866,10 +2638,6 @@ class CountIf(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -2897,10 +2665,6 @@ class Difference(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -2930,10 +2694,6 @@ class Erase(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -2961,10 +2721,6 @@ class ErasePolygonFromRaster(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -2994,10 +2750,6 @@ class HighestPosition(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -3025,10 +2777,6 @@ class Intersect(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -3058,10 +2806,6 @@ class LineIntersections(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -3089,10 +2833,6 @@ class LowestPosition(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -3122,10 +2862,6 @@ class MaxAbsoluteOverlay(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -3153,10 +2889,6 @@ class MaxOverlay(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -3186,10 +2918,6 @@ class MinAbsoluteOverlay(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -3217,10 +2945,6 @@ class MinOverlay(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -3250,10 +2974,6 @@ class PercentEqualTo(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -3281,10 +3001,6 @@ class PercentGreaterThan(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -3314,10 +3030,6 @@ class PercentLessThan(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -3345,10 +3057,6 @@ class PickFromList(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -3378,10 +3086,6 @@ class Polygonize(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -3409,10 +3113,6 @@ class SplitWithLines(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -3442,10 +3142,6 @@ class SumOverlay(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -3473,10 +3169,6 @@ class SymmetricalDifference(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -3506,10 +3198,6 @@ class Union(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -3537,10 +3225,6 @@ class WeightedOverlay(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -3570,10 +3254,6 @@ class WeightedSum(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -3601,10 +3281,6 @@ class CompactnessRatio(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -3634,10 +3310,6 @@ class EdgeProportion(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -3665,10 +3337,6 @@ class ElongationRatio(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -3698,10 +3366,6 @@ class FindPatchOrClassEdgeCells(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -3729,10 +3393,6 @@ class HoleProportion(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -3762,10 +3422,6 @@ class LinearityIndex(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -3793,10 +3449,6 @@ class PatchOrientation(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -3826,10 +3478,6 @@ class PerimeterAreaRatio(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -3857,10 +3505,6 @@ class RadiusOfGyration(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -3890,10 +3534,6 @@ class RelatedCircumscribingCircle(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -3921,10 +3561,6 @@ class ShapeComplexityIndex(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -3954,10 +3590,6 @@ class Aspect(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -3985,10 +3617,6 @@ class CircularVarianceOfAspect(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -4018,10 +3646,6 @@ class DevFromMeanElev(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -4049,10 +3673,6 @@ class DiffFromMeanElev(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -4082,10 +3702,6 @@ class DirectionalRelief(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -4113,10 +3729,6 @@ class DownslopeIndex(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -4146,10 +3758,6 @@ class DrainagePreservingSmoothing(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -4177,10 +3785,6 @@ class EdgeDensity(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -4210,10 +3814,6 @@ class ElevAbovePit(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -4241,10 +3841,6 @@ class ElevPercentile(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -4274,10 +3870,6 @@ class ElevRelativeToMinMax(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -4305,10 +3897,6 @@ class ElevRelativeToWatershedMinMax(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -4338,10 +3926,6 @@ class FeaturePreservingDenoise(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -4369,10 +3953,6 @@ class FetchAnalysis(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -4402,10 +3982,6 @@ class FillMissingData(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -4433,10 +4009,6 @@ class FindRidges(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -4466,10 +4038,6 @@ class Hillshade(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -4497,10 +4065,6 @@ class HorizonAngle(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -4530,10 +4094,6 @@ class HypsometricAnalysis(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -4561,10 +4121,6 @@ class MaxAnisotropyDev(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -4594,10 +4150,6 @@ class MaxAnisotropyDevSignature(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -4625,10 +4177,6 @@ class MaxBranchLength(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -4658,10 +4206,6 @@ class MaxDifferenceFromMean(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -4689,10 +4233,6 @@ class MaxDownslopeElevChange(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -4722,10 +4262,6 @@ class MaxElevDevSignature(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -4753,10 +4289,6 @@ class MaxElevationDeviation(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -4786,10 +4318,6 @@ class MinDownslopeElevChange(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -4817,10 +4345,6 @@ class MultiscaleRoughness(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -4850,10 +4374,6 @@ class MultiscaleRoughnessSignature(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -4881,10 +4401,6 @@ class MultiscaleTopographicPositionImage(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -4914,10 +4430,6 @@ class NumDownslopeNeighbours(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -4945,10 +4457,6 @@ class NumUpslopeNeighbours(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -4978,10 +4486,6 @@ class PennockLandformClass(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -5009,10 +4513,6 @@ class PercentElevRange(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -5042,10 +4542,6 @@ class PlanCurvature(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -5073,10 +4569,6 @@ class Profile(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -5106,10 +4598,6 @@ class ProfileCurvature(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -5137,10 +4625,6 @@ class RelativeAspect(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -5170,10 +4654,6 @@ class RelativeStreamPowerIndex(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -5201,10 +4681,6 @@ class RelativeTopographicPosition(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -5234,10 +4710,6 @@ class RemoveOffTerrainObjects(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -5265,10 +4737,6 @@ class RuggednessIndex(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -5298,10 +4766,6 @@ class SedimentTransportIndex(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -5329,10 +4793,6 @@ class Slope(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -5362,10 +4822,6 @@ class SlopeVsElevationPlot(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -5393,10 +4849,6 @@ class StandardDeviationOfSlope(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -5426,10 +4878,6 @@ class SurfaceAreaRatio(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -5457,10 +4905,6 @@ class TangentialCurvature(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -5490,10 +4934,6 @@ class TotalCurvature(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -5521,10 +4961,6 @@ class Viewshed(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -5554,10 +4990,6 @@ class VisibilityIndex(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -5585,10 +5017,6 @@ class WetnessIndex(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -5618,10 +5046,6 @@ class AverageFlowpathSlope(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -5649,10 +5073,6 @@ class AverageUpslopeFlowpathLength(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -5682,10 +5102,6 @@ class Basins(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -5713,10 +5129,6 @@ class BreachDepressions(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -5746,10 +5158,6 @@ class BreachSingleCellPits(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -5777,10 +5185,6 @@ class D8FlowAccumulation(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -5810,10 +5214,6 @@ class D8MassFlux(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -5841,10 +5241,6 @@ class D8Pointer(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -5874,10 +5270,6 @@ class DInfFlowAccumulation(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -5905,10 +5297,6 @@ class DInfMassFlux(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -5938,10 +5326,6 @@ class DInfPointer(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -5969,10 +5353,6 @@ class DepthInSink(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -6002,10 +5382,6 @@ class DownslopeDistanceToStream(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -6033,10 +5409,6 @@ class DownslopeFlowpathLength(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -6066,10 +5438,6 @@ class ElevationAboveStream(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -6097,10 +5465,6 @@ class ElevationAboveStreamEuclidean(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -6130,10 +5494,6 @@ class Fd8FlowAccumulation(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -6161,10 +5521,6 @@ class Fd8Pointer(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -6194,10 +5550,6 @@ class FillBurn(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -6225,10 +5577,6 @@ class FillDepressions(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -6258,10 +5606,6 @@ class FillSingleCellPits(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -6289,10 +5633,6 @@ class FindNoFlowCells(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -6322,10 +5662,6 @@ class FindParallelFlow(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -6353,10 +5689,6 @@ class FlattenLakes(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -6386,10 +5718,6 @@ class FloodOrder(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -6417,10 +5745,6 @@ class FlowAccumulationFullWorkflow(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -6450,10 +5774,6 @@ class FlowLengthDiff(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -6481,10 +5801,6 @@ class Hillslopes(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -6514,10 +5830,6 @@ class ImpoundmentIndex(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -6545,10 +5857,6 @@ class Isobasins(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -6578,10 +5886,6 @@ class JensonSnapPourPoints(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -6609,10 +5913,6 @@ class LongestFlowpath(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -6642,10 +5942,6 @@ class MaxUpslopeFlowpathLength(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -6673,10 +5969,6 @@ class NumInflowingNeighbours(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -6706,10 +5998,6 @@ class RaiseWalls(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -6737,10 +6025,6 @@ class Rho8Pointer(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -6770,10 +6054,6 @@ class Sink(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -6801,10 +6081,6 @@ class SnapPourPoints(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -6834,10 +6110,6 @@ class StochasticDepressionAnalysis(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -6865,10 +6137,6 @@ class StrahlerOrderBasins(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -6898,10 +6166,6 @@ class Subbasins(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -6929,10 +6193,6 @@ class TraceDownslopeFlowpaths(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -6962,10 +6222,6 @@ class UnnestBasins(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -6993,10 +6249,6 @@ class Watershed(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -7026,10 +6278,6 @@ class ChangeVectorAnalysis(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -7057,10 +6305,6 @@ class Closing(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -7090,10 +6334,6 @@ class CreateColourComposite(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -7121,10 +6361,6 @@ class FlipImage(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -7154,10 +6390,6 @@ class IhsToRgb(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -7185,10 +6417,6 @@ class ImageStackProfile(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -7218,10 +6446,6 @@ class IntegralImage(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -7249,10 +6473,6 @@ class KMeansClustering(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -7282,10 +6502,6 @@ class LineThinning(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -7313,10 +6529,6 @@ class ModifiedKMeansClustering(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -7346,10 +6558,6 @@ class Mosaic(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -7377,10 +6585,6 @@ class MosaicWithFeathering(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -7410,10 +6614,6 @@ class NormalizedDifferenceVegetationIndex(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -7441,10 +6641,6 @@ class Opening(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -7474,10 +6670,6 @@ class RemoveSpurs(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -7505,10 +6697,6 @@ class Resample(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -7538,10 +6726,6 @@ class RgbToIhs(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -7569,10 +6753,6 @@ class SplitColourComposite(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -7602,10 +6782,6 @@ class ThickenRasterLine(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -7633,10 +6809,6 @@ class TophatTransform(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -7666,10 +6838,6 @@ class WriteFunctionMemoryInsertion(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -7697,10 +6865,6 @@ class AdaptiveFilter(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -7730,10 +6894,6 @@ class BilateralFilter(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -7761,10 +6921,6 @@ class ConservativeSmoothingFilter(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -7794,10 +6950,6 @@ class CornerDetection(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -7825,10 +6977,6 @@ class DiffOfGaussianFilter(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -7858,10 +7006,6 @@ class DiversityFilter(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -7889,10 +7033,6 @@ class EdgePreservingMeanFilter(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -7922,10 +7062,6 @@ class EmbossFilter(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -7953,10 +7089,6 @@ class FastAlmostGaussianFilter(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -7986,10 +7118,6 @@ class GaussianFilter(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -8017,10 +7145,6 @@ class HighPassFilter(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -8050,10 +7174,6 @@ class HighPassMedianFilter(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -8081,10 +7201,6 @@ class KNearestMeanFilter(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -8114,10 +7230,6 @@ class LaplacianFilter(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -8145,10 +7257,6 @@ class LaplacianOfGaussianFilter(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -8178,10 +7286,6 @@ class LeeFilter(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -8209,10 +7313,6 @@ class LineDetectionFilter(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -8242,10 +7342,6 @@ class MajorityFilter(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -8273,10 +7369,6 @@ class MaximumFilter(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -8306,10 +7398,6 @@ class MeanFilter(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -8337,10 +7425,6 @@ class MedianFilter(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -8370,10 +7454,6 @@ class MinimumFilter(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -8401,10 +7481,6 @@ class OlympicFilter(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -8434,10 +7510,6 @@ class PercentileFilter(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -8465,10 +7537,6 @@ class PrewittFilter(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -8498,10 +7566,6 @@ class RangeFilter(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -8529,10 +7593,6 @@ class RobertsCrossFilter(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -8562,10 +7622,6 @@ class ScharrFilter(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -8593,10 +7649,6 @@ class SobelFilter(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -8626,10 +7678,6 @@ class StandardDeviationFilter(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -8657,10 +7705,6 @@ class TotalFilter(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -8690,10 +7734,6 @@ class UnsharpMasking(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -8721,10 +7761,6 @@ class UserInedWeightsFilter(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -8754,10 +7790,6 @@ class BalanceContrastEnhancement(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -8785,10 +7817,6 @@ class CorrectVignetting(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -8818,10 +7846,6 @@ class DirectDecorrelationStretch(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -8849,10 +7873,6 @@ class GammaCorrection(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -8882,10 +7902,6 @@ class GaussianContrastStretch(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -8913,10 +7929,6 @@ class HistogramEqualization(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -8946,10 +7958,6 @@ class HistogramMatching(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -8977,10 +7985,6 @@ class HistogramMatchingTwoImages(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -9010,10 +8014,6 @@ class MinMaxContrastStretch(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -9041,10 +8041,6 @@ class PanchromaticSharpening(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -9074,10 +8070,6 @@ class PercentageContrastStretch(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -9105,10 +8097,6 @@ class SigmoidalContrastStretch(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -9138,10 +8126,6 @@ class StandardDeviationContrastStretch(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -9169,10 +8153,6 @@ class ClassifyOverlapPoints(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -9202,10 +8182,6 @@ class ClipLidarToPolygon(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -9233,10 +8209,6 @@ class ErasePolygonFromLidar(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -9266,10 +8238,6 @@ class FilterLidarScanAngles(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -9297,10 +8265,6 @@ class FindFlightlineEdgePoints(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -9330,10 +8294,6 @@ class FlightlineOverlap(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -9361,10 +8321,6 @@ class LasToAscii(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -9394,10 +8350,6 @@ class LasToMultipointShapefile(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -9425,10 +8377,6 @@ class LasToShapefile(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -9458,10 +8406,6 @@ class LidarBlockMaximum(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -9489,10 +8433,6 @@ class LidarBlockMinimum(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -9522,10 +8462,6 @@ class LidarClassifySubset(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -9553,10 +8489,6 @@ class LidarColourize(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -9586,10 +8518,6 @@ class LidarConstructVectorTin(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -9617,10 +8545,6 @@ class LidarElevationSlice(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -9650,10 +8574,6 @@ class LidarGroundPointFilter(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -9681,10 +8601,6 @@ class LidarHexBinning(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -9714,10 +8630,6 @@ class LidarHillshade(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -9745,10 +8657,6 @@ class LidarHistogram(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -9778,10 +8686,6 @@ class LidarIdwInterpolation(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -9809,10 +8713,6 @@ class LidarInfo(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -9842,10 +8742,6 @@ class LidarJoin(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -9873,10 +8769,6 @@ class LidarKappaIndex(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -9906,10 +8798,6 @@ class LidarNearestNeighbourGridding(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -9937,10 +8825,6 @@ class LidarPointDensity(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -9970,10 +8854,6 @@ class LidarPointStats(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -10001,10 +8881,6 @@ class LidarRemoveDuplicates(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -10034,10 +8910,6 @@ class LidarRemoveOutliers(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -10065,10 +8937,6 @@ class LidarSegmentation(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -10098,10 +8966,6 @@ class LidarSegmentationBasedFilter(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -10129,10 +8993,6 @@ class LidarThin(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -10162,10 +9022,6 @@ class LidarThinHighDensity(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -10193,10 +9049,6 @@ class LidarTile(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -10226,10 +9078,6 @@ class LidarTileFootprint(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -10257,10 +9105,6 @@ class LidarTinGridding(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -10290,10 +9134,6 @@ class LidarTophatTransform(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -10321,10 +9161,6 @@ class NormalVectors(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -10354,10 +9190,6 @@ class SelectTilesByPolygon(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -10385,10 +9217,6 @@ class And(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -10418,10 +9246,6 @@ class Not(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -10449,10 +9273,6 @@ class Or(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -10482,10 +9302,6 @@ class AbsoluteValue(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -10513,10 +9329,6 @@ class Add(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -10546,10 +9358,6 @@ class Anova(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -10577,10 +9385,6 @@ class ArcCos(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -10610,10 +9414,6 @@ class ArcSin(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -10641,10 +9441,6 @@ class ArcTan(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -10674,10 +9470,6 @@ class Atan2(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -10705,10 +9497,6 @@ class AttributeCorrelation(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -10738,10 +9526,6 @@ class AttributeHistogram(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -10769,10 +9553,6 @@ class AttributeScattergram(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -10802,10 +9582,6 @@ class Ceil(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -10833,10 +9609,6 @@ class Cos(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -10866,10 +9638,6 @@ class Cosh(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -10897,10 +9665,6 @@ class CrispnessIndex(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -10930,10 +9694,6 @@ class CrossTabulation(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -10961,10 +9721,6 @@ class CumulativeDistribution(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -10994,10 +9750,6 @@ class Decrement(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -11025,10 +9777,6 @@ class Divide(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -11058,10 +9806,6 @@ class EqualTo(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -11089,10 +9833,6 @@ class Exp(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -11122,10 +9862,6 @@ class Exp2(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -11153,10 +9889,6 @@ class ExtractRasterStatistics(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -11186,10 +9918,6 @@ class Floor(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -11217,10 +9945,6 @@ class GreaterThan(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -11250,10 +9974,6 @@ class ImageAutocorrelation(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -11281,10 +10001,6 @@ class ImageCorrelation(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -11314,10 +10030,6 @@ class ImageRegression(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -11345,10 +10057,6 @@ class InPlaceAdd(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -11378,10 +10086,6 @@ class InPlaceDivide(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -11409,10 +10113,6 @@ class InPlaceMultiply(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -11442,10 +10142,6 @@ class InPlaceSubtract(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -11473,10 +10169,6 @@ class Increment(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -11506,10 +10198,6 @@ class IntegerDivision(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -11537,10 +10225,6 @@ class IsNoData(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -11570,10 +10254,6 @@ class KappaIndex(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -11601,10 +10281,6 @@ class KsTestForNormality(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -11634,10 +10310,6 @@ class LessThan(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -11665,10 +10337,6 @@ class ListUniqueValues(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -11698,10 +10366,6 @@ class Ln(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -11729,10 +10393,6 @@ class Log10(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -11762,10 +10422,6 @@ class Log2(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -11793,10 +10449,6 @@ class Max(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -11826,10 +10478,6 @@ class Min(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -11857,10 +10505,6 @@ class Modulo(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -11890,10 +10534,6 @@ class Multiply(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -11921,10 +10561,6 @@ class Negate(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -11954,10 +10590,6 @@ class NotEqualTo(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -11985,10 +10617,6 @@ class Power(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -12018,10 +10646,6 @@ class PrincipalComponentAnalysis(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -12049,10 +10673,6 @@ class Quantiles(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -12082,10 +10702,6 @@ class RandomField(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -12113,10 +10729,6 @@ class RandomSample(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -12146,10 +10758,6 @@ class RasterHistogram(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -12177,10 +10785,6 @@ class RasterSummaryStats(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -12210,10 +10814,6 @@ class Reciprocal(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -12241,10 +10841,6 @@ class RescaleValueRange(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -12274,10 +10870,6 @@ class RootMeanSquareError(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -12305,10 +10897,6 @@ class Round(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -12338,10 +10926,6 @@ class Sin(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -12369,10 +10953,6 @@ class Sinh(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -12402,10 +10982,6 @@ class Square(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -12433,10 +11009,6 @@ class SquareRoot(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -12466,10 +11038,6 @@ class Subtract(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -12497,10 +11065,6 @@ class Tan(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -12530,10 +11094,6 @@ class Tanh(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -12561,10 +11121,6 @@ class ToDegrees(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -12594,10 +11150,6 @@ class ToRadians(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -12625,10 +11177,6 @@ class TrendSurface(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -12658,10 +11206,6 @@ class TrendSurfaceVectorPoints(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -12689,10 +11233,6 @@ class Truncate(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -12722,10 +11262,6 @@ class TurningBandsSimulation(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -12753,10 +11289,6 @@ class Xor(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -12786,10 +11318,6 @@ class ZScores(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -12817,10 +11345,6 @@ class DistanceToOutlet(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -12850,10 +11374,6 @@ class ExtractStreams(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -12881,10 +11401,6 @@ class ExtractValleys(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -12914,10 +11430,6 @@ class FarthestChannelHead(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -12945,10 +11457,6 @@ class FindMainStem(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -12978,10 +11486,6 @@ class HackStreamOrder(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -13009,10 +11513,6 @@ class HortonStreamOrder(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -13042,10 +11542,6 @@ class LengthOfUpstreamChannels(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -13073,10 +11569,6 @@ class LongProfile(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -13106,10 +11598,6 @@ class LongProfileFromPoints(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -13137,10 +11625,6 @@ class RasterStreamsToVector(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -13170,10 +11654,6 @@ class RasterizeStreams(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -13201,10 +11681,6 @@ class RemoveShortStreams(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -13234,10 +11710,6 @@ class ShreveStreamMagnitude(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -13265,10 +11737,6 @@ class StrahlerStreamOrder(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -13298,10 +11766,6 @@ class StreamLinkClass(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -13329,10 +11793,6 @@ class StreamLinkIdentifier(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -13362,10 +11822,6 @@ class StreamLinkLength(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -13393,10 +11849,6 @@ class StreamLinkSlope(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
@@ -13426,10 +11878,6 @@ class StreamSlopeContinuous(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -13458,10 +11906,6 @@ class TopologicalStreamOrder(object):
         params = None
         return params
 
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
-
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
         validation is performed.  This method is called whenever a parameter
@@ -13489,10 +11933,6 @@ class TributaryIdentifier(object):
         """Define parameter definitions"""
         params = None
         return params
-
-    def isLicensed(self):
-        """Set whether tool is licensed to execute."""
-        return True
 
     def updateParameters(self, parameters):
         """Modify the values and properties of parameters before internal
