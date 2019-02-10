@@ -94,8 +94,10 @@ def get_tool_params(tool_name):
         param_dict['name'] = name
 
         flags = item[index_flags - 1 : index_description -2].replace('"flags":', '')
-        if "--" in flags:
+        if flags.count("--") == 1 :
             flags = flags.split('--')[1][: -2]
+        elif flags.count("--") == 2:
+            flags = flags.split('--')[2][: -2]
         else:
             flags = flags.split('-')[1][: -2]
         param_dict['flags'] = flags
@@ -131,7 +133,7 @@ def get_param_types(tools):
     return parameter_types
 
 
-def define_tool_params(tool):
+def generate_tool_template(tool):
     lines = []
     lines.append('class {}(object):\n'.format(tool['name']))
     lines.append('    def __init__(self):\n')
@@ -139,7 +141,8 @@ def define_tool_params(tool):
     lines.append('        self.description = "{}"\n'.format(tool['description']))
     lines.append('        self.category = "{}"\n\n'.format(tool['category']))
     lines.append('    def getParameterInfo(self):\n')
-    lines.append('        params = None\n')
+    # lines.append('        params = None\n')
+    lines.append(define_tool_params(tool['parameters']))
     lines.append('        return params\n\n')
     lines.append('    def updateParameters(self, parameters):\n')
     lines.append('        return\n\n')
@@ -148,6 +151,50 @@ def define_tool_params(tool):
     lines.append('    def execute(self, parameters, messages):\n')
     lines.append('        return\n\n\n')
     return lines
+
+
+
+def define_tool_params(params):
+    lines = []
+    # num_params = len(params)
+    for param in params:
+        items = params[param]
+        if items['optional'] == 'false':
+            parameter_type="Required"
+        else:
+            parameter_type="Optional"
+        
+        if 'NewFile' in items['parameter_type']:
+            direction="Output"
+        else:
+            direction="Input"
+
+        data_type = "GPString"
+
+        if param == "class":   # parameter cannot use Python reserved keyword
+            param = "class1"
+
+        lines.append('        {} = arcpy.Parameter(\n'.format(param))
+        lines.append('            displayName="{}",\n'.format(items['name']))
+        lines.append('            name="{}",\n'.format(param))
+        lines.append('            datatype="{}",\n'.format(data_type))
+        lines.append('            parameterType="{}",\n'.format(parameter_type))
+        lines.append('            direction="{}")\n'.format(direction))
+
+        if (items['default_value'] != 'null') and (len(items['default_value']) > 0):
+            lines.append('\n        {}.value = {}\n\n'.format(param, items['default_value']))
+        else:
+            lines.append('\n')
+        
+    line = '        params = [{}]\n\n'.format(', '.join(params))    
+    if "class" in line:
+        line = line.replace(", class,", ", class1,")
+    
+    lines.append(line)
+    lines = ''.join(lines)
+    return lines
+
+
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 wbt_py = os.path.join(dir_path, "whitebox_tools.py")
@@ -214,7 +261,7 @@ with open(wbt_py) as f:
                 func_dict["label"] = func_label
                 func_dict["description"] = func_desc
                 
-                print("{}: {}".format(tool_index, func_name))
+                # print("{}: {}".format(tool_index, func_name))
                 tool_index = tool_index + 1
                 func_params = get_tool_params(func_name)
                 func_dict["parameters"] = func_params
@@ -252,7 +299,7 @@ with open(file_about_py) as f:
     f_wbt.writelines(lines)
 
 for tool_name in tools_dict:
-    lines = define_tool_params(tools_dict[tool_name])
+    lines = generate_tool_template(tools_dict[tool_name])
     f_wbt.writelines(lines)
 
 f_wbt.close()
@@ -261,9 +308,16 @@ if os.path.exists(file_wbt_pyt):
     os.remove(file_wbt_pyt)
     shutil.copyfile(file_wbt_py, file_wbt_pyt)
 
+tool_name = "LidarElevationSlice"
+params = tools_dict[tool_name]['parameters']
+print(params)
+print(len(params))
 
-# print(tools_dict["AddPointCoordinatesToTable"])
-
+# print(wbt.tool_parameters(tool_name))
 # lines = define_tool_params(tools_dict['AddPointCoordinatesToTable'])
+# for line in lines:
+#     print(line)
+
+# lines = define_tool_params(params)
 # for line in lines:
 #     print(line)

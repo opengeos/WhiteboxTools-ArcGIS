@@ -1172,7 +1172,15 @@ class AddPointCoordinatesToTable(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector Points File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [input]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1192,7 +1200,22 @@ class ConvertNodataToZero(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1212,7 +1235,22 @@ class ConvertRasterFormat(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1232,7 +1270,31 @@ class ExportTableToCsv(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        headers = arcpy.Parameter(
+            displayName="Export field names as file header?",
+            name="headers",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        headers.value = "true"
+
+        params = [input, output, headers]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1252,7 +1314,43 @@ class JoinTables(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="Input Primary Vector File",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        pkey = arcpy.Parameter(
+            displayName="Primary Key Field",
+            name="pkey",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Input Foreign Vector File",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        fkey = arcpy.Parameter(
+            displayName="Foreign Key Field",
+            name="fkey",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        import_field = arcpy.Parameter(
+            displayName="Imported Field",
+            name="import_field",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [input1, pkey, input2, fkey, import_field]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1272,7 +1370,22 @@ class LinesToPolygons(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Line File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Polygon File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1292,7 +1405,43 @@ class MergeTableWithCsv(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Primary Vector File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        pkey = arcpy.Parameter(
+            displayName="Primary Key Field",
+            name="pkey",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        csv = arcpy.Parameter(
+            displayName="Input CSV File",
+            name="csv",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        fkey = arcpy.Parameter(
+            displayName="Foreign Key Field",
+            name="fkey",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        import_field = arcpy.Parameter(
+            displayName="Imported Field",
+            name="import_field",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input, pkey, csv, fkey, import_field]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1312,7 +1461,22 @@ class MergeVectors(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        params = None
+        inputs = arcpy.Parameter(
+            displayName="Input Vector Files",
+            name="inputs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Vector File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [inputs, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1332,7 +1496,31 @@ class MultiPartToSinglePart(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Line or Polygon File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Line or Polygon File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        exclude_holes = arcpy.Parameter(
+            displayName="Exclude hole parts?",
+            name="exclude_holes",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        exclude_holes.value = "true"
+
+        params = [input, output, exclude_holes]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1352,7 +1540,40 @@ class NewRasterFromBase(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        params = None
+        base = arcpy.Parameter(
+            displayName="Input Base File",
+            name="base",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        value = arcpy.Parameter(
+            displayName="Constant Value",
+            name="value",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        value.value = "nodata"
+
+        data_type = arcpy.Parameter(
+            displayName="Data Type",
+            name="data_type",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        data_type.value = "float"
+
+        params = [base, output, value, data_type]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1372,7 +1593,22 @@ class PolygonsToLines(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Polygon File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Line File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1392,7 +1628,15 @@ class PrintGeoTiffTags(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input GeoTIFF Raster File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [input]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1412,7 +1656,22 @@ class RasterToVectorLines(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Raster Lines File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1432,7 +1691,22 @@ class RasterToVectorPoints(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Raster File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Points File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1452,7 +1726,15 @@ class ReinitializeAttributeTable(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [input]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1472,7 +1754,22 @@ class RemovePolygonHoles(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector Polygon File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Polygon File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1492,7 +1789,31 @@ class SetNodataValue(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        back_value = arcpy.Parameter(
+            displayName="Background Value",
+            name="back_value",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        back_value.value = "0.0"
+
+        params = [input, output, back_value]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1512,7 +1833,29 @@ class SinglePartToMultiPart(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Line or Polygon File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        field = arcpy.Parameter(
+            displayName="Grouping ID Field Name",
+            name="field",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Line or Polygon File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, field, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1532,7 +1875,54 @@ class VectorLinesToRaster(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector Lines File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        field = arcpy.Parameter(
+            displayName="Field Name",
+            name="field",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        field.value = "FID"
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        nodata = arcpy.Parameter(
+            displayName="Background value is NoData?",
+            name="nodata",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        nodata.value = "true"
+
+        cell_size = arcpy.Parameter(
+            displayName="Cell Size (optional)",
+            name="cell_size",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        base = arcpy.Parameter(
+            displayName="Base Raster File (optional)",
+            name="base",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input, field, output, nodata, cell_size, base]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1552,7 +1942,63 @@ class VectorPointsToRaster(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector Points File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        field = arcpy.Parameter(
+            displayName="Field Name",
+            name="field",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        field.value = "FID"
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        assign = arcpy.Parameter(
+            displayName="Assignment Operation",
+            name="assign",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        assign.value = "last"
+
+        nodata = arcpy.Parameter(
+            displayName="Background value is NoData?",
+            name="nodata",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        nodata.value = "true"
+
+        cell_size = arcpy.Parameter(
+            displayName="Cell Size (optional)",
+            name="cell_size",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        base = arcpy.Parameter(
+            displayName="Base Raster File (optional)",
+            name="base",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input, field, output, assign, nodata, cell_size, base]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1572,7 +2018,54 @@ class VectorPolygonsToRaster(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector Polygon File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        field = arcpy.Parameter(
+            displayName="Field Name",
+            name="field",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        field.value = "FID"
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        nodata = arcpy.Parameter(
+            displayName="Background value is NoData?",
+            name="nodata",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        nodata.value = "true"
+
+        cell_size = arcpy.Parameter(
+            displayName="Cell Size (optional)",
+            name="cell_size",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        base = arcpy.Parameter(
+            displayName="Base Raster File (optional)",
+            name="base",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input, field, output, nodata, cell_size, base]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1592,7 +2085,40 @@ class AggregateRaster(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        agg_factor = arcpy.Parameter(
+            displayName="Aggregation Factor (pixels)",
+            name="agg_factor",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        agg_factor.value = "2"
+
+        type = arcpy.Parameter(
+            displayName="Aggregation Type",
+            name="type",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        type.value = "mean"
+
+        params = [input, output, agg_factor, type]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1612,7 +2138,52 @@ class BlockMaximumGridding(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector Points File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        field = arcpy.Parameter(
+            displayName="Field Name",
+            name="field",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        use_z = arcpy.Parameter(
+            displayName="Use z-coordinate instead of field?",
+            name="use_z",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        use_z.value = "false"
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        cell_size = arcpy.Parameter(
+            displayName="Cell Size (optional)",
+            name="cell_size",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        base = arcpy.Parameter(
+            displayName="Base Raster File (optional)",
+            name="base",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input, field, use_z, output, cell_size, base]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1632,7 +2203,52 @@ class BlockMinimumGridding(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector Points File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        field = arcpy.Parameter(
+            displayName="Field Name",
+            name="field",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        use_z = arcpy.Parameter(
+            displayName="Use z-coordinate instead of field?",
+            name="use_z",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        use_z.value = "false"
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        cell_size = arcpy.Parameter(
+            displayName="Cell Size (optional)",
+            name="cell_size",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        base = arcpy.Parameter(
+            displayName="Base Raster File (optional)",
+            name="base",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input, field, use_z, output, cell_size, base]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1652,7 +2268,29 @@ class Centroid(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        text_output = arcpy.Parameter(
+            displayName="Output text?",
+            name="text_output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [input, output, text_output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1672,7 +2310,22 @@ class CentroidVector(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Vector File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1692,7 +2345,38 @@ class Clump(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        diag = arcpy.Parameter(
+            displayName="Include diagonal connections?",
+            name="diag",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        diag.value = "true"
+
+        zero_back = arcpy.Parameter(
+            displayName="Treat zero values as background?",
+            name="zero_back",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [input, output, diag, zero_back]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1712,7 +2396,38 @@ class ConstructVectorTin(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector Points File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        field = arcpy.Parameter(
+            displayName="Field Name",
+            name="field",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        use_z = arcpy.Parameter(
+            displayName="Use Shapefile 'z' values?",
+            name="use_z",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        use_z.value = "false"
+
+        output = arcpy.Parameter(
+            displayName="Output Polygon File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, field, use_z, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1732,7 +2447,38 @@ class CreateHexagonalVectorGrid(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Base File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Polygon File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        width = arcpy.Parameter(
+            displayName="Hexagon Width",
+            name="width",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        orientation = arcpy.Parameter(
+            displayName="Grid Orientation",
+            name="orientation",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        orientation.value = "horizontal"
+
+        params = [input, output, width, orientation]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1752,7 +2498,49 @@ class CreatePlane(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        base = arcpy.Parameter(
+            displayName="Input Base File",
+            name="base",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        gradient = arcpy.Parameter(
+            displayName="Gradient",
+            name="gradient",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        gradient.value = "15.0"
+
+        aspect = arcpy.Parameter(
+            displayName="Aspect",
+            name="aspect",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        aspect.value = "90.0"
+
+        constant = arcpy.Parameter(
+            displayName="Constant",
+            name="constant",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        constant.value = "0.0"
+
+        params = [base, output, gradient, aspect, constant]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1772,7 +2560,54 @@ class CreateRectangularVectorGrid(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Base File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Polygon File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        width = arcpy.Parameter(
+            displayName="Grid Cell Width",
+            name="width",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        height = arcpy.Parameter(
+            displayName="Grid Cell Height",
+            name="height",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        xorig = arcpy.Parameter(
+            displayName="Grid origin x-coordinate",
+            name="xorig",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        xorig.value = "0"
+
+        yorig = arcpy.Parameter(
+            displayName="Grid origin y-coordinate",
+            name="yorig",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        yorig.value = "0"
+
+        params = [input, output, width, height, xorig, yorig]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1792,7 +2627,38 @@ class Dissolve(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        field = arcpy.Parameter(
+            displayName="Dissolve Field Attribute",
+            name="field",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Vector File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        snap = arcpy.Parameter(
+            displayName="Snap Tolerance",
+            name="snap",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        snap.value = "0.0"
+
+        params = [input, field, output, snap]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1812,7 +2678,29 @@ class EliminateCoincidentPoints(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Polygon File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        tolerance = arcpy.Parameter(
+            displayName="Distance Tolerance",
+            name="tolerance",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [input, output, tolerance]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1832,7 +2720,38 @@ class ExtendVectorLines(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector Lines File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Vector File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        dist = arcpy.Parameter(
+            displayName="Extend Distance",
+            name="dist",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        extend = arcpy.Parameter(
+            displayName="Extend Direction",
+            name="extend",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        extend.value = "both ends"
+
+        params = [input, output, dist, extend]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1852,7 +2771,22 @@ class ExtractNodes(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Points File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1872,7 +2806,22 @@ class ExtractRasterValuesAtPoints(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        inputs = arcpy.Parameter(
+            displayName="Input Files",
+            name="inputs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        points = arcpy.Parameter(
+            displayName="Input Points File",
+            name="points",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [inputs, points]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1892,7 +2841,31 @@ class FindLowestOrHighestPoints(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Raster File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Points File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        out_type = arcpy.Parameter(
+            displayName="Output Type",
+            name="out_type",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        out_type.value = "lowest"
+
+        params = [input, output, out_type]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1912,7 +2885,75 @@ class IdwInterpolation(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector Points File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        field = arcpy.Parameter(
+            displayName="Field Name",
+            name="field",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        use_z = arcpy.Parameter(
+            displayName="Use z-coordinate instead of field?",
+            name="use_z",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        use_z.value = "false"
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        weight = arcpy.Parameter(
+            displayName="IDW Weight (Exponent) Value",
+            name="weight",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        weight.value = "2.0"
+
+        radius = arcpy.Parameter(
+            displayName="Search Radius",
+            name="radius",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        min_points = arcpy.Parameter(
+            displayName="Min. Number of Points",
+            name="min_points",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        cell_size = arcpy.Parameter(
+            displayName="Cell Size (optional)",
+            name="cell_size",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        base = arcpy.Parameter(
+            displayName="Base Raster File (optional)",
+            name="base",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input, field, use_z, output, weight, radius, min_points, cell_size, base]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1932,7 +2973,22 @@ class LayerFootprint(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Raster or Vector File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Polygon File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1952,7 +3008,22 @@ class Medoid(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Vector File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1972,7 +3043,40 @@ class MinimumBoundingBox(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Polygon File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        criterion = arcpy.Parameter(
+            displayName="Minimization Criterion",
+            name="criterion",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        criterion.value = "area"
+
+        features = arcpy.Parameter(
+            displayName="Find bounding rectangles around each individual feature.",
+            name="features",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        features.value = "true"
+
+        params = [input, output, criterion, features]
+
         return params
 
     def updateParameters(self, parameters):
@@ -1992,7 +3096,31 @@ class MinimumBoundingCircle(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Polygon File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        features = arcpy.Parameter(
+            displayName="Find bounding circle around each individual feature.",
+            name="features",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        features.value = "true"
+
+        params = [input, output, features]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2012,7 +3140,31 @@ class MinimumBoundingEnvelope(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Polygon File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        features = arcpy.Parameter(
+            displayName="Find bounding envelop around each individual feature.",
+            name="features",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        features.value = "true"
+
+        params = [input, output, features]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2032,7 +3184,31 @@ class MinimumConvexHull(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Polygon File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        features = arcpy.Parameter(
+            displayName="Find hulls around each individual feature.",
+            name="features",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        features.value = "true"
+
+        params = [input, output, features]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2052,7 +3228,59 @@ class NearestNeighbourGridding(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector Points File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        field = arcpy.Parameter(
+            displayName="Field Name",
+            name="field",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        use_z = arcpy.Parameter(
+            displayName="Use z-coordinate instead of field?",
+            name="use_z",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        use_z.value = "false"
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        cell_size = arcpy.Parameter(
+            displayName="Cell Size (optional)",
+            name="cell_size",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        base = arcpy.Parameter(
+            displayName="Base Raster File (optional)",
+            name="base",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        max_dist = arcpy.Parameter(
+            displayName="Maximum Search Distance",
+            name="max_dist",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input, field, use_z, output, cell_size, base, max_dist]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2072,7 +3300,15 @@ class PolygonArea(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector Polygon File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [input]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2092,7 +3328,22 @@ class PolygonLongAxis(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Polygon File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Polygon File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2112,7 +3363,15 @@ class PolygonPerimeter(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector Polygon File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [input]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2132,7 +3391,22 @@ class PolygonShortAxis(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Polygon File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Polygon File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2152,7 +3426,31 @@ class RasterCellAssignment(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        assign = arcpy.Parameter(
+            displayName="Which spatial variable should be assigned?",
+            name="assign",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        assign.value = "column"
+
+        params = [input, output, assign]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2172,7 +3470,36 @@ class Reclass(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        reclass_vals = arcpy.Parameter(
+            displayName="Class Interval Size",
+            name="reclass_vals",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        assign_mode = arcpy.Parameter(
+            displayName="Operate in assign mode? (i.e. Reclass data are pair values rather than triplets)",
+            name="assign_mode",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input, output, reclass_vals, assign_mode]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2192,7 +3519,45 @@ class ReclassEqualInterval(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        interval = arcpy.Parameter(
+            displayName="Class Interval Size",
+            name="interval",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        interval.value = "10.0"
+
+        start_val = arcpy.Parameter(
+            displayName="Starting Value",
+            name="start_val",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        end_val = arcpy.Parameter(
+            displayName="Ending Value",
+            name="end_val",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input, output, interval, start_val, end_val]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2212,7 +3577,29 @@ class ReclassFromFile(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        reclass_file = arcpy.Parameter(
+            displayName="Input Reclass Text File",
+            name="reclass_file",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, reclass_file, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2232,7 +3619,31 @@ class SmoothVectors(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Vector File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filter = arcpy.Parameter(
+            displayName="Filter Size",
+            name="filter",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filter.value = "3"
+
+        params = [input, output, filter]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2252,7 +3663,45 @@ class TinGridding(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector Points File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        field = arcpy.Parameter(
+            displayName="Field Name",
+            name="field",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        use_z = arcpy.Parameter(
+            displayName="Use Shapefile 'z' values?",
+            name="use_z",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        use_z.value = "false"
+
+        output = arcpy.Parameter(
+            displayName="Output Raster File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        resolution = arcpy.Parameter(
+            displayName="Grid Resolution",
+            name="resolution",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [input, field, use_z, output, resolution]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2272,7 +3721,38 @@ class VectorHexBinning(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Base File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Polygon File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        width = arcpy.Parameter(
+            displayName="Hexagon Width",
+            name="width",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        orientation = arcpy.Parameter(
+            displayName="Grid Orientation",
+            name="orientation",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        orientation.value = "horizontal"
+
+        params = [input, output, width, orientation]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2292,7 +3772,22 @@ class VoronoiDiagram(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector Points File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Polygon File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2312,7 +3807,36 @@ class BufferRaster(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        size = arcpy.Parameter(
+            displayName="Buffer Size",
+            name="size",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        gridcells = arcpy.Parameter(
+            displayName="Buffer size measured in grid cells?",
+            name="gridcells",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input, output, size, gridcells]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2332,7 +3856,29 @@ class CostAllocation(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        source = arcpy.Parameter(
+            displayName="Input Source File",
+            name="source",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        backlink = arcpy.Parameter(
+            displayName="Input Backlink File",
+            name="backlink",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [source, backlink, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2352,7 +3898,36 @@ class CostDistance(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        source = arcpy.Parameter(
+            displayName="Input Source File",
+            name="source",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        cost = arcpy.Parameter(
+            displayName="Input Cost (Friction) File",
+            name="cost",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        out_accum = arcpy.Parameter(
+            displayName="Output Cost Accumulation File",
+            name="out_accum",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        out_backlink = arcpy.Parameter(
+            displayName="Output Backlink File",
+            name="out_backlink",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [source, cost, out_accum, out_backlink]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2372,7 +3947,36 @@ class CostPathway(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        destination = arcpy.Parameter(
+            displayName="Input Destination File",
+            name="destination",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        backlink = arcpy.Parameter(
+            displayName="Input Backlink File",
+            name="backlink",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        zero_background = arcpy.Parameter(
+            displayName="Treat zero values as background?",
+            name="zero_background",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [destination, backlink, output, zero_background]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2392,7 +3996,22 @@ class EuclideanAllocation(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2412,7 +4031,22 @@ class EuclideanDistance(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2432,7 +4066,22 @@ class AverageOverlay(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        inputs = arcpy.Parameter(
+            displayName="Input Files",
+            name="inputs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [inputs, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2452,7 +4101,29 @@ class Clip(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        clip = arcpy.Parameter(
+            displayName="Input Clip Polygon Vector File",
+            name="clip",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Vector File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, clip, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2472,7 +4143,38 @@ class ClipRasterToPolygon(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        polygons = arcpy.Parameter(
+            displayName="Input Vector Polygon File",
+            name="polygons",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        maintain_dimensions = arcpy.Parameter(
+            displayName="Maintain input raster dimensions?",
+            name="maintain_dimensions",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        maintain_dimensions.value = "false"
+
+        params = [input, polygons, output, maintain_dimensions]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2492,7 +4194,29 @@ class CountIf(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        inputs = arcpy.Parameter(
+            displayName="Input Files",
+            name="inputs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        value = arcpy.Parameter(
+            displayName="Value",
+            name="value",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [inputs, output, value]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2512,7 +4236,29 @@ class Difference(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        overlay = arcpy.Parameter(
+            displayName="Input Overlay Vector File",
+            name="overlay",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Vector File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, overlay, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2532,7 +4278,29 @@ class Erase(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        erase = arcpy.Parameter(
+            displayName="Input Erase Polygon Vector File",
+            name="erase",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Vector File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, erase, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2552,7 +4320,29 @@ class ErasePolygonFromRaster(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        polygons = arcpy.Parameter(
+            displayName="Input Vector Polygon File",
+            name="polygons",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, polygons, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2572,7 +4362,22 @@ class HighestPosition(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        inputs = arcpy.Parameter(
+            displayName="Input Files",
+            name="inputs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [inputs, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2592,7 +4397,38 @@ class Intersect(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        overlay = arcpy.Parameter(
+            displayName="Input Overlay Vector File",
+            name="overlay",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Vector File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        snap = arcpy.Parameter(
+            displayName="Snap Tolerance",
+            name="snap",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        snap.value = "0.0"
+
+        params = [input, overlay, output, snap]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2612,7 +4448,29 @@ class LineIntersections(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="Input Vector Lines File",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Input Vector Lines File",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Vector Point File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input1, input2, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2632,7 +4490,22 @@ class LowestPosition(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        inputs = arcpy.Parameter(
+            displayName="Input Files",
+            name="inputs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [inputs, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2652,7 +4525,22 @@ class MaxAbsoluteOverlay(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        inputs = arcpy.Parameter(
+            displayName="Input Files",
+            name="inputs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [inputs, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2672,7 +4560,22 @@ class MaxOverlay(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        inputs = arcpy.Parameter(
+            displayName="Input Files",
+            name="inputs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [inputs, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2692,7 +4595,22 @@ class MinAbsoluteOverlay(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        inputs = arcpy.Parameter(
+            displayName="Input Files",
+            name="inputs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [inputs, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2712,7 +4630,22 @@ class MinOverlay(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        inputs = arcpy.Parameter(
+            displayName="Input Files",
+            name="inputs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [inputs, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2732,7 +4665,29 @@ class PercentEqualTo(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        inputs = arcpy.Parameter(
+            displayName="Input Files",
+            name="inputs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        comparison = arcpy.Parameter(
+            displayName="Input Comparison File",
+            name="comparison",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [inputs, comparison, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2752,7 +4707,29 @@ class PercentGreaterThan(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        inputs = arcpy.Parameter(
+            displayName="Input Files",
+            name="inputs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        comparison = arcpy.Parameter(
+            displayName="Input Comparison File",
+            name="comparison",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [inputs, comparison, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2772,7 +4749,29 @@ class PercentLessThan(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        inputs = arcpy.Parameter(
+            displayName="Input Files",
+            name="inputs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        comparison = arcpy.Parameter(
+            displayName="Input Comparison File",
+            name="comparison",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [inputs, comparison, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2792,7 +4791,29 @@ class PickFromList(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        inputs = arcpy.Parameter(
+            displayName="Input Files",
+            name="inputs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        pos_input = arcpy.Parameter(
+            displayName="Input Position File",
+            name="pos_input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [inputs, pos_input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2812,7 +4833,22 @@ class Polygonize(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        inputs = arcpy.Parameter(
+            displayName="Input Vector Lines File",
+            name="inputs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Vector Polygon File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [inputs, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2832,7 +4868,29 @@ class SplitWithLines(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector Lines or Polygon File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        split = arcpy.Parameter(
+            displayName="Input Vector Lines File",
+            name="split",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Vector File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, split, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2852,7 +4910,22 @@ class SumOverlay(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        inputs = arcpy.Parameter(
+            displayName="Input Files",
+            name="inputs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [inputs, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2872,7 +4945,38 @@ class SymmetricalDifference(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        overlay = arcpy.Parameter(
+            displayName="Input Overlay Vector File",
+            name="overlay",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Vector File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        snap = arcpy.Parameter(
+            displayName="Snap Tolerance",
+            name="snap",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        snap.value = "0.0"
+
+        params = [input, overlay, output, snap]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2892,7 +4996,38 @@ class Union(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        overlay = arcpy.Parameter(
+            displayName="Input Overlay Vector File",
+            name="overlay",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Vector File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        snap = arcpy.Parameter(
+            displayName="Snap Tolerance",
+            name="snap",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        snap.value = "0.0"
+
+        params = [input, overlay, output, snap]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2912,7 +5047,52 @@ class WeightedOverlay(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        factors = arcpy.Parameter(
+            displayName="Input Factor Files",
+            name="factors",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        weights = arcpy.Parameter(
+            displayName="Weight Values (e.g. 1.7;3.5;1.2)",
+            name="weights",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        cost = arcpy.Parameter(
+            displayName="Cost Factor? (e.g. false;true;true)",
+            name="cost",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        constraints = arcpy.Parameter(
+            displayName="Input Constraints Files",
+            name="constraints",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        scale_max = arcpy.Parameter(
+            displayName="Suitability Scale Maximum",
+            name="scale_max",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        scale_max.value = "1.0"
+
+        params = [factors, weights, cost, constraints, output, scale_max]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2932,7 +5112,29 @@ class WeightedSum(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        inputs = arcpy.Parameter(
+            displayName="Input Files",
+            name="inputs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        weights = arcpy.Parameter(
+            displayName="Weight Values (e.g. 1.7;3.5;1.2)",
+            name="weights",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [inputs, weights, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2952,7 +5154,15 @@ class CompactnessRatio(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector Polygon File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [input]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2972,7 +5182,29 @@ class EdgeProportion(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        output_text = arcpy.Parameter(
+            displayName="Output a text report?",
+            name="output_text",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input, output, output_text]
+
         return params
 
     def updateParameters(self, parameters):
@@ -2992,7 +5224,15 @@ class ElongationRatio(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector Polygon File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [input]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3012,7 +5252,22 @@ class FindPatchOrClassEdgeCells(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3032,7 +5287,15 @@ class HoleProportion(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector Polygon File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [input]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3052,7 +5315,15 @@ class LinearityIndex(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector Polygon File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [input]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3072,7 +5343,15 @@ class PatchOrientation(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector Polygon File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [input]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3092,7 +5371,15 @@ class PerimeterAreaRatio(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector Polygon File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [input]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3112,7 +5399,29 @@ class RadiusOfGyration(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        text_output = arcpy.Parameter(
+            displayName="Output text?",
+            name="text_output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [input, output, text_output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3132,7 +5441,15 @@ class RelatedCircumscribingCircle(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector Polygon File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [input]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3152,7 +5469,15 @@ class ShapeComplexityIndex(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector Polygon File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [input]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3172,7 +5497,31 @@ class Aspect(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        zfactor = arcpy.Parameter(
+            displayName="Z Conversion Factor",
+            name="zfactor",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        zfactor.value = "1.0"
+
+        params = [dem, output, zfactor]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3192,7 +5541,31 @@ class CircularVarianceOfAspect(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Roughness Scale File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filter = arcpy.Parameter(
+            displayName="Filter Dimension",
+            name="filter",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filter.value = "11"
+
+        params = [dem, output, filter]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3212,7 +5585,40 @@ class DevFromMeanElev(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filterx = arcpy.Parameter(
+            displayName="Filter X-Dimension",
+            name="filterx",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filterx.value = "11"
+
+        filtery = arcpy.Parameter(
+            displayName="Filter Y-Dimension",
+            name="filtery",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filtery.value = "11"
+
+        params = [dem, output, filterx, filtery]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3232,7 +5638,40 @@ class DiffFromMeanElev(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filterx = arcpy.Parameter(
+            displayName="Filter X-Dimension",
+            name="filterx",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filterx.value = "11"
+
+        filtery = arcpy.Parameter(
+            displayName="Filter Y-Dimension",
+            name="filtery",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filtery.value = "11"
+
+        params = [dem, output, filterx, filtery]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3252,7 +5691,38 @@ class DirectionalRelief(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        azimuth = arcpy.Parameter(
+            displayName="Azimuth",
+            name="azimuth",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        azimuth.value = "0.0"
+
+        max_dist = arcpy.Parameter(
+            displayName="Maximum Search Distance",
+            name="max_dist",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [dem, output, azimuth, max_dist]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3272,7 +5742,40 @@ class DownslopeIndex(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        drop = arcpy.Parameter(
+            displayName="Verical Drop",
+            name="drop",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        drop.value = "2.0"
+
+        out_type = arcpy.Parameter(
+            displayName="Output Type",
+            name="out_type",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        out_type.value = "tangent"
+
+        params = [dem, output, drop, out_type]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3292,7 +5795,83 @@ class DrainagePreservingSmoothing(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filter = arcpy.Parameter(
+            displayName="Filter Size",
+            name="filter",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filter.value = "11"
+
+        norm_diff = arcpy.Parameter(
+            displayName="Normal Difference Threshold",
+            name="norm_diff",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        norm_diff.value = "15.0"
+
+        num_iter = arcpy.Parameter(
+            displayName="Iterations",
+            name="num_iter",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        num_iter.value = "10"
+
+        max_diff = arcpy.Parameter(
+            displayName="Maximum Elevation Change",
+            name="max_diff",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        reduction = arcpy.Parameter(
+            displayName="Max. Smoothing Reduction Factor (%)",
+            name="reduction",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        reduction.value = "80.0"
+
+        dfm = arcpy.Parameter(
+            displayName="Diff. From Median Threshold",
+            name="dfm",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        dfm.value = "0.15"
+
+        zfactor = arcpy.Parameter(
+            displayName="Z Conversion Factor",
+            name="zfactor",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        zfactor.value = "1.0"
+
+        params = [dem, output, filter, norm_diff, num_iter, max_diff, reduction, dfm, zfactor]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3312,7 +5891,49 @@ class EdgeDensity(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filter = arcpy.Parameter(
+            displayName="Filter Size",
+            name="filter",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filter.value = "11"
+
+        norm_diff = arcpy.Parameter(
+            displayName="Normal Difference Threshold",
+            name="norm_diff",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        norm_diff.value = "5.0"
+
+        zfactor = arcpy.Parameter(
+            displayName="Z Conversion Factor",
+            name="zfactor",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        zfactor.value = "1.0"
+
+        params = [dem, output, filter, norm_diff, zfactor]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3332,7 +5953,22 @@ class ElevAbovePit(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [dem, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3352,7 +5988,49 @@ class ElevPercentile(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filterx = arcpy.Parameter(
+            displayName="Filter X-Dimension",
+            name="filterx",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filterx.value = "11"
+
+        filtery = arcpy.Parameter(
+            displayName="Filter Y-Dimension",
+            name="filtery",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filtery.value = "11"
+
+        sig_digits = arcpy.Parameter(
+            displayName="Number of Significant Digits",
+            name="sig_digits",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        sig_digits.value = "2"
+
+        params = [dem, output, filterx, filtery, sig_digits]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3372,7 +6050,22 @@ class ElevRelativeToMinMax(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [dem, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3392,7 +6085,29 @@ class ElevRelativeToWatershedMinMax(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        watersheds = arcpy.Parameter(
+            displayName="Input Watersheds File",
+            name="watersheds",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [dem, watersheds, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3412,7 +6127,65 @@ class FeaturePreservingDenoise(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filter = arcpy.Parameter(
+            displayName="Filter Size",
+            name="filter",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filter.value = "11"
+
+        norm_diff = arcpy.Parameter(
+            displayName="Normal Difference Threshold",
+            name="norm_diff",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        norm_diff.value = "15.0"
+
+        num_iter = arcpy.Parameter(
+            displayName="Iterations",
+            name="num_iter",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        num_iter.value = "10"
+
+        max_diff = arcpy.Parameter(
+            displayName="Maximum Elevation Change",
+            name="max_diff",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        zfactor = arcpy.Parameter(
+            displayName="Z Conversion Factor",
+            name="zfactor",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        zfactor.value = "1.0"
+
+        params = [dem, output, filter, norm_diff, num_iter, max_diff, zfactor]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3432,7 +6205,40 @@ class FetchAnalysis(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        azimuth = arcpy.Parameter(
+            displayName="Azimuth (degrees)",
+            name="azimuth",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        azimuth.value = "0.0"
+
+        hgt_inc = arcpy.Parameter(
+            displayName="Height Increment Value",
+            name="hgt_inc",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        hgt_inc.value = "0.05"
+
+        params = [dem, output, azimuth, hgt_inc]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3452,7 +6258,40 @@ class FillMissingData(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filter = arcpy.Parameter(
+            displayName="Filter Dimension",
+            name="filter",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        filter.value = "11"
+
+        weight = arcpy.Parameter(
+            displayName="IDW Weight (Exponent) Value",
+            name="weight",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        weight.value = "2.0"
+
+        params = [input, output, filter, weight]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3472,7 +6311,31 @@ class FindRidges(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        line_thin = arcpy.Parameter(
+            displayName="Perform line-thinning?",
+            name="line_thin",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        line_thin.value = "true"
+
+        params = [dem, output, line_thin]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3492,7 +6355,49 @@ class Hillshade(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        azimuth = arcpy.Parameter(
+            displayName="Azimuth (degrees)",
+            name="azimuth",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        azimuth.value = "315.0"
+
+        altitude = arcpy.Parameter(
+            displayName="Altitude (degrees)",
+            name="altitude",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        altitude.value = "30.0"
+
+        zfactor = arcpy.Parameter(
+            displayName="Z Conversion Factor",
+            name="zfactor",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        zfactor.value = "1.0"
+
+        params = [dem, output, azimuth, altitude, zfactor]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3512,7 +6417,38 @@ class HorizonAngle(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        azimuth = arcpy.Parameter(
+            displayName="Azimuth",
+            name="azimuth",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        azimuth.value = "0.0"
+
+        max_dist = arcpy.Parameter(
+            displayName="Maximum Search Distance",
+            name="max_dist",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [dem, output, azimuth, max_dist]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3532,7 +6468,29 @@ class HypsometricAnalysis(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        inputs = arcpy.Parameter(
+            displayName="Input DEM Files",
+            name="inputs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        watershed = arcpy.Parameter(
+            displayName="Input Watershed Files (optional)",
+            name="watershed",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output HTML File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [inputs, watershed, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3552,7 +6510,54 @@ class MaxAnisotropyDev(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        out_mag = arcpy.Parameter(
+            displayName="Output DEVmax Magnitude File",
+            name="out_mag",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        out_scale = arcpy.Parameter(
+            displayName="Output DEVmax Scale File",
+            name="out_scale",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        min_scale = arcpy.Parameter(
+            displayName="Minimum Search Neighbourhood Radius (grid cells)",
+            name="min_scale",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        min_scale.value = "3"
+
+        max_scale = arcpy.Parameter(
+            displayName="Maximum Search Neighbourhood Radius (grid cells)",
+            name="max_scale",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        step = arcpy.Parameter(
+            displayName="Step Size",
+            name="step",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        step.value = "2"
+
+        params = [dem, out_mag, out_scale, min_scale, max_scale, step]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3572,7 +6577,54 @@ class MaxAnisotropyDevSignature(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        points = arcpy.Parameter(
+            displayName="Input Vector Points File",
+            name="points",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output HTML File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        min_scale = arcpy.Parameter(
+            displayName="Minimum Search Neighbourhood Radius (grid cells)",
+            name="min_scale",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        min_scale.value = "1"
+
+        max_scale = arcpy.Parameter(
+            displayName="Maximum Search Neighbourhood Radius (grid cells)",
+            name="max_scale",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        step = arcpy.Parameter(
+            displayName="Step Size",
+            name="step",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        step.value = "1"
+
+        params = [dem, points, output, min_scale, max_scale, step]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3592,7 +6644,29 @@ class MaxBranchLength(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        log = arcpy.Parameter(
+            displayName="Log-transform the output?",
+            name="log",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [dem, output, log]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3612,7 +6686,52 @@ class MaxDifferenceFromMean(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        out_mag = arcpy.Parameter(
+            displayName="Output DIFFmax Magnitude File",
+            name="out_mag",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        out_scale = arcpy.Parameter(
+            displayName="Output DIFFmax Scale File",
+            name="out_scale",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        min_scale = arcpy.Parameter(
+            displayName="Minimum Search Neighbourhood Radius (grid cells)",
+            name="min_scale",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        max_scale = arcpy.Parameter(
+            displayName="Maximum Search Neighbourhood Radius (grid cells)",
+            name="max_scale",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        step = arcpy.Parameter(
+            displayName="Step Size",
+            name="step",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        step.value = "1"
+
+        params = [dem, out_mag, out_scale, min_scale, max_scale, step]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3632,7 +6751,22 @@ class MaxDownslopeElevChange(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [dem, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3652,7 +6786,52 @@ class MaxElevDevSignature(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        points = arcpy.Parameter(
+            displayName="Input Vector Points File",
+            name="points",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output HTML File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        min_scale = arcpy.Parameter(
+            displayName="Minimum Search Neighbourhood Radius (grid cells)",
+            name="min_scale",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        max_scale = arcpy.Parameter(
+            displayName="Maximum Search Neighbourhood Radius (grid cells)",
+            name="max_scale",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        step = arcpy.Parameter(
+            displayName="Step Size",
+            name="step",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        step.value = "10"
+
+        params = [dem, points, output, min_scale, max_scale, step]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3672,7 +6851,52 @@ class MaxElevationDeviation(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        out_mag = arcpy.Parameter(
+            displayName="Output DEVmax Magnitude File",
+            name="out_mag",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        out_scale = arcpy.Parameter(
+            displayName="Output DEVmax Scale File",
+            name="out_scale",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        min_scale = arcpy.Parameter(
+            displayName="Minimum Search Neighbourhood Radius (grid cells)",
+            name="min_scale",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        max_scale = arcpy.Parameter(
+            displayName="Maximum Search Neighbourhood Radius (grid cells)",
+            name="max_scale",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        step = arcpy.Parameter(
+            displayName="Step Size",
+            name="step",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        step.value = "1"
+
+        params = [dem, out_mag, out_scale, min_scale, max_scale, step]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3692,7 +6916,22 @@ class MinDownslopeElevChange(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [dem, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3712,7 +6951,54 @@ class MultiscaleRoughness(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        out_mag = arcpy.Parameter(
+            displayName="Output Roughness Magnitude File",
+            name="out_mag",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        out_scale = arcpy.Parameter(
+            displayName="Output Roughness Scale File",
+            name="out_scale",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        min_scale = arcpy.Parameter(
+            displayName="Minimum Search Neighbourhood Radius (grid cells)",
+            name="min_scale",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        min_scale.value = "1"
+
+        max_scale = arcpy.Parameter(
+            displayName="Maximum Search Neighbourhood Radius (grid cells)",
+            name="max_scale",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        step = arcpy.Parameter(
+            displayName="Step Size",
+            name="step",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        step.value = "1"
+
+        params = [dem, out_mag, out_scale, min_scale, max_scale, step]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3732,7 +7018,54 @@ class MultiscaleRoughnessSignature(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        points = arcpy.Parameter(
+            displayName="Input Vector Points File",
+            name="points",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output HTML File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        min_scale = arcpy.Parameter(
+            displayName="Minimum Search Neighbourhood Radius (grid cells)",
+            name="min_scale",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        min_scale.value = "1"
+
+        max_scale = arcpy.Parameter(
+            displayName="Maximum Search Neighbourhood Radius (grid cells)",
+            name="max_scale",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        step = arcpy.Parameter(
+            displayName="Step Size",
+            name="step",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        step.value = "1"
+
+        params = [dem, points, output, min_scale, max_scale, step]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3752,7 +7085,45 @@ class MultiscaleTopographicPositionImage(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        local = arcpy.Parameter(
+            displayName="Input Local-Scale File",
+            name="local",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        meso = arcpy.Parameter(
+            displayName="Input Meso-Scale File",
+            name="meso",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        broad = arcpy.Parameter(
+            displayName="Input Broad-Scale File",
+            name="broad",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        lightness = arcpy.Parameter(
+            displayName="Image Lightness Value",
+            name="lightness",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        lightness.value = "1.2"
+
+        params = [local, meso, broad, output, lightness]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3772,7 +7143,22 @@ class NumDownslopeNeighbours(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [dem, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3792,7 +7178,22 @@ class NumUpslopeNeighbours(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [dem, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3812,7 +7213,58 @@ class PennockLandformClass(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        slope = arcpy.Parameter(
+            displayName="Slope Threshold (degrees)",
+            name="slope",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        slope.value = "3.0"
+
+        prof = arcpy.Parameter(
+            displayName="Profile Curvature Threshold",
+            name="prof",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        prof.value = "0.1"
+
+        plan = arcpy.Parameter(
+            displayName="Plan Curvature Threshold",
+            name="plan",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        plan.value = "0.0"
+
+        zfactor = arcpy.Parameter(
+            displayName="Z Conversion Factor",
+            name="zfactor",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        zfactor.value = "1.0"
+
+        params = [dem, output, slope, prof, plan, zfactor]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3832,7 +7284,40 @@ class PercentElevRange(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filterx = arcpy.Parameter(
+            displayName="Filter X-Dimension",
+            name="filterx",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filterx.value = "3"
+
+        filtery = arcpy.Parameter(
+            displayName="Filter Y-Dimension",
+            name="filtery",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filtery.value = "3"
+
+        params = [dem, output, filterx, filtery]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3852,7 +7337,31 @@ class PlanCurvature(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        zfactor = arcpy.Parameter(
+            displayName="Z Conversion Factor",
+            name="zfactor",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        zfactor.value = "1.0"
+
+        params = [dem, output, zfactor]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3872,7 +7381,29 @@ class Profile(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        lines = arcpy.Parameter(
+            displayName="Input Vector Line File",
+            name="lines",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        surface = arcpy.Parameter(
+            displayName="Input Surface File",
+            name="surface",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output HTML File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [lines, surface, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3892,7 +7423,31 @@ class ProfileCurvature(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        zfactor = arcpy.Parameter(
+            displayName="Z Conversion Factor",
+            name="zfactor",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        zfactor.value = "1.0"
+
+        params = [dem, output, zfactor]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3912,7 +7467,40 @@ class RelativeAspect(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        azimuth = arcpy.Parameter(
+            displayName="Azimuth",
+            name="azimuth",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        azimuth.value = "0.0"
+
+        zfactor = arcpy.Parameter(
+            displayName="Z Conversion Factor",
+            name="zfactor",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        zfactor.value = "1.0"
+
+        params = [dem, output, azimuth, zfactor]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3932,7 +7520,38 @@ class RelativeStreamPowerIndex(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        sca = arcpy.Parameter(
+            displayName="Input Specific Contributing Area (SCA) File",
+            name="sca",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        slope = arcpy.Parameter(
+            displayName="Input Slope File",
+            name="slope",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        exponent = arcpy.Parameter(
+            displayName="Specific Contributing Area (SCA) Exponent",
+            name="exponent",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        exponent.value = "1.0"
+
+        params = [sca, slope, output, exponent]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3952,7 +7571,40 @@ class RelativeTopographicPosition(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filterx = arcpy.Parameter(
+            displayName="Filter X-Dimension",
+            name="filterx",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filterx.value = "11"
+
+        filtery = arcpy.Parameter(
+            displayName="Filter Y-Dimension",
+            name="filtery",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filtery.value = "11"
+
+        params = [dem, output, filterx, filtery]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3972,7 +7624,40 @@ class RemoveOffTerrainObjects(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filter = arcpy.Parameter(
+            displayName="Filter Dimension",
+            name="filter",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        filter.value = "11"
+
+        slope = arcpy.Parameter(
+            displayName="Slope Threshold",
+            name="slope",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        slope.value = "15.0"
+
+        params = [dem, output, filter, slope]
+
         return params
 
     def updateParameters(self, parameters):
@@ -3992,7 +7677,31 @@ class RuggednessIndex(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        zfactor = arcpy.Parameter(
+            displayName="Z Conversion Factor",
+            name="zfactor",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        zfactor.value = "1.0"
+
+        params = [dem, output, zfactor]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4012,7 +7721,47 @@ class SedimentTransportIndex(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        sca = arcpy.Parameter(
+            displayName="Input Specific Contributing Area (SCA) File",
+            name="sca",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        slope = arcpy.Parameter(
+            displayName="Input Slope File",
+            name="slope",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        sca_exponent = arcpy.Parameter(
+            displayName="Specific Contributing Area (SCA) Exponent",
+            name="sca_exponent",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        sca_exponent.value = "0.4"
+
+        slope_exponent = arcpy.Parameter(
+            displayName="Slope Exponent",
+            name="slope_exponent",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        slope_exponent.value = "1.3"
+
+        params = [sca, slope, output, sca_exponent, slope_exponent]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4032,7 +7781,31 @@ class Slope(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        zfactor = arcpy.Parameter(
+            displayName="Z Conversion Factor",
+            name="zfactor",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        zfactor.value = "1.0"
+
+        params = [dem, output, zfactor]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4052,7 +7825,29 @@ class SlopeVsElevationPlot(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        inputs = arcpy.Parameter(
+            displayName="Input DEM Files",
+            name="inputs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        watershed = arcpy.Parameter(
+            displayName="Input Watershed Files (optional)",
+            name="watershed",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output HTML File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [inputs, watershed, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4072,7 +7867,49 @@ class StandardDeviationOfSlope(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        zfactor = arcpy.Parameter(
+            displayName="Z Conversion Factor",
+            name="zfactor",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        zfactor.value = "1.0"
+
+        filterx = arcpy.Parameter(
+            displayName="Filter X-Dimension",
+            name="filterx",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filterx.value = "11"
+
+        filtery = arcpy.Parameter(
+            displayName="Filter Y-Dimension",
+            name="filtery",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filtery.value = "11"
+
+        params = [input, output, zfactor, filterx, filtery]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4092,7 +7929,22 @@ class SurfaceAreaRatio(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [dem, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4112,7 +7964,31 @@ class TangentialCurvature(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        zfactor = arcpy.Parameter(
+            displayName="Z Conversion Factor",
+            name="zfactor",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        zfactor.value = "1.0"
+
+        params = [dem, output, zfactor]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4132,7 +8008,31 @@ class TotalCurvature(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        zfactor = arcpy.Parameter(
+            displayName="Z Conversion Factor",
+            name="zfactor",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        zfactor.value = "1.0"
+
+        params = [dem, output, zfactor]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4152,7 +8052,38 @@ class Viewshed(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        stations = arcpy.Parameter(
+            displayName="Viewing Station Vector File",
+            name="stations",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        height = arcpy.Parameter(
+            displayName="Station Height (in z units)",
+            name="height",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        height.value = "2.0"
+
+        params = [dem, stations, output, height]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4172,7 +8103,40 @@ class VisibilityIndex(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        height = arcpy.Parameter(
+            displayName="Station Height (in z units)",
+            name="height",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        height.value = "2.0"
+
+        res_factor = arcpy.Parameter(
+            displayName="Resolution Factor",
+            name="res_factor",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        res_factor.value = "2"
+
+        params = [dem, output, height, res_factor]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4192,7 +8156,29 @@ class WetnessIndex(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        params = None
+        sca = arcpy.Parameter(
+            displayName="Input Specific Contributing Area (SCA) File",
+            name="sca",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        slope = arcpy.Parameter(
+            displayName="Input Slope File",
+            name="slope",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [sca, slope, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4212,7 +8198,22 @@ class AverageFlowpathSlope(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [dem, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4232,7 +8233,22 @@ class AverageUpslopeFlowpathLength(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [dem, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4252,7 +8268,31 @@ class Basins(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        d8_pntr = arcpy.Parameter(
+            displayName="Input D8 Pointer File",
+            name="d8_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Does the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        params = [d8_pntr, output, esri_pntr]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4272,7 +8312,36 @@ class BreachDepressions(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        max_depth = arcpy.Parameter(
+            displayName="Maximum Breach Depth (z units)",
+            name="max_depth",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        max_length = arcpy.Parameter(
+            displayName="Maximum Breach Channel Length (grid cells)",
+            name="max_length",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [dem, output, max_depth, max_length]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4292,7 +8361,22 @@ class BreachSingleCellPits(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [dem, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4312,7 +8396,45 @@ class D8FlowAccumulation(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        out_type = arcpy.Parameter(
+            displayName="Output Type",
+            name="out_type",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        out_type.value = "cells"
+
+        log = arcpy.Parameter(
+            displayName="Log-transform the output?",
+            name="log",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        clip = arcpy.Parameter(
+            displayName="Clip the upper tail by 1%?",
+            name="clip",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [dem, output, out_type, log, clip]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4332,7 +8454,43 @@ class D8MassFlux(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        loading = arcpy.Parameter(
+            displayName="Input Loading File",
+            name="loading",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        efficiency = arcpy.Parameter(
+            displayName="Input Efficiency File",
+            name="efficiency",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        absorption = arcpy.Parameter(
+            displayName="Input Absorption File",
+            name="absorption",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [dem, loading, efficiency, absorption, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4352,7 +8510,31 @@ class D8Pointer(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Should the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        params = [dem, output, esri_pntr]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4372,7 +8554,52 @@ class DInfFlowAccumulation(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        out_type = arcpy.Parameter(
+            displayName="Output Type",
+            name="out_type",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        out_type.value = "Specific Contributing Area"
+
+        threshold = arcpy.Parameter(
+            displayName="Convergence Threshold (grid cells; blank for none)",
+            name="threshold",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        log = arcpy.Parameter(
+            displayName="Log-transform the output?",
+            name="log",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        clip = arcpy.Parameter(
+            displayName="Clip the upper tail by 1%?",
+            name="clip",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [dem, output, out_type, threshold, log, clip]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4392,7 +8619,43 @@ class DInfMassFlux(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        loading = arcpy.Parameter(
+            displayName="Input Loading File",
+            name="loading",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        efficiency = arcpy.Parameter(
+            displayName="Input Efficiency File",
+            name="efficiency",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        absorption = arcpy.Parameter(
+            displayName="Input Absorption File",
+            name="absorption",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [dem, loading, efficiency, absorption, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4412,7 +8675,22 @@ class DInfPointer(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [dem, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4432,7 +8710,29 @@ class DepthInSink(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        zero_background = arcpy.Parameter(
+            displayName="Should a background value of zero be used?",
+            name="zero_background",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [dem, output, zero_background]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4452,7 +8752,29 @@ class DownslopeDistanceToStream(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        streams = arcpy.Parameter(
+            displayName="Input Streams File",
+            name="streams",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [dem, streams, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4472,7 +8794,45 @@ class DownslopeFlowpathLength(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        d8_pntr = arcpy.Parameter(
+            displayName="Input D8 Pointer File",
+            name="d8_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        watersheds = arcpy.Parameter(
+            displayName="Input Watersheds File (optional)",
+            name="watersheds",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        weights = arcpy.Parameter(
+            displayName="Input Weights File (optional)",
+            name="weights",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Does the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        params = [d8_pntr, watersheds, weights, output, esri_pntr]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4492,7 +8852,29 @@ class ElevationAboveStream(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        streams = arcpy.Parameter(
+            displayName="Input Streams File",
+            name="streams",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [dem, streams, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4512,7 +8894,29 @@ class ElevationAboveStreamEuclidean(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        streams = arcpy.Parameter(
+            displayName="Input Streams File",
+            name="streams",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [dem, streams, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4532,7 +8936,61 @@ class Fd8FlowAccumulation(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        out_type = arcpy.Parameter(
+            displayName="Output Type",
+            name="out_type",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        out_type.value = "specific contributing area"
+
+        exponent = arcpy.Parameter(
+            displayName="Exponent Parameter",
+            name="exponent",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        exponent.value = "1.1"
+
+        threshold = arcpy.Parameter(
+            displayName="Convergence Threshold (grid cells; blank for none)",
+            name="threshold",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        log = arcpy.Parameter(
+            displayName="Log-transform the output?",
+            name="log",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        clip = arcpy.Parameter(
+            displayName="Clip the upper tail by 1%?",
+            name="clip",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [dem, output, out_type, exponent, threshold, log, clip]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4552,7 +9010,22 @@ class Fd8Pointer(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [dem, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4572,7 +9045,29 @@ class FillBurn(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        streams = arcpy.Parameter(
+            displayName="Input Vector Streams File",
+            name="streams",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [dem, streams, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4592,7 +9087,31 @@ class FillDepressions(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        fix_flats = arcpy.Parameter(
+            displayName="Fix flat areas?",
+            name="fix_flats",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        fix_flats.value = "true"
+
+        params = [dem, output, fix_flats]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4612,7 +9131,22 @@ class FillSingleCellPits(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [dem, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4632,7 +9166,22 @@ class FindNoFlowCells(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [dem, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4652,7 +9201,29 @@ class FindParallelFlow(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        d8_pntr = arcpy.Parameter(
+            displayName="Input D8 Pointer File",
+            name="d8_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        streams = arcpy.Parameter(
+            displayName="Input Streams File",
+            name="streams",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [d8_pntr, streams, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4672,7 +9243,29 @@ class FlattenLakes(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        lakes = arcpy.Parameter(
+            displayName="Input Lakes Vector Polygon File",
+            name="lakes",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [dem, lakes, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4692,7 +9285,22 @@ class FloodOrder(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [dem, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4712,7 +9320,68 @@ class FlowAccumulationFullWorkflow(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        out_dem = arcpy.Parameter(
+            displayName="Output DEM File",
+            name="out_dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        out_pntr = arcpy.Parameter(
+            displayName="Output Flow Pointer File",
+            name="out_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        out_accum = arcpy.Parameter(
+            displayName="Output Flow Accumulation File",
+            name="out_accum",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        out_type = arcpy.Parameter(
+            displayName="Output Type",
+            name="out_type",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        out_type.value = "Specific Contributing Area"
+
+        log = arcpy.Parameter(
+            displayName="Log-transform the output?",
+            name="log",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        clip = arcpy.Parameter(
+            displayName="Clip the upper tail by 1%?",
+            name="clip",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Does the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        params = [dem, out_dem, out_pntr, out_accum, out_type, log, clip, esri_pntr]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4732,7 +9401,31 @@ class FlowLengthDiff(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        d8_pntr = arcpy.Parameter(
+            displayName="Input D8 Pointer File",
+            name="d8_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Does the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        params = [d8_pntr, output, esri_pntr]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4752,7 +9445,38 @@ class Hillslopes(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        d8_pntr = arcpy.Parameter(
+            displayName="Input D8 Pointer File",
+            name="d8_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        streams = arcpy.Parameter(
+            displayName="Input Streams File",
+            name="streams",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Does the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        params = [d8_pntr, streams, output, esri_pntr]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4772,7 +9496,38 @@ class ImpoundmentIndex(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        out_type = arcpy.Parameter(
+            displayName="Output Type",
+            name="out_type",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        out_type.value = "depth"
+
+        damlength = arcpy.Parameter(
+            displayName="Max dam length (grid cells)",
+            name="damlength",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [dem, output, out_type, damlength]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4792,7 +9547,29 @@ class Isobasins(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        size = arcpy.Parameter(
+            displayName="Target Basin Size (grid cells)",
+            name="size",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [dem, output, size]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4812,7 +9589,36 @@ class JensonSnapPourPoints(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        pour_pts = arcpy.Parameter(
+            displayName="Input Pour Points (Outlet) File",
+            name="pour_pts",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        streams = arcpy.Parameter(
+            displayName="Input Streams File",
+            name="streams",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        snap_dist = arcpy.Parameter(
+            displayName="Maximum Snap Distance (map units)",
+            name="snap_dist",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [pour_pts, streams, output, snap_dist]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4832,7 +9638,29 @@ class LongestFlowpath(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        basins = arcpy.Parameter(
+            displayName="Basins File",
+            name="basins",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [dem, basins, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4852,7 +9680,22 @@ class MaxUpslopeFlowpathLength(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [dem, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4872,7 +9715,22 @@ class NumInflowingNeighbours(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [dem, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4892,7 +9750,45 @@ class RaiseWalls(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector Line or Polygon File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        breach = arcpy.Parameter(
+            displayName="Input Breach Lines (optional)",
+            name="breach",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        height = arcpy.Parameter(
+            displayName="Wall Height",
+            name="height",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        height.value = "100.0"
+
+        params = [input, breach, dem, output, height]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4912,7 +9808,31 @@ class Rho8Pointer(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Should the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        params = [dem, output, esri_pntr]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4932,7 +9852,29 @@ class Sink(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        zero_background = arcpy.Parameter(
+            displayName="Should a background value of zero be used?",
+            name="zero_background",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [dem, output, zero_background]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4952,7 +9894,36 @@ class SnapPourPoints(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        pour_pts = arcpy.Parameter(
+            displayName="Input Pour Points (Outlet) File",
+            name="pour_pts",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        flow_accum = arcpy.Parameter(
+            displayName="Input D8 Flow Accumulation File",
+            name="flow_accum",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        snap_dist = arcpy.Parameter(
+            displayName="Maximum Snap Distance (map units)",
+            name="snap_dist",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [pour_pts, flow_accum, output, snap_dist]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4972,7 +9943,45 @@ class StochasticDepressionAnalysis(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        rmse = arcpy.Parameter(
+            displayName="DEM root-mean-square-error (z units)",
+            name="rmse",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        range = arcpy.Parameter(
+            displayName="Range of Autocorrelation (map units)",
+            name="range",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        iterations = arcpy.Parameter(
+            displayName="Iterations",
+            name="iterations",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        iterations.value = "1000"
+
+        params = [dem, output, rmse, range, iterations]
+
         return params
 
     def updateParameters(self, parameters):
@@ -4992,7 +10001,38 @@ class StrahlerOrderBasins(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        d8_pntr = arcpy.Parameter(
+            displayName="Input D8 Pointer File",
+            name="d8_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        streams = arcpy.Parameter(
+            displayName="Input Streams File",
+            name="streams",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Does the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        params = [d8_pntr, streams, output, esri_pntr]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5012,7 +10052,38 @@ class Subbasins(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        d8_pntr = arcpy.Parameter(
+            displayName="Input D8 Pointer File",
+            name="d8_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        streams = arcpy.Parameter(
+            displayName="Input Streams File",
+            name="streams",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Does the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        params = [d8_pntr, streams, output, esri_pntr]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5032,7 +10103,45 @@ class TraceDownslopeFlowpaths(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        seed_pts = arcpy.Parameter(
+            displayName="Input Vector Seed Points File",
+            name="seed_pts",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        d8_pntr = arcpy.Parameter(
+            displayName="Input D8 Pointer File",
+            name="d8_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Does the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        zero_background = arcpy.Parameter(
+            displayName="Should a background value of zero be used?",
+            name="zero_background",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [seed_pts, d8_pntr, output, esri_pntr, zero_background]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5052,7 +10161,38 @@ class UnnestBasins(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        d8_pntr = arcpy.Parameter(
+            displayName="Input D8 Pointer File",
+            name="d8_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        pour_pts = arcpy.Parameter(
+            displayName="Input Pour Points (Outlet) File",
+            name="pour_pts",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Does the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        params = [d8_pntr, pour_pts, output, esri_pntr]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5072,7 +10212,38 @@ class Watershed(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        params = None
+        d8_pntr = arcpy.Parameter(
+            displayName="Input D8 Pointer File",
+            name="d8_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        pour_pts = arcpy.Parameter(
+            displayName="Input Pour Points (Outlet) File",
+            name="pour_pts",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Does the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        params = [d8_pntr, pour_pts, output, esri_pntr]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5092,7 +10263,36 @@ class ChangeVectorAnalysis(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        date1 = arcpy.Parameter(
+            displayName="Earlier Date Input Files",
+            name="date1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        date2 = arcpy.Parameter(
+            displayName="Later Date Input Files",
+            name="date2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        magnitude = arcpy.Parameter(
+            displayName="Output Vector Magnitude File",
+            name="magnitude",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        direction = arcpy.Parameter(
+            displayName="Output Vector Direction File",
+            name="direction",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [date1, date2, magnitude, direction]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5112,7 +10312,40 @@ class Closing(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filterx = arcpy.Parameter(
+            displayName="Filter X-Dimension",
+            name="filterx",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filterx.value = "11"
+
+        filtery = arcpy.Parameter(
+            displayName="Filter Y-Dimension",
+            name="filtery",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filtery.value = "11"
+
+        params = [input, output, filterx, filtery]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5132,7 +10365,61 @@ class CreateColourComposite(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        red = arcpy.Parameter(
+            displayName="Input Red Band Image File",
+            name="red",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        green = arcpy.Parameter(
+            displayName="Input Green Band Image File",
+            name="green",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        blue = arcpy.Parameter(
+            displayName="Input Blue Band Image File",
+            name="blue",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        opacity = arcpy.Parameter(
+            displayName="Input Opacity Band Image File (Optional)",
+            name="opacity",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Colour Composite File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        enhance = arcpy.Parameter(
+            displayName="Perform balance contrast enhancement?",
+            name="enhance",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        enhance.value = "true"
+
+        zeros = arcpy.Parameter(
+            displayName="Treat zeros as nodata?",
+            name="zeros",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        zeros.value = "false"
+
+        params = [red, green, blue, opacity, output, enhance, zeros]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5152,7 +10439,31 @@ class FlipImage(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        direction = arcpy.Parameter(
+            displayName="Direction",
+            name="direction",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        direction.value = "vertical"
+
+        params = [input, output, direction]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5172,7 +10483,57 @@ class IhsToRgb(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        intensity = arcpy.Parameter(
+            displayName="Input Intensity File",
+            name="intensity",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        hue = arcpy.Parameter(
+            displayName="Input Hue File",
+            name="hue",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        saturation = arcpy.Parameter(
+            displayName="Input Saturation File",
+            name="saturation",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        red = arcpy.Parameter(
+            displayName="Output Red Band File (optional; only if colour-composite not specified)",
+            name="red",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Output")
+
+        green = arcpy.Parameter(
+            displayName="Output Green Band File (optional; only if colour-composite not specified)",
+            name="green",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Output")
+
+        blue = arcpy.Parameter(
+            displayName="Output Blue Band File (optional; only if colour-composite not specified)",
+            name="blue",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Output")
+
+        output = arcpy.Parameter(
+            displayName="Output Colour-Composite File (optional; only if individual bands not specified)",
+            name="output",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Output")
+
+        params = [intensity, hue, saturation, red, green, blue, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5192,7 +10553,29 @@ class ImageStackProfile(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        inputs = arcpy.Parameter(
+            displayName="Input Files",
+            name="inputs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        points = arcpy.Parameter(
+            displayName="Input Vector Points File",
+            name="points",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output HTML File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [inputs, points, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5212,7 +10595,22 @@ class IntegralImage(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5232,7 +10630,72 @@ class KMeansClustering(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        inputs = arcpy.Parameter(
+            displayName="Input Files",
+            name="inputs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Raster File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        out_html = arcpy.Parameter(
+            displayName="Output HTML Report File",
+            name="out_html",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Output")
+
+        classes = arcpy.Parameter(
+            displayName="Num. Classes (k)",
+            name="classes",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        max_iterations = arcpy.Parameter(
+            displayName="Max. Iterations",
+            name="max_iterations",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        max_iterations.value = "10"
+
+        class_change = arcpy.Parameter(
+            displayName="Percent Class Change Threshold",
+            name="class_change",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        class_change.value = "2.0"
+
+        initialize = arcpy.Parameter(
+            displayName="How to Initialize Cluster Centres?",
+            name="initialize",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        initialize.value = "diagonal"
+
+        min_class_size = arcpy.Parameter(
+            displayName="Min. Class Size",
+            name="min_class_size",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        min_class_size.value = "10"
+
+        params = [inputs, output, out_html, classes, max_iterations, class_change, initialize, min_class_size]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5252,7 +10715,22 @@ class LineThinning(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5272,7 +10750,63 @@ class ModifiedKMeansClustering(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        inputs = arcpy.Parameter(
+            displayName="Input Files",
+            name="inputs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Raster File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        out_html = arcpy.Parameter(
+            displayName="Output HTML Report File",
+            name="out_html",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Output")
+
+        start_clusters = arcpy.Parameter(
+            displayName="Initial Num. of Clusters",
+            name="start_clusters",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        start_clusters.value = "1000"
+
+        merger_dist = arcpy.Parameter(
+            displayName="Cluster Merger Distance",
+            name="merger_dist",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        max_iterations = arcpy.Parameter(
+            displayName="Max. Iterations",
+            name="max_iterations",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        max_iterations.value = "10"
+
+        class_change = arcpy.Parameter(
+            displayName="Percent Class Change Threshold",
+            name="class_change",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        class_change.value = "2.0"
+
+        params = [inputs, output, out_html, start_clusters, merger_dist, max_iterations, class_change]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5292,7 +10826,31 @@ class Mosaic(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        inputs = arcpy.Parameter(
+            displayName="Input Files",
+            name="inputs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        method = arcpy.Parameter(
+            displayName="Resampling Method",
+            name="method",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        method.value = "cc"
+
+        params = [inputs, output, method]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5312,7 +10870,47 @@ class MosaicWithFeathering(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="Input File To Modify",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Input Reference File",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        method = arcpy.Parameter(
+            displayName="Resampling Method",
+            name="method",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        method.value = "cc"
+
+        weight = arcpy.Parameter(
+            displayName="Distance Weight",
+            name="weight",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        weight.value = "4.0"
+
+        params = [input1, input2, output, method, weight]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5332,7 +10930,45 @@ class NormalizedDifferenceVegetationIndex(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        nir = arcpy.Parameter(
+            displayName="Input Near-Infrared File",
+            name="nir",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        red = arcpy.Parameter(
+            displayName="Input Red File",
+            name="red",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        clip = arcpy.Parameter(
+            displayName="Distribution Tail Clip Amount (%)",
+            name="clip",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        clip.value = "0.0"
+
+        osavi = arcpy.Parameter(
+            displayName="Use the optimized soil-adjusted veg index (OSAVI)?",
+            name="osavi",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [nir, red, output, clip, osavi]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5352,7 +10988,40 @@ class Opening(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filterx = arcpy.Parameter(
+            displayName="Filter X-Dimension",
+            name="filterx",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filterx.value = "11"
+
+        filtery = arcpy.Parameter(
+            displayName="Filter Y-Dimension",
+            name="filtery",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filtery.value = "11"
+
+        params = [input, output, filterx, filtery]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5372,7 +11041,31 @@ class RemoveSpurs(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        iterations = arcpy.Parameter(
+            displayName="Maximum Iterations",
+            name="iterations",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        iterations.value = "10"
+
+        params = [input, output, iterations]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5392,7 +11085,31 @@ class Resample(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        inputs = arcpy.Parameter(
+            displayName="Input Files",
+            name="inputs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        destination = arcpy.Parameter(
+            displayName="Destination File",
+            name="destination",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        method = arcpy.Parameter(
+            displayName="Resampling Method",
+            name="method",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        method.value = "cc"
+
+        params = [inputs, destination, method]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5412,7 +11129,57 @@ class RgbToIhs(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        red = arcpy.Parameter(
+            displayName="Input Red Band File (optional; only if colour-composite not specified)",
+            name="red",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        green = arcpy.Parameter(
+            displayName="Input Green Band File (optional; only if colour-composite not specified)",
+            name="green",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        blue = arcpy.Parameter(
+            displayName="Input Blue Band File (optional; only if colour-composite not specified)",
+            name="blue",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        composite = arcpy.Parameter(
+            displayName="Input Colour-Composite Image File (optional; only if individual bands not specified)",
+            name="composite",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        intensity = arcpy.Parameter(
+            displayName="Output Intensity File",
+            name="intensity",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        hue = arcpy.Parameter(
+            displayName="Output Hue File",
+            name="hue",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        saturation = arcpy.Parameter(
+            displayName="Output Saturation File",
+            name="saturation",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [red, green, blue, composite, intensity, hue, saturation]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5432,7 +11199,22 @@ class SplitColourComposite(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Colour Composite Image File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5452,7 +11234,22 @@ class ThickenRasterLine(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5472,7 +11269,49 @@ class TophatTransform(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filterx = arcpy.Parameter(
+            displayName="Filter X-Dimension",
+            name="filterx",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filterx.value = "11"
+
+        filtery = arcpy.Parameter(
+            displayName="Filter Y-Dimension",
+            name="filtery",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filtery.value = "11"
+
+        variant = arcpy.Parameter(
+            displayName="Variant",
+            name="variant",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        variant.value = "white"
+
+        params = [input, output, filterx, filtery, variant]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5492,7 +11331,36 @@ class WriteFunctionMemoryInsertion(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="First Date Input File",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Second Date Input File",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input3 = arcpy.Parameter(
+            displayName="Third Date Input File (Optional)",
+            name="input3",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input1, input2, input3, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5512,7 +11380,49 @@ class AdaptiveFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filterx = arcpy.Parameter(
+            displayName="Filter X-Dimension",
+            name="filterx",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filterx.value = "11"
+
+        filtery = arcpy.Parameter(
+            displayName="Filter Y-Dimension",
+            name="filtery",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filtery.value = "11"
+
+        threshold = arcpy.Parameter(
+            displayName="Difference From Mean Threshold (# Std. Dev.)",
+            name="threshold",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        threshold.value = "2.0"
+
+        params = [input, output, filterx, filtery, threshold]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5532,7 +11442,40 @@ class BilateralFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        sigma_dist = arcpy.Parameter(
+            displayName="Distance Standard Deviation (pixels)",
+            name="sigma_dist",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        sigma_dist.value = "0.75"
+
+        sigma_int = arcpy.Parameter(
+            displayName="Intensity Standard Deviation (intensity units)",
+            name="sigma_int",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        sigma_int.value = "1.0"
+
+        params = [input, output, sigma_dist, sigma_int]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5552,7 +11495,40 @@ class ConservativeSmoothingFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filterx = arcpy.Parameter(
+            displayName="Filter X-Dimension",
+            name="filterx",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filterx.value = "3"
+
+        filtery = arcpy.Parameter(
+            displayName="Filter Y-Dimension",
+            name="filtery",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filtery.value = "3"
+
+        params = [input, output, filterx, filtery]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5572,7 +11548,22 @@ class CornerDetection(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5592,7 +11583,40 @@ class DiffOfGaussianFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        sigma1 = arcpy.Parameter(
+            displayName="Sigma 1 (pixels)",
+            name="sigma1",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        sigma1.value = "2.0"
+
+        sigma2 = arcpy.Parameter(
+            displayName="Sigma 2 (pixels)",
+            name="sigma2",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        sigma2.value = "4.0"
+
+        params = [input, output, sigma1, sigma2]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5612,7 +11636,40 @@ class DiversityFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filterx = arcpy.Parameter(
+            displayName="Filter X-Dimension",
+            name="filterx",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filterx.value = "11"
+
+        filtery = arcpy.Parameter(
+            displayName="Filter Y-Dimension",
+            name="filtery",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filtery.value = "11"
+
+        params = [input, output, filterx, filtery]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5632,7 +11689,38 @@ class EdgePreservingMeanFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filter = arcpy.Parameter(
+            displayName="Filter Size",
+            name="filter",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filter.value = "11"
+
+        threshold = arcpy.Parameter(
+            displayName="Value Difference Threshold",
+            name="threshold",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [input, output, filter, threshold]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5652,7 +11740,40 @@ class EmbossFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        direction = arcpy.Parameter(
+            displayName="Direction",
+            name="direction",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        direction.value = "n"
+
+        clip = arcpy.Parameter(
+            displayName="Percent to clip the distribution tails",
+            name="clip",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        clip.value = "0.0"
+
+        params = [input, output, direction, clip]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5672,7 +11793,31 @@ class FastAlmostGaussianFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        sigma = arcpy.Parameter(
+            displayName="Standard Deviation (pixels)",
+            name="sigma",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        sigma.value = "1.8"
+
+        params = [input, output, sigma]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5692,7 +11837,31 @@ class GaussianFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        sigma = arcpy.Parameter(
+            displayName="Standard Deviation (pixels)",
+            name="sigma",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        sigma.value = "0.75"
+
+        params = [input, output, sigma]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5712,7 +11881,40 @@ class HighPassFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filterx = arcpy.Parameter(
+            displayName="Filter X-Dimension",
+            name="filterx",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filterx.value = "11"
+
+        filtery = arcpy.Parameter(
+            displayName="Filter Y-Dimension",
+            name="filtery",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filtery.value = "11"
+
+        params = [input, output, filterx, filtery]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5732,7 +11934,49 @@ class HighPassMedianFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filterx = arcpy.Parameter(
+            displayName="Filter X-Dimension",
+            name="filterx",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filterx.value = "11"
+
+        filtery = arcpy.Parameter(
+            displayName="Filter Y-Dimension",
+            name="filtery",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filtery.value = "11"
+
+        sig_digits = arcpy.Parameter(
+            displayName="Number of Significant Digits",
+            name="sig_digits",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        sig_digits.value = "2"
+
+        params = [input, output, filterx, filtery, sig_digits]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5752,7 +11996,49 @@ class KNearestMeanFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filterx = arcpy.Parameter(
+            displayName="Filter X-Dimension",
+            name="filterx",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filterx.value = "11"
+
+        filtery = arcpy.Parameter(
+            displayName="Filter Y-Dimension",
+            name="filtery",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filtery.value = "11"
+
+        k = arcpy.Parameter(
+            displayName="K-value (pixels)",
+            name="k",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        k.value = "5"
+
+        params = [input, output, filterx, filtery, k]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5772,7 +12058,40 @@ class LaplacianFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        variant = arcpy.Parameter(
+            displayName="Variant",
+            name="variant",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        variant.value = "3x3(1)"
+
+        clip = arcpy.Parameter(
+            displayName="Distribution Tail Clip Amount (%)",
+            name="clip",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        clip.value = "0.0"
+
+        params = [input, output, variant, clip]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5792,7 +12111,31 @@ class LaplacianOfGaussianFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        sigma = arcpy.Parameter(
+            displayName="Standard Deviation (Pixels)",
+            name="sigma",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        sigma.value = "0.75"
+
+        params = [input, output, sigma]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5812,7 +12155,58 @@ class LeeFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filterx = arcpy.Parameter(
+            displayName="Filter X-Dimension",
+            name="filterx",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filterx.value = "11"
+
+        filtery = arcpy.Parameter(
+            displayName="Filter Y-Dimension",
+            name="filtery",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filtery.value = "11"
+
+        sigma = arcpy.Parameter(
+            displayName="Sigma",
+            name="sigma",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        sigma.value = "10.0"
+
+        m = arcpy.Parameter(
+            displayName="M-value",
+            name="m",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        m.value = "5.0"
+
+        params = [input, output, filterx, filtery, sigma, m]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5832,7 +12226,47 @@ class LineDetectionFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        variant = arcpy.Parameter(
+            displayName="Variant",
+            name="variant",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        variant.value = "vertical"
+
+        absvals = arcpy.Parameter(
+            displayName="Output absolute values?",
+            name="absvals",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        clip = arcpy.Parameter(
+            displayName="Distribution Tail Clip Amount (%)",
+            name="clip",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        clip.value = "0.0"
+
+        params = [input, output, variant, absvals, clip]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5852,7 +12286,40 @@ class MajorityFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filterx = arcpy.Parameter(
+            displayName="Filter X-Dimension",
+            name="filterx",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filterx.value = "11"
+
+        filtery = arcpy.Parameter(
+            displayName="Filter Y-Dimension",
+            name="filtery",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filtery.value = "11"
+
+        params = [input, output, filterx, filtery]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5872,7 +12339,40 @@ class MaximumFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filterx = arcpy.Parameter(
+            displayName="Filter X-Dimension",
+            name="filterx",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filterx.value = "11"
+
+        filtery = arcpy.Parameter(
+            displayName="Filter Y-Dimension",
+            name="filtery",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filtery.value = "11"
+
+        params = [input, output, filterx, filtery]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5892,7 +12392,40 @@ class MeanFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filterx = arcpy.Parameter(
+            displayName="Filter X-Dimension",
+            name="filterx",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filterx.value = "3"
+
+        filtery = arcpy.Parameter(
+            displayName="Filter Y-Dimension",
+            name="filtery",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filtery.value = "3"
+
+        params = [input, output, filterx, filtery]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5912,7 +12445,49 @@ class MedianFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filterx = arcpy.Parameter(
+            displayName="Filter X-Dimension",
+            name="filterx",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filterx.value = "11"
+
+        filtery = arcpy.Parameter(
+            displayName="Filter Y-Dimension",
+            name="filtery",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filtery.value = "11"
+
+        sig_digits = arcpy.Parameter(
+            displayName="Number of Significant Digits",
+            name="sig_digits",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        sig_digits.value = "2"
+
+        params = [input, output, filterx, filtery, sig_digits]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5932,7 +12507,40 @@ class MinimumFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filterx = arcpy.Parameter(
+            displayName="Filter X-Dimension",
+            name="filterx",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filterx.value = "11"
+
+        filtery = arcpy.Parameter(
+            displayName="Filter Y-Dimension",
+            name="filtery",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filtery.value = "11"
+
+        params = [input, output, filterx, filtery]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5952,7 +12560,40 @@ class OlympicFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filterx = arcpy.Parameter(
+            displayName="Filter X-Dimension",
+            name="filterx",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filterx.value = "11"
+
+        filtery = arcpy.Parameter(
+            displayName="Filter Y-Dimension",
+            name="filtery",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filtery.value = "11"
+
+        params = [input, output, filterx, filtery]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5972,7 +12613,49 @@ class PercentileFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filterx = arcpy.Parameter(
+            displayName="Filter X-Dimension",
+            name="filterx",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filterx.value = "11"
+
+        filtery = arcpy.Parameter(
+            displayName="Filter Y-Dimension",
+            name="filtery",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filtery.value = "11"
+
+        sig_digits = arcpy.Parameter(
+            displayName="Number of Significant Digits",
+            name="sig_digits",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        sig_digits.value = "2"
+
+        params = [input, output, filterx, filtery, sig_digits]
+
         return params
 
     def updateParameters(self, parameters):
@@ -5992,7 +12675,31 @@ class PrewittFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        clip = arcpy.Parameter(
+            displayName="Distribution Tail Clip Amount (Percent)",
+            name="clip",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        clip.value = "0.0"
+
+        params = [input, output, clip]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6012,7 +12719,40 @@ class RangeFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filterx = arcpy.Parameter(
+            displayName="Filter X-Dimension",
+            name="filterx",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filterx.value = "11"
+
+        filtery = arcpy.Parameter(
+            displayName="Filter Y-Dimension",
+            name="filtery",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filtery.value = "11"
+
+        params = [input, output, filterx, filtery]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6032,7 +12772,31 @@ class RobertsCrossFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        clip = arcpy.Parameter(
+            displayName="Distribution Tail Clip Amount (Percent)",
+            name="clip",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        clip.value = "0.0"
+
+        params = [input, output, clip]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6052,7 +12816,31 @@ class ScharrFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        clip = arcpy.Parameter(
+            displayName="Distribution Tail Clip Amount (Percent)",
+            name="clip",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        clip.value = "0.0"
+
+        params = [input, output, clip]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6072,7 +12860,40 @@ class SobelFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        variant = arcpy.Parameter(
+            displayName="Variant",
+            name="variant",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        variant.value = "3x3"
+
+        clip = arcpy.Parameter(
+            displayName="Clip Tails (%)",
+            name="clip",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        clip.value = "0.0"
+
+        params = [input, output, variant, clip]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6092,7 +12913,40 @@ class StandardDeviationFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filterx = arcpy.Parameter(
+            displayName="Filter X-Dimension",
+            name="filterx",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filterx.value = "11"
+
+        filtery = arcpy.Parameter(
+            displayName="Filter Y-Dimension",
+            name="filtery",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filtery.value = "11"
+
+        params = [input, output, filterx, filtery]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6112,7 +12966,40 @@ class TotalFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        filterx = arcpy.Parameter(
+            displayName="Filter X-Dimension",
+            name="filterx",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filterx.value = "11"
+
+        filtery = arcpy.Parameter(
+            displayName="Filter Y-Dimension",
+            name="filtery",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filtery.value = "11"
+
+        params = [input, output, filterx, filtery]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6132,7 +13019,49 @@ class UnsharpMasking(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        sigma = arcpy.Parameter(
+            displayName="Standard Deviation (pixels)",
+            name="sigma",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        sigma.value = "0.75"
+
+        amount = arcpy.Parameter(
+            displayName="Amount (%)",
+            name="amount",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        amount.value = "100.0"
+
+        threshold = arcpy.Parameter(
+            displayName="Threshold",
+            name="threshold",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        threshold.value = "0.0"
+
+        params = [input, output, sigma, amount, threshold]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6152,7 +13081,47 @@ class UserDefinedWeightsFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        weights = arcpy.Parameter(
+            displayName="Input Weights File",
+            name="weights",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        center = arcpy.Parameter(
+            displayName="Kernel Center",
+            name="center",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        center.value = "center"
+
+        normalize = arcpy.Parameter(
+            displayName="Normalize kernel weights?",
+            name="normalize",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        normalize.value = "false"
+
+        params = [input, weights, output, center, normalize]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6172,7 +13141,31 @@ class BalanceContrastEnhancement(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Colour Composite Image File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        band_mean = arcpy.Parameter(
+            displayName="Band Mean Value",
+            name="band_mean",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        band_mean.value = "100.0"
+
+        params = [input, output, band_mean]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6192,7 +13185,56 @@ class CorrectVignetting(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        pp = arcpy.Parameter(
+            displayName="Input Principal Point File",
+            name="pp",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        focal_length = arcpy.Parameter(
+            displayName="Camera Focal Length (mm)",
+            name="focal_length",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        focal_length.value = "304.8"
+
+        image_width = arcpy.Parameter(
+            displayName="Distance Between Left-Right Edges (mm)",
+            name="image_width",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        image_width.value = "228.6"
+
+        n = arcpy.Parameter(
+            displayName="n Parameter",
+            name="n",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        n.value = "4.0"
+
+        params = [input, pp, output, focal_length, image_width, n]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6212,7 +13254,40 @@ class DirectDecorrelationStretch(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Colour Composite Image File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        k = arcpy.Parameter(
+            displayName="Achromatic Factor (0-1)",
+            name="k",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        k.value = "0.5"
+
+        clip = arcpy.Parameter(
+            displayName="Percent to clip the upper tail",
+            name="clip",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        clip.value = "1.0"
+
+        params = [input, output, k, clip]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6232,7 +13307,31 @@ class GammaCorrection(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        gamma = arcpy.Parameter(
+            displayName="Gamma Value",
+            name="gamma",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        gamma.value = "0.5"
+
+        params = [input, output, gamma]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6252,7 +13351,31 @@ class GaussianContrastStretch(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        num_tones = arcpy.Parameter(
+            displayName="Number of Tones",
+            name="num_tones",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        num_tones.value = "256"
+
+        params = [input, output, num_tones]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6272,7 +13395,31 @@ class HistogramEqualization(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        num_tones = arcpy.Parameter(
+            displayName="Number of Tones",
+            name="num_tones",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        num_tones.value = "256"
+
+        params = [input, output, num_tones]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6292,7 +13439,29 @@ class HistogramMatching(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        histo_file = arcpy.Parameter(
+            displayName="Input Probability Distribution Function (PDF) Text File",
+            name="histo_file",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, histo_file, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6312,7 +13481,29 @@ class HistogramMatchingTwoImages(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="Input File To Modify",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Input Reference File",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input1, input2, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6332,7 +13523,45 @@ class MinMaxContrastStretch(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        min_val = arcpy.Parameter(
+            displayName="Lower Tail Clip Value",
+            name="min_val",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        max_val = arcpy.Parameter(
+            displayName="Upper Tail Clip Value",
+            name="max_val",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        num_tones = arcpy.Parameter(
+            displayName="Number of Tones",
+            name="num_tones",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        num_tones.value = "256"
+
+        params = [input, output, min_val, max_val, num_tones]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6352,7 +13581,59 @@ class PanchromaticSharpening(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        red = arcpy.Parameter(
+            displayName="Input Red Band File (optional; only if colour-composite not specified)",
+            name="red",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        green = arcpy.Parameter(
+            displayName="Input Green Band File (optional; only if colour-composite not specified)",
+            name="green",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        blue = arcpy.Parameter(
+            displayName="Input Blue Band File (optional; only if colour-composite not specified)",
+            name="blue",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        composite = arcpy.Parameter(
+            displayName="Input Colour-Composite Image File (optional; only if individual bands not specified)",
+            name="composite",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        pan = arcpy.Parameter(
+            displayName="Input Panchromatic Band File",
+            name="pan",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Colour Composite File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        method = arcpy.Parameter(
+            displayName="Pan-Sharpening Method",
+            name="method",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        method.value = "brovey"
+
+        params = [red, green, blue, composite, pan, output, method]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6372,7 +13653,49 @@ class PercentageContrastStretch(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        clip = arcpy.Parameter(
+            displayName="Distribution Tail Clip Amount (%)",
+            name="clip",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        clip.value = "0.0"
+
+        tail = arcpy.Parameter(
+            displayName="Tail",
+            name="tail",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        tail.value = "both"
+
+        num_tones = arcpy.Parameter(
+            displayName="Number of Tones",
+            name="num_tones",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        num_tones.value = "256"
+
+        params = [input, output, clip, tail, num_tones]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6392,7 +13715,49 @@ class SigmoidalContrastStretch(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        cutoff = arcpy.Parameter(
+            displayName="Cutoff Value (0.0 - 0.95)",
+            name="cutoff",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        cutoff.value = "0.0"
+
+        gain = arcpy.Parameter(
+            displayName="Gain Value",
+            name="gain",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        gain.value = "1.0"
+
+        num_tones = arcpy.Parameter(
+            displayName="Number of Tones",
+            name="num_tones",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        num_tones.value = "256"
+
+        params = [input, output, cutoff, gain, num_tones]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6412,7 +13777,40 @@ class StandardDeviationContrastStretch(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        stdev = arcpy.Parameter(
+            displayName="Standard Deviation Threshold",
+            name="stdev",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        stdev.value = "2.0"
+
+        num_tones = arcpy.Parameter(
+            displayName="Number of Tones",
+            name="num_tones",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        num_tones.value = "256"
+
+        params = [input, output, stdev, num_tones]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6432,7 +13830,40 @@ class ClassifyOverlapPoints(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input LiDAR File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        resolution = arcpy.Parameter(
+            displayName="Sample Resolution",
+            name="resolution",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        resolution.value = "2.0"
+
+        filter = arcpy.Parameter(
+            displayName="Filter out points from overlapping flightlines?",
+            name="filter",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filter.value = "false"
+
+        params = [input, output, resolution, filter]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6452,7 +13883,29 @@ class ClipLidarToPolygon(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        polygons = arcpy.Parameter(
+            displayName="Input Vector Polygon File",
+            name="polygons",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, polygons, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6472,7 +13925,29 @@ class ErasePolygonFromLidar(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        polygons = arcpy.Parameter(
+            displayName="Input Vector Polygon File",
+            name="polygons",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, polygons, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6492,7 +13967,29 @@ class FilterLidarScanAngles(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        threshold = arcpy.Parameter(
+            displayName="Threshold (degrees)",
+            name="threshold",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [input, output, threshold]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6512,7 +14009,22 @@ class FindFlightlineEdgePoints(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input LiDAR File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6532,7 +14044,31 @@ class FlightlineOverlap(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input LiDAR File",
+            name="input",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Output")
+
+        resolution = arcpy.Parameter(
+            displayName="Grid Resolution",
+            name="resolution",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        resolution.value = "1.0"
+
+        params = [input, output, resolution]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6552,7 +14088,15 @@ class LasToAscii(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        inputs = arcpy.Parameter(
+            displayName="Input LiDAR Files",
+            name="inputs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [inputs]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6572,7 +14116,15 @@ class LasToMultipointShapefile(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input LiDAR File",
+            name="input",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6592,7 +14144,15 @@ class LasToShapefile(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input LiDAR File",
+            name="input",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6612,7 +14172,31 @@ class LidarBlockMaximum(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input LiDAR File",
+            name="input",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Output")
+
+        resolution = arcpy.Parameter(
+            displayName="Grid Resolution",
+            name="resolution",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        resolution.value = "1.0"
+
+        params = [input, output, resolution]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6632,7 +14216,31 @@ class LidarBlockMinimum(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input LiDAR File",
+            name="input",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Output")
+
+        resolution = arcpy.Parameter(
+            displayName="Grid Resolution",
+            name="resolution",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        resolution.value = "1.0"
+
+        params = [input, output, resolution]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6652,7 +14260,43 @@ class LidarClassifySubset(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        base = arcpy.Parameter(
+            displayName="Input Base LiDAR File",
+            name="base",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        subset = arcpy.Parameter(
+            displayName="Input Subset LiDAR File",
+            name="subset",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output LiDAR File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        subset_class = arcpy.Parameter(
+            displayName="Subset Point Class Value",
+            name="subset_class",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        nonsubset_class = arcpy.Parameter(
+            displayName="Non-Subset Point Class Value (Optional)",
+            name="nonsubset_class",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [base, subset, output, subset_class, nonsubset_class]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6672,7 +14316,29 @@ class LidarColourize(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        in_lidar = arcpy.Parameter(
+            displayName="Input LiDAR File",
+            name="in_lidar",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        in_image = arcpy.Parameter(
+            displayName="Input Colour Image File",
+            name="in_image",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output LiDAR File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [in_lidar, in_image, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6692,7 +14358,52 @@ class LidarConstructVectorTin(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Output")
+
+        returns = arcpy.Parameter(
+            displayName="Point Returns Included",
+            name="returns",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        returns.value = "all"
+
+        exclude_cls = arcpy.Parameter(
+            displayName="Exclusion Classes (0-18, based on LAS spec; e.g. 3,4,5,6,7)",
+            name="exclude_cls",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        minz = arcpy.Parameter(
+            displayName="Minimum Elevation Value (optional)",
+            name="minz",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        maxz = arcpy.Parameter(
+            displayName="Maximum Elevation Value (optional)",
+            name="maxz",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input, output, returns, exclude_cls, minz, maxz]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6712,7 +14423,61 @@ class LidarElevationSlice(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        minz = arcpy.Parameter(
+            displayName="Minimum Elevation Value",
+            name="minz",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        maxz = arcpy.Parameter(
+            displayName="Maximum Elevation Value",
+            name="maxz",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        class1 = arcpy.Parameter(
+            displayName="Retain but reclass points outside the specified elevation range?",
+            name="class1",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        inclassval = arcpy.Parameter(
+            displayName="Class Value Assigned to Points Within Range (Optional)",
+            name="inclassval",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        inclassval.value = "2"
+
+        outclassval = arcpy.Parameter(
+            displayName="Class Value Assigned to Points Outside Range (Optional)",
+            name="outclassval",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        outclassval.value = "1"
+
+        params = [input, output, minz, maxz, class1, inclassval, outclassval]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6732,7 +14497,76 @@ class LidarGroundPointFilter(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        radius = arcpy.Parameter(
+            displayName="Search Radius",
+            name="radius",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        radius.value = "2.0"
+
+        min_neighbours = arcpy.Parameter(
+            displayName="Minimum Number of Neighbours",
+            name="min_neighbours",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        min_neighbours.value = "0"
+
+        slope_threshold = arcpy.Parameter(
+            displayName="Inter-point Slope Threshold",
+            name="slope_threshold",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        slope_threshold.value = "45.0"
+
+        height_threshold = arcpy.Parameter(
+            displayName="Off-terrain Point Height Threshold",
+            name="height_threshold",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        height_threshold.value = "1.0"
+
+        classify = arcpy.Parameter(
+            displayName="Classify Points",
+            name="classify",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        classify.value = "true"
+
+        slope_norm = arcpy.Parameter(
+            displayName="Perform initial ground slope normalization?",
+            name="slope_norm",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        slope_norm.value = "true"
+
+        params = [input, output, radius, min_neighbours, slope_threshold, height_threshold, classify, slope_norm]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6752,7 +14586,38 @@ class LidarHexBinning(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Base File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Polygon File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        width = arcpy.Parameter(
+            displayName="Hexagon Width",
+            name="width",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        orientation = arcpy.Parameter(
+            displayName="Grid Orientation",
+            name="orientation",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        orientation.value = "horizontal"
+
+        params = [input, output, width, orientation]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6772,7 +14637,49 @@ class LidarHillshade(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input LiDAR File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        azimuth = arcpy.Parameter(
+            displayName="Azimuth (degrees)",
+            name="azimuth",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        azimuth.value = "315.0"
+
+        altitude = arcpy.Parameter(
+            displayName="Altitude (degrees)",
+            name="altitude",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        altitude.value = "30.0"
+
+        radius = arcpy.Parameter(
+            displayName="Search Radius",
+            name="radius",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        radius.value = "1.0"
+
+        params = [input, output, azimuth, altitude, radius]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6792,7 +14699,40 @@ class LidarHistogram(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input LiDAR File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output HTML File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        parameter = arcpy.Parameter(
+            displayName="Parameter",
+            name="parameter",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        parameter.value = "elevation"
+
+        clip = arcpy.Parameter(
+            displayName="Tail Clip Percent",
+            name="clip",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        clip.value = "1.0"
+
+        params = [input, output, parameter, clip]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6812,7 +14752,88 @@ class LidarIdwInterpolation(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Output")
+
+        parameter = arcpy.Parameter(
+            displayName="Interpolation Parameter",
+            name="parameter",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        parameter.value = "elevation"
+
+        returns = arcpy.Parameter(
+            displayName="Point Returns Included",
+            name="returns",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        returns.value = "all"
+
+        resolution = arcpy.Parameter(
+            displayName="Grid Resolution",
+            name="resolution",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        resolution.value = "1.0"
+
+        weight = arcpy.Parameter(
+            displayName="IDW Weight (Exponent) Value",
+            name="weight",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        weight.value = "1.0"
+
+        radius = arcpy.Parameter(
+            displayName="Search Radius",
+            name="radius",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        radius.value = "2.5"
+
+        exclude_cls = arcpy.Parameter(
+            displayName="Exclusion Classes (0-18, based on LAS spec; e.g. 3,4,5,6,7)",
+            name="exclude_cls",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        minz = arcpy.Parameter(
+            displayName="Minimum Elevation Value (optional)",
+            name="minz",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        maxz = arcpy.Parameter(
+            displayName="Maximum Elevation Value (optional)",
+            name="maxz",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input, output, parameter, returns, resolution, weight, radius, exclude_cls, minz, maxz]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6832,7 +14853,36 @@ class LidarInfo(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Summary Report File",
+            name="output",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Output")
+
+        vlr = arcpy.Parameter(
+            displayName="Print the variable length records (VLRs)?",
+            name="vlr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        geokeys = arcpy.Parameter(
+            displayName="Print the geokeys?",
+            name="geokeys",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input, output, vlr, geokeys]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6852,7 +14902,22 @@ class LidarJoin(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        inputs = arcpy.Parameter(
+            displayName="Input LiDAR Files",
+            name="inputs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [inputs, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6872,7 +14937,45 @@ class LidarKappaIndex(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="Input LiDAR File (Classification)",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Input LiDAR File (Reference)",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output HTML File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        class_accuracy = arcpy.Parameter(
+            displayName="Output Class Accuracy Raster File",
+            name="class_accuracy",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        resolution = arcpy.Parameter(
+            displayName="Grid Resolution",
+            name="resolution",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        resolution.value = "1.0"
+
+        params = [input1, input2, output, class_accuracy, resolution]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6892,7 +14995,79 @@ class LidarNearestNeighbourGridding(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Output")
+
+        parameter = arcpy.Parameter(
+            displayName="Interpolation Parameter",
+            name="parameter",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        parameter.value = "elevation"
+
+        returns = arcpy.Parameter(
+            displayName="Point Returns Included",
+            name="returns",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        returns.value = "all"
+
+        resolution = arcpy.Parameter(
+            displayName="Grid Resolution",
+            name="resolution",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        resolution.value = "1.0"
+
+        radius = arcpy.Parameter(
+            displayName="Search Radius",
+            name="radius",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        radius.value = "2.5"
+
+        exclude_cls = arcpy.Parameter(
+            displayName="Exclusion Classes (0-18, based on LAS spec; e.g. 3,4,5,6,7)",
+            name="exclude_cls",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        minz = arcpy.Parameter(
+            displayName="Minimum Elevation Value (optional)",
+            name="minz",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        maxz = arcpy.Parameter(
+            displayName="Maximum Elevation Value (optional)",
+            name="maxz",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input, output, parameter, returns, resolution, radius, exclude_cls, minz, maxz]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6912,7 +15087,70 @@ class LidarPointDensity(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Output")
+
+        returns = arcpy.Parameter(
+            displayName="Point Returns Included",
+            name="returns",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        returns.value = "all"
+
+        resolution = arcpy.Parameter(
+            displayName="Grid Resolution",
+            name="resolution",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        resolution.value = "1.0"
+
+        radius = arcpy.Parameter(
+            displayName="Search Radius",
+            name="radius",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        radius.value = "2.5"
+
+        exclude_cls = arcpy.Parameter(
+            displayName="Exclusion Classes (0-18, based on LAS spec; e.g. 3,4,5,6,7)",
+            name="exclude_cls",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        minz = arcpy.Parameter(
+            displayName="Minimum Elevation Value (optional)",
+            name="minz",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        maxz = arcpy.Parameter(
+            displayName="Maximum Elevation Value (optional)",
+            name="maxz",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input, output, returns, resolution, radius, exclude_cls, minz, maxz]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6932,7 +15170,61 @@ class LidarPointStats(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input LiDAR File",
+            name="input",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        resolution = arcpy.Parameter(
+            displayName="Grid Resolution",
+            name="resolution",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        resolution.value = "1.0"
+
+        num_points = arcpy.Parameter(
+            displayName="Output number of points?",
+            name="num_points",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        num_points.value = "True"
+
+        num_pulses = arcpy.Parameter(
+            displayName="Output number of pulses?",
+            name="num_pulses",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        z_range = arcpy.Parameter(
+            displayName="Output elevation range?",
+            name="z_range",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        intensity_range = arcpy.Parameter(
+            displayName="Output intensity range?",
+            name="intensity_range",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        predom_class = arcpy.Parameter(
+            displayName="Output predominant class?",
+            name="predom_class",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input, resolution, num_points, num_pulses, z_range, intensity_range, predom_class]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6952,7 +15244,31 @@ class LidarRemoveDuplicates(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        include_z = arcpy.Parameter(
+            displayName="Include z-values in point comparison?",
+            name="include_z",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        include_z.value = "false"
+
+        params = [input, output, include_z]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6972,7 +15288,40 @@ class LidarRemoveOutliers(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        radius = arcpy.Parameter(
+            displayName="Search Radius",
+            name="radius",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        radius.value = "2.0"
+
+        elev_diff = arcpy.Parameter(
+            displayName="Max. Elevation Difference",
+            name="elev_diff",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        elev_diff.value = "50.0"
+
+        params = [input, output, radius, elev_diff]
+
         return params
 
     def updateParameters(self, parameters):
@@ -6992,7 +15341,49 @@ class LidarSegmentation(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input LiDAR File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        radius = arcpy.Parameter(
+            displayName="Search Radius",
+            name="radius",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        radius.value = "5.0"
+
+        norm_diff = arcpy.Parameter(
+            displayName="Normal Difference Threshold",
+            name="norm_diff",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        norm_diff.value = "10.0"
+
+        maxzdiff = arcpy.Parameter(
+            displayName="Maximum Elevation Difference Between Points",
+            name="maxzdiff",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        maxzdiff.value = "1.0"
+
+        params = [input, output, radius, norm_diff, maxzdiff]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7012,7 +15403,56 @@ class LidarSegmentationBasedFilter(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input LiDAR File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        radius = arcpy.Parameter(
+            displayName="Search Radius",
+            name="radius",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        radius.value = "5.0"
+
+        norm_diff = arcpy.Parameter(
+            displayName="Normal Difference Threshold",
+            name="norm_diff",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        norm_diff.value = "2.0"
+
+        maxzdiff = arcpy.Parameter(
+            displayName="Maximum Elevation Difference Between Points",
+            name="maxzdiff",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        maxzdiff.value = "1.0"
+
+        classify = arcpy.Parameter(
+            displayName="Classify Points",
+            name="classify",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input, output, radius, norm_diff, maxzdiff, classify]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7032,7 +15472,49 @@ class LidarThin(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input LiDAR File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        resolution = arcpy.Parameter(
+            displayName="Sample Resolution",
+            name="resolution",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        resolution.value = "2.0"
+
+        method = arcpy.Parameter(
+            displayName="Point Selection Method",
+            name="method",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        method.value = "lowest"
+
+        save_filtered = arcpy.Parameter(
+            displayName="Save filtered points to seperate file?",
+            name="save_filtered",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        save_filtered.value = "false"
+
+        params = [input, output, resolution, method, save_filtered]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7052,7 +15534,47 @@ class LidarThinHighDensity(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        resolution = arcpy.Parameter(
+            displayName="Grid Resolution",
+            name="resolution",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        resolution.value = "1.0"
+
+        density = arcpy.Parameter(
+            displayName="Max. Point Density (pts/m^2)",
+            name="density",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        save_filtered = arcpy.Parameter(
+            displayName="Save filtered points to seperate file?",
+            name="save_filtered",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        save_filtered.value = "false"
+
+        params = [input, output, resolution, density, save_filtered]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7072,7 +15594,60 @@ class LidarTile(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        width_x = arcpy.Parameter(
+            displayName="Tile Width in X Dimension",
+            name="width_x",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        width_x.value = "1000.0"
+
+        width_y = arcpy.Parameter(
+            displayName="Tile Width in Y Dimension",
+            name="width_y",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        width_y.value = "1000.0"
+
+        origin_x = arcpy.Parameter(
+            displayName="Origin Point X-Coordinate",
+            name="origin_x",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        origin_x.value = "0.0"
+
+        origin_y = arcpy.Parameter(
+            displayName="Origin Point Y-Coordinate",
+            name="origin_y",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        origin_y.value = "0.0"
+
+        min_points = arcpy.Parameter(
+            displayName="Minimum Number of Tile Points",
+            name="min_points",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        min_points.value = "2"
+
+        params = [input, width_x, width_y, origin_x, origin_y, min_points]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7092,7 +15667,22 @@ class LidarTileFootprint(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input LiDAR File",
+            name="input",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Polygon File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7112,7 +15702,70 @@ class LidarTinGridding(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Output")
+
+        parameter = arcpy.Parameter(
+            displayName="Interpolation Parameter",
+            name="parameter",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        parameter.value = "elevation"
+
+        returns = arcpy.Parameter(
+            displayName="Point Returns Included",
+            name="returns",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        returns.value = "all"
+
+        resolution = arcpy.Parameter(
+            displayName="Grid Resolution",
+            name="resolution",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        resolution.value = "1.0"
+
+        exclude_cls = arcpy.Parameter(
+            displayName="Exclusion Classes (0-18, based on LAS spec; e.g. 3,4,5,6,7)",
+            name="exclude_cls",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        minz = arcpy.Parameter(
+            displayName="Minimum Elevation Value (optional)",
+            name="minz",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        maxz = arcpy.Parameter(
+            displayName="Maximum Elevation Value (optional)",
+            name="maxz",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input, output, parameter, returns, resolution, exclude_cls, minz, maxz]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7132,7 +15785,31 @@ class LidarTophatTransform(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        radius = arcpy.Parameter(
+            displayName="Search Radius",
+            name="radius",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        radius.value = "1.0"
+
+        params = [input, output, radius]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7152,7 +15829,31 @@ class NormalVectors(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        radius = arcpy.Parameter(
+            displayName="Search Radius",
+            name="radius",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        radius.value = "1.0"
+
+        params = [input, output, radius]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7172,7 +15873,29 @@ class SelectTilesByPolygon(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        params = None
+        indir = arcpy.Parameter(
+            displayName="Input Directory",
+            name="indir",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        outdir = arcpy.Parameter(
+            displayName="Output Directory",
+            name="outdir",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        polygons = arcpy.Parameter(
+            displayName="Input Vector Polygon File",
+            name="polygons",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [indir, outdir, polygons]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7192,7 +15915,29 @@ class And(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="Input File",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Input File",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input1, input2, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7212,7 +15957,29 @@ class Not(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="Input File",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Input File",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input1, input2, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7232,7 +15999,29 @@ class Or(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="Input File",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Input File",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input1, input2, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7252,7 +16041,22 @@ class AbsoluteValue(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7272,7 +16076,29 @@ class Add(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input1, input2, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7292,7 +16118,29 @@ class Anova(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        features = arcpy.Parameter(
+            displayName="Feature Definition (Class) File",
+            name="features",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output HTML File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, features, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7312,7 +16160,22 @@ class ArcCos(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7332,7 +16195,22 @@ class ArcSin(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7352,7 +16230,22 @@ class ArcTan(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7372,7 +16265,29 @@ class Atan2(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input_y = arcpy.Parameter(
+            displayName="Input Y File Or Constant Value",
+            name="input_y",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input_x = arcpy.Parameter(
+            displayName="Input X File Or Constant Value",
+            name="input_x",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input_y, input_x, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7392,7 +16307,22 @@ class AttributeCorrelation(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output HTML File",
+            name="output",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7412,7 +16342,29 @@ class AttributeHistogram(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        field = arcpy.Parameter(
+            displayName="Field Name",
+            name="field",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output HTML File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, field, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7432,7 +16384,45 @@ class AttributeScattergram(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        fieldx = arcpy.Parameter(
+            displayName="Field Name X",
+            name="fieldx",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        fieldy = arcpy.Parameter(
+            displayName="Field Name Y",
+            name="fieldy",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output HTML File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        trendline = arcpy.Parameter(
+            displayName="Draw the trendline?",
+            name="trendline",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        trendline.value = "false"
+
+        params = [input, fieldx, fieldy, output, trendline]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7452,7 +16442,22 @@ class Ceil(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7472,7 +16477,22 @@ class Cos(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7492,7 +16512,22 @@ class Cosh(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7512,7 +16547,22 @@ class CrispnessIndex(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output HTML File",
+            name="output",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7532,7 +16582,29 @@ class CrossTabulation(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="Input File 1",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Input File 2",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output HTML File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input1, input2, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7552,7 +16624,22 @@ class CumulativeDistribution(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7572,7 +16659,22 @@ class Decrement(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7592,7 +16694,29 @@ class Divide(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input1, input2, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7612,7 +16736,29 @@ class EqualTo(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input1, input2, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7632,7 +16778,22 @@ class Exp(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7652,7 +16813,22 @@ class Exp2(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7672,7 +16848,45 @@ class ExtractRasterStatistics(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Data File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        features = arcpy.Parameter(
+            displayName="Input Feature Definition File",
+            name="features",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Raster File",
+            name="output",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Output")
+
+        stat = arcpy.Parameter(
+            displayName="Statistic Type",
+            name="stat",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        stat.value = "average"
+
+        out_table = arcpy.Parameter(
+            displayName="Output HTML Table File",
+            name="out_table",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Output")
+
+        params = [input, features, output, stat, out_table]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7692,7 +16906,22 @@ class Floor(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7712,7 +16941,36 @@ class GreaterThan(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        incl_equals = arcpy.Parameter(
+            displayName="Perform a greater-than-OR-EQUAL-TO operation?",
+            name="incl_equals",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input1, input2, output, incl_equals]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7732,7 +16990,31 @@ class ImageAutocorrelation(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        inputs = arcpy.Parameter(
+            displayName="Input Files",
+            name="inputs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        contiguity = arcpy.Parameter(
+            displayName="Contiguity Type",
+            name="contiguity",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        contiguity.value = "Rook"
+
+        output = arcpy.Parameter(
+            displayName="Output HTML File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [inputs, contiguity, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7752,7 +17034,22 @@ class ImageCorrelation(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        inputs = arcpy.Parameter(
+            displayName="Input Files",
+            name="inputs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output HTML File",
+            name="output",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Output")
+
+        params = [inputs, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7772,7 +17069,43 @@ class ImageRegression(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="Independent Variable (X).",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Dependent Variable (Y).",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Summary Report File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        out_residuals = arcpy.Parameter(
+            displayName="Optional Residuals Output File",
+            name="out_residuals",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Output")
+
+        standardize = arcpy.Parameter(
+            displayName="Standardize the residuals map?",
+            name="standardize",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input1, input2, output, out_residuals, standardize]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7792,7 +17125,22 @@ class InPlaceAdd(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="Input Raster File",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [input1, input2]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7812,7 +17160,22 @@ class InPlaceDivide(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="Input Raster File",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [input1, input2]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7832,7 +17195,22 @@ class InPlaceMultiply(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="Input Raster File",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [input1, input2]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7852,7 +17230,22 @@ class InPlaceSubtract(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="Input Raster File",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [input1, input2]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7872,7 +17265,22 @@ class Increment(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7892,7 +17300,29 @@ class IntegerDivision(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input1, input2, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7912,7 +17342,22 @@ class IsNoData(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7932,7 +17377,29 @@ class KappaIndex(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="Input Classification File",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Input Reference File",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input1, input2, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7952,7 +17419,29 @@ class KsTestForNormality(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        num_samples = arcpy.Parameter(
+            displayName="Num. Samples (blank for while image)",
+            name="num_samples",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input, output, num_samples]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7972,7 +17461,36 @@ class LessThan(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        incl_equals = arcpy.Parameter(
+            displayName="Perform a less-than-OR-EQUAL-TO operation?",
+            name="incl_equals",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input1, input2, output, incl_equals]
+
         return params
 
     def updateParameters(self, parameters):
@@ -7992,7 +17510,29 @@ class ListUniqueValues(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        field = arcpy.Parameter(
+            displayName="Field Name",
+            name="field",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output HTML File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, field, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8012,7 +17552,22 @@ class Ln(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8032,7 +17587,22 @@ class Log10(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8052,7 +17622,22 @@ class Log2(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8072,7 +17657,29 @@ class Max(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input1, input2, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8092,7 +17699,29 @@ class Min(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input1, input2, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8112,7 +17741,29 @@ class Modulo(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input1, input2, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8132,7 +17783,29 @@ class Multiply(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input1, input2, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8152,7 +17825,22 @@ class Negate(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8172,7 +17860,29 @@ class NotEqualTo(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input1, input2, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8192,7 +17902,29 @@ class Power(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input1, input2, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8212,7 +17944,36 @@ class PrincipalComponentAnalysis(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        inputs = arcpy.Parameter(
+            displayName="Input Files",
+            name="inputs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        out_html = arcpy.Parameter(
+            displayName="Output HTML Report File",
+            name="out_html",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        num_comp = arcpy.Parameter(
+            displayName="Num. of Component Images (blank for all)",
+            name="num_comp",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        standardized = arcpy.Parameter(
+            displayName="Perform Standaradized PCA?",
+            name="standardized",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [inputs, out_html, num_comp, standardized]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8232,7 +17993,31 @@ class Quantiles(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        num_quantiles = arcpy.Parameter(
+            displayName="Number of Quantiles",
+            name="num_quantiles",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        num_quantiles.value = "5"
+
+        params = [input, output, num_quantiles]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8252,7 +18037,22 @@ class RandomField(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        base = arcpy.Parameter(
+            displayName="Input Base File",
+            name="base",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [base, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8272,7 +18072,31 @@ class RandomSample(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        base = arcpy.Parameter(
+            displayName="Input Base File",
+            name="base",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        num_samples = arcpy.Parameter(
+            displayName="Num. Samples",
+            name="num_samples",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        num_samples.value = "1000"
+
+        params = [base, output, num_samples]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8292,7 +18116,22 @@ class RasterHistogram(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output HTML File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8312,7 +18151,15 @@ class RasterSummaryStats(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [input]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8332,7 +18179,22 @@ class Reciprocal(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8352,7 +18214,50 @@ class RescaleValueRange(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        out_min_val = arcpy.Parameter(
+            displayName="Output Raster Minimum Value",
+            name="out_min_val",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        out_max_val = arcpy.Parameter(
+            displayName="Output Raster Maximum Value",
+            name="out_max_val",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        clip_min = arcpy.Parameter(
+            displayName="Lower-Tail Clip Value (optional)",
+            name="clip_min",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        clip_max = arcpy.Parameter(
+            displayName="Upper-Tail Clip Value (optional)",
+            name="clip_max",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input, output, out_min_val, out_max_val, clip_min, clip_max]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8372,7 +18277,22 @@ class RootMeanSquareError(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        base = arcpy.Parameter(
+            displayName="Input Base File",
+            name="base",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [input, base]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8392,7 +18312,22 @@ class Round(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8412,7 +18347,22 @@ class Sin(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8432,7 +18382,22 @@ class Sinh(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8452,7 +18417,22 @@ class Square(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8472,7 +18452,22 @@ class SquareRoot(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8492,7 +18487,29 @@ class Subtract(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Input File Or Constant Value",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input1, input2, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8512,7 +18529,22 @@ class Tan(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8532,7 +18564,22 @@ class Tanh(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8552,7 +18599,22 @@ class ToDegrees(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8572,7 +18634,22 @@ class ToRadians(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8592,7 +18669,31 @@ class TrendSurface(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        order = arcpy.Parameter(
+            displayName="Polynomial Order",
+            name="order",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        order.value = "1"
+
+        params = [input, output, order]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8612,7 +18713,45 @@ class TrendSurfaceVectorPoints(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input Vector Points File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        field = arcpy.Parameter(
+            displayName="Field Name",
+            name="field",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        order = arcpy.Parameter(
+            displayName="Polynomial Order",
+            name="order",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        order.value = "1"
+
+        cell_size = arcpy.Parameter(
+            displayName="Cell Size (optional)",
+            name="cell_size",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input, field, output, order, cell_size]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8632,7 +18771,29 @@ class Truncate(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        num_decimals = arcpy.Parameter(
+            displayName="Number of Decimals After Truncation",
+            name="num_decimals",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input, output, num_decimals]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8652,7 +18813,38 @@ class TurningBandsSimulation(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        base = arcpy.Parameter(
+            displayName="Input Base File",
+            name="base",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        range = arcpy.Parameter(
+            displayName="Range of Autocorrelation (map units)",
+            name="range",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        iterations = arcpy.Parameter(
+            displayName="Iterations",
+            name="iterations",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        iterations.value = "1000"
+
+        params = [base, output, range, iterations]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8672,7 +18864,29 @@ class Xor(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input1 = arcpy.Parameter(
+            displayName="Input File",
+            name="input1",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Input File",
+            name="input2",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input1, input2, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8692,7 +18906,22 @@ class ZScores(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        params = None
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8712,7 +18941,45 @@ class DistanceToOutlet(object):
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
-        params = None
+        d8_pntr = arcpy.Parameter(
+            displayName="Input D8 Pointer File",
+            name="d8_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        streams = arcpy.Parameter(
+            displayName="Input Streams File",
+            name="streams",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Does the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        zero_background = arcpy.Parameter(
+            displayName="Should a background value of zero be used?",
+            name="zero_background",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [d8_pntr, streams, output, esri_pntr, zero_background]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8732,7 +18999,36 @@ class ExtractStreams(object):
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
-        params = None
+        flow_accum = arcpy.Parameter(
+            displayName="Input D8 Flow Accumulation File",
+            name="flow_accum",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        threshold = arcpy.Parameter(
+            displayName="Channelization Threshold",
+            name="threshold",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        zero_background = arcpy.Parameter(
+            displayName="Should a background value of zero be used?",
+            name="zero_background",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [flow_accum, output, threshold, zero_background]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8752,7 +19048,49 @@ class ExtractValleys(object):
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
-        params = None
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        variant = arcpy.Parameter(
+            displayName="Variant",
+            name="variant",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        variant.value = "Lower Quartile"
+
+        line_thin = arcpy.Parameter(
+            displayName="Perform line-thinning?",
+            name="line_thin",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        line_thin.value = "true"
+
+        filter = arcpy.Parameter(
+            displayName="Filter Size (Only For Lower Quartile)",
+            name="filter",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        filter.value = "5"
+
+        params = [dem, output, variant, line_thin, filter]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8772,7 +19110,45 @@ class FarthestChannelHead(object):
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
-        params = None
+        d8_pntr = arcpy.Parameter(
+            displayName="Input D8 Pointer File",
+            name="d8_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        streams = arcpy.Parameter(
+            displayName="Input Streams File",
+            name="streams",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Does the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        zero_background = arcpy.Parameter(
+            displayName="Should a background value of zero be used?",
+            name="zero_background",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [d8_pntr, streams, output, esri_pntr, zero_background]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8792,7 +19168,45 @@ class FindMainStem(object):
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
-        params = None
+        d8_pntr = arcpy.Parameter(
+            displayName="Input D8 Pointer File",
+            name="d8_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        streams = arcpy.Parameter(
+            displayName="Input Streams File",
+            name="streams",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Does the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        zero_background = arcpy.Parameter(
+            displayName="Should a background value of zero be used?",
+            name="zero_background",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [d8_pntr, streams, output, esri_pntr, zero_background]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8812,7 +19226,45 @@ class HackStreamOrder(object):
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
-        params = None
+        d8_pntr = arcpy.Parameter(
+            displayName="Input D8 Pointer File",
+            name="d8_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        streams = arcpy.Parameter(
+            displayName="Input Streams File",
+            name="streams",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Does the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        zero_background = arcpy.Parameter(
+            displayName="Should a background value of zero be used?",
+            name="zero_background",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [d8_pntr, streams, output, esri_pntr, zero_background]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8832,7 +19284,45 @@ class HortonStreamOrder(object):
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
-        params = None
+        d8_pntr = arcpy.Parameter(
+            displayName="Input D8 Pointer File",
+            name="d8_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        streams = arcpy.Parameter(
+            displayName="Input Streams File",
+            name="streams",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Does the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        zero_background = arcpy.Parameter(
+            displayName="Should a background value of zero be used?",
+            name="zero_background",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [d8_pntr, streams, output, esri_pntr, zero_background]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8852,7 +19342,45 @@ class LengthOfUpstreamChannels(object):
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
-        params = None
+        d8_pntr = arcpy.Parameter(
+            displayName="Input D8 Pointer File",
+            name="d8_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        streams = arcpy.Parameter(
+            displayName="Input Streams File",
+            name="streams",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Does the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        zero_background = arcpy.Parameter(
+            displayName="Should a background value of zero be used?",
+            name="zero_background",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [d8_pntr, streams, output, esri_pntr, zero_background]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8872,7 +19400,45 @@ class LongProfile(object):
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
-        params = None
+        d8_pntr = arcpy.Parameter(
+            displayName="Input D8 Pointer File",
+            name="d8_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        streams = arcpy.Parameter(
+            displayName="Input Streams File",
+            name="streams",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output HTML File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Does the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        params = [d8_pntr, streams, dem, output, esri_pntr]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8892,7 +19458,45 @@ class LongProfileFromPoints(object):
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
-        params = None
+        d8_pntr = arcpy.Parameter(
+            displayName="Input D8 Pointer File",
+            name="d8_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        points = arcpy.Parameter(
+            displayName="Input Vector Points File",
+            name="points",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output HTML File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Does the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        params = [d8_pntr, points, dem, output, esri_pntr]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8912,7 +19516,38 @@ class RasterStreamsToVector(object):
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
-        params = None
+        streams = arcpy.Parameter(
+            displayName="Input Streams File",
+            name="streams",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        d8_pntr = arcpy.Parameter(
+            displayName="Input D8 Pointer File",
+            name="d8_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Does the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        params = [streams, d8_pntr, output, esri_pntr]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8932,7 +19567,47 @@ class RasterizeStreams(object):
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
-        params = None
+        streams = arcpy.Parameter(
+            displayName="Input Vector Streams File",
+            name="streams",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        base = arcpy.Parameter(
+            displayName="Input Base Raster File",
+            name="base",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        nodata = arcpy.Parameter(
+            displayName="Use NoData value for background?",
+            name="nodata",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        nodata.value = "true"
+
+        feature_id = arcpy.Parameter(
+            displayName="Use feature number as output value?",
+            name="feature_id",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        feature_id.value = "false"
+
+        params = [streams, base, output, nodata, feature_id]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8952,7 +19627,45 @@ class RemoveShortStreams(object):
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
-        params = None
+        d8_pntr = arcpy.Parameter(
+            displayName="Input D8 Pointer File",
+            name="d8_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        streams = arcpy.Parameter(
+            displayName="Input Streams File",
+            name="streams",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        min_length = arcpy.Parameter(
+            displayName="Minimum Tributary Length (map units)",
+            name="min_length",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Does the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        params = [d8_pntr, streams, output, min_length, esri_pntr]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8972,7 +19685,45 @@ class ShreveStreamMagnitude(object):
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
-        params = None
+        d8_pntr = arcpy.Parameter(
+            displayName="Input D8 Pointer File",
+            name="d8_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        streams = arcpy.Parameter(
+            displayName="Input Streams File",
+            name="streams",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Does the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        zero_background = arcpy.Parameter(
+            displayName="Should a background value of zero be used?",
+            name="zero_background",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [d8_pntr, streams, output, esri_pntr, zero_background]
+
         return params
 
     def updateParameters(self, parameters):
@@ -8992,7 +19743,45 @@ class StrahlerStreamOrder(object):
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
-        params = None
+        d8_pntr = arcpy.Parameter(
+            displayName="Input D8 Pointer File",
+            name="d8_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        streams = arcpy.Parameter(
+            displayName="Input Streams File",
+            name="streams",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Does the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        zero_background = arcpy.Parameter(
+            displayName="Should a background value of zero be used?",
+            name="zero_background",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [d8_pntr, streams, output, esri_pntr, zero_background]
+
         return params
 
     def updateParameters(self, parameters):
@@ -9012,7 +19801,45 @@ class StreamLinkClass(object):
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
-        params = None
+        d8_pntr = arcpy.Parameter(
+            displayName="Input D8 Pointer File",
+            name="d8_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        streams = arcpy.Parameter(
+            displayName="Input Streams File",
+            name="streams",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Does the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        zero_background = arcpy.Parameter(
+            displayName="Should a background value of zero be used?",
+            name="zero_background",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [d8_pntr, streams, output, esri_pntr, zero_background]
+
         return params
 
     def updateParameters(self, parameters):
@@ -9032,7 +19859,45 @@ class StreamLinkIdentifier(object):
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
-        params = None
+        d8_pntr = arcpy.Parameter(
+            displayName="Input D8 Pointer File",
+            name="d8_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        streams = arcpy.Parameter(
+            displayName="Input Streams File",
+            name="streams",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Does the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        zero_background = arcpy.Parameter(
+            displayName="Should a background value of zero be used?",
+            name="zero_background",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [d8_pntr, streams, output, esri_pntr, zero_background]
+
         return params
 
     def updateParameters(self, parameters):
@@ -9052,7 +19917,45 @@ class StreamLinkLength(object):
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
-        params = None
+        d8_pntr = arcpy.Parameter(
+            displayName="Input D8 Pointer File",
+            name="d8_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        linkid = arcpy.Parameter(
+            displayName="Input Stream Link (Tributary) ID File",
+            name="linkid",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Does the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        zero_background = arcpy.Parameter(
+            displayName="Should a background value of zero be used?",
+            name="zero_background",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [d8_pntr, linkid, output, esri_pntr, zero_background]
+
         return params
 
     def updateParameters(self, parameters):
@@ -9072,7 +19975,52 @@ class StreamLinkSlope(object):
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
-        params = None
+        d8_pntr = arcpy.Parameter(
+            displayName="Input D8 Pointer File",
+            name="d8_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        linkid = arcpy.Parameter(
+            displayName="Input Stream Link (Tributary) ID File",
+            name="linkid",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Does the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        zero_background = arcpy.Parameter(
+            displayName="Should a background value of zero be used?",
+            name="zero_background",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [d8_pntr, linkid, dem, output, esri_pntr, zero_background]
+
         return params
 
     def updateParameters(self, parameters):
@@ -9092,7 +20040,52 @@ class StreamSlopeContinuous(object):
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
-        params = None
+        d8_pntr = arcpy.Parameter(
+            displayName="Input D8 Pointer File",
+            name="d8_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        streams = arcpy.Parameter(
+            displayName="Input Streams File",
+            name="streams",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Does the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        zero_background = arcpy.Parameter(
+            displayName="Should a background value of zero be used?",
+            name="zero_background",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [d8_pntr, streams, dem, output, esri_pntr, zero_background]
+
         return params
 
     def updateParameters(self, parameters):
@@ -9112,7 +20105,45 @@ class TopologicalStreamOrder(object):
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
-        params = None
+        d8_pntr = arcpy.Parameter(
+            displayName="Input D8 Pointer File",
+            name="d8_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        streams = arcpy.Parameter(
+            displayName="Input Streams File",
+            name="streams",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Does the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        zero_background = arcpy.Parameter(
+            displayName="Should a background value of zero be used?",
+            name="zero_background",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [d8_pntr, streams, output, esri_pntr, zero_background]
+
         return params
 
     def updateParameters(self, parameters):
@@ -9132,7 +20163,45 @@ class TributaryIdentifier(object):
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
-        params = None
+        d8_pntr = arcpy.Parameter(
+            displayName="Input D8 Pointer File",
+            name="d8_pntr",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        streams = arcpy.Parameter(
+            displayName="Input Streams File",
+            name="streams",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Output")
+
+        esri_pntr = arcpy.Parameter(
+            displayName="Does the pointer file use the ESRI pointer scheme?",
+            name="esri_pntr",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        esri_pntr.value = "false"
+
+        zero_background = arcpy.Parameter(
+            displayName="Should a background value of zero be used?",
+            name="zero_background",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [d8_pntr, streams, output, esri_pntr, zero_background]
+
         return params
 
     def updateParameters(self, parameters):
