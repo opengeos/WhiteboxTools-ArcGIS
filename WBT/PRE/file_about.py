@@ -314,7 +314,14 @@ class RunTool(object):
         tool_name.filter.type = "ValueList"
         tool_name.filter.list = tool_labels
 
-        params = [tool_name]
+        args = arcpy.Parameter(
+            displayName="Arguments",
+            name="agrs",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        params = [tool_name, args]
         return params
 
     def isLicensed(self):
@@ -334,8 +341,9 @@ class RunTool(object):
 
     def execute(self, parameters, messages):
         param0 = parameters[0].valueAsText
+        args = parameters[1].valueAsText
         tool_name = param0.replace(" ", "").strip()
-        messages.addMessage(wbt.run_tool(tool_name))
+        messages.addMessage(wbt.run_tool(tool_name, args))
         return
 
 

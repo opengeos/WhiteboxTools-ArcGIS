@@ -366,6 +366,9 @@ class WhiteboxTools(object):
     
     
     
+    
+    
+    
     ##############
     # Data Tools #
     ##############
@@ -376,7 +379,7 @@ class WhiteboxTools(object):
         Keyword arguments:
 
         i -- Input vector Points file. 
-callback -- Custom function for handling tool text outputs.
+        callback -- Custom function for handling tool text outputs.
         """
         args = []
         args.append("--input='{}'".format(i))
@@ -548,7 +551,7 @@ callback -- Custom function for handling tool text outputs.
         Keyword arguments:
 
         i -- Input GeoTIFF file. 
-callback -- Custom function for handling tool text outputs.
+        callback -- Custom function for handling tool text outputs.
         """
         args = []
         args.append("--input='{}'".format(i))
@@ -588,7 +591,7 @@ callback -- Custom function for handling tool text outputs.
         Keyword arguments:
 
         i -- Input vector file. 
-callback -- Custom function for handling tool text outputs.
+        callback -- Custom function for handling tool text outputs.
         """
         args = []
         args.append("--input='{}'".format(i))
@@ -966,18 +969,20 @@ callback -- Custom function for handling tool text outputs.
         args.append("--output='{}'".format(output))
         return self.run_tool('extract_nodes', args, callback) # returns 1 if error
 
-    def extract_raster_values_at_points(self, inputs, points, callback=None):
+    def extract_raster_values_at_points(self, inputs, points, out_text=False, callback=None):
         """Extracts the values of raster(s) at vector point locations.
 
         Keyword arguments:
 
         inputs -- Input raster files. 
         points -- Input vector points file. 
+        out_text -- Output point values as text? Otherwise, the only output is to to the points file's attribute table. 
         callback -- Custom function for handling tool text outputs.
         """
         args = []
         args.append("--inputs='{}'".format(inputs))
         args.append("--points='{}'".format(points))
+        if out_text: args.append("--out_text")
         return self.run_tool('extract_raster_values_at_points', args, callback) # returns 1 if error
 
     def find_lowest_or_highest_points(self, i, output, out_type="lowest", callback=None):
@@ -1148,7 +1153,7 @@ callback -- Custom function for handling tool text outputs.
         Keyword arguments:
 
         i -- Input vector polygon file. 
-callback -- Custom function for handling tool text outputs.
+        callback -- Custom function for handling tool text outputs.
         """
         args = []
         args.append("--input='{}'".format(i))
@@ -1174,7 +1179,7 @@ callback -- Custom function for handling tool text outputs.
         Keyword arguments:
 
         i -- Input vector polygon file. 
-callback -- Custom function for handling tool text outputs.
+        callback -- Custom function for handling tool text outputs.
         """
         args = []
         args.append("--input='{}'".format(i))
@@ -1193,6 +1198,26 @@ callback -- Custom function for handling tool text outputs.
         args.append("--input='{}'".format(i))
         args.append("--output='{}'".format(output))
         return self.run_tool('polygon_short_axis', args, callback) # returns 1 if error
+
+    def raster_area(self, i, output=None, out_text=False, units="grid cells", zero_back=False, callback=None):
+        """Calculates the area of polygons or classes within a raster image.
+
+        Keyword arguments:
+
+        i -- Input raster file. 
+        output -- Output raster file. 
+        out_text -- Would you like to output polygon areas to text?. 
+        units -- ; options are 'grid cells', 'map units'. 
+        zero_back -- Flag indicating whether zero values should be treated as a background. 
+        callback -- Custom function for handling tool text outputs.
+        """
+        args = []
+        args.append("--input='{}'".format(i))
+        if output is not None: args.append("--output='{}'".format(output))
+        if out_text: args.append("--out_text")
+        args.append("--units={}".format(units))
+        if zero_back: args.append("--zero_back")
+        return self.run_tool('raster_area', args, callback) # returns 1 if error
 
     def raster_cell_assignment(self, i, output, assign="column", callback=None):
         """Assign row or column number to cells.
@@ -1860,7 +1885,7 @@ callback -- Custom function for handling tool text outputs.
         Keyword arguments:
 
         i -- Input vector polygon file. 
-callback -- Custom function for handling tool text outputs.
+        callback -- Custom function for handling tool text outputs.
         """
         args = []
         args.append("--input='{}'".format(i))
@@ -1888,7 +1913,7 @@ callback -- Custom function for handling tool text outputs.
         Keyword arguments:
 
         i -- Input vector polygon file. 
-callback -- Custom function for handling tool text outputs.
+        callback -- Custom function for handling tool text outputs.
         """
         args = []
         args.append("--input='{}'".format(i))
@@ -1914,7 +1939,7 @@ callback -- Custom function for handling tool text outputs.
         Keyword arguments:
 
         i -- Input vector polygon file. 
-callback -- Custom function for handling tool text outputs.
+        callback -- Custom function for handling tool text outputs.
         """
         args = []
         args.append("--input='{}'".format(i))
@@ -1926,7 +1951,7 @@ callback -- Custom function for handling tool text outputs.
         Keyword arguments:
 
         i -- Input vector polygon file. 
-callback -- Custom function for handling tool text outputs.
+        callback -- Custom function for handling tool text outputs.
         """
         args = []
         args.append("--input='{}'".format(i))
@@ -1938,7 +1963,7 @@ callback -- Custom function for handling tool text outputs.
         Keyword arguments:
 
         i -- Input vector polygon file. 
-callback -- Custom function for handling tool text outputs.
+        callback -- Custom function for handling tool text outputs.
         """
         args = []
         args.append("--input='{}'".format(i))
@@ -1950,7 +1975,7 @@ callback -- Custom function for handling tool text outputs.
         Keyword arguments:
 
         i -- Input vector polygon file. 
-callback -- Custom function for handling tool text outputs.
+        callback -- Custom function for handling tool text outputs.
         """
         args = []
         args.append("--input='{}'".format(i))
@@ -1978,7 +2003,7 @@ callback -- Custom function for handling tool text outputs.
         Keyword arguments:
 
         i -- Input vector polygon file. 
-callback -- Custom function for handling tool text outputs.
+        callback -- Custom function for handling tool text outputs.
         """
         args = []
         args.append("--input='{}'".format(i))
@@ -1990,7 +2015,7 @@ callback -- Custom function for handling tool text outputs.
         Keyword arguments:
 
         i -- Input vector polygon file. 
-callback -- Custom function for handling tool text outputs.
+        callback -- Custom function for handling tool text outputs.
         """
         args = []
         args.append("--input='{}'".format(i))
@@ -2104,7 +2129,7 @@ callback -- Custom function for handling tool text outputs.
         args.append("--out_type={}".format(out_type))
         return self.run_tool('downslope_index', args, callback) # returns 1 if error
 
-    def drainage_preserving_smoothing(self, dem, output, filter=11, norm_diff=15.0, num_iter=10, max_diff=2.0, reduction=80.0, dfm=0.15, zfactor=1.0, callback=None):
+    def drainage_preserving_smoothing(self, dem, output, filter=11, norm_diff=15.0, num_iter=3, max_diff=0.5, reduction=80.0, dfm=0.15, zfactor=1.0, callback=None):
         """Reduces short-scale variation in an input DEM while preserving breaks-in-slope and small drainage features using a modified Sun et al. (2007) algorithm.
 
         Keyword arguments:
@@ -2216,7 +2241,7 @@ callback -- Custom function for handling tool text outputs.
         args.append("--output='{}'".format(output))
         return self.run_tool('elev_relative_to_watershed_min_max', args, callback) # returns 1 if error
 
-    def feature_preserving_denoise(self, dem, output, filter=11, norm_diff=15.0, num_iter=10, max_diff=2.0, zfactor=1.0, callback=None):
+    def feature_preserving_denoise(self, dem, output, filter=11, norm_diff=15.0, num_iter=3, max_diff=0.5, zfactor=1.0, callback=None):
         """Reduces short-scale variation in an input DEM using a modified Sun et al. (2007) algorithm.
 
         Keyword arguments:
@@ -3418,7 +3443,7 @@ callback -- Custom function for handling tool text outputs.
         if esri_pntr: args.append("--esri_pntr")
         return self.run_tool('hillslopes', args, callback) # returns 1 if error
 
-    def impoundment_index(self, dem, output, damlength, out_type="depth", callback=None):
+    def impoundment_size_index(self, dem, output, damlength, out_type="depth", callback=None):
         """Calculates the impoundment size resulting from damming a DEM.
 
         Keyword arguments:
@@ -3434,7 +3459,7 @@ callback -- Custom function for handling tool text outputs.
         args.append("--output='{}'".format(output))
         args.append("--out_type={}".format(out_type))
         args.append("--damlength='{}'".format(damlength))
-        return self.run_tool('impoundment_index', args, callback) # returns 1 if error
+        return self.run_tool('impoundment_size_index', args, callback) # returns 1 if error
 
     def isobasins(self, dem, output, size, callback=None):
         """Divides a landscape into nearly equal sized drainage basins (i.e. watersheds).
@@ -3969,7 +3994,7 @@ callback -- Custom function for handling tool text outputs.
         return self.run_tool('opening', args, callback) # returns 1 if error
 
     def remove_spurs(self, i, output, iterations=10, callback=None):
-        """Removes the spurs (pruning operation) from a Boolean line image.; intended to be used on the output of the LineThinning tool.
+        """Removes the spurs (pruning operation) from a Boolean line image; intended to be used on the output of the LineThinning tool.
 
         Keyword arguments:
 
@@ -4030,7 +4055,7 @@ callback -- Custom function for handling tool text outputs.
         Keyword arguments:
 
         i -- Input colour composite image file. 
-        output -- Output raster file (suffixes of '_r', '_g', and '_b' will be appended). 
+        output -- Output raster file (suffixes of _r, _g, and _b will be appended). 
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4753,7 +4778,7 @@ callback -- Custom function for handling tool text outputs.
         return self.run_tool('direct_decorrelation_stretch', args, callback) # returns 1 if error
 
     def gamma_correction(self, i, output, gamma=0.5, callback=None):
-        """Performs a sigmoidal contrast stretch on input images.
+        """Performs a gamma correction on an input images.
 
         Keyword arguments:
 
@@ -4876,7 +4901,7 @@ callback -- Custom function for handling tool text outputs.
         args.append("--method={}".format(method))
         return self.run_tool('panchromatic_sharpening', args, callback) # returns 1 if error
 
-    def percentage_contrast_stretch(self, i, output, clip=0.0, tail="both", num_tones=256, callback=None):
+    def percentage_contrast_stretch(self, i, output, clip=1.0, tail="both", num_tones=256, callback=None):
         """Performs a percentage linear contrast stretch on input images.
 
         Keyword arguments:
@@ -5040,7 +5065,7 @@ callback -- Custom function for handling tool text outputs.
         Keyword arguments:
 
         inputs -- Input LiDAR files. 
-callback -- Custom function for handling tool text outputs.
+        callback -- Custom function for handling tool text outputs.
         """
         args = []
         args.append("--inputs='{}'".format(inputs))
@@ -5052,7 +5077,7 @@ callback -- Custom function for handling tool text outputs.
         Keyword arguments:
 
         i -- Input LiDAR file. 
-callback -- Custom function for handling tool text outputs.
+        callback -- Custom function for handling tool text outputs.
         """
         args = []
         if i is not None: args.append("--input='{}'".format(i))
@@ -5064,7 +5089,7 @@ callback -- Custom function for handling tool text outputs.
         Keyword arguments:
 
         i -- Input LiDAR file. 
-callback -- Custom function for handling tool text outputs.
+        callback -- Custom function for handling tool text outputs.
         """
         args = []
         if i is not None: args.append("--input='{}'".format(i))
@@ -5542,14 +5567,14 @@ callback -- Custom function for handling tool text outputs.
         if save_filtered: args.append("--save_filtered")
         return self.run_tool('lidar_thin_high_density', args, callback) # returns 1 if error
 
-    def lidar_tile(self, i, width_x=1000.0, width_y=1000.0, origin_x=0.0, origin_y=0.0, min_points=2, callback=None):
+    def lidar_tile(self, i, width=1000.0, height=1000.0, origin_x=0.0, origin_y=0.0, min_points=2, callback=None):
         """Tiles a LiDAR LAS file into multiple LAS files.
 
         Keyword arguments:
 
         i -- Input LiDAR file. 
-        width_x -- Width of tiles in the X dimension; default 1000.0. 
-        width_y -- Width of tiles in the Y dimension. 
+        width -- Width of tiles in the X dimension; default 1000.0. 
+        height -- Height of tiles in the Y dimension. 
         origin_x -- Origin point X coordinate for tile grid. 
         origin_y -- Origin point Y coordinate for tile grid. 
         min_points -- Minimum number of points contained in a tile for it to be saved. 
@@ -5557,8 +5582,8 @@ callback -- Custom function for handling tool text outputs.
         """
         args = []
         args.append("--input='{}'".format(i))
-        args.append("--width_x={}".format(width_x))
-        args.append("--width_y={}".format(width_y))
+        args.append("--width={}".format(width))
+        args.append("--height={}".format(height))
         args.append("--origin_x={}".format(origin_x))
         args.append("--origin_y={}".format(origin_y))
         args.append("--min_points={}".format(min_points))
@@ -6026,7 +6051,7 @@ callback -- Custom function for handling tool text outputs.
         i -- Input data raster file. 
         features -- Input feature definition raster file. 
         output -- Output raster file. 
-        stat -- Statistic to extract. 
+        stat -- Statistic to extract, including 'average', 'minimum', 'maximum', 'range', 'standard deviation', and 'total'. 
         out_table -- Output HTML Table file. 
         callback -- Custom function for handling tool text outputs.
         """
@@ -6438,20 +6463,20 @@ callback -- Custom function for handling tool text outputs.
         args.append("--output='{}'".format(output))
         return self.run_tool('power', args, callback) # returns 1 if error
 
-    def principal_component_analysis(self, inputs, out_html, num_comp=None, standardized=False, callback=None):
+    def principal_component_analysis(self, inputs, output, num_comp=None, standardized=False, callback=None):
         """Performs a principal component analysis (PCA) on a multi-spectral dataset.
 
         Keyword arguments:
 
         inputs -- Input raster files. 
-        out_html -- Output HTML report file. 
+        output -- Output HTML report file. 
         num_comp -- Number of component images to output; <= to num. input images. 
         standardized -- Perform standardized PCA?. 
         callback -- Custom function for handling tool text outputs.
         """
         args = []
         args.append("--inputs='{}'".format(inputs))
-        args.append("--out_html='{}'".format(out_html))
+        args.append("--output='{}'".format(output))
         if num_comp is not None: args.append("--num_comp='{}'".format(num_comp))
         if standardized: args.append("--standardized")
         return self.run_tool('principal_component_analysis', args, callback) # returns 1 if error
@@ -6522,7 +6547,7 @@ callback -- Custom function for handling tool text outputs.
         Keyword arguments:
 
         i -- Input raster file. 
-callback -- Custom function for handling tool text outputs.
+        callback -- Custom function for handling tool text outputs.
         """
         args = []
         args.append("--input='{}'".format(i))
