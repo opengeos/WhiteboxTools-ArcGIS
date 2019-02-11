@@ -72,11 +72,11 @@ def get_tool_params(tool_name):
 
     return params_dict
 
-tool_name = "BreachDepressions"
+# tool_name = "BreachDepressions"
 # print(wbt.tool_parameters(tool_name))
 
 
-params = get_tool_params(tool_name)
+# params = get_tool_params(tool_name)
 # print(params)
 # print(params.keys())
 
@@ -90,19 +90,23 @@ params = get_tool_params(tool_name)
 
 # print(len(lines))
 
-parameter_types = []
+# parameter_types = []
 
-for param in params:
+# for param in params:
 
-    param_type = params[param]['parameter_type']
-    if param_type not in parameter_types:
-        parameter_types.append(param_type)
+#     param_type = params[param]['parameter_type']
+#     if param_type not in parameter_types:
+#         parameter_types.append(param_type)
 
 
-print(parameter_types)
+# print(parameter_types)
 
 # thisset = {"apple", "banana", "cherry"}
 
 # thisset.add("orange")
 
 # print(thisset)
+
+tools = wbt.list_tools()
+for index, tool in enumerate(tools):
+    print("{}: {}".format(index, tool))

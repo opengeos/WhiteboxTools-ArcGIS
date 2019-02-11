@@ -379,7 +379,6 @@ with open(wbt_py) as f:
                 tools_dict[func_name] = func_dict
 
 
-
 write_header(file_header_py, tool_labels)
 
 f_wbt = open(file_wbt_py, "w")

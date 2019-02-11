@@ -158,7 +158,7 @@ tool_labels.append("Image Autocorrelation")
 tool_labels.append("Image Correlation")
 tool_labels.append("Image Regression")
 tool_labels.append("Image Stack Profile")
-tool_labels.append("Impoundment Index")
+tool_labels.append("Impoundment Size Index")
 tool_labels.append("In Place Add")
 tool_labels.append("In Place Divide")
 tool_labels.append("In Place Multiply")
@@ -304,6 +304,7 @@ tool_labels.append("Raise Walls")
 tool_labels.append("Random Field")
 tool_labels.append("Random Sample")
 tool_labels.append("Range Filter")
+tool_labels.append("Raster Area")
 tool_labels.append("Raster Cell Assignment")
 tool_labels.append("Raster Histogram")
 tool_labels.append("Raster Streams To Vector")
@@ -471,6 +472,7 @@ class Toolbox(object):
         tools.append(PolygonLongAxis)
         tools.append(PolygonPerimeter)
         tools.append(PolygonShortAxis)
+        tools.append(RasterArea)
         tools.append(RasterCellAssignment)
         tools.append(Reclass)
         tools.append(ReclassEqualInterval)
@@ -602,7 +604,7 @@ class Toolbox(object):
         tools.append(FlowAccumulationFullWorkflow)
         tools.append(FlowLengthDiff)
         tools.append(Hillslopes)
-        tools.append(ImpoundmentIndex)
+        tools.append(ImpoundmentSizeIndex)
         tools.append(Isobasins)
         tools.append(JensonSnapPourPoints)
         tools.append(LongestFlowpath)
@@ -3049,7 +3051,16 @@ class ExtractRasterValuesAtPoints(object):
             direction="Input")
         points.filter.list = ["Point"]
 
-        params = [inputs, points]
+        out_text = arcpy.Parameter(
+            displayName="Output text?",
+            name="out_text",
+            datatype="GPBoolean",
+            parameterType="Optional",
+            direction="Input")
+
+        out_text.value = "false"
+
+        params = [inputs, points, out_text]
 
         return params
 
@@ -3062,7 +3073,8 @@ class ExtractRasterValuesAtPoints(object):
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
         points = parameters[1].valueAsText
-        messages.addMessage(wbt.extract_raster_values_at_points(inputs, points))
+        out_text = parameters[2].valueAsText
+        messages.addMessage(wbt.extract_raster_values_at_points(inputs, points, out_text))
         return
 
 
@@ -3725,6 +3737,73 @@ class PolygonShortAxis(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         messages.addMessage(wbt.polygon_short_axis(input, output))
+        return
+
+
+class RasterArea(object):
+    def __init__(self):
+        self.label = "Raster Area"
+        self.description = "Calculates the area of polygons or classes within a raster image."
+        self.category = "GIS Analysis"
+
+    def getParameterInfo(self):
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="DERasterDataset",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        out_text = arcpy.Parameter(
+            displayName="Output text?",
+            name="out_text",
+            datatype="GPBoolean",
+            parameterType="Required",
+            direction="Input")
+
+        units = arcpy.Parameter(
+            displayName="Units",
+            name="units",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+        units.filter.type = "ValueList"
+        units.filter.list = ['grid cells', 'map units']
+
+        units.value = "grid cells"
+
+        zero_back = arcpy.Parameter(
+            displayName="Treat zero values as background?",
+            name="zero_back",
+            datatype="GPBoolean",
+            parameterType="Required",
+            direction="Input")
+
+        params = [input, output, out_text, units, zero_back]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        out_text = parameters[2].valueAsText
+        units = parameters[3].valueAsText
+        zero_back = parameters[4].valueAsText
+        messages.addMessage(wbt.raster_area(input, output, out_text, units, zero_back))
         return
 
 
@@ -6431,7 +6510,7 @@ class DrainagePreservingSmoothing(object):
             parameterType="Optional",
             direction="Input")
 
-        num_iter.value = "10"
+        num_iter.value = "3"
 
         max_diff = arcpy.Parameter(
             displayName="Maximum Elevation Change",
@@ -6801,7 +6880,7 @@ class FeaturePreservingDenoise(object):
             parameterType="Optional",
             direction="Input")
 
-        num_iter.value = "10"
+        num_iter.value = "3"
 
         max_diff = arcpy.Parameter(
             displayName="Maximum Elevation Change",
@@ -10539,9 +10618,9 @@ class Hillslopes(object):
         return
 
 
-class ImpoundmentIndex(object):
+class ImpoundmentSizeIndex(object):
     def __init__(self):
-        self.label = "Impoundment Index"
+        self.label = "Impoundment Size Index"
         self.description = "Calculates the impoundment size resulting from damming a DEM."
         self.category = "Hydrological Analysis"
 
@@ -10594,7 +10673,7 @@ class ImpoundmentIndex(object):
         output = parameters[1].valueAsText
         out_type = parameters[2].valueAsText
         damlength = parameters[3].valueAsText
-        messages.addMessage(wbt.impoundment_index(dem, output, out_type, damlength))
+        messages.addMessage(wbt.impoundment_size_index(dem, output, out_type, damlength))
         return
 
 
@@ -12293,7 +12372,7 @@ class Opening(object):
 class RemoveSpurs(object):
     def __init__(self):
         self.label = "Remove Spurs"
-        self.description = "Removes the spurs (pruning operation) from a Boolean line image.; intended to be used on the output of the LineThinning tool."
+        self.description = "Removes the spurs (pruning operation) from a Boolean line image; intended to be used on the output of the LineThinning tool."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -14835,7 +14914,7 @@ class DirectDecorrelationStretch(object):
 class GammaCorrection(object):
     def __init__(self):
         self.label = "Gamma Correction"
-        self.description = "Performs a sigmoidal contrast stretch on input images."
+        self.description = "Performs a gamma correction on an input images."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -15250,7 +15329,7 @@ class PercentageContrastStretch(object):
             parameterType="Optional",
             direction="Input")
 
-        clip.value = "0.0"
+        clip.value = "1.0"
 
         tail = arcpy.Parameter(
             displayName="Tail",
@@ -17456,23 +17535,23 @@ class LidarTile(object):
             direction="Input")
         input.filter.list = ["las", "zip"]
 
-        width_x = arcpy.Parameter(
-            displayName="Tile Width in X Dimension",
-            name="width_x",
+        width = arcpy.Parameter(
+            displayName="Tile Width",
+            name="width",
             datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
-        width_x.value = "1000.0"
+        width.value = "1000.0"
 
-        width_y = arcpy.Parameter(
-            displayName="Tile Width in Y Dimension",
-            name="width_y",
+        height = arcpy.Parameter(
+            displayName="Tile Height",
+            name="height",
             datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
-        width_y.value = "1000.0"
+        height.value = "1000.0"
 
         origin_x = arcpy.Parameter(
             displayName="Origin Point X-Coordinate",
@@ -17501,7 +17580,7 @@ class LidarTile(object):
 
         min_points.value = "2"
 
-        params = [input, width_x, width_y, origin_x, origin_y, min_points]
+        params = [input, width, height, origin_x, origin_y, min_points]
 
         return params
 
@@ -17513,12 +17592,12 @@ class LidarTile(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
-        width_x = parameters[1].valueAsText
-        width_y = parameters[2].valueAsText
+        width = parameters[1].valueAsText
+        height = parameters[2].valueAsText
         origin_x = parameters[3].valueAsText
         origin_y = parameters[4].valueAsText
         min_points = parameters[5].valueAsText
-        messages.addMessage(wbt.lidar_tile(input, width_x, width_y, origin_x, origin_y, min_points))
+        messages.addMessage(wbt.lidar_tile(input, width, height, origin_x, origin_y, min_points))
         return
 
 
@@ -20094,13 +20173,13 @@ class PrincipalComponentAnalysis(object):
             parameterType="Required",
             direction="Input")
 
-        out_html = arcpy.Parameter(
+        output = arcpy.Parameter(
             displayName="Output HTML Report File",
-            name="out_html",
+            name="output",
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
-        out_html.filter.list = ["html"]
+        output.filter.list = ["html"]
 
         num_comp = arcpy.Parameter(
             displayName="Num. of Component Images (blank for all)",
@@ -20116,7 +20195,7 @@ class PrincipalComponentAnalysis(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [inputs, out_html, num_comp, standardized]
+        params = [inputs, output, num_comp, standardized]
 
         return params
 
@@ -20128,10 +20207,10 @@ class PrincipalComponentAnalysis(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        out_html = parameters[1].valueAsText
+        output = parameters[1].valueAsText
         num_comp = parameters[2].valueAsText
         standardized = parameters[3].valueAsText
-        messages.addMessage(wbt.principal_component_analysis(inputs, out_html, num_comp, standardized))
+        messages.addMessage(wbt.principal_component_analysis(inputs, output, num_comp, standardized))
         return
 
 
