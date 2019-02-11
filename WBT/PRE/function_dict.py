@@ -4,8 +4,7 @@ import shutil
 import sys
 import ast
 import whitebox
-# sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-# from WBT.whitebox_tools import WhiteboxTools
+
 wbt = whitebox.WhiteboxTools()
 
 def to_camelcase(name):
@@ -169,17 +168,29 @@ def define_tool_params(params):
         else:
             direction="Input"
 
-        data_type = "GPString"
+        # data_type = '"GPString"'
 
         if param == "class":   # parameter cannot use Python reserved keyword
             param = "class1"
 
+        data_type = get_data_type(items['parameter_type'])
+
         lines.append('        {} = arcpy.Parameter(\n'.format(param))
         lines.append('            displayName="{}",\n'.format(items['name']))
         lines.append('            name="{}",\n'.format(param))
-        lines.append('            datatype="{}",\n'.format(data_type))
+        lines.append('            datatype={},\n'.format(data_type['data_type']))
+        # lines.append('            datatype="{}",\n'.format(data_type))
         lines.append('            parameterType="{}",\n'.format(parameter_type))
         lines.append('            direction="{}")\n'.format(direction))
+
+        if len(data_type['dependency_field']) > 0:
+            lines.append('        {}.parameterDependencies = [{}.name]\n'.format(param, data_type['dependency_field']))
+
+        if data_type['data_filter'] != '[]':
+            if data_type['filter_type'] == '"ValueList"':
+                lines.append('        {}.filter.type = "ValueList"\n'.format(param))
+            # lines.append('        {}.filter.type = {}\n'.format(param, data_type['filter_type']))
+            lines.append('        {}.filter.list = {}\n'.format(param, data_type['data_filter']))
 
         if (items['default_value'] != 'null') and (len(items['default_value']) > 0):
             lines.append('\n        {}.value = {}\n\n'.format(param, items['default_value']))
@@ -194,6 +205,79 @@ def define_tool_params(params):
     lines = ''.join(lines)
     return lines
 
+
+
+def get_data_type(param):
+    data_type = '"GPString"'  # default data type
+    data_filter = '[]'   # https://goo.gl/EaVNzg
+    filter_type = '""'
+    multi_value = False
+    dependency_field = ''
+
+    data_types = {
+        'Boolean': '"GPBoolean"',
+        'Integer': '"GPLong"',
+        'Float': '"GPDouble"',
+        'String': '"GPString"',
+        'StringOrNumber': '["GPString", "GPDouble"]',
+        'Directory': '"DEFolder"',
+        'Raster': '"DERasterDataset"',
+        'Csv': '"DEFile"',
+        'Text': '"DEFile"',
+        'Html': '"DEFile"',
+        'Lidar': '"DEFile"',
+        'Vector': '"DEShapefile"',
+        'RasterAndVector': '["DERasterDataset", "DEShapefile"]'
+    }
+
+    vector_filters = {
+        'Point': '["Point"]',
+        'Line': '["Polyline"]',
+        'Polygon': '["Polygon"]',
+        'LineOrPolygon': '["Polyline", "Polygon"]',
+        'Any': '[]'
+    }
+
+    if type(param) is str:
+        data_type = data_types[param]
+    else:
+        for item in param:
+            if item == 'FileList':
+                multi_value = True
+            elif item == 'OptionList':
+                filter_type = '"ValueList"'
+                data_filter = param[item]
+
+            # elif item == 'NewFile' and param[item] == 'Raster':
+            #     data_filter = '["tif"]'
+            if param[item] == 'Csv':
+                data_filter = '["csv"]'
+            elif param[item] == 'Lidar':
+                data_filter = '["las", "zip"]'
+            # elif param[item] == 'Html':
+            #     data_filter = "['HTML']"
+            if type(param[item]) is str:
+                data_type = data_types[param[item]]
+            elif type(param[item]) is dict:
+                sub_item = param[item]
+                for sub_sub_item in sub_item:
+                    data_type = data_types[sub_sub_item]
+                    if data_type == '"DEShapefile"':
+                        data_filter = vector_filters[sub_item[sub_sub_item]] 
+            elif item == 'VectorAttributeField':
+                data_type = '"Field"'
+                dependency_field = param[item][1].replace('--', '')
+                
+            else:
+                data_type = '"GPString"'
+    ret = {}
+    ret['data_type'] = data_type
+    ret['data_filter'] = data_filter
+    ret['filter_type'] = filter_type
+    ret['multi_value'] = multi_value
+    ret['dependency_field'] = dependency_field
+
+    return ret
 
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -273,10 +357,7 @@ with open(wbt_py) as f:
                 # print("{}: {} - {} - {}".format(category, func_name, func_label, description))
                 tools_dict[func_name] = func_dict
 
-param_types = get_param_types(tools_dict)
-for param in param_types:
-    print(param)
-print(len(param_types))
+
 
 write_header(file_header_py, tool_labels)
 
@@ -308,10 +389,37 @@ if os.path.exists(file_wbt_pyt):
     os.remove(file_wbt_pyt)
     shutil.copyfile(file_wbt_py, file_wbt_pyt)
 
-tool_name = "LidarElevationSlice"
-params = tools_dict[tool_name]['parameters']
-print(params)
-print(len(params))
+
+
+
+types = []
+param_types = get_param_types(tools_dict)
+for param in param_types:
+    param_type = type(param)
+    if param_type == str:
+        print("{} - String".format(param))
+        # if type(param_type) not in types:
+        #     types.append(param)
+    else:
+        print("{} - Dictionary".format(param))
+        # if type(param_type) not in types:
+        #     types.append(param.keys())
+        for item in param:
+            if (param[item] not in types) and type(param[item]) != str:
+                types.append(param[item])
+
+
+# print(len(param_types))
+for item in types:
+    print(item)
+
+# for item in types:
+#     print(get_data_type(item))
+
+# tool_name = "LidarElevationSlice"
+# params = tools_dict[tool_name]['parameters']
+# print(params)
+# print(len(params))
 
 # print(wbt.tool_parameters(tool_name))
 # lines = define_tool_params(tools_dict['AddPointCoordinatesToTable'])

@@ -1175,9 +1175,10 @@ class AddPointCoordinatesToTable(object):
         input = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Point"]
 
         params = [input]
 
@@ -1203,14 +1204,14 @@ class ConvertNodataToZero(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -1238,14 +1239,14 @@ class ConvertRasterFormat(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -1273,21 +1274,22 @@ class ExportTableToCsv(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["csv"]
 
         headers = arcpy.Parameter(
             displayName="Export field names as file header?",
             name="headers",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -1317,37 +1319,40 @@ class JoinTables(object):
         input1 = arcpy.Parameter(
             displayName="Input Primary Vector File",
             name="input1",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         pkey = arcpy.Parameter(
             displayName="Primary Key Field",
             name="pkey",
-            datatype="GPString",
+            datatype="Field",
             parameterType="Required",
             direction="Input")
+        pkey.parameterDependencies = [input1.name]
 
         input2 = arcpy.Parameter(
             displayName="Input Foreign Vector File",
             name="input2",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         fkey = arcpy.Parameter(
             displayName="Foreign Key Field",
             name="fkey",
-            datatype="GPString",
+            datatype="Field",
             parameterType="Required",
             direction="Input")
+        fkey.parameterDependencies = [input2.name]
 
         import_field = arcpy.Parameter(
             displayName="Imported Field",
             name="import_field",
-            datatype="GPString",
+            datatype="Field",
             parameterType="Required",
             direction="Input")
+        import_field.parameterDependencies = [input2.name]
 
         params = [input1, pkey, input2, fkey, import_field]
 
@@ -1373,16 +1378,18 @@ class LinesToPolygons(object):
         input = arcpy.Parameter(
             displayName="Input Line File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Polyline"]
 
         output = arcpy.Parameter(
             displayName="Output Polygon File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["Polygon"]
 
         params = [input, output]
 
@@ -1408,37 +1415,41 @@ class MergeTableWithCsv(object):
         input = arcpy.Parameter(
             displayName="Input Primary Vector File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         pkey = arcpy.Parameter(
             displayName="Primary Key Field",
             name="pkey",
-            datatype="GPString",
+            datatype="Field",
             parameterType="Required",
             direction="Input")
+        pkey.parameterDependencies = [input.name]
 
         csv = arcpy.Parameter(
             displayName="Input CSV File",
             name="csv",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        csv.filter.list = ["csv"]
 
         fkey = arcpy.Parameter(
             displayName="Foreign Key Field",
             name="fkey",
-            datatype="GPString",
+            datatype="Field",
             parameterType="Required",
             direction="Input")
+        fkey.parameterDependencies = [csv.name]
 
         import_field = arcpy.Parameter(
             displayName="Imported Field",
             name="import_field",
-            datatype="GPString",
+            datatype="Field",
             parameterType="Optional",
             direction="Input")
+        import_field.parameterDependencies = [csv.name]
 
         params = [input, pkey, csv, fkey, import_field]
 
@@ -1464,14 +1475,14 @@ class MergeVectors(object):
         inputs = arcpy.Parameter(
             displayName="Input Vector Files",
             name="inputs",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output Vector File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
 
@@ -1499,21 +1510,21 @@ class MultiPartToSinglePart(object):
         input = arcpy.Parameter(
             displayName="Input Line or Polygon File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output Line or Polygon File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
 
         exclude_holes = arcpy.Parameter(
             displayName="Exclude hole parts?",
             name="exclude_holes",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -1543,21 +1554,21 @@ class NewRasterFromBase(object):
         base = arcpy.Parameter(
             displayName="Input Base File",
             name="base",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         value = arcpy.Parameter(
             displayName="Constant Value",
             name="value",
-            datatype="GPString",
+            datatype=["GPString", "GPDouble"],
             parameterType="Optional",
             direction="Input")
 
@@ -1569,6 +1580,8 @@ class NewRasterFromBase(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        data_type.filter.type = "ValueList"
+        data_type.filter.list = ['double', 'float', 'integer']
 
         data_type.value = "float"
 
@@ -1596,16 +1609,18 @@ class PolygonsToLines(object):
         input = arcpy.Parameter(
             displayName="Input Polygon File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Polygon"]
 
         output = arcpy.Parameter(
             displayName="Output Line File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["Polyline"]
 
         params = [input, output]
 
@@ -1631,7 +1646,7 @@ class PrintGeoTiffTags(object):
         input = arcpy.Parameter(
             displayName="Input GeoTIFF Raster File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
@@ -1659,16 +1674,17 @@ class RasterToVectorLines(object):
         input = arcpy.Parameter(
             displayName="Input Raster Lines File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["Polyline"]
 
         params = [input, output]
 
@@ -1694,16 +1710,17 @@ class RasterToVectorPoints(object):
         input = arcpy.Parameter(
             displayName="Input Raster File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output Points File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["Point"]
 
         params = [input, output]
 
@@ -1729,7 +1746,7 @@ class ReinitializeAttributeTable(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
@@ -1757,16 +1774,18 @@ class RemovePolygonHoles(object):
         input = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Polygon"]
 
         output = arcpy.Parameter(
             displayName="Output Polygon File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["Polygon"]
 
         params = [input, output]
 
@@ -1792,21 +1811,21 @@ class SetNodataValue(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         back_value = arcpy.Parameter(
             displayName="Background Value",
             name="back_value",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -1836,21 +1855,22 @@ class SinglePartToMultiPart(object):
         input = arcpy.Parameter(
             displayName="Input Line or Polygon File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         field = arcpy.Parameter(
             displayName="Grouping ID Field Name",
             name="field",
-            datatype="GPString",
+            datatype="Field",
             parameterType="Optional",
             direction="Input")
+        field.parameterDependencies = [input.name]
 
         output = arcpy.Parameter(
             displayName="Output Line or Polygon File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
 
@@ -1878,30 +1898,32 @@ class VectorLinesToRaster(object):
         input = arcpy.Parameter(
             displayName="Input Vector Lines File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Polyline"]
 
         field = arcpy.Parameter(
             displayName="Field Name",
             name="field",
-            datatype="GPString",
+            datatype="Field",
             parameterType="Optional",
             direction="Input")
+        field.parameterDependencies = [input.name]
 
         field.value = "FID"
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         nodata = arcpy.Parameter(
             displayName="Background value is NoData?",
             name="nodata",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -1910,14 +1932,14 @@ class VectorLinesToRaster(object):
         cell_size = arcpy.Parameter(
             displayName="Cell Size (optional)",
             name="cell_size",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         base = arcpy.Parameter(
             displayName="Base Raster File (optional)",
             name="base",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Input")
 
@@ -1945,23 +1967,25 @@ class VectorPointsToRaster(object):
         input = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Point"]
 
         field = arcpy.Parameter(
             displayName="Field Name",
             name="field",
-            datatype="GPString",
+            datatype="Field",
             parameterType="Optional",
             direction="Input")
+        field.parameterDependencies = [input.name]
 
         field.value = "FID"
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -1971,13 +1995,15 @@ class VectorPointsToRaster(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        assign.filter.type = "ValueList"
+        assign.filter.list = ['first', 'last', 'min', 'max', 'sum']
 
         assign.value = "last"
 
         nodata = arcpy.Parameter(
             displayName="Background value is NoData?",
             name="nodata",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -1986,14 +2012,14 @@ class VectorPointsToRaster(object):
         cell_size = arcpy.Parameter(
             displayName="Cell Size (optional)",
             name="cell_size",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         base = arcpy.Parameter(
             displayName="Base Raster File (optional)",
             name="base",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Input")
 
@@ -2021,30 +2047,32 @@ class VectorPolygonsToRaster(object):
         input = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Polygon"]
 
         field = arcpy.Parameter(
             displayName="Field Name",
             name="field",
-            datatype="GPString",
+            datatype="Field",
             parameterType="Optional",
             direction="Input")
+        field.parameterDependencies = [input.name]
 
         field.value = "FID"
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         nodata = arcpy.Parameter(
             displayName="Background value is NoData?",
             name="nodata",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -2053,14 +2081,14 @@ class VectorPolygonsToRaster(object):
         cell_size = arcpy.Parameter(
             displayName="Cell Size (optional)",
             name="cell_size",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         base = arcpy.Parameter(
             displayName="Base Raster File (optional)",
             name="base",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Input")
 
@@ -2088,21 +2116,21 @@ class AggregateRaster(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         agg_factor = arcpy.Parameter(
             displayName="Aggregation Factor (pixels)",
             name="agg_factor",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -2114,6 +2142,8 @@ class AggregateRaster(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        type.filter.type = "ValueList"
+        type.filter.list = ['mean', 'sum', 'maximum', 'minimum', 'range']
 
         type.value = "mean"
 
@@ -2141,21 +2171,23 @@ class BlockMaximumGridding(object):
         input = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Point"]
 
         field = arcpy.Parameter(
             displayName="Field Name",
             name="field",
-            datatype="GPString",
+            datatype="Field",
             parameterType="Required",
             direction="Input")
+        field.parameterDependencies = [input.name]
 
         use_z = arcpy.Parameter(
             displayName="Use z-coordinate instead of field?",
             name="use_z",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -2164,21 +2196,21 @@ class BlockMaximumGridding(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         cell_size = arcpy.Parameter(
             displayName="Cell Size (optional)",
             name="cell_size",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         base = arcpy.Parameter(
             displayName="Base Raster File (optional)",
             name="base",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Input")
 
@@ -2206,21 +2238,23 @@ class BlockMinimumGridding(object):
         input = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Point"]
 
         field = arcpy.Parameter(
             displayName="Field Name",
             name="field",
-            datatype="GPString",
+            datatype="Field",
             parameterType="Required",
             direction="Input")
+        field.parameterDependencies = [input.name]
 
         use_z = arcpy.Parameter(
             displayName="Use z-coordinate instead of field?",
             name="use_z",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -2229,21 +2263,21 @@ class BlockMinimumGridding(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         cell_size = arcpy.Parameter(
             displayName="Cell Size (optional)",
             name="cell_size",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         base = arcpy.Parameter(
             displayName="Base Raster File (optional)",
             name="base",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Input")
 
@@ -2271,21 +2305,21 @@ class Centroid(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         text_output = arcpy.Parameter(
             displayName="Output text?",
             name="text_output",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Required",
             direction="Input")
 
@@ -2313,14 +2347,14 @@ class CentroidVector(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output Vector File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
 
@@ -2348,21 +2382,21 @@ class Clump(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         diag = arcpy.Parameter(
             displayName="Include diagonal connections?",
             name="diag",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Required",
             direction="Input")
 
@@ -2371,7 +2405,7 @@ class Clump(object):
         zero_back = arcpy.Parameter(
             displayName="Treat zero values as background?",
             name="zero_back",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Required",
             direction="Input")
 
@@ -2399,21 +2433,23 @@ class ConstructVectorTin(object):
         input = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Point"]
 
         field = arcpy.Parameter(
             displayName="Field Name",
             name="field",
-            datatype="GPString",
+            datatype="Field",
             parameterType="Optional",
             direction="Input")
+        field.parameterDependencies = [input.name]
 
         use_z = arcpy.Parameter(
             displayName="Use Shapefile 'z' values?",
             name="use_z",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -2422,9 +2458,10 @@ class ConstructVectorTin(object):
         output = arcpy.Parameter(
             displayName="Output Polygon File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["Polygon"]
 
         params = [input, field, use_z, output]
 
@@ -2450,21 +2487,22 @@ class CreateHexagonalVectorGrid(object):
         input = arcpy.Parameter(
             displayName="Input Base File",
             name="input",
-            datatype="GPString",
+            datatype=["DERasterDataset", "DEShapefile"],
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output Polygon File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["Polygon"]
 
         width = arcpy.Parameter(
             displayName="Hexagon Width",
             name="width",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -2474,6 +2512,8 @@ class CreateHexagonalVectorGrid(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        orientation.filter.type = "ValueList"
+        orientation.filter.list = ['horizontal', 'vertical']
 
         orientation.value = "horizontal"
 
@@ -2501,21 +2541,21 @@ class CreatePlane(object):
         base = arcpy.Parameter(
             displayName="Input Base File",
             name="base",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         gradient = arcpy.Parameter(
             displayName="Gradient",
             name="gradient",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -2524,7 +2564,7 @@ class CreatePlane(object):
         aspect = arcpy.Parameter(
             displayName="Aspect",
             name="aspect",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -2533,7 +2573,7 @@ class CreatePlane(object):
         constant = arcpy.Parameter(
             displayName="Constant",
             name="constant",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -2563,35 +2603,36 @@ class CreateRectangularVectorGrid(object):
         input = arcpy.Parameter(
             displayName="Input Base File",
             name="input",
-            datatype="GPString",
+            datatype=["DERasterDataset", "DEShapefile"],
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output Polygon File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["Polygon"]
 
         width = arcpy.Parameter(
             displayName="Grid Cell Width",
             name="width",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
         height = arcpy.Parameter(
             displayName="Grid Cell Height",
             name="height",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
         xorig = arcpy.Parameter(
             displayName="Grid origin x-coordinate",
             name="xorig",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -2600,7 +2641,7 @@ class CreateRectangularVectorGrid(object):
         yorig = arcpy.Parameter(
             displayName="Grid origin y-coordinate",
             name="yorig",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -2630,28 +2671,30 @@ class Dissolve(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Polygon"]
 
         field = arcpy.Parameter(
             displayName="Dissolve Field Attribute",
             name="field",
-            datatype="GPString",
+            datatype="Field",
             parameterType="Optional",
             direction="Input")
+        field.parameterDependencies = [input.name]
 
         output = arcpy.Parameter(
             displayName="Output Vector File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
 
         snap = arcpy.Parameter(
             displayName="Snap Tolerance",
             name="snap",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -2681,21 +2724,23 @@ class EliminateCoincidentPoints(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Point"]
 
         output = arcpy.Parameter(
             displayName="Output Polygon File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["Point"]
 
         tolerance = arcpy.Parameter(
             displayName="Distance Tolerance",
             name="tolerance",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -2723,21 +2768,23 @@ class ExtendVectorLines(object):
         input = arcpy.Parameter(
             displayName="Input Vector Lines File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Polyline"]
 
         output = arcpy.Parameter(
             displayName="Output Vector File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["Polyline"]
 
         dist = arcpy.Parameter(
             displayName="Extend Distance",
             name="dist",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -2747,6 +2794,8 @@ class ExtendVectorLines(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        extend.filter.type = "ValueList"
+        extend.filter.list = ['both ends', 'line start', 'line end']
 
         extend.value = "both ends"
 
@@ -2774,16 +2823,17 @@ class ExtractNodes(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output Points File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["Point"]
 
         params = [input, output]
 
@@ -2809,16 +2859,17 @@ class ExtractRasterValuesAtPoints(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         points = arcpy.Parameter(
             displayName="Input Points File",
             name="points",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        points.filter.list = ["Point"]
 
         params = [inputs, points]
 
@@ -2844,16 +2895,17 @@ class FindLowestOrHighestPoints(object):
         input = arcpy.Parameter(
             displayName="Input Raster File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output Points File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["Point"]
 
         out_type = arcpy.Parameter(
             displayName="Output Type",
@@ -2861,6 +2913,8 @@ class FindLowestOrHighestPoints(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        out_type.filter.type = "ValueList"
+        out_type.filter.list = ['lowest', 'highest', 'both']
 
         out_type.value = "lowest"
 
@@ -2888,21 +2942,23 @@ class IdwInterpolation(object):
         input = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Point"]
 
         field = arcpy.Parameter(
             displayName="Field Name",
             name="field",
-            datatype="GPString",
+            datatype="Field",
             parameterType="Required",
             direction="Input")
+        field.parameterDependencies = [input.name]
 
         use_z = arcpy.Parameter(
             displayName="Use z-coordinate instead of field?",
             name="use_z",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -2911,14 +2967,14 @@ class IdwInterpolation(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         weight = arcpy.Parameter(
             displayName="IDW Weight (Exponent) Value",
             name="weight",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -2927,28 +2983,28 @@ class IdwInterpolation(object):
         radius = arcpy.Parameter(
             displayName="Search Radius",
             name="radius",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         min_points = arcpy.Parameter(
             displayName="Min. Number of Points",
             name="min_points",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
         cell_size = arcpy.Parameter(
             displayName="Cell Size (optional)",
             name="cell_size",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         base = arcpy.Parameter(
             displayName="Base Raster File (optional)",
             name="base",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Input")
 
@@ -2976,16 +3032,17 @@ class LayerFootprint(object):
         input = arcpy.Parameter(
             displayName="Input Raster or Vector File",
             name="input",
-            datatype="GPString",
+            datatype=["DERasterDataset", "DEShapefile"],
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output Polygon File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["Polygon"]
 
         params = [input, output]
 
@@ -3011,14 +3068,14 @@ class Medoid(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output Vector File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
 
@@ -3046,16 +3103,17 @@ class MinimumBoundingBox(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output Polygon File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["Polygon"]
 
         criterion = arcpy.Parameter(
             displayName="Minimization Criterion",
@@ -3063,13 +3121,15 @@ class MinimumBoundingBox(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        criterion.filter.type = "ValueList"
+        criterion.filter.list = ['area', 'length', 'width', 'perimeter']
 
         criterion.value = "area"
 
         features = arcpy.Parameter(
             displayName="Find bounding rectangles around each individual feature.",
             name="features",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -3099,21 +3159,22 @@ class MinimumBoundingCircle(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output Polygon File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["Polygon"]
 
         features = arcpy.Parameter(
             displayName="Find bounding circle around each individual feature.",
             name="features",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -3143,21 +3204,22 @@ class MinimumBoundingEnvelope(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output Polygon File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["Polygon"]
 
         features = arcpy.Parameter(
             displayName="Find bounding envelop around each individual feature.",
             name="features",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -3187,21 +3249,22 @@ class MinimumConvexHull(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output Polygon File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["Polygon"]
 
         features = arcpy.Parameter(
             displayName="Find hulls around each individual feature.",
             name="features",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -3231,21 +3294,23 @@ class NearestNeighbourGridding(object):
         input = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Point"]
 
         field = arcpy.Parameter(
             displayName="Field Name",
             name="field",
-            datatype="GPString",
+            datatype="Field",
             parameterType="Required",
             direction="Input")
+        field.parameterDependencies = [input.name]
 
         use_z = arcpy.Parameter(
             displayName="Use z-coordinate instead of field?",
             name="use_z",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -3254,28 +3319,28 @@ class NearestNeighbourGridding(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         cell_size = arcpy.Parameter(
             displayName="Cell Size (optional)",
             name="cell_size",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         base = arcpy.Parameter(
             displayName="Base Raster File (optional)",
             name="base",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Input")
 
         max_dist = arcpy.Parameter(
             displayName="Maximum Search Distance",
             name="max_dist",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -3303,9 +3368,10 @@ class PolygonArea(object):
         input = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Polygon"]
 
         params = [input]
 
@@ -3331,16 +3397,18 @@ class PolygonLongAxis(object):
         input = arcpy.Parameter(
             displayName="Input Polygon File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Polygon"]
 
         output = arcpy.Parameter(
             displayName="Output Polygon File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["Polygon"]
 
         params = [input, output]
 
@@ -3366,9 +3434,10 @@ class PolygonPerimeter(object):
         input = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Polygon"]
 
         params = [input]
 
@@ -3394,16 +3463,18 @@ class PolygonShortAxis(object):
         input = arcpy.Parameter(
             displayName="Input Polygon File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Polygon"]
 
         output = arcpy.Parameter(
             displayName="Output Polygon File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["Polygon"]
 
         params = [input, output]
 
@@ -3429,14 +3500,14 @@ class RasterCellAssignment(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -3446,6 +3517,8 @@ class RasterCellAssignment(object):
             datatype="GPString",
             parameterType="Required",
             direction="Input")
+        assign.filter.type = "ValueList"
+        assign.filter.list = ['column', 'row', 'x', 'y']
 
         assign.value = "column"
 
@@ -3473,14 +3546,14 @@ class Reclass(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -3494,7 +3567,7 @@ class Reclass(object):
         assign_mode = arcpy.Parameter(
             displayName="Operate in assign mode? (i.e. Reclass data are pair values rather than triplets)",
             name="assign_mode",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -3522,21 +3595,21 @@ class ReclassEqualInterval(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         interval = arcpy.Parameter(
             displayName="Class Interval Size",
             name="interval",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -3545,14 +3618,14 @@ class ReclassEqualInterval(object):
         start_val = arcpy.Parameter(
             displayName="Starting Value",
             name="start_val",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         end_val = arcpy.Parameter(
             displayName="Ending Value",
             name="end_val",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -3580,21 +3653,21 @@ class ReclassFromFile(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         reclass_file = arcpy.Parameter(
             displayName="Input Reclass Text File",
             name="reclass_file",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -3622,21 +3695,21 @@ class SmoothVectors(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output Vector File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
 
         filter = arcpy.Parameter(
             displayName="Filter Size",
             name="filter",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -3666,21 +3739,23 @@ class TinGridding(object):
         input = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Point"]
 
         field = arcpy.Parameter(
             displayName="Field Name",
             name="field",
-            datatype="GPString",
+            datatype="Field",
             parameterType="Optional",
             direction="Input")
+        field.parameterDependencies = [input.name]
 
         use_z = arcpy.Parameter(
             displayName="Use Shapefile 'z' values?",
             name="use_z",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -3689,14 +3764,14 @@ class TinGridding(object):
         output = arcpy.Parameter(
             displayName="Output Raster File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         resolution = arcpy.Parameter(
             displayName="Grid Resolution",
             name="resolution",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -3724,21 +3799,23 @@ class VectorHexBinning(object):
         input = arcpy.Parameter(
             displayName="Input Base File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Point"]
 
         output = arcpy.Parameter(
             displayName="Output Polygon File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["Polygon"]
 
         width = arcpy.Parameter(
             displayName="Hexagon Width",
             name="width",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -3748,6 +3825,8 @@ class VectorHexBinning(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        orientation.filter.type = "ValueList"
+        orientation.filter.list = ['horizontal', 'vertical']
 
         orientation.value = "horizontal"
 
@@ -3775,16 +3854,18 @@ class VoronoiDiagram(object):
         input = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Point"]
 
         output = arcpy.Parameter(
             displayName="Output Polygon File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["Polygon"]
 
         params = [input, output]
 
@@ -3810,28 +3891,28 @@ class BufferRaster(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         size = arcpy.Parameter(
             displayName="Buffer Size",
             name="size",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
         gridcells = arcpy.Parameter(
             displayName="Buffer size measured in grid cells?",
             name="gridcells",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -3859,21 +3940,21 @@ class CostAllocation(object):
         source = arcpy.Parameter(
             displayName="Input Source File",
             name="source",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         backlink = arcpy.Parameter(
             displayName="Input Backlink File",
             name="backlink",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -3901,28 +3982,28 @@ class CostDistance(object):
         source = arcpy.Parameter(
             displayName="Input Source File",
             name="source",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         cost = arcpy.Parameter(
             displayName="Input Cost (Friction) File",
             name="cost",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         out_accum = arcpy.Parameter(
             displayName="Output Cost Accumulation File",
             name="out_accum",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         out_backlink = arcpy.Parameter(
             displayName="Output Backlink File",
             name="out_backlink",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -3950,28 +4031,28 @@ class CostPathway(object):
         destination = arcpy.Parameter(
             displayName="Input Destination File",
             name="destination",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         backlink = arcpy.Parameter(
             displayName="Input Backlink File",
             name="backlink",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         zero_background = arcpy.Parameter(
             displayName="Treat zero values as background?",
             name="zero_background",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Required",
             direction="Input")
 
@@ -3999,14 +4080,14 @@ class EuclideanAllocation(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -4034,14 +4115,14 @@ class EuclideanDistance(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -4069,14 +4150,14 @@ class AverageOverlay(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -4104,21 +4185,22 @@ class Clip(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         clip = arcpy.Parameter(
             displayName="Input Clip Polygon Vector File",
             name="clip",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        clip.filter.list = ["Polygon"]
 
         output = arcpy.Parameter(
             displayName="Output Vector File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
 
@@ -4146,28 +4228,29 @@ class ClipRasterToPolygon(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         polygons = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="polygons",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        polygons.filter.list = ["Polygon"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         maintain_dimensions = arcpy.Parameter(
             displayName="Maintain input raster dimensions?",
             name="maintain_dimensions",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -4197,21 +4280,21 @@ class CountIf(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         value = arcpy.Parameter(
             displayName="Value",
             name="value",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -4239,21 +4322,21 @@ class Difference(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         overlay = arcpy.Parameter(
             displayName="Input Overlay Vector File",
             name="overlay",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output Vector File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
 
@@ -4281,21 +4364,22 @@ class Erase(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         erase = arcpy.Parameter(
             displayName="Input Erase Polygon Vector File",
             name="erase",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        erase.filter.list = ["Polygon"]
 
         output = arcpy.Parameter(
             displayName="Output Vector File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
 
@@ -4323,21 +4407,22 @@ class ErasePolygonFromRaster(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         polygons = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="polygons",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        polygons.filter.list = ["Polygon"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -4365,14 +4450,14 @@ class HighestPosition(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -4400,28 +4485,28 @@ class Intersect(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         overlay = arcpy.Parameter(
             displayName="Input Overlay Vector File",
             name="overlay",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output Vector File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
 
         snap = arcpy.Parameter(
             displayName="Snap Tolerance",
             name="snap",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -4451,23 +4536,26 @@ class LineIntersections(object):
         input1 = arcpy.Parameter(
             displayName="Input Vector Lines File",
             name="input1",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input1.filter.list = ["Polyline", "Polygon"]
 
         input2 = arcpy.Parameter(
             displayName="Input Vector Lines File",
             name="input2",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input2.filter.list = ["Polyline", "Polygon"]
 
         output = arcpy.Parameter(
             displayName="Output Vector Point File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["Point"]
 
         params = [input1, input2, output]
 
@@ -4493,14 +4581,14 @@ class LowestPosition(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -4528,14 +4616,14 @@ class MaxAbsoluteOverlay(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -4563,14 +4651,14 @@ class MaxOverlay(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -4598,14 +4686,14 @@ class MinAbsoluteOverlay(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -4633,14 +4721,14 @@ class MinOverlay(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -4668,21 +4756,21 @@ class PercentEqualTo(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         comparison = arcpy.Parameter(
             displayName="Input Comparison File",
             name="comparison",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -4710,21 +4798,21 @@ class PercentGreaterThan(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         comparison = arcpy.Parameter(
             displayName="Input Comparison File",
             name="comparison",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -4752,21 +4840,21 @@ class PercentLessThan(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         comparison = arcpy.Parameter(
             displayName="Input Comparison File",
             name="comparison",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -4794,21 +4882,21 @@ class PickFromList(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         pos_input = arcpy.Parameter(
             displayName="Input Position File",
             name="pos_input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -4836,16 +4924,18 @@ class Polygonize(object):
         inputs = arcpy.Parameter(
             displayName="Input Vector Lines File",
             name="inputs",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        inputs.filter.list = ["Polyline"]
 
         output = arcpy.Parameter(
             displayName="Output Vector Polygon File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["Polygon"]
 
         params = [inputs, output]
 
@@ -4871,21 +4961,22 @@ class SplitWithLines(object):
         input = arcpy.Parameter(
             displayName="Input Vector Lines or Polygon File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         split = arcpy.Parameter(
             displayName="Input Vector Lines File",
             name="split",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        split.filter.list = ["Polyline"]
 
         output = arcpy.Parameter(
             displayName="Output Vector File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
 
@@ -4913,14 +5004,14 @@ class SumOverlay(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -4948,28 +5039,28 @@ class SymmetricalDifference(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         overlay = arcpy.Parameter(
             displayName="Input Overlay Vector File",
             name="overlay",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output Vector File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
 
         snap = arcpy.Parameter(
             displayName="Snap Tolerance",
             name="snap",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -4999,28 +5090,28 @@ class Union(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         overlay = arcpy.Parameter(
             displayName="Input Overlay Vector File",
             name="overlay",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output Vector File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
 
         snap = arcpy.Parameter(
             displayName="Snap Tolerance",
             name="snap",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -5050,7 +5141,7 @@ class WeightedOverlay(object):
         factors = arcpy.Parameter(
             displayName="Input Factor Files",
             name="factors",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
@@ -5071,21 +5162,21 @@ class WeightedOverlay(object):
         constraints = arcpy.Parameter(
             displayName="Input Constraints Files",
             name="constraints",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         scale_max = arcpy.Parameter(
             displayName="Suitability Scale Maximum",
             name="scale_max",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -5115,7 +5206,7 @@ class WeightedSum(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
@@ -5129,7 +5220,7 @@ class WeightedSum(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -5157,9 +5248,10 @@ class CompactnessRatio(object):
         input = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Polygon"]
 
         params = [input]
 
@@ -5185,21 +5277,21 @@ class EdgeProportion(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         output_text = arcpy.Parameter(
             displayName="Output a text report?",
             name="output_text",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -5227,9 +5319,10 @@ class ElongationRatio(object):
         input = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Polygon"]
 
         params = [input]
 
@@ -5255,14 +5348,14 @@ class FindPatchOrClassEdgeCells(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -5290,9 +5383,10 @@ class HoleProportion(object):
         input = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Polygon"]
 
         params = [input]
 
@@ -5318,9 +5412,10 @@ class LinearityIndex(object):
         input = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Polygon"]
 
         params = [input]
 
@@ -5346,9 +5441,10 @@ class PatchOrientation(object):
         input = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Polygon"]
 
         params = [input]
 
@@ -5374,9 +5470,10 @@ class PerimeterAreaRatio(object):
         input = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Polygon"]
 
         params = [input]
 
@@ -5402,21 +5499,21 @@ class RadiusOfGyration(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         text_output = arcpy.Parameter(
             displayName="Output text?",
             name="text_output",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Required",
             direction="Input")
 
@@ -5444,9 +5541,10 @@ class RelatedCircumscribingCircle(object):
         input = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Polygon"]
 
         params = [input]
 
@@ -5472,9 +5570,10 @@ class ShapeComplexityIndex(object):
         input = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Polygon"]
 
         params = [input]
 
@@ -5500,21 +5599,21 @@ class Aspect(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         zfactor = arcpy.Parameter(
             displayName="Z Conversion Factor",
             name="zfactor",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -5544,21 +5643,21 @@ class CircularVarianceOfAspect(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output Roughness Scale File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filter = arcpy.Parameter(
             displayName="Filter Dimension",
             name="filter",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -5588,21 +5687,21 @@ class DevFromMeanElev(object):
         dem = arcpy.Parameter(
             displayName="Input File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
             name="filterx",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -5611,7 +5710,7 @@ class DevFromMeanElev(object):
         filtery = arcpy.Parameter(
             displayName="Filter Y-Dimension",
             name="filtery",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -5641,21 +5740,21 @@ class DiffFromMeanElev(object):
         dem = arcpy.Parameter(
             displayName="Input File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
             name="filterx",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -5664,7 +5763,7 @@ class DiffFromMeanElev(object):
         filtery = arcpy.Parameter(
             displayName="Filter Y-Dimension",
             name="filtery",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -5694,21 +5793,21 @@ class DirectionalRelief(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         azimuth = arcpy.Parameter(
             displayName="Azimuth",
             name="azimuth",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -5717,7 +5816,7 @@ class DirectionalRelief(object):
         max_dist = arcpy.Parameter(
             displayName="Maximum Search Distance",
             name="max_dist",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -5745,21 +5844,21 @@ class DownslopeIndex(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         drop = arcpy.Parameter(
             displayName="Verical Drop",
             name="drop",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -5771,6 +5870,8 @@ class DownslopeIndex(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        out_type.filter.type = "ValueList"
+        out_type.filter.list = ['tangent', 'degrees', 'radians', 'distance']
 
         out_type.value = "tangent"
 
@@ -5798,21 +5899,21 @@ class DrainagePreservingSmoothing(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filter = arcpy.Parameter(
             displayName="Filter Size",
             name="filter",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -5821,7 +5922,7 @@ class DrainagePreservingSmoothing(object):
         norm_diff = arcpy.Parameter(
             displayName="Normal Difference Threshold",
             name="norm_diff",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -5830,7 +5931,7 @@ class DrainagePreservingSmoothing(object):
         num_iter = arcpy.Parameter(
             displayName="Iterations",
             name="num_iter",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -5839,14 +5940,14 @@ class DrainagePreservingSmoothing(object):
         max_diff = arcpy.Parameter(
             displayName="Maximum Elevation Change",
             name="max_diff",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         reduction = arcpy.Parameter(
             displayName="Max. Smoothing Reduction Factor (%)",
             name="reduction",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -5855,7 +5956,7 @@ class DrainagePreservingSmoothing(object):
         dfm = arcpy.Parameter(
             displayName="Diff. From Median Threshold",
             name="dfm",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -5864,7 +5965,7 @@ class DrainagePreservingSmoothing(object):
         zfactor = arcpy.Parameter(
             displayName="Z Conversion Factor",
             name="zfactor",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -5894,21 +5995,21 @@ class EdgeDensity(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filter = arcpy.Parameter(
             displayName="Filter Size",
             name="filter",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -5917,7 +6018,7 @@ class EdgeDensity(object):
         norm_diff = arcpy.Parameter(
             displayName="Normal Difference Threshold",
             name="norm_diff",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -5926,7 +6027,7 @@ class EdgeDensity(object):
         zfactor = arcpy.Parameter(
             displayName="Z Conversion Factor",
             name="zfactor",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -5956,14 +6057,14 @@ class ElevAbovePit(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -5991,21 +6092,21 @@ class ElevPercentile(object):
         dem = arcpy.Parameter(
             displayName="Input File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
             name="filterx",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -6014,7 +6115,7 @@ class ElevPercentile(object):
         filtery = arcpy.Parameter(
             displayName="Filter Y-Dimension",
             name="filtery",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -6023,7 +6124,7 @@ class ElevPercentile(object):
         sig_digits = arcpy.Parameter(
             displayName="Number of Significant Digits",
             name="sig_digits",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -6053,14 +6154,14 @@ class ElevRelativeToMinMax(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -6088,21 +6189,21 @@ class ElevRelativeToWatershedMinMax(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         watersheds = arcpy.Parameter(
             displayName="Input Watersheds File",
             name="watersheds",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -6130,21 +6231,21 @@ class FeaturePreservingDenoise(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filter = arcpy.Parameter(
             displayName="Filter Size",
             name="filter",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -6153,7 +6254,7 @@ class FeaturePreservingDenoise(object):
         norm_diff = arcpy.Parameter(
             displayName="Normal Difference Threshold",
             name="norm_diff",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -6162,7 +6263,7 @@ class FeaturePreservingDenoise(object):
         num_iter = arcpy.Parameter(
             displayName="Iterations",
             name="num_iter",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -6171,14 +6272,14 @@ class FeaturePreservingDenoise(object):
         max_diff = arcpy.Parameter(
             displayName="Maximum Elevation Change",
             name="max_diff",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         zfactor = arcpy.Parameter(
             displayName="Z Conversion Factor",
             name="zfactor",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -6208,21 +6309,21 @@ class FetchAnalysis(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         azimuth = arcpy.Parameter(
             displayName="Azimuth (degrees)",
             name="azimuth",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -6231,7 +6332,7 @@ class FetchAnalysis(object):
         hgt_inc = arcpy.Parameter(
             displayName="Height Increment Value",
             name="hgt_inc",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -6261,21 +6362,21 @@ class FillMissingData(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filter = arcpy.Parameter(
             displayName="Filter Dimension",
             name="filter",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Required",
             direction="Input")
 
@@ -6284,7 +6385,7 @@ class FillMissingData(object):
         weight = arcpy.Parameter(
             displayName="IDW Weight (Exponent) Value",
             name="weight",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -6314,21 +6415,21 @@ class FindRidges(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         line_thin = arcpy.Parameter(
             displayName="Perform line-thinning?",
             name="line_thin",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -6358,21 +6459,21 @@ class Hillshade(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         azimuth = arcpy.Parameter(
             displayName="Azimuth (degrees)",
             name="azimuth",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -6381,7 +6482,7 @@ class Hillshade(object):
         altitude = arcpy.Parameter(
             displayName="Altitude (degrees)",
             name="altitude",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -6390,7 +6491,7 @@ class Hillshade(object):
         zfactor = arcpy.Parameter(
             displayName="Z Conversion Factor",
             name="zfactor",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -6420,21 +6521,21 @@ class HorizonAngle(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         azimuth = arcpy.Parameter(
             displayName="Azimuth",
             name="azimuth",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -6443,7 +6544,7 @@ class HorizonAngle(object):
         max_dist = arcpy.Parameter(
             displayName="Maximum Search Distance",
             name="max_dist",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -6471,21 +6572,21 @@ class HypsometricAnalysis(object):
         inputs = arcpy.Parameter(
             displayName="Input DEM Files",
             name="inputs",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         watershed = arcpy.Parameter(
             displayName="Input Watershed Files (optional)",
             name="watershed",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output HTML File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
 
@@ -6513,28 +6614,28 @@ class MaxAnisotropyDev(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         out_mag = arcpy.Parameter(
             displayName="Output DEVmax Magnitude File",
             name="out_mag",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         out_scale = arcpy.Parameter(
             displayName="Output DEVmax Scale File",
             name="out_scale",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         min_scale = arcpy.Parameter(
             displayName="Minimum Search Neighbourhood Radius (grid cells)",
             name="min_scale",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Required",
             direction="Input")
 
@@ -6543,14 +6644,14 @@ class MaxAnisotropyDev(object):
         max_scale = arcpy.Parameter(
             displayName="Maximum Search Neighbourhood Radius (grid cells)",
             name="max_scale",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Required",
             direction="Input")
 
         step = arcpy.Parameter(
             displayName="Step Size",
             name="step",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Required",
             direction="Input")
 
@@ -6580,28 +6681,29 @@ class MaxAnisotropyDevSignature(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         points = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="points",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        points.filter.list = ["Point"]
 
         output = arcpy.Parameter(
             displayName="Output HTML File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
 
         min_scale = arcpy.Parameter(
             displayName="Minimum Search Neighbourhood Radius (grid cells)",
             name="min_scale",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -6610,14 +6712,14 @@ class MaxAnisotropyDevSignature(object):
         max_scale = arcpy.Parameter(
             displayName="Maximum Search Neighbourhood Radius (grid cells)",
             name="max_scale",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Required",
             direction="Input")
 
         step = arcpy.Parameter(
             displayName="Step Size",
             name="step",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -6647,21 +6749,21 @@ class MaxBranchLength(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         log = arcpy.Parameter(
             displayName="Log-transform the output?",
             name="log",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -6689,42 +6791,42 @@ class MaxDifferenceFromMean(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         out_mag = arcpy.Parameter(
             displayName="Output DIFFmax Magnitude File",
             name="out_mag",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         out_scale = arcpy.Parameter(
             displayName="Output DIFFmax Scale File",
             name="out_scale",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         min_scale = arcpy.Parameter(
             displayName="Minimum Search Neighbourhood Radius (grid cells)",
             name="min_scale",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Required",
             direction="Input")
 
         max_scale = arcpy.Parameter(
             displayName="Maximum Search Neighbourhood Radius (grid cells)",
             name="max_scale",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Required",
             direction="Input")
 
         step = arcpy.Parameter(
             displayName="Step Size",
             name="step",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Required",
             direction="Input")
 
@@ -6754,14 +6856,14 @@ class MaxDownslopeElevChange(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -6789,42 +6891,43 @@ class MaxElevDevSignature(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         points = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="points",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        points.filter.list = ["Point"]
 
         output = arcpy.Parameter(
             displayName="Output HTML File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
 
         min_scale = arcpy.Parameter(
             displayName="Minimum Search Neighbourhood Radius (grid cells)",
             name="min_scale",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Required",
             direction="Input")
 
         max_scale = arcpy.Parameter(
             displayName="Maximum Search Neighbourhood Radius (grid cells)",
             name="max_scale",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Required",
             direction="Input")
 
         step = arcpy.Parameter(
             displayName="Step Size",
             name="step",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Required",
             direction="Input")
 
@@ -6854,42 +6957,42 @@ class MaxElevationDeviation(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         out_mag = arcpy.Parameter(
             displayName="Output DEVmax Magnitude File",
             name="out_mag",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         out_scale = arcpy.Parameter(
             displayName="Output DEVmax Scale File",
             name="out_scale",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         min_scale = arcpy.Parameter(
             displayName="Minimum Search Neighbourhood Radius (grid cells)",
             name="min_scale",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Required",
             direction="Input")
 
         max_scale = arcpy.Parameter(
             displayName="Maximum Search Neighbourhood Radius (grid cells)",
             name="max_scale",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Required",
             direction="Input")
 
         step = arcpy.Parameter(
             displayName="Step Size",
             name="step",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Required",
             direction="Input")
 
@@ -6919,14 +7022,14 @@ class MinDownslopeElevChange(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -6954,28 +7057,28 @@ class MultiscaleRoughness(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         out_mag = arcpy.Parameter(
             displayName="Output Roughness Magnitude File",
             name="out_mag",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         out_scale = arcpy.Parameter(
             displayName="Output Roughness Scale File",
             name="out_scale",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         min_scale = arcpy.Parameter(
             displayName="Minimum Search Neighbourhood Radius (grid cells)",
             name="min_scale",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -6984,14 +7087,14 @@ class MultiscaleRoughness(object):
         max_scale = arcpy.Parameter(
             displayName="Maximum Search Neighbourhood Radius (grid cells)",
             name="max_scale",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Required",
             direction="Input")
 
         step = arcpy.Parameter(
             displayName="Step Size",
             name="step",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -7021,28 +7124,29 @@ class MultiscaleRoughnessSignature(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         points = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="points",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        points.filter.list = ["Point"]
 
         output = arcpy.Parameter(
             displayName="Output HTML File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
 
         min_scale = arcpy.Parameter(
             displayName="Minimum Search Neighbourhood Radius (grid cells)",
             name="min_scale",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -7051,14 +7155,14 @@ class MultiscaleRoughnessSignature(object):
         max_scale = arcpy.Parameter(
             displayName="Maximum Search Neighbourhood Radius (grid cells)",
             name="max_scale",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Required",
             direction="Input")
 
         step = arcpy.Parameter(
             displayName="Step Size",
             name="step",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -7088,35 +7192,35 @@ class MultiscaleTopographicPositionImage(object):
         local = arcpy.Parameter(
             displayName="Input Local-Scale File",
             name="local",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         meso = arcpy.Parameter(
             displayName="Input Meso-Scale File",
             name="meso",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         broad = arcpy.Parameter(
             displayName="Input Broad-Scale File",
             name="broad",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         lightness = arcpy.Parameter(
             displayName="Image Lightness Value",
             name="lightness",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -7146,14 +7250,14 @@ class NumDownslopeNeighbours(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -7181,14 +7285,14 @@ class NumUpslopeNeighbours(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -7216,21 +7320,21 @@ class PennockLandformClass(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         slope = arcpy.Parameter(
             displayName="Slope Threshold (degrees)",
             name="slope",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -7239,7 +7343,7 @@ class PennockLandformClass(object):
         prof = arcpy.Parameter(
             displayName="Profile Curvature Threshold",
             name="prof",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -7248,7 +7352,7 @@ class PennockLandformClass(object):
         plan = arcpy.Parameter(
             displayName="Plan Curvature Threshold",
             name="plan",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -7257,7 +7361,7 @@ class PennockLandformClass(object):
         zfactor = arcpy.Parameter(
             displayName="Z Conversion Factor",
             name="zfactor",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -7287,21 +7391,21 @@ class PercentElevRange(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
             name="filterx",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -7310,7 +7414,7 @@ class PercentElevRange(object):
         filtery = arcpy.Parameter(
             displayName="Filter Y-Dimension",
             name="filtery",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -7340,21 +7444,21 @@ class PlanCurvature(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         zfactor = arcpy.Parameter(
             displayName="Z Conversion Factor",
             name="zfactor",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -7384,21 +7488,22 @@ class Profile(object):
         lines = arcpy.Parameter(
             displayName="Input Vector Line File",
             name="lines",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        lines.filter.list = ["Polyline"]
 
         surface = arcpy.Parameter(
             displayName="Input Surface File",
             name="surface",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output HTML File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
 
@@ -7426,21 +7531,21 @@ class ProfileCurvature(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         zfactor = arcpy.Parameter(
             displayName="Z Conversion Factor",
             name="zfactor",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -7470,21 +7575,21 @@ class RelativeAspect(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         azimuth = arcpy.Parameter(
             displayName="Azimuth",
             name="azimuth",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -7493,7 +7598,7 @@ class RelativeAspect(object):
         zfactor = arcpy.Parameter(
             displayName="Z Conversion Factor",
             name="zfactor",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -7523,28 +7628,28 @@ class RelativeStreamPowerIndex(object):
         sca = arcpy.Parameter(
             displayName="Input Specific Contributing Area (SCA) File",
             name="sca",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         slope = arcpy.Parameter(
             displayName="Input Slope File",
             name="slope",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         exponent = arcpy.Parameter(
             displayName="Specific Contributing Area (SCA) Exponent",
             name="exponent",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -7574,21 +7679,21 @@ class RelativeTopographicPosition(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
             name="filterx",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -7597,7 +7702,7 @@ class RelativeTopographicPosition(object):
         filtery = arcpy.Parameter(
             displayName="Filter Y-Dimension",
             name="filtery",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -7627,21 +7732,21 @@ class RemoveOffTerrainObjects(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filter = arcpy.Parameter(
             displayName="Filter Dimension",
             name="filter",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Required",
             direction="Input")
 
@@ -7650,7 +7755,7 @@ class RemoveOffTerrainObjects(object):
         slope = arcpy.Parameter(
             displayName="Slope Threshold",
             name="slope",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -7680,21 +7785,21 @@ class RuggednessIndex(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         zfactor = arcpy.Parameter(
             displayName="Z Conversion Factor",
             name="zfactor",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -7724,28 +7829,28 @@ class SedimentTransportIndex(object):
         sca = arcpy.Parameter(
             displayName="Input Specific Contributing Area (SCA) File",
             name="sca",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         slope = arcpy.Parameter(
             displayName="Input Slope File",
             name="slope",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         sca_exponent = arcpy.Parameter(
             displayName="Specific Contributing Area (SCA) Exponent",
             name="sca_exponent",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -7754,7 +7859,7 @@ class SedimentTransportIndex(object):
         slope_exponent = arcpy.Parameter(
             displayName="Slope Exponent",
             name="slope_exponent",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -7784,21 +7889,21 @@ class Slope(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         zfactor = arcpy.Parameter(
             displayName="Z Conversion Factor",
             name="zfactor",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -7828,21 +7933,21 @@ class SlopeVsElevationPlot(object):
         inputs = arcpy.Parameter(
             displayName="Input DEM Files",
             name="inputs",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         watershed = arcpy.Parameter(
             displayName="Input Watershed Files (optional)",
             name="watershed",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output HTML File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
 
@@ -7870,21 +7975,21 @@ class StandardDeviationOfSlope(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         zfactor = arcpy.Parameter(
             displayName="Z Conversion Factor",
             name="zfactor",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -7893,7 +7998,7 @@ class StandardDeviationOfSlope(object):
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
             name="filterx",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -7902,7 +8007,7 @@ class StandardDeviationOfSlope(object):
         filtery = arcpy.Parameter(
             displayName="Filter Y-Dimension",
             name="filtery",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -7932,14 +8037,14 @@ class SurfaceAreaRatio(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -7967,21 +8072,21 @@ class TangentialCurvature(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         zfactor = arcpy.Parameter(
             displayName="Z Conversion Factor",
             name="zfactor",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -8011,21 +8116,21 @@ class TotalCurvature(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         zfactor = arcpy.Parameter(
             displayName="Z Conversion Factor",
             name="zfactor",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -8055,28 +8160,29 @@ class Viewshed(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         stations = arcpy.Parameter(
             displayName="Viewing Station Vector File",
             name="stations",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        stations.filter.list = ["Point"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         height = arcpy.Parameter(
             displayName="Station Height (in z units)",
             name="height",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -8106,21 +8212,21 @@ class VisibilityIndex(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         height = arcpy.Parameter(
             displayName="Station Height (in z units)",
             name="height",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -8129,7 +8235,7 @@ class VisibilityIndex(object):
         res_factor = arcpy.Parameter(
             displayName="Resolution Factor",
             name="res_factor",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Required",
             direction="Input")
 
@@ -8159,21 +8265,21 @@ class WetnessIndex(object):
         sca = arcpy.Parameter(
             displayName="Input Specific Contributing Area (SCA) File",
             name="sca",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         slope = arcpy.Parameter(
             displayName="Input Slope File",
             name="slope",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -8201,14 +8307,14 @@ class AverageFlowpathSlope(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -8236,14 +8342,14 @@ class AverageUpslopeFlowpathLength(object):
         dem = arcpy.Parameter(
             displayName="Input File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -8271,21 +8377,21 @@ class Basins(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -8315,28 +8421,28 @@ class BreachDepressions(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         max_depth = arcpy.Parameter(
             displayName="Maximum Breach Depth (z units)",
             name="max_depth",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         max_length = arcpy.Parameter(
             displayName="Maximum Breach Channel Length (grid cells)",
             name="max_length",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -8364,14 +8470,14 @@ class BreachSingleCellPits(object):
         dem = arcpy.Parameter(
             displayName="Input File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -8399,14 +8505,14 @@ class D8FlowAccumulation(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -8416,20 +8522,22 @@ class D8FlowAccumulation(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        out_type.filter.type = "ValueList"
+        out_type.filter.list = ['cells', 'catchment area', 'specific contributing area']
 
         out_type.value = "cells"
 
         log = arcpy.Parameter(
             displayName="Log-transform the output?",
             name="log",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
         clip = arcpy.Parameter(
             displayName="Clip the upper tail by 1%?",
             name="clip",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -8457,35 +8565,35 @@ class D8MassFlux(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         loading = arcpy.Parameter(
             displayName="Input Loading File",
             name="loading",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         efficiency = arcpy.Parameter(
             displayName="Input Efficiency File",
             name="efficiency",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         absorption = arcpy.Parameter(
             displayName="Input Absorption File",
             name="absorption",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -8513,21 +8621,21 @@ class D8Pointer(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         esri_pntr = arcpy.Parameter(
             displayName="Should the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -8557,14 +8665,14 @@ class DInfFlowAccumulation(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -8574,27 +8682,29 @@ class DInfFlowAccumulation(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        out_type.filter.type = "ValueList"
+        out_type.filter.list = ['Cells', 'Specific Contributing Area', 'Catchment Area']
 
         out_type.value = "Specific Contributing Area"
 
         threshold = arcpy.Parameter(
             displayName="Convergence Threshold (grid cells; blank for none)",
             name="threshold",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         log = arcpy.Parameter(
             displayName="Log-transform the output?",
             name="log",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
         clip = arcpy.Parameter(
             displayName="Clip the upper tail by 1%?",
             name="clip",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -8622,35 +8732,35 @@ class DInfMassFlux(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         loading = arcpy.Parameter(
             displayName="Input Loading File",
             name="loading",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         efficiency = arcpy.Parameter(
             displayName="Input Efficiency File",
             name="efficiency",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         absorption = arcpy.Parameter(
             displayName="Input Absorption File",
             name="absorption",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -8678,14 +8788,14 @@ class DInfPointer(object):
         dem = arcpy.Parameter(
             displayName="Input File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -8713,21 +8823,21 @@ class DepthInSink(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
             name="zero_background",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -8755,21 +8865,21 @@ class DownslopeDistanceToStream(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -8797,35 +8907,35 @@ class DownslopeFlowpathLength(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         watersheds = arcpy.Parameter(
             displayName="Input Watersheds File (optional)",
             name="watersheds",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Input")
 
         weights = arcpy.Parameter(
             displayName="Input Weights File (optional)",
             name="weights",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -8855,21 +8965,21 @@ class ElevationAboveStream(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -8897,21 +9007,21 @@ class ElevationAboveStreamEuclidean(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -8939,14 +9049,14 @@ class Fd8FlowAccumulation(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -8956,13 +9066,15 @@ class Fd8FlowAccumulation(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        out_type.filter.type = "ValueList"
+        out_type.filter.list = ['cells', 'specific contributing area', 'catchment area']
 
         out_type.value = "specific contributing area"
 
         exponent = arcpy.Parameter(
             displayName="Exponent Parameter",
             name="exponent",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -8971,21 +9083,21 @@ class Fd8FlowAccumulation(object):
         threshold = arcpy.Parameter(
             displayName="Convergence Threshold (grid cells; blank for none)",
             name="threshold",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         log = arcpy.Parameter(
             displayName="Log-transform the output?",
             name="log",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
         clip = arcpy.Parameter(
             displayName="Clip the upper tail by 1%?",
             name="clip",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -9013,14 +9125,14 @@ class Fd8Pointer(object):
         dem = arcpy.Parameter(
             displayName="Input File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -9048,21 +9160,22 @@ class FillBurn(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Vector Streams File",
             name="streams",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        streams.filter.list = ["Polyline"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -9090,21 +9203,21 @@ class FillDepressions(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         fix_flats = arcpy.Parameter(
             displayName="Fix flat areas?",
             name="fix_flats",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -9134,14 +9247,14 @@ class FillSingleCellPits(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -9169,14 +9282,14 @@ class FindNoFlowCells(object):
         dem = arcpy.Parameter(
             displayName="Input File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -9204,21 +9317,21 @@ class FindParallelFlow(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -9246,21 +9359,22 @@ class FlattenLakes(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         lakes = arcpy.Parameter(
             displayName="Input Lakes Vector Polygon File",
             name="lakes",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        lakes.filter.list = ["Polygon"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -9288,14 +9402,14 @@ class FloodOrder(object):
         dem = arcpy.Parameter(
             displayName="Input File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -9323,28 +9437,28 @@ class FlowAccumulationFullWorkflow(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         out_dem = arcpy.Parameter(
             displayName="Output DEM File",
             name="out_dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         out_pntr = arcpy.Parameter(
             displayName="Output Flow Pointer File",
             name="out_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         out_accum = arcpy.Parameter(
             displayName="Output Flow Accumulation File",
             name="out_accum",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -9354,27 +9468,29 @@ class FlowAccumulationFullWorkflow(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        out_type.filter.type = "ValueList"
+        out_type.filter.list = ['Cells', 'Specific Contributing Area', 'Catchment Area']
 
         out_type.value = "Specific Contributing Area"
 
         log = arcpy.Parameter(
             displayName="Log-transform the output?",
             name="log",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
         clip = arcpy.Parameter(
             displayName="Clip the upper tail by 1%?",
             name="clip",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -9404,21 +9520,21 @@ class FlowLengthDiff(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -9448,28 +9564,28 @@ class Hillslopes(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -9499,14 +9615,14 @@ class ImpoundmentIndex(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -9516,13 +9632,15 @@ class ImpoundmentIndex(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        out_type.filter.type = "ValueList"
+        out_type.filter.list = ['depth', 'volume', 'area']
 
         out_type.value = "depth"
 
         damlength = arcpy.Parameter(
             displayName="Max dam length (grid cells)",
             name="damlength",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -9550,21 +9668,21 @@ class Isobasins(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         size = arcpy.Parameter(
             displayName="Target Basin Size (grid cells)",
             name="size",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Required",
             direction="Input")
 
@@ -9592,28 +9710,30 @@ class JensonSnapPourPoints(object):
         pour_pts = arcpy.Parameter(
             displayName="Input Pour Points (Outlet) File",
             name="pour_pts",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        pour_pts.filter.list = ["Point"]
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["Point"]
 
         snap_dist = arcpy.Parameter(
             displayName="Maximum Snap Distance (map units)",
             name="snap_dist",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -9641,23 +9761,24 @@ class LongestFlowpath(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         basins = arcpy.Parameter(
             displayName="Basins File",
             name="basins",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["Polyline"]
 
         params = [dem, basins, output]
 
@@ -9683,14 +9804,14 @@ class MaxUpslopeFlowpathLength(object):
         dem = arcpy.Parameter(
             displayName="Input File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -9718,14 +9839,14 @@ class NumInflowingNeighbours(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -9753,35 +9874,36 @@ class RaiseWalls(object):
         input = arcpy.Parameter(
             displayName="Input Vector Line or Polygon File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         breach = arcpy.Parameter(
             displayName="Input Breach Lines (optional)",
             name="breach",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Optional",
             direction="Input")
+        breach.filter.list = ["Polyline"]
 
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         height = arcpy.Parameter(
             displayName="Wall Height",
             name="height",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -9811,21 +9933,21 @@ class Rho8Pointer(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         esri_pntr = arcpy.Parameter(
             displayName="Should the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -9855,21 +9977,21 @@ class Sink(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
             name="zero_background",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -9897,28 +10019,30 @@ class SnapPourPoints(object):
         pour_pts = arcpy.Parameter(
             displayName="Input Pour Points (Outlet) File",
             name="pour_pts",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        pour_pts.filter.list = ["Point"]
 
         flow_accum = arcpy.Parameter(
             displayName="Input D8 Flow Accumulation File",
             name="flow_accum",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["Point"]
 
         snap_dist = arcpy.Parameter(
             displayName="Maximum Snap Distance (map units)",
             name="snap_dist",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -9946,35 +10070,35 @@ class StochasticDepressionAnalysis(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         rmse = arcpy.Parameter(
             displayName="DEM root-mean-square-error (z units)",
             name="rmse",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
         range = arcpy.Parameter(
             displayName="Range of Autocorrelation (map units)",
             name="range",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
         iterations = arcpy.Parameter(
             displayName="Iterations",
             name="iterations",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -10004,28 +10128,28 @@ class StrahlerOrderBasins(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -10055,28 +10179,28 @@ class Subbasins(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -10106,28 +10230,29 @@ class TraceDownslopeFlowpaths(object):
         seed_pts = arcpy.Parameter(
             displayName="Input Vector Seed Points File",
             name="seed_pts",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        seed_pts.filter.list = ["Point"]
 
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -10136,7 +10261,7 @@ class TraceDownslopeFlowpaths(object):
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
             name="zero_background",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -10164,28 +10289,29 @@ class UnnestBasins(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         pour_pts = arcpy.Parameter(
             displayName="Input Pour Points (Outlet) File",
             name="pour_pts",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        pour_pts.filter.list = ["Point"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -10215,28 +10341,29 @@ class Watershed(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         pour_pts = arcpy.Parameter(
             displayName="Input Pour Points (Outlet) File",
             name="pour_pts",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        pour_pts.filter.list = ["Point"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -10266,28 +10393,28 @@ class ChangeVectorAnalysis(object):
         date1 = arcpy.Parameter(
             displayName="Earlier Date Input Files",
             name="date1",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         date2 = arcpy.Parameter(
             displayName="Later Date Input Files",
             name="date2",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         magnitude = arcpy.Parameter(
             displayName="Output Vector Magnitude File",
             name="magnitude",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         direction = arcpy.Parameter(
             displayName="Output Vector Direction File",
             name="direction",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -10315,21 +10442,21 @@ class Closing(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
             name="filterx",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -10338,7 +10465,7 @@ class Closing(object):
         filtery = arcpy.Parameter(
             displayName="Filter Y-Dimension",
             name="filtery",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -10368,42 +10495,42 @@ class CreateColourComposite(object):
         red = arcpy.Parameter(
             displayName="Input Red Band Image File",
             name="red",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         green = arcpy.Parameter(
             displayName="Input Green Band Image File",
             name="green",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         blue = arcpy.Parameter(
             displayName="Input Blue Band Image File",
             name="blue",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         opacity = arcpy.Parameter(
             displayName="Input Opacity Band Image File (Optional)",
             name="opacity",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output Colour Composite File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         enhance = arcpy.Parameter(
             displayName="Perform balance contrast enhancement?",
             name="enhance",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -10412,7 +10539,7 @@ class CreateColourComposite(object):
         zeros = arcpy.Parameter(
             displayName="Treat zeros as nodata?",
             name="zeros",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -10442,14 +10569,14 @@ class FlipImage(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -10459,6 +10586,8 @@ class FlipImage(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        direction.filter.type = "ValueList"
+        direction.filter.list = ['vertical', 'horizontal', 'both']
 
         direction.value = "vertical"
 
@@ -10486,49 +10615,49 @@ class IhsToRgb(object):
         intensity = arcpy.Parameter(
             displayName="Input Intensity File",
             name="intensity",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         hue = arcpy.Parameter(
             displayName="Input Hue File",
             name="hue",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         saturation = arcpy.Parameter(
             displayName="Input Saturation File",
             name="saturation",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         red = arcpy.Parameter(
             displayName="Output Red Band File (optional; only if colour-composite not specified)",
             name="red",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Output")
 
         green = arcpy.Parameter(
             displayName="Output Green Band File (optional; only if colour-composite not specified)",
             name="green",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Output")
 
         blue = arcpy.Parameter(
             displayName="Output Blue Band File (optional; only if colour-composite not specified)",
             name="blue",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Output")
 
         output = arcpy.Parameter(
             displayName="Output Colour-Composite File (optional; only if individual bands not specified)",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Output")
 
@@ -10556,21 +10685,22 @@ class ImageStackProfile(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         points = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="points",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        points.filter.list = ["Point"]
 
         output = arcpy.Parameter(
             displayName="Output HTML File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
 
@@ -10598,14 +10728,14 @@ class IntegralImage(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -10633,35 +10763,35 @@ class KMeansClustering(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output Raster File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         out_html = arcpy.Parameter(
             displayName="Output HTML Report File",
             name="out_html",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Optional",
             direction="Output")
 
         classes = arcpy.Parameter(
             displayName="Num. Classes (k)",
             name="classes",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Required",
             direction="Input")
 
         max_iterations = arcpy.Parameter(
             displayName="Max. Iterations",
             name="max_iterations",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -10670,7 +10800,7 @@ class KMeansClustering(object):
         class_change = arcpy.Parameter(
             displayName="Percent Class Change Threshold",
             name="class_change",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -10682,13 +10812,15 @@ class KMeansClustering(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        initialize.filter.type = "ValueList"
+        initialize.filter.list = ['diagonal', 'random']
 
         initialize.value = "diagonal"
 
         min_class_size = arcpy.Parameter(
             displayName="Min. Class Size",
             name="min_class_size",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -10718,14 +10850,14 @@ class LineThinning(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -10753,28 +10885,28 @@ class ModifiedKMeansClustering(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output Raster File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         out_html = arcpy.Parameter(
             displayName="Output HTML Report File",
             name="out_html",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Optional",
             direction="Output")
 
         start_clusters = arcpy.Parameter(
             displayName="Initial Num. of Clusters",
             name="start_clusters",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -10783,14 +10915,14 @@ class ModifiedKMeansClustering(object):
         merger_dist = arcpy.Parameter(
             displayName="Cluster Merger Distance",
             name="merger_dist",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         max_iterations = arcpy.Parameter(
             displayName="Max. Iterations",
             name="max_iterations",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -10799,7 +10931,7 @@ class ModifiedKMeansClustering(object):
         class_change = arcpy.Parameter(
             displayName="Percent Class Change Threshold",
             name="class_change",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -10829,14 +10961,14 @@ class Mosaic(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -10846,6 +10978,8 @@ class Mosaic(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        method.filter.type = "ValueList"
+        method.filter.list = ['nn', 'bilinear', 'cc']
 
         method.value = "cc"
 
@@ -10873,21 +11007,21 @@ class MosaicWithFeathering(object):
         input1 = arcpy.Parameter(
             displayName="Input File To Modify",
             name="input1",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input Reference File",
             name="input2",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -10897,13 +11031,15 @@ class MosaicWithFeathering(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        method.filter.type = "ValueList"
+        method.filter.list = ['nn', 'bilinear', 'cc']
 
         method.value = "cc"
 
         weight = arcpy.Parameter(
             displayName="Distance Weight",
             name="weight",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -10933,28 +11069,28 @@ class NormalizedDifferenceVegetationIndex(object):
         nir = arcpy.Parameter(
             displayName="Input Near-Infrared File",
             name="nir",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         red = arcpy.Parameter(
             displayName="Input Red File",
             name="red",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         clip = arcpy.Parameter(
             displayName="Distribution Tail Clip Amount (%)",
             name="clip",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -10963,7 +11099,7 @@ class NormalizedDifferenceVegetationIndex(object):
         osavi = arcpy.Parameter(
             displayName="Use the optimized soil-adjusted veg index (OSAVI)?",
             name="osavi",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -10991,21 +11127,21 @@ class Opening(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
             name="filterx",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -11014,7 +11150,7 @@ class Opening(object):
         filtery = arcpy.Parameter(
             displayName="Filter Y-Dimension",
             name="filtery",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -11044,21 +11180,21 @@ class RemoveSpurs(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         iterations = arcpy.Parameter(
             displayName="Maximum Iterations",
             name="iterations",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Required",
             direction="Input")
 
@@ -11088,14 +11224,14 @@ class Resample(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         destination = arcpy.Parameter(
             displayName="Destination File",
             name="destination",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
@@ -11105,6 +11241,8 @@ class Resample(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        method.filter.type = "ValueList"
+        method.filter.list = ['nn', 'bilinear', 'cc']
 
         method.value = "cc"
 
@@ -11132,49 +11270,49 @@ class RgbToIhs(object):
         red = arcpy.Parameter(
             displayName="Input Red Band File (optional; only if colour-composite not specified)",
             name="red",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Input")
 
         green = arcpy.Parameter(
             displayName="Input Green Band File (optional; only if colour-composite not specified)",
             name="green",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Input")
 
         blue = arcpy.Parameter(
             displayName="Input Blue Band File (optional; only if colour-composite not specified)",
             name="blue",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Input")
 
         composite = arcpy.Parameter(
             displayName="Input Colour-Composite Image File (optional; only if individual bands not specified)",
             name="composite",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Input")
 
         intensity = arcpy.Parameter(
             displayName="Output Intensity File",
             name="intensity",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         hue = arcpy.Parameter(
             displayName="Output Hue File",
             name="hue",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         saturation = arcpy.Parameter(
             displayName="Output Saturation File",
             name="saturation",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -11202,14 +11340,14 @@ class SplitColourComposite(object):
         input = arcpy.Parameter(
             displayName="Input Colour Composite Image File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -11237,14 +11375,14 @@ class ThickenRasterLine(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -11272,21 +11410,21 @@ class TophatTransform(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
             name="filterx",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -11295,7 +11433,7 @@ class TophatTransform(object):
         filtery = arcpy.Parameter(
             displayName="Filter Y-Dimension",
             name="filtery",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -11307,6 +11445,8 @@ class TophatTransform(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        variant.filter.type = "ValueList"
+        variant.filter.list = ['white', 'black']
 
         variant.value = "white"
 
@@ -11334,28 +11474,28 @@ class WriteFunctionMemoryInsertion(object):
         input1 = arcpy.Parameter(
             displayName="First Date Input File",
             name="input1",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Second Date Input File",
             name="input2",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         input3 = arcpy.Parameter(
             displayName="Third Date Input File (Optional)",
             name="input3",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -11383,21 +11523,21 @@ class AdaptiveFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
             name="filterx",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -11406,7 +11546,7 @@ class AdaptiveFilter(object):
         filtery = arcpy.Parameter(
             displayName="Filter Y-Dimension",
             name="filtery",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -11415,7 +11555,7 @@ class AdaptiveFilter(object):
         threshold = arcpy.Parameter(
             displayName="Difference From Mean Threshold (# Std. Dev.)",
             name="threshold",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -11445,21 +11585,21 @@ class BilateralFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         sigma_dist = arcpy.Parameter(
             displayName="Distance Standard Deviation (pixels)",
             name="sigma_dist",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -11468,7 +11608,7 @@ class BilateralFilter(object):
         sigma_int = arcpy.Parameter(
             displayName="Intensity Standard Deviation (intensity units)",
             name="sigma_int",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -11498,21 +11638,21 @@ class ConservativeSmoothingFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
             name="filterx",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -11521,7 +11661,7 @@ class ConservativeSmoothingFilter(object):
         filtery = arcpy.Parameter(
             displayName="Filter Y-Dimension",
             name="filtery",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -11551,14 +11691,14 @@ class CornerDetection(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -11586,21 +11726,21 @@ class DiffOfGaussianFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         sigma1 = arcpy.Parameter(
             displayName="Sigma 1 (pixels)",
             name="sigma1",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -11609,7 +11749,7 @@ class DiffOfGaussianFilter(object):
         sigma2 = arcpy.Parameter(
             displayName="Sigma 2 (pixels)",
             name="sigma2",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -11639,21 +11779,21 @@ class DiversityFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
             name="filterx",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -11662,7 +11802,7 @@ class DiversityFilter(object):
         filtery = arcpy.Parameter(
             displayName="Filter Y-Dimension",
             name="filtery",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -11692,21 +11832,21 @@ class EdgePreservingMeanFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filter = arcpy.Parameter(
             displayName="Filter Size",
             name="filter",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -11715,7 +11855,7 @@ class EdgePreservingMeanFilter(object):
         threshold = arcpy.Parameter(
             displayName="Value Difference Threshold",
             name="threshold",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -11743,14 +11883,14 @@ class EmbossFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -11760,13 +11900,15 @@ class EmbossFilter(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        direction.filter.type = "ValueList"
+        direction.filter.list = ['n', 's', 'e', 'w', 'ne', 'se', 'nw', 'sw']
 
         direction.value = "n"
 
         clip = arcpy.Parameter(
             displayName="Percent to clip the distribution tails",
             name="clip",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -11796,21 +11938,21 @@ class FastAlmostGaussianFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         sigma = arcpy.Parameter(
             displayName="Standard Deviation (pixels)",
             name="sigma",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -11840,21 +11982,21 @@ class GaussianFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         sigma = arcpy.Parameter(
             displayName="Standard Deviation (pixels)",
             name="sigma",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -11884,21 +12026,21 @@ class HighPassFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
             name="filterx",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -11907,7 +12049,7 @@ class HighPassFilter(object):
         filtery = arcpy.Parameter(
             displayName="Filter Y-Dimension",
             name="filtery",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -11937,21 +12079,21 @@ class HighPassMedianFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
             name="filterx",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -11960,7 +12102,7 @@ class HighPassMedianFilter(object):
         filtery = arcpy.Parameter(
             displayName="Filter Y-Dimension",
             name="filtery",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -11969,7 +12111,7 @@ class HighPassMedianFilter(object):
         sig_digits = arcpy.Parameter(
             displayName="Number of Significant Digits",
             name="sig_digits",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -11999,21 +12141,21 @@ class KNearestMeanFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
             name="filterx",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -12022,7 +12164,7 @@ class KNearestMeanFilter(object):
         filtery = arcpy.Parameter(
             displayName="Filter Y-Dimension",
             name="filtery",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -12031,7 +12173,7 @@ class KNearestMeanFilter(object):
         k = arcpy.Parameter(
             displayName="K-value (pixels)",
             name="k",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -12061,14 +12203,14 @@ class LaplacianFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -12078,13 +12220,15 @@ class LaplacianFilter(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        variant.filter.type = "ValueList"
+        variant.filter.list = ['3x3(1)', '3x3(2)', '3x3(3)', '3x3(4)', '5x5(1)', '5x5(2)']
 
         variant.value = "3x3(1)"
 
         clip = arcpy.Parameter(
             displayName="Distribution Tail Clip Amount (%)",
             name="clip",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -12114,21 +12258,21 @@ class LaplacianOfGaussianFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         sigma = arcpy.Parameter(
             displayName="Standard Deviation (Pixels)",
             name="sigma",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -12158,21 +12302,21 @@ class LeeFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
             name="filterx",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -12181,7 +12325,7 @@ class LeeFilter(object):
         filtery = arcpy.Parameter(
             displayName="Filter Y-Dimension",
             name="filtery",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -12190,7 +12334,7 @@ class LeeFilter(object):
         sigma = arcpy.Parameter(
             displayName="Sigma",
             name="sigma",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -12199,7 +12343,7 @@ class LeeFilter(object):
         m = arcpy.Parameter(
             displayName="M-value",
             name="m",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -12229,14 +12373,14 @@ class LineDetectionFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -12246,20 +12390,22 @@ class LineDetectionFilter(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        variant.filter.type = "ValueList"
+        variant.filter.list = ['vertical', 'horizontal', '45', '135']
 
         variant.value = "vertical"
 
         absvals = arcpy.Parameter(
             displayName="Output absolute values?",
             name="absvals",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
         clip = arcpy.Parameter(
             displayName="Distribution Tail Clip Amount (%)",
             name="clip",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -12289,21 +12435,21 @@ class MajorityFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
             name="filterx",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -12312,7 +12458,7 @@ class MajorityFilter(object):
         filtery = arcpy.Parameter(
             displayName="Filter Y-Dimension",
             name="filtery",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -12342,21 +12488,21 @@ class MaximumFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
             name="filterx",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -12365,7 +12511,7 @@ class MaximumFilter(object):
         filtery = arcpy.Parameter(
             displayName="Filter Y-Dimension",
             name="filtery",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -12395,21 +12541,21 @@ class MeanFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
             name="filterx",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -12418,7 +12564,7 @@ class MeanFilter(object):
         filtery = arcpy.Parameter(
             displayName="Filter Y-Dimension",
             name="filtery",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -12448,21 +12594,21 @@ class MedianFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
             name="filterx",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -12471,7 +12617,7 @@ class MedianFilter(object):
         filtery = arcpy.Parameter(
             displayName="Filter Y-Dimension",
             name="filtery",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -12480,7 +12626,7 @@ class MedianFilter(object):
         sig_digits = arcpy.Parameter(
             displayName="Number of Significant Digits",
             name="sig_digits",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -12510,21 +12656,21 @@ class MinimumFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
             name="filterx",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -12533,7 +12679,7 @@ class MinimumFilter(object):
         filtery = arcpy.Parameter(
             displayName="Filter Y-Dimension",
             name="filtery",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -12563,21 +12709,21 @@ class OlympicFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
             name="filterx",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -12586,7 +12732,7 @@ class OlympicFilter(object):
         filtery = arcpy.Parameter(
             displayName="Filter Y-Dimension",
             name="filtery",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -12616,21 +12762,21 @@ class PercentileFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
             name="filterx",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -12639,7 +12785,7 @@ class PercentileFilter(object):
         filtery = arcpy.Parameter(
             displayName="Filter Y-Dimension",
             name="filtery",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -12648,7 +12794,7 @@ class PercentileFilter(object):
         sig_digits = arcpy.Parameter(
             displayName="Number of Significant Digits",
             name="sig_digits",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -12678,21 +12824,21 @@ class PrewittFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         clip = arcpy.Parameter(
             displayName="Distribution Tail Clip Amount (Percent)",
             name="clip",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -12722,21 +12868,21 @@ class RangeFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
             name="filterx",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -12745,7 +12891,7 @@ class RangeFilter(object):
         filtery = arcpy.Parameter(
             displayName="Filter Y-Dimension",
             name="filtery",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -12775,21 +12921,21 @@ class RobertsCrossFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         clip = arcpy.Parameter(
             displayName="Distribution Tail Clip Amount (Percent)",
             name="clip",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -12819,21 +12965,21 @@ class ScharrFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         clip = arcpy.Parameter(
             displayName="Distribution Tail Clip Amount (Percent)",
             name="clip",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -12863,14 +13009,14 @@ class SobelFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -12880,13 +13026,15 @@ class SobelFilter(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        variant.filter.type = "ValueList"
+        variant.filter.list = ['3x3', '5x5']
 
         variant.value = "3x3"
 
         clip = arcpy.Parameter(
             displayName="Clip Tails (%)",
             name="clip",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -12916,21 +13064,21 @@ class StandardDeviationFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
             name="filterx",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -12939,7 +13087,7 @@ class StandardDeviationFilter(object):
         filtery = arcpy.Parameter(
             displayName="Filter Y-Dimension",
             name="filtery",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -12969,21 +13117,21 @@ class TotalFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
             name="filterx",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -12992,7 +13140,7 @@ class TotalFilter(object):
         filtery = arcpy.Parameter(
             displayName="Filter Y-Dimension",
             name="filtery",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -13022,21 +13170,21 @@ class UnsharpMasking(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         sigma = arcpy.Parameter(
             displayName="Standard Deviation (pixels)",
             name="sigma",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -13045,7 +13193,7 @@ class UnsharpMasking(object):
         amount = arcpy.Parameter(
             displayName="Amount (%)",
             name="amount",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -13054,7 +13202,7 @@ class UnsharpMasking(object):
         threshold = arcpy.Parameter(
             displayName="Threshold",
             name="threshold",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -13084,21 +13232,22 @@ class UserDefinedWeightsFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         weights = arcpy.Parameter(
             displayName="Input Weights File",
             name="weights",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        weights.filter.list = ["csv"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -13108,13 +13257,15 @@ class UserDefinedWeightsFilter(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        center.filter.type = "ValueList"
+        center.filter.list = ['center', 'upper-left', 'upper-right', 'lower-left', 'lower-right']
 
         center.value = "center"
 
         normalize = arcpy.Parameter(
             displayName="Normalize kernel weights?",
             name="normalize",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -13144,21 +13295,21 @@ class BalanceContrastEnhancement(object):
         input = arcpy.Parameter(
             displayName="Input Colour Composite Image File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         band_mean = arcpy.Parameter(
             displayName="Band Mean Value",
             name="band_mean",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -13188,28 +13339,29 @@ class CorrectVignetting(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         pp = arcpy.Parameter(
             displayName="Input Principal Point File",
             name="pp",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        pp.filter.list = ["Point"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         focal_length = arcpy.Parameter(
             displayName="Camera Focal Length (mm)",
             name="focal_length",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -13218,7 +13370,7 @@ class CorrectVignetting(object):
         image_width = arcpy.Parameter(
             displayName="Distance Between Left-Right Edges (mm)",
             name="image_width",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -13227,7 +13379,7 @@ class CorrectVignetting(object):
         n = arcpy.Parameter(
             displayName="n Parameter",
             name="n",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -13257,21 +13409,21 @@ class DirectDecorrelationStretch(object):
         input = arcpy.Parameter(
             displayName="Input Colour Composite Image File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         k = arcpy.Parameter(
             displayName="Achromatic Factor (0-1)",
             name="k",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -13280,7 +13432,7 @@ class DirectDecorrelationStretch(object):
         clip = arcpy.Parameter(
             displayName="Percent to clip the upper tail",
             name="clip",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -13310,21 +13462,21 @@ class GammaCorrection(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         gamma = arcpy.Parameter(
             displayName="Gamma Value",
             name="gamma",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -13354,21 +13506,21 @@ class GaussianContrastStretch(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         num_tones = arcpy.Parameter(
             displayName="Number of Tones",
             name="num_tones",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Required",
             direction="Input")
 
@@ -13398,21 +13550,21 @@ class HistogramEqualization(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         num_tones = arcpy.Parameter(
             displayName="Number of Tones",
             name="num_tones",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Required",
             direction="Input")
 
@@ -13442,21 +13594,21 @@ class HistogramMatching(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         histo_file = arcpy.Parameter(
             displayName="Input Probability Distribution Function (PDF) Text File",
             name="histo_file",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -13484,21 +13636,21 @@ class HistogramMatchingTwoImages(object):
         input1 = arcpy.Parameter(
             displayName="Input File To Modify",
             name="input1",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input Reference File",
             name="input2",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -13526,35 +13678,35 @@ class MinMaxContrastStretch(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         min_val = arcpy.Parameter(
             displayName="Lower Tail Clip Value",
             name="min_val",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
         max_val = arcpy.Parameter(
             displayName="Upper Tail Clip Value",
             name="max_val",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
         num_tones = arcpy.Parameter(
             displayName="Number of Tones",
             name="num_tones",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Required",
             direction="Input")
 
@@ -13584,42 +13736,42 @@ class PanchromaticSharpening(object):
         red = arcpy.Parameter(
             displayName="Input Red Band File (optional; only if colour-composite not specified)",
             name="red",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Input")
 
         green = arcpy.Parameter(
             displayName="Input Green Band File (optional; only if colour-composite not specified)",
             name="green",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Input")
 
         blue = arcpy.Parameter(
             displayName="Input Blue Band File (optional; only if colour-composite not specified)",
             name="blue",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Input")
 
         composite = arcpy.Parameter(
             displayName="Input Colour-Composite Image File (optional; only if individual bands not specified)",
             name="composite",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Input")
 
         pan = arcpy.Parameter(
             displayName="Input Panchromatic Band File",
             name="pan",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output Colour Composite File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -13629,6 +13781,8 @@ class PanchromaticSharpening(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        method.filter.type = "ValueList"
+        method.filter.list = ['brovey', 'ihs']
 
         method.value = "brovey"
 
@@ -13656,21 +13810,21 @@ class PercentageContrastStretch(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         clip = arcpy.Parameter(
             displayName="Distribution Tail Clip Amount (%)",
             name="clip",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -13682,13 +13836,15 @@ class PercentageContrastStretch(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        tail.filter.type = "ValueList"
+        tail.filter.list = ['upper', 'lower', 'both']
 
         tail.value = "both"
 
         num_tones = arcpy.Parameter(
             displayName="Number of Tones",
             name="num_tones",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Required",
             direction="Input")
 
@@ -13718,21 +13874,21 @@ class SigmoidalContrastStretch(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         cutoff = arcpy.Parameter(
             displayName="Cutoff Value (0.0 - 0.95)",
             name="cutoff",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -13741,7 +13897,7 @@ class SigmoidalContrastStretch(object):
         gain = arcpy.Parameter(
             displayName="Gain Value",
             name="gain",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -13750,7 +13906,7 @@ class SigmoidalContrastStretch(object):
         num_tones = arcpy.Parameter(
             displayName="Number of Tones",
             name="num_tones",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Required",
             direction="Input")
 
@@ -13780,21 +13936,21 @@ class StandardDeviationContrastStretch(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         stdev = arcpy.Parameter(
             displayName="Standard Deviation Threshold",
             name="stdev",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -13803,7 +13959,7 @@ class StandardDeviationContrastStretch(object):
         num_tones = arcpy.Parameter(
             displayName="Number of Tones",
             name="num_tones",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Required",
             direction="Input")
 
@@ -13833,21 +13989,23 @@ class ClassifyOverlapPoints(object):
         input = arcpy.Parameter(
             displayName="Input LiDAR File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["las", "zip"]
 
         resolution = arcpy.Parameter(
             displayName="Sample Resolution",
             name="resolution",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -13856,7 +14014,7 @@ class ClassifyOverlapPoints(object):
         filter = arcpy.Parameter(
             displayName="Filter out points from overlapping flightlines?",
             name="filter",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -13886,23 +14044,26 @@ class ClipLidarToPolygon(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         polygons = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="polygons",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        polygons.filter.list = ["Polygon"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["las", "zip"]
 
         params = [input, polygons, output]
 
@@ -13928,23 +14089,26 @@ class ErasePolygonFromLidar(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         polygons = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="polygons",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        polygons.filter.list = ["Polygon"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["las", "zip"]
 
         params = [input, polygons, output]
 
@@ -13970,21 +14134,23 @@ class FilterLidarScanAngles(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["las", "zip"]
 
         threshold = arcpy.Parameter(
             displayName="Threshold (degrees)",
             name="threshold",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -14012,16 +14178,18 @@ class FindFlightlineEdgePoints(object):
         input = arcpy.Parameter(
             displayName="Input LiDAR File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["las", "zip"]
 
         params = [input, output]
 
@@ -14047,21 +14215,22 @@ class FlightlineOverlap(object):
         input = arcpy.Parameter(
             displayName="Input LiDAR File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Optional",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Output")
 
         resolution = arcpy.Parameter(
             displayName="Grid Resolution",
             name="resolution",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -14091,9 +14260,10 @@ class LasToAscii(object):
         inputs = arcpy.Parameter(
             displayName="Input LiDAR Files",
             name="inputs",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        inputs.filter.list = ["las", "zip"]
 
         params = [inputs]
 
@@ -14119,9 +14289,10 @@ class LasToMultipointShapefile(object):
         input = arcpy.Parameter(
             displayName="Input LiDAR File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Optional",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         params = [input]
 
@@ -14147,9 +14318,10 @@ class LasToShapefile(object):
         input = arcpy.Parameter(
             displayName="Input LiDAR File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Optional",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         params = [input]
 
@@ -14175,21 +14347,22 @@ class LidarBlockMaximum(object):
         input = arcpy.Parameter(
             displayName="Input LiDAR File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Optional",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Output")
 
         resolution = arcpy.Parameter(
             displayName="Grid Resolution",
             name="resolution",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -14219,21 +14392,22 @@ class LidarBlockMinimum(object):
         input = arcpy.Parameter(
             displayName="Input LiDAR File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Optional",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Output")
 
         resolution = arcpy.Parameter(
             displayName="Grid Resolution",
             name="resolution",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -14263,35 +14437,38 @@ class LidarClassifySubset(object):
         base = arcpy.Parameter(
             displayName="Input Base LiDAR File",
             name="base",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        base.filter.list = ["las", "zip"]
 
         subset = arcpy.Parameter(
             displayName="Input Subset LiDAR File",
             name="subset",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        subset.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output LiDAR File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["las", "zip"]
 
         subset_class = arcpy.Parameter(
             displayName="Subset Point Class Value",
             name="subset_class",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
         nonsubset_class = arcpy.Parameter(
             displayName="Non-Subset Point Class Value (Optional)",
             name="nonsubset_class",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -14319,23 +14496,25 @@ class LidarColourize(object):
         in_lidar = arcpy.Parameter(
             displayName="Input LiDAR File",
             name="in_lidar",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        in_lidar.filter.list = ["las", "zip"]
 
         in_image = arcpy.Parameter(
             displayName="Input Colour Image File",
             name="in_image",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output LiDAR File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["las", "zip"]
 
         params = [in_lidar, in_image, output]
 
@@ -14361,14 +14540,15 @@ class LidarConstructVectorTin(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Optional",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Output")
 
@@ -14378,6 +14558,8 @@ class LidarConstructVectorTin(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        returns.filter.type = "ValueList"
+        returns.filter.list = ['all', 'last', 'first']
 
         returns.value = "all"
 
@@ -14391,14 +14573,14 @@ class LidarConstructVectorTin(object):
         minz = arcpy.Parameter(
             displayName="Minimum Elevation Value (optional)",
             name="minz",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         maxz = arcpy.Parameter(
             displayName="Maximum Elevation Value (optional)",
             name="maxz",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -14426,42 +14608,44 @@ class LidarElevationSlice(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["las", "zip"]
 
         minz = arcpy.Parameter(
             displayName="Minimum Elevation Value",
             name="minz",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         maxz = arcpy.Parameter(
             displayName="Maximum Elevation Value",
             name="maxz",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         class1 = arcpy.Parameter(
             displayName="Retain but reclass points outside the specified elevation range?",
             name="class1",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
         inclassval = arcpy.Parameter(
             displayName="Class Value Assigned to Points Within Range (Optional)",
             name="inclassval",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -14470,7 +14654,7 @@ class LidarElevationSlice(object):
         outclassval = arcpy.Parameter(
             displayName="Class Value Assigned to Points Outside Range (Optional)",
             name="outclassval",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -14500,21 +14684,23 @@ class LidarGroundPointFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["las", "zip"]
 
         radius = arcpy.Parameter(
             displayName="Search Radius",
             name="radius",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -14523,7 +14709,7 @@ class LidarGroundPointFilter(object):
         min_neighbours = arcpy.Parameter(
             displayName="Minimum Number of Neighbours",
             name="min_neighbours",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -14532,7 +14718,7 @@ class LidarGroundPointFilter(object):
         slope_threshold = arcpy.Parameter(
             displayName="Inter-point Slope Threshold",
             name="slope_threshold",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -14541,7 +14727,7 @@ class LidarGroundPointFilter(object):
         height_threshold = arcpy.Parameter(
             displayName="Off-terrain Point Height Threshold",
             name="height_threshold",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -14550,7 +14736,7 @@ class LidarGroundPointFilter(object):
         classify = arcpy.Parameter(
             displayName="Classify Points",
             name="classify",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -14559,7 +14745,7 @@ class LidarGroundPointFilter(object):
         slope_norm = arcpy.Parameter(
             displayName="Perform initial ground slope normalization?",
             name="slope_norm",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -14589,21 +14775,23 @@ class LidarHexBinning(object):
         input = arcpy.Parameter(
             displayName="Input Base File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output Polygon File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["Polygon"]
 
         width = arcpy.Parameter(
             displayName="Hexagon Width",
             name="width",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -14613,6 +14801,8 @@ class LidarHexBinning(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        orientation.filter.type = "ValueList"
+        orientation.filter.list = ['horizontal', 'vertical']
 
         orientation.value = "horizontal"
 
@@ -14640,21 +14830,23 @@ class LidarHillshade(object):
         input = arcpy.Parameter(
             displayName="Input LiDAR File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["las", "zip"]
 
         azimuth = arcpy.Parameter(
             displayName="Azimuth (degrees)",
             name="azimuth",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -14663,7 +14855,7 @@ class LidarHillshade(object):
         altitude = arcpy.Parameter(
             displayName="Altitude (degrees)",
             name="altitude",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -14672,7 +14864,7 @@ class LidarHillshade(object):
         radius = arcpy.Parameter(
             displayName="Search Radius",
             name="radius",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -14702,14 +14894,15 @@ class LidarHistogram(object):
         input = arcpy.Parameter(
             displayName="Input LiDAR File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output HTML File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
 
@@ -14719,13 +14912,15 @@ class LidarHistogram(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        parameter.filter.type = "ValueList"
+        parameter.filter.list = ['elevation', 'intensity', 'scan angle', 'class']
 
         parameter.value = "elevation"
 
         clip = arcpy.Parameter(
             displayName="Tail Clip Percent",
             name="clip",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -14755,14 +14950,15 @@ class LidarIdwInterpolation(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Optional",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Output")
 
@@ -14772,6 +14968,8 @@ class LidarIdwInterpolation(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        parameter.filter.type = "ValueList"
+        parameter.filter.list = ['elevation', 'intensity', 'class', 'scan angle', 'user data']
 
         parameter.value = "elevation"
 
@@ -14781,13 +14979,15 @@ class LidarIdwInterpolation(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        returns.filter.type = "ValueList"
+        returns.filter.list = ['all', 'last', 'first']
 
         returns.value = "all"
 
         resolution = arcpy.Parameter(
             displayName="Grid Resolution",
             name="resolution",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -14796,7 +14996,7 @@ class LidarIdwInterpolation(object):
         weight = arcpy.Parameter(
             displayName="IDW Weight (Exponent) Value",
             name="weight",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -14805,7 +15005,7 @@ class LidarIdwInterpolation(object):
         radius = arcpy.Parameter(
             displayName="Search Radius",
             name="radius",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -14821,14 +15021,14 @@ class LidarIdwInterpolation(object):
         minz = arcpy.Parameter(
             displayName="Minimum Elevation Value (optional)",
             name="minz",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         maxz = arcpy.Parameter(
             displayName="Maximum Elevation Value (optional)",
             name="maxz",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -14856,28 +15056,29 @@ class LidarInfo(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output Summary Report File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Optional",
             direction="Output")
 
         vlr = arcpy.Parameter(
             displayName="Print the variable length records (VLRs)?",
             name="vlr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
         geokeys = arcpy.Parameter(
             displayName="Print the geokeys?",
             name="geokeys",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -14905,16 +15106,18 @@ class LidarJoin(object):
         inputs = arcpy.Parameter(
             displayName="Input LiDAR Files",
             name="inputs",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        inputs.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["las", "zip"]
 
         params = [inputs, output]
 
@@ -14940,35 +15143,37 @@ class LidarKappaIndex(object):
         input1 = arcpy.Parameter(
             displayName="Input LiDAR File (Classification)",
             name="input1",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        input1.filter.list = ["las", "zip"]
 
         input2 = arcpy.Parameter(
             displayName="Input LiDAR File (Reference)",
             name="input2",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        input2.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output HTML File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
 
         class_accuracy = arcpy.Parameter(
             displayName="Output Class Accuracy Raster File",
             name="class_accuracy",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         resolution = arcpy.Parameter(
             displayName="Grid Resolution",
             name="resolution",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -14998,14 +15203,15 @@ class LidarNearestNeighbourGridding(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Optional",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Output")
 
@@ -15015,6 +15221,8 @@ class LidarNearestNeighbourGridding(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        parameter.filter.type = "ValueList"
+        parameter.filter.list = ['elevation', 'intensity', 'class', 'scan angle', 'user data']
 
         parameter.value = "elevation"
 
@@ -15024,13 +15232,15 @@ class LidarNearestNeighbourGridding(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        returns.filter.type = "ValueList"
+        returns.filter.list = ['all', 'last', 'first']
 
         returns.value = "all"
 
         resolution = arcpy.Parameter(
             displayName="Grid Resolution",
             name="resolution",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -15039,7 +15249,7 @@ class LidarNearestNeighbourGridding(object):
         radius = arcpy.Parameter(
             displayName="Search Radius",
             name="radius",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -15055,14 +15265,14 @@ class LidarNearestNeighbourGridding(object):
         minz = arcpy.Parameter(
             displayName="Minimum Elevation Value (optional)",
             name="minz",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         maxz = arcpy.Parameter(
             displayName="Maximum Elevation Value (optional)",
             name="maxz",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -15090,14 +15300,15 @@ class LidarPointDensity(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Optional",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Output")
 
@@ -15107,13 +15318,15 @@ class LidarPointDensity(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        returns.filter.type = "ValueList"
+        returns.filter.list = ['all', 'last', 'first']
 
         returns.value = "all"
 
         resolution = arcpy.Parameter(
             displayName="Grid Resolution",
             name="resolution",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -15122,7 +15335,7 @@ class LidarPointDensity(object):
         radius = arcpy.Parameter(
             displayName="Search Radius",
             name="radius",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -15138,14 +15351,14 @@ class LidarPointDensity(object):
         minz = arcpy.Parameter(
             displayName="Minimum Elevation Value (optional)",
             name="minz",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         maxz = arcpy.Parameter(
             displayName="Maximum Elevation Value (optional)",
             name="maxz",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -15173,14 +15386,15 @@ class LidarPointStats(object):
         input = arcpy.Parameter(
             displayName="Input LiDAR File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Optional",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         resolution = arcpy.Parameter(
             displayName="Grid Resolution",
             name="resolution",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -15189,7 +15403,7 @@ class LidarPointStats(object):
         num_points = arcpy.Parameter(
             displayName="Output number of points?",
             name="num_points",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -15198,28 +15412,28 @@ class LidarPointStats(object):
         num_pulses = arcpy.Parameter(
             displayName="Output number of pulses?",
             name="num_pulses",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
         z_range = arcpy.Parameter(
             displayName="Output elevation range?",
             name="z_range",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
         intensity_range = arcpy.Parameter(
             displayName="Output intensity range?",
             name="intensity_range",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
         predom_class = arcpy.Parameter(
             displayName="Output predominant class?",
             name="predom_class",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -15247,21 +15461,23 @@ class LidarRemoveDuplicates(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["las", "zip"]
 
         include_z = arcpy.Parameter(
             displayName="Include z-values in point comparison?",
             name="include_z",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -15291,21 +15507,23 @@ class LidarRemoveOutliers(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["las", "zip"]
 
         radius = arcpy.Parameter(
             displayName="Search Radius",
             name="radius",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -15314,7 +15532,7 @@ class LidarRemoveOutliers(object):
         elev_diff = arcpy.Parameter(
             displayName="Max. Elevation Difference",
             name="elev_diff",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -15344,21 +15562,23 @@ class LidarSegmentation(object):
         input = arcpy.Parameter(
             displayName="Input LiDAR File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["las", "zip"]
 
         radius = arcpy.Parameter(
             displayName="Search Radius",
             name="radius",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -15367,7 +15587,7 @@ class LidarSegmentation(object):
         norm_diff = arcpy.Parameter(
             displayName="Normal Difference Threshold",
             name="norm_diff",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -15376,7 +15596,7 @@ class LidarSegmentation(object):
         maxzdiff = arcpy.Parameter(
             displayName="Maximum Elevation Difference Between Points",
             name="maxzdiff",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -15406,21 +15626,23 @@ class LidarSegmentationBasedFilter(object):
         input = arcpy.Parameter(
             displayName="Input LiDAR File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["las", "zip"]
 
         radius = arcpy.Parameter(
             displayName="Search Radius",
             name="radius",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -15429,7 +15651,7 @@ class LidarSegmentationBasedFilter(object):
         norm_diff = arcpy.Parameter(
             displayName="Normal Difference Threshold",
             name="norm_diff",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -15438,7 +15660,7 @@ class LidarSegmentationBasedFilter(object):
         maxzdiff = arcpy.Parameter(
             displayName="Maximum Elevation Difference Between Points",
             name="maxzdiff",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -15447,7 +15669,7 @@ class LidarSegmentationBasedFilter(object):
         classify = arcpy.Parameter(
             displayName="Classify Points",
             name="classify",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -15475,21 +15697,23 @@ class LidarThin(object):
         input = arcpy.Parameter(
             displayName="Input LiDAR File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["las", "zip"]
 
         resolution = arcpy.Parameter(
             displayName="Sample Resolution",
             name="resolution",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -15501,13 +15725,15 @@ class LidarThin(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        method.filter.type = "ValueList"
+        method.filter.list = ['first', 'last', 'lowest', 'highest', 'nearest']
 
         method.value = "lowest"
 
         save_filtered = arcpy.Parameter(
             displayName="Save filtered points to seperate file?",
             name="save_filtered",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -15537,21 +15763,23 @@ class LidarThinHighDensity(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["las", "zip"]
 
         resolution = arcpy.Parameter(
             displayName="Grid Resolution",
             name="resolution",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -15560,14 +15788,14 @@ class LidarThinHighDensity(object):
         density = arcpy.Parameter(
             displayName="Max. Point Density (pts/m^2)",
             name="density",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
         save_filtered = arcpy.Parameter(
             displayName="Save filtered points to seperate file?",
             name="save_filtered",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -15597,14 +15825,15 @@ class LidarTile(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         width_x = arcpy.Parameter(
             displayName="Tile Width in X Dimension",
             name="width_x",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -15613,7 +15842,7 @@ class LidarTile(object):
         width_y = arcpy.Parameter(
             displayName="Tile Width in Y Dimension",
             name="width_y",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -15622,7 +15851,7 @@ class LidarTile(object):
         origin_x = arcpy.Parameter(
             displayName="Origin Point X-Coordinate",
             name="origin_x",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -15631,7 +15860,7 @@ class LidarTile(object):
         origin_y = arcpy.Parameter(
             displayName="Origin Point Y-Coordinate",
             name="origin_y",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -15640,7 +15869,7 @@ class LidarTile(object):
         min_points = arcpy.Parameter(
             displayName="Minimum Number of Tile Points",
             name="min_points",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -15670,16 +15899,18 @@ class LidarTileFootprint(object):
         input = arcpy.Parameter(
             displayName="Input LiDAR File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Optional",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output Polygon File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["Polygon"]
 
         params = [input, output]
 
@@ -15705,14 +15936,15 @@ class LidarTinGridding(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Optional",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Output")
 
@@ -15722,6 +15954,8 @@ class LidarTinGridding(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        parameter.filter.type = "ValueList"
+        parameter.filter.list = ['elevation', 'intensity', 'class', 'scan angle', 'user data']
 
         parameter.value = "elevation"
 
@@ -15731,13 +15965,15 @@ class LidarTinGridding(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        returns.filter.type = "ValueList"
+        returns.filter.list = ['all', 'last', 'first']
 
         returns.value = "all"
 
         resolution = arcpy.Parameter(
             displayName="Grid Resolution",
             name="resolution",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -15753,14 +15989,14 @@ class LidarTinGridding(object):
         minz = arcpy.Parameter(
             displayName="Minimum Elevation Value (optional)",
             name="minz",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         maxz = arcpy.Parameter(
             displayName="Maximum Elevation Value (optional)",
             name="maxz",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -15788,21 +16024,23 @@ class LidarTophatTransform(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["las", "zip"]
 
         radius = arcpy.Parameter(
             displayName="Search Radius",
             name="radius",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -15832,21 +16070,23 @@ class NormalVectors(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["las", "zip"]
 
         radius = arcpy.Parameter(
             displayName="Search Radius",
             name="radius",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
@@ -15876,23 +16116,24 @@ class SelectTilesByPolygon(object):
         indir = arcpy.Parameter(
             displayName="Input Directory",
             name="indir",
-            datatype="GPString",
+            datatype="DEFolder",
             parameterType="Required",
             direction="Input")
 
         outdir = arcpy.Parameter(
             displayName="Output Directory",
             name="outdir",
-            datatype="GPString",
+            datatype="DEFolder",
             parameterType="Required",
             direction="Input")
 
         polygons = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="polygons",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        polygons.filter.list = ["Polygon"]
 
         params = [indir, outdir, polygons]
 
@@ -15918,21 +16159,21 @@ class And(object):
         input1 = arcpy.Parameter(
             displayName="Input File",
             name="input1",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File",
             name="input2",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -15960,21 +16201,21 @@ class Not(object):
         input1 = arcpy.Parameter(
             displayName="Input File",
             name="input1",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File",
             name="input2",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -16002,21 +16243,21 @@ class Or(object):
         input1 = arcpy.Parameter(
             displayName="Input File",
             name="input1",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File",
             name="input2",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -16044,14 +16285,14 @@ class AbsoluteValue(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -16079,21 +16320,21 @@ class Add(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -16121,21 +16362,21 @@ class Anova(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         features = arcpy.Parameter(
             displayName="Feature Definition (Class) File",
             name="features",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output HTML File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
 
@@ -16163,14 +16404,14 @@ class ArcCos(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -16198,14 +16439,14 @@ class ArcSin(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -16233,14 +16474,14 @@ class ArcTan(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -16268,21 +16509,21 @@ class Atan2(object):
         input_y = arcpy.Parameter(
             displayName="Input Y File Or Constant Value",
             name="input_y",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         input_x = arcpy.Parameter(
             displayName="Input X File Or Constant Value",
             name="input_x",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -16310,14 +16551,14 @@ class AttributeCorrelation(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output HTML File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Optional",
             direction="Output")
 
@@ -16345,21 +16586,22 @@ class AttributeHistogram(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         field = arcpy.Parameter(
             displayName="Field Name",
             name="field",
-            datatype="GPString",
+            datatype="Field",
             parameterType="Required",
             direction="Input")
+        field.parameterDependencies = [input.name]
 
         output = arcpy.Parameter(
             displayName="Output HTML File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
 
@@ -16387,35 +16629,37 @@ class AttributeScattergram(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         fieldx = arcpy.Parameter(
             displayName="Field Name X",
             name="fieldx",
-            datatype="GPString",
+            datatype="Field",
             parameterType="Required",
             direction="Input")
+        fieldx.parameterDependencies = [input.name]
 
         fieldy = arcpy.Parameter(
             displayName="Field Name Y",
             name="fieldy",
-            datatype="GPString",
+            datatype="Field",
             parameterType="Required",
             direction="Input")
+        fieldy.parameterDependencies = [input.name]
 
         output = arcpy.Parameter(
             displayName="Output HTML File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
 
         trendline = arcpy.Parameter(
             displayName="Draw the trendline?",
             name="trendline",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -16445,14 +16689,14 @@ class Ceil(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -16480,14 +16724,14 @@ class Cos(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -16515,14 +16759,14 @@ class Cosh(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -16550,14 +16794,14 @@ class CrispnessIndex(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output HTML File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Optional",
             direction="Output")
 
@@ -16585,21 +16829,21 @@ class CrossTabulation(object):
         input1 = arcpy.Parameter(
             displayName="Input File 1",
             name="input1",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File 2",
             name="input2",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output HTML File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
 
@@ -16627,14 +16871,14 @@ class CumulativeDistribution(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -16662,14 +16906,14 @@ class Decrement(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -16697,21 +16941,21 @@ class Divide(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -16739,21 +16983,21 @@ class EqualTo(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -16781,14 +17025,14 @@ class Exp(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -16816,14 +17060,14 @@ class Exp2(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -16851,21 +17095,21 @@ class ExtractRasterStatistics(object):
         input = arcpy.Parameter(
             displayName="Input Data File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         features = arcpy.Parameter(
             displayName="Input Feature Definition File",
             name="features",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output Raster File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Output")
 
@@ -16875,13 +17119,15 @@ class ExtractRasterStatistics(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        stat.filter.type = "ValueList"
+        stat.filter.list = ['average', 'minimum', 'maximum', 'range', 'standard deviation', 'total']
 
         stat.value = "average"
 
         out_table = arcpy.Parameter(
             displayName="Output HTML Table File",
             name="out_table",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Optional",
             direction="Output")
 
@@ -16909,14 +17155,14 @@ class Floor(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -16944,28 +17190,28 @@ class GreaterThan(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         incl_equals = arcpy.Parameter(
             displayName="Perform a greater-than-OR-EQUAL-TO operation?",
             name="incl_equals",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -16993,7 +17239,7 @@ class ImageAutocorrelation(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
@@ -17003,13 +17249,15 @@ class ImageAutocorrelation(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+        contiguity.filter.type = "ValueList"
+        contiguity.filter.list = ['Rook', 'King', 'Bishop']
 
         contiguity.value = "Rook"
 
         output = arcpy.Parameter(
             displayName="Output HTML File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
 
@@ -17037,14 +17285,14 @@ class ImageCorrelation(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output HTML File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Optional",
             direction="Output")
 
@@ -17072,35 +17320,35 @@ class ImageRegression(object):
         input1 = arcpy.Parameter(
             displayName="Independent Variable (X).",
             name="input1",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Dependent Variable (Y).",
             name="input2",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output Summary Report File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
 
         out_residuals = arcpy.Parameter(
             displayName="Optional Residuals Output File",
             name="out_residuals",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Optional",
             direction="Output")
 
         standardize = arcpy.Parameter(
             displayName="Standardize the residuals map?",
             name="standardize",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -17128,14 +17376,14 @@ class InPlaceAdd(object):
         input1 = arcpy.Parameter(
             displayName="Input Raster File",
             name="input1",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
@@ -17163,14 +17411,14 @@ class InPlaceDivide(object):
         input1 = arcpy.Parameter(
             displayName="Input Raster File",
             name="input1",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
@@ -17198,14 +17446,14 @@ class InPlaceMultiply(object):
         input1 = arcpy.Parameter(
             displayName="Input Raster File",
             name="input1",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
@@ -17233,14 +17481,14 @@ class InPlaceSubtract(object):
         input1 = arcpy.Parameter(
             displayName="Input Raster File",
             name="input1",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
@@ -17268,14 +17516,14 @@ class Increment(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -17303,21 +17551,21 @@ class IntegerDivision(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -17345,14 +17593,14 @@ class IsNoData(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -17380,21 +17628,21 @@ class KappaIndex(object):
         input1 = arcpy.Parameter(
             displayName="Input Classification File",
             name="input1",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input Reference File",
             name="input2",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
 
@@ -17422,21 +17670,21 @@ class KsTestForNormality(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
 
         num_samples = arcpy.Parameter(
             displayName="Num. Samples (blank for while image)",
             name="num_samples",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -17464,28 +17712,28 @@ class LessThan(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         incl_equals = arcpy.Parameter(
             displayName="Perform a less-than-OR-EQUAL-TO operation?",
             name="incl_equals",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -17513,21 +17761,22 @@ class ListUniqueValues(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
 
         field = arcpy.Parameter(
             displayName="Field Name",
             name="field",
-            datatype="GPString",
+            datatype="Field",
             parameterType="Required",
             direction="Input")
+        field.parameterDependencies = [input.name]
 
         output = arcpy.Parameter(
             displayName="Output HTML File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
 
@@ -17555,14 +17804,14 @@ class Ln(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -17590,14 +17839,14 @@ class Log10(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -17625,14 +17874,14 @@ class Log2(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -17660,21 +17909,21 @@ class Max(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -17702,21 +17951,21 @@ class Min(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -17744,21 +17993,21 @@ class Modulo(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -17786,21 +18035,21 @@ class Multiply(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -17828,14 +18077,14 @@ class Negate(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -17863,21 +18112,21 @@ class NotEqualTo(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -17905,21 +18154,21 @@ class Power(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -17947,28 +18196,28 @@ class PrincipalComponentAnalysis(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         out_html = arcpy.Parameter(
             displayName="Output HTML Report File",
             name="out_html",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
 
         num_comp = arcpy.Parameter(
             displayName="Num. of Component Images (blank for all)",
             name="num_comp",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
         standardized = arcpy.Parameter(
             displayName="Perform Standaradized PCA?",
             name="standardized",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -17996,21 +18245,21 @@ class Quantiles(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         num_quantiles = arcpy.Parameter(
             displayName="Number of Quantiles",
             name="num_quantiles",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Required",
             direction="Input")
 
@@ -18040,14 +18289,14 @@ class RandomField(object):
         base = arcpy.Parameter(
             displayName="Input Base File",
             name="base",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -18075,21 +18324,21 @@ class RandomSample(object):
         base = arcpy.Parameter(
             displayName="Input Base File",
             name="base",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         num_samples = arcpy.Parameter(
             displayName="Num. Samples",
             name="num_samples",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Required",
             direction="Input")
 
@@ -18119,14 +18368,14 @@ class RasterHistogram(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output HTML File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
 
@@ -18154,7 +18403,7 @@ class RasterSummaryStats(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
@@ -18182,14 +18431,14 @@ class Reciprocal(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -18217,42 +18466,42 @@ class RescaleValueRange(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         out_min_val = arcpy.Parameter(
             displayName="Output Raster Minimum Value",
             name="out_min_val",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
         out_max_val = arcpy.Parameter(
             displayName="Output Raster Maximum Value",
             name="out_max_val",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
         clip_min = arcpy.Parameter(
             displayName="Lower-Tail Clip Value (optional)",
             name="clip_min",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         clip_max = arcpy.Parameter(
             displayName="Upper-Tail Clip Value (optional)",
             name="clip_max",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -18280,14 +18529,14 @@ class RootMeanSquareError(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         base = arcpy.Parameter(
             displayName="Input Base File",
             name="base",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
@@ -18315,14 +18564,14 @@ class Round(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -18350,14 +18599,14 @@ class Sin(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -18385,14 +18634,14 @@ class Sinh(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -18420,14 +18669,14 @@ class Square(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -18455,14 +18704,14 @@ class SquareRoot(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -18490,21 +18739,21 @@ class Subtract(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -18532,14 +18781,14 @@ class Tan(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -18567,14 +18816,14 @@ class Tanh(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -18602,14 +18851,14 @@ class ToDegrees(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -18637,14 +18886,14 @@ class ToRadians(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -18672,21 +18921,21 @@ class TrendSurface(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         order = arcpy.Parameter(
             displayName="Polynomial Order",
             name="order",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -18716,28 +18965,30 @@ class TrendSurfaceVectorPoints(object):
         input = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="input",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        input.filter.list = ["Point"]
 
         field = arcpy.Parameter(
             displayName="Field Name",
             name="field",
-            datatype="GPString",
+            datatype="Field",
             parameterType="Required",
             direction="Input")
+        field.parameterDependencies = [input.name]
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         order = arcpy.Parameter(
             displayName="Polynomial Order",
             name="order",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -18746,7 +18997,7 @@ class TrendSurfaceVectorPoints(object):
         cell_size = arcpy.Parameter(
             displayName="Cell Size (optional)",
             name="cell_size",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
@@ -18774,21 +19025,21 @@ class Truncate(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         num_decimals = arcpy.Parameter(
             displayName="Number of Decimals After Truncation",
             name="num_decimals",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -18816,28 +19067,28 @@ class TurningBandsSimulation(object):
         base = arcpy.Parameter(
             displayName="Input Base File",
             name="base",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         range = arcpy.Parameter(
             displayName="Range of Autocorrelation (map units)",
             name="range",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
         iterations = arcpy.Parameter(
             displayName="Iterations",
             name="iterations",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -18867,21 +19118,21 @@ class Xor(object):
         input1 = arcpy.Parameter(
             displayName="Input File",
             name="input1",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File",
             name="input2",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -18909,14 +19160,14 @@ class ZScores(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -18944,28 +19195,28 @@ class DistanceToOutlet(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -18974,7 +19225,7 @@ class DistanceToOutlet(object):
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
             name="zero_background",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -19002,28 +19253,28 @@ class ExtractStreams(object):
         flow_accum = arcpy.Parameter(
             displayName="Input D8 Flow Accumulation File",
             name="flow_accum",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         threshold = arcpy.Parameter(
             displayName="Channelization Threshold",
             name="threshold",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
             name="zero_background",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -19051,14 +19302,14 @@ class ExtractValleys(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
@@ -19068,13 +19319,15 @@ class ExtractValleys(object):
             datatype="GPString",
             parameterType="Required",
             direction="Input")
+        variant.filter.type = "ValueList"
+        variant.filter.list = ['Lower Quartile', 'Johnston and Rosenfeld', 'Peucker and Douglas']
 
         variant.value = "Lower Quartile"
 
         line_thin = arcpy.Parameter(
             displayName="Perform line-thinning?",
             name="line_thin",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -19083,7 +19336,7 @@ class ExtractValleys(object):
         filter = arcpy.Parameter(
             displayName="Filter Size (Only For Lower Quartile)",
             name="filter",
-            datatype="GPString",
+            datatype="GPLong",
             parameterType="Optional",
             direction="Input")
 
@@ -19113,28 +19366,28 @@ class FarthestChannelHead(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -19143,7 +19396,7 @@ class FarthestChannelHead(object):
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
             name="zero_background",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -19171,28 +19424,28 @@ class FindMainStem(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -19201,7 +19454,7 @@ class FindMainStem(object):
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
             name="zero_background",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -19229,28 +19482,28 @@ class HackStreamOrder(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -19259,7 +19512,7 @@ class HackStreamOrder(object):
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
             name="zero_background",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -19287,28 +19540,28 @@ class HortonStreamOrder(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -19317,7 +19570,7 @@ class HortonStreamOrder(object):
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
             name="zero_background",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -19345,28 +19598,28 @@ class LengthOfUpstreamChannels(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -19375,7 +19628,7 @@ class LengthOfUpstreamChannels(object):
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
             name="zero_background",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -19403,35 +19656,35 @@ class LongProfile(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output HTML File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -19461,35 +19714,36 @@ class LongProfileFromPoints(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         points = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="points",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        points.filter.list = ["Point"]
 
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output HTML File",
             name="output",
-            datatype="GPString",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -19519,28 +19773,29 @@ class RasterStreamsToVector(object):
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["Polyline"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -19570,28 +19825,29 @@ class RasterizeStreams(object):
         streams = arcpy.Parameter(
             displayName="Input Vector Streams File",
             name="streams",
-            datatype="GPString",
+            datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        streams.filter.list = ["Polyline"]
 
         base = arcpy.Parameter(
             displayName="Input Base Raster File",
             name="base",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         nodata = arcpy.Parameter(
             displayName="Use NoData value for background?",
             name="nodata",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -19600,7 +19856,7 @@ class RasterizeStreams(object):
         feature_id = arcpy.Parameter(
             displayName="Use feature number as output value?",
             name="feature_id",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -19630,35 +19886,35 @@ class RemoveShortStreams(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         min_length = arcpy.Parameter(
             displayName="Minimum Tributary Length (map units)",
             name="min_length",
-            datatype="GPString",
+            datatype="GPDouble",
             parameterType="Required",
             direction="Input")
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -19688,28 +19944,28 @@ class ShreveStreamMagnitude(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -19718,7 +19974,7 @@ class ShreveStreamMagnitude(object):
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
             name="zero_background",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -19746,28 +20002,28 @@ class StrahlerStreamOrder(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -19776,7 +20032,7 @@ class StrahlerStreamOrder(object):
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
             name="zero_background",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -19804,28 +20060,28 @@ class StreamLinkClass(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -19834,7 +20090,7 @@ class StreamLinkClass(object):
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
             name="zero_background",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -19862,28 +20118,28 @@ class StreamLinkIdentifier(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -19892,7 +20148,7 @@ class StreamLinkIdentifier(object):
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
             name="zero_background",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -19920,28 +20176,28 @@ class StreamLinkLength(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         linkid = arcpy.Parameter(
             displayName="Input Stream Link (Tributary) ID File",
             name="linkid",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -19950,7 +20206,7 @@ class StreamLinkLength(object):
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
             name="zero_background",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -19978,35 +20234,35 @@ class StreamLinkSlope(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         linkid = arcpy.Parameter(
             displayName="Input Stream Link (Tributary) ID File",
             name="linkid",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -20015,7 +20271,7 @@ class StreamLinkSlope(object):
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
             name="zero_background",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -20043,35 +20299,35 @@ class StreamSlopeContinuous(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -20080,7 +20336,7 @@ class StreamSlopeContinuous(object):
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
             name="zero_background",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -20108,28 +20364,28 @@ class TopologicalStreamOrder(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -20138,7 +20394,7 @@ class TopologicalStreamOrder(object):
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
             name="zero_background",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -20166,28 +20422,28 @@ class TributaryIdentifier(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="GPString",
+            datatype="DERasterDataset",
             parameterType="Required",
             direction="Output")
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
             name="esri_pntr",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 
@@ -20196,7 +20452,7 @@ class TributaryIdentifier(object):
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
             name="zero_background",
-            datatype="GPString",
+            datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
 

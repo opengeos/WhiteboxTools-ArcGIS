@@ -1,9 +1,9 @@
 # WhiteboxTools-ArcGIS
 
-[![docs](https://img.shields.io/badge/docs-passing-brightgreen.svg)](https://jblindsay.github.io/wbt_book)
-[![ArcGIS](https://img.shields.io/badge/package-ArcGIS-brightgreen.svg)](https://github.com/giswqs/WhiteboxTools-ArcGIS)
-[![python](https://img.shields.io/badge/package-Python-blue.svg)](https://github.com/giswqs/whitebox)
-[![R](https://img.shields.io/badge/package-R-green.svg)](https://github.com/giswqs/whiteboxR)
+[![docs](https://img.shields.io/badge/whitebox-docs-brightgreen.svg)](https://jblindsay.github.io/wbt_book)
+[![ArcGIS](https://img.shields.io/badge/whitebox-ArcGIS-brightgreen.svg)](https://github.com/giswqs/WhiteboxTools-ArcGIS)
+[![python](https://img.shields.io/badge/whitebox-Python-blue.svg)](https://github.com/giswqs/whitebox)
+[![R](https://img.shields.io/badge/whitebox-R-green.svg)](https://github.com/giswqs/whiteboxR)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Donate](https://img.shields.io/badge/Donate-Buy%20me%20a%20coffee-yellowgreen.svg)](https://www.buymeacoffee.com/giswqs)
 
