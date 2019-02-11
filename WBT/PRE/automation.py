@@ -121,8 +121,6 @@ def get_tool_params(tool_name):
     return params_dict
 
 
-
-
 def get_param_types(tools):
 
     parameter_types = []
@@ -163,7 +161,6 @@ def generate_tool_template(tool):
     return lines
 
 
-
 def define_tool_params(params):
     lines = []
     # num_params = len(params)
@@ -185,6 +182,14 @@ def define_tool_params(params):
             param = "class1"
 
         data_type = get_data_type(items['parameter_type'])
+
+        if data_type['data_type'] == '"DERasterDataset"' and direction == "Output":
+            data_type['data_type'] = '"DEFile"'
+            data_type['data_filter'] = '["tif"]'
+            parameter_type = "Required"   # if a filter is used, the parameter must be changed to required.
+
+        if data_type['data_filter'] == '["html"]':
+            parameter_type = "Required"
 
         lines.append('        {} = arcpy.Parameter(\n'.format(param))
         lines.append('            displayName="{}",\n'.format(items['name']))
@@ -227,9 +232,6 @@ def define_execute(params):
     return lines
 
 
-
-
-
 def get_data_type(param):
     data_type = '"GPString"'  # default data type
     data_filter = '[]'   # https://goo.gl/EaVNzg
@@ -263,6 +265,7 @@ def get_data_type(param):
 
     if type(param) is str:
         data_type = data_types[param]
+
     else:
         for item in param:
             if item == 'FileList':
@@ -277,8 +280,8 @@ def get_data_type(param):
                 data_filter = '["csv"]'
             elif param[item] == 'Lidar':
                 data_filter = '["las", "zip"]'
-            # elif param[item] == 'Html':
-            #     data_filter = "['HTML']"
+            elif param[item] == 'Html':
+                data_filter = '["html"]'
             if type(param[item]) is str:
                 data_type = data_types[param[item]]
             elif type(param[item]) is dict:
@@ -314,16 +317,12 @@ file_about_py = os.path.join(dir_path, "file_about.py")
 file_wbt_py = os.path.join(dir_path, "WhiteboxTools.py")
 file_wbt_pyt = os.path.join(os.path.dirname(os.path.dirname(dir_path)), "WhiteboxTools.pyt")
 
-
 tool_template_py = os.path.join(dir_path, "tool_template.py")           # code chuck for each tool
 toolbox_template_py = os.path.join(dir_path, "toolbox_template.py")     # code chuck for toolbox header
 about_py = os.path.join(dir_path, "about.py")  
 
-
-
 tools_py = os.path.join(dir_path, "tools.py")
 toolbox_py = os.path.join(dir_path, "toolbox.py")
-
 
 toolboxes = {
     "# Data Tools #": "Data Tools",
@@ -335,7 +334,6 @@ toolboxes = {
     "# Math and Stats Tools #": "Math and Stats Tools",
     "# Stream Network Analysis #": "Stream Network Analysis"
 }
-
 
 tools_dict = {}
 tool_labels = []

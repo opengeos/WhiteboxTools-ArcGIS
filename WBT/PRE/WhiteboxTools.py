@@ -1222,9 +1222,10 @@ class ConvertNodataToZero(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -1260,9 +1261,10 @@ class ConvertRasterFormat(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -1604,9 +1606,10 @@ class NewRasterFromBase(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         value = arcpy.Parameter(
             displayName="Constant Value",
@@ -1882,9 +1885,10 @@ class SetNodataValue(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         back_value = arcpy.Parameter(
             displayName="Background Value",
@@ -1988,9 +1992,10 @@ class VectorLinesToRaster(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         nodata = arcpy.Parameter(
             displayName="Background value is NoData?",
@@ -2064,9 +2069,10 @@ class VectorPointsToRaster(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         assign = arcpy.Parameter(
             displayName="Assignment Operation",
@@ -2152,9 +2158,10 @@ class VectorPolygonsToRaster(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         nodata = arcpy.Parameter(
             displayName="Background value is NoData?",
@@ -2217,9 +2224,10 @@ class AggregateRaster(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         agg_factor = arcpy.Parameter(
             displayName="Aggregation Factor (pixels)",
@@ -2295,9 +2303,10 @@ class BlockMaximumGridding(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         cell_size = arcpy.Parameter(
             displayName="Cell Size (optional)",
@@ -2369,9 +2378,10 @@ class BlockMinimumGridding(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         cell_size = arcpy.Parameter(
             displayName="Cell Size (optional)",
@@ -2425,9 +2435,10 @@ class Centroid(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         text_output = arcpy.Parameter(
             displayName="Output text?",
@@ -2509,9 +2520,10 @@ class Clump(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         diag = arcpy.Parameter(
             displayName="Include diagonal connections?",
@@ -2683,9 +2695,10 @@ class CreatePlane(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         gradient = arcpy.Parameter(
             displayName="Gradient",
@@ -3139,9 +3152,10 @@ class IdwInterpolation(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         weight = arcpy.Parameter(
             displayName="IDW Weight (Exponent) Value",
@@ -3524,9 +3538,10 @@ class NearestNeighbourGridding(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         cell_size = arcpy.Parameter(
             displayName="Cell Size (optional)",
@@ -3730,9 +3745,10 @@ class RasterCellAssignment(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         assign = arcpy.Parameter(
             displayName="Which spatial variable should be assigned?",
@@ -3780,9 +3796,10 @@ class Reclass(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         reclass_vals = arcpy.Parameter(
             displayName="Class Interval Size",
@@ -3834,9 +3851,10 @@ class ReclassEqualInterval(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         interval = arcpy.Parameter(
             displayName="Class Interval Size",
@@ -3905,9 +3923,10 @@ class ReclassFromFile(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, reclass_file, output]
 
@@ -4010,9 +4029,10 @@ class TinGridding(object):
         output = arcpy.Parameter(
             displayName="Output Raster File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         resolution = arcpy.Parameter(
             displayName="Grid Resolution",
@@ -4158,9 +4178,10 @@ class BufferRaster(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         size = arcpy.Parameter(
             displayName="Buffer Size",
@@ -4219,9 +4240,10 @@ class CostAllocation(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [source, backlink, output]
 
@@ -4265,16 +4287,18 @@ class CostDistance(object):
         out_accum = arcpy.Parameter(
             displayName="Output Cost Accumulation File",
             name="out_accum",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        out_accum.filter.list = ["tif"]
 
         out_backlink = arcpy.Parameter(
             displayName="Output Backlink File",
             name="out_backlink",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        out_backlink.filter.list = ["tif"]
 
         params = [source, cost, out_accum, out_backlink]
 
@@ -4319,9 +4343,10 @@ class CostPathway(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         zero_background = arcpy.Parameter(
             displayName="Treat zero values as background?",
@@ -4366,9 +4391,10 @@ class EuclideanAllocation(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -4404,9 +4430,10 @@ class EuclideanDistance(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -4442,9 +4469,10 @@ class AverageOverlay(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [inputs, output]
 
@@ -4535,9 +4563,10 @@ class ClipRasterToPolygon(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         maintain_dimensions = arcpy.Parameter(
             displayName="Maintain input raster dimensions?",
@@ -4584,9 +4613,10 @@ class CountIf(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         value = arcpy.Parameter(
             displayName="Value",
@@ -4731,9 +4761,10 @@ class ErasePolygonFromRaster(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, polygons, output]
 
@@ -4770,9 +4801,10 @@ class HighestPosition(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [inputs, output]
 
@@ -4913,9 +4945,10 @@ class LowestPosition(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [inputs, output]
 
@@ -4951,9 +4984,10 @@ class MaxAbsoluteOverlay(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [inputs, output]
 
@@ -4989,9 +5023,10 @@ class MaxOverlay(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [inputs, output]
 
@@ -5027,9 +5062,10 @@ class MinAbsoluteOverlay(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [inputs, output]
 
@@ -5065,9 +5101,10 @@ class MinOverlay(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [inputs, output]
 
@@ -5110,9 +5147,10 @@ class PercentEqualTo(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [inputs, comparison, output]
 
@@ -5156,9 +5194,10 @@ class PercentGreaterThan(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [inputs, comparison, output]
 
@@ -5202,9 +5241,10 @@ class PercentLessThan(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [inputs, comparison, output]
 
@@ -5248,9 +5288,10 @@ class PickFromList(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [inputs, pos_input, output]
 
@@ -5374,9 +5415,10 @@ class SumOverlay(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [inputs, output]
 
@@ -5545,9 +5587,10 @@ class WeightedOverlay(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         scale_max = arcpy.Parameter(
             displayName="Suitability Scale Maximum",
@@ -5603,9 +5646,10 @@ class WeightedSum(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [inputs, weights, output]
 
@@ -5673,9 +5717,10 @@ class EdgeProportion(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         output_text = arcpy.Parameter(
             displayName="Output a text report?",
@@ -5750,9 +5795,10 @@ class FindPatchOrClassEdgeCells(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -5912,9 +5958,10 @@ class RadiusOfGyration(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         text_output = arcpy.Parameter(
             displayName="Output text?",
@@ -6020,9 +6067,10 @@ class Aspect(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         zfactor = arcpy.Parameter(
             displayName="Z Conversion Factor",
@@ -6068,9 +6116,10 @@ class CircularVarianceOfAspect(object):
         output = arcpy.Parameter(
             displayName="Output Roughness Scale File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filter = arcpy.Parameter(
             displayName="Filter Dimension",
@@ -6116,9 +6165,10 @@ class DevFromMeanElev(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
@@ -6174,9 +6224,10 @@ class DiffFromMeanElev(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
@@ -6232,9 +6283,10 @@ class DirectionalRelief(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         azimuth = arcpy.Parameter(
             displayName="Azimuth",
@@ -6288,9 +6340,10 @@ class DownslopeIndex(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         drop = arcpy.Parameter(
             displayName="Verical Drop",
@@ -6348,9 +6401,10 @@ class DrainagePreservingSmoothing(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filter = arcpy.Parameter(
             displayName="Filter Size",
@@ -6454,9 +6508,10 @@ class EdgeDensity(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filter = arcpy.Parameter(
             displayName="Filter Size",
@@ -6522,9 +6577,10 @@ class ElevAbovePit(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [dem, output]
 
@@ -6560,9 +6616,10 @@ class ElevPercentile(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
@@ -6628,9 +6685,10 @@ class ElevRelativeToMinMax(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [dem, output]
 
@@ -6673,9 +6731,10 @@ class ElevRelativeToWatershedMinMax(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [dem, watersheds, output]
 
@@ -6712,9 +6771,10 @@ class FeaturePreservingDenoise(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filter = arcpy.Parameter(
             displayName="Filter Size",
@@ -6798,9 +6858,10 @@ class FetchAnalysis(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         azimuth = arcpy.Parameter(
             displayName="Azimuth (degrees)",
@@ -6856,9 +6917,10 @@ class FillMissingData(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filter = arcpy.Parameter(
             displayName="Filter Dimension",
@@ -6914,9 +6976,10 @@ class FindRidges(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         line_thin = arcpy.Parameter(
             displayName="Perform line-thinning?",
@@ -6962,9 +7025,10 @@ class Hillshade(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         azimuth = arcpy.Parameter(
             displayName="Azimuth (degrees)",
@@ -7030,9 +7094,10 @@ class HorizonAngle(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         azimuth = arcpy.Parameter(
             displayName="Azimuth",
@@ -7096,6 +7161,7 @@ class HypsometricAnalysis(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["html"]
 
         params = [inputs, watershed, output]
 
@@ -7132,16 +7198,18 @@ class MaxAnisotropyDev(object):
         out_mag = arcpy.Parameter(
             displayName="Output DEVmax Magnitude File",
             name="out_mag",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        out_mag.filter.list = ["tif"]
 
         out_scale = arcpy.Parameter(
             displayName="Output DEVmax Scale File",
             name="out_scale",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        out_scale.filter.list = ["tif"]
 
         min_scale = arcpy.Parameter(
             displayName="Minimum Search Neighbourhood Radius (grid cells)",
@@ -7217,6 +7285,7 @@ class MaxAnisotropyDevSignature(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["html"]
 
         min_scale = arcpy.Parameter(
             displayName="Minimum Search Neighbourhood Radius (grid cells)",
@@ -7281,9 +7350,10 @@ class MaxBranchLength(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         log = arcpy.Parameter(
             displayName="Log-transform the output?",
@@ -7327,16 +7397,18 @@ class MaxDifferenceFromMean(object):
         out_mag = arcpy.Parameter(
             displayName="Output DIFFmax Magnitude File",
             name="out_mag",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        out_mag.filter.list = ["tif"]
 
         out_scale = arcpy.Parameter(
             displayName="Output DIFFmax Scale File",
             name="out_scale",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        out_scale.filter.list = ["tif"]
 
         min_scale = arcpy.Parameter(
             displayName="Minimum Search Neighbourhood Radius (grid cells)",
@@ -7399,9 +7471,10 @@ class MaxDownslopeElevChange(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [dem, output]
 
@@ -7448,6 +7521,7 @@ class MaxElevDevSignature(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["html"]
 
         min_scale = arcpy.Parameter(
             displayName="Minimum Search Neighbourhood Radius (grid cells)",
@@ -7510,16 +7584,18 @@ class MaxElevationDeviation(object):
         out_mag = arcpy.Parameter(
             displayName="Output DEVmax Magnitude File",
             name="out_mag",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        out_mag.filter.list = ["tif"]
 
         out_scale = arcpy.Parameter(
             displayName="Output DEVmax Scale File",
             name="out_scale",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        out_scale.filter.list = ["tif"]
 
         min_scale = arcpy.Parameter(
             displayName="Minimum Search Neighbourhood Radius (grid cells)",
@@ -7582,9 +7658,10 @@ class MinDownslopeElevChange(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [dem, output]
 
@@ -7620,16 +7697,18 @@ class MultiscaleRoughness(object):
         out_mag = arcpy.Parameter(
             displayName="Output Roughness Magnitude File",
             name="out_mag",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        out_mag.filter.list = ["tif"]
 
         out_scale = arcpy.Parameter(
             displayName="Output Roughness Scale File",
             name="out_scale",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        out_scale.filter.list = ["tif"]
 
         min_scale = arcpy.Parameter(
             displayName="Minimum Search Neighbourhood Radius (grid cells)",
@@ -7705,6 +7784,7 @@ class MultiscaleRoughnessSignature(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["html"]
 
         min_scale = arcpy.Parameter(
             displayName="Minimum Search Neighbourhood Radius (grid cells)",
@@ -7783,9 +7863,10 @@ class MultiscaleTopographicPositionImage(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         lightness = arcpy.Parameter(
             displayName="Image Lightness Value",
@@ -7833,9 +7914,10 @@ class NumDownslopeNeighbours(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [dem, output]
 
@@ -7871,9 +7953,10 @@ class NumUpslopeNeighbours(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [dem, output]
 
@@ -7909,9 +7992,10 @@ class PennockLandformClass(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         slope = arcpy.Parameter(
             displayName="Slope Threshold (degrees)",
@@ -7987,9 +8071,10 @@ class PercentElevRange(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
@@ -8045,9 +8130,10 @@ class PlanCurvature(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         zfactor = arcpy.Parameter(
             displayName="Z Conversion Factor",
@@ -8104,6 +8190,7 @@ class Profile(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["html"]
 
         params = [lines, surface, output]
 
@@ -8140,9 +8227,10 @@ class ProfileCurvature(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         zfactor = arcpy.Parameter(
             displayName="Z Conversion Factor",
@@ -8188,9 +8276,10 @@ class RelativeAspect(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         azimuth = arcpy.Parameter(
             displayName="Azimuth",
@@ -8253,9 +8342,10 @@ class RelativeStreamPowerIndex(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         exponent = arcpy.Parameter(
             displayName="Specific Contributing Area (SCA) Exponent",
@@ -8302,9 +8392,10 @@ class RelativeTopographicPosition(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
@@ -8360,9 +8451,10 @@ class RemoveOffTerrainObjects(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filter = arcpy.Parameter(
             displayName="Filter Dimension",
@@ -8418,9 +8510,10 @@ class RuggednessIndex(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         zfactor = arcpy.Parameter(
             displayName="Z Conversion Factor",
@@ -8473,9 +8566,10 @@ class SedimentTransportIndex(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         sca_exponent = arcpy.Parameter(
             displayName="Specific Contributing Area (SCA) Exponent",
@@ -8532,9 +8626,10 @@ class Slope(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         zfactor = arcpy.Parameter(
             displayName="Z Conversion Factor",
@@ -8590,6 +8685,7 @@ class SlopeVsElevationPlot(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["html"]
 
         params = [inputs, watershed, output]
 
@@ -8626,9 +8722,10 @@ class StandardDeviationOfSlope(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         zfactor = arcpy.Parameter(
             displayName="Z Conversion Factor",
@@ -8694,9 +8791,10 @@ class SurfaceAreaRatio(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [dem, output]
 
@@ -8732,9 +8830,10 @@ class TangentialCurvature(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         zfactor = arcpy.Parameter(
             displayName="Z Conversion Factor",
@@ -8780,9 +8879,10 @@ class TotalCurvature(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         zfactor = arcpy.Parameter(
             displayName="Z Conversion Factor",
@@ -8836,9 +8936,10 @@ class Viewshed(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         height = arcpy.Parameter(
             displayName="Station Height (in z units)",
@@ -8885,9 +8986,10 @@ class VisibilityIndex(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         height = arcpy.Parameter(
             displayName="Station Height (in z units)",
@@ -8950,9 +9052,10 @@ class WetnessIndex(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [sca, slope, output]
 
@@ -8989,9 +9092,10 @@ class AverageFlowpathSlope(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [dem, output]
 
@@ -9027,9 +9131,10 @@ class AverageUpslopeFlowpathLength(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [dem, output]
 
@@ -9065,9 +9170,10 @@ class Basins(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
@@ -9113,9 +9219,10 @@ class BreachDepressions(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         max_depth = arcpy.Parameter(
             displayName="Maximum Breach Depth (z units)",
@@ -9167,9 +9274,10 @@ class BreachSingleCellPits(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [dem, output]
 
@@ -9205,9 +9313,10 @@ class D8FlowAccumulation(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         out_type = arcpy.Parameter(
             displayName="Output Type",
@@ -9292,9 +9401,10 @@ class D8MassFlux(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [dem, loading, efficiency, absorption, output]
 
@@ -9333,9 +9443,10 @@ class D8Pointer(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Should the pointer file use the ESRI pointer scheme?",
@@ -9381,9 +9492,10 @@ class DInfFlowAccumulation(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         out_type = arcpy.Parameter(
             displayName="Output Type",
@@ -9476,9 +9588,10 @@ class DInfMassFlux(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [dem, loading, efficiency, absorption, output]
 
@@ -9517,9 +9630,10 @@ class DInfPointer(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [dem, output]
 
@@ -9555,9 +9669,10 @@ class DepthInSink(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
@@ -9608,9 +9723,10 @@ class DownslopeDistanceToStream(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [dem, streams, output]
 
@@ -9661,9 +9777,10 @@ class DownslopeFlowpathLength(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
@@ -9718,9 +9835,10 @@ class ElevationAboveStream(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [dem, streams, output]
 
@@ -9764,9 +9882,10 @@ class ElevationAboveStreamEuclidean(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [dem, streams, output]
 
@@ -9803,9 +9922,10 @@ class Fd8FlowAccumulation(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         out_type = arcpy.Parameter(
             displayName="Output Type",
@@ -9887,9 +10007,10 @@ class Fd8Pointer(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [dem, output]
 
@@ -9933,9 +10054,10 @@ class FillBurn(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [dem, streams, output]
 
@@ -9972,9 +10094,10 @@ class FillDepressions(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         fix_flats = arcpy.Parameter(
             displayName="Fix flat areas?",
@@ -10020,9 +10143,10 @@ class FillSingleCellPits(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [dem, output]
 
@@ -10058,9 +10182,10 @@ class FindNoFlowCells(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [dem, output]
 
@@ -10103,9 +10228,10 @@ class FindParallelFlow(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [d8_pntr, streams, output]
 
@@ -10150,9 +10276,10 @@ class FlattenLakes(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [dem, lakes, output]
 
@@ -10189,9 +10316,10 @@ class FloodOrder(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [dem, output]
 
@@ -10227,23 +10355,26 @@ class FlowAccumulationFullWorkflow(object):
         out_dem = arcpy.Parameter(
             displayName="Output DEM File",
             name="out_dem",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        out_dem.filter.list = ["tif"]
 
         out_pntr = arcpy.Parameter(
             displayName="Output Flow Pointer File",
             name="out_pntr",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        out_pntr.filter.list = ["tif"]
 
         out_accum = arcpy.Parameter(
             displayName="Output Flow Accumulation File",
             name="out_accum",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        out_accum.filter.list = ["tif"]
 
         out_type = arcpy.Parameter(
             displayName="Output Type",
@@ -10319,9 +10450,10 @@ class FlowLengthDiff(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
@@ -10374,9 +10506,10 @@ class Hillslopes(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
@@ -10423,9 +10556,10 @@ class ImpoundmentIndex(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         out_type = arcpy.Parameter(
             displayName="Output Type",
@@ -10481,9 +10615,10 @@ class Isobasins(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         size = arcpy.Parameter(
             displayName="Target Basin Size (grid cells)",
@@ -10630,9 +10765,10 @@ class MaxUpslopeFlowpathLength(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [dem, output]
 
@@ -10668,9 +10804,10 @@ class NumInflowingNeighbours(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [dem, output]
 
@@ -10721,9 +10858,10 @@ class RaiseWalls(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         height = arcpy.Parameter(
             displayName="Wall Height",
@@ -10771,9 +10909,10 @@ class Rho8Pointer(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Should the pointer file use the ESRI pointer scheme?",
@@ -10819,9 +10958,10 @@ class Sink(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
@@ -10921,9 +11061,10 @@ class StochasticDepressionAnalysis(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         rmse = arcpy.Parameter(
             displayName="DEM root-mean-square-error (z units)",
@@ -10992,9 +11133,10 @@ class StrahlerOrderBasins(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
@@ -11048,9 +11190,10 @@ class Subbasins(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
@@ -11105,9 +11248,10 @@ class TraceDownslopeFlowpaths(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
@@ -11170,9 +11314,10 @@ class UnnestBasins(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
@@ -11227,9 +11372,10 @@ class Watershed(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
@@ -11283,16 +11429,18 @@ class ChangeVectorAnalysis(object):
         magnitude = arcpy.Parameter(
             displayName="Output Vector Magnitude File",
             name="magnitude",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        magnitude.filter.list = ["tif"]
 
         direction = arcpy.Parameter(
             displayName="Output Vector Direction File",
             name="direction",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        direction.filter.list = ["tif"]
 
         params = [date1, date2, magnitude, direction]
 
@@ -11330,9 +11478,10 @@ class Closing(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
@@ -11409,9 +11558,10 @@ class CreateColourComposite(object):
         output = arcpy.Parameter(
             displayName="Output Colour Composite File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         enhance = arcpy.Parameter(
             displayName="Perform balance contrast enhancement?",
@@ -11470,9 +11620,10 @@ class FlipImage(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         direction = arcpy.Parameter(
             displayName="Direction",
@@ -11534,30 +11685,34 @@ class IhsToRgb(object):
         red = arcpy.Parameter(
             displayName="Output Red Band File (optional; only if colour-composite not specified)",
             name="red",
-            datatype="DERasterDataset",
-            parameterType="Optional",
+            datatype="DEFile",
+            parameterType="Required",
             direction="Output")
+        red.filter.list = ["tif"]
 
         green = arcpy.Parameter(
             displayName="Output Green Band File (optional; only if colour-composite not specified)",
             name="green",
-            datatype="DERasterDataset",
-            parameterType="Optional",
+            datatype="DEFile",
+            parameterType="Required",
             direction="Output")
+        green.filter.list = ["tif"]
 
         blue = arcpy.Parameter(
             displayName="Output Blue Band File (optional; only if colour-composite not specified)",
             name="blue",
-            datatype="DERasterDataset",
-            parameterType="Optional",
+            datatype="DEFile",
+            parameterType="Required",
             direction="Output")
+        blue.filter.list = ["tif"]
 
         output = arcpy.Parameter(
             displayName="Output Colour-Composite File (optional; only if individual bands not specified)",
             name="output",
-            datatype="DERasterDataset",
-            parameterType="Optional",
+            datatype="DEFile",
+            parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [intensity, hue, saturation, red, green, blue, output]
 
@@ -11609,6 +11764,7 @@ class ImageStackProfile(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["html"]
 
         params = [inputs, points, output]
 
@@ -11645,9 +11801,10 @@ class IntegralImage(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -11683,16 +11840,18 @@ class KMeansClustering(object):
         output = arcpy.Parameter(
             displayName="Output Raster File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         out_html = arcpy.Parameter(
             displayName="Output HTML Report File",
             name="out_html",
             datatype="DEFile",
-            parameterType="Optional",
+            parameterType="Required",
             direction="Output")
+        out_html.filter.list = ["html"]
 
         classes = arcpy.Parameter(
             displayName="Num. Classes (k)",
@@ -11779,9 +11938,10 @@ class LineThinning(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -11817,16 +11977,18 @@ class ModifiedKMeansClustering(object):
         output = arcpy.Parameter(
             displayName="Output Raster File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         out_html = arcpy.Parameter(
             displayName="Output HTML Report File",
             name="out_html",
             datatype="DEFile",
-            parameterType="Optional",
+            parameterType="Required",
             direction="Output")
+        out_html.filter.list = ["html"]
 
         start_clusters = arcpy.Parameter(
             displayName="Initial Num. of Clusters",
@@ -11901,9 +12063,10 @@ class Mosaic(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         method = arcpy.Parameter(
             displayName="Resampling Method",
@@ -11958,9 +12121,10 @@ class MosaicWithFeathering(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         method = arcpy.Parameter(
             displayName="Resampling Method",
@@ -12026,9 +12190,10 @@ class NormalizedDifferenceVegetationIndex(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         clip = arcpy.Parameter(
             displayName="Distribution Tail Clip Amount (%)",
@@ -12083,9 +12248,10 @@ class Opening(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
@@ -12141,9 +12307,10 @@ class RemoveSpurs(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         iterations = arcpy.Parameter(
             displayName="Maximum Iterations",
@@ -12260,23 +12427,26 @@ class RgbToIhs(object):
         intensity = arcpy.Parameter(
             displayName="Output Intensity File",
             name="intensity",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        intensity.filter.list = ["tif"]
 
         hue = arcpy.Parameter(
             displayName="Output Hue File",
             name="hue",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        hue.filter.list = ["tif"]
 
         saturation = arcpy.Parameter(
             displayName="Output Saturation File",
             name="saturation",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        saturation.filter.list = ["tif"]
 
         params = [red, green, blue, composite, intensity, hue, saturation]
 
@@ -12317,9 +12487,10 @@ class SplitColourComposite(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -12355,9 +12526,10 @@ class ThickenRasterLine(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -12393,9 +12565,10 @@ class TophatTransform(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
@@ -12477,9 +12650,10 @@ class WriteFunctionMemoryInsertion(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input1, input2, input3, output]
 
@@ -12517,9 +12691,10 @@ class AdaptiveFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
@@ -12585,9 +12760,10 @@ class BilateralFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         sigma_dist = arcpy.Parameter(
             displayName="Distance Standard Deviation (pixels)",
@@ -12643,9 +12819,10 @@ class ConservativeSmoothingFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
@@ -12701,9 +12878,10 @@ class CornerDetection(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -12739,9 +12917,10 @@ class DiffOfGaussianFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         sigma1 = arcpy.Parameter(
             displayName="Sigma 1 (pixels)",
@@ -12797,9 +12976,10 @@ class DiversityFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
@@ -12855,9 +13035,10 @@ class EdgePreservingMeanFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filter = arcpy.Parameter(
             displayName="Filter Size",
@@ -12911,9 +13092,10 @@ class EmbossFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         direction = arcpy.Parameter(
             displayName="Direction",
@@ -12971,9 +13153,10 @@ class FastAlmostGaussianFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         sigma = arcpy.Parameter(
             displayName="Standard Deviation (pixels)",
@@ -13019,9 +13202,10 @@ class GaussianFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         sigma = arcpy.Parameter(
             displayName="Standard Deviation (pixels)",
@@ -13067,9 +13251,10 @@ class HighPassFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
@@ -13125,9 +13310,10 @@ class HighPassMedianFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
@@ -13193,9 +13379,10 @@ class KNearestMeanFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
@@ -13261,9 +13448,10 @@ class LaplacianFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         variant = arcpy.Parameter(
             displayName="Variant",
@@ -13321,9 +13509,10 @@ class LaplacianOfGaussianFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         sigma = arcpy.Parameter(
             displayName="Standard Deviation (Pixels)",
@@ -13369,9 +13558,10 @@ class LeeFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
@@ -13447,9 +13637,10 @@ class LineDetectionFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         variant = arcpy.Parameter(
             displayName="Variant",
@@ -13515,9 +13706,10 @@ class MajorityFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
@@ -13573,9 +13765,10 @@ class MaximumFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
@@ -13631,9 +13824,10 @@ class MeanFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
@@ -13689,9 +13883,10 @@ class MedianFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
@@ -13757,9 +13952,10 @@ class MinimumFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
@@ -13815,9 +14011,10 @@ class OlympicFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
@@ -13873,9 +14070,10 @@ class PercentileFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
@@ -13941,9 +14139,10 @@ class PrewittFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         clip = arcpy.Parameter(
             displayName="Distribution Tail Clip Amount (Percent)",
@@ -13989,9 +14188,10 @@ class RangeFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
@@ -14047,9 +14247,10 @@ class RobertsCrossFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         clip = arcpy.Parameter(
             displayName="Distribution Tail Clip Amount (Percent)",
@@ -14095,9 +14296,10 @@ class ScharrFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         clip = arcpy.Parameter(
             displayName="Distribution Tail Clip Amount (Percent)",
@@ -14143,9 +14345,10 @@ class SobelFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         variant = arcpy.Parameter(
             displayName="Variant",
@@ -14203,9 +14406,10 @@ class StandardDeviationFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
@@ -14261,9 +14465,10 @@ class TotalFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
@@ -14319,9 +14524,10 @@ class UnsharpMasking(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         sigma = arcpy.Parameter(
             displayName="Standard Deviation (pixels)",
@@ -14395,9 +14601,10 @@ class UserDefinedWeightsFilter(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         center = arcpy.Parameter(
             displayName="Kernel Center",
@@ -14456,9 +14663,10 @@ class BalanceContrastEnhancement(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         band_mean = arcpy.Parameter(
             displayName="Band Mean Value",
@@ -14512,9 +14720,10 @@ class CorrectVignetting(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         focal_length = arcpy.Parameter(
             displayName="Camera Focal Length (mm)",
@@ -14581,9 +14790,10 @@ class DirectDecorrelationStretch(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         k = arcpy.Parameter(
             displayName="Achromatic Factor (0-1)",
@@ -14639,9 +14849,10 @@ class GammaCorrection(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         gamma = arcpy.Parameter(
             displayName="Gamma Value",
@@ -14687,9 +14898,10 @@ class GaussianContrastStretch(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         num_tones = arcpy.Parameter(
             displayName="Number of Tones",
@@ -14735,9 +14947,10 @@ class HistogramEqualization(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         num_tones = arcpy.Parameter(
             displayName="Number of Tones",
@@ -14790,9 +15003,10 @@ class HistogramMatching(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, histo_file, output]
 
@@ -14836,9 +15050,10 @@ class HistogramMatchingTwoImages(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input1, input2, output]
 
@@ -14875,9 +15090,10 @@ class MinMaxContrastStretch(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         min_val = arcpy.Parameter(
             displayName="Lower Tail Clip Value",
@@ -14967,9 +15183,10 @@ class PanchromaticSharpening(object):
         output = arcpy.Parameter(
             displayName="Output Colour Composite File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         method = arcpy.Parameter(
             displayName="Pan-Sharpening Method",
@@ -15021,9 +15238,10 @@ class PercentageContrastStretch(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         clip = arcpy.Parameter(
             displayName="Distribution Tail Clip Amount (%)",
@@ -15091,9 +15309,10 @@ class SigmoidalContrastStretch(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         cutoff = arcpy.Parameter(
             displayName="Cutoff Value (0.0 - 0.95)",
@@ -15159,9 +15378,10 @@ class StandardDeviationContrastStretch(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         stdev = arcpy.Parameter(
             displayName="Standard Deviation Threshold",
@@ -15464,9 +15684,10 @@ class FlightlineOverlap(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
-            parameterType="Optional",
+            datatype="DEFile",
+            parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         resolution = arcpy.Parameter(
             displayName="Grid Resolution",
@@ -15606,9 +15827,10 @@ class LidarBlockMaximum(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
-            parameterType="Optional",
+            datatype="DEFile",
+            parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         resolution = arcpy.Parameter(
             displayName="Grid Resolution",
@@ -15655,9 +15877,10 @@ class LidarBlockMinimum(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
-            parameterType="Optional",
+            datatype="DEFile",
+            parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         resolution = arcpy.Parameter(
             displayName="Grid Resolution",
@@ -15817,9 +16040,10 @@ class LidarConstructVectorTin(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
-            parameterType="Optional",
+            datatype="DEFile",
+            parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         returns = arcpy.Parameter(
             displayName="Point Returns Included",
@@ -16209,6 +16433,7 @@ class LidarHistogram(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["html"]
 
         parameter = arcpy.Parameter(
             displayName="Parameter",
@@ -16267,9 +16492,10 @@ class LidarIdwInterpolation(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
-            parameterType="Optional",
+            datatype="DEFile",
+            parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         parameter = arcpy.Parameter(
             displayName="Interpolation Parameter",
@@ -16385,8 +16611,9 @@ class LidarInfo(object):
             displayName="Output Summary Report File",
             name="output",
             datatype="DEFile",
-            parameterType="Optional",
+            parameterType="Required",
             direction="Output")
+        output.filter.list = ["html"]
 
         vlr = arcpy.Parameter(
             displayName="Print the variable length records (VLRs)?",
@@ -16490,13 +16717,15 @@ class LidarKappaIndex(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["html"]
 
         class_accuracy = arcpy.Parameter(
             displayName="Output Class Accuracy Raster File",
             name="class_accuracy",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        class_accuracy.filter.list = ["tif"]
 
         resolution = arcpy.Parameter(
             displayName="Grid Resolution",
@@ -16545,9 +16774,10 @@ class LidarNearestNeighbourGridding(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
-            parameterType="Optional",
+            datatype="DEFile",
+            parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         parameter = arcpy.Parameter(
             displayName="Interpolation Parameter",
@@ -16652,9 +16882,10 @@ class LidarPointDensity(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
-            parameterType="Optional",
+            datatype="DEFile",
+            parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         returns = arcpy.Parameter(
             displayName="Point Returns Included",
@@ -17349,9 +17580,10 @@ class LidarTinGridding(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
-            parameterType="Optional",
+            datatype="DEFile",
+            parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         parameter = arcpy.Parameter(
             displayName="Interpolation Parameter",
@@ -17599,9 +17831,10 @@ class And(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input1, input2, output]
 
@@ -17645,9 +17878,10 @@ class Not(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input1, input2, output]
 
@@ -17691,9 +17925,10 @@ class Or(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input1, input2, output]
 
@@ -17730,9 +17965,10 @@ class AbsoluteValue(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -17775,9 +18011,10 @@ class Add(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input1, input2, output]
 
@@ -17824,6 +18061,7 @@ class Anova(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["html"]
 
         params = [input, features, output]
 
@@ -17860,9 +18098,10 @@ class ArcCos(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -17898,9 +18137,10 @@ class ArcSin(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -17936,9 +18176,10 @@ class ArcTan(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -17981,9 +18222,10 @@ class Atan2(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input_y, input_x, output]
 
@@ -18021,8 +18263,9 @@ class AttributeCorrelation(object):
             displayName="Output HTML File",
             name="output",
             datatype="DEFile",
-            parameterType="Optional",
+            parameterType="Required",
             direction="Output")
+        output.filter.list = ["html"]
 
         params = [input, output]
 
@@ -18069,6 +18312,7 @@ class AttributeHistogram(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["html"]
 
         params = [input, field, output]
 
@@ -18124,6 +18368,7 @@ class AttributeScattergram(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["html"]
 
         trendline = arcpy.Parameter(
             displayName="Draw the trendline?",
@@ -18171,9 +18416,10 @@ class Ceil(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -18209,9 +18455,10 @@ class Cos(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -18247,9 +18494,10 @@ class Cosh(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -18286,8 +18534,9 @@ class CrispnessIndex(object):
             displayName="Output HTML File",
             name="output",
             datatype="DEFile",
-            parameterType="Optional",
+            parameterType="Required",
             direction="Output")
+        output.filter.list = ["html"]
 
         params = [input, output]
 
@@ -18333,6 +18582,7 @@ class CrossTabulation(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["html"]
 
         params = [input1, input2, output]
 
@@ -18369,9 +18619,10 @@ class CumulativeDistribution(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -18407,9 +18658,10 @@ class Decrement(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -18452,9 +18704,10 @@ class Divide(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input1, input2, output]
 
@@ -18498,9 +18751,10 @@ class EqualTo(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input1, input2, output]
 
@@ -18537,9 +18791,10 @@ class Exp(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -18575,9 +18830,10 @@ class Exp2(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -18620,9 +18876,10 @@ class ExtractRasterStatistics(object):
         output = arcpy.Parameter(
             displayName="Output Raster File",
             name="output",
-            datatype="DERasterDataset",
-            parameterType="Optional",
+            datatype="DEFile",
+            parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         stat = arcpy.Parameter(
             displayName="Statistic Type",
@@ -18639,8 +18896,9 @@ class ExtractRasterStatistics(object):
             displayName="Output HTML Table File",
             name="out_table",
             datatype="DEFile",
-            parameterType="Optional",
+            parameterType="Required",
             direction="Output")
+        out_table.filter.list = ["html"]
 
         params = [input, features, output, stat, out_table]
 
@@ -18679,9 +18937,10 @@ class Floor(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -18724,9 +18983,10 @@ class GreaterThan(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         incl_equals = arcpy.Parameter(
             displayName="Perform a greater-than-OR-EQUAL-TO operation?",
@@ -18785,6 +19045,7 @@ class ImageAutocorrelation(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["html"]
 
         params = [inputs, contiguity, output]
 
@@ -18822,8 +19083,9 @@ class ImageCorrelation(object):
             displayName="Output HTML File",
             name="output",
             datatype="DEFile",
-            parameterType="Optional",
+            parameterType="Required",
             direction="Output")
+        output.filter.list = ["html"]
 
         params = [inputs, output]
 
@@ -18869,13 +19131,15 @@ class ImageRegression(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["html"]
 
         out_residuals = arcpy.Parameter(
             displayName="Optional Residuals Output File",
             name="out_residuals",
-            datatype="DERasterDataset",
-            parameterType="Optional",
+            datatype="DEFile",
+            parameterType="Required",
             direction="Output")
+        out_residuals.filter.list = ["tif"]
 
         standardize = arcpy.Parameter(
             displayName="Standardize the residuals map?",
@@ -19073,9 +19337,10 @@ class Increment(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -19118,9 +19383,10 @@ class IntegerDivision(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input1, input2, output]
 
@@ -19157,9 +19423,10 @@ class IsNoData(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -19205,6 +19472,7 @@ class KappaIndex(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["html"]
 
         params = [input1, input2, output]
 
@@ -19244,6 +19512,7 @@ class KsTestForNormality(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["html"]
 
         num_samples = arcpy.Parameter(
             displayName="Num. Samples (blank for while image)",
@@ -19294,9 +19563,10 @@ class LessThan(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         incl_equals = arcpy.Parameter(
             displayName="Perform a less-than-OR-EQUAL-TO operation?",
@@ -19352,6 +19622,7 @@ class ListUniqueValues(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["html"]
 
         params = [input, field, output]
 
@@ -19388,9 +19659,10 @@ class Ln(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -19426,9 +19698,10 @@ class Log10(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -19464,9 +19737,10 @@ class Log2(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -19509,9 +19783,10 @@ class Max(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input1, input2, output]
 
@@ -19555,9 +19830,10 @@ class Min(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input1, input2, output]
 
@@ -19601,9 +19877,10 @@ class Modulo(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input1, input2, output]
 
@@ -19647,9 +19924,10 @@ class Multiply(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input1, input2, output]
 
@@ -19686,9 +19964,10 @@ class Negate(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -19731,9 +20010,10 @@ class NotEqualTo(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input1, input2, output]
 
@@ -19777,9 +20057,10 @@ class Power(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input1, input2, output]
 
@@ -19819,6 +20100,7 @@ class PrincipalComponentAnalysis(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        out_html.filter.list = ["html"]
 
         num_comp = arcpy.Parameter(
             displayName="Num. of Component Images (blank for all)",
@@ -19870,9 +20152,10 @@ class Quantiles(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         num_quantiles = arcpy.Parameter(
             displayName="Number of Quantiles",
@@ -19918,9 +20201,10 @@ class RandomField(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [base, output]
 
@@ -19956,9 +20240,10 @@ class RandomSample(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         num_samples = arcpy.Parameter(
             displayName="Num. Samples",
@@ -20007,6 +20292,7 @@ class RasterHistogram(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["html"]
 
         params = [input, output]
 
@@ -20072,9 +20358,10 @@ class Reciprocal(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -20110,9 +20397,10 @@ class RescaleValueRange(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         out_min_val = arcpy.Parameter(
             displayName="Output Raster Minimum Value",
@@ -20218,9 +20506,10 @@ class Round(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -20256,9 +20545,10 @@ class Sin(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -20294,9 +20584,10 @@ class Sinh(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -20332,9 +20623,10 @@ class Square(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -20370,9 +20662,10 @@ class SquareRoot(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -20415,9 +20708,10 @@ class Subtract(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input1, input2, output]
 
@@ -20454,9 +20748,10 @@ class Tan(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -20492,9 +20787,10 @@ class Tanh(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -20530,9 +20826,10 @@ class ToDegrees(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -20568,9 +20865,10 @@ class ToRadians(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -20606,9 +20904,10 @@ class TrendSurface(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         order = arcpy.Parameter(
             displayName="Polynomial Order",
@@ -20663,9 +20962,10 @@ class TrendSurfaceVectorPoints(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         order = arcpy.Parameter(
             displayName="Polynomial Order",
@@ -20720,9 +21020,10 @@ class Truncate(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         num_decimals = arcpy.Parameter(
             displayName="Number of Decimals After Truncation",
@@ -20766,9 +21067,10 @@ class TurningBandsSimulation(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         range = arcpy.Parameter(
             displayName="Range of Autocorrelation (map units)",
@@ -20829,9 +21131,10 @@ class Xor(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input1, input2, output]
 
@@ -20868,9 +21171,10 @@ class ZScores(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         params = [input, output]
 
@@ -20913,9 +21217,10 @@ class DistanceToOutlet(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
@@ -20970,9 +21275,10 @@ class ExtractStreams(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         threshold = arcpy.Parameter(
             displayName="Channelization Threshold",
@@ -21024,9 +21330,10 @@ class ExtractValleys(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         variant = arcpy.Parameter(
             displayName="Variant",
@@ -21101,9 +21408,10 @@ class FarthestChannelHead(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
@@ -21165,9 +21473,10 @@ class FindMainStem(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
@@ -21229,9 +21538,10 @@ class HackStreamOrder(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
@@ -21293,9 +21603,10 @@ class HortonStreamOrder(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
@@ -21357,9 +21668,10 @@ class LengthOfUpstreamChannels(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
@@ -21431,6 +21743,7 @@ class LongProfile(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["html"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
@@ -21496,6 +21809,7 @@ class LongProfileFromPoints(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["html"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
@@ -21608,9 +21922,10 @@ class RasterizeStreams(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         nodata = arcpy.Parameter(
             displayName="Use NoData value for background?",
@@ -21674,9 +21989,10 @@ class RemoveShortStreams(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         min_length = arcpy.Parameter(
             displayName="Minimum Tributary Length (map units)",
@@ -21738,9 +22054,10 @@ class ShreveStreamMagnitude(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
@@ -21802,9 +22119,10 @@ class StrahlerStreamOrder(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
@@ -21866,9 +22184,10 @@ class StreamLinkClass(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
@@ -21930,9 +22249,10 @@ class StreamLinkIdentifier(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
@@ -21994,9 +22314,10 @@ class StreamLinkLength(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
@@ -22065,9 +22386,10 @@ class StreamLinkSlope(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
@@ -22137,9 +22459,10 @@ class StreamSlopeContinuous(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
@@ -22202,9 +22525,10 @@ class TopologicalStreamOrder(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
@@ -22266,9 +22590,10 @@ class TributaryIdentifier(object):
         output = arcpy.Parameter(
             displayName="Output File",
             name="output",
-            datatype="DERasterDataset",
+            datatype="DEFile",
             parameterType="Required",
             direction="Output")
+        output.filter.list = ["tif"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",

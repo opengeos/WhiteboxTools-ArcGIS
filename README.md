@@ -39,11 +39,11 @@ This repository is related to the **ArcGIS Python Toolbox for WhiteboxTools**, w
 
 ### Step 1: Download the toolbox
 
-1. Click the green button (**Clone or download**) on the upper-right corner of this page to download the toolbox as a zip file. Alternatively, you can directly click this [download link](https://gishub.org/whitebox-arcgis-download) to download the toolbox.
+1. Click the green button (**[Clone or download](https://gishub.org/whitebox-arcgis-download)**) on the upper-right corner of this page to download the toolbox as a zip file.
 
     ![](https://i.imgur.com/2xQkxCY.png)
 
-2. Depcompress the downloaded zip file. 
+2. Depcompress the downloaded zip file.
 
 ### Step 2: Connect to the toolbox
 
