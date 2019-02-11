@@ -17,7 +17,7 @@ temp/
 WhiteboxTools_win_amd64.zip
 **/*.db
 **/*.db:encryptable
-
+WhiteboxTools.pyt.zip
 
 
 # C extensions
