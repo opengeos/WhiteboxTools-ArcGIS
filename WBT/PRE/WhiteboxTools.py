@@ -1,6 +1,7 @@
 import arcpy
 from WBT.whitebox_tools import WhiteboxTools
 wbt = WhiteboxTools()
+wbt.set_verbose_mode(True)
 
 tool_labels = []
 tool_labels.append("Absolute Value")
@@ -1191,6 +1192,8 @@ class AddPointCoordinatesToTable(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        messages.addMessage(wbt.add_point_coordinates_to_table(input))
         return
 
 
@@ -1226,6 +1229,9 @@ class ConvertNodataToZero(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.convert_nodata_to_zero(input, output))
         return
 
 
@@ -1261,6 +1267,9 @@ class ConvertRasterFormat(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.convert_raster_format(input, output))
         return
 
 
@@ -1306,6 +1315,10 @@ class ExportTableToCsv(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        headers = parameters[2].valueAsText
+        messages.addMessage(wbt.export_table_to_csv(input, output, headers))
         return
 
 
@@ -1365,6 +1378,12 @@ class JoinTables(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        pkey = parameters[1].valueAsText
+        input2 = parameters[2].valueAsText
+        fkey = parameters[3].valueAsText
+        import_field = parameters[4].valueAsText
+        messages.addMessage(wbt.join_tables(input1, pkey, input2, fkey, import_field))
         return
 
 
@@ -1402,6 +1421,9 @@ class LinesToPolygons(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.lines_to_polygons(input, output))
         return
 
 
@@ -1462,6 +1484,12 @@ class MergeTableWithCsv(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        pkey = parameters[1].valueAsText
+        csv = parameters[2].valueAsText
+        fkey = parameters[3].valueAsText
+        import_field = parameters[4].valueAsText
+        messages.addMessage(wbt.merge_table_with_csv(input, pkey, csv, fkey, import_field))
         return
 
 
@@ -1497,6 +1525,9 @@ class MergeVectors(object):
         return
 
     def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.merge_vectors(inputs, output))
         return
 
 
@@ -1541,6 +1572,10 @@ class MultiPartToSinglePart(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        exclude_holes = parameters[2].valueAsText
+        messages.addMessage(wbt.multi_part_to_single_part(input, output, exclude_holes))
         return
 
 
@@ -1596,6 +1631,11 @@ class NewRasterFromBase(object):
         return
 
     def execute(self, parameters, messages):
+        base = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        value = parameters[2].valueAsText
+        data_type = parameters[3].valueAsText
+        messages.addMessage(wbt.new_raster_from_base(base, output, value, data_type))
         return
 
 
@@ -1633,6 +1673,9 @@ class PolygonsToLines(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.polygons_to_lines(input, output))
         return
 
 
@@ -1661,6 +1704,8 @@ class PrintGeoTiffTags(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        messages.addMessage(wbt.print_geo_tiff_tags(input))
         return
 
 
@@ -1697,6 +1742,9 @@ class RasterToVectorLines(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.raster_to_vector_lines(input, output))
         return
 
 
@@ -1733,6 +1781,9 @@ class RasterToVectorPoints(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.raster_to_vector_points(input, output))
         return
 
 
@@ -1761,6 +1812,8 @@ class ReinitializeAttributeTable(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        messages.addMessage(wbt.reinitialize_attribute_table(input))
         return
 
 
@@ -1798,6 +1851,9 @@ class RemovePolygonHoles(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.remove_polygon_holes(input, output))
         return
 
 
@@ -1842,6 +1898,10 @@ class SetNodataValue(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        back_value = parameters[2].valueAsText
+        messages.addMessage(wbt.set_nodata_value(input, output, back_value))
         return
 
 
@@ -1885,6 +1945,10 @@ class SinglePartToMultiPart(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        field = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.single_part_to_multi_part(input, field, output))
         return
 
 
@@ -1954,6 +2018,13 @@ class VectorLinesToRaster(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        field = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        nodata = parameters[3].valueAsText
+        cell_size = parameters[4].valueAsText
+        base = parameters[5].valueAsText
+        messages.addMessage(wbt.vector_lines_to_raster(input, field, output, nodata, cell_size, base))
         return
 
 
@@ -2034,6 +2105,14 @@ class VectorPointsToRaster(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        field = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        assign = parameters[3].valueAsText
+        nodata = parameters[4].valueAsText
+        cell_size = parameters[5].valueAsText
+        base = parameters[6].valueAsText
+        messages.addMessage(wbt.vector_points_to_raster(input, field, output, assign, nodata, cell_size, base))
         return
 
 
@@ -2103,6 +2182,13 @@ class VectorPolygonsToRaster(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        field = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        nodata = parameters[3].valueAsText
+        cell_size = parameters[4].valueAsText
+        base = parameters[5].valueAsText
+        messages.addMessage(wbt.vector_polygons_to_raster(input, field, output, nodata, cell_size, base))
         return
 
 
@@ -2158,6 +2244,11 @@ class AggregateRaster(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        agg_factor = parameters[2].valueAsText
+        type = parameters[3].valueAsText
+        messages.addMessage(wbt.aggregate_raster(input, output, agg_factor, type))
         return
 
 
@@ -2225,6 +2316,13 @@ class BlockMaximumGridding(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        field = parameters[1].valueAsText
+        use_z = parameters[2].valueAsText
+        output = parameters[3].valueAsText
+        cell_size = parameters[4].valueAsText
+        base = parameters[5].valueAsText
+        messages.addMessage(wbt.block_maximum_gridding(input, field, use_z, output, cell_size, base))
         return
 
 
@@ -2292,6 +2390,13 @@ class BlockMinimumGridding(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        field = parameters[1].valueAsText
+        use_z = parameters[2].valueAsText
+        output = parameters[3].valueAsText
+        cell_size = parameters[4].valueAsText
+        base = parameters[5].valueAsText
+        messages.addMessage(wbt.block_minimum_gridding(input, field, use_z, output, cell_size, base))
         return
 
 
@@ -2334,6 +2439,10 @@ class Centroid(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        text_output = parameters[2].valueAsText
+        messages.addMessage(wbt.centroid(input, output, text_output))
         return
 
 
@@ -2369,6 +2478,9 @@ class CentroidVector(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.centroid_vector(input, output))
         return
 
 
@@ -2420,6 +2532,11 @@ class Clump(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        diag = parameters[2].valueAsText
+        zero_back = parameters[3].valueAsText
+        messages.addMessage(wbt.clump(input, output, diag, zero_back))
         return
 
 
@@ -2474,6 +2591,11 @@ class ConstructVectorTin(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        field = parameters[1].valueAsText
+        use_z = parameters[2].valueAsText
+        output = parameters[3].valueAsText
+        messages.addMessage(wbt.construct_vector_tin(input, field, use_z, output))
         return
 
 
@@ -2528,6 +2650,11 @@ class CreateHexagonalVectorGrid(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        width = parameters[2].valueAsText
+        orientation = parameters[3].valueAsText
+        messages.addMessage(wbt.create_hexagonal_vector_grid(input, output, width, orientation))
         return
 
 
@@ -2590,6 +2717,12 @@ class CreatePlane(object):
         return
 
     def execute(self, parameters, messages):
+        base = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        gradient = parameters[2].valueAsText
+        aspect = parameters[3].valueAsText
+        constant = parameters[4].valueAsText
+        messages.addMessage(wbt.create_plane(base, output, gradient, aspect, constant))
         return
 
 
@@ -2658,6 +2791,13 @@ class CreateRectangularVectorGrid(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        width = parameters[2].valueAsText
+        height = parameters[3].valueAsText
+        xorig = parameters[4].valueAsText
+        yorig = parameters[5].valueAsText
+        messages.addMessage(wbt.create_rectangular_vector_grid(input, output, width, height, xorig, yorig))
         return
 
 
@@ -2711,6 +2851,11 @@ class Dissolve(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        field = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        snap = parameters[3].valueAsText
+        messages.addMessage(wbt.dissolve(input, field, output, snap))
         return
 
 
@@ -2755,6 +2900,10 @@ class EliminateCoincidentPoints(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        tolerance = parameters[2].valueAsText
+        messages.addMessage(wbt.eliminate_coincident_points(input, output, tolerance))
         return
 
 
@@ -2810,6 +2959,11 @@ class ExtendVectorLines(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        dist = parameters[2].valueAsText
+        extend = parameters[3].valueAsText
+        messages.addMessage(wbt.extend_vector_lines(input, output, dist, extend))
         return
 
 
@@ -2846,6 +3000,9 @@ class ExtractNodes(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.extract_nodes(input, output))
         return
 
 
@@ -2882,6 +3039,9 @@ class ExtractRasterValuesAtPoints(object):
         return
 
     def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        points = parameters[1].valueAsText
+        messages.addMessage(wbt.extract_raster_values_at_points(inputs, points))
         return
 
 
@@ -2929,6 +3089,10 @@ class FindLowestOrHighestPoints(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        out_type = parameters[2].valueAsText
+        messages.addMessage(wbt.find_lowest_or_highest_points(input, output, out_type))
         return
 
 
@@ -3019,6 +3183,16 @@ class IdwInterpolation(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        field = parameters[1].valueAsText
+        use_z = parameters[2].valueAsText
+        output = parameters[3].valueAsText
+        weight = parameters[4].valueAsText
+        radius = parameters[5].valueAsText
+        min_points = parameters[6].valueAsText
+        cell_size = parameters[7].valueAsText
+        base = parameters[8].valueAsText
+        messages.addMessage(wbt.idw_interpolation(input, field, use_z, output, weight, radius, min_points, cell_size, base))
         return
 
 
@@ -3055,6 +3229,9 @@ class LayerFootprint(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.layer_footprint(input, output))
         return
 
 
@@ -3090,6 +3267,9 @@ class Medoid(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.medoid(input, output))
         return
 
 
@@ -3146,6 +3326,11 @@ class MinimumBoundingBox(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        criterion = parameters[2].valueAsText
+        features = parameters[3].valueAsText
+        messages.addMessage(wbt.minimum_bounding_box(input, output, criterion, features))
         return
 
 
@@ -3191,6 +3376,10 @@ class MinimumBoundingCircle(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        features = parameters[2].valueAsText
+        messages.addMessage(wbt.minimum_bounding_circle(input, output, features))
         return
 
 
@@ -3236,6 +3425,10 @@ class MinimumBoundingEnvelope(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        features = parameters[2].valueAsText
+        messages.addMessage(wbt.minimum_bounding_envelope(input, output, features))
         return
 
 
@@ -3281,6 +3474,10 @@ class MinimumConvexHull(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        features = parameters[2].valueAsText
+        messages.addMessage(wbt.minimum_convex_hull(input, output, features))
         return
 
 
@@ -3355,6 +3552,14 @@ class NearestNeighbourGridding(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        field = parameters[1].valueAsText
+        use_z = parameters[2].valueAsText
+        output = parameters[3].valueAsText
+        cell_size = parameters[4].valueAsText
+        base = parameters[5].valueAsText
+        max_dist = parameters[6].valueAsText
+        messages.addMessage(wbt.nearest_neighbour_gridding(input, field, use_z, output, cell_size, base, max_dist))
         return
 
 
@@ -3384,6 +3589,8 @@ class PolygonArea(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        messages.addMessage(wbt.polygon_area(input))
         return
 
 
@@ -3421,6 +3628,9 @@ class PolygonLongAxis(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.polygon_long_axis(input, output))
         return
 
 
@@ -3450,6 +3660,8 @@ class PolygonPerimeter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        messages.addMessage(wbt.polygon_perimeter(input))
         return
 
 
@@ -3487,6 +3699,9 @@ class PolygonShortAxis(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.polygon_short_axis(input, output))
         return
 
 
@@ -3533,6 +3748,10 @@ class RasterCellAssignment(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        assign = parameters[2].valueAsText
+        messages.addMessage(wbt.raster_cell_assignment(input, output, assign))
         return
 
 
@@ -3582,6 +3801,11 @@ class Reclass(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        reclass_vals = parameters[2].valueAsText
+        assign_mode = parameters[3].valueAsText
+        messages.addMessage(wbt.reclass(input, output, reclass_vals, assign_mode))
         return
 
 
@@ -3640,6 +3864,12 @@ class ReclassEqualInterval(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        interval = parameters[2].valueAsText
+        start_val = parameters[3].valueAsText
+        end_val = parameters[4].valueAsText
+        messages.addMessage(wbt.reclass_equal_interval(input, output, interval, start_val, end_val))
         return
 
 
@@ -3682,6 +3912,10 @@ class ReclassFromFile(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        reclass_file = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.reclass_from_file(input, reclass_file, output))
         return
 
 
@@ -3726,6 +3960,10 @@ class SmoothVectors(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filter = parameters[2].valueAsText
+        messages.addMessage(wbt.smooth_vectors(input, output, filter))
         return
 
 
@@ -3786,6 +4024,12 @@ class TinGridding(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        field = parameters[1].valueAsText
+        use_z = parameters[2].valueAsText
+        output = parameters[3].valueAsText
+        resolution = parameters[4].valueAsText
+        messages.addMessage(wbt.tin_gridding(input, field, use_z, output, resolution))
         return
 
 
@@ -3841,6 +4085,11 @@ class VectorHexBinning(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        width = parameters[2].valueAsText
+        orientation = parameters[3].valueAsText
+        messages.addMessage(wbt.vector_hex_binning(input, output, width, orientation))
         return
 
 
@@ -3878,6 +4127,9 @@ class VoronoiDiagram(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.voronoi_diagram(input, output))
         return
 
 
@@ -3927,6 +4179,11 @@ class BufferRaster(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        size = parameters[2].valueAsText
+        gridcells = parameters[3].valueAsText
+        messages.addMessage(wbt.buffer_raster(input, output, size, gridcells))
         return
 
 
@@ -3969,6 +4226,10 @@ class CostAllocation(object):
         return
 
     def execute(self, parameters, messages):
+        source = parameters[0].valueAsText
+        backlink = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.cost_allocation(source, backlink, output))
         return
 
 
@@ -4018,6 +4279,11 @@ class CostDistance(object):
         return
 
     def execute(self, parameters, messages):
+        source = parameters[0].valueAsText
+        cost = parameters[1].valueAsText
+        out_accum = parameters[2].valueAsText
+        out_backlink = parameters[3].valueAsText
+        messages.addMessage(wbt.cost_distance(source, cost, out_accum, out_backlink))
         return
 
 
@@ -4067,6 +4333,11 @@ class CostPathway(object):
         return
 
     def execute(self, parameters, messages):
+        destination = parameters[0].valueAsText
+        backlink = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        zero_background = parameters[3].valueAsText
+        messages.addMessage(wbt.cost_pathway(destination, backlink, output, zero_background))
         return
 
 
@@ -4102,6 +4373,9 @@ class EuclideanAllocation(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.euclidean_allocation(input, output))
         return
 
 
@@ -4137,6 +4411,9 @@ class EuclideanDistance(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.euclidean_distance(input, output))
         return
 
 
@@ -4172,6 +4449,9 @@ class AverageOverlay(object):
         return
 
     def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.average_overlay(inputs, output))
         return
 
 
@@ -4215,6 +4495,10 @@ class Clip(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        clip = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.clip(input, clip, output))
         return
 
 
@@ -4267,6 +4551,11 @@ class ClipRasterToPolygon(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        polygons = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        maintain_dimensions = parameters[3].valueAsText
+        messages.addMessage(wbt.clip_raster_to_polygon(input, polygons, output, maintain_dimensions))
         return
 
 
@@ -4309,6 +4598,10 @@ class CountIf(object):
         return
 
     def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        value = parameters[2].valueAsText
+        messages.addMessage(wbt.count_if(inputs, output, value))
         return
 
 
@@ -4351,6 +4644,10 @@ class Difference(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        overlay = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.difference(input, overlay, output))
         return
 
 
@@ -4394,6 +4691,10 @@ class Erase(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        erase = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.erase(input, erase, output))
         return
 
 
@@ -4437,6 +4738,10 @@ class ErasePolygonFromRaster(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        polygons = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.erase_polygon_from_raster(input, polygons, output))
         return
 
 
@@ -4472,6 +4777,9 @@ class HighestPosition(object):
         return
 
     def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.highest_position(inputs, output))
         return
 
 
@@ -4523,6 +4831,11 @@ class Intersect(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        overlay = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        snap = parameters[3].valueAsText
+        messages.addMessage(wbt.intersect(input, overlay, output, snap))
         return
 
 
@@ -4568,6 +4881,10 @@ class LineIntersections(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.line_intersections(input1, input2, output))
         return
 
 
@@ -4603,6 +4920,9 @@ class LowestPosition(object):
         return
 
     def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.lowest_position(inputs, output))
         return
 
 
@@ -4638,6 +4958,9 @@ class MaxAbsoluteOverlay(object):
         return
 
     def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.max_absolute_overlay(inputs, output))
         return
 
 
@@ -4673,6 +4996,9 @@ class MaxOverlay(object):
         return
 
     def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.max_overlay(inputs, output))
         return
 
 
@@ -4708,6 +5034,9 @@ class MinAbsoluteOverlay(object):
         return
 
     def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.min_absolute_overlay(inputs, output))
         return
 
 
@@ -4743,6 +5072,9 @@ class MinOverlay(object):
         return
 
     def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.min_overlay(inputs, output))
         return
 
 
@@ -4785,6 +5117,10 @@ class PercentEqualTo(object):
         return
 
     def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        comparison = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.percent_equal_to(inputs, comparison, output))
         return
 
 
@@ -4827,6 +5163,10 @@ class PercentGreaterThan(object):
         return
 
     def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        comparison = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.percent_greater_than(inputs, comparison, output))
         return
 
 
@@ -4869,6 +5209,10 @@ class PercentLessThan(object):
         return
 
     def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        comparison = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.percent_less_than(inputs, comparison, output))
         return
 
 
@@ -4911,6 +5255,10 @@ class PickFromList(object):
         return
 
     def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        pos_input = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.pick_from_list(inputs, pos_input, output))
         return
 
 
@@ -4948,6 +5296,9 @@ class Polygonize(object):
         return
 
     def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.polygonize(inputs, output))
         return
 
 
@@ -4991,6 +5342,10 @@ class SplitWithLines(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        split = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.split_with_lines(input, split, output))
         return
 
 
@@ -5026,6 +5381,9 @@ class SumOverlay(object):
         return
 
     def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.sum_overlay(inputs, output))
         return
 
 
@@ -5077,6 +5435,11 @@ class SymmetricalDifference(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        overlay = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        snap = parameters[3].valueAsText
+        messages.addMessage(wbt.symmetrical_difference(input, overlay, output, snap))
         return
 
 
@@ -5128,6 +5491,11 @@ class Union(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        overlay = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        snap = parameters[3].valueAsText
+        messages.addMessage(wbt.union(input, overlay, output, snap))
         return
 
 
@@ -5193,6 +5561,13 @@ class WeightedOverlay(object):
         return
 
     def execute(self, parameters, messages):
+        factors = parameters[0].valueAsText
+        weights = parameters[1].valueAsText
+        cost = parameters[2].valueAsText
+        constraints = parameters[3].valueAsText
+        output = parameters[4].valueAsText
+        scale_max = parameters[5].valueAsText
+        messages.addMessage(wbt.weighted_overlay(factors, weights, cost, constraints, output, scale_max))
         return
 
 
@@ -5235,6 +5610,10 @@ class WeightedSum(object):
         return
 
     def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        weights = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.weighted_sum(inputs, weights, output))
         return
 
 
@@ -5264,6 +5643,8 @@ class CompactnessRatio(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        messages.addMessage(wbt.compactness_ratio(input))
         return
 
 
@@ -5306,6 +5687,10 @@ class EdgeProportion(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        output_text = parameters[2].valueAsText
+        messages.addMessage(wbt.edge_proportion(input, output, output_text))
         return
 
 
@@ -5335,6 +5720,8 @@ class ElongationRatio(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        messages.addMessage(wbt.elongation_ratio(input))
         return
 
 
@@ -5370,6 +5757,9 @@ class FindPatchOrClassEdgeCells(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.find_patch_or_class_edge_cells(input, output))
         return
 
 
@@ -5399,6 +5789,8 @@ class HoleProportion(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        messages.addMessage(wbt.hole_proportion(input))
         return
 
 
@@ -5428,6 +5820,8 @@ class LinearityIndex(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        messages.addMessage(wbt.linearity_index(input))
         return
 
 
@@ -5457,6 +5851,8 @@ class PatchOrientation(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        messages.addMessage(wbt.patch_orientation(input))
         return
 
 
@@ -5486,6 +5882,8 @@ class PerimeterAreaRatio(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        messages.addMessage(wbt.perimeter_area_ratio(input))
         return
 
 
@@ -5528,6 +5926,10 @@ class RadiusOfGyration(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        text_output = parameters[2].valueAsText
+        messages.addMessage(wbt.radius_of_gyration(input, output, text_output))
         return
 
 
@@ -5557,6 +5959,8 @@ class RelatedCircumscribingCircle(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        messages.addMessage(wbt.related_circumscribing_circle(input))
         return
 
 
@@ -5586,6 +5990,8 @@ class ShapeComplexityIndex(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        messages.addMessage(wbt.shape_complexity_index(input))
         return
 
 
@@ -5630,6 +6036,10 @@ class Aspect(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        zfactor = parameters[2].valueAsText
+        messages.addMessage(wbt.aspect(dem, output, zfactor))
         return
 
 
@@ -5674,6 +6084,10 @@ class CircularVarianceOfAspect(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filter = parameters[2].valueAsText
+        messages.addMessage(wbt.circular_variance_of_aspect(dem, output, filter))
         return
 
 
@@ -5727,6 +6141,11 @@ class DevFromMeanElev(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filterx = parameters[2].valueAsText
+        filtery = parameters[3].valueAsText
+        messages.addMessage(wbt.dev_from_mean_elev(dem, output, filterx, filtery))
         return
 
 
@@ -5780,6 +6199,11 @@ class DiffFromMeanElev(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filterx = parameters[2].valueAsText
+        filtery = parameters[3].valueAsText
+        messages.addMessage(wbt.diff_from_mean_elev(dem, output, filterx, filtery))
         return
 
 
@@ -5831,6 +6255,11 @@ class DirectionalRelief(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        azimuth = parameters[2].valueAsText
+        max_dist = parameters[3].valueAsText
+        messages.addMessage(wbt.directional_relief(dem, output, azimuth, max_dist))
         return
 
 
@@ -5886,6 +6315,11 @@ class DownslopeIndex(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        drop = parameters[2].valueAsText
+        out_type = parameters[3].valueAsText
+        messages.addMessage(wbt.downslope_index(dem, output, drop, out_type))
         return
 
 
@@ -5982,6 +6416,16 @@ class DrainagePreservingSmoothing(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filter = parameters[2].valueAsText
+        norm_diff = parameters[3].valueAsText
+        num_iter = parameters[4].valueAsText
+        max_diff = parameters[5].valueAsText
+        reduction = parameters[6].valueAsText
+        dfm = parameters[7].valueAsText
+        zfactor = parameters[8].valueAsText
+        messages.addMessage(wbt.drainage_preserving_smoothing(dem, output, filter, norm_diff, num_iter, max_diff, reduction, dfm, zfactor))
         return
 
 
@@ -6044,6 +6488,12 @@ class EdgeDensity(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filter = parameters[2].valueAsText
+        norm_diff = parameters[3].valueAsText
+        zfactor = parameters[4].valueAsText
+        messages.addMessage(wbt.edge_density(dem, output, filter, norm_diff, zfactor))
         return
 
 
@@ -6079,6 +6529,9 @@ class ElevAbovePit(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.elev_above_pit(dem, output))
         return
 
 
@@ -6141,6 +6594,12 @@ class ElevPercentile(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filterx = parameters[2].valueAsText
+        filtery = parameters[3].valueAsText
+        sig_digits = parameters[4].valueAsText
+        messages.addMessage(wbt.elev_percentile(dem, output, filterx, filtery, sig_digits))
         return
 
 
@@ -6176,6 +6635,9 @@ class ElevRelativeToMinMax(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.elev_relative_to_min_max(dem, output))
         return
 
 
@@ -6218,6 +6680,10 @@ class ElevRelativeToWatershedMinMax(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        watersheds = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.elev_relative_to_watershed_min_max(dem, watersheds, output))
         return
 
 
@@ -6296,6 +6762,14 @@ class FeaturePreservingDenoise(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filter = parameters[2].valueAsText
+        norm_diff = parameters[3].valueAsText
+        num_iter = parameters[4].valueAsText
+        max_diff = parameters[5].valueAsText
+        zfactor = parameters[6].valueAsText
+        messages.addMessage(wbt.feature_preserving_denoise(dem, output, filter, norm_diff, num_iter, max_diff, zfactor))
         return
 
 
@@ -6349,6 +6823,11 @@ class FetchAnalysis(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        azimuth = parameters[2].valueAsText
+        hgt_inc = parameters[3].valueAsText
+        messages.addMessage(wbt.fetch_analysis(dem, output, azimuth, hgt_inc))
         return
 
 
@@ -6402,6 +6881,11 @@ class FillMissingData(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filter = parameters[2].valueAsText
+        weight = parameters[3].valueAsText
+        messages.addMessage(wbt.fill_missing_data(input, output, filter, weight))
         return
 
 
@@ -6446,6 +6930,10 @@ class FindRidges(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        line_thin = parameters[2].valueAsText
+        messages.addMessage(wbt.find_ridges(dem, output, line_thin))
         return
 
 
@@ -6508,6 +6996,12 @@ class Hillshade(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        azimuth = parameters[2].valueAsText
+        altitude = parameters[3].valueAsText
+        zfactor = parameters[4].valueAsText
+        messages.addMessage(wbt.hillshade(dem, output, azimuth, altitude, zfactor))
         return
 
 
@@ -6559,6 +7053,11 @@ class HorizonAngle(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        azimuth = parameters[2].valueAsText
+        max_dist = parameters[3].valueAsText
+        messages.addMessage(wbt.horizon_angle(dem, output, azimuth, max_dist))
         return
 
 
@@ -6601,6 +7100,10 @@ class HypsometricAnalysis(object):
         return
 
     def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        watershed = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.hypsometric_analysis(inputs, watershed, output))
         return
 
 
@@ -6668,6 +7171,13 @@ class MaxAnisotropyDev(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        out_mag = parameters[1].valueAsText
+        out_scale = parameters[2].valueAsText
+        min_scale = parameters[3].valueAsText
+        max_scale = parameters[4].valueAsText
+        step = parameters[5].valueAsText
+        messages.addMessage(wbt.max_anisotropy_dev(dem, out_mag, out_scale, min_scale, max_scale, step))
         return
 
 
@@ -6736,6 +7246,13 @@ class MaxAnisotropyDevSignature(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        points = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        min_scale = parameters[3].valueAsText
+        max_scale = parameters[4].valueAsText
+        step = parameters[5].valueAsText
+        messages.addMessage(wbt.max_anisotropy_dev_signature(dem, points, output, min_scale, max_scale, step))
         return
 
 
@@ -6778,6 +7295,10 @@ class MaxBranchLength(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        log = parameters[2].valueAsText
+        messages.addMessage(wbt.max_branch_length(dem, output, log))
         return
 
 
@@ -6843,6 +7364,13 @@ class MaxDifferenceFromMean(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        out_mag = parameters[1].valueAsText
+        out_scale = parameters[2].valueAsText
+        min_scale = parameters[3].valueAsText
+        max_scale = parameters[4].valueAsText
+        step = parameters[5].valueAsText
+        messages.addMessage(wbt.max_difference_from_mean(dem, out_mag, out_scale, min_scale, max_scale, step))
         return
 
 
@@ -6878,6 +7406,9 @@ class MaxDownslopeElevChange(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.max_downslope_elev_change(dem, output))
         return
 
 
@@ -6944,6 +7475,13 @@ class MaxElevDevSignature(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        points = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        min_scale = parameters[3].valueAsText
+        max_scale = parameters[4].valueAsText
+        step = parameters[5].valueAsText
+        messages.addMessage(wbt.max_elev_dev_signature(dem, points, output, min_scale, max_scale, step))
         return
 
 
@@ -7009,6 +7547,13 @@ class MaxElevationDeviation(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        out_mag = parameters[1].valueAsText
+        out_scale = parameters[2].valueAsText
+        min_scale = parameters[3].valueAsText
+        max_scale = parameters[4].valueAsText
+        step = parameters[5].valueAsText
+        messages.addMessage(wbt.max_elevation_deviation(dem, out_mag, out_scale, min_scale, max_scale, step))
         return
 
 
@@ -7044,6 +7589,9 @@ class MinDownslopeElevChange(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.min_downslope_elev_change(dem, output))
         return
 
 
@@ -7111,6 +7659,13 @@ class MultiscaleRoughness(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        out_mag = parameters[1].valueAsText
+        out_scale = parameters[2].valueAsText
+        min_scale = parameters[3].valueAsText
+        max_scale = parameters[4].valueAsText
+        step = parameters[5].valueAsText
+        messages.addMessage(wbt.multiscale_roughness(dem, out_mag, out_scale, min_scale, max_scale, step))
         return
 
 
@@ -7179,6 +7734,13 @@ class MultiscaleRoughnessSignature(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        points = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        min_scale = parameters[3].valueAsText
+        max_scale = parameters[4].valueAsText
+        step = parameters[5].valueAsText
+        messages.addMessage(wbt.multiscale_roughness_signature(dem, points, output, min_scale, max_scale, step))
         return
 
 
@@ -7237,6 +7799,12 @@ class MultiscaleTopographicPositionImage(object):
         return
 
     def execute(self, parameters, messages):
+        local = parameters[0].valueAsText
+        meso = parameters[1].valueAsText
+        broad = parameters[2].valueAsText
+        output = parameters[3].valueAsText
+        lightness = parameters[4].valueAsText
+        messages.addMessage(wbt.multiscale_topographic_position_image(local, meso, broad, output, lightness))
         return
 
 
@@ -7272,6 +7840,9 @@ class NumDownslopeNeighbours(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.num_downslope_neighbours(dem, output))
         return
 
 
@@ -7307,6 +7878,9 @@ class NumUpslopeNeighbours(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.num_upslope_neighbours(dem, output))
         return
 
 
@@ -7378,6 +7952,13 @@ class PennockLandformClass(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        slope = parameters[2].valueAsText
+        prof = parameters[3].valueAsText
+        plan = parameters[4].valueAsText
+        zfactor = parameters[5].valueAsText
+        messages.addMessage(wbt.pennock_landform_class(dem, output, slope, prof, plan, zfactor))
         return
 
 
@@ -7431,6 +8012,11 @@ class PercentElevRange(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filterx = parameters[2].valueAsText
+        filtery = parameters[3].valueAsText
+        messages.addMessage(wbt.percent_elev_range(dem, output, filterx, filtery))
         return
 
 
@@ -7475,6 +8061,10 @@ class PlanCurvature(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        zfactor = parameters[2].valueAsText
+        messages.addMessage(wbt.plan_curvature(dem, output, zfactor))
         return
 
 
@@ -7518,6 +8108,10 @@ class Profile(object):
         return
 
     def execute(self, parameters, messages):
+        lines = parameters[0].valueAsText
+        surface = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.profile(lines, surface, output))
         return
 
 
@@ -7562,6 +8156,10 @@ class ProfileCurvature(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        zfactor = parameters[2].valueAsText
+        messages.addMessage(wbt.profile_curvature(dem, output, zfactor))
         return
 
 
@@ -7615,6 +8213,11 @@ class RelativeAspect(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        azimuth = parameters[2].valueAsText
+        zfactor = parameters[3].valueAsText
+        messages.addMessage(wbt.relative_aspect(dem, output, azimuth, zfactor))
         return
 
 
@@ -7666,6 +8269,11 @@ class RelativeStreamPowerIndex(object):
         return
 
     def execute(self, parameters, messages):
+        sca = parameters[0].valueAsText
+        slope = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        exponent = parameters[3].valueAsText
+        messages.addMessage(wbt.relative_stream_power_index(sca, slope, output, exponent))
         return
 
 
@@ -7719,6 +8327,11 @@ class RelativeTopographicPosition(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filterx = parameters[2].valueAsText
+        filtery = parameters[3].valueAsText
+        messages.addMessage(wbt.relative_topographic_position(dem, output, filterx, filtery))
         return
 
 
@@ -7772,6 +8385,11 @@ class RemoveOffTerrainObjects(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filter = parameters[2].valueAsText
+        slope = parameters[3].valueAsText
+        messages.addMessage(wbt.remove_off_terrain_objects(dem, output, filter, slope))
         return
 
 
@@ -7816,6 +8434,10 @@ class RuggednessIndex(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        zfactor = parameters[2].valueAsText
+        messages.addMessage(wbt.ruggedness_index(dem, output, zfactor))
         return
 
 
@@ -7876,6 +8498,12 @@ class SedimentTransportIndex(object):
         return
 
     def execute(self, parameters, messages):
+        sca = parameters[0].valueAsText
+        slope = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        sca_exponent = parameters[3].valueAsText
+        slope_exponent = parameters[4].valueAsText
+        messages.addMessage(wbt.sediment_transport_index(sca, slope, output, sca_exponent, slope_exponent))
         return
 
 
@@ -7920,6 +8548,10 @@ class Slope(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        zfactor = parameters[2].valueAsText
+        messages.addMessage(wbt.slope(dem, output, zfactor))
         return
 
 
@@ -7962,6 +8594,10 @@ class SlopeVsElevationPlot(object):
         return
 
     def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        watershed = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.slope_vs_elevation_plot(inputs, watershed, output))
         return
 
 
@@ -8024,6 +8660,12 @@ class StandardDeviationOfSlope(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        zfactor = parameters[2].valueAsText
+        filterx = parameters[3].valueAsText
+        filtery = parameters[4].valueAsText
+        messages.addMessage(wbt.standard_deviation_of_slope(input, output, zfactor, filterx, filtery))
         return
 
 
@@ -8059,6 +8701,9 @@ class SurfaceAreaRatio(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.surface_area_ratio(dem, output))
         return
 
 
@@ -8103,6 +8748,10 @@ class TangentialCurvature(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        zfactor = parameters[2].valueAsText
+        messages.addMessage(wbt.tangential_curvature(dem, output, zfactor))
         return
 
 
@@ -8147,6 +8796,10 @@ class TotalCurvature(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        zfactor = parameters[2].valueAsText
+        messages.addMessage(wbt.total_curvature(dem, output, zfactor))
         return
 
 
@@ -8199,6 +8852,11 @@ class Viewshed(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        stations = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        height = parameters[3].valueAsText
+        messages.addMessage(wbt.viewshed(dem, stations, output, height))
         return
 
 
@@ -8252,6 +8910,11 @@ class VisibilityIndex(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        height = parameters[2].valueAsText
+        res_factor = parameters[3].valueAsText
+        messages.addMessage(wbt.visibility_index(dem, output, height, res_factor))
         return
 
 
@@ -8294,6 +8957,10 @@ class WetnessIndex(object):
         return
 
     def execute(self, parameters, messages):
+        sca = parameters[0].valueAsText
+        slope = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.wetness_index(sca, slope, output))
         return
 
 
@@ -8329,6 +8996,9 @@ class AverageFlowpathSlope(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.average_flowpath_slope(dem, output))
         return
 
 
@@ -8364,6 +9034,9 @@ class AverageUpslopeFlowpathLength(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.average_upslope_flowpath_length(dem, output))
         return
 
 
@@ -8408,6 +9081,10 @@ class Basins(object):
         return
 
     def execute(self, parameters, messages):
+        d8_pntr = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        esri_pntr = parameters[2].valueAsText
+        messages.addMessage(wbt.basins(d8_pntr, output, esri_pntr))
         return
 
 
@@ -8457,6 +9134,11 @@ class BreachDepressions(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        max_depth = parameters[2].valueAsText
+        max_length = parameters[3].valueAsText
+        messages.addMessage(wbt.breach_depressions(dem, output, max_depth, max_length))
         return
 
 
@@ -8492,6 +9174,9 @@ class BreachSingleCellPits(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.breach_single_cell_pits(dem, output))
         return
 
 
@@ -8552,6 +9237,12 @@ class D8FlowAccumulation(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        out_type = parameters[2].valueAsText
+        log = parameters[3].valueAsText
+        clip = parameters[4].valueAsText
+        messages.addMessage(wbt.d8_flow_accumulation(dem, output, out_type, log, clip))
         return
 
 
@@ -8608,6 +9299,12 @@ class D8MassFlux(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        loading = parameters[1].valueAsText
+        efficiency = parameters[2].valueAsText
+        absorption = parameters[3].valueAsText
+        output = parameters[4].valueAsText
+        messages.addMessage(wbt.d8_mass_flux(dem, loading, efficiency, absorption, output))
         return
 
 
@@ -8652,6 +9349,10 @@ class D8Pointer(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        esri_pntr = parameters[2].valueAsText
+        messages.addMessage(wbt.d8_pointer(dem, output, esri_pntr))
         return
 
 
@@ -8719,6 +9420,13 @@ class DInfFlowAccumulation(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        out_type = parameters[2].valueAsText
+        threshold = parameters[3].valueAsText
+        log = parameters[4].valueAsText
+        clip = parameters[5].valueAsText
+        messages.addMessage(wbt.d_inf_flow_accumulation(dem, output, out_type, threshold, log, clip))
         return
 
 
@@ -8775,6 +9483,12 @@ class DInfMassFlux(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        loading = parameters[1].valueAsText
+        efficiency = parameters[2].valueAsText
+        absorption = parameters[3].valueAsText
+        output = parameters[4].valueAsText
+        messages.addMessage(wbt.d_inf_mass_flux(dem, loading, efficiency, absorption, output))
         return
 
 
@@ -8810,6 +9524,9 @@ class DInfPointer(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.d_inf_pointer(dem, output))
         return
 
 
@@ -8852,6 +9569,10 @@ class DepthInSink(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        zero_background = parameters[2].valueAsText
+        messages.addMessage(wbt.depth_in_sink(dem, output, zero_background))
         return
 
 
@@ -8894,6 +9615,10 @@ class DownslopeDistanceToStream(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        streams = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.downslope_distance_to_stream(dem, streams, output))
         return
 
 
@@ -8952,6 +9677,12 @@ class DownslopeFlowpathLength(object):
         return
 
     def execute(self, parameters, messages):
+        d8_pntr = parameters[0].valueAsText
+        watersheds = parameters[1].valueAsText
+        weights = parameters[2].valueAsText
+        output = parameters[3].valueAsText
+        esri_pntr = parameters[4].valueAsText
+        messages.addMessage(wbt.downslope_flowpath_length(d8_pntr, watersheds, weights, output, esri_pntr))
         return
 
 
@@ -8994,6 +9725,10 @@ class ElevationAboveStream(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        streams = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.elevation_above_stream(dem, streams, output))
         return
 
 
@@ -9036,6 +9771,10 @@ class ElevationAboveStreamEuclidean(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        streams = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.elevation_above_stream_euclidean(dem, streams, output))
         return
 
 
@@ -9112,6 +9851,14 @@ class Fd8FlowAccumulation(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        out_type = parameters[2].valueAsText
+        exponent = parameters[3].valueAsText
+        threshold = parameters[4].valueAsText
+        log = parameters[5].valueAsText
+        clip = parameters[6].valueAsText
+        messages.addMessage(wbt.fd8_flow_accumulation(dem, output, out_type, exponent, threshold, log, clip))
         return
 
 
@@ -9147,6 +9894,9 @@ class Fd8Pointer(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.fd8_pointer(dem, output))
         return
 
 
@@ -9190,6 +9940,10 @@ class FillBurn(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        streams = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.fill_burn(dem, streams, output))
         return
 
 
@@ -9234,6 +9988,10 @@ class FillDepressions(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        fix_flats = parameters[2].valueAsText
+        messages.addMessage(wbt.fill_depressions(dem, output, fix_flats))
         return
 
 
@@ -9269,6 +10027,9 @@ class FillSingleCellPits(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.fill_single_cell_pits(dem, output))
         return
 
 
@@ -9304,6 +10065,9 @@ class FindNoFlowCells(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.find_no_flow_cells(dem, output))
         return
 
 
@@ -9346,6 +10110,10 @@ class FindParallelFlow(object):
         return
 
     def execute(self, parameters, messages):
+        d8_pntr = parameters[0].valueAsText
+        streams = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.find_parallel_flow(d8_pntr, streams, output))
         return
 
 
@@ -9389,6 +10157,10 @@ class FlattenLakes(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        lakes = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.flatten_lakes(dem, lakes, output))
         return
 
 
@@ -9424,6 +10196,9 @@ class FloodOrder(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.flood_order(dem, output))
         return
 
 
@@ -9507,6 +10282,15 @@ class FlowAccumulationFullWorkflow(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        out_dem = parameters[1].valueAsText
+        out_pntr = parameters[2].valueAsText
+        out_accum = parameters[3].valueAsText
+        out_type = parameters[4].valueAsText
+        log = parameters[5].valueAsText
+        clip = parameters[6].valueAsText
+        esri_pntr = parameters[7].valueAsText
+        messages.addMessage(wbt.flow_accumulation_full_workflow(dem, out_dem, out_pntr, out_accum, out_type, log, clip, esri_pntr))
         return
 
 
@@ -9551,6 +10335,10 @@ class FlowLengthDiff(object):
         return
 
     def execute(self, parameters, messages):
+        d8_pntr = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        esri_pntr = parameters[2].valueAsText
+        messages.addMessage(wbt.flow_length_diff(d8_pntr, output, esri_pntr))
         return
 
 
@@ -9602,6 +10390,11 @@ class Hillslopes(object):
         return
 
     def execute(self, parameters, messages):
+        d8_pntr = parameters[0].valueAsText
+        streams = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        esri_pntr = parameters[3].valueAsText
+        messages.addMessage(wbt.hillslopes(d8_pntr, streams, output, esri_pntr))
         return
 
 
@@ -9655,6 +10448,11 @@ class ImpoundmentIndex(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        out_type = parameters[2].valueAsText
+        damlength = parameters[3].valueAsText
+        messages.addMessage(wbt.impoundment_index(dem, output, out_type, damlength))
         return
 
 
@@ -9697,6 +10495,10 @@ class Isobasins(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        size = parameters[2].valueAsText
+        messages.addMessage(wbt.isobasins(dem, output, size))
         return
 
 
@@ -9748,6 +10550,11 @@ class JensonSnapPourPoints(object):
         return
 
     def execute(self, parameters, messages):
+        pour_pts = parameters[0].valueAsText
+        streams = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        snap_dist = parameters[3].valueAsText
+        messages.addMessage(wbt.jenson_snap_pour_points(pour_pts, streams, output, snap_dist))
         return
 
 
@@ -9791,6 +10598,10 @@ class LongestFlowpath(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        basins = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.longest_flowpath(dem, basins, output))
         return
 
 
@@ -9826,6 +10637,9 @@ class MaxUpslopeFlowpathLength(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.max_upslope_flowpath_length(dem, output))
         return
 
 
@@ -9861,6 +10675,9 @@ class NumInflowingNeighbours(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.num_inflowing_neighbours(dem, output))
         return
 
 
@@ -9920,6 +10737,12 @@ class RaiseWalls(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        breach = parameters[1].valueAsText
+        dem = parameters[2].valueAsText
+        output = parameters[3].valueAsText
+        height = parameters[4].valueAsText
+        messages.addMessage(wbt.raise_walls(input, breach, dem, output, height))
         return
 
 
@@ -9964,6 +10787,10 @@ class Rho8Pointer(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        esri_pntr = parameters[2].valueAsText
+        messages.addMessage(wbt.rho8_pointer(dem, output, esri_pntr))
         return
 
 
@@ -10006,6 +10833,10 @@ class Sink(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        zero_background = parameters[2].valueAsText
+        messages.addMessage(wbt.sink(dem, output, zero_background))
         return
 
 
@@ -10057,6 +10888,11 @@ class SnapPourPoints(object):
         return
 
     def execute(self, parameters, messages):
+        pour_pts = parameters[0].valueAsText
+        flow_accum = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        snap_dist = parameters[3].valueAsText
+        messages.addMessage(wbt.snap_pour_points(pour_pts, flow_accum, output, snap_dist))
         return
 
 
@@ -10115,6 +10951,12 @@ class StochasticDepressionAnalysis(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        rmse = parameters[2].valueAsText
+        range = parameters[3].valueAsText
+        iterations = parameters[4].valueAsText
+        messages.addMessage(wbt.stochastic_depression_analysis(dem, output, rmse, range, iterations))
         return
 
 
@@ -10166,6 +11008,11 @@ class StrahlerOrderBasins(object):
         return
 
     def execute(self, parameters, messages):
+        d8_pntr = parameters[0].valueAsText
+        streams = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        esri_pntr = parameters[3].valueAsText
+        messages.addMessage(wbt.strahler_order_basins(d8_pntr, streams, output, esri_pntr))
         return
 
 
@@ -10217,6 +11064,11 @@ class Subbasins(object):
         return
 
     def execute(self, parameters, messages):
+        d8_pntr = parameters[0].valueAsText
+        streams = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        esri_pntr = parameters[3].valueAsText
+        messages.addMessage(wbt.subbasins(d8_pntr, streams, output, esri_pntr))
         return
 
 
@@ -10276,6 +11128,12 @@ class TraceDownslopeFlowpaths(object):
         return
 
     def execute(self, parameters, messages):
+        seed_pts = parameters[0].valueAsText
+        d8_pntr = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        esri_pntr = parameters[3].valueAsText
+        zero_background = parameters[4].valueAsText
+        messages.addMessage(wbt.trace_downslope_flowpaths(seed_pts, d8_pntr, output, esri_pntr, zero_background))
         return
 
 
@@ -10328,6 +11186,11 @@ class UnnestBasins(object):
         return
 
     def execute(self, parameters, messages):
+        d8_pntr = parameters[0].valueAsText
+        pour_pts = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        esri_pntr = parameters[3].valueAsText
+        messages.addMessage(wbt.unnest_basins(d8_pntr, pour_pts, output, esri_pntr))
         return
 
 
@@ -10380,6 +11243,11 @@ class Watershed(object):
         return
 
     def execute(self, parameters, messages):
+        d8_pntr = parameters[0].valueAsText
+        pour_pts = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        esri_pntr = parameters[3].valueAsText
+        messages.addMessage(wbt.watershed(d8_pntr, pour_pts, output, esri_pntr))
         return
 
 
@@ -10429,6 +11297,11 @@ class ChangeVectorAnalysis(object):
         return
 
     def execute(self, parameters, messages):
+        date1 = parameters[0].valueAsText
+        date2 = parameters[1].valueAsText
+        magnitude = parameters[2].valueAsText
+        direction = parameters[3].valueAsText
+        messages.addMessage(wbt.change_vector_analysis(date1, date2, magnitude, direction))
         return
 
 
@@ -10482,6 +11355,11 @@ class Closing(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filterx = parameters[2].valueAsText
+        filtery = parameters[3].valueAsText
+        messages.addMessage(wbt.closing(input, output, filterx, filtery))
         return
 
 
@@ -10556,6 +11434,14 @@ class CreateColourComposite(object):
         return
 
     def execute(self, parameters, messages):
+        red = parameters[0].valueAsText
+        green = parameters[1].valueAsText
+        blue = parameters[2].valueAsText
+        opacity = parameters[3].valueAsText
+        output = parameters[4].valueAsText
+        enhance = parameters[5].valueAsText
+        zeros = parameters[6].valueAsText
+        messages.addMessage(wbt.create_colour_composite(red, green, blue, opacity, output, enhance, zeros))
         return
 
 
@@ -10602,6 +11488,10 @@ class FlipImage(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        direction = parameters[2].valueAsText
+        messages.addMessage(wbt.flip_image(input, output, direction))
         return
 
 
@@ -10672,6 +11562,14 @@ class IhsToRgb(object):
         return
 
     def execute(self, parameters, messages):
+        intensity = parameters[0].valueAsText
+        hue = parameters[1].valueAsText
+        saturation = parameters[2].valueAsText
+        red = parameters[3].valueAsText
+        green = parameters[4].valueAsText
+        blue = parameters[5].valueAsText
+        output = parameters[6].valueAsText
+        messages.addMessage(wbt.ihs_to_rgb(intensity, hue, saturation, red, green, blue, output))
         return
 
 
@@ -10715,6 +11613,10 @@ class ImageStackProfile(object):
         return
 
     def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        points = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.image_stack_profile(inputs, points, output))
         return
 
 
@@ -10750,6 +11652,9 @@ class IntegralImage(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.integral_image(input, output))
         return
 
 
@@ -10837,6 +11742,15 @@ class KMeansClustering(object):
         return
 
     def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        out_html = parameters[2].valueAsText
+        classes = parameters[3].valueAsText
+        max_iterations = parameters[4].valueAsText
+        class_change = parameters[5].valueAsText
+        initialize = parameters[6].valueAsText
+        min_class_size = parameters[7].valueAsText
+        messages.addMessage(wbt.k_means_clustering(inputs, output, out_html, classes, max_iterations, class_change, initialize, min_class_size))
         return
 
 
@@ -10872,6 +11786,9 @@ class LineThinning(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.line_thinning(input, output))
         return
 
 
@@ -10948,6 +11865,14 @@ class ModifiedKMeansClustering(object):
         return
 
     def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        out_html = parameters[2].valueAsText
+        start_clusters = parameters[3].valueAsText
+        merger_dist = parameters[4].valueAsText
+        max_iterations = parameters[5].valueAsText
+        class_change = parameters[6].valueAsText
+        messages.addMessage(wbt.modified_k_means_clustering(inputs, output, out_html, start_clusters, merger_dist, max_iterations, class_change))
         return
 
 
@@ -10994,6 +11919,10 @@ class Mosaic(object):
         return
 
     def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        method = parameters[2].valueAsText
+        messages.addMessage(wbt.mosaic(inputs, output, method))
         return
 
 
@@ -11056,6 +11985,12 @@ class MosaicWithFeathering(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        method = parameters[3].valueAsText
+        weight = parameters[4].valueAsText
+        messages.addMessage(wbt.mosaic_with_feathering(input1, input2, output, method, weight))
         return
 
 
@@ -11114,6 +12049,12 @@ class NormalizedDifferenceVegetationIndex(object):
         return
 
     def execute(self, parameters, messages):
+        nir = parameters[0].valueAsText
+        red = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        clip = parameters[3].valueAsText
+        osavi = parameters[4].valueAsText
+        messages.addMessage(wbt.normalized_difference_vegetation_index(nir, red, output, clip, osavi))
         return
 
 
@@ -11167,6 +12108,11 @@ class Opening(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filterx = parameters[2].valueAsText
+        filtery = parameters[3].valueAsText
+        messages.addMessage(wbt.opening(input, output, filterx, filtery))
         return
 
 
@@ -11211,6 +12157,10 @@ class RemoveSpurs(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        iterations = parameters[2].valueAsText
+        messages.addMessage(wbt.remove_spurs(input, output, iterations))
         return
 
 
@@ -11257,6 +12207,10 @@ class Resample(object):
         return
 
     def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        destination = parameters[1].valueAsText
+        method = parameters[2].valueAsText
+        messages.addMessage(wbt.resample(inputs, destination, method))
         return
 
 
@@ -11327,6 +12281,14 @@ class RgbToIhs(object):
         return
 
     def execute(self, parameters, messages):
+        red = parameters[0].valueAsText
+        green = parameters[1].valueAsText
+        blue = parameters[2].valueAsText
+        composite = parameters[3].valueAsText
+        intensity = parameters[4].valueAsText
+        hue = parameters[5].valueAsText
+        saturation = parameters[6].valueAsText
+        messages.addMessage(wbt.rgb_to_ihs(red, green, blue, composite, intensity, hue, saturation))
         return
 
 
@@ -11362,6 +12324,9 @@ class SplitColourComposite(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.split_colour_composite(input, output))
         return
 
 
@@ -11397,6 +12362,9 @@ class ThickenRasterLine(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.thicken_raster_line(input, output))
         return
 
 
@@ -11461,6 +12429,12 @@ class TophatTransform(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filterx = parameters[2].valueAsText
+        filtery = parameters[3].valueAsText
+        variant = parameters[4].valueAsText
+        messages.addMessage(wbt.tophat_transform(input, output, filterx, filtery, variant))
         return
 
 
@@ -11510,6 +12484,11 @@ class WriteFunctionMemoryInsertion(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
+        input3 = parameters[2].valueAsText
+        output = parameters[3].valueAsText
+        messages.addMessage(wbt.write_function_memory_insertion(input1, input2, input3, output))
         return
 
 
@@ -11572,6 +12551,12 @@ class AdaptiveFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filterx = parameters[2].valueAsText
+        filtery = parameters[3].valueAsText
+        threshold = parameters[4].valueAsText
+        messages.addMessage(wbt.adaptive_filter(input, output, filterx, filtery, threshold))
         return
 
 
@@ -11625,6 +12610,11 @@ class BilateralFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        sigma_dist = parameters[2].valueAsText
+        sigma_int = parameters[3].valueAsText
+        messages.addMessage(wbt.bilateral_filter(input, output, sigma_dist, sigma_int))
         return
 
 
@@ -11678,6 +12668,11 @@ class ConservativeSmoothingFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filterx = parameters[2].valueAsText
+        filtery = parameters[3].valueAsText
+        messages.addMessage(wbt.conservative_smoothing_filter(input, output, filterx, filtery))
         return
 
 
@@ -11713,6 +12708,9 @@ class CornerDetection(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.corner_detection(input, output))
         return
 
 
@@ -11766,6 +12764,11 @@ class DiffOfGaussianFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        sigma1 = parameters[2].valueAsText
+        sigma2 = parameters[3].valueAsText
+        messages.addMessage(wbt.diff_of_gaussian_filter(input, output, sigma1, sigma2))
         return
 
 
@@ -11819,6 +12822,11 @@ class DiversityFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filterx = parameters[2].valueAsText
+        filtery = parameters[3].valueAsText
+        messages.addMessage(wbt.diversity_filter(input, output, filterx, filtery))
         return
 
 
@@ -11870,6 +12878,11 @@ class EdgePreservingMeanFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filter = parameters[2].valueAsText
+        threshold = parameters[3].valueAsText
+        messages.addMessage(wbt.edge_preserving_mean_filter(input, output, filter, threshold))
         return
 
 
@@ -11925,6 +12938,11 @@ class EmbossFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        direction = parameters[2].valueAsText
+        clip = parameters[3].valueAsText
+        messages.addMessage(wbt.emboss_filter(input, output, direction, clip))
         return
 
 
@@ -11969,6 +12987,10 @@ class FastAlmostGaussianFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        sigma = parameters[2].valueAsText
+        messages.addMessage(wbt.fast_almost_gaussian_filter(input, output, sigma))
         return
 
 
@@ -12013,6 +13035,10 @@ class GaussianFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        sigma = parameters[2].valueAsText
+        messages.addMessage(wbt.gaussian_filter(input, output, sigma))
         return
 
 
@@ -12066,6 +13092,11 @@ class HighPassFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filterx = parameters[2].valueAsText
+        filtery = parameters[3].valueAsText
+        messages.addMessage(wbt.high_pass_filter(input, output, filterx, filtery))
         return
 
 
@@ -12128,6 +13159,12 @@ class HighPassMedianFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filterx = parameters[2].valueAsText
+        filtery = parameters[3].valueAsText
+        sig_digits = parameters[4].valueAsText
+        messages.addMessage(wbt.high_pass_median_filter(input, output, filterx, filtery, sig_digits))
         return
 
 
@@ -12190,6 +13227,12 @@ class KNearestMeanFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filterx = parameters[2].valueAsText
+        filtery = parameters[3].valueAsText
+        k = parameters[4].valueAsText
+        messages.addMessage(wbt.k_nearest_mean_filter(input, output, filterx, filtery, k))
         return
 
 
@@ -12245,6 +13288,11 @@ class LaplacianFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        variant = parameters[2].valueAsText
+        clip = parameters[3].valueAsText
+        messages.addMessage(wbt.laplacian_filter(input, output, variant, clip))
         return
 
 
@@ -12289,6 +13337,10 @@ class LaplacianOfGaussianFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        sigma = parameters[2].valueAsText
+        messages.addMessage(wbt.laplacian_of_gaussian_filter(input, output, sigma))
         return
 
 
@@ -12360,6 +13412,13 @@ class LeeFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filterx = parameters[2].valueAsText
+        filtery = parameters[3].valueAsText
+        sigma = parameters[4].valueAsText
+        m = parameters[5].valueAsText
+        messages.addMessage(wbt.lee_filter(input, output, filterx, filtery, sigma, m))
         return
 
 
@@ -12422,6 +13481,12 @@ class LineDetectionFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        variant = parameters[2].valueAsText
+        absvals = parameters[3].valueAsText
+        clip = parameters[4].valueAsText
+        messages.addMessage(wbt.line_detection_filter(input, output, variant, absvals, clip))
         return
 
 
@@ -12475,6 +13540,11 @@ class MajorityFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filterx = parameters[2].valueAsText
+        filtery = parameters[3].valueAsText
+        messages.addMessage(wbt.majority_filter(input, output, filterx, filtery))
         return
 
 
@@ -12528,6 +13598,11 @@ class MaximumFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filterx = parameters[2].valueAsText
+        filtery = parameters[3].valueAsText
+        messages.addMessage(wbt.maximum_filter(input, output, filterx, filtery))
         return
 
 
@@ -12581,6 +13656,11 @@ class MeanFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filterx = parameters[2].valueAsText
+        filtery = parameters[3].valueAsText
+        messages.addMessage(wbt.mean_filter(input, output, filterx, filtery))
         return
 
 
@@ -12643,6 +13723,12 @@ class MedianFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filterx = parameters[2].valueAsText
+        filtery = parameters[3].valueAsText
+        sig_digits = parameters[4].valueAsText
+        messages.addMessage(wbt.median_filter(input, output, filterx, filtery, sig_digits))
         return
 
 
@@ -12696,6 +13782,11 @@ class MinimumFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filterx = parameters[2].valueAsText
+        filtery = parameters[3].valueAsText
+        messages.addMessage(wbt.minimum_filter(input, output, filterx, filtery))
         return
 
 
@@ -12749,6 +13840,11 @@ class OlympicFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filterx = parameters[2].valueAsText
+        filtery = parameters[3].valueAsText
+        messages.addMessage(wbt.olympic_filter(input, output, filterx, filtery))
         return
 
 
@@ -12811,6 +13907,12 @@ class PercentileFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filterx = parameters[2].valueAsText
+        filtery = parameters[3].valueAsText
+        sig_digits = parameters[4].valueAsText
+        messages.addMessage(wbt.percentile_filter(input, output, filterx, filtery, sig_digits))
         return
 
 
@@ -12855,6 +13957,10 @@ class PrewittFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        clip = parameters[2].valueAsText
+        messages.addMessage(wbt.prewitt_filter(input, output, clip))
         return
 
 
@@ -12908,6 +14014,11 @@ class RangeFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filterx = parameters[2].valueAsText
+        filtery = parameters[3].valueAsText
+        messages.addMessage(wbt.range_filter(input, output, filterx, filtery))
         return
 
 
@@ -12952,6 +14063,10 @@ class RobertsCrossFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        clip = parameters[2].valueAsText
+        messages.addMessage(wbt.roberts_cross_filter(input, output, clip))
         return
 
 
@@ -12996,6 +14111,10 @@ class ScharrFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        clip = parameters[2].valueAsText
+        messages.addMessage(wbt.scharr_filter(input, output, clip))
         return
 
 
@@ -13051,6 +14170,11 @@ class SobelFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        variant = parameters[2].valueAsText
+        clip = parameters[3].valueAsText
+        messages.addMessage(wbt.sobel_filter(input, output, variant, clip))
         return
 
 
@@ -13104,6 +14228,11 @@ class StandardDeviationFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filterx = parameters[2].valueAsText
+        filtery = parameters[3].valueAsText
+        messages.addMessage(wbt.standard_deviation_filter(input, output, filterx, filtery))
         return
 
 
@@ -13157,6 +14286,11 @@ class TotalFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filterx = parameters[2].valueAsText
+        filtery = parameters[3].valueAsText
+        messages.addMessage(wbt.total_filter(input, output, filterx, filtery))
         return
 
 
@@ -13219,6 +14353,12 @@ class UnsharpMasking(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        sigma = parameters[2].valueAsText
+        amount = parameters[3].valueAsText
+        threshold = parameters[4].valueAsText
+        messages.addMessage(wbt.unsharp_masking(input, output, sigma, amount, threshold))
         return
 
 
@@ -13282,6 +14422,12 @@ class UserDefinedWeightsFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        weights = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        center = parameters[3].valueAsText
+        normalize = parameters[4].valueAsText
+        messages.addMessage(wbt.user_defined_weights_filter(input, weights, output, center, normalize))
         return
 
 
@@ -13326,6 +14472,10 @@ class BalanceContrastEnhancement(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        band_mean = parameters[2].valueAsText
+        messages.addMessage(wbt.balance_contrast_enhancement(input, output, band_mean))
         return
 
 
@@ -13396,6 +14546,13 @@ class CorrectVignetting(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        pp = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        focal_length = parameters[3].valueAsText
+        image_width = parameters[4].valueAsText
+        n = parameters[5].valueAsText
+        messages.addMessage(wbt.correct_vignetting(input, pp, output, focal_length, image_width, n))
         return
 
 
@@ -13449,6 +14606,11 @@ class DirectDecorrelationStretch(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        k = parameters[2].valueAsText
+        clip = parameters[3].valueAsText
+        messages.addMessage(wbt.direct_decorrelation_stretch(input, output, k, clip))
         return
 
 
@@ -13493,6 +14655,10 @@ class GammaCorrection(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        gamma = parameters[2].valueAsText
+        messages.addMessage(wbt.gamma_correction(input, output, gamma))
         return
 
 
@@ -13537,6 +14703,10 @@ class GaussianContrastStretch(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        num_tones = parameters[2].valueAsText
+        messages.addMessage(wbt.gaussian_contrast_stretch(input, output, num_tones))
         return
 
 
@@ -13581,6 +14751,10 @@ class HistogramEqualization(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        num_tones = parameters[2].valueAsText
+        messages.addMessage(wbt.histogram_equalization(input, output, num_tones))
         return
 
 
@@ -13623,6 +14797,10 @@ class HistogramMatching(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        histo_file = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.histogram_matching(input, histo_file, output))
         return
 
 
@@ -13665,6 +14843,10 @@ class HistogramMatchingTwoImages(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.histogram_matching_two_images(input1, input2, output))
         return
 
 
@@ -13723,6 +14905,12 @@ class MinMaxContrastStretch(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        min_val = parameters[2].valueAsText
+        max_val = parameters[3].valueAsText
+        num_tones = parameters[4].valueAsText
+        messages.addMessage(wbt.min_max_contrast_stretch(input, output, min_val, max_val, num_tones))
         return
 
 
@@ -13797,6 +14985,14 @@ class PanchromaticSharpening(object):
         return
 
     def execute(self, parameters, messages):
+        red = parameters[0].valueAsText
+        green = parameters[1].valueAsText
+        blue = parameters[2].valueAsText
+        composite = parameters[3].valueAsText
+        pan = parameters[4].valueAsText
+        output = parameters[5].valueAsText
+        method = parameters[6].valueAsText
+        messages.addMessage(wbt.panchromatic_sharpening(red, green, blue, composite, pan, output, method))
         return
 
 
@@ -13861,6 +15057,12 @@ class PercentageContrastStretch(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        clip = parameters[2].valueAsText
+        tail = parameters[3].valueAsText
+        num_tones = parameters[4].valueAsText
+        messages.addMessage(wbt.percentage_contrast_stretch(input, output, clip, tail, num_tones))
         return
 
 
@@ -13923,6 +15125,12 @@ class SigmoidalContrastStretch(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        cutoff = parameters[2].valueAsText
+        gain = parameters[3].valueAsText
+        num_tones = parameters[4].valueAsText
+        messages.addMessage(wbt.sigmoidal_contrast_stretch(input, output, cutoff, gain, num_tones))
         return
 
 
@@ -13976,6 +15184,11 @@ class StandardDeviationContrastStretch(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        stdev = parameters[2].valueAsText
+        num_tones = parameters[3].valueAsText
+        messages.addMessage(wbt.standard_deviation_contrast_stretch(input, output, stdev, num_tones))
         return
 
 
@@ -14031,6 +15244,11 @@ class ClassifyOverlapPoints(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        resolution = parameters[2].valueAsText
+        filter = parameters[3].valueAsText
+        messages.addMessage(wbt.classify_overlap_points(input, output, resolution, filter))
         return
 
 
@@ -14076,6 +15294,10 @@ class ClipLidarToPolygon(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        polygons = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.clip_lidar_to_polygon(input, polygons, output))
         return
 
 
@@ -14121,6 +15343,10 @@ class ErasePolygonFromLidar(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        polygons = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.erase_polygon_from_lidar(input, polygons, output))
         return
 
 
@@ -14165,6 +15391,10 @@ class FilterLidarScanAngles(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        threshold = parameters[2].valueAsText
+        messages.addMessage(wbt.filter_lidar_scan_angles(input, output, threshold))
         return
 
 
@@ -14202,6 +15432,9 @@ class FindFlightlineEdgePoints(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.find_flightline_edge_points(input, output))
         return
 
 
@@ -14247,6 +15480,10 @@ class FlightlineOverlap(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        resolution = parameters[2].valueAsText
+        messages.addMessage(wbt.flightline_overlap(input, output, resolution))
         return
 
 
@@ -14276,6 +15513,8 @@ class LasToAscii(object):
         return
 
     def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        messages.addMessage(wbt.las_to_ascii(inputs))
         return
 
 
@@ -14305,6 +15544,8 @@ class LasToMultipointShapefile(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        messages.addMessage(wbt.las_to_multipoint_shapefile(input))
         return
 
 
@@ -14334,6 +15575,8 @@ class LasToShapefile(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        messages.addMessage(wbt.las_to_shapefile(input))
         return
 
 
@@ -14379,6 +15622,10 @@ class LidarBlockMaximum(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        resolution = parameters[2].valueAsText
+        messages.addMessage(wbt.lidar_block_maximum(input, output, resolution))
         return
 
 
@@ -14424,6 +15671,10 @@ class LidarBlockMinimum(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        resolution = parameters[2].valueAsText
+        messages.addMessage(wbt.lidar_block_minimum(input, output, resolution))
         return
 
 
@@ -14483,6 +15734,12 @@ class LidarClassifySubset(object):
         return
 
     def execute(self, parameters, messages):
+        base = parameters[0].valueAsText
+        subset = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        subset_class = parameters[3].valueAsText
+        nonsubset_class = parameters[4].valueAsText
+        messages.addMessage(wbt.lidar_classify_subset(base, subset, output, subset_class, nonsubset_class))
         return
 
 
@@ -14527,6 +15784,10 @@ class LidarColourize(object):
         return
 
     def execute(self, parameters, messages):
+        in_lidar = parameters[0].valueAsText
+        in_image = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.lidar_colourize(in_lidar, in_image, output))
         return
 
 
@@ -14595,6 +15856,13 @@ class LidarConstructVectorTin(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        returns = parameters[2].valueAsText
+        exclude_cls = parameters[3].valueAsText
+        minz = parameters[4].valueAsText
+        maxz = parameters[5].valueAsText
+        messages.addMessage(wbt.lidar_construct_vector_tin(input, output, returns, exclude_cls, minz, maxz))
         return
 
 
@@ -14671,6 +15939,14 @@ class LidarElevationSlice(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        minz = parameters[2].valueAsText
+        maxz = parameters[3].valueAsText
+        class1 = parameters[4].valueAsText
+        inclassval = parameters[5].valueAsText
+        outclassval = parameters[6].valueAsText
+        messages.addMessage(wbt.lidar_elevation_slice(input, output, minz, maxz, class1, inclassval, outclassval))
         return
 
 
@@ -14762,6 +16038,15 @@ class LidarGroundPointFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        radius = parameters[2].valueAsText
+        min_neighbours = parameters[3].valueAsText
+        slope_threshold = parameters[4].valueAsText
+        height_threshold = parameters[5].valueAsText
+        classify = parameters[6].valueAsText
+        slope_norm = parameters[7].valueAsText
+        messages.addMessage(wbt.lidar_ground_point_filter(input, output, radius, min_neighbours, slope_threshold, height_threshold, classify, slope_norm))
         return
 
 
@@ -14817,6 +16102,11 @@ class LidarHexBinning(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        width = parameters[2].valueAsText
+        orientation = parameters[3].valueAsText
+        messages.addMessage(wbt.lidar_hex_binning(input, output, width, orientation))
         return
 
 
@@ -14881,6 +16171,12 @@ class LidarHillshade(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        azimuth = parameters[2].valueAsText
+        altitude = parameters[3].valueAsText
+        radius = parameters[4].valueAsText
+        messages.addMessage(wbt.lidar_hillshade(input, output, azimuth, altitude, radius))
         return
 
 
@@ -14937,6 +16233,11 @@ class LidarHistogram(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        parameter = parameters[2].valueAsText
+        clip = parameters[3].valueAsText
+        messages.addMessage(wbt.lidar_histogram(input, output, parameter, clip))
         return
 
 
@@ -15043,6 +16344,17 @@ class LidarIdwInterpolation(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        parameter = parameters[2].valueAsText
+        returns = parameters[3].valueAsText
+        resolution = parameters[4].valueAsText
+        weight = parameters[5].valueAsText
+        radius = parameters[6].valueAsText
+        exclude_cls = parameters[7].valueAsText
+        minz = parameters[8].valueAsText
+        maxz = parameters[9].valueAsText
+        messages.addMessage(wbt.lidar_idw_interpolation(input, output, parameter, returns, resolution, weight, radius, exclude_cls, minz, maxz))
         return
 
 
@@ -15093,6 +16405,11 @@ class LidarInfo(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        vlr = parameters[2].valueAsText
+        geokeys = parameters[3].valueAsText
+        messages.addMessage(wbt.lidar_info(input, output, vlr, geokeys))
         return
 
 
@@ -15130,6 +16447,9 @@ class LidarJoin(object):
         return
 
     def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.lidar_join(inputs, output))
         return
 
 
@@ -15190,6 +16510,12 @@ class LidarKappaIndex(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        class_accuracy = parameters[3].valueAsText
+        resolution = parameters[4].valueAsText
+        messages.addMessage(wbt.lidar_kappa_index(input1, input2, output, class_accuracy, resolution))
         return
 
 
@@ -15287,6 +16613,16 @@ class LidarNearestNeighbourGridding(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        parameter = parameters[2].valueAsText
+        returns = parameters[3].valueAsText
+        resolution = parameters[4].valueAsText
+        radius = parameters[5].valueAsText
+        exclude_cls = parameters[6].valueAsText
+        minz = parameters[7].valueAsText
+        maxz = parameters[8].valueAsText
+        messages.addMessage(wbt.lidar_nearest_neighbour_gridding(input, output, parameter, returns, resolution, radius, exclude_cls, minz, maxz))
         return
 
 
@@ -15373,6 +16709,15 @@ class LidarPointDensity(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        returns = parameters[2].valueAsText
+        resolution = parameters[3].valueAsText
+        radius = parameters[4].valueAsText
+        exclude_cls = parameters[5].valueAsText
+        minz = parameters[6].valueAsText
+        maxz = parameters[7].valueAsText
+        messages.addMessage(wbt.lidar_point_density(input, output, returns, resolution, radius, exclude_cls, minz, maxz))
         return
 
 
@@ -15448,6 +16793,14 @@ class LidarPointStats(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        resolution = parameters[1].valueAsText
+        num_points = parameters[2].valueAsText
+        num_pulses = parameters[3].valueAsText
+        z_range = parameters[4].valueAsText
+        intensity_range = parameters[5].valueAsText
+        predom_class = parameters[6].valueAsText
+        messages.addMessage(wbt.lidar_point_stats(input, resolution, num_points, num_pulses, z_range, intensity_range, predom_class))
         return
 
 
@@ -15494,6 +16847,10 @@ class LidarRemoveDuplicates(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        include_z = parameters[2].valueAsText
+        messages.addMessage(wbt.lidar_remove_duplicates(input, output, include_z))
         return
 
 
@@ -15549,6 +16906,11 @@ class LidarRemoveOutliers(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        radius = parameters[2].valueAsText
+        elev_diff = parameters[3].valueAsText
+        messages.addMessage(wbt.lidar_remove_outliers(input, output, radius, elev_diff))
         return
 
 
@@ -15613,6 +16975,12 @@ class LidarSegmentation(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        radius = parameters[2].valueAsText
+        norm_diff = parameters[3].valueAsText
+        maxzdiff = parameters[4].valueAsText
+        messages.addMessage(wbt.lidar_segmentation(input, output, radius, norm_diff, maxzdiff))
         return
 
 
@@ -15684,6 +17052,13 @@ class LidarSegmentationBasedFilter(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        radius = parameters[2].valueAsText
+        norm_diff = parameters[3].valueAsText
+        maxzdiff = parameters[4].valueAsText
+        classify = parameters[5].valueAsText
+        messages.addMessage(wbt.lidar_segmentation_based_filter(input, output, radius, norm_diff, maxzdiff, classify))
         return
 
 
@@ -15750,6 +17125,12 @@ class LidarThin(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        resolution = parameters[2].valueAsText
+        method = parameters[3].valueAsText
+        save_filtered = parameters[4].valueAsText
+        messages.addMessage(wbt.lidar_thin(input, output, resolution, method, save_filtered))
         return
 
 
@@ -15812,6 +17193,12 @@ class LidarThinHighDensity(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        resolution = parameters[2].valueAsText
+        density = parameters[3].valueAsText
+        save_filtered = parameters[4].valueAsText
+        messages.addMessage(wbt.lidar_thin_high_density(input, output, resolution, density, save_filtered))
         return
 
 
@@ -15886,6 +17273,13 @@ class LidarTile(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        width_x = parameters[1].valueAsText
+        width_y = parameters[2].valueAsText
+        origin_x = parameters[3].valueAsText
+        origin_y = parameters[4].valueAsText
+        min_points = parameters[5].valueAsText
+        messages.addMessage(wbt.lidar_tile(input, width_x, width_y, origin_x, origin_y, min_points))
         return
 
 
@@ -15923,6 +17317,9 @@ class LidarTileFootprint(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.lidar_tile_footprint(input, output))
         return
 
 
@@ -16011,6 +17408,15 @@ class LidarTinGridding(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        parameter = parameters[2].valueAsText
+        returns = parameters[3].valueAsText
+        resolution = parameters[4].valueAsText
+        exclude_cls = parameters[5].valueAsText
+        minz = parameters[6].valueAsText
+        maxz = parameters[7].valueAsText
+        messages.addMessage(wbt.lidar_tin_gridding(input, output, parameter, returns, resolution, exclude_cls, minz, maxz))
         return
 
 
@@ -16057,6 +17463,10 @@ class LidarTophatTransform(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        radius = parameters[2].valueAsText
+        messages.addMessage(wbt.lidar_tophat_transform(input, output, radius))
         return
 
 
@@ -16103,6 +17513,10 @@ class NormalVectors(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        radius = parameters[2].valueAsText
+        messages.addMessage(wbt.normal_vectors(input, output, radius))
         return
 
 
@@ -16146,6 +17560,10 @@ class SelectTilesByPolygon(object):
         return
 
     def execute(self, parameters, messages):
+        indir = parameters[0].valueAsText
+        outdir = parameters[1].valueAsText
+        polygons = parameters[2].valueAsText
+        messages.addMessage(wbt.select_tiles_by_polygon(indir, outdir, polygons))
         return
 
 
@@ -16188,6 +17606,10 @@ class And(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.And(input1, input2, output))
         return
 
 
@@ -16230,6 +17652,10 @@ class Not(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.Not(input1, input2, output))
         return
 
 
@@ -16272,6 +17698,10 @@ class Or(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.Or(input1, input2, output))
         return
 
 
@@ -16307,6 +17737,9 @@ class AbsoluteValue(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.absolute_value(input, output))
         return
 
 
@@ -16349,6 +17782,10 @@ class Add(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.add(input1, input2, output))
         return
 
 
@@ -16391,6 +17828,10 @@ class Anova(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        features = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.anova(input, features, output))
         return
 
 
@@ -16426,6 +17867,9 @@ class ArcCos(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.arc_cos(input, output))
         return
 
 
@@ -16461,6 +17905,9 @@ class ArcSin(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.arc_sin(input, output))
         return
 
 
@@ -16496,6 +17943,9 @@ class ArcTan(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.arc_tan(input, output))
         return
 
 
@@ -16538,6 +17988,10 @@ class Atan2(object):
         return
 
     def execute(self, parameters, messages):
+        input_y = parameters[0].valueAsText
+        input_x = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.atan2(input_y, input_x, output))
         return
 
 
@@ -16573,6 +18027,9 @@ class AttributeCorrelation(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.attribute_correlation(input, output))
         return
 
 
@@ -16616,6 +18073,10 @@ class AttributeHistogram(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        field = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.attribute_histogram(input, field, output))
         return
 
 
@@ -16676,6 +18137,12 @@ class AttributeScattergram(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        fieldx = parameters[1].valueAsText
+        fieldy = parameters[2].valueAsText
+        output = parameters[3].valueAsText
+        trendline = parameters[4].valueAsText
+        messages.addMessage(wbt.attribute_scattergram(input, fieldx, fieldy, output, trendline))
         return
 
 
@@ -16711,6 +18178,9 @@ class Ceil(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.ceil(input, output))
         return
 
 
@@ -16746,6 +18216,9 @@ class Cos(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.cos(input, output))
         return
 
 
@@ -16781,6 +18254,9 @@ class Cosh(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.cosh(input, output))
         return
 
 
@@ -16816,6 +18292,9 @@ class CrispnessIndex(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.crispness_index(input, output))
         return
 
 
@@ -16858,6 +18337,10 @@ class CrossTabulation(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.cross_tabulation(input1, input2, output))
         return
 
 
@@ -16893,6 +18376,9 @@ class CumulativeDistribution(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.cumulative_distribution(input, output))
         return
 
 
@@ -16928,6 +18414,9 @@ class Decrement(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.decrement(input, output))
         return
 
 
@@ -16970,6 +18459,10 @@ class Divide(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.divide(input1, input2, output))
         return
 
 
@@ -17012,6 +18505,10 @@ class EqualTo(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.equal_to(input1, input2, output))
         return
 
 
@@ -17047,6 +18544,9 @@ class Exp(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.exp(input, output))
         return
 
 
@@ -17082,6 +18582,9 @@ class Exp2(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.exp2(input, output))
         return
 
 
@@ -17142,6 +18645,12 @@ class ExtractRasterStatistics(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        features = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        stat = parameters[3].valueAsText
+        out_table = parameters[4].valueAsText
+        messages.addMessage(wbt.extract_raster_statistics(input, features, output, stat, out_table))
         return
 
 
@@ -17177,6 +18686,9 @@ class Floor(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.floor(input, output))
         return
 
 
@@ -17226,6 +18738,11 @@ class GreaterThan(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        incl_equals = parameters[3].valueAsText
+        messages.addMessage(wbt.greater_than(input1, input2, output, incl_equals))
         return
 
 
@@ -17272,6 +18789,10 @@ class ImageAutocorrelation(object):
         return
 
     def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        contiguity = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.image_autocorrelation(inputs, contiguity, output))
         return
 
 
@@ -17307,6 +18828,9 @@ class ImageCorrelation(object):
         return
 
     def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.image_correlation(inputs, output))
         return
 
 
@@ -17363,6 +18887,12 @@ class ImageRegression(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        out_residuals = parameters[3].valueAsText
+        standardize = parameters[4].valueAsText
+        messages.addMessage(wbt.image_regression(input1, input2, output, out_residuals, standardize))
         return
 
 
@@ -17398,6 +18928,9 @@ class InPlaceAdd(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
+        messages.addMessage(wbt.in_place_add(input1, input2))
         return
 
 
@@ -17433,6 +18966,9 @@ class InPlaceDivide(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
+        messages.addMessage(wbt.in_place_divide(input1, input2))
         return
 
 
@@ -17468,6 +19004,9 @@ class InPlaceMultiply(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
+        messages.addMessage(wbt.in_place_multiply(input1, input2))
         return
 
 
@@ -17503,6 +19042,9 @@ class InPlaceSubtract(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
+        messages.addMessage(wbt.in_place_subtract(input1, input2))
         return
 
 
@@ -17538,6 +19080,9 @@ class Increment(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.increment(input, output))
         return
 
 
@@ -17580,6 +19125,10 @@ class IntegerDivision(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.integer_division(input1, input2, output))
         return
 
 
@@ -17615,6 +19164,9 @@ class IsNoData(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.is_no_data(input, output))
         return
 
 
@@ -17657,6 +19209,10 @@ class KappaIndex(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.kappa_index(input1, input2, output))
         return
 
 
@@ -17699,6 +19255,10 @@ class KsTestForNormality(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        num_samples = parameters[2].valueAsText
+        messages.addMessage(wbt.ks_test_for_normality(input, output, num_samples))
         return
 
 
@@ -17748,6 +19308,11 @@ class LessThan(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        incl_equals = parameters[3].valueAsText
+        messages.addMessage(wbt.less_than(input1, input2, output, incl_equals))
         return
 
 
@@ -17791,6 +19356,10 @@ class ListUniqueValues(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        field = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.list_unique_values(input, field, output))
         return
 
 
@@ -17826,6 +19395,9 @@ class Ln(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.ln(input, output))
         return
 
 
@@ -17861,6 +19433,9 @@ class Log10(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.log10(input, output))
         return
 
 
@@ -17896,6 +19471,9 @@ class Log2(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.log2(input, output))
         return
 
 
@@ -17938,6 +19516,10 @@ class Max(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.max(input1, input2, output))
         return
 
 
@@ -17980,6 +19562,10 @@ class Min(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.min(input1, input2, output))
         return
 
 
@@ -18022,6 +19608,10 @@ class Modulo(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.modulo(input1, input2, output))
         return
 
 
@@ -18064,6 +19654,10 @@ class Multiply(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.multiply(input1, input2, output))
         return
 
 
@@ -18099,6 +19693,9 @@ class Negate(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.negate(input, output))
         return
 
 
@@ -18141,6 +19738,10 @@ class NotEqualTo(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.not_equal_to(input1, input2, output))
         return
 
 
@@ -18183,6 +19784,10 @@ class Power(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.power(input1, input2, output))
         return
 
 
@@ -18232,6 +19837,11 @@ class PrincipalComponentAnalysis(object):
         return
 
     def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        out_html = parameters[1].valueAsText
+        num_comp = parameters[2].valueAsText
+        standardized = parameters[3].valueAsText
+        messages.addMessage(wbt.principal_component_analysis(inputs, out_html, num_comp, standardized))
         return
 
 
@@ -18276,6 +19886,10 @@ class Quantiles(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        num_quantiles = parameters[2].valueAsText
+        messages.addMessage(wbt.quantiles(input, output, num_quantiles))
         return
 
 
@@ -18311,6 +19925,9 @@ class RandomField(object):
         return
 
     def execute(self, parameters, messages):
+        base = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.random_field(base, output))
         return
 
 
@@ -18355,6 +19972,10 @@ class RandomSample(object):
         return
 
     def execute(self, parameters, messages):
+        base = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        num_samples = parameters[2].valueAsText
+        messages.addMessage(wbt.random_sample(base, output, num_samples))
         return
 
 
@@ -18390,6 +20011,9 @@ class RasterHistogram(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.raster_histogram(input, output))
         return
 
 
@@ -18418,6 +20042,8 @@ class RasterSummaryStats(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        messages.addMessage(wbt.raster_summary_stats(input))
         return
 
 
@@ -18453,6 +20079,9 @@ class Reciprocal(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.reciprocal(input, output))
         return
 
 
@@ -18516,6 +20145,13 @@ class RescaleValueRange(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        out_min_val = parameters[2].valueAsText
+        out_max_val = parameters[3].valueAsText
+        clip_min = parameters[4].valueAsText
+        clip_max = parameters[5].valueAsText
+        messages.addMessage(wbt.rescale_value_range(input, output, out_min_val, out_max_val, clip_min, clip_max))
         return
 
 
@@ -18551,6 +20187,9 @@ class RootMeanSquareError(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        base = parameters[1].valueAsText
+        messages.addMessage(wbt.root_mean_square_error(input, base))
         return
 
 
@@ -18586,6 +20225,9 @@ class Round(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.round(input, output))
         return
 
 
@@ -18621,6 +20263,9 @@ class Sin(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.sin(input, output))
         return
 
 
@@ -18656,6 +20301,9 @@ class Sinh(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.sinh(input, output))
         return
 
 
@@ -18691,6 +20339,9 @@ class Square(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.square(input, output))
         return
 
 
@@ -18726,6 +20377,9 @@ class SquareRoot(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.square_root(input, output))
         return
 
 
@@ -18768,6 +20422,10 @@ class Subtract(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.subtract(input1, input2, output))
         return
 
 
@@ -18803,6 +20461,9 @@ class Tan(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.tan(input, output))
         return
 
 
@@ -18838,6 +20499,9 @@ class Tanh(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.tanh(input, output))
         return
 
 
@@ -18873,6 +20537,9 @@ class ToDegrees(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.to_degrees(input, output))
         return
 
 
@@ -18908,6 +20575,9 @@ class ToRadians(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.to_radians(input, output))
         return
 
 
@@ -18952,6 +20622,10 @@ class TrendSurface(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        order = parameters[2].valueAsText
+        messages.addMessage(wbt.trend_surface(input, output, order))
         return
 
 
@@ -19012,6 +20686,12 @@ class TrendSurfaceVectorPoints(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        field = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        order = parameters[3].valueAsText
+        cell_size = parameters[4].valueAsText
+        messages.addMessage(wbt.trend_surface_vector_points(input, field, output, order, cell_size))
         return
 
 
@@ -19054,6 +20734,10 @@ class Truncate(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        num_decimals = parameters[2].valueAsText
+        messages.addMessage(wbt.truncate(input, output, num_decimals))
         return
 
 
@@ -19105,6 +20789,11 @@ class TurningBandsSimulation(object):
         return
 
     def execute(self, parameters, messages):
+        base = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        range = parameters[2].valueAsText
+        iterations = parameters[3].valueAsText
+        messages.addMessage(wbt.turning_bands_simulation(base, output, range, iterations))
         return
 
 
@@ -19147,6 +20836,10 @@ class Xor(object):
         return
 
     def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        messages.addMessage(wbt.xor(input1, input2, output))
         return
 
 
@@ -19182,6 +20875,9 @@ class ZScores(object):
         return
 
     def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        messages.addMessage(wbt.z_scores(input, output))
         return
 
 
@@ -19240,6 +20936,12 @@ class DistanceToOutlet(object):
         return
 
     def execute(self, parameters, messages):
+        d8_pntr = parameters[0].valueAsText
+        streams = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        esri_pntr = parameters[3].valueAsText
+        zero_background = parameters[4].valueAsText
+        messages.addMessage(wbt.distance_to_outlet(d8_pntr, streams, output, esri_pntr, zero_background))
         return
 
 
@@ -19289,6 +20991,11 @@ class ExtractStreams(object):
         return
 
     def execute(self, parameters, messages):
+        flow_accum = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        threshold = parameters[2].valueAsText
+        zero_background = parameters[3].valueAsText
+        messages.addMessage(wbt.extract_streams(flow_accum, output, threshold, zero_background))
         return
 
 
@@ -19353,6 +21060,12 @@ class ExtractValleys(object):
         return
 
     def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        variant = parameters[2].valueAsText
+        line_thin = parameters[3].valueAsText
+        filter = parameters[4].valueAsText
+        messages.addMessage(wbt.extract_valleys(dem, output, variant, line_thin, filter))
         return
 
 
@@ -19411,6 +21124,12 @@ class FarthestChannelHead(object):
         return
 
     def execute(self, parameters, messages):
+        d8_pntr = parameters[0].valueAsText
+        streams = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        esri_pntr = parameters[3].valueAsText
+        zero_background = parameters[4].valueAsText
+        messages.addMessage(wbt.farthest_channel_head(d8_pntr, streams, output, esri_pntr, zero_background))
         return
 
 
@@ -19469,6 +21188,12 @@ class FindMainStem(object):
         return
 
     def execute(self, parameters, messages):
+        d8_pntr = parameters[0].valueAsText
+        streams = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        esri_pntr = parameters[3].valueAsText
+        zero_background = parameters[4].valueAsText
+        messages.addMessage(wbt.find_main_stem(d8_pntr, streams, output, esri_pntr, zero_background))
         return
 
 
@@ -19527,6 +21252,12 @@ class HackStreamOrder(object):
         return
 
     def execute(self, parameters, messages):
+        d8_pntr = parameters[0].valueAsText
+        streams = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        esri_pntr = parameters[3].valueAsText
+        zero_background = parameters[4].valueAsText
+        messages.addMessage(wbt.hack_stream_order(d8_pntr, streams, output, esri_pntr, zero_background))
         return
 
 
@@ -19585,6 +21316,12 @@ class HortonStreamOrder(object):
         return
 
     def execute(self, parameters, messages):
+        d8_pntr = parameters[0].valueAsText
+        streams = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        esri_pntr = parameters[3].valueAsText
+        zero_background = parameters[4].valueAsText
+        messages.addMessage(wbt.horton_stream_order(d8_pntr, streams, output, esri_pntr, zero_background))
         return
 
 
@@ -19643,6 +21380,12 @@ class LengthOfUpstreamChannels(object):
         return
 
     def execute(self, parameters, messages):
+        d8_pntr = parameters[0].valueAsText
+        streams = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        esri_pntr = parameters[3].valueAsText
+        zero_background = parameters[4].valueAsText
+        messages.addMessage(wbt.length_of_upstream_channels(d8_pntr, streams, output, esri_pntr, zero_background))
         return
 
 
@@ -19701,6 +21444,12 @@ class LongProfile(object):
         return
 
     def execute(self, parameters, messages):
+        d8_pntr = parameters[0].valueAsText
+        streams = parameters[1].valueAsText
+        dem = parameters[2].valueAsText
+        output = parameters[3].valueAsText
+        esri_pntr = parameters[4].valueAsText
+        messages.addMessage(wbt.long_profile(d8_pntr, streams, dem, output, esri_pntr))
         return
 
 
@@ -19760,6 +21509,12 @@ class LongProfileFromPoints(object):
         return
 
     def execute(self, parameters, messages):
+        d8_pntr = parameters[0].valueAsText
+        points = parameters[1].valueAsText
+        dem = parameters[2].valueAsText
+        output = parameters[3].valueAsText
+        esri_pntr = parameters[4].valueAsText
+        messages.addMessage(wbt.long_profile_from_points(d8_pntr, points, dem, output, esri_pntr))
         return
 
 
@@ -19812,6 +21567,11 @@ class RasterStreamsToVector(object):
         return
 
     def execute(self, parameters, messages):
+        streams = parameters[0].valueAsText
+        d8_pntr = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        esri_pntr = parameters[3].valueAsText
+        messages.addMessage(wbt.raster_streams_to_vector(streams, d8_pntr, output, esri_pntr))
         return
 
 
@@ -19873,6 +21633,12 @@ class RasterizeStreams(object):
         return
 
     def execute(self, parameters, messages):
+        streams = parameters[0].valueAsText
+        base = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        nodata = parameters[3].valueAsText
+        feature_id = parameters[4].valueAsText
+        messages.addMessage(wbt.rasterize_streams(streams, base, output, nodata, feature_id))
         return
 
 
@@ -19931,6 +21697,12 @@ class RemoveShortStreams(object):
         return
 
     def execute(self, parameters, messages):
+        d8_pntr = parameters[0].valueAsText
+        streams = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        min_length = parameters[3].valueAsText
+        esri_pntr = parameters[4].valueAsText
+        messages.addMessage(wbt.remove_short_streams(d8_pntr, streams, output, min_length, esri_pntr))
         return
 
 
@@ -19989,6 +21761,12 @@ class ShreveStreamMagnitude(object):
         return
 
     def execute(self, parameters, messages):
+        d8_pntr = parameters[0].valueAsText
+        streams = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        esri_pntr = parameters[3].valueAsText
+        zero_background = parameters[4].valueAsText
+        messages.addMessage(wbt.shreve_stream_magnitude(d8_pntr, streams, output, esri_pntr, zero_background))
         return
 
 
@@ -20047,6 +21825,12 @@ class StrahlerStreamOrder(object):
         return
 
     def execute(self, parameters, messages):
+        d8_pntr = parameters[0].valueAsText
+        streams = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        esri_pntr = parameters[3].valueAsText
+        zero_background = parameters[4].valueAsText
+        messages.addMessage(wbt.strahler_stream_order(d8_pntr, streams, output, esri_pntr, zero_background))
         return
 
 
@@ -20105,6 +21889,12 @@ class StreamLinkClass(object):
         return
 
     def execute(self, parameters, messages):
+        d8_pntr = parameters[0].valueAsText
+        streams = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        esri_pntr = parameters[3].valueAsText
+        zero_background = parameters[4].valueAsText
+        messages.addMessage(wbt.stream_link_class(d8_pntr, streams, output, esri_pntr, zero_background))
         return
 
 
@@ -20163,6 +21953,12 @@ class StreamLinkIdentifier(object):
         return
 
     def execute(self, parameters, messages):
+        d8_pntr = parameters[0].valueAsText
+        streams = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        esri_pntr = parameters[3].valueAsText
+        zero_background = parameters[4].valueAsText
+        messages.addMessage(wbt.stream_link_identifier(d8_pntr, streams, output, esri_pntr, zero_background))
         return
 
 
@@ -20221,6 +22017,12 @@ class StreamLinkLength(object):
         return
 
     def execute(self, parameters, messages):
+        d8_pntr = parameters[0].valueAsText
+        linkid = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        esri_pntr = parameters[3].valueAsText
+        zero_background = parameters[4].valueAsText
+        messages.addMessage(wbt.stream_link_length(d8_pntr, linkid, output, esri_pntr, zero_background))
         return
 
 
@@ -20286,6 +22088,13 @@ class StreamLinkSlope(object):
         return
 
     def execute(self, parameters, messages):
+        d8_pntr = parameters[0].valueAsText
+        linkid = parameters[1].valueAsText
+        dem = parameters[2].valueAsText
+        output = parameters[3].valueAsText
+        esri_pntr = parameters[4].valueAsText
+        zero_background = parameters[5].valueAsText
+        messages.addMessage(wbt.stream_link_slope(d8_pntr, linkid, dem, output, esri_pntr, zero_background))
         return
 
 
@@ -20351,6 +22160,13 @@ class StreamSlopeContinuous(object):
         return
 
     def execute(self, parameters, messages):
+        d8_pntr = parameters[0].valueAsText
+        streams = parameters[1].valueAsText
+        dem = parameters[2].valueAsText
+        output = parameters[3].valueAsText
+        esri_pntr = parameters[4].valueAsText
+        zero_background = parameters[5].valueAsText
+        messages.addMessage(wbt.stream_slope_continuous(d8_pntr, streams, dem, output, esri_pntr, zero_background))
         return
 
 
@@ -20409,6 +22225,12 @@ class TopologicalStreamOrder(object):
         return
 
     def execute(self, parameters, messages):
+        d8_pntr = parameters[0].valueAsText
+        streams = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        esri_pntr = parameters[3].valueAsText
+        zero_background = parameters[4].valueAsText
+        messages.addMessage(wbt.topological_stream_order(d8_pntr, streams, output, esri_pntr, zero_background))
         return
 
 
@@ -20467,6 +22289,12 @@ class TributaryIdentifier(object):
         return
 
     def execute(self, parameters, messages):
+        d8_pntr = parameters[0].valueAsText
+        streams = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        esri_pntr = parameters[3].valueAsText
+        zero_background = parameters[4].valueAsText
+        messages.addMessage(wbt.tributary_identifier(d8_pntr, streams, output, esri_pntr, zero_background))
         return
 
 

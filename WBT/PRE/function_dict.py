@@ -31,7 +31,8 @@ def write_header(file_path, tool_list):
     f_header = open(file_path, "w")
     f_header.write("import arcpy\n")
     f_header.write("from WBT.whitebox_tools import WhiteboxTools\n")
-    f_header.write("wbt = WhiteboxTools()\n\n")
+    f_header.write("wbt = WhiteboxTools()\n")
+    f_header.write("wbt.set_verbose_mode(True)\n\n")
     f_header.write("tool_labels = []\n")
     tool_list.sort()
     for tool in tool_list:
@@ -120,6 +121,8 @@ def get_tool_params(tool_name):
     return params_dict
 
 
+
+
 def get_param_types(tools):
 
     parameter_types = []
@@ -140,7 +143,6 @@ def generate_tool_template(tool):
     lines.append('        self.description = "{}"\n'.format(tool['description']))
     lines.append('        self.category = "{}"\n\n'.format(tool['category']))
     lines.append('    def getParameterInfo(self):\n')
-    # lines.append('        params = None\n')
     lines.append(define_tool_params(tool['parameters']))
     lines.append('        return params\n\n')
     lines.append('    def updateParameters(self, parameters):\n')
@@ -148,6 +150,15 @@ def generate_tool_template(tool):
     lines.append('    def updateMessages(self, parameters):\n')
     lines.append('        return\n\n')
     lines.append('    def execute(self, parameters, messages):\n')
+    lines.append(define_execute(tool['parameters']))
+    line = '        messages.addMessage(wbt.{}({}))\n'.format(to_snakecase(tool['name']), ', '.join(tool['parameters']).replace(", class,", ", class1,"))
+    if tool['name'] == "And":
+        line = line.replace("and", "And")
+    elif tool['name'] == "Or":
+        line = line.replace("or", "Or")
+    elif tool['name'] == "Not":
+        line = line.replace("not", "Not")
+    lines.append(line)
     lines.append('        return\n\n\n')
     return lines
 
@@ -204,6 +215,18 @@ def define_tool_params(params):
     lines.append(line)
     lines = ''.join(lines)
     return lines
+
+
+def define_execute(params):
+    lines = []
+    for index, param in enumerate(params):
+        if param == 'class':
+            param = "class1"
+        lines.append('        {} = parameters[{}].valueAsText\n'.format(param, index))
+    lines = ''.join(lines)    
+    return lines
+
+
 
 
 
@@ -392,26 +415,26 @@ if os.path.exists(file_wbt_pyt):
 
 
 
-types = []
-param_types = get_param_types(tools_dict)
-for param in param_types:
-    param_type = type(param)
-    if param_type == str:
-        print("{} - String".format(param))
-        # if type(param_type) not in types:
-        #     types.append(param)
-    else:
-        print("{} - Dictionary".format(param))
-        # if type(param_type) not in types:
-        #     types.append(param.keys())
-        for item in param:
-            if (param[item] not in types) and type(param[item]) != str:
-                types.append(param[item])
+# types = []
+# param_types = get_param_types(tools_dict)
+# for param in param_types:
+#     param_type = type(param)
+#     if param_type == str:
+#         print("{} - String".format(param))
+#         # if type(param_type) not in types:
+#         #     types.append(param)
+#     else:
+#         print("{} - Dictionary".format(param))
+#         # if type(param_type) not in types:
+#         #     types.append(param.keys())
+#         for item in param:
+#             if (param[item] not in types) and type(param[item]) != str:
+#                 types.append(param[item])
 
 
 # print(len(param_types))
-for item in types:
-    print(item)
+# for item in types:
+#     print(item)
 
 # for item in types:
 #     print(get_data_type(item))

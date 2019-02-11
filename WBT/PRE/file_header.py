@@ -1,6 +1,7 @@
 import arcpy
 from WBT.whitebox_tools import WhiteboxTools
 wbt = WhiteboxTools()
+wbt.set_verbose_mode(True)
 
 tool_labels = []
 tool_labels.append("Absolute Value")
