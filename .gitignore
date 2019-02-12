@@ -18,6 +18,12 @@ WhiteboxTools_win_amd64.zip
 **/*.db
 **/*.db:encryptable
 WhiteboxTools.pyt.zip
+**/*.lock
+**/*.aux.xml
+**/*.tfw
+**/*.tif.ovr
+**/*.CPG
+
 
 
 # C extensions
