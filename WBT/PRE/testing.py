@@ -108,5 +108,15 @@ def get_tool_params(tool_name):
 # print(thisset)
 
 tools = wbt.list_tools()
-for index, tool in enumerate(tools):
+for index, tool in enumerate(sorted(tools)):
     print("{}: {}".format(index, tool))
+
+dem = "/media/hdd/Dropbox/git/WhiteboxTools-ArcGIS/testdata/DEM.tif"
+output = "/media/hdd/Dropbox/git/WhiteboxTools-ArcGIS/testdata/output.tif"
+
+# wbt.run_tool("BreachDepressions", '--dem=dem --output=output')
+
+exe_path = "/home/qiusheng/Downloads/WBT/whitebox_tools"
+
+cmd = exe_path + ' --run=BreachDepressions  --dem="/media/hdd/Dropbox/git/WhiteboxTools-ArcGIS/testdata/DEM.tif" --output="/media/hdd/Dropbox/git/WhiteboxTools-ArcGIS/testdata/output.tif" -v'
+print(os.popen(cmd).read().rstrip())

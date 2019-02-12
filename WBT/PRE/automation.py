@@ -30,6 +30,7 @@ def to_snakecase(name):
 def write_header(file_path, tool_list):
     f_header = open(file_path, "w")
     f_header.write("import arcpy\n")
+    f_header.write("import os\n")
     f_header.write("from WBT.whitebox_tools import WhiteboxTools\n")
     f_header.write("wbt = WhiteboxTools()\n")
     f_header.write("wbt.set_verbose_mode(True)\n\n")
@@ -316,13 +317,6 @@ file_about_py = os.path.join(dir_path, "file_about.py")
 
 file_wbt_py = os.path.join(dir_path, "WhiteboxTools.py")
 file_wbt_pyt = os.path.join(os.path.dirname(os.path.dirname(dir_path)), "WhiteboxTools.pyt")
-
-tool_template_py = os.path.join(dir_path, "tool_template.py")           # code chuck for each tool
-toolbox_template_py = os.path.join(dir_path, "toolbox_template.py")     # code chuck for toolbox header
-about_py = os.path.join(dir_path, "about.py")  
-
-tools_py = os.path.join(dir_path, "tools.py")
-toolbox_py = os.path.join(dir_path, "toolbox.py")
 
 toolboxes = {
     "# Data Tools #": "Data Tools",

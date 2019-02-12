@@ -1,4 +1,5 @@
 import arcpy
+import os
 from WBT.whitebox_tools import WhiteboxTools
 wbt = WhiteboxTools()
 wbt.set_verbose_mode(True)
@@ -976,7 +977,7 @@ class ListTools(object):
         else:
             tools = wbt.list_tools([param0])
             
-        for index, tool in enumerate(tools):
+        for index, tool in enumerate(sorted(tools)):
             messages.addMessage("{}. {}: {}".format(index + 1, tool, tools[tool]))
         return
 
@@ -1172,7 +1173,13 @@ class RunTool(object):
         param0 = parameters[0].valueAsText
         args = parameters[1].valueAsText
         tool_name = param0.replace(" ", "").strip()
-        messages.addMessage(wbt.run_tool(tool_name, args))
+        dir_path = os.path.dirname(os.path.realpath(__file__))    
+        exe_path = os.path.join(dir_path, "WBT/whitebox_tools.exe")
+        cmd = '{} --run={} {}'.format(exe_path, tool_name, args)
+        if "-v" not in cmd:
+            cmd = cmd + ' -v'  
+        messages.addMessage(cmd)  
+        messages.addMessage(os.popen(cmd).read().rstrip())
         return
 
 

@@ -1,4 +1,5 @@
 import arcpy
+import os
 from WBT.whitebox_tools import WhiteboxTools
 wbt = WhiteboxTools()
 wbt.set_verbose_mode(True)
