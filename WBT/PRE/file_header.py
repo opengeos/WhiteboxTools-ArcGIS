@@ -1,10 +1,14 @@
 import arcpy
 import os
 from WBT.whitebox_tools import WhiteboxTools
-wbt = WhiteboxTools()
-wbt.set_verbose_mode(True)
+if sys.version_info < (3, 0):
+    from StringIO import StringIO
+else:
+    from io import StringIO
 
+wbt = WhiteboxTools()
 tool_labels = []
+
 tool_labels.append("Absolute Value")
 tool_labels.append("Adaptive Filter")
 tool_labels.append("Add")

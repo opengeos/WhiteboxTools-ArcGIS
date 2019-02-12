@@ -1,10 +1,14 @@
 import arcpy
 import os
 from WBT.whitebox_tools import WhiteboxTools
-wbt = WhiteboxTools()
-wbt.set_verbose_mode(True)
+if sys.version_info < (3, 0):
+    from StringIO import StringIO
+else:
+    from io import StringIO
 
+wbt = WhiteboxTools()
 tool_labels = []
+
 tool_labels.append("Absolute Value")
 tool_labels.append("Adaptive Filter")
 tool_labels.append("Add")
@@ -1140,7 +1144,7 @@ class RunTool(object):
             parameterType="Required",
             direction="Input")
 
-        tool_name.value = "Lidar Info"
+        tool_name.value = "Breach Depressions"
         tool_name.filter.type = "ValueList"
         tool_name.filter.list = tool_labels
 
@@ -1150,6 +1154,7 @@ class RunTool(object):
             datatype="GPString",
             parameterType="Required",
             direction="Input")
+        args.value = '--dem="/path/to/DEM.tif"  --output="/path/to/output.tif"'
 
         params = [tool_name, args]
         return params
@@ -1210,7 +1215,13 @@ class AddPointCoordinatesToTable(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
-        messages.addMessage(wbt.add_point_coordinates_to_table(input))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.add_point_coordinates_to_table(input)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -1249,7 +1260,13 @@ class ConvertNodataToZero(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.convert_nodata_to_zero(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.convert_nodata_to_zero(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -1288,7 +1305,13 @@ class ConvertRasterFormat(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.convert_raster_format(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.convert_raster_format(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -1337,7 +1360,13 @@ class ExportTableToCsv(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         headers = parameters[2].valueAsText
-        messages.addMessage(wbt.export_table_to_csv(input, output, headers))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.export_table_to_csv(input, output, headers)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -1402,7 +1431,13 @@ class JoinTables(object):
         input2 = parameters[2].valueAsText
         fkey = parameters[3].valueAsText
         import_field = parameters[4].valueAsText
-        messages.addMessage(wbt.join_tables(input1, pkey, input2, fkey, import_field))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.join_tables(input1, pkey, input2, fkey, import_field)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -1442,7 +1477,13 @@ class LinesToPolygons(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.lines_to_polygons(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lines_to_polygons(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -1508,7 +1549,13 @@ class MergeTableWithCsv(object):
         csv = parameters[2].valueAsText
         fkey = parameters[3].valueAsText
         import_field = parameters[4].valueAsText
-        messages.addMessage(wbt.merge_table_with_csv(input, pkey, csv, fkey, import_field))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.merge_table_with_csv(input, pkey, csv, fkey, import_field)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -1525,6 +1572,7 @@ class MergeVectors(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        inputs.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output Vector File",
@@ -1546,7 +1594,13 @@ class MergeVectors(object):
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.merge_vectors(inputs, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.merge_vectors(inputs, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -1594,7 +1648,13 @@ class MultiPartToSinglePart(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         exclude_holes = parameters[2].valueAsText
-        messages.addMessage(wbt.multi_part_to_single_part(input, output, exclude_holes))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.multi_part_to_single_part(input, output, exclude_holes)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -1655,7 +1715,13 @@ class NewRasterFromBase(object):
         output = parameters[1].valueAsText
         value = parameters[2].valueAsText
         data_type = parameters[3].valueAsText
-        messages.addMessage(wbt.new_raster_from_base(base, output, value, data_type))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.new_raster_from_base(base, output, value, data_type)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -1695,7 +1761,13 @@ class PolygonsToLines(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.polygons_to_lines(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.polygons_to_lines(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -1725,7 +1797,13 @@ class PrintGeoTiffTags(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
-        messages.addMessage(wbt.print_geo_tiff_tags(input))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.print_geo_tiff_tags(input)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -1764,7 +1842,13 @@ class RasterToVectorLines(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.raster_to_vector_lines(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.raster_to_vector_lines(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -1803,7 +1887,13 @@ class RasterToVectorPoints(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.raster_to_vector_points(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.raster_to_vector_points(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -1833,7 +1923,13 @@ class ReinitializeAttributeTable(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
-        messages.addMessage(wbt.reinitialize_attribute_table(input))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.reinitialize_attribute_table(input)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -1873,7 +1969,13 @@ class RemovePolygonHoles(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.remove_polygon_holes(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.remove_polygon_holes(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -1922,7 +2024,13 @@ class SetNodataValue(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         back_value = parameters[2].valueAsText
-        messages.addMessage(wbt.set_nodata_value(input, output, back_value))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.set_nodata_value(input, output, back_value)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -1969,7 +2077,13 @@ class SinglePartToMultiPart(object):
         input = parameters[0].valueAsText
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.single_part_to_multi_part(input, field, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.single_part_to_multi_part(input, field, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -2046,7 +2160,13 @@ class VectorLinesToRaster(object):
         nodata = parameters[3].valueAsText
         cell_size = parameters[4].valueAsText
         base = parameters[5].valueAsText
-        messages.addMessage(wbt.vector_lines_to_raster(input, field, output, nodata, cell_size, base))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.vector_lines_to_raster(input, field, output, nodata, cell_size, base)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -2135,7 +2255,13 @@ class VectorPointsToRaster(object):
         nodata = parameters[4].valueAsText
         cell_size = parameters[5].valueAsText
         base = parameters[6].valueAsText
-        messages.addMessage(wbt.vector_points_to_raster(input, field, output, assign, nodata, cell_size, base))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.vector_points_to_raster(input, field, output, assign, nodata, cell_size, base)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -2212,7 +2338,13 @@ class VectorPolygonsToRaster(object):
         nodata = parameters[3].valueAsText
         cell_size = parameters[4].valueAsText
         base = parameters[5].valueAsText
-        messages.addMessage(wbt.vector_polygons_to_raster(input, field, output, nodata, cell_size, base))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.vector_polygons_to_raster(input, field, output, nodata, cell_size, base)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -2273,7 +2405,13 @@ class AggregateRaster(object):
         output = parameters[1].valueAsText
         agg_factor = parameters[2].valueAsText
         type = parameters[3].valueAsText
-        messages.addMessage(wbt.aggregate_raster(input, output, agg_factor, type))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.aggregate_raster(input, output, agg_factor, type)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -2348,7 +2486,13 @@ class BlockMaximumGridding(object):
         output = parameters[3].valueAsText
         cell_size = parameters[4].valueAsText
         base = parameters[5].valueAsText
-        messages.addMessage(wbt.block_maximum_gridding(input, field, use_z, output, cell_size, base))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.block_maximum_gridding(input, field, use_z, output, cell_size, base)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -2423,7 +2567,13 @@ class BlockMinimumGridding(object):
         output = parameters[3].valueAsText
         cell_size = parameters[4].valueAsText
         base = parameters[5].valueAsText
-        messages.addMessage(wbt.block_minimum_gridding(input, field, use_z, output, cell_size, base))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.block_minimum_gridding(input, field, use_z, output, cell_size, base)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -2470,7 +2620,13 @@ class Centroid(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         text_output = parameters[2].valueAsText
-        messages.addMessage(wbt.centroid(input, output, text_output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.centroid(input, output, text_output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -2508,7 +2664,13 @@ class CentroidVector(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.centroid_vector(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.centroid_vector(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -2565,7 +2727,13 @@ class Clump(object):
         output = parameters[1].valueAsText
         diag = parameters[2].valueAsText
         zero_back = parameters[3].valueAsText
-        messages.addMessage(wbt.clump(input, output, diag, zero_back))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.clump(input, output, diag, zero_back)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -2624,7 +2792,13 @@ class ConstructVectorTin(object):
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
-        messages.addMessage(wbt.construct_vector_tin(input, field, use_z, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.construct_vector_tin(input, field, use_z, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -2683,7 +2857,13 @@ class CreateHexagonalVectorGrid(object):
         output = parameters[1].valueAsText
         width = parameters[2].valueAsText
         orientation = parameters[3].valueAsText
-        messages.addMessage(wbt.create_hexagonal_vector_grid(input, output, width, orientation))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.create_hexagonal_vector_grid(input, output, width, orientation)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -2752,7 +2932,13 @@ class CreatePlane(object):
         gradient = parameters[2].valueAsText
         aspect = parameters[3].valueAsText
         constant = parameters[4].valueAsText
-        messages.addMessage(wbt.create_plane(base, output, gradient, aspect, constant))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.create_plane(base, output, gradient, aspect, constant)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -2827,7 +3013,13 @@ class CreateRectangularVectorGrid(object):
         height = parameters[3].valueAsText
         xorig = parameters[4].valueAsText
         yorig = parameters[5].valueAsText
-        messages.addMessage(wbt.create_rectangular_vector_grid(input, output, width, height, xorig, yorig))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.create_rectangular_vector_grid(input, output, width, height, xorig, yorig)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -2885,7 +3077,13 @@ class Dissolve(object):
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         snap = parameters[3].valueAsText
-        messages.addMessage(wbt.dissolve(input, field, output, snap))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.dissolve(input, field, output, snap)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -2933,7 +3131,13 @@ class EliminateCoincidentPoints(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         tolerance = parameters[2].valueAsText
-        messages.addMessage(wbt.eliminate_coincident_points(input, output, tolerance))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.eliminate_coincident_points(input, output, tolerance)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -2993,7 +3197,13 @@ class ExtendVectorLines(object):
         output = parameters[1].valueAsText
         dist = parameters[2].valueAsText
         extend = parameters[3].valueAsText
-        messages.addMessage(wbt.extend_vector_lines(input, output, dist, extend))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.extend_vector_lines(input, output, dist, extend)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -3032,7 +3242,13 @@ class ExtractNodes(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.extract_nodes(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.extract_nodes(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -3049,6 +3265,7 @@ class ExtractRasterValuesAtPoints(object):
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
+        inputs.multiValue = True
 
         points = arcpy.Parameter(
             displayName="Input Points File",
@@ -3081,7 +3298,13 @@ class ExtractRasterValuesAtPoints(object):
         inputs = parameters[0].valueAsText
         points = parameters[1].valueAsText
         out_text = parameters[2].valueAsText
-        messages.addMessage(wbt.extract_raster_values_at_points(inputs, points, out_text))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.extract_raster_values_at_points(inputs, points, out_text)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -3132,7 +3355,13 @@ class FindLowestOrHighestPoints(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         out_type = parameters[2].valueAsText
-        messages.addMessage(wbt.find_lowest_or_highest_points(input, output, out_type))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.find_lowest_or_highest_points(input, output, out_type)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -3233,7 +3462,13 @@ class IdwInterpolation(object):
         min_points = parameters[6].valueAsText
         cell_size = parameters[7].valueAsText
         base = parameters[8].valueAsText
-        messages.addMessage(wbt.idw_interpolation(input, field, use_z, output, weight, radius, min_points, cell_size, base))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.idw_interpolation(input, field, use_z, output, weight, radius, min_points, cell_size, base)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -3272,7 +3507,13 @@ class LayerFootprint(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.layer_footprint(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.layer_footprint(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -3310,7 +3551,13 @@ class Medoid(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.medoid(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.medoid(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -3371,7 +3618,13 @@ class MinimumBoundingBox(object):
         output = parameters[1].valueAsText
         criterion = parameters[2].valueAsText
         features = parameters[3].valueAsText
-        messages.addMessage(wbt.minimum_bounding_box(input, output, criterion, features))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.minimum_bounding_box(input, output, criterion, features)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -3420,7 +3673,13 @@ class MinimumBoundingCircle(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         features = parameters[2].valueAsText
-        messages.addMessage(wbt.minimum_bounding_circle(input, output, features))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.minimum_bounding_circle(input, output, features)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -3469,7 +3728,13 @@ class MinimumBoundingEnvelope(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         features = parameters[2].valueAsText
-        messages.addMessage(wbt.minimum_bounding_envelope(input, output, features))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.minimum_bounding_envelope(input, output, features)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -3518,7 +3783,13 @@ class MinimumConvexHull(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         features = parameters[2].valueAsText
-        messages.addMessage(wbt.minimum_convex_hull(input, output, features))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.minimum_convex_hull(input, output, features)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -3601,7 +3872,13 @@ class NearestNeighbourGridding(object):
         cell_size = parameters[4].valueAsText
         base = parameters[5].valueAsText
         max_dist = parameters[6].valueAsText
-        messages.addMessage(wbt.nearest_neighbour_gridding(input, field, use_z, output, cell_size, base, max_dist))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.nearest_neighbour_gridding(input, field, use_z, output, cell_size, base, max_dist)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -3632,7 +3909,13 @@ class PolygonArea(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
-        messages.addMessage(wbt.polygon_area(input))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.polygon_area(input)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -3672,7 +3955,13 @@ class PolygonLongAxis(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.polygon_long_axis(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.polygon_long_axis(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -3703,7 +3992,13 @@ class PolygonPerimeter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
-        messages.addMessage(wbt.polygon_perimeter(input))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.polygon_perimeter(input)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -3743,7 +4038,13 @@ class PolygonShortAxis(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.polygon_short_axis(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.polygon_short_axis(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -3810,7 +4111,13 @@ class RasterArea(object):
         out_text = parameters[2].valueAsText
         units = parameters[3].valueAsText
         zero_back = parameters[4].valueAsText
-        messages.addMessage(wbt.raster_area(input, output, out_text, units, zero_back))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.raster_area(input, output, out_text, units, zero_back)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -3861,7 +4168,13 @@ class RasterCellAssignment(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         assign = parameters[2].valueAsText
-        messages.addMessage(wbt.raster_cell_assignment(input, output, assign))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.raster_cell_assignment(input, output, assign)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -3916,7 +4229,13 @@ class Reclass(object):
         output = parameters[1].valueAsText
         reclass_vals = parameters[2].valueAsText
         assign_mode = parameters[3].valueAsText
-        messages.addMessage(wbt.reclass(input, output, reclass_vals, assign_mode))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.reclass(input, output, reclass_vals, assign_mode)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -3981,7 +4300,13 @@ class ReclassEqualInterval(object):
         interval = parameters[2].valueAsText
         start_val = parameters[3].valueAsText
         end_val = parameters[4].valueAsText
-        messages.addMessage(wbt.reclass_equal_interval(input, output, interval, start_val, end_val))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.reclass_equal_interval(input, output, interval, start_val, end_val)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -4028,7 +4353,13 @@ class ReclassFromFile(object):
         input = parameters[0].valueAsText
         reclass_file = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.reclass_from_file(input, reclass_file, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.reclass_from_file(input, reclass_file, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -4076,7 +4407,13 @@ class SmoothVectors(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
-        messages.addMessage(wbt.smooth_vectors(input, output, filter))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.smooth_vectors(input, output, filter)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -4143,7 +4480,13 @@ class TinGridding(object):
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
         resolution = parameters[4].valueAsText
-        messages.addMessage(wbt.tin_gridding(input, field, use_z, output, resolution))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.tin_gridding(input, field, use_z, output, resolution)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -4203,7 +4546,13 @@ class VectorHexBinning(object):
         output = parameters[1].valueAsText
         width = parameters[2].valueAsText
         orientation = parameters[3].valueAsText
-        messages.addMessage(wbt.vector_hex_binning(input, output, width, orientation))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.vector_hex_binning(input, output, width, orientation)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -4243,7 +4592,13 @@ class VoronoiDiagram(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.voronoi_diagram(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.voronoi_diagram(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -4298,7 +4653,13 @@ class BufferRaster(object):
         output = parameters[1].valueAsText
         size = parameters[2].valueAsText
         gridcells = parameters[3].valueAsText
-        messages.addMessage(wbt.buffer_raster(input, output, size, gridcells))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.buffer_raster(input, output, size, gridcells)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -4345,7 +4706,13 @@ class CostAllocation(object):
         source = parameters[0].valueAsText
         backlink = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.cost_allocation(source, backlink, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.cost_allocation(source, backlink, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -4401,7 +4768,13 @@ class CostDistance(object):
         cost = parameters[1].valueAsText
         out_accum = parameters[2].valueAsText
         out_backlink = parameters[3].valueAsText
-        messages.addMessage(wbt.cost_distance(source, cost, out_accum, out_backlink))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.cost_distance(source, cost, out_accum, out_backlink)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -4456,7 +4829,13 @@ class CostPathway(object):
         backlink = parameters[1].valueAsText
         output = parameters[2].valueAsText
         zero_background = parameters[3].valueAsText
-        messages.addMessage(wbt.cost_pathway(destination, backlink, output, zero_background))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.cost_pathway(destination, backlink, output, zero_background)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -4495,7 +4874,13 @@ class EuclideanAllocation(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.euclidean_allocation(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.euclidean_allocation(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -4534,7 +4919,13 @@ class EuclideanDistance(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.euclidean_distance(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.euclidean_distance(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -4551,6 +4942,7 @@ class AverageOverlay(object):
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
+        inputs.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -4573,7 +4965,13 @@ class AverageOverlay(object):
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.average_overlay(inputs, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.average_overlay(inputs, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -4620,7 +5018,13 @@ class Clip(object):
         input = parameters[0].valueAsText
         clip = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.clip(input, clip, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.clip(input, clip, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -4678,7 +5082,13 @@ class ClipRasterToPolygon(object):
         polygons = parameters[1].valueAsText
         output = parameters[2].valueAsText
         maintain_dimensions = parameters[3].valueAsText
-        messages.addMessage(wbt.clip_raster_to_polygon(input, polygons, output, maintain_dimensions))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.clip_raster_to_polygon(input, polygons, output, maintain_dimensions)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -4695,6 +5105,7 @@ class CountIf(object):
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
+        inputs.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -4725,7 +5136,13 @@ class CountIf(object):
         inputs = parameters[0].valueAsText
         output = parameters[1].valueAsText
         value = parameters[2].valueAsText
-        messages.addMessage(wbt.count_if(inputs, output, value))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.count_if(inputs, output, value)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -4771,7 +5188,13 @@ class Difference(object):
         input = parameters[0].valueAsText
         overlay = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.difference(input, overlay, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.difference(input, overlay, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -4818,7 +5241,13 @@ class Erase(object):
         input = parameters[0].valueAsText
         erase = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.erase(input, erase, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.erase(input, erase, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -4866,7 +5295,13 @@ class ErasePolygonFromRaster(object):
         input = parameters[0].valueAsText
         polygons = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.erase_polygon_from_raster(input, polygons, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.erase_polygon_from_raster(input, polygons, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -4883,6 +5318,7 @@ class HighestPosition(object):
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
+        inputs.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -4905,7 +5341,13 @@ class HighestPosition(object):
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.highest_position(inputs, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.highest_position(inputs, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -4961,7 +5403,13 @@ class Intersect(object):
         overlay = parameters[1].valueAsText
         output = parameters[2].valueAsText
         snap = parameters[3].valueAsText
-        messages.addMessage(wbt.intersect(input, overlay, output, snap))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.intersect(input, overlay, output, snap)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -5010,7 +5458,13 @@ class LineIntersections(object):
         input1 = parameters[0].valueAsText
         input2 = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.line_intersections(input1, input2, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.line_intersections(input1, input2, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -5027,6 +5481,7 @@ class LowestPosition(object):
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
+        inputs.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -5049,7 +5504,13 @@ class LowestPosition(object):
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.lowest_position(inputs, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lowest_position(inputs, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -5066,6 +5527,7 @@ class MaxAbsoluteOverlay(object):
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
+        inputs.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -5088,7 +5550,13 @@ class MaxAbsoluteOverlay(object):
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.max_absolute_overlay(inputs, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.max_absolute_overlay(inputs, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -5105,6 +5573,7 @@ class MaxOverlay(object):
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
+        inputs.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -5127,7 +5596,13 @@ class MaxOverlay(object):
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.max_overlay(inputs, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.max_overlay(inputs, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -5144,6 +5619,7 @@ class MinAbsoluteOverlay(object):
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
+        inputs.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -5166,7 +5642,13 @@ class MinAbsoluteOverlay(object):
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.min_absolute_overlay(inputs, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.min_absolute_overlay(inputs, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -5183,6 +5665,7 @@ class MinOverlay(object):
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
+        inputs.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -5205,7 +5688,13 @@ class MinOverlay(object):
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.min_overlay(inputs, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.min_overlay(inputs, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -5222,6 +5711,7 @@ class PercentEqualTo(object):
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
+        inputs.multiValue = True
 
         comparison = arcpy.Parameter(
             displayName="Input Comparison File",
@@ -5252,7 +5742,13 @@ class PercentEqualTo(object):
         inputs = parameters[0].valueAsText
         comparison = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.percent_equal_to(inputs, comparison, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.percent_equal_to(inputs, comparison, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -5269,6 +5765,7 @@ class PercentGreaterThan(object):
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
+        inputs.multiValue = True
 
         comparison = arcpy.Parameter(
             displayName="Input Comparison File",
@@ -5299,7 +5796,13 @@ class PercentGreaterThan(object):
         inputs = parameters[0].valueAsText
         comparison = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.percent_greater_than(inputs, comparison, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.percent_greater_than(inputs, comparison, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -5316,6 +5819,7 @@ class PercentLessThan(object):
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
+        inputs.multiValue = True
 
         comparison = arcpy.Parameter(
             displayName="Input Comparison File",
@@ -5346,7 +5850,13 @@ class PercentLessThan(object):
         inputs = parameters[0].valueAsText
         comparison = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.percent_less_than(inputs, comparison, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.percent_less_than(inputs, comparison, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -5363,6 +5873,7 @@ class PickFromList(object):
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
+        inputs.multiValue = True
 
         pos_input = arcpy.Parameter(
             displayName="Input Position File",
@@ -5393,7 +5904,13 @@ class PickFromList(object):
         inputs = parameters[0].valueAsText
         pos_input = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.pick_from_list(inputs, pos_input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.pick_from_list(inputs, pos_input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -5410,6 +5927,7 @@ class Polygonize(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Input")
+        inputs.multiValue = True
         inputs.filter.list = ["Polyline"]
 
         output = arcpy.Parameter(
@@ -5433,7 +5951,13 @@ class Polygonize(object):
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.polygonize(inputs, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.polygonize(inputs, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -5480,7 +6004,13 @@ class SplitWithLines(object):
         input = parameters[0].valueAsText
         split = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.split_with_lines(input, split, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.split_with_lines(input, split, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -5497,6 +6027,7 @@ class SumOverlay(object):
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
+        inputs.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -5519,7 +6050,13 @@ class SumOverlay(object):
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.sum_overlay(inputs, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.sum_overlay(inputs, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -5575,7 +6112,13 @@ class SymmetricalDifference(object):
         overlay = parameters[1].valueAsText
         output = parameters[2].valueAsText
         snap = parameters[3].valueAsText
-        messages.addMessage(wbt.symmetrical_difference(input, overlay, output, snap))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.symmetrical_difference(input, overlay, output, snap)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -5631,7 +6174,13 @@ class Union(object):
         overlay = parameters[1].valueAsText
         output = parameters[2].valueAsText
         snap = parameters[3].valueAsText
-        messages.addMessage(wbt.union(input, overlay, output, snap))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.union(input, overlay, output, snap)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -5648,6 +6197,7 @@ class WeightedOverlay(object):
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
+        factors.multiValue = True
 
         weights = arcpy.Parameter(
             displayName="Weight Values (e.g. 1.7;3.5;1.2)",
@@ -5669,6 +6219,7 @@ class WeightedOverlay(object):
             datatype="DERasterDataset",
             parameterType="Optional",
             direction="Input")
+        constraints.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -5704,7 +6255,13 @@ class WeightedOverlay(object):
         constraints = parameters[3].valueAsText
         output = parameters[4].valueAsText
         scale_max = parameters[5].valueAsText
-        messages.addMessage(wbt.weighted_overlay(factors, weights, cost, constraints, output, scale_max))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.weighted_overlay(factors, weights, cost, constraints, output, scale_max)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -5721,6 +6278,7 @@ class WeightedSum(object):
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
+        inputs.multiValue = True
 
         weights = arcpy.Parameter(
             displayName="Weight Values (e.g. 1.7;3.5;1.2)",
@@ -5751,7 +6309,13 @@ class WeightedSum(object):
         inputs = parameters[0].valueAsText
         weights = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.weighted_sum(inputs, weights, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.weighted_sum(inputs, weights, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -5782,7 +6346,13 @@ class CompactnessRatio(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
-        messages.addMessage(wbt.compactness_ratio(input))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.compactness_ratio(input)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -5829,7 +6399,13 @@ class EdgeProportion(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         output_text = parameters[2].valueAsText
-        messages.addMessage(wbt.edge_proportion(input, output, output_text))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.edge_proportion(input, output, output_text)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -5860,7 +6436,13 @@ class ElongationRatio(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
-        messages.addMessage(wbt.elongation_ratio(input))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.elongation_ratio(input)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -5899,7 +6481,13 @@ class FindPatchOrClassEdgeCells(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.find_patch_or_class_edge_cells(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.find_patch_or_class_edge_cells(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -5930,7 +6518,13 @@ class HoleProportion(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
-        messages.addMessage(wbt.hole_proportion(input))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.hole_proportion(input)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -5961,7 +6555,13 @@ class LinearityIndex(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
-        messages.addMessage(wbt.linearity_index(input))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.linearity_index(input)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -5992,7 +6592,13 @@ class PatchOrientation(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
-        messages.addMessage(wbt.patch_orientation(input))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.patch_orientation(input)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -6023,7 +6629,13 @@ class PerimeterAreaRatio(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
-        messages.addMessage(wbt.perimeter_area_ratio(input))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.perimeter_area_ratio(input)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -6070,7 +6682,13 @@ class RadiusOfGyration(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         text_output = parameters[2].valueAsText
-        messages.addMessage(wbt.radius_of_gyration(input, output, text_output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.radius_of_gyration(input, output, text_output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -6101,7 +6719,13 @@ class RelatedCircumscribingCircle(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
-        messages.addMessage(wbt.related_circumscribing_circle(input))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.related_circumscribing_circle(input)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -6132,7 +6756,13 @@ class ShapeComplexityIndex(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
-        messages.addMessage(wbt.shape_complexity_index(input))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.shape_complexity_index(input)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -6181,7 +6811,13 @@ class Aspect(object):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
-        messages.addMessage(wbt.aspect(dem, output, zfactor))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.aspect(dem, output, zfactor)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -6230,7 +6866,13 @@ class CircularVarianceOfAspect(object):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
-        messages.addMessage(wbt.circular_variance_of_aspect(dem, output, filter))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.circular_variance_of_aspect(dem, output, filter)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -6289,7 +6931,13 @@ class DevFromMeanElev(object):
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
-        messages.addMessage(wbt.dev_from_mean_elev(dem, output, filterx, filtery))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.dev_from_mean_elev(dem, output, filterx, filtery)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -6348,7 +6996,13 @@ class DiffFromMeanElev(object):
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
-        messages.addMessage(wbt.diff_from_mean_elev(dem, output, filterx, filtery))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.diff_from_mean_elev(dem, output, filterx, filtery)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -6405,7 +7059,13 @@ class DirectionalRelief(object):
         output = parameters[1].valueAsText
         azimuth = parameters[2].valueAsText
         max_dist = parameters[3].valueAsText
-        messages.addMessage(wbt.directional_relief(dem, output, azimuth, max_dist))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.directional_relief(dem, output, azimuth, max_dist)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -6466,7 +7126,13 @@ class DownslopeIndex(object):
         output = parameters[1].valueAsText
         drop = parameters[2].valueAsText
         out_type = parameters[3].valueAsText
-        messages.addMessage(wbt.downslope_index(dem, output, drop, out_type))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.downslope_index(dem, output, drop, out_type)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -6573,7 +7239,13 @@ class DrainagePreservingSmoothing(object):
         reduction = parameters[6].valueAsText
         dfm = parameters[7].valueAsText
         zfactor = parameters[8].valueAsText
-        messages.addMessage(wbt.drainage_preserving_smoothing(dem, output, filter, norm_diff, num_iter, max_diff, reduction, dfm, zfactor))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.drainage_preserving_smoothing(dem, output, filter, norm_diff, num_iter, max_diff, reduction, dfm, zfactor)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -6642,7 +7314,13 @@ class EdgeDensity(object):
         filter = parameters[2].valueAsText
         norm_diff = parameters[3].valueAsText
         zfactor = parameters[4].valueAsText
-        messages.addMessage(wbt.edge_density(dem, output, filter, norm_diff, zfactor))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.edge_density(dem, output, filter, norm_diff, zfactor)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -6681,7 +7359,13 @@ class ElevAbovePit(object):
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.elev_above_pit(dem, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.elev_above_pit(dem, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -6750,7 +7434,13 @@ class ElevPercentile(object):
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         sig_digits = parameters[4].valueAsText
-        messages.addMessage(wbt.elev_percentile(dem, output, filterx, filtery, sig_digits))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.elev_percentile(dem, output, filterx, filtery, sig_digits)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -6789,7 +7479,13 @@ class ElevRelativeToMinMax(object):
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.elev_relative_to_min_max(dem, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.elev_relative_to_min_max(dem, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -6836,7 +7532,13 @@ class ElevRelativeToWatershedMinMax(object):
         dem = parameters[0].valueAsText
         watersheds = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.elev_relative_to_watershed_min_max(dem, watersheds, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.elev_relative_to_watershed_min_max(dem, watersheds, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -6923,7 +7625,13 @@ class FeaturePreservingDenoise(object):
         num_iter = parameters[4].valueAsText
         max_diff = parameters[5].valueAsText
         zfactor = parameters[6].valueAsText
-        messages.addMessage(wbt.feature_preserving_denoise(dem, output, filter, norm_diff, num_iter, max_diff, zfactor))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.feature_preserving_denoise(dem, output, filter, norm_diff, num_iter, max_diff, zfactor)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -6982,7 +7690,13 @@ class FetchAnalysis(object):
         output = parameters[1].valueAsText
         azimuth = parameters[2].valueAsText
         hgt_inc = parameters[3].valueAsText
-        messages.addMessage(wbt.fetch_analysis(dem, output, azimuth, hgt_inc))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.fetch_analysis(dem, output, azimuth, hgt_inc)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -7041,7 +7755,13 @@ class FillMissingData(object):
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         weight = parameters[3].valueAsText
-        messages.addMessage(wbt.fill_missing_data(input, output, filter, weight))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.fill_missing_data(input, output, filter, weight)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -7090,7 +7810,13 @@ class FindRidges(object):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
         line_thin = parameters[2].valueAsText
-        messages.addMessage(wbt.find_ridges(dem, output, line_thin))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.find_ridges(dem, output, line_thin)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -7159,7 +7885,13 @@ class Hillshade(object):
         azimuth = parameters[2].valueAsText
         altitude = parameters[3].valueAsText
         zfactor = parameters[4].valueAsText
-        messages.addMessage(wbt.hillshade(dem, output, azimuth, altitude, zfactor))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.hillshade(dem, output, azimuth, altitude, zfactor)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -7216,7 +7948,13 @@ class HorizonAngle(object):
         output = parameters[1].valueAsText
         azimuth = parameters[2].valueAsText
         max_dist = parameters[3].valueAsText
-        messages.addMessage(wbt.horizon_angle(dem, output, azimuth, max_dist))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.horizon_angle(dem, output, azimuth, max_dist)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -7233,6 +7971,7 @@ class HypsometricAnalysis(object):
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
+        inputs.multiValue = True
 
         watershed = arcpy.Parameter(
             displayName="Input Watershed Files (optional)",
@@ -7240,6 +7979,7 @@ class HypsometricAnalysis(object):
             datatype="DERasterDataset",
             parameterType="Optional",
             direction="Input")
+        watershed.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output HTML File",
@@ -7263,7 +8003,13 @@ class HypsometricAnalysis(object):
         inputs = parameters[0].valueAsText
         watershed = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.hypsometric_analysis(inputs, watershed, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.hypsometric_analysis(inputs, watershed, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -7339,7 +8085,13 @@ class MaxAnisotropyDev(object):
         min_scale = parameters[3].valueAsText
         max_scale = parameters[4].valueAsText
         step = parameters[5].valueAsText
-        messages.addMessage(wbt.max_anisotropy_dev(dem, out_mag, out_scale, min_scale, max_scale, step))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.max_anisotropy_dev(dem, out_mag, out_scale, min_scale, max_scale, step)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -7415,7 +8167,13 @@ class MaxAnisotropyDevSignature(object):
         min_scale = parameters[3].valueAsText
         max_scale = parameters[4].valueAsText
         step = parameters[5].valueAsText
-        messages.addMessage(wbt.max_anisotropy_dev_signature(dem, points, output, min_scale, max_scale, step))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.max_anisotropy_dev_signature(dem, points, output, min_scale, max_scale, step)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -7462,7 +8220,13 @@ class MaxBranchLength(object):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
         log = parameters[2].valueAsText
-        messages.addMessage(wbt.max_branch_length(dem, output, log))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.max_branch_length(dem, output, log)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -7536,7 +8300,13 @@ class MaxDifferenceFromMean(object):
         min_scale = parameters[3].valueAsText
         max_scale = parameters[4].valueAsText
         step = parameters[5].valueAsText
-        messages.addMessage(wbt.max_difference_from_mean(dem, out_mag, out_scale, min_scale, max_scale, step))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.max_difference_from_mean(dem, out_mag, out_scale, min_scale, max_scale, step)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -7575,7 +8345,13 @@ class MaxDownslopeElevChange(object):
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.max_downslope_elev_change(dem, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.max_downslope_elev_change(dem, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -7649,7 +8425,13 @@ class MaxElevDevSignature(object):
         min_scale = parameters[3].valueAsText
         max_scale = parameters[4].valueAsText
         step = parameters[5].valueAsText
-        messages.addMessage(wbt.max_elev_dev_signature(dem, points, output, min_scale, max_scale, step))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.max_elev_dev_signature(dem, points, output, min_scale, max_scale, step)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -7723,7 +8505,13 @@ class MaxElevationDeviation(object):
         min_scale = parameters[3].valueAsText
         max_scale = parameters[4].valueAsText
         step = parameters[5].valueAsText
-        messages.addMessage(wbt.max_elevation_deviation(dem, out_mag, out_scale, min_scale, max_scale, step))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.max_elevation_deviation(dem, out_mag, out_scale, min_scale, max_scale, step)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -7762,7 +8550,13 @@ class MinDownslopeElevChange(object):
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.min_downslope_elev_change(dem, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.min_downslope_elev_change(dem, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -7838,7 +8632,13 @@ class MultiscaleRoughness(object):
         min_scale = parameters[3].valueAsText
         max_scale = parameters[4].valueAsText
         step = parameters[5].valueAsText
-        messages.addMessage(wbt.multiscale_roughness(dem, out_mag, out_scale, min_scale, max_scale, step))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.multiscale_roughness(dem, out_mag, out_scale, min_scale, max_scale, step)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -7914,7 +8714,13 @@ class MultiscaleRoughnessSignature(object):
         min_scale = parameters[3].valueAsText
         max_scale = parameters[4].valueAsText
         step = parameters[5].valueAsText
-        messages.addMessage(wbt.multiscale_roughness_signature(dem, points, output, min_scale, max_scale, step))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.multiscale_roughness_signature(dem, points, output, min_scale, max_scale, step)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -7979,7 +8785,13 @@ class MultiscaleTopographicPositionImage(object):
         broad = parameters[2].valueAsText
         output = parameters[3].valueAsText
         lightness = parameters[4].valueAsText
-        messages.addMessage(wbt.multiscale_topographic_position_image(local, meso, broad, output, lightness))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.multiscale_topographic_position_image(local, meso, broad, output, lightness)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -8018,7 +8830,13 @@ class NumDownslopeNeighbours(object):
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.num_downslope_neighbours(dem, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.num_downslope_neighbours(dem, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -8057,7 +8875,13 @@ class NumUpslopeNeighbours(object):
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.num_upslope_neighbours(dem, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.num_upslope_neighbours(dem, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -8136,7 +8960,13 @@ class PennockLandformClass(object):
         prof = parameters[3].valueAsText
         plan = parameters[4].valueAsText
         zfactor = parameters[5].valueAsText
-        messages.addMessage(wbt.pennock_landform_class(dem, output, slope, prof, plan, zfactor))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.pennock_landform_class(dem, output, slope, prof, plan, zfactor)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -8195,7 +9025,13 @@ class PercentElevRange(object):
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
-        messages.addMessage(wbt.percent_elev_range(dem, output, filterx, filtery))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.percent_elev_range(dem, output, filterx, filtery)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -8244,7 +9080,13 @@ class PlanCurvature(object):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
-        messages.addMessage(wbt.plan_curvature(dem, output, zfactor))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.plan_curvature(dem, output, zfactor)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -8292,7 +9134,13 @@ class Profile(object):
         lines = parameters[0].valueAsText
         surface = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.profile(lines, surface, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.profile(lines, surface, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -8341,7 +9189,13 @@ class ProfileCurvature(object):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
-        messages.addMessage(wbt.profile_curvature(dem, output, zfactor))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.profile_curvature(dem, output, zfactor)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -8400,7 +9254,13 @@ class RelativeAspect(object):
         output = parameters[1].valueAsText
         azimuth = parameters[2].valueAsText
         zfactor = parameters[3].valueAsText
-        messages.addMessage(wbt.relative_aspect(dem, output, azimuth, zfactor))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.relative_aspect(dem, output, azimuth, zfactor)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -8457,7 +9317,13 @@ class RelativeStreamPowerIndex(object):
         slope = parameters[1].valueAsText
         output = parameters[2].valueAsText
         exponent = parameters[3].valueAsText
-        messages.addMessage(wbt.relative_stream_power_index(sca, slope, output, exponent))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.relative_stream_power_index(sca, slope, output, exponent)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -8516,7 +9382,13 @@ class RelativeTopographicPosition(object):
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
-        messages.addMessage(wbt.relative_topographic_position(dem, output, filterx, filtery))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.relative_topographic_position(dem, output, filterx, filtery)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -8575,7 +9447,13 @@ class RemoveOffTerrainObjects(object):
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         slope = parameters[3].valueAsText
-        messages.addMessage(wbt.remove_off_terrain_objects(dem, output, filter, slope))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.remove_off_terrain_objects(dem, output, filter, slope)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -8624,7 +9502,13 @@ class RuggednessIndex(object):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
-        messages.addMessage(wbt.ruggedness_index(dem, output, zfactor))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.ruggedness_index(dem, output, zfactor)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -8691,7 +9575,13 @@ class SedimentTransportIndex(object):
         output = parameters[2].valueAsText
         sca_exponent = parameters[3].valueAsText
         slope_exponent = parameters[4].valueAsText
-        messages.addMessage(wbt.sediment_transport_index(sca, slope, output, sca_exponent, slope_exponent))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.sediment_transport_index(sca, slope, output, sca_exponent, slope_exponent)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -8740,7 +9630,13 @@ class Slope(object):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
-        messages.addMessage(wbt.slope(dem, output, zfactor))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.slope(dem, output, zfactor)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -8757,6 +9653,7 @@ class SlopeVsElevationPlot(object):
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
+        inputs.multiValue = True
 
         watershed = arcpy.Parameter(
             displayName="Input Watershed Files (optional)",
@@ -8764,6 +9661,7 @@ class SlopeVsElevationPlot(object):
             datatype="DERasterDataset",
             parameterType="Optional",
             direction="Input")
+        watershed.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output HTML File",
@@ -8787,7 +9685,13 @@ class SlopeVsElevationPlot(object):
         inputs = parameters[0].valueAsText
         watershed = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.slope_vs_elevation_plot(inputs, watershed, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.slope_vs_elevation_plot(inputs, watershed, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -8856,7 +9760,13 @@ class StandardDeviationOfSlope(object):
         zfactor = parameters[2].valueAsText
         filterx = parameters[3].valueAsText
         filtery = parameters[4].valueAsText
-        messages.addMessage(wbt.standard_deviation_of_slope(input, output, zfactor, filterx, filtery))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.standard_deviation_of_slope(input, output, zfactor, filterx, filtery)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -8895,7 +9805,13 @@ class SurfaceAreaRatio(object):
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.surface_area_ratio(dem, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.surface_area_ratio(dem, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -8944,7 +9860,13 @@ class TangentialCurvature(object):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
-        messages.addMessage(wbt.tangential_curvature(dem, output, zfactor))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.tangential_curvature(dem, output, zfactor)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -8993,7 +9915,13 @@ class TotalCurvature(object):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
-        messages.addMessage(wbt.total_curvature(dem, output, zfactor))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.total_curvature(dem, output, zfactor)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -9051,7 +9979,13 @@ class Viewshed(object):
         stations = parameters[1].valueAsText
         output = parameters[2].valueAsText
         height = parameters[3].valueAsText
-        messages.addMessage(wbt.viewshed(dem, stations, output, height))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.viewshed(dem, stations, output, height)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -9110,7 +10044,13 @@ class VisibilityIndex(object):
         output = parameters[1].valueAsText
         height = parameters[2].valueAsText
         res_factor = parameters[3].valueAsText
-        messages.addMessage(wbt.visibility_index(dem, output, height, res_factor))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.visibility_index(dem, output, height, res_factor)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -9157,7 +10097,13 @@ class WetnessIndex(object):
         sca = parameters[0].valueAsText
         slope = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.wetness_index(sca, slope, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.wetness_index(sca, slope, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -9196,7 +10142,13 @@ class AverageFlowpathSlope(object):
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.average_flowpath_slope(dem, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.average_flowpath_slope(dem, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -9235,7 +10187,13 @@ class AverageUpslopeFlowpathLength(object):
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.average_upslope_flowpath_length(dem, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.average_upslope_flowpath_length(dem, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -9284,7 +10242,13 @@ class Basins(object):
         d8_pntr = parameters[0].valueAsText
         output = parameters[1].valueAsText
         esri_pntr = parameters[2].valueAsText
-        messages.addMessage(wbt.basins(d8_pntr, output, esri_pntr))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.basins(d8_pntr, output, esri_pntr)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -9339,7 +10303,13 @@ class BreachDepressions(object):
         output = parameters[1].valueAsText
         max_depth = parameters[2].valueAsText
         max_length = parameters[3].valueAsText
-        messages.addMessage(wbt.breach_depressions(dem, output, max_depth, max_length))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.breach_depressions(dem, output, max_depth, max_length)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -9378,7 +10348,13 @@ class BreachSingleCellPits(object):
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.breach_single_cell_pits(dem, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.breach_single_cell_pits(dem, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -9445,7 +10421,13 @@ class D8FlowAccumulation(object):
         out_type = parameters[2].valueAsText
         log = parameters[3].valueAsText
         clip = parameters[4].valueAsText
-        messages.addMessage(wbt.d8_flow_accumulation(dem, output, out_type, log, clip))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.d8_flow_accumulation(dem, output, out_type, log, clip)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -9508,7 +10490,13 @@ class D8MassFlux(object):
         efficiency = parameters[2].valueAsText
         absorption = parameters[3].valueAsText
         output = parameters[4].valueAsText
-        messages.addMessage(wbt.d8_mass_flux(dem, loading, efficiency, absorption, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.d8_mass_flux(dem, loading, efficiency, absorption, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -9557,7 +10545,13 @@ class D8Pointer(object):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
         esri_pntr = parameters[2].valueAsText
-        messages.addMessage(wbt.d8_pointer(dem, output, esri_pntr))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.d8_pointer(dem, output, esri_pntr)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -9632,7 +10626,13 @@ class DInfFlowAccumulation(object):
         threshold = parameters[3].valueAsText
         log = parameters[4].valueAsText
         clip = parameters[5].valueAsText
-        messages.addMessage(wbt.d_inf_flow_accumulation(dem, output, out_type, threshold, log, clip))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.d_inf_flow_accumulation(dem, output, out_type, threshold, log, clip)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -9695,7 +10695,13 @@ class DInfMassFlux(object):
         efficiency = parameters[2].valueAsText
         absorption = parameters[3].valueAsText
         output = parameters[4].valueAsText
-        messages.addMessage(wbt.d_inf_mass_flux(dem, loading, efficiency, absorption, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.d_inf_mass_flux(dem, loading, efficiency, absorption, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -9734,7 +10740,13 @@ class DInfPointer(object):
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.d_inf_pointer(dem, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.d_inf_pointer(dem, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -9781,7 +10793,13 @@ class DepthInSink(object):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
         zero_background = parameters[2].valueAsText
-        messages.addMessage(wbt.depth_in_sink(dem, output, zero_background))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.depth_in_sink(dem, output, zero_background)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -9828,7 +10846,13 @@ class DownslopeDistanceToStream(object):
         dem = parameters[0].valueAsText
         streams = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.downslope_distance_to_stream(dem, streams, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.downslope_distance_to_stream(dem, streams, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -9893,7 +10917,13 @@ class DownslopeFlowpathLength(object):
         weights = parameters[2].valueAsText
         output = parameters[3].valueAsText
         esri_pntr = parameters[4].valueAsText
-        messages.addMessage(wbt.downslope_flowpath_length(d8_pntr, watersheds, weights, output, esri_pntr))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.downslope_flowpath_length(d8_pntr, watersheds, weights, output, esri_pntr)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -9940,7 +10970,13 @@ class ElevationAboveStream(object):
         dem = parameters[0].valueAsText
         streams = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.elevation_above_stream(dem, streams, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.elevation_above_stream(dem, streams, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -9987,7 +11023,13 @@ class ElevationAboveStreamEuclidean(object):
         dem = parameters[0].valueAsText
         streams = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.elevation_above_stream_euclidean(dem, streams, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.elevation_above_stream_euclidean(dem, streams, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -10072,7 +11114,13 @@ class Fd8FlowAccumulation(object):
         threshold = parameters[4].valueAsText
         log = parameters[5].valueAsText
         clip = parameters[6].valueAsText
-        messages.addMessage(wbt.fd8_flow_accumulation(dem, output, out_type, exponent, threshold, log, clip))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.fd8_flow_accumulation(dem, output, out_type, exponent, threshold, log, clip)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -10111,7 +11159,13 @@ class Fd8Pointer(object):
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.fd8_pointer(dem, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.fd8_pointer(dem, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -10159,7 +11213,13 @@ class FillBurn(object):
         dem = parameters[0].valueAsText
         streams = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.fill_burn(dem, streams, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.fill_burn(dem, streams, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -10208,7 +11268,13 @@ class FillDepressions(object):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
         fix_flats = parameters[2].valueAsText
-        messages.addMessage(wbt.fill_depressions(dem, output, fix_flats))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.fill_depressions(dem, output, fix_flats)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -10247,7 +11313,13 @@ class FillSingleCellPits(object):
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.fill_single_cell_pits(dem, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.fill_single_cell_pits(dem, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -10286,7 +11358,13 @@ class FindNoFlowCells(object):
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.find_no_flow_cells(dem, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.find_no_flow_cells(dem, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -10333,7 +11411,13 @@ class FindParallelFlow(object):
         d8_pntr = parameters[0].valueAsText
         streams = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.find_parallel_flow(d8_pntr, streams, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.find_parallel_flow(d8_pntr, streams, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -10381,7 +11465,13 @@ class FlattenLakes(object):
         dem = parameters[0].valueAsText
         lakes = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.flatten_lakes(dem, lakes, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.flatten_lakes(dem, lakes, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -10420,7 +11510,13 @@ class FloodOrder(object):
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.flood_order(dem, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.flood_order(dem, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -10515,7 +11611,13 @@ class FlowAccumulationFullWorkflow(object):
         log = parameters[5].valueAsText
         clip = parameters[6].valueAsText
         esri_pntr = parameters[7].valueAsText
-        messages.addMessage(wbt.flow_accumulation_full_workflow(dem, out_dem, out_pntr, out_accum, out_type, log, clip, esri_pntr))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.flow_accumulation_full_workflow(dem, out_dem, out_pntr, out_accum, out_type, log, clip, esri_pntr)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -10564,7 +11666,13 @@ class FlowLengthDiff(object):
         d8_pntr = parameters[0].valueAsText
         output = parameters[1].valueAsText
         esri_pntr = parameters[2].valueAsText
-        messages.addMessage(wbt.flow_length_diff(d8_pntr, output, esri_pntr))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.flow_length_diff(d8_pntr, output, esri_pntr)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -10621,7 +11729,13 @@ class Hillslopes(object):
         streams = parameters[1].valueAsText
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
-        messages.addMessage(wbt.hillslopes(d8_pntr, streams, output, esri_pntr))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.hillslopes(d8_pntr, streams, output, esri_pntr)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -10680,7 +11794,13 @@ class ImpoundmentSizeIndex(object):
         output = parameters[1].valueAsText
         out_type = parameters[2].valueAsText
         damlength = parameters[3].valueAsText
-        messages.addMessage(wbt.impoundment_size_index(dem, output, out_type, damlength))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.impoundment_size_index(dem, output, out_type, damlength)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -10727,7 +11847,13 @@ class Isobasins(object):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
         size = parameters[2].valueAsText
-        messages.addMessage(wbt.isobasins(dem, output, size))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.isobasins(dem, output, size)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -10783,7 +11909,13 @@ class JensonSnapPourPoints(object):
         streams = parameters[1].valueAsText
         output = parameters[2].valueAsText
         snap_dist = parameters[3].valueAsText
-        messages.addMessage(wbt.jenson_snap_pour_points(pour_pts, streams, output, snap_dist))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.jenson_snap_pour_points(pour_pts, streams, output, snap_dist)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -10830,7 +11962,13 @@ class LongestFlowpath(object):
         dem = parameters[0].valueAsText
         basins = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.longest_flowpath(dem, basins, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.longest_flowpath(dem, basins, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -10869,7 +12007,13 @@ class MaxUpslopeFlowpathLength(object):
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.max_upslope_flowpath_length(dem, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.max_upslope_flowpath_length(dem, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -10908,7 +12052,13 @@ class NumInflowingNeighbours(object):
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.num_inflowing_neighbours(dem, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.num_inflowing_neighbours(dem, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -10974,7 +12124,13 @@ class RaiseWalls(object):
         dem = parameters[2].valueAsText
         output = parameters[3].valueAsText
         height = parameters[4].valueAsText
-        messages.addMessage(wbt.raise_walls(input, breach, dem, output, height))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.raise_walls(input, breach, dem, output, height)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -11023,7 +12179,13 @@ class Rho8Pointer(object):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
         esri_pntr = parameters[2].valueAsText
-        messages.addMessage(wbt.rho8_pointer(dem, output, esri_pntr))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.rho8_pointer(dem, output, esri_pntr)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -11070,7 +12232,13 @@ class Sink(object):
         dem = parameters[0].valueAsText
         output = parameters[1].valueAsText
         zero_background = parameters[2].valueAsText
-        messages.addMessage(wbt.sink(dem, output, zero_background))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.sink(dem, output, zero_background)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -11126,7 +12294,13 @@ class SnapPourPoints(object):
         flow_accum = parameters[1].valueAsText
         output = parameters[2].valueAsText
         snap_dist = parameters[3].valueAsText
-        messages.addMessage(wbt.snap_pour_points(pour_pts, flow_accum, output, snap_dist))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.snap_pour_points(pour_pts, flow_accum, output, snap_dist)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -11191,7 +12365,13 @@ class StochasticDepressionAnalysis(object):
         rmse = parameters[2].valueAsText
         range = parameters[3].valueAsText
         iterations = parameters[4].valueAsText
-        messages.addMessage(wbt.stochastic_depression_analysis(dem, output, rmse, range, iterations))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.stochastic_depression_analysis(dem, output, rmse, range, iterations)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -11248,7 +12428,13 @@ class StrahlerOrderBasins(object):
         streams = parameters[1].valueAsText
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
-        messages.addMessage(wbt.strahler_order_basins(d8_pntr, streams, output, esri_pntr))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.strahler_order_basins(d8_pntr, streams, output, esri_pntr)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -11305,7 +12491,13 @@ class Subbasins(object):
         streams = parameters[1].valueAsText
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
-        messages.addMessage(wbt.subbasins(d8_pntr, streams, output, esri_pntr))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.subbasins(d8_pntr, streams, output, esri_pntr)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -11371,7 +12563,13 @@ class TraceDownslopeFlowpaths(object):
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
-        messages.addMessage(wbt.trace_downslope_flowpaths(seed_pts, d8_pntr, output, esri_pntr, zero_background))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.trace_downslope_flowpaths(seed_pts, d8_pntr, output, esri_pntr, zero_background)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -11429,7 +12627,13 @@ class UnnestBasins(object):
         pour_pts = parameters[1].valueAsText
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
-        messages.addMessage(wbt.unnest_basins(d8_pntr, pour_pts, output, esri_pntr))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.unnest_basins(d8_pntr, pour_pts, output, esri_pntr)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -11487,7 +12691,13 @@ class Watershed(object):
         pour_pts = parameters[1].valueAsText
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
-        messages.addMessage(wbt.watershed(d8_pntr, pour_pts, output, esri_pntr))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.watershed(d8_pntr, pour_pts, output, esri_pntr)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -11504,6 +12714,7 @@ class ChangeVectorAnalysis(object):
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
+        date1.multiValue = True
 
         date2 = arcpy.Parameter(
             displayName="Later Date Input Files",
@@ -11511,6 +12722,7 @@ class ChangeVectorAnalysis(object):
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
+        date2.multiValue = True
 
         magnitude = arcpy.Parameter(
             displayName="Output Vector Magnitude File",
@@ -11543,7 +12755,13 @@ class ChangeVectorAnalysis(object):
         date2 = parameters[1].valueAsText
         magnitude = parameters[2].valueAsText
         direction = parameters[3].valueAsText
-        messages.addMessage(wbt.change_vector_analysis(date1, date2, magnitude, direction))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.change_vector_analysis(date1, date2, magnitude, direction)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -11602,7 +12820,13 @@ class Closing(object):
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
-        messages.addMessage(wbt.closing(input, output, filterx, filtery))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.closing(input, output, filterx, filtery)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -11685,7 +12909,13 @@ class CreateColourComposite(object):
         output = parameters[4].valueAsText
         enhance = parameters[5].valueAsText
         zeros = parameters[6].valueAsText
-        messages.addMessage(wbt.create_colour_composite(red, green, blue, opacity, output, enhance, zeros))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.create_colour_composite(red, green, blue, opacity, output, enhance, zeros)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -11736,7 +12966,13 @@ class FlipImage(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         direction = parameters[2].valueAsText
-        messages.addMessage(wbt.flip_image(input, output, direction))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.flip_image(input, output, direction)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -11818,7 +13054,13 @@ class IhsToRgb(object):
         green = parameters[4].valueAsText
         blue = parameters[5].valueAsText
         output = parameters[6].valueAsText
-        messages.addMessage(wbt.ihs_to_rgb(intensity, hue, saturation, red, green, blue, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.ihs_to_rgb(intensity, hue, saturation, red, green, blue, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -11835,6 +13077,7 @@ class ImageStackProfile(object):
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
+        inputs.multiValue = True
 
         points = arcpy.Parameter(
             displayName="Input Vector Points File",
@@ -11866,7 +13109,13 @@ class ImageStackProfile(object):
         inputs = parameters[0].valueAsText
         points = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.image_stack_profile(inputs, points, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.image_stack_profile(inputs, points, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -11905,7 +13154,13 @@ class IntegralImage(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.integral_image(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.integral_image(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -11922,6 +13177,7 @@ class KMeansClustering(object):
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
+        inputs.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output Raster File",
@@ -12003,7 +13259,13 @@ class KMeansClustering(object):
         class_change = parameters[5].valueAsText
         initialize = parameters[6].valueAsText
         min_class_size = parameters[7].valueAsText
-        messages.addMessage(wbt.k_means_clustering(inputs, output, out_html, classes, max_iterations, class_change, initialize, min_class_size))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.k_means_clustering(inputs, output, out_html, classes, max_iterations, class_change, initialize, min_class_size)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -12042,7 +13304,13 @@ class LineThinning(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.line_thinning(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.line_thinning(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -12059,6 +13327,7 @@ class ModifiedKMeansClustering(object):
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
+        inputs.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output Raster File",
@@ -12128,7 +13397,13 @@ class ModifiedKMeansClustering(object):
         merger_dist = parameters[4].valueAsText
         max_iterations = parameters[5].valueAsText
         class_change = parameters[6].valueAsText
-        messages.addMessage(wbt.modified_k_means_clustering(inputs, output, out_html, start_clusters, merger_dist, max_iterations, class_change))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.modified_k_means_clustering(inputs, output, out_html, start_clusters, merger_dist, max_iterations, class_change)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -12145,6 +13420,7 @@ class Mosaic(object):
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
+        inputs.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -12179,7 +13455,13 @@ class Mosaic(object):
         inputs = parameters[0].valueAsText
         output = parameters[1].valueAsText
         method = parameters[2].valueAsText
-        messages.addMessage(wbt.mosaic(inputs, output, method))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.mosaic(inputs, output, method)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -12248,7 +13530,13 @@ class MosaicWithFeathering(object):
         output = parameters[2].valueAsText
         method = parameters[3].valueAsText
         weight = parameters[4].valueAsText
-        messages.addMessage(wbt.mosaic_with_feathering(input1, input2, output, method, weight))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.mosaic_with_feathering(input1, input2, output, method, weight)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -12313,7 +13601,13 @@ class NormalizedDifferenceVegetationIndex(object):
         output = parameters[2].valueAsText
         clip = parameters[3].valueAsText
         osavi = parameters[4].valueAsText
-        messages.addMessage(wbt.normalized_difference_vegetation_index(nir, red, output, clip, osavi))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.normalized_difference_vegetation_index(nir, red, output, clip, osavi)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -12372,7 +13666,13 @@ class Opening(object):
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
-        messages.addMessage(wbt.opening(input, output, filterx, filtery))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.opening(input, output, filterx, filtery)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -12421,7 +13721,13 @@ class RemoveSpurs(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         iterations = parameters[2].valueAsText
-        messages.addMessage(wbt.remove_spurs(input, output, iterations))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.remove_spurs(input, output, iterations)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -12438,6 +13744,7 @@ class Resample(object):
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
+        inputs.multiValue = True
 
         destination = arcpy.Parameter(
             displayName="Destination File",
@@ -12471,7 +13778,13 @@ class Resample(object):
         inputs = parameters[0].valueAsText
         destination = parameters[1].valueAsText
         method = parameters[2].valueAsText
-        messages.addMessage(wbt.resample(inputs, destination, method))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.resample(inputs, destination, method)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -12552,7 +13865,13 @@ class RgbToIhs(object):
         intensity = parameters[4].valueAsText
         hue = parameters[5].valueAsText
         saturation = parameters[6].valueAsText
-        messages.addMessage(wbt.rgb_to_ihs(red, green, blue, composite, intensity, hue, saturation))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.rgb_to_ihs(red, green, blue, composite, intensity, hue, saturation)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -12591,7 +13910,13 @@ class SplitColourComposite(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.split_colour_composite(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.split_colour_composite(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -12630,7 +13955,13 @@ class ThickenRasterLine(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.thicken_raster_line(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.thicken_raster_line(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -12701,7 +14032,13 @@ class TophatTransform(object):
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         variant = parameters[4].valueAsText
-        messages.addMessage(wbt.tophat_transform(input, output, filterx, filtery, variant))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.tophat_transform(input, output, filterx, filtery, variant)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -12756,7 +14093,13 @@ class WriteFunctionMemoryInsertion(object):
         input2 = parameters[1].valueAsText
         input3 = parameters[2].valueAsText
         output = parameters[3].valueAsText
-        messages.addMessage(wbt.write_function_memory_insertion(input1, input2, input3, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.write_function_memory_insertion(input1, input2, input3, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -12825,7 +14168,13 @@ class AdaptiveFilter(object):
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         threshold = parameters[4].valueAsText
-        messages.addMessage(wbt.adaptive_filter(input, output, filterx, filtery, threshold))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.adaptive_filter(input, output, filterx, filtery, threshold)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -12884,7 +14233,13 @@ class BilateralFilter(object):
         output = parameters[1].valueAsText
         sigma_dist = parameters[2].valueAsText
         sigma_int = parameters[3].valueAsText
-        messages.addMessage(wbt.bilateral_filter(input, output, sigma_dist, sigma_int))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.bilateral_filter(input, output, sigma_dist, sigma_int)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -12943,7 +14298,13 @@ class ConservativeSmoothingFilter(object):
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
-        messages.addMessage(wbt.conservative_smoothing_filter(input, output, filterx, filtery))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.conservative_smoothing_filter(input, output, filterx, filtery)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -12982,7 +14343,13 @@ class CornerDetection(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.corner_detection(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.corner_detection(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -13041,7 +14408,13 @@ class DiffOfGaussianFilter(object):
         output = parameters[1].valueAsText
         sigma1 = parameters[2].valueAsText
         sigma2 = parameters[3].valueAsText
-        messages.addMessage(wbt.diff_of_gaussian_filter(input, output, sigma1, sigma2))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.diff_of_gaussian_filter(input, output, sigma1, sigma2)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -13100,7 +14473,13 @@ class DiversityFilter(object):
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
-        messages.addMessage(wbt.diversity_filter(input, output, filterx, filtery))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.diversity_filter(input, output, filterx, filtery)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -13157,7 +14536,13 @@ class EdgePreservingMeanFilter(object):
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         threshold = parameters[3].valueAsText
-        messages.addMessage(wbt.edge_preserving_mean_filter(input, output, filter, threshold))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.edge_preserving_mean_filter(input, output, filter, threshold)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -13218,7 +14603,13 @@ class EmbossFilter(object):
         output = parameters[1].valueAsText
         direction = parameters[2].valueAsText
         clip = parameters[3].valueAsText
-        messages.addMessage(wbt.emboss_filter(input, output, direction, clip))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.emboss_filter(input, output, direction, clip)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -13267,7 +14658,13 @@ class FastAlmostGaussianFilter(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         sigma = parameters[2].valueAsText
-        messages.addMessage(wbt.fast_almost_gaussian_filter(input, output, sigma))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.fast_almost_gaussian_filter(input, output, sigma)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -13316,7 +14713,13 @@ class GaussianFilter(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         sigma = parameters[2].valueAsText
-        messages.addMessage(wbt.gaussian_filter(input, output, sigma))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.gaussian_filter(input, output, sigma)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -13375,7 +14778,13 @@ class HighPassFilter(object):
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
-        messages.addMessage(wbt.high_pass_filter(input, output, filterx, filtery))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.high_pass_filter(input, output, filterx, filtery)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -13444,7 +14853,13 @@ class HighPassMedianFilter(object):
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         sig_digits = parameters[4].valueAsText
-        messages.addMessage(wbt.high_pass_median_filter(input, output, filterx, filtery, sig_digits))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.high_pass_median_filter(input, output, filterx, filtery, sig_digits)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -13513,7 +14928,13 @@ class KNearestMeanFilter(object):
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         k = parameters[4].valueAsText
-        messages.addMessage(wbt.k_nearest_mean_filter(input, output, filterx, filtery, k))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.k_nearest_mean_filter(input, output, filterx, filtery, k)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -13574,7 +14995,13 @@ class LaplacianFilter(object):
         output = parameters[1].valueAsText
         variant = parameters[2].valueAsText
         clip = parameters[3].valueAsText
-        messages.addMessage(wbt.laplacian_filter(input, output, variant, clip))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.laplacian_filter(input, output, variant, clip)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -13623,7 +15050,13 @@ class LaplacianOfGaussianFilter(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         sigma = parameters[2].valueAsText
-        messages.addMessage(wbt.laplacian_of_gaussian_filter(input, output, sigma))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.laplacian_of_gaussian_filter(input, output, sigma)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -13702,7 +15135,13 @@ class LeeFilter(object):
         filtery = parameters[3].valueAsText
         sigma = parameters[4].valueAsText
         m = parameters[5].valueAsText
-        messages.addMessage(wbt.lee_filter(input, output, filterx, filtery, sigma, m))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lee_filter(input, output, filterx, filtery, sigma, m)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -13771,7 +15210,13 @@ class LineDetectionFilter(object):
         variant = parameters[2].valueAsText
         absvals = parameters[3].valueAsText
         clip = parameters[4].valueAsText
-        messages.addMessage(wbt.line_detection_filter(input, output, variant, absvals, clip))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.line_detection_filter(input, output, variant, absvals, clip)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -13830,7 +15275,13 @@ class MajorityFilter(object):
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
-        messages.addMessage(wbt.majority_filter(input, output, filterx, filtery))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.majority_filter(input, output, filterx, filtery)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -13889,7 +15340,13 @@ class MaximumFilter(object):
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
-        messages.addMessage(wbt.maximum_filter(input, output, filterx, filtery))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.maximum_filter(input, output, filterx, filtery)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -13948,7 +15405,13 @@ class MeanFilter(object):
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
-        messages.addMessage(wbt.mean_filter(input, output, filterx, filtery))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.mean_filter(input, output, filterx, filtery)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -14017,7 +15480,13 @@ class MedianFilter(object):
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         sig_digits = parameters[4].valueAsText
-        messages.addMessage(wbt.median_filter(input, output, filterx, filtery, sig_digits))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.median_filter(input, output, filterx, filtery, sig_digits)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -14076,7 +15545,13 @@ class MinimumFilter(object):
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
-        messages.addMessage(wbt.minimum_filter(input, output, filterx, filtery))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.minimum_filter(input, output, filterx, filtery)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -14135,7 +15610,13 @@ class OlympicFilter(object):
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
-        messages.addMessage(wbt.olympic_filter(input, output, filterx, filtery))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.olympic_filter(input, output, filterx, filtery)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -14204,7 +15685,13 @@ class PercentileFilter(object):
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         sig_digits = parameters[4].valueAsText
-        messages.addMessage(wbt.percentile_filter(input, output, filterx, filtery, sig_digits))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.percentile_filter(input, output, filterx, filtery, sig_digits)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -14253,7 +15740,13 @@ class PrewittFilter(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         clip = parameters[2].valueAsText
-        messages.addMessage(wbt.prewitt_filter(input, output, clip))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.prewitt_filter(input, output, clip)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -14312,7 +15805,13 @@ class RangeFilter(object):
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
-        messages.addMessage(wbt.range_filter(input, output, filterx, filtery))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.range_filter(input, output, filterx, filtery)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -14361,7 +15860,13 @@ class RobertsCrossFilter(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         clip = parameters[2].valueAsText
-        messages.addMessage(wbt.roberts_cross_filter(input, output, clip))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.roberts_cross_filter(input, output, clip)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -14410,7 +15915,13 @@ class ScharrFilter(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         clip = parameters[2].valueAsText
-        messages.addMessage(wbt.scharr_filter(input, output, clip))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.scharr_filter(input, output, clip)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -14471,7 +15982,13 @@ class SobelFilter(object):
         output = parameters[1].valueAsText
         variant = parameters[2].valueAsText
         clip = parameters[3].valueAsText
-        messages.addMessage(wbt.sobel_filter(input, output, variant, clip))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.sobel_filter(input, output, variant, clip)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -14530,7 +16047,13 @@ class StandardDeviationFilter(object):
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
-        messages.addMessage(wbt.standard_deviation_filter(input, output, filterx, filtery))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.standard_deviation_filter(input, output, filterx, filtery)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -14589,7 +16112,13 @@ class TotalFilter(object):
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
-        messages.addMessage(wbt.total_filter(input, output, filterx, filtery))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.total_filter(input, output, filterx, filtery)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -14658,7 +16187,13 @@ class UnsharpMasking(object):
         sigma = parameters[2].valueAsText
         amount = parameters[3].valueAsText
         threshold = parameters[4].valueAsText
-        messages.addMessage(wbt.unsharp_masking(input, output, sigma, amount, threshold))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.unsharp_masking(input, output, sigma, amount, threshold)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -14728,7 +16263,13 @@ class UserDefinedWeightsFilter(object):
         output = parameters[2].valueAsText
         center = parameters[3].valueAsText
         normalize = parameters[4].valueAsText
-        messages.addMessage(wbt.user_defined_weights_filter(input, weights, output, center, normalize))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.user_defined_weights_filter(input, weights, output, center, normalize)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -14777,7 +16318,13 @@ class BalanceContrastEnhancement(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         band_mean = parameters[2].valueAsText
-        messages.addMessage(wbt.balance_contrast_enhancement(input, output, band_mean))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.balance_contrast_enhancement(input, output, band_mean)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -14855,7 +16402,13 @@ class CorrectVignetting(object):
         focal_length = parameters[3].valueAsText
         image_width = parameters[4].valueAsText
         n = parameters[5].valueAsText
-        messages.addMessage(wbt.correct_vignetting(input, pp, output, focal_length, image_width, n))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.correct_vignetting(input, pp, output, focal_length, image_width, n)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -14914,7 +16467,13 @@ class DirectDecorrelationStretch(object):
         output = parameters[1].valueAsText
         k = parameters[2].valueAsText
         clip = parameters[3].valueAsText
-        messages.addMessage(wbt.direct_decorrelation_stretch(input, output, k, clip))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.direct_decorrelation_stretch(input, output, k, clip)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -14963,7 +16522,13 @@ class GammaCorrection(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         gamma = parameters[2].valueAsText
-        messages.addMessage(wbt.gamma_correction(input, output, gamma))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.gamma_correction(input, output, gamma)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -15012,7 +16577,13 @@ class GaussianContrastStretch(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         num_tones = parameters[2].valueAsText
-        messages.addMessage(wbt.gaussian_contrast_stretch(input, output, num_tones))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.gaussian_contrast_stretch(input, output, num_tones)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -15061,7 +16632,13 @@ class HistogramEqualization(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         num_tones = parameters[2].valueAsText
-        messages.addMessage(wbt.histogram_equalization(input, output, num_tones))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.histogram_equalization(input, output, num_tones)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -15108,7 +16685,13 @@ class HistogramMatching(object):
         input = parameters[0].valueAsText
         histo_file = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.histogram_matching(input, histo_file, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.histogram_matching(input, histo_file, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -15155,7 +16738,13 @@ class HistogramMatchingTwoImages(object):
         input1 = parameters[0].valueAsText
         input2 = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.histogram_matching_two_images(input1, input2, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.histogram_matching_two_images(input1, input2, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -15220,7 +16809,13 @@ class MinMaxContrastStretch(object):
         min_val = parameters[2].valueAsText
         max_val = parameters[3].valueAsText
         num_tones = parameters[4].valueAsText
-        messages.addMessage(wbt.min_max_contrast_stretch(input, output, min_val, max_val, num_tones))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.min_max_contrast_stretch(input, output, min_val, max_val, num_tones)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -15303,7 +16898,13 @@ class PanchromaticSharpening(object):
         pan = parameters[4].valueAsText
         output = parameters[5].valueAsText
         method = parameters[6].valueAsText
-        messages.addMessage(wbt.panchromatic_sharpening(red, green, blue, composite, pan, output, method))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.panchromatic_sharpening(red, green, blue, composite, pan, output, method)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -15374,7 +16975,13 @@ class PercentageContrastStretch(object):
         clip = parameters[2].valueAsText
         tail = parameters[3].valueAsText
         num_tones = parameters[4].valueAsText
-        messages.addMessage(wbt.percentage_contrast_stretch(input, output, clip, tail, num_tones))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.percentage_contrast_stretch(input, output, clip, tail, num_tones)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -15443,7 +17050,13 @@ class SigmoidalContrastStretch(object):
         cutoff = parameters[2].valueAsText
         gain = parameters[3].valueAsText
         num_tones = parameters[4].valueAsText
-        messages.addMessage(wbt.sigmoidal_contrast_stretch(input, output, cutoff, gain, num_tones))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.sigmoidal_contrast_stretch(input, output, cutoff, gain, num_tones)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -15502,7 +17115,13 @@ class StandardDeviationContrastStretch(object):
         output = parameters[1].valueAsText
         stdev = parameters[2].valueAsText
         num_tones = parameters[3].valueAsText
-        messages.addMessage(wbt.standard_deviation_contrast_stretch(input, output, stdev, num_tones))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.standard_deviation_contrast_stretch(input, output, stdev, num_tones)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -15562,7 +17181,13 @@ class ClassifyOverlapPoints(object):
         output = parameters[1].valueAsText
         resolution = parameters[2].valueAsText
         filter = parameters[3].valueAsText
-        messages.addMessage(wbt.classify_overlap_points(input, output, resolution, filter))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.classify_overlap_points(input, output, resolution, filter)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -15611,7 +17236,13 @@ class ClipLidarToPolygon(object):
         input = parameters[0].valueAsText
         polygons = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.clip_lidar_to_polygon(input, polygons, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.clip_lidar_to_polygon(input, polygons, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -15660,7 +17291,13 @@ class ErasePolygonFromLidar(object):
         input = parameters[0].valueAsText
         polygons = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.erase_polygon_from_lidar(input, polygons, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.erase_polygon_from_lidar(input, polygons, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -15708,7 +17345,13 @@ class FilterLidarScanAngles(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         threshold = parameters[2].valueAsText
-        messages.addMessage(wbt.filter_lidar_scan_angles(input, output, threshold))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.filter_lidar_scan_angles(input, output, threshold)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -15748,7 +17391,13 @@ class FindFlightlineEdgePoints(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.find_flightline_edge_points(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.find_flightline_edge_points(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -15798,7 +17447,13 @@ class FlightlineOverlap(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         resolution = parameters[2].valueAsText
-        messages.addMessage(wbt.flightline_overlap(input, output, resolution))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.flightline_overlap(input, output, resolution)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -15815,6 +17470,7 @@ class LasToAscii(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        inputs.multiValue = True
         inputs.filter.list = ["las", "zip"]
 
         params = [inputs]
@@ -15829,7 +17485,13 @@ class LasToAscii(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        messages.addMessage(wbt.las_to_ascii(inputs))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.las_to_ascii(inputs)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -15860,7 +17522,13 @@ class LasToMultipointShapefile(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
-        messages.addMessage(wbt.las_to_multipoint_shapefile(input))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.las_to_multipoint_shapefile(input)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -15891,7 +17559,13 @@ class LasToShapefile(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
-        messages.addMessage(wbt.las_to_shapefile(input))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.las_to_shapefile(input)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -15941,7 +17615,13 @@ class LidarBlockMaximum(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         resolution = parameters[2].valueAsText
-        messages.addMessage(wbt.lidar_block_maximum(input, output, resolution))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_block_maximum(input, output, resolution)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -15991,7 +17671,13 @@ class LidarBlockMinimum(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         resolution = parameters[2].valueAsText
-        messages.addMessage(wbt.lidar_block_minimum(input, output, resolution))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_block_minimum(input, output, resolution)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -16056,7 +17742,13 @@ class LidarClassifySubset(object):
         output = parameters[2].valueAsText
         subset_class = parameters[3].valueAsText
         nonsubset_class = parameters[4].valueAsText
-        messages.addMessage(wbt.lidar_classify_subset(base, subset, output, subset_class, nonsubset_class))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_classify_subset(base, subset, output, subset_class, nonsubset_class)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -16104,7 +17796,13 @@ class LidarColourize(object):
         in_lidar = parameters[0].valueAsText
         in_image = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.lidar_colourize(in_lidar, in_image, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_colourize(in_lidar, in_image, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -16180,7 +17878,13 @@ class LidarConstructVectorTin(object):
         exclude_cls = parameters[3].valueAsText
         minz = parameters[4].valueAsText
         maxz = parameters[5].valueAsText
-        messages.addMessage(wbt.lidar_construct_vector_tin(input, output, returns, exclude_cls, minz, maxz))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_construct_vector_tin(input, output, returns, exclude_cls, minz, maxz)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -16221,9 +17925,9 @@ class LidarElevationSlice(object):
             parameterType="Optional",
             direction="Input")
 
-        class1 = arcpy.Parameter(
+        cls = arcpy.Parameter(
             displayName="Retain but reclass points outside the specified elevation range?",
-            name="class1",
+            name="cls",
             datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
@@ -16246,7 +17950,7 @@ class LidarElevationSlice(object):
 
         outclassval.value = "1"
 
-        params = [input, output, minz, maxz, class1, inclassval, outclassval]
+        params = [input, output, minz, maxz, cls, inclassval, outclassval]
 
         return params
 
@@ -16261,10 +17965,16 @@ class LidarElevationSlice(object):
         output = parameters[1].valueAsText
         minz = parameters[2].valueAsText
         maxz = parameters[3].valueAsText
-        class1 = parameters[4].valueAsText
+        cls = parameters[4].valueAsText
         inclassval = parameters[5].valueAsText
         outclassval = parameters[6].valueAsText
-        messages.addMessage(wbt.lidar_elevation_slice(input, output, minz, maxz, class1, inclassval, outclassval))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_elevation_slice(input, output, minz, maxz, cls, inclassval, outclassval)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -16364,7 +18074,13 @@ class LidarGroundPointFilter(object):
         height_threshold = parameters[5].valueAsText
         classify = parameters[6].valueAsText
         slope_norm = parameters[7].valueAsText
-        messages.addMessage(wbt.lidar_ground_point_filter(input, output, radius, min_neighbours, slope_threshold, height_threshold, classify, slope_norm))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_ground_point_filter(input, output, radius, min_neighbours, slope_threshold, height_threshold, classify, slope_norm)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -16424,7 +18140,13 @@ class LidarHexBinning(object):
         output = parameters[1].valueAsText
         width = parameters[2].valueAsText
         orientation = parameters[3].valueAsText
-        messages.addMessage(wbt.lidar_hex_binning(input, output, width, orientation))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_hex_binning(input, output, width, orientation)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -16494,7 +18216,13 @@ class LidarHillshade(object):
         azimuth = parameters[2].valueAsText
         altitude = parameters[3].valueAsText
         radius = parameters[4].valueAsText
-        messages.addMessage(wbt.lidar_hillshade(input, output, azimuth, altitude, radius))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_hillshade(input, output, azimuth, altitude, radius)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -16556,7 +18284,13 @@ class LidarHistogram(object):
         output = parameters[1].valueAsText
         parameter = parameters[2].valueAsText
         clip = parameters[3].valueAsText
-        messages.addMessage(wbt.lidar_histogram(input, output, parameter, clip))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_histogram(input, output, parameter, clip)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -16674,7 +18408,13 @@ class LidarIdwInterpolation(object):
         exclude_cls = parameters[7].valueAsText
         minz = parameters[8].valueAsText
         maxz = parameters[9].valueAsText
-        messages.addMessage(wbt.lidar_idw_interpolation(input, output, parameter, returns, resolution, weight, radius, exclude_cls, minz, maxz))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_idw_interpolation(input, output, parameter, returns, resolution, weight, radius, exclude_cls, minz, maxz)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -16730,7 +18470,13 @@ class LidarInfo(object):
         output = parameters[1].valueAsText
         vlr = parameters[2].valueAsText
         geokeys = parameters[3].valueAsText
-        messages.addMessage(wbt.lidar_info(input, output, vlr, geokeys))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_info(input, output, vlr, geokeys)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -16747,6 +18493,7 @@ class LidarJoin(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Input")
+        inputs.multiValue = True
         inputs.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
@@ -16770,7 +18517,13 @@ class LidarJoin(object):
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.lidar_join(inputs, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_join(inputs, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -16838,7 +18591,13 @@ class LidarKappaIndex(object):
         output = parameters[2].valueAsText
         class_accuracy = parameters[3].valueAsText
         resolution = parameters[4].valueAsText
-        messages.addMessage(wbt.lidar_kappa_index(input1, input2, output, class_accuracy, resolution))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_kappa_index(input1, input2, output, class_accuracy, resolution)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -16946,7 +18705,13 @@ class LidarNearestNeighbourGridding(object):
         exclude_cls = parameters[6].valueAsText
         minz = parameters[7].valueAsText
         maxz = parameters[8].valueAsText
-        messages.addMessage(wbt.lidar_nearest_neighbour_gridding(input, output, parameter, returns, resolution, radius, exclude_cls, minz, maxz))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_nearest_neighbour_gridding(input, output, parameter, returns, resolution, radius, exclude_cls, minz, maxz)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -17042,7 +18807,13 @@ class LidarPointDensity(object):
         exclude_cls = parameters[5].valueAsText
         minz = parameters[6].valueAsText
         maxz = parameters[7].valueAsText
-        messages.addMessage(wbt.lidar_point_density(input, output, returns, resolution, radius, exclude_cls, minz, maxz))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_point_density(input, output, returns, resolution, radius, exclude_cls, minz, maxz)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -17125,7 +18896,13 @@ class LidarPointStats(object):
         z_range = parameters[4].valueAsText
         intensity_range = parameters[5].valueAsText
         predom_class = parameters[6].valueAsText
-        messages.addMessage(wbt.lidar_point_stats(input, resolution, num_points, num_pulses, z_range, intensity_range, predom_class))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_point_stats(input, resolution, num_points, num_pulses, z_range, intensity_range, predom_class)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -17175,7 +18952,13 @@ class LidarRemoveDuplicates(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         include_z = parameters[2].valueAsText
-        messages.addMessage(wbt.lidar_remove_duplicates(input, output, include_z))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_remove_duplicates(input, output, include_z)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -17235,7 +19018,13 @@ class LidarRemoveOutliers(object):
         output = parameters[1].valueAsText
         radius = parameters[2].valueAsText
         elev_diff = parameters[3].valueAsText
-        messages.addMessage(wbt.lidar_remove_outliers(input, output, radius, elev_diff))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_remove_outliers(input, output, radius, elev_diff)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -17305,7 +19094,13 @@ class LidarSegmentation(object):
         radius = parameters[2].valueAsText
         norm_diff = parameters[3].valueAsText
         maxzdiff = parameters[4].valueAsText
-        messages.addMessage(wbt.lidar_segmentation(input, output, radius, norm_diff, maxzdiff))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_segmentation(input, output, radius, norm_diff, maxzdiff)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -17383,7 +19178,13 @@ class LidarSegmentationBasedFilter(object):
         norm_diff = parameters[3].valueAsText
         maxzdiff = parameters[4].valueAsText
         classify = parameters[5].valueAsText
-        messages.addMessage(wbt.lidar_segmentation_based_filter(input, output, radius, norm_diff, maxzdiff, classify))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_segmentation_based_filter(input, output, radius, norm_diff, maxzdiff, classify)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -17455,7 +19256,13 @@ class LidarThin(object):
         resolution = parameters[2].valueAsText
         method = parameters[3].valueAsText
         save_filtered = parameters[4].valueAsText
-        messages.addMessage(wbt.lidar_thin(input, output, resolution, method, save_filtered))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_thin(input, output, resolution, method, save_filtered)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -17523,7 +19330,13 @@ class LidarThinHighDensity(object):
         resolution = parameters[2].valueAsText
         density = parameters[3].valueAsText
         save_filtered = parameters[4].valueAsText
-        messages.addMessage(wbt.lidar_thin_high_density(input, output, resolution, density, save_filtered))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_thin_high_density(input, output, resolution, density, save_filtered)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -17604,7 +19417,13 @@ class LidarTile(object):
         origin_x = parameters[3].valueAsText
         origin_y = parameters[4].valueAsText
         min_points = parameters[5].valueAsText
-        messages.addMessage(wbt.lidar_tile(input, width, height, origin_x, origin_y, min_points))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_tile(input, width, height, origin_x, origin_y, min_points)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -17644,7 +19463,13 @@ class LidarTileFootprint(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.lidar_tile_footprint(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_tile_footprint(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -17742,7 +19567,13 @@ class LidarTinGridding(object):
         exclude_cls = parameters[5].valueAsText
         minz = parameters[6].valueAsText
         maxz = parameters[7].valueAsText
-        messages.addMessage(wbt.lidar_tin_gridding(input, output, parameter, returns, resolution, exclude_cls, minz, maxz))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_tin_gridding(input, output, parameter, returns, resolution, exclude_cls, minz, maxz)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -17792,7 +19623,13 @@ class LidarTophatTransform(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         radius = parameters[2].valueAsText
-        messages.addMessage(wbt.lidar_tophat_transform(input, output, radius))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_tophat_transform(input, output, radius)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -17842,7 +19679,13 @@ class NormalVectors(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         radius = parameters[2].valueAsText
-        messages.addMessage(wbt.normal_vectors(input, output, radius))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.normal_vectors(input, output, radius)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -17889,7 +19732,13 @@ class SelectTilesByPolygon(object):
         indir = parameters[0].valueAsText
         outdir = parameters[1].valueAsText
         polygons = parameters[2].valueAsText
-        messages.addMessage(wbt.select_tiles_by_polygon(indir, outdir, polygons))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.select_tiles_by_polygon(indir, outdir, polygons)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -17936,7 +19785,13 @@ class And(object):
         input1 = parameters[0].valueAsText
         input2 = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.And(input1, input2, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.And(input1, input2, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -17983,7 +19838,13 @@ class Not(object):
         input1 = parameters[0].valueAsText
         input2 = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.Not(input1, input2, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.Not(input1, input2, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -18030,7 +19891,13 @@ class Or(object):
         input1 = parameters[0].valueAsText
         input2 = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.Or(input1, input2, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.Or(input1, input2, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -18069,7 +19936,13 @@ class AbsoluteValue(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.absolute_value(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.absolute_value(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -18116,7 +19989,13 @@ class Add(object):
         input1 = parameters[0].valueAsText
         input2 = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.add(input1, input2, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.add(input1, input2, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -18163,7 +20042,13 @@ class Anova(object):
         input = parameters[0].valueAsText
         features = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.anova(input, features, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.anova(input, features, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -18202,7 +20087,13 @@ class ArcCos(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.arc_cos(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.arc_cos(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -18241,7 +20132,13 @@ class ArcSin(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.arc_sin(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.arc_sin(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -18280,7 +20177,13 @@ class ArcTan(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.arc_tan(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.arc_tan(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -18327,7 +20230,13 @@ class Atan2(object):
         input_y = parameters[0].valueAsText
         input_x = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.atan2(input_y, input_x, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.atan2(input_y, input_x, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -18366,7 +20275,13 @@ class AttributeCorrelation(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.attribute_correlation(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.attribute_correlation(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -18414,7 +20329,13 @@ class AttributeHistogram(object):
         input = parameters[0].valueAsText
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.attribute_histogram(input, field, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.attribute_histogram(input, field, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -18481,7 +20402,13 @@ class AttributeScattergram(object):
         fieldy = parameters[2].valueAsText
         output = parameters[3].valueAsText
         trendline = parameters[4].valueAsText
-        messages.addMessage(wbt.attribute_scattergram(input, fieldx, fieldy, output, trendline))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.attribute_scattergram(input, fieldx, fieldy, output, trendline)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -18520,7 +20447,13 @@ class Ceil(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.ceil(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.ceil(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -18559,7 +20492,13 @@ class Cos(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.cos(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.cos(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -18598,7 +20537,13 @@ class Cosh(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.cosh(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.cosh(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -18637,7 +20582,13 @@ class CrispnessIndex(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.crispness_index(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.crispness_index(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -18684,7 +20635,13 @@ class CrossTabulation(object):
         input1 = parameters[0].valueAsText
         input2 = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.cross_tabulation(input1, input2, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.cross_tabulation(input1, input2, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -18723,7 +20680,13 @@ class CumulativeDistribution(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.cumulative_distribution(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.cumulative_distribution(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -18762,7 +20725,13 @@ class Decrement(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.decrement(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.decrement(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -18809,7 +20778,13 @@ class Divide(object):
         input1 = parameters[0].valueAsText
         input2 = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.divide(input1, input2, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.divide(input1, input2, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -18856,7 +20831,13 @@ class EqualTo(object):
         input1 = parameters[0].valueAsText
         input2 = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.equal_to(input1, input2, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.equal_to(input1, input2, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -18895,7 +20876,13 @@ class Exp(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.exp(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.exp(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -18934,7 +20921,13 @@ class Exp2(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.exp2(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.exp2(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -19002,7 +20995,13 @@ class ExtractRasterStatistics(object):
         output = parameters[2].valueAsText
         stat = parameters[3].valueAsText
         out_table = parameters[4].valueAsText
-        messages.addMessage(wbt.extract_raster_statistics(input, features, output, stat, out_table))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.extract_raster_statistics(input, features, output, stat, out_table)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -19041,7 +21040,13 @@ class Floor(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.floor(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.floor(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -19096,7 +21101,13 @@ class GreaterThan(object):
         input2 = parameters[1].valueAsText
         output = parameters[2].valueAsText
         incl_equals = parameters[3].valueAsText
-        messages.addMessage(wbt.greater_than(input1, input2, output, incl_equals))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.greater_than(input1, input2, output, incl_equals)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -19113,6 +21124,7 @@ class ImageAutocorrelation(object):
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
+        inputs.multiValue = True
 
         contiguity = arcpy.Parameter(
             displayName="Contiguity Type",
@@ -19147,7 +21159,13 @@ class ImageAutocorrelation(object):
         inputs = parameters[0].valueAsText
         contiguity = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.image_autocorrelation(inputs, contiguity, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.image_autocorrelation(inputs, contiguity, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -19164,6 +21182,7 @@ class ImageCorrelation(object):
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
+        inputs.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output HTML File",
@@ -19186,7 +21205,13 @@ class ImageCorrelation(object):
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.image_correlation(inputs, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.image_correlation(inputs, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -19250,7 +21275,13 @@ class ImageRegression(object):
         output = parameters[2].valueAsText
         out_residuals = parameters[3].valueAsText
         standardize = parameters[4].valueAsText
-        messages.addMessage(wbt.image_regression(input1, input2, output, out_residuals, standardize))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.image_regression(input1, input2, output, out_residuals, standardize)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -19288,7 +21319,13 @@ class InPlaceAdd(object):
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
         input2 = parameters[1].valueAsText
-        messages.addMessage(wbt.in_place_add(input1, input2))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.in_place_add(input1, input2)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -19326,7 +21363,13 @@ class InPlaceDivide(object):
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
         input2 = parameters[1].valueAsText
-        messages.addMessage(wbt.in_place_divide(input1, input2))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.in_place_divide(input1, input2)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -19364,7 +21407,13 @@ class InPlaceMultiply(object):
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
         input2 = parameters[1].valueAsText
-        messages.addMessage(wbt.in_place_multiply(input1, input2))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.in_place_multiply(input1, input2)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -19402,7 +21451,13 @@ class InPlaceSubtract(object):
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
         input2 = parameters[1].valueAsText
-        messages.addMessage(wbt.in_place_subtract(input1, input2))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.in_place_subtract(input1, input2)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -19441,7 +21496,13 @@ class Increment(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.increment(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.increment(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -19488,7 +21549,13 @@ class IntegerDivision(object):
         input1 = parameters[0].valueAsText
         input2 = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.integer_division(input1, input2, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.integer_division(input1, input2, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -19527,7 +21594,13 @@ class IsNoData(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.is_no_data(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.is_no_data(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -19574,7 +21647,13 @@ class KappaIndex(object):
         input1 = parameters[0].valueAsText
         input2 = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.kappa_index(input1, input2, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.kappa_index(input1, input2, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -19621,7 +21700,13 @@ class KsTestForNormality(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         num_samples = parameters[2].valueAsText
-        messages.addMessage(wbt.ks_test_for_normality(input, output, num_samples))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.ks_test_for_normality(input, output, num_samples)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -19676,7 +21761,13 @@ class LessThan(object):
         input2 = parameters[1].valueAsText
         output = parameters[2].valueAsText
         incl_equals = parameters[3].valueAsText
-        messages.addMessage(wbt.less_than(input1, input2, output, incl_equals))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.less_than(input1, input2, output, incl_equals)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -19724,7 +21815,13 @@ class ListUniqueValues(object):
         input = parameters[0].valueAsText
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.list_unique_values(input, field, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.list_unique_values(input, field, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -19763,7 +21860,13 @@ class Ln(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.ln(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.ln(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -19802,7 +21905,13 @@ class Log10(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.log10(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.log10(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -19841,7 +21950,13 @@ class Log2(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.log2(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.log2(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -19888,7 +22003,13 @@ class Max(object):
         input1 = parameters[0].valueAsText
         input2 = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.max(input1, input2, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.max(input1, input2, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -19935,7 +22056,13 @@ class Min(object):
         input1 = parameters[0].valueAsText
         input2 = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.min(input1, input2, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.min(input1, input2, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -19982,7 +22109,13 @@ class Modulo(object):
         input1 = parameters[0].valueAsText
         input2 = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.modulo(input1, input2, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.modulo(input1, input2, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -20029,7 +22162,13 @@ class Multiply(object):
         input1 = parameters[0].valueAsText
         input2 = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.multiply(input1, input2, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.multiply(input1, input2, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -20068,7 +22207,13 @@ class Negate(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.negate(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.negate(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -20115,7 +22260,13 @@ class NotEqualTo(object):
         input1 = parameters[0].valueAsText
         input2 = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.not_equal_to(input1, input2, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.not_equal_to(input1, input2, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -20162,7 +22313,13 @@ class Power(object):
         input1 = parameters[0].valueAsText
         input2 = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.power(input1, input2, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.power(input1, input2, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -20179,6 +22336,7 @@ class PrincipalComponentAnalysis(object):
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
+        inputs.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output HTML Report File",
@@ -20217,7 +22375,13 @@ class PrincipalComponentAnalysis(object):
         output = parameters[1].valueAsText
         num_comp = parameters[2].valueAsText
         standardized = parameters[3].valueAsText
-        messages.addMessage(wbt.principal_component_analysis(inputs, output, num_comp, standardized))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.principal_component_analysis(inputs, output, num_comp, standardized)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -20266,7 +22430,13 @@ class Quantiles(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         num_quantiles = parameters[2].valueAsText
-        messages.addMessage(wbt.quantiles(input, output, num_quantiles))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.quantiles(input, output, num_quantiles)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -20305,7 +22475,13 @@ class RandomField(object):
     def execute(self, parameters, messages):
         base = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.random_field(base, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.random_field(base, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -20354,7 +22530,13 @@ class RandomSample(object):
         base = parameters[0].valueAsText
         output = parameters[1].valueAsText
         num_samples = parameters[2].valueAsText
-        messages.addMessage(wbt.random_sample(base, output, num_samples))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.random_sample(base, output, num_samples)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -20393,7 +22575,13 @@ class RasterHistogram(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.raster_histogram(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.raster_histogram(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -20423,7 +22611,13 @@ class RasterSummaryStats(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
-        messages.addMessage(wbt.raster_summary_stats(input))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.raster_summary_stats(input)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -20462,7 +22656,13 @@ class Reciprocal(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.reciprocal(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.reciprocal(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -20533,7 +22733,13 @@ class RescaleValueRange(object):
         out_max_val = parameters[3].valueAsText
         clip_min = parameters[4].valueAsText
         clip_max = parameters[5].valueAsText
-        messages.addMessage(wbt.rescale_value_range(input, output, out_min_val, out_max_val, clip_min, clip_max))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.rescale_value_range(input, output, out_min_val, out_max_val, clip_min, clip_max)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -20571,7 +22777,13 @@ class RootMeanSquareError(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         base = parameters[1].valueAsText
-        messages.addMessage(wbt.root_mean_square_error(input, base))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.root_mean_square_error(input, base)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -20610,7 +22822,13 @@ class Round(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.round(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.round(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -20649,7 +22867,13 @@ class Sin(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.sin(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.sin(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -20688,7 +22912,13 @@ class Sinh(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.sinh(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.sinh(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -20727,7 +22957,13 @@ class Square(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.square(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.square(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -20766,7 +23002,13 @@ class SquareRoot(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.square_root(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.square_root(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -20813,7 +23055,13 @@ class Subtract(object):
         input1 = parameters[0].valueAsText
         input2 = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.subtract(input1, input2, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.subtract(input1, input2, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -20852,7 +23100,13 @@ class Tan(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.tan(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.tan(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -20891,7 +23145,13 @@ class Tanh(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.tanh(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.tanh(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -20930,7 +23190,13 @@ class ToDegrees(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.to_degrees(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.to_degrees(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -20969,7 +23235,13 @@ class ToRadians(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.to_radians(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.to_radians(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -21018,7 +23290,13 @@ class TrendSurface(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         order = parameters[2].valueAsText
-        messages.addMessage(wbt.trend_surface(input, output, order))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.trend_surface(input, output, order)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -21085,7 +23363,13 @@ class TrendSurfaceVectorPoints(object):
         output = parameters[2].valueAsText
         order = parameters[3].valueAsText
         cell_size = parameters[4].valueAsText
-        messages.addMessage(wbt.trend_surface_vector_points(input, field, output, order, cell_size))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.trend_surface_vector_points(input, field, output, order, cell_size)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -21132,7 +23416,13 @@ class Truncate(object):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
         num_decimals = parameters[2].valueAsText
-        messages.addMessage(wbt.truncate(input, output, num_decimals))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.truncate(input, output, num_decimals)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -21189,7 +23479,13 @@ class TurningBandsSimulation(object):
         output = parameters[1].valueAsText
         range = parameters[2].valueAsText
         iterations = parameters[3].valueAsText
-        messages.addMessage(wbt.turning_bands_simulation(base, output, range, iterations))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.turning_bands_simulation(base, output, range, iterations)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -21236,7 +23532,13 @@ class Xor(object):
         input1 = parameters[0].valueAsText
         input2 = parameters[1].valueAsText
         output = parameters[2].valueAsText
-        messages.addMessage(wbt.xor(input1, input2, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.xor(input1, input2, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -21275,7 +23577,13 @@ class ZScores(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        messages.addMessage(wbt.z_scores(input, output))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.z_scores(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -21340,7 +23648,13 @@ class DistanceToOutlet(object):
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
-        messages.addMessage(wbt.distance_to_outlet(d8_pntr, streams, output, esri_pntr, zero_background))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.distance_to_outlet(d8_pntr, streams, output, esri_pntr, zero_background)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -21395,7 +23709,13 @@ class ExtractStreams(object):
         output = parameters[1].valueAsText
         threshold = parameters[2].valueAsText
         zero_background = parameters[3].valueAsText
-        messages.addMessage(wbt.extract_streams(flow_accum, output, threshold, zero_background))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.extract_streams(flow_accum, output, threshold, zero_background)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -21466,7 +23786,13 @@ class ExtractValleys(object):
         variant = parameters[2].valueAsText
         line_thin = parameters[3].valueAsText
         filter = parameters[4].valueAsText
-        messages.addMessage(wbt.extract_valleys(dem, output, variant, line_thin, filter))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.extract_valleys(dem, output, variant, line_thin, filter)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -21531,7 +23857,13 @@ class FarthestChannelHead(object):
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
-        messages.addMessage(wbt.farthest_channel_head(d8_pntr, streams, output, esri_pntr, zero_background))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.farthest_channel_head(d8_pntr, streams, output, esri_pntr, zero_background)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -21596,7 +23928,13 @@ class FindMainStem(object):
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
-        messages.addMessage(wbt.find_main_stem(d8_pntr, streams, output, esri_pntr, zero_background))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.find_main_stem(d8_pntr, streams, output, esri_pntr, zero_background)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -21661,7 +23999,13 @@ class HackStreamOrder(object):
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
-        messages.addMessage(wbt.hack_stream_order(d8_pntr, streams, output, esri_pntr, zero_background))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.hack_stream_order(d8_pntr, streams, output, esri_pntr, zero_background)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -21726,7 +24070,13 @@ class HortonStreamOrder(object):
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
-        messages.addMessage(wbt.horton_stream_order(d8_pntr, streams, output, esri_pntr, zero_background))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.horton_stream_order(d8_pntr, streams, output, esri_pntr, zero_background)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -21791,7 +24141,13 @@ class LengthOfUpstreamChannels(object):
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
-        messages.addMessage(wbt.length_of_upstream_channels(d8_pntr, streams, output, esri_pntr, zero_background))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.length_of_upstream_channels(d8_pntr, streams, output, esri_pntr, zero_background)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -21856,7 +24212,13 @@ class LongProfile(object):
         dem = parameters[2].valueAsText
         output = parameters[3].valueAsText
         esri_pntr = parameters[4].valueAsText
-        messages.addMessage(wbt.long_profile(d8_pntr, streams, dem, output, esri_pntr))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.long_profile(d8_pntr, streams, dem, output, esri_pntr)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -21922,7 +24284,13 @@ class LongProfileFromPoints(object):
         dem = parameters[2].valueAsText
         output = parameters[3].valueAsText
         esri_pntr = parameters[4].valueAsText
-        messages.addMessage(wbt.long_profile_from_points(d8_pntr, points, dem, output, esri_pntr))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.long_profile_from_points(d8_pntr, points, dem, output, esri_pntr)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -21979,7 +24347,13 @@ class RasterStreamsToVector(object):
         d8_pntr = parameters[1].valueAsText
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
-        messages.addMessage(wbt.raster_streams_to_vector(streams, d8_pntr, output, esri_pntr))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.raster_streams_to_vector(streams, d8_pntr, output, esri_pntr)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -22047,7 +24421,13 @@ class RasterizeStreams(object):
         output = parameters[2].valueAsText
         nodata = parameters[3].valueAsText
         feature_id = parameters[4].valueAsText
-        messages.addMessage(wbt.rasterize_streams(streams, base, output, nodata, feature_id))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.rasterize_streams(streams, base, output, nodata, feature_id)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -22112,7 +24492,13 @@ class RemoveShortStreams(object):
         output = parameters[2].valueAsText
         min_length = parameters[3].valueAsText
         esri_pntr = parameters[4].valueAsText
-        messages.addMessage(wbt.remove_short_streams(d8_pntr, streams, output, min_length, esri_pntr))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.remove_short_streams(d8_pntr, streams, output, min_length, esri_pntr)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -22177,7 +24563,13 @@ class ShreveStreamMagnitude(object):
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
-        messages.addMessage(wbt.shreve_stream_magnitude(d8_pntr, streams, output, esri_pntr, zero_background))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.shreve_stream_magnitude(d8_pntr, streams, output, esri_pntr, zero_background)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -22242,7 +24634,13 @@ class StrahlerStreamOrder(object):
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
-        messages.addMessage(wbt.strahler_stream_order(d8_pntr, streams, output, esri_pntr, zero_background))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.strahler_stream_order(d8_pntr, streams, output, esri_pntr, zero_background)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -22307,7 +24705,13 @@ class StreamLinkClass(object):
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
-        messages.addMessage(wbt.stream_link_class(d8_pntr, streams, output, esri_pntr, zero_background))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.stream_link_class(d8_pntr, streams, output, esri_pntr, zero_background)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -22372,7 +24776,13 @@ class StreamLinkIdentifier(object):
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
-        messages.addMessage(wbt.stream_link_identifier(d8_pntr, streams, output, esri_pntr, zero_background))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.stream_link_identifier(d8_pntr, streams, output, esri_pntr, zero_background)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -22437,7 +24847,13 @@ class StreamLinkLength(object):
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
-        messages.addMessage(wbt.stream_link_length(d8_pntr, linkid, output, esri_pntr, zero_background))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.stream_link_length(d8_pntr, linkid, output, esri_pntr, zero_background)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -22510,7 +24926,13 @@ class StreamLinkSlope(object):
         output = parameters[3].valueAsText
         esri_pntr = parameters[4].valueAsText
         zero_background = parameters[5].valueAsText
-        messages.addMessage(wbt.stream_link_slope(d8_pntr, linkid, dem, output, esri_pntr, zero_background))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.stream_link_slope(d8_pntr, linkid, dem, output, esri_pntr, zero_background)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -22583,7 +25005,13 @@ class StreamSlopeContinuous(object):
         output = parameters[3].valueAsText
         esri_pntr = parameters[4].valueAsText
         zero_background = parameters[5].valueAsText
-        messages.addMessage(wbt.stream_slope_continuous(d8_pntr, streams, dem, output, esri_pntr, zero_background))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.stream_slope_continuous(d8_pntr, streams, dem, output, esri_pntr, zero_background)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -22648,7 +25076,13 @@ class TopologicalStreamOrder(object):
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
-        messages.addMessage(wbt.topological_stream_order(d8_pntr, streams, output, esri_pntr, zero_background))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.topological_stream_order(d8_pntr, streams, output, esri_pntr, zero_background)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 
@@ -22713,7 +25147,13 @@ class TributaryIdentifier(object):
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
-        messages.addMessage(wbt.tributary_identifier(d8_pntr, streams, output, esri_pntr, zero_background))
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.tributary_identifier(d8_pntr, streams, output, esri_pntr, zero_background)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
         return
 
 

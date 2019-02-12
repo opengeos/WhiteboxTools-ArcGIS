@@ -310,7 +310,7 @@ class RunTool(object):
             parameterType="Required",
             direction="Input")
 
-        tool_name.value = "Lidar Info"
+        tool_name.value = "Breach Depressions"
         tool_name.filter.type = "ValueList"
         tool_name.filter.list = tool_labels
 
@@ -320,6 +320,7 @@ class RunTool(object):
             datatype="GPString",
             parameterType="Required",
             direction="Input")
+        args.value = '--dem="/path/to/DEM.tif"  --output="/path/to/output.tif"'
 
         params = [tool_name, args]
         return params
