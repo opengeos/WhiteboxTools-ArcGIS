@@ -1191,7 +1191,7 @@ class RunTool(object):
 class AddPointCoordinatesToTable(object):
     def __init__(self):
         self.label = "Add Point Coordinates To Table"
-        self.description = "Modifies the attribute table of a point vector by adding fields containing each point's X and Y coordinates."
+        self.description = "Modifies the attribute table of a point vector by adding fields containing each point's X and Y coordinates. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/data_tools.html#AddPointCoordinatesToTable' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/data_tools/add_point_coordinates_to_table.rs' target='_blank'>GitHub</a>."
         self.category = "Data Tools"
 
     def getParameterInfo(self):
@@ -1228,7 +1228,7 @@ class AddPointCoordinatesToTable(object):
 class ConvertNodataToZero(object):
     def __init__(self):
         self.label = "Convert Nodata To Zero"
-        self.description = "Converts nodata values in a raster to zero."
+        self.description = "Converts nodata values in a raster to zero. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/data_tools.html#ConvertNodataToZero' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/data_tools/convert_nodata_to_zero.rs' target='_blank'>GitHub</a>."
         self.category = "Data Tools"
 
     def getParameterInfo(self):
@@ -1273,7 +1273,7 @@ class ConvertNodataToZero(object):
 class ConvertRasterFormat(object):
     def __init__(self):
         self.label = "Convert Raster Format"
-        self.description = "Converts raster data from one format to another."
+        self.description = "Converts raster data from one format to another. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/data_tools.html#ConvertRasterFormat' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/data_tools/convert_raster_format.rs' target='_blank'>GitHub</a>."
         self.category = "Data Tools"
 
     def getParameterInfo(self):
@@ -1318,7 +1318,7 @@ class ConvertRasterFormat(object):
 class ExportTableToCsv(object):
     def __init__(self):
         self.label = "Export Table To Csv"
-        self.description = "Exports an attribute table to a CSV text file."
+        self.description = "Exports an attribute table to a CSV text file. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/data_tools.html#ExportTableToCsv' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/data_tools/export_table_to_csv.rs' target='_blank'>GitHub</a>."
         self.category = "Data Tools"
 
     def getParameterInfo(self):
@@ -1373,7 +1373,7 @@ class ExportTableToCsv(object):
 class JoinTables(object):
     def __init__(self):
         self.label = "Join Tables"
-        self.description = "Merge a vector's attribute table with another table based on a common field."
+        self.description = "Merge a vector's attribute table with another table based on a common field. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/data_tools.html#JoinTables' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/data_tools/join_tables.rs' target='_blank'>GitHub</a>."
         self.category = "Data Tools"
 
     def getParameterInfo(self):
@@ -1444,7 +1444,7 @@ class JoinTables(object):
 class LinesToPolygons(object):
     def __init__(self):
         self.label = "Lines To Polygons"
-        self.description = "Converts vector polylines to polygons."
+        self.description = "Converts vector polylines to polygons. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/data_tools.html#LinesToPolygons' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/data_tools/lines_to_polygons.rs' target='_blank'>GitHub</a>."
         self.category = "Data Tools"
 
     def getParameterInfo(self):
@@ -1490,7 +1490,7 @@ class LinesToPolygons(object):
 class MergeTableWithCsv(object):
     def __init__(self):
         self.label = "Merge Table With Csv"
-        self.description = "Merge a vector's attribute table with a table contained within a CSV text file."
+        self.description = "Merge a vector's attribute table with a table contained within a CSV text file. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/data_tools.html#MergeTableWithCsv' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/data_tools/merge_table_with_csv.rs' target='_blank'>GitHub</a>."
         self.category = "Data Tools"
 
     def getParameterInfo(self):
@@ -1562,7 +1562,7 @@ class MergeTableWithCsv(object):
 class MergeVectors(object):
     def __init__(self):
         self.label = "Merge Vectors"
-        self.description = "Combines two or more input vectors of the same ShapeType creating a single, new output vector."
+        self.description = "Combines two or more input vectors of the same ShapeType creating a single, new output vector. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/data_tools.html#MergeVectors' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/data_tools/merge_vectors.rs' target='_blank'>GitHub</a>."
         self.category = "Data Tools"
 
     def getParameterInfo(self):
@@ -1607,7 +1607,7 @@ class MergeVectors(object):
 class MultiPartToSinglePart(object):
     def __init__(self):
         self.label = "Multi Part To Single Part"
-        self.description = "Converts a vector file containing multi-part features into a vector containing only single-part features."
+        self.description = "Converts a vector file containing multi-part features into a vector containing only single-part features. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/data_tools.html#MultiPartToSinglePart' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/data_tools/multipart_to_singlepart.rs' target='_blank'>GitHub</a>."
         self.category = "Data Tools"
 
     def getParameterInfo(self):
@@ -1661,7 +1661,7 @@ class MultiPartToSinglePart(object):
 class NewRasterFromBase(object):
     def __init__(self):
         self.label = "New Raster From Base"
-        self.description = "Creates a new raster using a base image."
+        self.description = "Creates a new raster using a base image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/data_tools.html#NewRasterFromBase' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/data_tools/new_raster.rs' target='_blank'>GitHub</a>."
         self.category = "Data Tools"
 
     def getParameterInfo(self):
@@ -1728,7 +1728,7 @@ class NewRasterFromBase(object):
 class PolygonsToLines(object):
     def __init__(self):
         self.label = "Polygons To Lines"
-        self.description = "Converts vector polygons to polylines."
+        self.description = "Converts vector polygons to polylines. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/data_tools.html#PolygonsToLines' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/data_tools/polygons_to_lines.rs' target='_blank'>GitHub</a>."
         self.category = "Data Tools"
 
     def getParameterInfo(self):
@@ -1774,7 +1774,7 @@ class PolygonsToLines(object):
 class PrintGeoTiffTags(object):
     def __init__(self):
         self.label = "Print Geo Tiff Tags"
-        self.description = "Prints the tags within a GeoTIFF."
+        self.description = "Prints the tags within a GeoTIFF. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/data_tools.html#PrintGeoTiffTags' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/data_tools/print_geotiff_tags.rs' target='_blank'>GitHub</a>."
         self.category = "Data Tools"
 
     def getParameterInfo(self):
@@ -1810,7 +1810,7 @@ class PrintGeoTiffTags(object):
 class RasterToVectorLines(object):
     def __init__(self):
         self.label = "Raster To Vector Lines"
-        self.description = "Converts a raster lines features into a vector of the POLYLINE shapetype."
+        self.description = "Converts a raster lines features into a vector of the POLYLINE shapetype. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/data_tools.html#RasterToVectorLines' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/data_tools/raster_to_vector_lines.rs' target='_blank'>GitHub</a>."
         self.category = "Data Tools"
 
     def getParameterInfo(self):
@@ -1855,7 +1855,7 @@ class RasterToVectorLines(object):
 class RasterToVectorPoints(object):
     def __init__(self):
         self.label = "Raster To Vector Points"
-        self.description = "Converts a raster dataset to a vector of the POINT shapetype."
+        self.description = "Converts a raster dataset to a vector of the POINT shapetype. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/data_tools.html#RasterToVectorPoints' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/data_tools/raster_to_vector_points.rs' target='_blank'>GitHub</a>."
         self.category = "Data Tools"
 
     def getParameterInfo(self):
@@ -1900,7 +1900,7 @@ class RasterToVectorPoints(object):
 class ReinitializeAttributeTable(object):
     def __init__(self):
         self.label = "Reinitialize Attribute Table"
-        self.description = "Reinitializes a vector's attribute table deleting all fields but the feature ID (FID)."
+        self.description = "Reinitializes a vector's attribute table deleting all fields but the feature ID (FID). View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/data_tools.html#ReinitializeAttributeTable' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/data_tools/reinitialize_attribute_table.rs' target='_blank'>GitHub</a>."
         self.category = "Data Tools"
 
     def getParameterInfo(self):
@@ -1936,7 +1936,7 @@ class ReinitializeAttributeTable(object):
 class RemovePolygonHoles(object):
     def __init__(self):
         self.label = "Remove Polygon Holes"
-        self.description = "Removes holes within the features of a vector polygon file."
+        self.description = "Removes holes within the features of a vector polygon file. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/data_tools.html#RemovePolygonHoles' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/data_tools/remove_polygon_holes.rs' target='_blank'>GitHub</a>."
         self.category = "Data Tools"
 
     def getParameterInfo(self):
@@ -1982,7 +1982,7 @@ class RemovePolygonHoles(object):
 class SetNodataValue(object):
     def __init__(self):
         self.label = "Set Nodata Value"
-        self.description = "Assign a specified value in an input image to the NoData value."
+        self.description = "Assign a specified value in an input image to the NoData value. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/data_tools.html#SetNodataValue' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/data_tools/set_nodata_value.rs' target='_blank'>GitHub</a>."
         self.category = "Data Tools"
 
     def getParameterInfo(self):
@@ -2037,7 +2037,7 @@ class SetNodataValue(object):
 class SinglePartToMultiPart(object):
     def __init__(self):
         self.label = "Single Part To Multi Part"
-        self.description = "Converts a vector file containing multi-part features into a vector containing only single-part features."
+        self.description = "Converts a vector file containing multi-part features into a vector containing only single-part features. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/data_tools.html#SinglePartToMultiPart' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/data_tools/singlepart_to_multipart.rs' target='_blank'>GitHub</a>."
         self.category = "Data Tools"
 
     def getParameterInfo(self):
@@ -2090,7 +2090,7 @@ class SinglePartToMultiPart(object):
 class VectorLinesToRaster(object):
     def __init__(self):
         self.label = "Vector Lines To Raster"
-        self.description = "Converts a vector containing polylines into a raster."
+        self.description = "Converts a vector containing polylines into a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/data_tools.html#VectorLinesToRaster' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/data_tools/vector_lines_to_raster.rs' target='_blank'>GitHub</a>."
         self.category = "Data Tools"
 
     def getParameterInfo(self):
@@ -2173,7 +2173,7 @@ class VectorLinesToRaster(object):
 class VectorPointsToRaster(object):
     def __init__(self):
         self.label = "Vector Points To Raster"
-        self.description = "Converts a vector containing points into a raster."
+        self.description = "Converts a vector containing points into a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/data_tools.html#VectorPointsToRaster' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/data_tools/vector_points_to_raster.rs' target='_blank'>GitHub</a>."
         self.category = "Data Tools"
 
     def getParameterInfo(self):
@@ -2268,7 +2268,7 @@ class VectorPointsToRaster(object):
 class VectorPolygonsToRaster(object):
     def __init__(self):
         self.label = "Vector Polygons To Raster"
-        self.description = "Converts a vector containing polygons into a raster."
+        self.description = "Converts a vector containing polygons into a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/data_tools.html#VectorPolygonsToRaster' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/data_tools/vector_polygons_to_raster.rs' target='_blank'>GitHub</a>."
         self.category = "Data Tools"
 
     def getParameterInfo(self):
@@ -2351,7 +2351,7 @@ class VectorPolygonsToRaster(object):
 class AggregateRaster(object):
     def __init__(self):
         self.label = "Aggregate Raster"
-        self.description = "Aggregates a raster to a lower resolution."
+        self.description = "Aggregates a raster to a lower resolution. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#AggregateRaster' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/aggregate_raster.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -2418,7 +2418,7 @@ class AggregateRaster(object):
 class BlockMaximumGridding(object):
     def __init__(self):
         self.label = "Block Maximum Gridding"
-        self.description = "Creates a raster grid based on a set of vector points and assigns grid values using a block maximum scheme."
+        self.description = "Creates a raster grid based on a set of vector points and assigns grid values using a block maximum scheme. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#BlockMaximumGridding' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/block_maximum.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -2499,7 +2499,7 @@ class BlockMaximumGridding(object):
 class BlockMinimumGridding(object):
     def __init__(self):
         self.label = "Block Minimum Gridding"
-        self.description = "Creates a raster grid based on a set of vector points and assigns grid values using a block minimum scheme."
+        self.description = "Creates a raster grid based on a set of vector points and assigns grid values using a block minimum scheme. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#BlockMinimumGridding' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/block_minimum.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -2580,7 +2580,7 @@ class BlockMinimumGridding(object):
 class Centroid(object):
     def __init__(self):
         self.label = "Centroid"
-        self.description = "Calculates the centroid, or average location, of raster polygon objects."
+        self.description = "Calculates the centroid, or average location, of raster polygon objects. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#Centroid' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/centroid.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -2633,7 +2633,7 @@ class Centroid(object):
 class CentroidVector(object):
     def __init__(self):
         self.label = "Centroid Vector"
-        self.description = "Identifes the centroid point of a vector polyline or polygon feature or a group of vector points."
+        self.description = "Identifes the centroid point of a vector polyline or polygon feature or a group of vector points. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#CentroidVector' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/centroid_vector.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -2677,7 +2677,7 @@ class CentroidVector(object):
 class Clump(object):
     def __init__(self):
         self.label = "Clump"
-        self.description = "Groups cells that form discrete areas, assigning them unique identifiers."
+        self.description = "Groups cells that form discrete areas, assigning them unique identifiers. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#Clump' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/clump.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -2740,7 +2740,7 @@ class Clump(object):
 class ConstructVectorTin(object):
     def __init__(self):
         self.label = "Construct Vector Tin"
-        self.description = "Creates a vector triangular irregular network (TIN) for a set of vector points."
+        self.description = "Creates a vector triangular irregular network (TIN) for a set of vector points. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#ConstructVectorTin' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/construct_vector_tin.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -2805,7 +2805,7 @@ class ConstructVectorTin(object):
 class CreateHexagonalVectorGrid(object):
     def __init__(self):
         self.label = "Create Hexagonal Vector Grid"
-        self.description = "Creates a hexagonal vector grid."
+        self.description = "Creates a hexagonal vector grid. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#CreateHexagonalVectorGrid' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/create_hexagonal_vector_grid.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -2870,7 +2870,7 @@ class CreateHexagonalVectorGrid(object):
 class CreatePlane(object):
     def __init__(self):
         self.label = "Create Plane"
-        self.description = "Creates a raster image based on the equation for a simple plane."
+        self.description = "Creates a raster image based on the equation for a simple plane. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#CreatePlane' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/create_plane.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -2945,7 +2945,7 @@ class CreatePlane(object):
 class CreateRectangularVectorGrid(object):
     def __init__(self):
         self.label = "Create Rectangular Vector Grid"
-        self.description = "Creates a rectangular vector grid."
+        self.description = "Creates a rectangular vector grid. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#CreateRectangularVectorGrid' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/create_rectangular_vector_grid.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -3026,7 +3026,7 @@ class CreateRectangularVectorGrid(object):
 class Dissolve(object):
     def __init__(self):
         self.label = "Dissolve"
-        self.description = "Removes the interior, or shared, boundaries within a vector polygon coverage."
+        self.description = "Removes the interior, or shared, boundaries within a vector polygon coverage. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#Dissolve' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/dissolve.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -3090,7 +3090,7 @@ class Dissolve(object):
 class EliminateCoincidentPoints(object):
     def __init__(self):
         self.label = "Eliminate Coincident Points"
-        self.description = "Removes any coincident, or nearly coincident, points from a vector points file."
+        self.description = "Removes any coincident, or nearly coincident, points from a vector points file. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#EliminateCoincidentPoints' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/eliminate_coincident_points.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -3144,7 +3144,7 @@ class EliminateCoincidentPoints(object):
 class ExtendVectorLines(object):
     def __init__(self):
         self.label = "Extend Vector Lines"
-        self.description = "Extends vector lines by a specified distance."
+        self.description = "Extends vector lines by a specified distance. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#ExtendVectorLines' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/extend_vector_lines.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -3210,7 +3210,7 @@ class ExtendVectorLines(object):
 class ExtractNodes(object):
     def __init__(self):
         self.label = "Extract Nodes"
-        self.description = "Converts vector lines or polygons into vertex points."
+        self.description = "Converts vector lines or polygons into vertex points. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#ExtractNodes' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/extract_nodes.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -3255,7 +3255,7 @@ class ExtractNodes(object):
 class ExtractRasterValuesAtPoints(object):
     def __init__(self):
         self.label = "Extract Raster Values At Points"
-        self.description = "Extracts the values of raster(s) at vector point locations."
+        self.description = "Extracts the values of raster(s) at vector point locations. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#ExtractRasterValuesAtPoints' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/extract_raster_values_at_points.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -3311,7 +3311,7 @@ class ExtractRasterValuesAtPoints(object):
 class FindLowestOrHighestPoints(object):
     def __init__(self):
         self.label = "Find Lowest Or Highest Points"
-        self.description = "Locates the lowest and/or highest valued cells in a raster."
+        self.description = "Locates the lowest and/or highest valued cells in a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#FindLowestOrHighestPoints' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/find_lowest_or_highest_points.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -3368,7 +3368,7 @@ class FindLowestOrHighestPoints(object):
 class IdwInterpolation(object):
     def __init__(self):
         self.label = "Idw Interpolation"
-        self.description = "Interpolates vector points into a raster surface using an inverse-distance weighted scheme."
+        self.description = "Interpolates vector points into a raster surface using an inverse-distance weighted scheme. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#IdwInterpolation' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/idw_interpolation.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -3475,7 +3475,7 @@ class IdwInterpolation(object):
 class LayerFootprint(object):
     def __init__(self):
         self.label = "Layer Footprint"
-        self.description = "Creates a vector polygon footprint of the area covered by a raster grid or vector layer."
+        self.description = "Creates a vector polygon footprint of the area covered by a raster grid or vector layer. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#LayerFootprint' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/layer_footprint.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -3520,7 +3520,7 @@ class LayerFootprint(object):
 class Medoid(object):
     def __init__(self):
         self.label = "Medoid"
-        self.description = "Calculates the medoid for a series of vector features contained in a shapefile."
+        self.description = "Calculates the medoid for a series of vector features contained in a shapefile. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#Medoid' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/medoid.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -3564,7 +3564,7 @@ class Medoid(object):
 class MinimumBoundingBox(object):
     def __init__(self):
         self.label = "Minimum Bounding Box"
-        self.description = "Creates a vector minimum bounding rectangle around vector features."
+        self.description = "Creates a vector minimum bounding rectangle around vector features. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#MinimumBoundingBox' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/minimum_bounding_box.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -3631,7 +3631,7 @@ class MinimumBoundingBox(object):
 class MinimumBoundingCircle(object):
     def __init__(self):
         self.label = "Minimum Bounding Circle"
-        self.description = "Delineates the minimum bounding circle (i.e. smallest enclosing circle) for a group of vectors."
+        self.description = "Delineates the minimum bounding circle (i.e. smallest enclosing circle) for a group of vectors. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#MinimumBoundingCircle' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/minimum_bounding_circle.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -3686,7 +3686,7 @@ class MinimumBoundingCircle(object):
 class MinimumBoundingEnvelope(object):
     def __init__(self):
         self.label = "Minimum Bounding Envelope"
-        self.description = "Creates a vector axis-aligned minimum bounding rectangle (envelope) around vector features."
+        self.description = "Creates a vector axis-aligned minimum bounding rectangle (envelope) around vector features. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#MinimumBoundingEnvelope' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/minimum_bounding_envelope.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -3741,7 +3741,7 @@ class MinimumBoundingEnvelope(object):
 class MinimumConvexHull(object):
     def __init__(self):
         self.label = "Minimum Convex Hull"
-        self.description = "Creates a vector convex polygon around vector features."
+        self.description = "Creates a vector convex polygon around vector features. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#MinimumConvexHull' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/minimum_convex_hull.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -3796,7 +3796,7 @@ class MinimumConvexHull(object):
 class NearestNeighbourGridding(object):
     def __init__(self):
         self.label = "Nearest Neighbour Gridding"
-        self.description = "Creates a raster grid based on a set of vector points and assigns grid values using the nearest neighbour."
+        self.description = "Creates a raster grid based on a set of vector points and assigns grid values using the nearest neighbour. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#NearestNeighbourGridding' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/nearest_neighbour_gridding.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -3885,7 +3885,7 @@ class NearestNeighbourGridding(object):
 class PolygonArea(object):
     def __init__(self):
         self.label = "Polygon Area"
-        self.description = "Calculates the area of vector polygons."
+        self.description = "Calculates the area of vector polygons. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#PolygonArea' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/polygon_area.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -3922,7 +3922,7 @@ class PolygonArea(object):
 class PolygonLongAxis(object):
     def __init__(self):
         self.label = "Polygon Long Axis"
-        self.description = "This tool can be used to map the long axis of polygon features."
+        self.description = "This tool can be used to map the long axis of polygon features. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#PolygonLongAxis' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/polygon_long_axis.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -3968,7 +3968,7 @@ class PolygonLongAxis(object):
 class PolygonPerimeter(object):
     def __init__(self):
         self.label = "Polygon Perimeter"
-        self.description = "Calculates the perimeter of vector polygons."
+        self.description = "Calculates the perimeter of vector polygons. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#PolygonPerimeter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/polygon_perimeter.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -4005,7 +4005,7 @@ class PolygonPerimeter(object):
 class PolygonShortAxis(object):
     def __init__(self):
         self.label = "Polygon Short Axis"
-        self.description = "This tool can be used to map the short axis of polygon features."
+        self.description = "This tool can be used to map the short axis of polygon features. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#PolygonShortAxis' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/polygon_short_axis.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -4051,7 +4051,7 @@ class PolygonShortAxis(object):
 class RasterArea(object):
     def __init__(self):
         self.label = "Raster Area"
-        self.description = "Calculates the area of polygons or classes within a raster image."
+        self.description = "Calculates the area of polygons or classes within a raster image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#RasterArea' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/raster_area.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -4124,7 +4124,7 @@ class RasterArea(object):
 class RasterCellAssignment(object):
     def __init__(self):
         self.label = "Raster Cell Assignment"
-        self.description = "Assign row or column number to cells."
+        self.description = "Assign row or column number to cells. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#RasterCellAssignment' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/raster_cell_assignment.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -4181,7 +4181,7 @@ class RasterCellAssignment(object):
 class Reclass(object):
     def __init__(self):
         self.label = "Reclass"
-        self.description = "Reclassifies the values in a raster image."
+        self.description = "Reclassifies the values in a raster image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#Reclass' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/reclass.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -4242,7 +4242,7 @@ class Reclass(object):
 class ReclassEqualInterval(object):
     def __init__(self):
         self.label = "Reclass Equal Interval"
-        self.description = "Reclassifies the values in a raster image based on equal-ranges."
+        self.description = "Reclassifies the values in a raster image based on equal-ranges. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#ReclassEqualInterval' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/reclass_equal_interval.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -4313,7 +4313,7 @@ class ReclassEqualInterval(object):
 class ReclassFromFile(object):
     def __init__(self):
         self.label = "Reclass From File"
-        self.description = "Reclassifies the values in a raster image using reclass ranges in a text file."
+        self.description = "Reclassifies the values in a raster image using reclass ranges in a text file. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#ReclassFromFile' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/reclass_from_file.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -4366,7 +4366,7 @@ class ReclassFromFile(object):
 class SmoothVectors(object):
     def __init__(self):
         self.label = "Smooth Vectors"
-        self.description = "Smooths a vector coverage of either a POLYLINE or POLYGON base ShapeType."
+        self.description = "Smooths a vector coverage of either a POLYLINE or POLYGON base ShapeType. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#SmoothVectors' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/smooth_vectors.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -4420,7 +4420,7 @@ class SmoothVectors(object):
 class TinGridding(object):
     def __init__(self):
         self.label = "Tin Gridding"
-        self.description = "Creates a raster grid based on a triangular irregular network (TIN) fitted to vector points."
+        self.description = "Creates a raster grid based on a triangular irregular network (TIN) fitted to vector points. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#TinGridding' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/tin_gridding.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -4493,7 +4493,7 @@ class TinGridding(object):
 class VectorHexBinning(object):
     def __init__(self):
         self.label = "Vector Hex Binning"
-        self.description = "Hex-bins a set of vector points."
+        self.description = "Hex-bins a set of vector points. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#VectorHexBinning' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/vector_hex_bin.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -4559,7 +4559,7 @@ class VectorHexBinning(object):
 class VoronoiDiagram(object):
     def __init__(self):
         self.label = "Voronoi Diagram"
-        self.description = "Creates a vector Voronoi diagram for a set of vector points."
+        self.description = "Creates a vector Voronoi diagram for a set of vector points. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#VoronoiDiagram' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/voronoi_diagram.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -4605,7 +4605,7 @@ class VoronoiDiagram(object):
 class BufferRaster(object):
     def __init__(self):
         self.label = "Buffer Raster"
-        self.description = "Maps a distance-based buffer around each non-background (non-zero/non-nodata) grid cell in an input image."
+        self.description = "Maps a distance-based buffer around each non-background (non-zero/non-nodata) grid cell in an input image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#BufferRaster' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/buffer_raster.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -4666,7 +4666,7 @@ class BufferRaster(object):
 class CostAllocation(object):
     def __init__(self):
         self.label = "Cost Allocation"
-        self.description = "Identifies the source cell to which each grid cell is connected by a least-cost pathway in a cost-distance analysis."
+        self.description = "Identifies the source cell to which each grid cell is connected by a least-cost pathway in a cost-distance analysis. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#CostAllocation' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/cost_allocation.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -4719,7 +4719,7 @@ class CostAllocation(object):
 class CostDistance(object):
     def __init__(self):
         self.label = "Cost Distance"
-        self.description = "Performs cost-distance accumulation on a cost surface and a group of source cells."
+        self.description = "Performs cost-distance accumulation on a cost surface and a group of source cells. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#CostDistance' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/cost_distance.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -4781,7 +4781,7 @@ class CostDistance(object):
 class CostPathway(object):
     def __init__(self):
         self.label = "Cost Pathway"
-        self.description = "Performs cost-distance pathway analysis using a series of destination grid cells."
+        self.description = "Performs cost-distance pathway analysis using a series of destination grid cells. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#CostPathway' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/cost_pathway.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -4842,7 +4842,7 @@ class CostPathway(object):
 class EuclideanAllocation(object):
     def __init__(self):
         self.label = "Euclidean Allocation"
-        self.description = "Assigns grid cells in the output raster the value of the nearest target cell in the input image, measured by the Shih and Wu (2004) Euclidean distance transform."
+        self.description = "Assigns grid cells in the output raster the value of the nearest target cell in the input image, measured by the Shih and Wu (2004) Euclidean distance transform. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#EuclideanAllocation' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/euclidean_allocation.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -4887,7 +4887,7 @@ class EuclideanAllocation(object):
 class EuclideanDistance(object):
     def __init__(self):
         self.label = "Euclidean Distance"
-        self.description = "Calculates the Shih and Wu (2004) Euclidean distance transform."
+        self.description = "Calculates the Shih and Wu (2004) Euclidean distance transform. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#EuclideanDistance' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/euclidean_distance.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -4932,7 +4932,7 @@ class EuclideanDistance(object):
 class AverageOverlay(object):
     def __init__(self):
         self.label = "Average Overlay"
-        self.description = "Calculates the average for each grid cell from a group of raster images."
+        self.description = "Calculates the average for each grid cell from a group of raster images. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#AverageOverlay' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/average_overlay.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -4978,7 +4978,7 @@ class AverageOverlay(object):
 class Clip(object):
     def __init__(self):
         self.label = "Clip"
-        self.description = "Extract all the features, or parts of features, that overlap with the features of the clip vector."
+        self.description = "Extract all the features, or parts of features, that overlap with the features of the clip vector. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#Clip' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/clip.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -5031,7 +5031,7 @@ class Clip(object):
 class ClipRasterToPolygon(object):
     def __init__(self):
         self.label = "Clip Raster To Polygon"
-        self.description = "Clips a raster to a vector polygon."
+        self.description = "Clips a raster to a vector polygon. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#ClipRasterToPolygon' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/clip_raster_to_polygon.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -5095,7 +5095,7 @@ class ClipRasterToPolygon(object):
 class CountIf(object):
     def __init__(self):
         self.label = "Count If"
-        self.description = "Counts the number of occurrences of a specified value in a cell-stack of rasters."
+        self.description = "Counts the number of occurrences of a specified value in a cell-stack of rasters. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#CountIf' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/count_if.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -5149,7 +5149,7 @@ class CountIf(object):
 class Difference(object):
     def __init__(self):
         self.label = "Difference"
-        self.description = "Outputs the features that occur in one of the two vector inputs but not both, i.e. no overlapping features."
+        self.description = "Outputs the features that occur in one of the two vector inputs but not both, i.e. no overlapping features. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#Difference' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/difference.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -5201,7 +5201,7 @@ class Difference(object):
 class Erase(object):
     def __init__(self):
         self.label = "Erase"
-        self.description = "Removes all the features, or parts of features, that overlap with the features of the erase vector polygon."
+        self.description = "Removes all the features, or parts of features, that overlap with the features of the erase vector polygon. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#Erase' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/erase.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -5254,7 +5254,7 @@ class Erase(object):
 class ErasePolygonFromRaster(object):
     def __init__(self):
         self.label = "Erase Polygon From Raster"
-        self.description = "Erases (cuts out) a vector polygon from a raster."
+        self.description = "Erases (cuts out) a vector polygon from a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#ErasePolygonFromRaster' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/erase_polygon_from_raster.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -5308,7 +5308,7 @@ class ErasePolygonFromRaster(object):
 class HighestPosition(object):
     def __init__(self):
         self.label = "Highest Position"
-        self.description = "Identifies the stack position of the maximum value within a raster stack on a cell-by-cell basis."
+        self.description = "Identifies the stack position of the maximum value within a raster stack on a cell-by-cell basis. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#HighestPosition' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/highest_pos.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -5354,7 +5354,7 @@ class HighestPosition(object):
 class Intersect(object):
     def __init__(self):
         self.label = "Intersect"
-        self.description = "Identifies the parts of features in common between two input vector layers."
+        self.description = "Identifies the parts of features in common between two input vector layers. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#Intersect' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/intersect.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -5416,7 +5416,7 @@ class Intersect(object):
 class LineIntersections(object):
     def __init__(self):
         self.label = "Line Intersections"
-        self.description = "Identifies points where the features of two vector line layers intersect."
+        self.description = "Identifies points where the features of two vector line layers intersect. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#LineIntersections' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/line_intersections.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -5471,7 +5471,7 @@ class LineIntersections(object):
 class LowestPosition(object):
     def __init__(self):
         self.label = "Lowest Position"
-        self.description = "Identifies the stack position of the minimum value within a raster stack on a cell-by-cell basis."
+        self.description = "Identifies the stack position of the minimum value within a raster stack on a cell-by-cell basis. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#LowestPosition' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/lowest_pos.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -5517,7 +5517,7 @@ class LowestPosition(object):
 class MaxAbsoluteOverlay(object):
     def __init__(self):
         self.label = "Max Absolute Overlay"
-        self.description = "Evaluates the maximum absolute value for each grid cell from a stack of input rasters."
+        self.description = "Evaluates the maximum absolute value for each grid cell from a stack of input rasters. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#MaxAbsoluteOverlay' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/max_abs_overlay.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -5563,7 +5563,7 @@ class MaxAbsoluteOverlay(object):
 class MaxOverlay(object):
     def __init__(self):
         self.label = "Max Overlay"
-        self.description = "Evaluates the maximum value for each grid cell from a stack of input rasters."
+        self.description = "Evaluates the maximum value for each grid cell from a stack of input rasters. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#MaxOverlay' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/max_overlay.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -5609,7 +5609,7 @@ class MaxOverlay(object):
 class MinAbsoluteOverlay(object):
     def __init__(self):
         self.label = "Min Absolute Overlay"
-        self.description = "Evaluates the minimum absolute value for each grid cell from a stack of input rasters."
+        self.description = "Evaluates the minimum absolute value for each grid cell from a stack of input rasters. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#MinAbsoluteOverlay' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/min_abs_overlay.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -5655,7 +5655,7 @@ class MinAbsoluteOverlay(object):
 class MinOverlay(object):
     def __init__(self):
         self.label = "Min Overlay"
-        self.description = "Evaluates the minimum value for each grid cell from a stack of input rasters."
+        self.description = "Evaluates the minimum value for each grid cell from a stack of input rasters. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#MinOverlay' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/min_overlay.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -5701,7 +5701,7 @@ class MinOverlay(object):
 class PercentEqualTo(object):
     def __init__(self):
         self.label = "Percent Equal To"
-        self.description = "Calculates the percentage of a raster stack that have cell values equal to an input on a cell-by-cell basis."
+        self.description = "Calculates the percentage of a raster stack that have cell values equal to an input on a cell-by-cell basis. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#PercentEqualTo' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/percent_equal_to.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -5755,7 +5755,7 @@ class PercentEqualTo(object):
 class PercentGreaterThan(object):
     def __init__(self):
         self.label = "Percent Greater Than"
-        self.description = "Calculates the percentage of a raster stack that have cell values greather than an input on a cell-by-cell basis."
+        self.description = "Calculates the percentage of a raster stack that have cell values greather than an input on a cell-by-cell basis. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#PercentGreaterThan' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/percent_greater_than.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -5809,7 +5809,7 @@ class PercentGreaterThan(object):
 class PercentLessThan(object):
     def __init__(self):
         self.label = "Percent Less Than"
-        self.description = "Calculates the percentage of a raster stack that have cell values less than an input on a cell-by-cell basis."
+        self.description = "Calculates the percentage of a raster stack that have cell values less than an input on a cell-by-cell basis. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#PercentLessThan' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/percent_less_than.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -5863,7 +5863,7 @@ class PercentLessThan(object):
 class PickFromList(object):
     def __init__(self):
         self.label = "Pick From List"
-        self.description = "Outputs the value from a raster stack specified by a position raster."
+        self.description = "Outputs the value from a raster stack specified by a position raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#PickFromList' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/pick_from_list.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -5917,7 +5917,7 @@ class PickFromList(object):
 class Polygonize(object):
     def __init__(self):
         self.label = "Polygonize"
-        self.description = "Creates a polygon layer from two or more intersecting line features contained in one or more input vector line files."
+        self.description = "Creates a polygon layer from two or more intersecting line features contained in one or more input vector line files. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#Polygonize' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/polygonize.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -5964,7 +5964,7 @@ class Polygonize(object):
 class SplitWithLines(object):
     def __init__(self):
         self.label = "Split With Lines"
-        self.description = "Splits the lines or polygons in one layer using the lines in another layer."
+        self.description = "Splits the lines or polygons in one layer using the lines in another layer. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#SplitWithLines' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/split_with_lines.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -6017,7 +6017,7 @@ class SplitWithLines(object):
 class SumOverlay(object):
     def __init__(self):
         self.label = "Sum Overlay"
-        self.description = "Calculates the sum for each grid cell from a group of raster images."
+        self.description = "Calculates the sum for each grid cell from a group of raster images. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#SumOverlay' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/sum_overlay.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -6063,7 +6063,7 @@ class SumOverlay(object):
 class SymmetricalDifference(object):
     def __init__(self):
         self.label = "Symmetrical Difference"
-        self.description = "Outputs the features that occur in one of the two vector inputs but not both, i.e. no overlapping features."
+        self.description = "Outputs the features that occur in one of the two vector inputs but not both, i.e. no overlapping features. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#SymmetricalDifference' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/symmetrical_difference.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -6125,7 +6125,7 @@ class SymmetricalDifference(object):
 class Union(object):
     def __init__(self):
         self.label = "Union"
-        self.description = "Splits vector layers at their overlaps, creating a layer containing all the portions from both input and overlay layers."
+        self.description = "Splits vector layers at their overlaps, creating a layer containing all the portions from both input and overlay layers. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#Union' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/union.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -6187,7 +6187,7 @@ class Union(object):
 class WeightedOverlay(object):
     def __init__(self):
         self.label = "Weighted Overlay"
-        self.description = "Performs a weighted sum on multiple input rasters after converting each image to a common scale. The tool performs a multi-criteria evaluation (MCE)."
+        self.description = "Performs a weighted sum on multiple input rasters after converting each image to a common scale. The tool performs a multi-criteria evaluation (MCE). View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#WeightedOverlay' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/weighted_overlay.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -6268,7 +6268,7 @@ class WeightedOverlay(object):
 class WeightedSum(object):
     def __init__(self):
         self.label = "Weighted Sum"
-        self.description = "Performs a weighted-sum overlay on multiple input raster images."
+        self.description = "Performs a weighted-sum overlay on multiple input raster images. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#WeightedSum' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/weighted_sum.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -6322,7 +6322,7 @@ class WeightedSum(object):
 class CompactnessRatio(object):
     def __init__(self):
         self.label = "Compactness Ratio"
-        self.description = "Calculates the compactness ratio (A/P), a measure of shape complexity, for vector polygons."
+        self.description = "Calculates the compactness ratio (A/P), a measure of shape complexity, for vector polygons. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#CompactnessRatio' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/compactness_ratio.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -6359,7 +6359,7 @@ class CompactnessRatio(object):
 class EdgeProportion(object):
     def __init__(self):
         self.label = "Edge Proportion"
-        self.description = "Calculate the proportion of cells in a raster polygon that are edge cells."
+        self.description = "Calculate the proportion of cells in a raster polygon that are edge cells. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#EdgeProportion' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/edge_proportion.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -6412,7 +6412,7 @@ class EdgeProportion(object):
 class ElongationRatio(object):
     def __init__(self):
         self.label = "Elongation Ratio"
-        self.description = "Calculates the elongation ratio for vector polygons."
+        self.description = "Calculates the elongation ratio for vector polygons. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#ElongationRatio' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/elongation_ratio.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -6449,7 +6449,7 @@ class ElongationRatio(object):
 class FindPatchOrClassEdgeCells(object):
     def __init__(self):
         self.label = "Find Patch Or Class Edge Cells"
-        self.description = "Finds all cells located on the edge of patch or class features."
+        self.description = "Finds all cells located on the edge of patch or class features. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#FindPatchOrClassEdgeCells' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/find_patch_edge_cells.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -6494,7 +6494,7 @@ class FindPatchOrClassEdgeCells(object):
 class HoleProportion(object):
     def __init__(self):
         self.label = "Hole Proportion"
-        self.description = "Calculates the proportion of the total area of a polygon's holes relative to the area of the polygon's hull."
+        self.description = "Calculates the proportion of the total area of a polygon's holes relative to the area of the polygon's hull. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#HoleProportion' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/hole_proportion.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -6531,7 +6531,7 @@ class HoleProportion(object):
 class LinearityIndex(object):
     def __init__(self):
         self.label = "Linearity Index"
-        self.description = "Calculates the linearity index for vector polygons."
+        self.description = "Calculates the linearity index for vector polygons. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#LinearityIndex' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/linearity_index.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -6568,7 +6568,7 @@ class LinearityIndex(object):
 class PatchOrientation(object):
     def __init__(self):
         self.label = "Patch Orientation"
-        self.description = "Calculates the orientation of vector polygons."
+        self.description = "Calculates the orientation of vector polygons. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#PatchOrientation' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/patch_orientation.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -6605,7 +6605,7 @@ class PatchOrientation(object):
 class PerimeterAreaRatio(object):
     def __init__(self):
         self.label = "Perimeter Area Ratio"
-        self.description = "Calculates the perimeter-area ratio of vector polygons."
+        self.description = "Calculates the perimeter-area ratio of vector polygons. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#PerimeterAreaRatio' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/perimeter_area_ratio.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -6642,7 +6642,7 @@ class PerimeterAreaRatio(object):
 class RadiusOfGyration(object):
     def __init__(self):
         self.label = "Radius Of Gyration"
-        self.description = "Calculates the distance of cells from their polygon's centroid."
+        self.description = "Calculates the distance of cells from their polygon's centroid. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#RadiusOfGyration' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/radius_of_gyration.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -6695,7 +6695,7 @@ class RadiusOfGyration(object):
 class RelatedCircumscribingCircle(object):
     def __init__(self):
         self.label = "Related Circumscribing Circle"
-        self.description = "Calculates the related circumscribing circle of vector polygons."
+        self.description = "Calculates the related circumscribing circle of vector polygons. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#RelatedCircumscribingCircle' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/related_circumscribing_circle.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -6732,7 +6732,7 @@ class RelatedCircumscribingCircle(object):
 class ShapeComplexityIndex(object):
     def __init__(self):
         self.label = "Shape Complexity Index"
-        self.description = "Calculates overall polygon shape complexity or irregularity."
+        self.description = "Calculates overall polygon shape complexity or irregularity. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#ShapeComplexityIndex' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/shape_complexity_index.rs' target='_blank'>GitHub</a>."
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
@@ -6769,7 +6769,7 @@ class ShapeComplexityIndex(object):
 class Aspect(object):
     def __init__(self):
         self.label = "Aspect"
-        self.description = "Calculates an aspect raster from an input DEM."
+        self.description = "Calculates an aspect raster from an input DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#Aspect' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/aspect.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -6824,7 +6824,7 @@ class Aspect(object):
 class CircularVarianceOfAspect(object):
     def __init__(self):
         self.label = "Circular Variance Of Aspect"
-        self.description = "Calculates the circular variance of aspect at a scale for a DEM."
+        self.description = "Calculates the circular variance of aspect at a scale for a DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#CircularVarianceOfAspect' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/circular_variance_of_aspect.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -6879,7 +6879,7 @@ class CircularVarianceOfAspect(object):
 class DevFromMeanElev(object):
     def __init__(self):
         self.label = "Dev From Mean Elev"
-        self.description = "Calculates deviation from mean elevation."
+        self.description = "Calculates deviation from mean elevation. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#DevFromMeanElev' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/dev_from_mean_elev.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -6944,7 +6944,7 @@ class DevFromMeanElev(object):
 class DiffFromMeanElev(object):
     def __init__(self):
         self.label = "Diff From Mean Elev"
-        self.description = "Calculates difference from mean elevation (equivalent to a high-pass filter)."
+        self.description = "Calculates difference from mean elevation (equivalent to a high-pass filter). View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#DiffFromMeanElev' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/diff_from_mean_elev.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -7009,7 +7009,7 @@ class DiffFromMeanElev(object):
 class DirectionalRelief(object):
     def __init__(self):
         self.label = "Directional Relief"
-        self.description = "Calculates relief for cells in an input DEM for a specified direction."
+        self.description = "Calculates relief for cells in an input DEM for a specified direction. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#DirectionalRelief' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/directional_relief.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -7072,7 +7072,7 @@ class DirectionalRelief(object):
 class DownslopeIndex(object):
     def __init__(self):
         self.label = "Downslope Index"
-        self.description = "Calculates the Hjerdt et al. (2004) downslope index."
+        self.description = "Calculates the Hjerdt et al. (2004) downslope index. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#DownslopeIndex' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/downslope_index.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -7139,7 +7139,7 @@ class DownslopeIndex(object):
 class DrainagePreservingSmoothing(object):
     def __init__(self):
         self.label = "Drainage Preserving Smoothing"
-        self.description = "Reduces short-scale variation in an input DEM while preserving breaks-in-slope and small drainage features using a modified Sun et al. (2007) algorithm."
+        self.description = "Reduces short-scale variation in an input DEM while preserving breaks-in-slope and small drainage features using a modified Sun et al. (2007) algorithm. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#DrainagePreservingSmoothing' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/drainage_preserving_smoothing.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -7252,7 +7252,7 @@ class DrainagePreservingSmoothing(object):
 class EdgeDensity(object):
     def __init__(self):
         self.label = "Edge Density"
-        self.description = "Calculates the density of edges, or breaks-in-slope within DEMs."
+        self.description = "Calculates the density of edges, or breaks-in-slope within DEMs. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#EdgeDensity' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/edge_density.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -7327,7 +7327,7 @@ class EdgeDensity(object):
 class ElevAbovePit(object):
     def __init__(self):
         self.label = "Elev Above Pit"
-        self.description = "Calculate the elevation of each grid cell above the nearest downstream pit cell or grid edge cell."
+        self.description = "Calculate the elevation of each grid cell above the nearest downstream pit cell or grid edge cell. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#ElevAbovePit' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/elev_above_pit.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -7372,7 +7372,7 @@ class ElevAbovePit(object):
 class ElevPercentile(object):
     def __init__(self):
         self.label = "Elev Percentile"
-        self.description = "Calculates the elevation percentile raster from a DEM."
+        self.description = "Calculates the elevation percentile raster from a DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#ElevPercentile' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/elev_percentile.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -7447,7 +7447,7 @@ class ElevPercentile(object):
 class ElevRelativeToMinMax(object):
     def __init__(self):
         self.label = "Elev Relative To Min Max"
-        self.description = "Calculates the elevation of a location relative to the minimum and maximum elevations in a DEM."
+        self.description = "Calculates the elevation of a location relative to the minimum and maximum elevations in a DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#ElevRelativeToMinMax' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/elev_relative_to_min_max.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -7492,7 +7492,7 @@ class ElevRelativeToMinMax(object):
 class ElevRelativeToWatershedMinMax(object):
     def __init__(self):
         self.label = "Elev Relative To Watershed Min Max"
-        self.description = "Calculates the elevation of a location relative to the minimum and maximum elevations in a watershed."
+        self.description = "Calculates the elevation of a location relative to the minimum and maximum elevations in a watershed. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#ElevRelativeToWatershedMinMax' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/elev_relative_to_watershed_min_max.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -7545,7 +7545,7 @@ class ElevRelativeToWatershedMinMax(object):
 class FeaturePreservingDenoise(object):
     def __init__(self):
         self.label = "Feature Preserving Denoise"
-        self.description = "Reduces short-scale variation in an input DEM using a modified Sun et al. (2007) algorithm."
+        self.description = "Reduces short-scale variation in an input DEM using a modified Sun et al. (2007) algorithm. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#FeaturePreservingDenoise' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/feature_preserving_denoise.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -7638,7 +7638,7 @@ class FeaturePreservingDenoise(object):
 class FetchAnalysis(object):
     def __init__(self):
         self.label = "Fetch Analysis"
-        self.description = "Performs an analysis of fetch or upwind distance to an obstacle."
+        self.description = "Performs an analysis of fetch or upwind distance to an obstacle. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#FetchAnalysis' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/fetch_analysis.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -7703,7 +7703,7 @@ class FetchAnalysis(object):
 class FillMissingData(object):
     def __init__(self):
         self.label = "Fill Missing Data"
-        self.description = "Fills NoData holes in a DEM."
+        self.description = "Fills NoData holes in a DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#FillMissingData' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/fill_missing_data.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -7768,7 +7768,7 @@ class FillMissingData(object):
 class FindRidges(object):
     def __init__(self):
         self.label = "Find Ridges"
-        self.description = "Identifies potential ridge and peak grid cells."
+        self.description = "Identifies potential ridge and peak grid cells. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#FindRidges' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/find_ridges.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -7823,7 +7823,7 @@ class FindRidges(object):
 class Hillshade(object):
     def __init__(self):
         self.label = "Hillshade"
-        self.description = "Calculates a hillshade raster from an input DEM."
+        self.description = "Calculates a hillshade raster from an input DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#Hillshade' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/hillshade.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -7898,7 +7898,7 @@ class Hillshade(object):
 class HorizonAngle(object):
     def __init__(self):
         self.label = "Horizon Angle"
-        self.description = "Calculates horizon angle (maximum upwind slope) for each grid cell in an input DEM."
+        self.description = "Calculates horizon angle (maximum upwind slope) for each grid cell in an input DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#HorizonAngle' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/horizon_angle.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -7961,7 +7961,7 @@ class HorizonAngle(object):
 class HypsometricAnalysis(object):
     def __init__(self):
         self.label = "Hypsometric Analysis"
-        self.description = "Calculates a hypsometric curve for one or more DEMs."
+        self.description = "Calculates a hypsometric curve for one or more DEMs. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#HypsometricAnalysis' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/hypsometric_analysis.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -8016,7 +8016,7 @@ class HypsometricAnalysis(object):
 class MaxAnisotropyDev(object):
     def __init__(self):
         self.label = "Max Anisotropy Dev"
-        self.description = "Calculates the maximum anisotropy (directionality) in elevation deviation over a range of spatial scales."
+        self.description = "Calculates the maximum anisotropy (directionality) in elevation deviation over a range of spatial scales. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#MaxAnisotropyDev' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/max_anisotropy_dev.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -8098,7 +8098,7 @@ class MaxAnisotropyDev(object):
 class MaxAnisotropyDevSignature(object):
     def __init__(self):
         self.label = "Max Anisotropy Dev Signature"
-        self.description = "Calculates the anisotropy in deviation from mean for points over a range of spatial scales."
+        self.description = "Calculates the anisotropy in deviation from mean for points over a range of spatial scales. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#MaxAnisotropyDevSignature' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/max_anisotropy_dev_signature.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -8180,7 +8180,7 @@ class MaxAnisotropyDevSignature(object):
 class MaxBranchLength(object):
     def __init__(self):
         self.label = "Max Branch Length"
-        self.description = "Lindsay and Seibert's (2013) branch length index is used to map drainage divides or ridge lines."
+        self.description = "Lindsay and Seibert's (2013) branch length index is used to map drainage divides or ridge lines. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#MaxBranchLength' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/max_branch_length.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -8233,7 +8233,7 @@ class MaxBranchLength(object):
 class MaxDifferenceFromMean(object):
     def __init__(self):
         self.label = "Max Difference From Mean"
-        self.description = "Calculates the maximum difference from mean elevation over a range of spatial scales."
+        self.description = "Calculates the maximum difference from mean elevation over a range of spatial scales. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#MaxDifferenceFromMean' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/max_diff_from_mean.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -8313,7 +8313,7 @@ class MaxDifferenceFromMean(object):
 class MaxDownslopeElevChange(object):
     def __init__(self):
         self.label = "Max Downslope Elev Change"
-        self.description = "Calculates the maximum downslope change in elevation between a grid cell and its eight downslope neighbors."
+        self.description = "Calculates the maximum downslope change in elevation between a grid cell and its eight downslope neighbors. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#MaxDownslopeElevChange' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/max_downslope_elev_change.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -8358,7 +8358,7 @@ class MaxDownslopeElevChange(object):
 class MaxElevDevSignature(object):
     def __init__(self):
         self.label = "Max Elev Dev Signature"
-        self.description = "Calculates the maximum elevation deviation over a range of spatial scales and for a set of points."
+        self.description = "Calculates the maximum elevation deviation over a range of spatial scales and for a set of points. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#MaxElevDevSignature' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/max_elev_dev_signature.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -8438,7 +8438,7 @@ class MaxElevDevSignature(object):
 class MaxElevationDeviation(object):
     def __init__(self):
         self.label = "Max Elevation Deviation"
-        self.description = "Calculates the maximum elevation deviation over a range of spatial scales."
+        self.description = "Calculates the maximum elevation deviation over a range of spatial scales. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#MaxElevationDeviation' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/max_elev_deviation.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -8518,7 +8518,7 @@ class MaxElevationDeviation(object):
 class MinDownslopeElevChange(object):
     def __init__(self):
         self.label = "Min Downslope Elev Change"
-        self.description = "Calculates the minimum downslope change in elevation between a grid cell and its eight downslope neighbors."
+        self.description = "Calculates the minimum downslope change in elevation between a grid cell and its eight downslope neighbors. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#MinDownslopeElevChange' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/min_downslope_elev_change.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -8563,7 +8563,7 @@ class MinDownslopeElevChange(object):
 class MultiscaleRoughness(object):
     def __init__(self):
         self.label = "Multiscale Roughness"
-        self.description = "Calculates surface roughness over a range of spatial scales."
+        self.description = "Calculates surface roughness over a range of spatial scales. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#MultiscaleRoughness' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/multiscale_roughness.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -8645,7 +8645,7 @@ class MultiscaleRoughness(object):
 class MultiscaleRoughnessSignature(object):
     def __init__(self):
         self.label = "Multiscale Roughness Signature"
-        self.description = "Calculates the surface roughness for points over a range of spatial scales."
+        self.description = "Calculates the surface roughness for points over a range of spatial scales. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#MultiscaleRoughnessSignature' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/multiscale_roughness_signature.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -8727,7 +8727,7 @@ class MultiscaleRoughnessSignature(object):
 class MultiscaleTopographicPositionImage(object):
     def __init__(self):
         self.label = "Multiscale Topographic Position Image"
-        self.description = "Creates a multiscale topographic position image from three DEVmax rasters of differing spatial scale ranges."
+        self.description = "Creates a multiscale topographic position image from three DEVmax rasters of differing spatial scale ranges. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#MultiscaleTopographicPositionImage' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/multiscale_topographic_position_image.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -8798,7 +8798,7 @@ class MultiscaleTopographicPositionImage(object):
 class NumDownslopeNeighbours(object):
     def __init__(self):
         self.label = "Num Downslope Neighbours"
-        self.description = "Calculates the number of downslope neighbours to each grid cell in a DEM."
+        self.description = "Calculates the number of downslope neighbours to each grid cell in a DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#NumDownslopeNeighbours' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/num_downslope_neighbours.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -8843,7 +8843,7 @@ class NumDownslopeNeighbours(object):
 class NumUpslopeNeighbours(object):
     def __init__(self):
         self.label = "Num Upslope Neighbours"
-        self.description = "Calculates the number of upslope neighbours to each grid cell in a DEM."
+        self.description = "Calculates the number of upslope neighbours to each grid cell in a DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#NumUpslopeNeighbours' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/num_upslope_neighbours.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -8888,7 +8888,7 @@ class NumUpslopeNeighbours(object):
 class PennockLandformClass(object):
     def __init__(self):
         self.label = "Pennock Landform Class"
-        self.description = "Classifies hillslope zones based on slope, profile curvature, and plan curvature."
+        self.description = "Classifies hillslope zones based on slope, profile curvature, and plan curvature. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#PennockLandformClass' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/pennock_landform_class.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -8973,7 +8973,7 @@ class PennockLandformClass(object):
 class PercentElevRange(object):
     def __init__(self):
         self.label = "Percent Elev Range"
-        self.description = "Calculates percent of elevation range from a DEM."
+        self.description = "Calculates percent of elevation range from a DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#PercentElevRange' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/percent_elev_range.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -9038,7 +9038,7 @@ class PercentElevRange(object):
 class PlanCurvature(object):
     def __init__(self):
         self.label = "Plan Curvature"
-        self.description = "Calculates a plan (contour) curvature raster from an input DEM."
+        self.description = "Calculates a plan (contour) curvature raster from an input DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#PlanCurvature' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/plan_curvature.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -9093,7 +9093,7 @@ class PlanCurvature(object):
 class Profile(object):
     def __init__(self):
         self.label = "Profile"
-        self.description = "Plots profiles from digital surface models."
+        self.description = "Plots profiles from digital surface models. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#Profile' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/profile.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -9147,7 +9147,7 @@ class Profile(object):
 class ProfileCurvature(object):
     def __init__(self):
         self.label = "Profile Curvature"
-        self.description = "Calculates a profile curvature raster from an input DEM."
+        self.description = "Calculates a profile curvature raster from an input DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#ProfileCurvature' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/prof_curvature.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -9202,7 +9202,7 @@ class ProfileCurvature(object):
 class RelativeAspect(object):
     def __init__(self):
         self.label = "Relative Aspect"
-        self.description = "Calculates relative aspect (relative to a user-specified direction) from an input DEM."
+        self.description = "Calculates relative aspect (relative to a user-specified direction) from an input DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#RelativeAspect' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/relative_aspect.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -9267,7 +9267,7 @@ class RelativeAspect(object):
 class RelativeStreamPowerIndex(object):
     def __init__(self):
         self.label = "Relative Stream Power Index"
-        self.description = "Calculates the relative stream power index."
+        self.description = "Calculates the relative stream power index. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#RelativeStreamPowerIndex' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/relative_stream_power_index.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -9330,7 +9330,7 @@ class RelativeStreamPowerIndex(object):
 class RelativeTopographicPosition(object):
     def __init__(self):
         self.label = "Relative Topographic Position"
-        self.description = "Calculates the relative topographic position index from a DEM."
+        self.description = "Calculates the relative topographic position index from a DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#RelativeTopographicPosition' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/relative_topographic_position.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -9395,7 +9395,7 @@ class RelativeTopographicPosition(object):
 class RemoveOffTerrainObjects(object):
     def __init__(self):
         self.label = "Remove Off Terrain Objects"
-        self.description = "Removes off-terrain objects from a raster digital elevation model (DEM)."
+        self.description = "Removes off-terrain objects from a raster digital elevation model (DEM). View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#RemoveOffTerrainObjects' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/remove_off_terrain_objects.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -9460,7 +9460,7 @@ class RemoveOffTerrainObjects(object):
 class RuggednessIndex(object):
     def __init__(self):
         self.label = "Ruggedness Index"
-        self.description = "Calculates the Riley et al.'s (1999) terrain ruggedness index from an input DEM."
+        self.description = "Calculates the Riley et al.'s (1999) terrain ruggedness index from an input DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#RuggednessIndex' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/ruggedness_index.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -9515,7 +9515,7 @@ class RuggednessIndex(object):
 class SedimentTransportIndex(object):
     def __init__(self):
         self.label = "Sediment Transport Index"
-        self.description = "Calculates the sediment transport index."
+        self.description = "Calculates the sediment transport index. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#SedimentTransportIndex' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/sediment_transport_index.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -9588,7 +9588,7 @@ class SedimentTransportIndex(object):
 class Slope(object):
     def __init__(self):
         self.label = "Slope"
-        self.description = "Calculates a slope raster from an input DEM."
+        self.description = "Calculates a slope raster from an input DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#Slope' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/slope.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -9643,7 +9643,7 @@ class Slope(object):
 class SlopeVsElevationPlot(object):
     def __init__(self):
         self.label = "Slope Vs Elevation Plot"
-        self.description = "Creates a slope vs. elevation plot for one or more DEMs."
+        self.description = "Creates a slope vs. elevation plot for one or more DEMs. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#SlopeVsElevationPlot' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/slope_vs_elev_plot.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -9698,7 +9698,7 @@ class SlopeVsElevationPlot(object):
 class StandardDeviationOfSlope(object):
     def __init__(self):
         self.label = "Standard Deviation Of Slope"
-        self.description = "Calculates the standard deviation of slope from an input DEM."
+        self.description = "Calculates the standard deviation of slope from an input DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#StandardDeviationOfSlope' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/standard_deviation_of_slope.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -9773,7 +9773,7 @@ class StandardDeviationOfSlope(object):
 class SurfaceAreaRatio(object):
     def __init__(self):
         self.label = "Surface Area Ratio"
-        self.description = "Calculates a the surface area ratio of each grid cell in an input DEM."
+        self.description = "Calculates a the surface area ratio of each grid cell in an input DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#SurfaceAreaRatio' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/surface_area_ratio.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -9818,7 +9818,7 @@ class SurfaceAreaRatio(object):
 class TangentialCurvature(object):
     def __init__(self):
         self.label = "Tangential Curvature"
-        self.description = "Calculates a tangential curvature raster from an input DEM."
+        self.description = "Calculates a tangential curvature raster from an input DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#TangentialCurvature' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/tan_curvature.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -9873,7 +9873,7 @@ class TangentialCurvature(object):
 class TotalCurvature(object):
     def __init__(self):
         self.label = "Total Curvature"
-        self.description = "Calculates a total curvature raster from an input DEM."
+        self.description = "Calculates a total curvature raster from an input DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#TotalCurvature' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/total_curvature.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -9928,7 +9928,7 @@ class TotalCurvature(object):
 class Viewshed(object):
     def __init__(self):
         self.label = "Viewshed"
-        self.description = "Identifies the viewshed for a point or set of points."
+        self.description = "Identifies the viewshed for a point or set of points. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#Viewshed' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/viewshed.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -9992,7 +9992,7 @@ class Viewshed(object):
 class VisibilityIndex(object):
     def __init__(self):
         self.label = "Visibility Index"
-        self.description = "Estimates the relative visibility of sites in a DEM."
+        self.description = "Estimates the relative visibility of sites in a DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#VisibilityIndex' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/visibility_index.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -10057,7 +10057,7 @@ class VisibilityIndex(object):
 class WetnessIndex(object):
     def __init__(self):
         self.label = "Wetness Index"
-        self.description = "Calculates the topographic wetness index, Ln(A / tan(slope))."
+        self.description = "Calculates the topographic wetness index, Ln(A / tan(slope)). View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#WetnessIndex' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/wetness_index.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -10110,7 +10110,7 @@ class WetnessIndex(object):
 class AverageFlowpathSlope(object):
     def __init__(self):
         self.label = "Average Flowpath Slope"
-        self.description = "Measures the average slope gradient from each grid cell to all upslope divide cells."
+        self.description = "Measures the average slope gradient from each grid cell to all upslope divide cells. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#AverageFlowpathSlope' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/average_flowpath_slope.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -10155,7 +10155,7 @@ class AverageFlowpathSlope(object):
 class AverageUpslopeFlowpathLength(object):
     def __init__(self):
         self.label = "Average Upslope Flowpath Length"
-        self.description = "Measures the average length of all upslope flowpaths draining each grid cell."
+        self.description = "Measures the average length of all upslope flowpaths draining each grid cell. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#AverageUpslopeFlowpathLength' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/average_upslope_flowpath_length.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -10200,7 +10200,7 @@ class AverageUpslopeFlowpathLength(object):
 class Basins(object):
     def __init__(self):
         self.label = "Basins"
-        self.description = "Identifies drainage basins that drain to the DEM edge."
+        self.description = "Identifies drainage basins that drain to the DEM edge. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#Basins' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/basins.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -10255,7 +10255,7 @@ class Basins(object):
 class BreachDepressions(object):
     def __init__(self):
         self.label = "Breach Depressions"
-        self.description = "Breaches all of the depressions in a DEM using Lindsay's (2016) algorithm. This should be preferred over depression filling in most cases."
+        self.description = "Breaches all of the depressions in a DEM using Lindsay's (2016) algorithm. This should be preferred over depression filling in most cases. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#BreachDepressions' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/breach_depressions.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -10316,7 +10316,7 @@ class BreachDepressions(object):
 class BreachSingleCellPits(object):
     def __init__(self):
         self.label = "Breach Single Cell Pits"
-        self.description = "Removes single-cell pits from an input DEM by breaching."
+        self.description = "Removes single-cell pits from an input DEM by breaching. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#BreachSingleCellPits' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/breach_pits.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -10361,7 +10361,7 @@ class BreachSingleCellPits(object):
 class D8FlowAccumulation(object):
     def __init__(self):
         self.label = "D8 Flow Accumulation"
-        self.description = "Calculates a D8 flow accumulation raster from an input DEM."
+        self.description = "Calculates a D8 flow accumulation raster from an input DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#D8FlowAccumulation' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/d8_flow_accum.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -10434,7 +10434,7 @@ class D8FlowAccumulation(object):
 class D8MassFlux(object):
     def __init__(self):
         self.label = "D8 Mass Flux"
-        self.description = "Performs a D8 mass flux calculation."
+        self.description = "Performs a D8 mass flux calculation. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#D8MassFlux' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/d8_mass_flux.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -10503,7 +10503,7 @@ class D8MassFlux(object):
 class D8Pointer(object):
     def __init__(self):
         self.label = "D8 Pointer"
-        self.description = "Calculates a D8 flow pointer raster from an input DEM."
+        self.description = "Calculates a D8 flow pointer raster from an input DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#D8Pointer' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/d8_pointer.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -10558,7 +10558,7 @@ class D8Pointer(object):
 class DInfFlowAccumulation(object):
     def __init__(self):
         self.label = "D Inf Flow Accumulation"
-        self.description = "Calculates a D-infinity flow accumulation raster from an input DEM."
+        self.description = "Calculates a D-infinity flow accumulation raster from an input DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#DInfFlowAccumulation' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/dinf_flow_accum.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -10639,7 +10639,7 @@ class DInfFlowAccumulation(object):
 class DInfMassFlux(object):
     def __init__(self):
         self.label = "D Inf Mass Flux"
-        self.description = "Performs a D-infinity mass flux calculation."
+        self.description = "Performs a D-infinity mass flux calculation. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#DInfMassFlux' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/dinf_mass_flux.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -10708,7 +10708,7 @@ class DInfMassFlux(object):
 class DInfPointer(object):
     def __init__(self):
         self.label = "D Inf Pointer"
-        self.description = "Calculates a D-infinity flow pointer (flow direction) raster from an input DEM."
+        self.description = "Calculates a D-infinity flow pointer (flow direction) raster from an input DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#DInfPointer' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/dinf_pointer.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -10753,7 +10753,7 @@ class DInfPointer(object):
 class DepthInSink(object):
     def __init__(self):
         self.label = "Depth In Sink"
-        self.description = "Measures the depth of sinks (depressions) in a DEM."
+        self.description = "Measures the depth of sinks (depressions) in a DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#DepthInSink' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/depth_in_sink.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -10806,7 +10806,7 @@ class DepthInSink(object):
 class DownslopeDistanceToStream(object):
     def __init__(self):
         self.label = "Downslope Distance To Stream"
-        self.description = "Measures distance to the nearest downslope stream cell."
+        self.description = "Measures distance to the nearest downslope stream cell. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#DownslopeDistanceToStream' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/downslope_distance_to_stream.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -10859,7 +10859,7 @@ class DownslopeDistanceToStream(object):
 class DownslopeFlowpathLength(object):
     def __init__(self):
         self.label = "Downslope Flowpath Length"
-        self.description = "Calculates the downslope flowpath length from each cell to basin outlet."
+        self.description = "Calculates the downslope flowpath length from each cell to basin outlet. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#DownslopeFlowpathLength' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/downslope_flowpath_length.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -10930,7 +10930,7 @@ class DownslopeFlowpathLength(object):
 class ElevationAboveStream(object):
     def __init__(self):
         self.label = "Elevation Above Stream"
-        self.description = "Calculates the elevation of cells above the nearest downslope stream cell."
+        self.description = "Calculates the elevation of cells above the nearest downslope stream cell. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#ElevationAboveStream' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/elevation_above_stream.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -10983,7 +10983,7 @@ class ElevationAboveStream(object):
 class ElevationAboveStreamEuclidean(object):
     def __init__(self):
         self.label = "Elevation Above Stream Euclidean"
-        self.description = "Calculates the elevation of cells above the nearest (Euclidean distance) stream cell."
+        self.description = "Calculates the elevation of cells above the nearest (Euclidean distance) stream cell. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#ElevationAboveStreamEuclidean' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/elevation_above_stream_euclidean.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -11036,7 +11036,7 @@ class ElevationAboveStreamEuclidean(object):
 class Fd8FlowAccumulation(object):
     def __init__(self):
         self.label = "Fd8 Flow Accumulation"
-        self.description = "Calculates an FD8 flow accumulation raster from an input DEM."
+        self.description = "Calculates an FD8 flow accumulation raster from an input DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#Fd8FlowAccumulation' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/fd8_flow_accum.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -11127,7 +11127,7 @@ class Fd8FlowAccumulation(object):
 class Fd8Pointer(object):
     def __init__(self):
         self.label = "Fd8 Pointer"
-        self.description = "Calculates an FD8 flow pointer raster from an input DEM."
+        self.description = "Calculates an FD8 flow pointer raster from an input DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#Fd8Pointer' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/fd8_pointer.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -11172,7 +11172,7 @@ class Fd8Pointer(object):
 class FillBurn(object):
     def __init__(self):
         self.label = "Fill Burn"
-        self.description = "Burns streams into a DEM using the FillBurn (Saunders, 1999) method."
+        self.description = "Burns streams into a DEM using the FillBurn (Saunders, 1999) method. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#FillBurn' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/fill_burn.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -11226,7 +11226,7 @@ class FillBurn(object):
 class FillDepressions(object):
     def __init__(self):
         self.label = "Fill Depressions"
-        self.description = "Fills all of the depressions in a DEM. Depression breaching should be preferred in most cases."
+        self.description = "Fills all of the depressions in a DEM. Depression breaching should be preferred in most cases. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#FillDepressions' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/fill_depressions.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -11281,7 +11281,7 @@ class FillDepressions(object):
 class FillSingleCellPits(object):
     def __init__(self):
         self.label = "Fill Single Cell Pits"
-        self.description = "Raises pit cells to the elevation of their lowest neighbour."
+        self.description = "Raises pit cells to the elevation of their lowest neighbour. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#FillSingleCellPits' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/fill_pits.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -11326,7 +11326,7 @@ class FillSingleCellPits(object):
 class FindNoFlowCells(object):
     def __init__(self):
         self.label = "Find No Flow Cells"
-        self.description = "Finds grid cells with no downslope neighbours."
+        self.description = "Finds grid cells with no downslope neighbours. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#FindNoFlowCells' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/find_noflow_cells.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -11371,7 +11371,7 @@ class FindNoFlowCells(object):
 class FindParallelFlow(object):
     def __init__(self):
         self.label = "Find Parallel Flow"
-        self.description = "Finds areas of parallel flow in D8 flow direction rasters."
+        self.description = "Finds areas of parallel flow in D8 flow direction rasters. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#FindParallelFlow' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/find_parallel_flow.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -11424,7 +11424,7 @@ class FindParallelFlow(object):
 class FlattenLakes(object):
     def __init__(self):
         self.label = "Flatten Lakes"
-        self.description = "Flattens lake polygons in a raster DEM."
+        self.description = "Flattens lake polygons in a raster DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#FlattenLakes' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/flatten_lakes.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -11478,7 +11478,7 @@ class FlattenLakes(object):
 class FloodOrder(object):
     def __init__(self):
         self.label = "Flood Order"
-        self.description = "Assigns each DEM grid cell its order in the sequence of inundations that are encountered during a search starting from the edges, moving inward at increasing elevations."
+        self.description = "Assigns each DEM grid cell its order in the sequence of inundations that are encountered during a search starting from the edges, moving inward at increasing elevations. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#FloodOrder' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/flood_order.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -11523,7 +11523,7 @@ class FloodOrder(object):
 class FlowAccumulationFullWorkflow(object):
     def __init__(self):
         self.label = "Flow Accumulation Full Workflow"
-        self.description = "Resolves all of the depressions in a DEM, outputting a breached DEM, an aspect-aligned non-divergent flow pointer, and a flow accumulation raster."
+        self.description = "Resolves all of the depressions in a DEM, outputting a breached DEM, an aspect-aligned non-divergent flow pointer, and a flow accumulation raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#FlowAccumulationFullWorkflow' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/flow_accum_full_workflow.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -11624,7 +11624,7 @@ class FlowAccumulationFullWorkflow(object):
 class FlowLengthDiff(object):
     def __init__(self):
         self.label = "Flow Length Diff"
-        self.description = "Calculates the local maximum absolute difference in downslope flowpath length, useful in mapping drainage divides and ridges."
+        self.description = "Calculates the local maximum absolute difference in downslope flowpath length, useful in mapping drainage divides and ridges. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#FlowLengthDiff' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/flow_length_diff.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -11679,7 +11679,7 @@ class FlowLengthDiff(object):
 class Hillslopes(object):
     def __init__(self):
         self.label = "Hillslopes"
-        self.description = "Identifies the individual hillslopes draining to each link in a stream network."
+        self.description = "Identifies the individual hillslopes draining to each link in a stream network. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#Hillslopes' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/hillslopes.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -11742,7 +11742,7 @@ class Hillslopes(object):
 class ImpoundmentSizeIndex(object):
     def __init__(self):
         self.label = "Impoundment Size Index"
-        self.description = "Calculates the impoundment size resulting from damming a DEM."
+        self.description = "Calculates the impoundment size resulting from damming a DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#ImpoundmentSizeIndex' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/impoundment_index.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -11807,7 +11807,7 @@ class ImpoundmentSizeIndex(object):
 class Isobasins(object):
     def __init__(self):
         self.label = "Isobasins"
-        self.description = "Divides a landscape into nearly equal sized drainage basins (i.e. watersheds)."
+        self.description = "Divides a landscape into nearly equal sized drainage basins (i.e. watersheds). View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#Isobasins' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/isobasins.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -11860,7 +11860,7 @@ class Isobasins(object):
 class JensonSnapPourPoints(object):
     def __init__(self):
         self.label = "Jenson Snap Pour Points"
-        self.description = "Moves outlet points used to specify points of interest in a watershedding operation to the nearest stream cell."
+        self.description = "Moves outlet points used to specify points of interest in a watershedding operation to the nearest stream cell. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#JensonSnapPourPoints' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/jenson_snap_pour_points.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -11922,7 +11922,7 @@ class JensonSnapPourPoints(object):
 class LongestFlowpath(object):
     def __init__(self):
         self.label = "Longest Flowpath"
-        self.description = "Delineates the longest flowpaths for a group of subbasins or watersheds."
+        self.description = "Delineates the longest flowpaths for a group of subbasins or watersheds. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#LongestFlowpath' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/longest_flowpath.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -11975,7 +11975,7 @@ class LongestFlowpath(object):
 class MaxUpslopeFlowpathLength(object):
     def __init__(self):
         self.label = "Max Upslope Flowpath Length"
-        self.description = "Measures the maximum length of all upslope flowpaths draining each grid cell."
+        self.description = "Measures the maximum length of all upslope flowpaths draining each grid cell. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#MaxUpslopeFlowpathLength' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/max_upslope_flowpath.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -12020,7 +12020,7 @@ class MaxUpslopeFlowpathLength(object):
 class NumInflowingNeighbours(object):
     def __init__(self):
         self.label = "Num Inflowing Neighbours"
-        self.description = "Computes the number of inflowing neighbours to each cell in an input DEM based on the D8 algorithm."
+        self.description = "Computes the number of inflowing neighbours to each cell in an input DEM based on the D8 algorithm. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#NumInflowingNeighbours' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/num_inflowing_neighbours.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -12065,7 +12065,7 @@ class NumInflowingNeighbours(object):
 class RaiseWalls(object):
     def __init__(self):
         self.label = "Raise Walls"
-        self.description = "Raises walls in a DEM along a line or around a polygon, e.g. a watershed."
+        self.description = "Raises walls in a DEM along a line or around a polygon, e.g. a watershed. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#RaiseWalls' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/raise_walls.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -12137,7 +12137,7 @@ class RaiseWalls(object):
 class Rho8Pointer(object):
     def __init__(self):
         self.label = "Rho8 Pointer"
-        self.description = "Calculates a stochastic Rho8 flow pointer raster from an input DEM."
+        self.description = "Calculates a stochastic Rho8 flow pointer raster from an input DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#Rho8Pointer' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/rho8_pointer.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -12192,7 +12192,7 @@ class Rho8Pointer(object):
 class Sink(object):
     def __init__(self):
         self.label = "Sink"
-        self.description = "Identifies the depressions in a DEM, giving each feature a unique identifier."
+        self.description = "Identifies the depressions in a DEM, giving each feature a unique identifier. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#Sink' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/sink.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -12245,7 +12245,7 @@ class Sink(object):
 class SnapPourPoints(object):
     def __init__(self):
         self.label = "Snap Pour Points"
-        self.description = "Moves outlet points used to specify points of interest in a watershedding operation to the cell with the highest flow accumulation in its neighbourhood."
+        self.description = "Moves outlet points used to specify points of interest in a watershedding operation to the cell with the highest flow accumulation in its neighbourhood. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#SnapPourPoints' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/snap_pour_points.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -12307,7 +12307,7 @@ class SnapPourPoints(object):
 class StochasticDepressionAnalysis(object):
     def __init__(self):
         self.label = "Stochastic Depression Analysis"
-        self.description = "Preforms a stochastic analysis of depressions within a DEM."
+        self.description = "Preforms a stochastic analysis of depressions within a DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#StochasticDepressionAnalysis' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/stochastic_depression_analysis.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -12378,7 +12378,7 @@ class StochasticDepressionAnalysis(object):
 class StrahlerOrderBasins(object):
     def __init__(self):
         self.label = "Strahler Order Basins"
-        self.description = "Identifies Strahler-order basins from an input stream network."
+        self.description = "Identifies Strahler-order basins from an input stream network. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#StrahlerOrderBasins' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/strahler_basins.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -12441,7 +12441,7 @@ class StrahlerOrderBasins(object):
 class Subbasins(object):
     def __init__(self):
         self.label = "Subbasins"
-        self.description = "Identifies the catchments, or sub-basin, draining to each link in a stream network."
+        self.description = "Identifies the catchments, or sub-basin, draining to each link in a stream network. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#Subbasins' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/subbasins.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -12504,7 +12504,7 @@ class Subbasins(object):
 class TraceDownslopeFlowpaths(object):
     def __init__(self):
         self.label = "Trace Downslope Flowpaths"
-        self.description = "Traces downslope flowpaths from one or more target sites (i.e. seed points)."
+        self.description = "Traces downslope flowpaths from one or more target sites (i.e. seed points). View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#TraceDownslopeFlowpaths' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/trace_downslope_flowpaths.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -12576,7 +12576,7 @@ class TraceDownslopeFlowpaths(object):
 class UnnestBasins(object):
     def __init__(self):
         self.label = "Unnest Basins"
-        self.description = "Extract whole watersheds for a set of outlet points."
+        self.description = "Extract whole watersheds for a set of outlet points. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#UnnestBasins' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/unnest_basins.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -12640,7 +12640,7 @@ class UnnestBasins(object):
 class Watershed(object):
     def __init__(self):
         self.label = "Watershed"
-        self.description = "Identifies the watershed, or drainage basin, draining to a set of target cells."
+        self.description = "Identifies the watershed, or drainage basin, draining to a set of target cells. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#Watershed' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/watershed.rs' target='_blank'>GitHub</a>."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
@@ -12704,7 +12704,7 @@ class Watershed(object):
 class ChangeVectorAnalysis(object):
     def __init__(self):
         self.label = "Change Vector Analysis"
-        self.description = "Performs a change vector analysis on a two-date multi-spectral dataset."
+        self.description = "Performs a change vector analysis on a two-date multi-spectral dataset. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#ChangeVectorAnalysis' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/change_vector_analysis.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -12768,7 +12768,7 @@ class ChangeVectorAnalysis(object):
 class Closing(object):
     def __init__(self):
         self.label = "Closing"
-        self.description = "A closing is a mathematical morphology operation involving an erosion (min filter) of a dilation (max filter) set."
+        self.description = "A closing is a mathematical morphology operation involving an erosion (min filter) of a dilation (max filter) set. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#Closing' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/closing.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -12833,7 +12833,7 @@ class Closing(object):
 class CreateColourComposite(object):
     def __init__(self):
         self.label = "Create Colour Composite"
-        self.description = "Creates a colour-composite image from three bands of multispectral imagery."
+        self.description = "Creates a colour-composite image from three bands of multispectral imagery. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#CreateColourComposite' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/create_colour_composite.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -12922,7 +12922,7 @@ class CreateColourComposite(object):
 class FlipImage(object):
     def __init__(self):
         self.label = "Flip Image"
-        self.description = "Reflects an image in the vertical or horizontal axis."
+        self.description = "Reflects an image in the vertical or horizontal axis. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#FlipImage' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/flip_image.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -12979,7 +12979,7 @@ class FlipImage(object):
 class IhsToRgb(object):
     def __init__(self):
         self.label = "Ihs To Rgb"
-        self.description = "Converts intensity, hue, and saturation (IHS) images into red, green, and blue (RGB) images."
+        self.description = "Converts intensity, hue, and saturation (IHS) images into red, green, and blue (RGB) images. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#IhsToRgb' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/ihs_to_rgb.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -13067,7 +13067,7 @@ class IhsToRgb(object):
 class ImageStackProfile(object):
     def __init__(self):
         self.label = "Image Stack Profile"
-        self.description = "Plots an image stack profile (i.e. signature) for a set of points and multispectral images."
+        self.description = "Plots an image stack profile (i.e. signature) for a set of points and multispectral images. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#ImageStackProfile' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/image_stack_profile.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -13122,7 +13122,7 @@ class ImageStackProfile(object):
 class IntegralImage(object):
     def __init__(self):
         self.label = "Integral Image"
-        self.description = "Transforms an input image (summed area table) into its integral image equivalent."
+        self.description = "Transforms an input image (summed area table) into its integral image equivalent. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#IntegralImage' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/integral_image.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -13167,7 +13167,7 @@ class IntegralImage(object):
 class KMeansClustering(object):
     def __init__(self):
         self.label = "K Means Clustering"
-        self.description = "Performs a k-means clustering operation on a multi-spectral dataset."
+        self.description = "Performs a k-means clustering operation on a multi-spectral dataset. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#KMeansClustering' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/k_means_clustering.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -13272,7 +13272,7 @@ class KMeansClustering(object):
 class LineThinning(object):
     def __init__(self):
         self.label = "Line Thinning"
-        self.description = "Performs line thinning a on Boolean raster image; intended to be used with the RemoveSpurs tool."
+        self.description = "Performs line thinning a on Boolean raster image; intended to be used with the RemoveSpurs tool. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#LineThinning' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/line_thin.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -13317,7 +13317,7 @@ class LineThinning(object):
 class ModifiedKMeansClustering(object):
     def __init__(self):
         self.label = "Modified K Means Clustering"
-        self.description = "Performs a modified k-means clustering operation on a multi-spectral dataset."
+        self.description = "Performs a modified k-means clustering operation on a multi-spectral dataset. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#ModifiedKMeansClustering' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/modified_k_means_clustering.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -13410,7 +13410,7 @@ class ModifiedKMeansClustering(object):
 class Mosaic(object):
     def __init__(self):
         self.label = "Mosaic"
-        self.description = "Mosaics two or more images together."
+        self.description = "Mosaics two or more images together. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#Mosaic' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/mosaic.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -13468,7 +13468,7 @@ class Mosaic(object):
 class MosaicWithFeathering(object):
     def __init__(self):
         self.label = "Mosaic With Feathering"
-        self.description = "Mosaics two images together using a feathering technique in overlapping areas to reduce edge-effects."
+        self.description = "Mosaics two images together using a feathering technique in overlapping areas to reduce edge-effects. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#MosaicWithFeathering' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/mosaic_with_feathering.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -13543,7 +13543,7 @@ class MosaicWithFeathering(object):
 class NormalizedDifferenceVegetationIndex(object):
     def __init__(self):
         self.label = "Normalized Difference Vegetation Index"
-        self.description = "Calculates the normalized difference vegetation index (NDVI) from near-infrared and red imagery."
+        self.description = "Calculates the normalized difference vegetation index (NDVI) from near-infrared and red imagery. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#NormalizedDifferenceVegetationIndex' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/ndvi.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -13614,7 +13614,7 @@ class NormalizedDifferenceVegetationIndex(object):
 class Opening(object):
     def __init__(self):
         self.label = "Opening"
-        self.description = "An opening is a mathematical morphology operation involving a dilation (max filter) of an erosion (min filter) set."
+        self.description = "An opening is a mathematical morphology operation involving a dilation (max filter) of an erosion (min filter) set. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#Opening' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/opening.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -13679,7 +13679,7 @@ class Opening(object):
 class RemoveSpurs(object):
     def __init__(self):
         self.label = "Remove Spurs"
-        self.description = "Removes the spurs (pruning operation) from a Boolean line image; intended to be used on the output of the LineThinning tool."
+        self.description = "Removes the spurs (pruning operation) from a Boolean line image; intended to be used on the output of the LineThinning tool. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#RemoveSpurs' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/remove_spurs.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -13734,7 +13734,7 @@ class RemoveSpurs(object):
 class Resample(object):
     def __init__(self):
         self.label = "Resample"
-        self.description = "Resamples one or more input images into a destination image."
+        self.description = "Resamples one or more input images into a destination image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#Resample' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/resample.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -13791,7 +13791,7 @@ class Resample(object):
 class RgbToIhs(object):
     def __init__(self):
         self.label = "Rgb To Ihs"
-        self.description = "Converts red, green, and blue (RGB) images into intensity, hue, and saturation (IHS) images."
+        self.description = "Converts red, green, and blue (RGB) images into intensity, hue, and saturation (IHS) images. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#RgbToIhs' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/rgb_to_ihs.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -13878,7 +13878,7 @@ class RgbToIhs(object):
 class SplitColourComposite(object):
     def __init__(self):
         self.label = "Split Colour Composite"
-        self.description = "This tool splits an RGB colour composite image into seperate multispectral images."
+        self.description = "This tool splits an RGB colour composite image into seperate multispectral images. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#SplitColourComposite' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/split_colour_composite.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -13923,7 +13923,7 @@ class SplitColourComposite(object):
 class ThickenRasterLine(object):
     def __init__(self):
         self.label = "Thicken Raster Line"
-        self.description = "Thickens single-cell wide lines within a raster image."
+        self.description = "Thickens single-cell wide lines within a raster image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#ThickenRasterLine' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/thicken_line.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -13968,7 +13968,7 @@ class ThickenRasterLine(object):
 class TophatTransform(object):
     def __init__(self):
         self.label = "Tophat Transform"
-        self.description = "Performs either a white or black top-hat transform on an input image."
+        self.description = "Performs either a white or black top-hat transform on an input image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#TophatTransform' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/tophat.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -14045,7 +14045,7 @@ class TophatTransform(object):
 class WriteFunctionMemoryInsertion(object):
     def __init__(self):
         self.label = "Write Function Memory Insertion"
-        self.description = "Performs a write function memory insertion for single-band multi-date change detection."
+        self.description = "Performs a write function memory insertion for single-band multi-date change detection. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#WriteFunctionMemoryInsertion' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/write_func_memory_insertion.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -14106,7 +14106,7 @@ class WriteFunctionMemoryInsertion(object):
 class AdaptiveFilter(object):
     def __init__(self):
         self.label = "Adaptive Filter"
-        self.description = "Performs an adaptive filter on an image."
+        self.description = "Performs an adaptive filter on an image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#AdaptiveFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/adaptive_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -14181,7 +14181,7 @@ class AdaptiveFilter(object):
 class BilateralFilter(object):
     def __init__(self):
         self.label = "Bilateral Filter"
-        self.description = "A bilateral filter is an edge-preserving smoothing filter introduced by Tomasi and Manduchi (1998)."
+        self.description = "A bilateral filter is an edge-preserving smoothing filter introduced by Tomasi and Manduchi (1998). View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#BilateralFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/bilateral_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -14246,7 +14246,7 @@ class BilateralFilter(object):
 class ConservativeSmoothingFilter(object):
     def __init__(self):
         self.label = "Conservative Smoothing Filter"
-        self.description = "Performs a conservative-smoothing filter on an image."
+        self.description = "Performs a conservative-smoothing filter on an image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#ConservativeSmoothingFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/conservative_smoothing_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -14311,7 +14311,7 @@ class ConservativeSmoothingFilter(object):
 class CornerDetection(object):
     def __init__(self):
         self.label = "Corner Detection"
-        self.description = "Identifies corner patterns in boolean images using hit-and-miss pattern mattching."
+        self.description = "Identifies corner patterns in boolean images using hit-and-miss pattern mattching. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#CornerDetection' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/corner_detection.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -14356,7 +14356,7 @@ class CornerDetection(object):
 class DiffOfGaussianFilter(object):
     def __init__(self):
         self.label = "Diff Of Gaussian Filter"
-        self.description = "Performs a Difference of Gaussian (DoG) filter on an image."
+        self.description = "Performs a Difference of Gaussian (DoG) filter on an image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#DiffOfGaussianFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/dog_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -14421,7 +14421,7 @@ class DiffOfGaussianFilter(object):
 class DiversityFilter(object):
     def __init__(self):
         self.label = "Diversity Filter"
-        self.description = "Assigns each cell in the output grid the number of different values in a moving window centred on each grid cell in the input raster."
+        self.description = "Assigns each cell in the output grid the number of different values in a moving window centred on each grid cell in the input raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#DiversityFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/diversity_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -14486,7 +14486,7 @@ class DiversityFilter(object):
 class EdgePreservingMeanFilter(object):
     def __init__(self):
         self.label = "Edge Preserving Mean Filter"
-        self.description = "Performs a simple edge-preserving mean filter on an input image."
+        self.description = "Performs a simple edge-preserving mean filter on an input image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#EdgePreservingMeanFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/edge_preserving_mean_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -14549,7 +14549,7 @@ class EdgePreservingMeanFilter(object):
 class EmbossFilter(object):
     def __init__(self):
         self.label = "Emboss Filter"
-        self.description = "Performs an emboss filter on an image, similar to a hillshade operation."
+        self.description = "Performs an emboss filter on an image, similar to a hillshade operation. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#EmbossFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/emboss_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -14616,7 +14616,7 @@ class EmbossFilter(object):
 class FastAlmostGaussianFilter(object):
     def __init__(self):
         self.label = "Fast Almost Gaussian Filter"
-        self.description = "Performs a fast approximate Gaussian filter on an image."
+        self.description = "Performs a fast approximate Gaussian filter on an image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#FastAlmostGaussianFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/fast_almost_gaussian_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -14671,7 +14671,7 @@ class FastAlmostGaussianFilter(object):
 class GaussianFilter(object):
     def __init__(self):
         self.label = "Gaussian Filter"
-        self.description = "Performs a Gaussian filter on an image."
+        self.description = "Performs a Gaussian filter on an image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#GaussianFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/gaussian_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -14726,7 +14726,7 @@ class GaussianFilter(object):
 class HighPassFilter(object):
     def __init__(self):
         self.label = "High Pass Filter"
-        self.description = "Performs a high-pass filter on an input image."
+        self.description = "Performs a high-pass filter on an input image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#HighPassFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/highpass_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -14791,7 +14791,7 @@ class HighPassFilter(object):
 class HighPassMedianFilter(object):
     def __init__(self):
         self.label = "High Pass Median Filter"
-        self.description = "Performs a high pass median filter on an input image."
+        self.description = "Performs a high pass median filter on an input image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#HighPassMedianFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/highpass_median_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -14866,7 +14866,7 @@ class HighPassMedianFilter(object):
 class KNearestMeanFilter(object):
     def __init__(self):
         self.label = "K Nearest Mean Filter"
-        self.description = "A k-nearest mean filter is a type of edge-preserving smoothing filter."
+        self.description = "A k-nearest mean filter is a type of edge-preserving smoothing filter. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#KNearestMeanFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/k_nearest_mean_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -14941,7 +14941,7 @@ class KNearestMeanFilter(object):
 class LaplacianFilter(object):
     def __init__(self):
         self.label = "Laplacian Filter"
-        self.description = "Performs a Laplacian filter on an image."
+        self.description = "Performs a Laplacian filter on an image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#LaplacianFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/laplacian_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -15008,7 +15008,7 @@ class LaplacianFilter(object):
 class LaplacianOfGaussianFilter(object):
     def __init__(self):
         self.label = "Laplacian Of Gaussian Filter"
-        self.description = "Performs a Laplacian-of-Gaussian (LoG) filter on an image."
+        self.description = "Performs a Laplacian-of-Gaussian (LoG) filter on an image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#LaplacianOfGaussianFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/log_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -15063,7 +15063,7 @@ class LaplacianOfGaussianFilter(object):
 class LeeFilter(object):
     def __init__(self):
         self.label = "Lee Filter"
-        self.description = "Performs a Lee (Sigma) smoothing filter on an image."
+        self.description = "Performs a Lee (Sigma) smoothing filter on an image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#LeeFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/lee_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -15148,7 +15148,7 @@ class LeeFilter(object):
 class LineDetectionFilter(object):
     def __init__(self):
         self.label = "Line Detection Filter"
-        self.description = "Performs a line-detection filter on an image."
+        self.description = "Performs a line-detection filter on an image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#LineDetectionFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/line_detection_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -15223,7 +15223,7 @@ class LineDetectionFilter(object):
 class MajorityFilter(object):
     def __init__(self):
         self.label = "Majority Filter"
-        self.description = "Assigns each cell in the output grid the most frequently occurring value (mode) in a moving window centred on each grid cell in the input raster."
+        self.description = "Assigns each cell in the output grid the most frequently occurring value (mode) in a moving window centred on each grid cell in the input raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#MajorityFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/majority_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -15288,7 +15288,7 @@ class MajorityFilter(object):
 class MaximumFilter(object):
     def __init__(self):
         self.label = "Maximum Filter"
-        self.description = "Assigns each cell in the output grid the maximum value in a moving window centred on each grid cell in the input raster."
+        self.description = "Assigns each cell in the output grid the maximum value in a moving window centred on each grid cell in the input raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#MaximumFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/max_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -15353,7 +15353,7 @@ class MaximumFilter(object):
 class MeanFilter(object):
     def __init__(self):
         self.label = "Mean Filter"
-        self.description = "Performs a mean filter (low-pass filter) on an input image."
+        self.description = "Performs a mean filter (low-pass filter) on an input image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#MeanFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/mean_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -15418,7 +15418,7 @@ class MeanFilter(object):
 class MedianFilter(object):
     def __init__(self):
         self.label = "Median Filter"
-        self.description = "Performs a median filter on an input image."
+        self.description = "Performs a median filter on an input image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#MedianFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/median_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -15493,7 +15493,7 @@ class MedianFilter(object):
 class MinimumFilter(object):
     def __init__(self):
         self.label = "Minimum Filter"
-        self.description = "Assigns each cell in the output grid the minimum value in a moving window centred on each grid cell in the input raster."
+        self.description = "Assigns each cell in the output grid the minimum value in a moving window centred on each grid cell in the input raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#MinimumFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/min_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -15558,7 +15558,7 @@ class MinimumFilter(object):
 class OlympicFilter(object):
     def __init__(self):
         self.label = "Olympic Filter"
-        self.description = "Performs an olympic smoothing filter on an image."
+        self.description = "Performs an olympic smoothing filter on an image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#OlympicFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/olympic_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -15623,7 +15623,7 @@ class OlympicFilter(object):
 class PercentileFilter(object):
     def __init__(self):
         self.label = "Percentile Filter"
-        self.description = "Performs a percentile filter on an input image."
+        self.description = "Performs a percentile filter on an input image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#PercentileFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/percentile_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -15698,7 +15698,7 @@ class PercentileFilter(object):
 class PrewittFilter(object):
     def __init__(self):
         self.label = "Prewitt Filter"
-        self.description = "Performs a Prewitt edge-detection filter on an image."
+        self.description = "Performs a Prewitt edge-detection filter on an image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#PrewittFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/prewitt_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -15753,7 +15753,7 @@ class PrewittFilter(object):
 class RangeFilter(object):
     def __init__(self):
         self.label = "Range Filter"
-        self.description = "Assigns each cell in the output grid the range of values in a moving window centred on each grid cell in the input raster."
+        self.description = "Assigns each cell in the output grid the range of values in a moving window centred on each grid cell in the input raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#RangeFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/range_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -15818,7 +15818,7 @@ class RangeFilter(object):
 class RobertsCrossFilter(object):
     def __init__(self):
         self.label = "Roberts Cross Filter"
-        self.description = "Performs a Robert's cross edge-detection filter on an image."
+        self.description = "Performs a Robert's cross edge-detection filter on an image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#RobertsCrossFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/roberts_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -15873,7 +15873,7 @@ class RobertsCrossFilter(object):
 class ScharrFilter(object):
     def __init__(self):
         self.label = "Scharr Filter"
-        self.description = "Performs a Scharr edge-detection filter on an image."
+        self.description = "Performs a Scharr edge-detection filter on an image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#ScharrFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/scharr_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -15928,7 +15928,7 @@ class ScharrFilter(object):
 class SobelFilter(object):
     def __init__(self):
         self.label = "Sobel Filter"
-        self.description = "Performs a Sobel edge-detection filter on an image."
+        self.description = "Performs a Sobel edge-detection filter on an image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#SobelFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/sobel_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -15995,7 +15995,7 @@ class SobelFilter(object):
 class StandardDeviationFilter(object):
     def __init__(self):
         self.label = "Standard Deviation Filter"
-        self.description = "Assigns each cell in the output grid the standard deviation of values in a moving window centred on each grid cell in the input raster."
+        self.description = "Assigns each cell in the output grid the standard deviation of values in a moving window centred on each grid cell in the input raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#StandardDeviationFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/stdev_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -16060,7 +16060,7 @@ class StandardDeviationFilter(object):
 class TotalFilter(object):
     def __init__(self):
         self.label = "Total Filter"
-        self.description = "Performs a total filter on an input image."
+        self.description = "Performs a total filter on an input image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#TotalFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/total_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -16125,7 +16125,7 @@ class TotalFilter(object):
 class UnsharpMasking(object):
     def __init__(self):
         self.label = "Unsharp Masking"
-        self.description = "An image sharpening technique that enhances edges."
+        self.description = "An image sharpening technique that enhances edges. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#UnsharpMasking' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/unsharp_masking.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -16200,7 +16200,7 @@ class UnsharpMasking(object):
 class UserDefinedWeightsFilter(object):
     def __init__(self):
         self.label = "User Defined Weights Filter"
-        self.description = "Performs a user-defined weights filter on an image."
+        self.description = "Performs a user-defined weights filter on an image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#UserDefinedWeightsFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/user_defined_weights_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -16276,7 +16276,7 @@ class UserDefinedWeightsFilter(object):
 class BalanceContrastEnhancement(object):
     def __init__(self):
         self.label = "Balance Contrast Enhancement"
-        self.description = "Performs a balance contrast enhancement on a colour-composite image of multispectral data."
+        self.description = "Performs a balance contrast enhancement on a colour-composite image of multispectral data. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#BalanceContrastEnhancement' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/balance_contrast_enhancement.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -16331,7 +16331,7 @@ class BalanceContrastEnhancement(object):
 class CorrectVignetting(object):
     def __init__(self):
         self.label = "Correct Vignetting"
-        self.description = "Corrects the darkening of images towards corners."
+        self.description = "Corrects the darkening of images towards corners. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#CorrectVignetting' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/correct_vignetting.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -16415,7 +16415,7 @@ class CorrectVignetting(object):
 class DirectDecorrelationStretch(object):
     def __init__(self):
         self.label = "Direct Decorrelation Stretch"
-        self.description = "Performs a direct decorrelation stretch enhancement on a colour-composite image of multispectral data."
+        self.description = "Performs a direct decorrelation stretch enhancement on a colour-composite image of multispectral data. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#DirectDecorrelationStretch' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/direct_decorrelation_stretch.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -16480,7 +16480,7 @@ class DirectDecorrelationStretch(object):
 class GammaCorrection(object):
     def __init__(self):
         self.label = "Gamma Correction"
-        self.description = "Performs a gamma correction on an input images."
+        self.description = "Performs a gamma correction on an input images. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#GammaCorrection' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/gamma_correction.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -16535,7 +16535,7 @@ class GammaCorrection(object):
 class GaussianContrastStretch(object):
     def __init__(self):
         self.label = "Gaussian Contrast Stretch"
-        self.description = "Performs a Gaussian contrast stretch on input images."
+        self.description = "Performs a Gaussian contrast stretch on input images. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#GaussianContrastStretch' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/gaussian_contrast_stretch.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -16590,7 +16590,7 @@ class GaussianContrastStretch(object):
 class HistogramEqualization(object):
     def __init__(self):
         self.label = "Histogram Equalization"
-        self.description = "Performs a histogram equalization contrast enhancment on an image."
+        self.description = "Performs a histogram equalization contrast enhancment on an image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#HistogramEqualization' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/histogram_equalization.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -16645,7 +16645,7 @@ class HistogramEqualization(object):
 class HistogramMatching(object):
     def __init__(self):
         self.label = "Histogram Matching"
-        self.description = "Alters the statistical distribution of a raster image matching it to a specified PDF."
+        self.description = "Alters the statistical distribution of a raster image matching it to a specified PDF. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#HistogramMatching' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/histogram_matching.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -16698,7 +16698,7 @@ class HistogramMatching(object):
 class HistogramMatchingTwoImages(object):
     def __init__(self):
         self.label = "Histogram Matching Two Images"
-        self.description = "This tool alters the cumulative distribution function of a raster image to that of another image."
+        self.description = "This tool alters the cumulative distribution function of a raster image to that of another image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#HistogramMatchingTwoImages' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/histogram_matching_two_images.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -16751,7 +16751,7 @@ class HistogramMatchingTwoImages(object):
 class MinMaxContrastStretch(object):
     def __init__(self):
         self.label = "Min Max Contrast Stretch"
-        self.description = "Performs a min-max contrast stretch on an input greytone image."
+        self.description = "Performs a min-max contrast stretch on an input greytone image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#MinMaxContrastStretch' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/min_max_contrast_stretch.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -16822,7 +16822,7 @@ class MinMaxContrastStretch(object):
 class PanchromaticSharpening(object):
     def __init__(self):
         self.label = "Panchromatic Sharpening"
-        self.description = "Increases the spatial resolution of image data by combining multispectral bands with panchromatic data."
+        self.description = "Increases the spatial resolution of image data by combining multispectral bands with panchromatic data. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#PanchromaticSharpening' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/pan_sharpening.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -16911,7 +16911,7 @@ class PanchromaticSharpening(object):
 class PercentageContrastStretch(object):
     def __init__(self):
         self.label = "Percentage Contrast Stretch"
-        self.description = "Performs a percentage linear contrast stretch on input images."
+        self.description = "Performs a percentage linear contrast stretch on input images. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#PercentageContrastStretch' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/percentage_contrast_stretch.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -16988,7 +16988,7 @@ class PercentageContrastStretch(object):
 class SigmoidalContrastStretch(object):
     def __init__(self):
         self.label = "Sigmoidal Contrast Stretch"
-        self.description = "Performs a sigmoidal contrast stretch on input images."
+        self.description = "Performs a sigmoidal contrast stretch on input images. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#SigmoidalContrastStretch' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/sigmoidal_contrast_stretch.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -17063,7 +17063,7 @@ class SigmoidalContrastStretch(object):
 class StandardDeviationContrastStretch(object):
     def __init__(self):
         self.label = "Standard Deviation Contrast Stretch"
-        self.description = "Performs a standard-deviation contrast stretch on input images."
+        self.description = "Performs a standard-deviation contrast stretch on input images. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#StandardDeviationContrastStretch' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/stdev_contrast_stretch.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -17128,7 +17128,7 @@ class StandardDeviationContrastStretch(object):
 class ClassifyOverlapPoints(object):
     def __init__(self):
         self.label = "Classify Overlap Points"
-        self.description = "Classifies or filters LAS points in regions of overlapping flight lines."
+        self.description = "Classifies or filters LAS points in regions of overlapping flight lines. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#ClassifyOverlapPoints' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/classify_overlap_points.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -17194,7 +17194,7 @@ class ClassifyOverlapPoints(object):
 class ClipLidarToPolygon(object):
     def __init__(self):
         self.label = "Clip Lidar To Polygon"
-        self.description = "Clips a LiDAR point cloud to a vector polygon or polygons."
+        self.description = "Clips a LiDAR point cloud to a vector polygon or polygons. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#ClipLidarToPolygon' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/clip_lidar_to_polygon.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -17249,7 +17249,7 @@ class ClipLidarToPolygon(object):
 class ErasePolygonFromLidar(object):
     def __init__(self):
         self.label = "Erase Polygon From Lidar"
-        self.description = "Erases (cuts out) a vector polygon or polygons from a LiDAR point cloud."
+        self.description = "Erases (cuts out) a vector polygon or polygons from a LiDAR point cloud. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#ErasePolygonFromLidar' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/erase_polygon_from_lidar.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -17304,7 +17304,7 @@ class ErasePolygonFromLidar(object):
 class FilterLidarScanAngles(object):
     def __init__(self):
         self.label = "Filter Lidar Scan Angles"
-        self.description = "Removes points in a LAS file with scan angles greater than a threshold."
+        self.description = "Removes points in a LAS file with scan angles greater than a threshold. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#FilterLidarScanAngles' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/filter_lidar_scan_angles.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -17358,7 +17358,7 @@ class FilterLidarScanAngles(object):
 class FindFlightlineEdgePoints(object):
     def __init__(self):
         self.label = "Find Flightline Edge Points"
-        self.description = "Identifies points along a flightline's edge in a LAS file."
+        self.description = "Identifies points along a flightline's edge in a LAS file. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#FindFlightlineEdgePoints' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/find_flightline_edge_points.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -17404,7 +17404,7 @@ class FindFlightlineEdgePoints(object):
 class FlightlineOverlap(object):
     def __init__(self):
         self.label = "Flightline Overlap"
-        self.description = "Reads a LiDAR (LAS) point file and outputs a raster containing the number of overlapping flight lines in each grid cell."
+        self.description = "Reads a LiDAR (LAS) point file and outputs a raster containing the number of overlapping flight lines in each grid cell. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#FlightlineOverlap' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/flightline_overlap.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -17460,7 +17460,7 @@ class FlightlineOverlap(object):
 class LasToAscii(object):
     def __init__(self):
         self.label = "Las To Ascii"
-        self.description = "Converts one or more LAS files into ASCII text files."
+        self.description = "Converts one or more LAS files into ASCII text files. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LasToAscii' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/las_to_ascii.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -17498,7 +17498,7 @@ class LasToAscii(object):
 class LasToMultipointShapefile(object):
     def __init__(self):
         self.label = "Las To Multipoint Shapefile"
-        self.description = "Converts one or more LAS files into MultipointZ vector Shapefiles. When the input parameter is not specified, the tool grids all LAS files contained within the working directory."
+        self.description = "Converts one or more LAS files into MultipointZ vector Shapefiles. When the input parameter is not specified, the tool grids all LAS files contained within the working directory. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LasToMultipointShapefile' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/las_to_multipoint_shapefile.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -17535,7 +17535,7 @@ class LasToMultipointShapefile(object):
 class LasToShapefile(object):
     def __init__(self):
         self.label = "Las To Shapefile"
-        self.description = "Converts one or more LAS files into a vector Shapefile of POINT ShapeType."
+        self.description = "Converts one or more LAS files into a vector Shapefile of POINT ShapeType. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LasToShapefile' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/las_to_shapefile.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -17572,7 +17572,7 @@ class LasToShapefile(object):
 class LidarBlockMaximum(object):
     def __init__(self):
         self.label = "Lidar Block Maximum"
-        self.description = "Creates a block-maximum raster from an input LAS file. When the input/output parameters are not specified, the tool grids all LAS files contained within the working directory."
+        self.description = "Creates a block-maximum raster from an input LAS file. When the input/output parameters are not specified, the tool grids all LAS files contained within the working directory. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarBlockMaximum' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/block_maximum.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -17628,7 +17628,7 @@ class LidarBlockMaximum(object):
 class LidarBlockMinimum(object):
     def __init__(self):
         self.label = "Lidar Block Minimum"
-        self.description = "Creates a block-minimum raster from an input LAS file. When the input/output parameters are not specified, the tool grids all LAS files contained within the working directory."
+        self.description = "Creates a block-minimum raster from an input LAS file. When the input/output parameters are not specified, the tool grids all LAS files contained within the working directory. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarBlockMinimum' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/block_minimum.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -17684,7 +17684,7 @@ class LidarBlockMinimum(object):
 class LidarClassifySubset(object):
     def __init__(self):
         self.label = "Lidar Classify Subset"
-        self.description = "Classifies the values in one LiDAR point cloud that correpond with points in a subset cloud."
+        self.description = "Classifies the values in one LiDAR point cloud that correpond with points in a subset cloud. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarClassifySubset' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/lidar_classify_subset.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -17755,7 +17755,7 @@ class LidarClassifySubset(object):
 class LidarColourize(object):
     def __init__(self):
         self.label = "Lidar Colourize"
-        self.description = "Adds the red-green-blue colour fields of a LiDAR (LAS) file based on an input image."
+        self.description = "Adds the red-green-blue colour fields of a LiDAR (LAS) file based on an input image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarColourize' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/lidar_colourize.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -17809,7 +17809,7 @@ class LidarColourize(object):
 class LidarConstructVectorTin(object):
     def __init__(self):
         self.label = "Lidar Construct Vector Tin"
-        self.description = "Creates a vector triangular irregular network (TIN) fitted to LiDAR points."
+        self.description = "Creates a vector triangular irregular network (TIN) fitted to LiDAR points. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarConstructVectorTin' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/lidar_construct_vector_tin.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -17891,7 +17891,7 @@ class LidarConstructVectorTin(object):
 class LidarElevationSlice(object):
     def __init__(self):
         self.label = "Lidar Elevation Slice"
-        self.description = "Outputs all of the points within a LiDAR (LAS) point file that lie between a specified elevation range."
+        self.description = "Outputs all of the points within a LiDAR (LAS) point file that lie between a specified elevation range. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarElevationSlice' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/lidar_elevation_slice.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -17981,7 +17981,7 @@ class LidarElevationSlice(object):
 class LidarGroundPointFilter(object):
     def __init__(self):
         self.label = "Lidar Ground Point Filter"
-        self.description = "Identifies ground points within LiDAR dataset using a slope-based method."
+        self.description = "Identifies ground points within LiDAR dataset using a slope-based method. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarGroundPointFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/lidar_ground_point_filter.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -18087,7 +18087,7 @@ class LidarGroundPointFilter(object):
 class LidarHexBinning(object):
     def __init__(self):
         self.label = "Lidar Hex Binning"
-        self.description = "Hex-bins a set of LiDAR points."
+        self.description = "Hex-bins a set of LiDAR points. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarHexBinning' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/lidar_hex_bin.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -18153,7 +18153,7 @@ class LidarHexBinning(object):
 class LidarHillshade(object):
     def __init__(self):
         self.label = "Lidar Hillshade"
-        self.description = "Calculates a hillshade value for points within a LAS file and stores these data in the RGB field."
+        self.description = "Calculates a hillshade value for points within a LAS file and stores these data in the RGB field. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarHillshade' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/lidar_hillshade.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -18229,7 +18229,7 @@ class LidarHillshade(object):
 class LidarHistogram(object):
     def __init__(self):
         self.label = "Lidar Histogram"
-        self.description = "Creates a histogram of LiDAR data."
+        self.description = "Creates a histogram of LiDAR data. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarHistogram' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/lidar_histogram.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -18297,7 +18297,7 @@ class LidarHistogram(object):
 class LidarIdwInterpolation(object):
     def __init__(self):
         self.label = "Lidar Idw Interpolation"
-        self.description = "Interpolates LAS files using an inverse-distance weighted (IDW) scheme. When the input/output parameters are not specified, the tool interpolates all LAS files contained within the working directory."
+        self.description = "Interpolates LAS files using an inverse-distance weighted (IDW) scheme. When the input/output parameters are not specified, the tool interpolates all LAS files contained within the working directory. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarIdwInterpolation' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/lidar_idw_interpolation.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -18421,7 +18421,7 @@ class LidarIdwInterpolation(object):
 class LidarInfo(object):
     def __init__(self):
         self.label = "Lidar Info"
-        self.description = "Prints information about a LiDAR (LAS) dataset, including header, point return frequency, and classification data and information about the variable length records (VLRs) and geokeys."
+        self.description = "Prints information about a LiDAR (LAS) dataset, including header, point return frequency, and classification data and information about the variable length records (VLRs) and geokeys. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarInfo' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/lidar_info.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -18483,7 +18483,7 @@ class LidarInfo(object):
 class LidarJoin(object):
     def __init__(self):
         self.label = "Lidar Join"
-        self.description = "Joins multiple LiDAR (LAS) files into a single LAS file."
+        self.description = "Joins multiple LiDAR (LAS) files into a single LAS file. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarJoin' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/lidar_join.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -18530,7 +18530,7 @@ class LidarJoin(object):
 class LidarKappaIndex(object):
     def __init__(self):
         self.label = "Lidar Kappa Index"
-        self.description = "Performs a kappa index of agreement (KIA) analysis on the classifications of two LAS files."
+        self.description = "Performs a kappa index of agreement (KIA) analysis on the classifications of two LAS files. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarKappaIndex' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/lidar_kappa.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -18604,7 +18604,7 @@ class LidarKappaIndex(object):
 class LidarNearestNeighbourGridding(object):
     def __init__(self):
         self.label = "Lidar Nearest Neighbour Gridding"
-        self.description = "Grids LAS files using nearest-neighbour scheme. When the input/output parameters are not specified, the tool grids all LAS files contained within the working directory."
+        self.description = "Grids LAS files using nearest-neighbour scheme. When the input/output parameters are not specified, the tool grids all LAS files contained within the working directory. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarNearestNeighbourGridding' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/lidar_nn_gridding.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -18718,7 +18718,7 @@ class LidarNearestNeighbourGridding(object):
 class LidarPointDensity(object):
     def __init__(self):
         self.label = "Lidar Point Density"
-        self.description = "Calculates the spatial pattern of point density for a LiDAR data set. When the input/output parameters are not specified, the tool grids all LAS files contained within the working directory."
+        self.description = "Calculates the spatial pattern of point density for a LiDAR data set. When the input/output parameters are not specified, the tool grids all LAS files contained within the working directory. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarPointDensity' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/lidar_point_density.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -18820,7 +18820,7 @@ class LidarPointDensity(object):
 class LidarPointStats(object):
     def __init__(self):
         self.label = "Lidar Point Stats"
-        self.description = "Creates several rasters summarizing the distribution of LAS point data. When the input/output parameters are not specified, the tool works on all LAS files contained within the working directory."
+        self.description = "Creates several rasters summarizing the distribution of LAS point data. When the input/output parameters are not specified, the tool works on all LAS files contained within the working directory. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarPointStats' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/lidar_point_stats.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -18909,7 +18909,7 @@ class LidarPointStats(object):
 class LidarRemoveDuplicates(object):
     def __init__(self):
         self.label = "Lidar Remove Duplicates"
-        self.description = "Removes duplicate points from a LiDAR data set."
+        self.description = "Removes duplicate points from a LiDAR data set. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarRemoveDuplicates' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/remove_duplicates.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -18965,7 +18965,7 @@ class LidarRemoveDuplicates(object):
 class LidarRemoveOutliers(object):
     def __init__(self):
         self.label = "Lidar Remove Outliers"
-        self.description = "Removes outliers (high and low points) in a LiDAR point cloud."
+        self.description = "Removes outliers (high and low points) in a LiDAR point cloud. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarRemoveOutliers' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/lidar_outliers.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -19031,7 +19031,7 @@ class LidarRemoveOutliers(object):
 class LidarSegmentation(object):
     def __init__(self):
         self.label = "Lidar Segmentation"
-        self.description = "Segments a LiDAR point cloud based on normal vectors."
+        self.description = "Segments a LiDAR point cloud based on normal vectors. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarSegmentation' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/lidar_segmentation.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -19107,7 +19107,7 @@ class LidarSegmentation(object):
 class LidarSegmentationBasedFilter(object):
     def __init__(self):
         self.label = "Lidar Segmentation Based Filter"
-        self.description = "Identifies ground points within LiDAR point clouds using a segmentation based approach."
+        self.description = "Identifies ground points within LiDAR point clouds using a segmentation based approach. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarSegmentationBasedFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/lidar_segmentation_based_filter.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -19191,7 +19191,7 @@ class LidarSegmentationBasedFilter(object):
 class LidarThin(object):
     def __init__(self):
         self.label = "Lidar Thin"
-        self.description = "Thins a LiDAR point cloud, reducing point density."
+        self.description = "Thins a LiDAR point cloud, reducing point density. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarThin' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/lidar_thin.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -19269,7 +19269,7 @@ class LidarThin(object):
 class LidarThinHighDensity(object):
     def __init__(self):
         self.label = "Lidar Thin High Density"
-        self.description = "Thins points from high density areas within a LiDAR point cloud."
+        self.description = "Thins points from high density areas within a LiDAR point cloud. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarThinHighDensity' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/lidar_thin_high_density.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -19343,7 +19343,7 @@ class LidarThinHighDensity(object):
 class LidarTile(object):
     def __init__(self):
         self.label = "Lidar Tile"
-        self.description = "Tiles a LiDAR LAS file into multiple LAS files."
+        self.description = "Tiles a LiDAR LAS file into multiple LAS files. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarTile' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/lidar_tile.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -19430,7 +19430,7 @@ class LidarTile(object):
 class LidarTileFootprint(object):
     def __init__(self):
         self.label = "Lidar Tile Footprint"
-        self.description = "Creates a vector polygon of the convex hull of a LiDAR point cloud. When the input/output parameters are not specified, the tool works with all LAS files contained within the working directory."
+        self.description = "Creates a vector polygon of the convex hull of a LiDAR point cloud. When the input/output parameters are not specified, the tool works with all LAS files contained within the working directory. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarTileFootprint' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/lidar_tile_footprint.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -19476,7 +19476,7 @@ class LidarTileFootprint(object):
 class LidarTinGridding(object):
     def __init__(self):
         self.label = "Lidar Tin Gridding"
-        self.description = "Creates a raster grid based on a Delaunay triangular irregular network (TIN) fitted to LiDAR points."
+        self.description = "Creates a raster grid based on a Delaunay triangular irregular network (TIN) fitted to LiDAR points. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarTinGridding' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/lidar_tin_gridding.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -19580,7 +19580,7 @@ class LidarTinGridding(object):
 class LidarTophatTransform(object):
     def __init__(self):
         self.label = "Lidar Tophat Transform"
-        self.description = "Performs a white top-hat transform on a Lidar dataset; as an estimate of height above ground, this is useful for modelling the vegetation canopy."
+        self.description = "Performs a white top-hat transform on a Lidar dataset; as an estimate of height above ground, this is useful for modelling the vegetation canopy. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarTophatTransform' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/lidar_tophat_transform.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -19636,7 +19636,7 @@ class LidarTophatTransform(object):
 class NormalVectors(object):
     def __init__(self):
         self.label = "Normal Vectors"
-        self.description = "Calculates normal vectors for points within a LAS file and stores these data (XYZ vector components) in the RGB field."
+        self.description = "Calculates normal vectors for points within a LAS file and stores these data (XYZ vector components) in the RGB field. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#NormalVectors' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/normal_vectors.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -19692,7 +19692,7 @@ class NormalVectors(object):
 class SelectTilesByPolygon(object):
     def __init__(self):
         self.label = "Select Tiles By Polygon"
-        self.description = "Copies LiDAR tiles overlapping with a polygon into an output directory."
+        self.description = "Copies LiDAR tiles overlapping with a polygon into an output directory. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#SelectTilesByPolygon' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/select_tiles_by_polygon.rs' target='_blank'>GitHub</a>."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -19745,7 +19745,7 @@ class SelectTilesByPolygon(object):
 class And(object):
     def __init__(self):
         self.label = "And"
-        self.description = "Performs a logical AND operator on two Boolean raster images."
+        self.description = "Performs a logical AND operator on two Boolean raster images. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#And' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/and.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -19798,7 +19798,7 @@ class And(object):
 class Not(object):
     def __init__(self):
         self.label = "Not"
-        self.description = "Performs a logical NOT operator on two Boolean raster images."
+        self.description = "Performs a logical NOT operator on two Boolean raster images. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Not' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/not.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -19851,7 +19851,7 @@ class Not(object):
 class Or(object):
     def __init__(self):
         self.label = "Or"
-        self.description = "Performs a logical OR operator on two Boolean raster images."
+        self.description = "Performs a logical OR operator on two Boolean raster images. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Or' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/or.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -19904,7 +19904,7 @@ class Or(object):
 class AbsoluteValue(object):
     def __init__(self):
         self.label = "Absolute Value"
-        self.description = "Calculates the absolute value of every cell in a raster."
+        self.description = "Calculates the absolute value of every cell in a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#AbsoluteValue' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/abs.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -19949,7 +19949,7 @@ class AbsoluteValue(object):
 class Add(object):
     def __init__(self):
         self.label = "Add"
-        self.description = "Performs an addition operation on two rasters or a raster and a constant value."
+        self.description = "Performs an addition operation on two rasters or a raster and a constant value. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Add' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/add.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -20002,7 +20002,7 @@ class Add(object):
 class Anova(object):
     def __init__(self):
         self.label = "Anova"
-        self.description = "Performs an analysis of variance (ANOVA) test on a raster dataset."
+        self.description = "Performs an analysis of variance (ANOVA) test on a raster dataset. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Anova' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/anova.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -20055,7 +20055,7 @@ class Anova(object):
 class ArcCos(object):
     def __init__(self):
         self.label = "Arc Cos"
-        self.description = "Returns the inverse cosine (arccos) of each values in a raster."
+        self.description = "Returns the inverse cosine (arccos) of each values in a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#ArcCos' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/arccos.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -20100,7 +20100,7 @@ class ArcCos(object):
 class ArcSin(object):
     def __init__(self):
         self.label = "Arc Sin"
-        self.description = "Returns the inverse sine (arcsin) of each values in a raster."
+        self.description = "Returns the inverse sine (arcsin) of each values in a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#ArcSin' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/arcsin.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -20145,7 +20145,7 @@ class ArcSin(object):
 class ArcTan(object):
     def __init__(self):
         self.label = "Arc Tan"
-        self.description = "Returns the inverse tangent (arctan) of each values in a raster."
+        self.description = "Returns the inverse tangent (arctan) of each values in a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#ArcTan' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/arctan.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -20190,7 +20190,7 @@ class ArcTan(object):
 class Atan2(object):
     def __init__(self):
         self.label = "Atan2"
-        self.description = "Returns the 2-argument inverse tangent (atan2)."
+        self.description = "Returns the 2-argument inverse tangent (atan2). View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Atan2' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/atan2.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -20243,7 +20243,7 @@ class Atan2(object):
 class AttributeCorrelation(object):
     def __init__(self):
         self.label = "Attribute Correlation"
-        self.description = "Performs a correlation analysis on attribute fields from a vector database."
+        self.description = "Performs a correlation analysis on attribute fields from a vector database. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#AttributeCorrelation' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/attribute_correlation.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -20288,7 +20288,7 @@ class AttributeCorrelation(object):
 class AttributeHistogram(object):
     def __init__(self):
         self.label = "Attribute Histogram"
-        self.description = "Creates a histogram for the field values of a vector's attribute table."
+        self.description = "Creates a histogram for the field values of a vector's attribute table. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#AttributeHistogram' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/attribute_histogram.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -20342,7 +20342,7 @@ class AttributeHistogram(object):
 class AttributeScattergram(object):
     def __init__(self):
         self.label = "Attribute Scattergram"
-        self.description = "Creates a scattergram for two field values of a vector's attribute table."
+        self.description = "Creates a scattergram for two field values of a vector's attribute table. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#AttributeScattergram' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/attribute_scattergram.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -20415,7 +20415,7 @@ class AttributeScattergram(object):
 class Ceil(object):
     def __init__(self):
         self.label = "Ceil"
-        self.description = "Returns the smallest (closest to negative infinity) value that is greater than or equal to the values in a raster."
+        self.description = "Returns the smallest (closest to negative infinity) value that is greater than or equal to the values in a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Ceil' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/ceil.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -20460,7 +20460,7 @@ class Ceil(object):
 class Cos(object):
     def __init__(self):
         self.label = "Cos"
-        self.description = "Returns the cosine (cos) of each values in a raster."
+        self.description = "Returns the cosine (cos) of each values in a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Cos' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/cos.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -20505,7 +20505,7 @@ class Cos(object):
 class Cosh(object):
     def __init__(self):
         self.label = "Cosh"
-        self.description = "Returns the hyperbolic cosine (cosh) of each values in a raster."
+        self.description = "Returns the hyperbolic cosine (cosh) of each values in a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Cosh' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/cosh.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -20550,7 +20550,7 @@ class Cosh(object):
 class CrispnessIndex(object):
     def __init__(self):
         self.label = "Crispness Index"
-        self.description = "Calculates the Crispness Index, which is used to quantify how crisp (or conversely how fuzzy) a probability image is."
+        self.description = "Calculates the Crispness Index, which is used to quantify how crisp (or conversely how fuzzy) a probability image is. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#CrispnessIndex' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/crispness_index.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -20595,7 +20595,7 @@ class CrispnessIndex(object):
 class CrossTabulation(object):
     def __init__(self):
         self.label = "Cross Tabulation"
-        self.description = "Performs a cross-tabulation on two categorical images."
+        self.description = "Performs a cross-tabulation on two categorical images. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#CrossTabulation' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/cross_tabulation.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -20648,7 +20648,7 @@ class CrossTabulation(object):
 class CumulativeDistribution(object):
     def __init__(self):
         self.label = "Cumulative Distribution"
-        self.description = "Converts a raster image to its cumulative distribution function."
+        self.description = "Converts a raster image to its cumulative distribution function. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#CumulativeDistribution' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/cumulative_dist.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -20693,7 +20693,7 @@ class CumulativeDistribution(object):
 class Decrement(object):
     def __init__(self):
         self.label = "Decrement"
-        self.description = "Decreases the values of each grid cell in an input raster by 1.0 (see also InPlaceSubtract)."
+        self.description = "Decreases the values of each grid cell in an input raster by 1.0 (see also InPlaceSubtract). View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Decrement' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/decrement.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -20738,7 +20738,7 @@ class Decrement(object):
 class Divide(object):
     def __init__(self):
         self.label = "Divide"
-        self.description = "Performs a division operation on two rasters or a raster and a constant value."
+        self.description = "Performs a division operation on two rasters or a raster and a constant value. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Divide' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/divide.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -20791,7 +20791,7 @@ class Divide(object):
 class EqualTo(object):
     def __init__(self):
         self.label = "Equal To"
-        self.description = "Performs a equal-to comparison operation on two rasters or a raster and a constant value."
+        self.description = "Performs a equal-to comparison operation on two rasters or a raster and a constant value. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#EqualTo' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/equal_to.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -20844,7 +20844,7 @@ class EqualTo(object):
 class Exp(object):
     def __init__(self):
         self.label = "Exp"
-        self.description = "Returns the exponential (base e) of values in a raster."
+        self.description = "Returns the exponential (base e) of values in a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Exp' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/exp.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -20889,7 +20889,7 @@ class Exp(object):
 class Exp2(object):
     def __init__(self):
         self.label = "Exp2"
-        self.description = "Returns the exponential (base 2) of values in a raster."
+        self.description = "Returns the exponential (base 2) of values in a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Exp2' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/exp2.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -20934,7 +20934,7 @@ class Exp2(object):
 class ExtractRasterStatistics(object):
     def __init__(self):
         self.label = "Extract Raster Statistics"
-        self.description = "Extracts descriptive statistics for a group of patches in a raster."
+        self.description = "Extracts descriptive statistics for a group of patches in a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#ExtractRasterStatistics' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/extract_statistics.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -21008,7 +21008,7 @@ class ExtractRasterStatistics(object):
 class Floor(object):
     def __init__(self):
         self.label = "Floor"
-        self.description = "Returns the largest (closest to positive infinity) value that is less than or equal to the values in a raster."
+        self.description = "Returns the largest (closest to positive infinity) value that is less than or equal to the values in a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Floor' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/floor.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -21053,7 +21053,7 @@ class Floor(object):
 class GreaterThan(object):
     def __init__(self):
         self.label = "Greater Than"
-        self.description = "Performs a greater-than comparison operation on two rasters or a raster and a constant value."
+        self.description = "Performs a greater-than comparison operation on two rasters or a raster and a constant value. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#GreaterThan' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/greater_than.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -21114,7 +21114,7 @@ class GreaterThan(object):
 class ImageAutocorrelation(object):
     def __init__(self):
         self.label = "Image Autocorrelation"
-        self.description = "Performs Moran's I analysis on two or more input images."
+        self.description = "Performs Moran's I analysis on two or more input images. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#ImageAutocorrelation' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/image_autocorrelation.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -21172,7 +21172,7 @@ class ImageAutocorrelation(object):
 class ImageCorrelation(object):
     def __init__(self):
         self.label = "Image Correlation"
-        self.description = "Performs image correlation on two or more input images."
+        self.description = "Performs image correlation on two or more input images. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#ImageCorrelation' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/image_correlation.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -21218,7 +21218,7 @@ class ImageCorrelation(object):
 class ImageRegression(object):
     def __init__(self):
         self.label = "Image Regression"
-        self.description = "Performs image regression analysis on two input images."
+        self.description = "Performs image regression analysis on two input images. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#ImageRegression' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/image_regression.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -21288,7 +21288,7 @@ class ImageRegression(object):
 class InPlaceAdd(object):
     def __init__(self):
         self.label = "In Place Add"
-        self.description = "Performs an in-place addition operation (input1 += input2)."
+        self.description = "Performs an in-place addition operation (input1 += input2). View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#InPlaceAdd' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/inplace_add.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -21332,7 +21332,7 @@ class InPlaceAdd(object):
 class InPlaceDivide(object):
     def __init__(self):
         self.label = "In Place Divide"
-        self.description = "Performs an in-place division operation (input1 /= input2)."
+        self.description = "Performs an in-place division operation (input1 /= input2). View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#InPlaceDivide' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/inplace_divide.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -21376,7 +21376,7 @@ class InPlaceDivide(object):
 class InPlaceMultiply(object):
     def __init__(self):
         self.label = "In Place Multiply"
-        self.description = "Performs an in-place multiplication operation (input1 *= input2)."
+        self.description = "Performs an in-place multiplication operation (input1 *= input2). View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#InPlaceMultiply' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/inplace_multiply.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -21420,7 +21420,7 @@ class InPlaceMultiply(object):
 class InPlaceSubtract(object):
     def __init__(self):
         self.label = "In Place Subtract"
-        self.description = "Performs an in-place subtraction operation (input1 -= input2)."
+        self.description = "Performs an in-place subtraction operation (input1 -= input2). View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#InPlaceSubtract' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/inplace_subtract.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -21464,7 +21464,7 @@ class InPlaceSubtract(object):
 class Increment(object):
     def __init__(self):
         self.label = "Increment"
-        self.description = "Increases the values of each grid cell in an input raster by 1.0. (see also InPlaceAdd)."
+        self.description = "Increases the values of each grid cell in an input raster by 1.0. (see also InPlaceAdd). View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Increment' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/increment.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -21509,7 +21509,7 @@ class Increment(object):
 class IntegerDivision(object):
     def __init__(self):
         self.label = "Integer Division"
-        self.description = "Performs an integer division operation on two rasters or a raster and a constant value."
+        self.description = "Performs an integer division operation on two rasters or a raster and a constant value. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#IntegerDivision' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/integer_division.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -21562,7 +21562,7 @@ class IntegerDivision(object):
 class IsNoData(object):
     def __init__(self):
         self.label = "Is No Data"
-        self.description = "Identifies NoData valued pixels in an image."
+        self.description = "Identifies NoData valued pixels in an image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#IsNoData' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/isnodata.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -21607,7 +21607,7 @@ class IsNoData(object):
 class KappaIndex(object):
     def __init__(self):
         self.label = "Kappa Index"
-        self.description = "Performs a kappa index of agreement (KIA) analysis on two categorical raster files."
+        self.description = "Performs a kappa index of agreement (KIA) analysis on two categorical raster files. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#KappaIndex' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/kappa_index.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -21660,7 +21660,7 @@ class KappaIndex(object):
 class KsTestForNormality(object):
     def __init__(self):
         self.label = "Ks Test For Normality"
-        self.description = "Evaluates whether the values in a raster are normally distributed."
+        self.description = "Evaluates whether the values in a raster are normally distributed. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#KsTestForNormality' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/ks_normality_test.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -21713,7 +21713,7 @@ class KsTestForNormality(object):
 class LessThan(object):
     def __init__(self):
         self.label = "Less Than"
-        self.description = "Performs a less-than comparison operation on two rasters or a raster and a constant value."
+        self.description = "Performs a less-than comparison operation on two rasters or a raster and a constant value. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#LessThan' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/less_than.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -21774,7 +21774,7 @@ class LessThan(object):
 class ListUniqueValues(object):
     def __init__(self):
         self.label = "List Unique Values"
-        self.description = "Lists the unique values contained in a field witin a vector's attribute table."
+        self.description = "Lists the unique values contained in a field witin a vector's attribute table. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#ListUniqueValues' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/list_unique_values.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -21828,7 +21828,7 @@ class ListUniqueValues(object):
 class Ln(object):
     def __init__(self):
         self.label = "Ln"
-        self.description = "Returns the natural logarithm of values in a raster."
+        self.description = "Returns the natural logarithm of values in a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Ln' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/ln.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -21873,7 +21873,7 @@ class Ln(object):
 class Log10(object):
     def __init__(self):
         self.label = "Log10"
-        self.description = "Returns the base-10 logarithm of values in a raster."
+        self.description = "Returns the base-10 logarithm of values in a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Log10' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/log10.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -21918,7 +21918,7 @@ class Log10(object):
 class Log2(object):
     def __init__(self):
         self.label = "Log2"
-        self.description = "Returns the base-2 logarithm of values in a raster."
+        self.description = "Returns the base-2 logarithm of values in a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Log2' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/log2.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -21963,7 +21963,7 @@ class Log2(object):
 class Max(object):
     def __init__(self):
         self.label = "Max"
-        self.description = "Performs a MAX operation on two rasters or a raster and a constant value."
+        self.description = "Performs a MAX operation on two rasters or a raster and a constant value. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Max' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/max.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -22016,7 +22016,7 @@ class Max(object):
 class Min(object):
     def __init__(self):
         self.label = "Min"
-        self.description = "Performs a MIN operation on two rasters or a raster and a constant value."
+        self.description = "Performs a MIN operation on two rasters or a raster and a constant value. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Min' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/min.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -22069,7 +22069,7 @@ class Min(object):
 class Modulo(object):
     def __init__(self):
         self.label = "Modulo"
-        self.description = "Performs a modulo operation on two rasters or a raster and a constant value."
+        self.description = "Performs a modulo operation on two rasters or a raster and a constant value. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Modulo' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/modulo.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -22122,7 +22122,7 @@ class Modulo(object):
 class Multiply(object):
     def __init__(self):
         self.label = "Multiply"
-        self.description = "Performs a multiplication operation on two rasters or a raster and a constant value."
+        self.description = "Performs a multiplication operation on two rasters or a raster and a constant value. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Multiply' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/multiply.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -22175,7 +22175,7 @@ class Multiply(object):
 class Negate(object):
     def __init__(self):
         self.label = "Negate"
-        self.description = "Changes the sign of values in a raster or the 0-1 values of a Boolean raster."
+        self.description = "Changes the sign of values in a raster or the 0-1 values of a Boolean raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Negate' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/negate.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -22220,7 +22220,7 @@ class Negate(object):
 class NotEqualTo(object):
     def __init__(self):
         self.label = "Not Equal To"
-        self.description = "Performs a not-equal-to comparison operation on two rasters or a raster and a constant value."
+        self.description = "Performs a not-equal-to comparison operation on two rasters or a raster and a constant value. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#NotEqualTo' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/not_equal_to.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -22273,7 +22273,7 @@ class NotEqualTo(object):
 class Power(object):
     def __init__(self):
         self.label = "Power"
-        self.description = "Raises the values in grid cells of one rasters, or a constant value, by values in another raster or constant value."
+        self.description = "Raises the values in grid cells of one rasters, or a constant value, by values in another raster or constant value. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Power' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/power.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -22326,7 +22326,7 @@ class Power(object):
 class PrincipalComponentAnalysis(object):
     def __init__(self):
         self.label = "Principal Component Analysis"
-        self.description = "Performs a principal component analysis (PCA) on a multi-spectral dataset."
+        self.description = "Performs a principal component analysis (PCA) on a multi-spectral dataset. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#PrincipalComponentAnalysis' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/principal_component_analysis.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -22388,7 +22388,7 @@ class PrincipalComponentAnalysis(object):
 class Quantiles(object):
     def __init__(self):
         self.label = "Quantiles"
-        self.description = "Transforms raster values into quantiles."
+        self.description = "Transforms raster values into quantiles. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Quantiles' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/quantiles.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -22443,7 +22443,7 @@ class Quantiles(object):
 class RandomField(object):
     def __init__(self):
         self.label = "Random Field"
-        self.description = "Creates an image containing random values."
+        self.description = "Creates an image containing random values. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#RandomField' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/random_field.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -22488,7 +22488,7 @@ class RandomField(object):
 class RandomSample(object):
     def __init__(self):
         self.label = "Random Sample"
-        self.description = "Creates an image containing randomly located sample grid cells with unique IDs."
+        self.description = "Creates an image containing randomly located sample grid cells with unique IDs. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#RandomSample' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/random_sample.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -22543,7 +22543,7 @@ class RandomSample(object):
 class RasterHistogram(object):
     def __init__(self):
         self.label = "Raster Histogram"
-        self.description = "Creates a histogram from raster values."
+        self.description = "Creates a histogram from raster values. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#RasterHistogram' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/raster_histogram.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -22588,7 +22588,7 @@ class RasterHistogram(object):
 class RasterSummaryStats(object):
     def __init__(self):
         self.label = "Raster Summary Stats"
-        self.description = "Measures a rasters min, max, average, standard deviation, num. non-nodata cells, and total."
+        self.description = "Measures a rasters min, max, average, standard deviation, num. non-nodata cells, and total. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#RasterSummaryStats' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/raster_summary_stats.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -22624,7 +22624,7 @@ class RasterSummaryStats(object):
 class Reciprocal(object):
     def __init__(self):
         self.label = "Reciprocal"
-        self.description = "Returns the reciprocal (i.e. 1 / z) of values in a raster."
+        self.description = "Returns the reciprocal (i.e. 1 / z) of values in a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Reciprocal' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/reciprocal.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -22669,7 +22669,7 @@ class Reciprocal(object):
 class RescaleValueRange(object):
     def __init__(self):
         self.label = "Rescale Value Range"
-        self.description = "Performs a min-max contrast stretch on an input greytone image."
+        self.description = "Performs a min-max contrast stretch on an input greytone image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#RescaleValueRange' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/rescale_value_range.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -22746,7 +22746,7 @@ class RescaleValueRange(object):
 class RootMeanSquareError(object):
     def __init__(self):
         self.label = "Root Mean Square Error"
-        self.description = "Calculates the RMSE and other accuracy statistics."
+        self.description = "Calculates the RMSE and other accuracy statistics. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#RootMeanSquareError' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/root_mean_square_error.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -22790,7 +22790,7 @@ class RootMeanSquareError(object):
 class Round(object):
     def __init__(self):
         self.label = "Round"
-        self.description = "Rounds the values in an input raster to the nearest integer value."
+        self.description = "Rounds the values in an input raster to the nearest integer value. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Round' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/round.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -22835,7 +22835,7 @@ class Round(object):
 class Sin(object):
     def __init__(self):
         self.label = "Sin"
-        self.description = "Returns the sine (sin) of each values in a raster."
+        self.description = "Returns the sine (sin) of each values in a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Sin' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/sin.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -22880,7 +22880,7 @@ class Sin(object):
 class Sinh(object):
     def __init__(self):
         self.label = "Sinh"
-        self.description = "Returns the hyperbolic sine (sinh) of each values in a raster."
+        self.description = "Returns the hyperbolic sine (sinh) of each values in a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Sinh' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/sinh.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -22925,7 +22925,7 @@ class Sinh(object):
 class Square(object):
     def __init__(self):
         self.label = "Square"
-        self.description = "Squares the values in a raster."
+        self.description = "Squares the values in a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Square' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/square.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -22970,7 +22970,7 @@ class Square(object):
 class SquareRoot(object):
     def __init__(self):
         self.label = "Square Root"
-        self.description = "Returns the square root of the values in a raster."
+        self.description = "Returns the square root of the values in a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#SquareRoot' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/sqrt.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -23015,7 +23015,7 @@ class SquareRoot(object):
 class Subtract(object):
     def __init__(self):
         self.label = "Subtract"
-        self.description = "Performs a differencing operation on two rasters or a raster and a constant value."
+        self.description = "Performs a differencing operation on two rasters or a raster and a constant value. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Subtract' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/subtract.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -23068,7 +23068,7 @@ class Subtract(object):
 class Tan(object):
     def __init__(self):
         self.label = "Tan"
-        self.description = "Returns the tangent (tan) of each values in a raster."
+        self.description = "Returns the tangent (tan) of each values in a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Tan' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/tan.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -23113,7 +23113,7 @@ class Tan(object):
 class Tanh(object):
     def __init__(self):
         self.label = "Tanh"
-        self.description = "Returns the hyperbolic tangent (tanh) of each values in a raster."
+        self.description = "Returns the hyperbolic tangent (tanh) of each values in a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Tanh' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/tanh.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -23158,7 +23158,7 @@ class Tanh(object):
 class ToDegrees(object):
     def __init__(self):
         self.label = "To Degrees"
-        self.description = "Converts a raster from radians to degrees."
+        self.description = "Converts a raster from radians to degrees. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#ToDegrees' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/to_degrees.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -23203,7 +23203,7 @@ class ToDegrees(object):
 class ToRadians(object):
     def __init__(self):
         self.label = "To Radians"
-        self.description = "Converts a raster from degrees to radians."
+        self.description = "Converts a raster from degrees to radians. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#ToRadians' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/to_radians.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -23248,7 +23248,7 @@ class ToRadians(object):
 class TrendSurface(object):
     def __init__(self):
         self.label = "Trend Surface"
-        self.description = "Estimates the trend surface of an input raster file."
+        self.description = "Estimates the trend surface of an input raster file. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#TrendSurface' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/trend_surface.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -23303,7 +23303,7 @@ class TrendSurface(object):
 class TrendSurfaceVectorPoints(object):
     def __init__(self):
         self.label = "Trend Surface Vector Points"
-        self.description = "Estimates a trend surface from vector points."
+        self.description = "Estimates a trend surface from vector points. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#TrendSurfaceVectorPoints' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/trend_surface_vector_points.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -23376,7 +23376,7 @@ class TrendSurfaceVectorPoints(object):
 class Truncate(object):
     def __init__(self):
         self.label = "Truncate"
-        self.description = "Truncates the values in a raster to the desired number of decimal places."
+        self.description = "Truncates the values in a raster to the desired number of decimal places. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Truncate' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/truncate.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -23429,7 +23429,7 @@ class Truncate(object):
 class TurningBandsSimulation(object):
     def __init__(self):
         self.label = "Turning Bands Simulation"
-        self.description = "Creates an image containing random values based on a turning-bands simulation."
+        self.description = "Creates an image containing random values based on a turning-bands simulation. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#TurningBandsSimulation' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/turning_bands.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -23492,7 +23492,7 @@ class TurningBandsSimulation(object):
 class Xor(object):
     def __init__(self):
         self.label = "Xor"
-        self.description = "Performs a logical XOR operator on two Boolean raster images."
+        self.description = "Performs a logical XOR operator on two Boolean raster images. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Xor' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/xor.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -23545,7 +23545,7 @@ class Xor(object):
 class ZScores(object):
     def __init__(self):
         self.label = "Z Scores"
-        self.description = "Standardizes the values in an input raster by converting to z-scores."
+        self.description = "Standardizes the values in an input raster by converting to z-scores. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#ZScores' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/zscores.rs' target='_blank'>GitHub</a>."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -23590,7 +23590,7 @@ class ZScores(object):
 class DistanceToOutlet(object):
     def __init__(self):
         self.label = "Distance To Outlet"
-        self.description = "Calculates the distance of stream grid cells to the channel network outlet cell."
+        self.description = "Calculates the distance of stream grid cells to the channel network outlet cell. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/stream_network_analysis.html#DistanceToOutlet' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/stream_network_analysis/dist_to_outlet.rs' target='_blank'>GitHub</a>."
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
@@ -23661,7 +23661,7 @@ class DistanceToOutlet(object):
 class ExtractStreams(object):
     def __init__(self):
         self.label = "Extract Streams"
-        self.description = "Extracts stream grid cells from a flow accumulation raster."
+        self.description = "Extracts stream grid cells from a flow accumulation raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/stream_network_analysis.html#ExtractStreams' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/stream_network_analysis/extract_streams.rs' target='_blank'>GitHub</a>."
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
@@ -23722,7 +23722,7 @@ class ExtractStreams(object):
 class ExtractValleys(object):
     def __init__(self):
         self.label = "Extract Valleys"
-        self.description = "Identifies potential valley bottom grid cells based on local topolography alone."
+        self.description = "Identifies potential valley bottom grid cells based on local topolography alone. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/stream_network_analysis.html#ExtractValleys' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/stream_network_analysis/extract_valleys.rs' target='_blank'>GitHub</a>."
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
@@ -23799,7 +23799,7 @@ class ExtractValleys(object):
 class FarthestChannelHead(object):
     def __init__(self):
         self.label = "Farthest Channel Head"
-        self.description = "Calculates the distance to the furthest upstream channel head for each stream cell."
+        self.description = "Calculates the distance to the furthest upstream channel head for each stream cell. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/stream_network_analysis.html#FarthestChannelHead' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/stream_network_analysis/farthest_channel_head.rs' target='_blank'>GitHub</a>."
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
@@ -23870,7 +23870,7 @@ class FarthestChannelHead(object):
 class FindMainStem(object):
     def __init__(self):
         self.label = "Find Main Stem"
-        self.description = "Finds the main stem, based on stream lengths, of each stream network."
+        self.description = "Finds the main stem, based on stream lengths, of each stream network. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/stream_network_analysis.html#FindMainStem' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/stream_network_analysis/find_main_stem.rs' target='_blank'>GitHub</a>."
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
@@ -23941,7 +23941,7 @@ class FindMainStem(object):
 class HackStreamOrder(object):
     def __init__(self):
         self.label = "Hack Stream Order"
-        self.description = "Assigns the Hack stream order to each tributary in a stream network."
+        self.description = "Assigns the Hack stream order to each tributary in a stream network. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/stream_network_analysis.html#HackStreamOrder' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/stream_network_analysis/hack_order.rs' target='_blank'>GitHub</a>."
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
@@ -24012,7 +24012,7 @@ class HackStreamOrder(object):
 class HortonStreamOrder(object):
     def __init__(self):
         self.label = "Horton Stream Order"
-        self.description = "Assigns the Horton stream order to each tributary in a stream network."
+        self.description = "Assigns the Horton stream order to each tributary in a stream network. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/stream_network_analysis.html#HortonStreamOrder' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/stream_network_analysis/horton_order.rs' target='_blank'>GitHub</a>."
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
@@ -24083,7 +24083,7 @@ class HortonStreamOrder(object):
 class LengthOfUpstreamChannels(object):
     def __init__(self):
         self.label = "Length Of Upstream Channels"
-        self.description = "Calculates the total length of channels upstream."
+        self.description = "Calculates the total length of channels upstream. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/stream_network_analysis.html#LengthOfUpstreamChannels' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/stream_network_analysis/total_length_channels.rs' target='_blank'>GitHub</a>."
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
@@ -24154,7 +24154,7 @@ class LengthOfUpstreamChannels(object):
 class LongProfile(object):
     def __init__(self):
         self.label = "Long Profile"
-        self.description = "Plots the stream longitudinal profiles for one or more rivers."
+        self.description = "Plots the stream longitudinal profiles for one or more rivers. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/stream_network_analysis.html#LongProfile' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/stream_network_analysis/long_profile.rs' target='_blank'>GitHub</a>."
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
@@ -24225,7 +24225,7 @@ class LongProfile(object):
 class LongProfileFromPoints(object):
     def __init__(self):
         self.label = "Long Profile From Points"
-        self.description = "Plots the longitudinal profiles from flow-paths initiating from a set of vector points."
+        self.description = "Plots the longitudinal profiles from flow-paths initiating from a set of vector points. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/stream_network_analysis.html#LongProfileFromPoints' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/stream_network_analysis/long_profile_from_points.rs' target='_blank'>GitHub</a>."
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
@@ -24297,7 +24297,7 @@ class LongProfileFromPoints(object):
 class RasterStreamsToVector(object):
     def __init__(self):
         self.label = "Raster Streams To Vector"
-        self.description = "Converts a raster stream file into a vector file."
+        self.description = "Converts a raster stream file into a vector file. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/stream_network_analysis.html#RasterStreamsToVector' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/stream_network_analysis/raster_streams_to_vector.rs' target='_blank'>GitHub</a>."
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
@@ -24360,7 +24360,7 @@ class RasterStreamsToVector(object):
 class RasterizeStreams(object):
     def __init__(self):
         self.label = "Rasterize Streams"
-        self.description = "Rasterizes vector streams based on Lindsay (2016) method."
+        self.description = "Rasterizes vector streams based on Lindsay (2016) method. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/stream_network_analysis.html#RasterizeStreams' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/stream_network_analysis/rasterize_streams.rs' target='_blank'>GitHub</a>."
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
@@ -24434,7 +24434,7 @@ class RasterizeStreams(object):
 class RemoveShortStreams(object):
     def __init__(self):
         self.label = "Remove Short Streams"
-        self.description = "Removes short first-order streams from a stream network."
+        self.description = "Removes short first-order streams from a stream network. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/stream_network_analysis.html#RemoveShortStreams' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/stream_network_analysis/remove_short_streams.rs' target='_blank'>GitHub</a>."
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
@@ -24505,7 +24505,7 @@ class RemoveShortStreams(object):
 class ShreveStreamMagnitude(object):
     def __init__(self):
         self.label = "Shreve Stream Magnitude"
-        self.description = "Assigns the Shreve stream magnitude to each link in a stream network."
+        self.description = "Assigns the Shreve stream magnitude to each link in a stream network. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/stream_network_analysis.html#ShreveStreamMagnitude' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/stream_network_analysis/shreve_magnitude.rs' target='_blank'>GitHub</a>."
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
@@ -24576,7 +24576,7 @@ class ShreveStreamMagnitude(object):
 class StrahlerStreamOrder(object):
     def __init__(self):
         self.label = "Strahler Stream Order"
-        self.description = "Assigns the Strahler stream order to each link in a stream network."
+        self.description = "Assigns the Strahler stream order to each link in a stream network. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/stream_network_analysis.html#StrahlerStreamOrder' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/stream_network_analysis/strahler_order.rs' target='_blank'>GitHub</a>."
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
@@ -24647,7 +24647,7 @@ class StrahlerStreamOrder(object):
 class StreamLinkClass(object):
     def __init__(self):
         self.label = "Stream Link Class"
-        self.description = "Identifies the exterior/interior links and nodes in a stream network."
+        self.description = "Identifies the exterior/interior links and nodes in a stream network. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/stream_network_analysis.html#StreamLinkClass' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/stream_network_analysis/stream_link_class.rs' target='_blank'>GitHub</a>."
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
@@ -24718,7 +24718,7 @@ class StreamLinkClass(object):
 class StreamLinkIdentifier(object):
     def __init__(self):
         self.label = "Stream Link Identifier"
-        self.description = "Assigns a unique identifier to each link in a stream network."
+        self.description = "Assigns a unique identifier to each link in a stream network. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/stream_network_analysis.html#StreamLinkIdentifier' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/stream_network_analysis/stream_link_id.rs' target='_blank'>GitHub</a>."
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
@@ -24789,7 +24789,7 @@ class StreamLinkIdentifier(object):
 class StreamLinkLength(object):
     def __init__(self):
         self.label = "Stream Link Length"
-        self.description = "Estimates the length of each link (or tributary) in a stream network."
+        self.description = "Estimates the length of each link (or tributary) in a stream network. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/stream_network_analysis.html#StreamLinkLength' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/stream_network_analysis/stream_link_length.rs' target='_blank'>GitHub</a>."
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
@@ -24860,7 +24860,7 @@ class StreamLinkLength(object):
 class StreamLinkSlope(object):
     def __init__(self):
         self.label = "Stream Link Slope"
-        self.description = "Estimates the average slope of each link (or tributary) in a stream network."
+        self.description = "Estimates the average slope of each link (or tributary) in a stream network. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/stream_network_analysis.html#StreamLinkSlope' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/stream_network_analysis/stream_link_slope.rs' target='_blank'>GitHub</a>."
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
@@ -24939,7 +24939,7 @@ class StreamLinkSlope(object):
 class StreamSlopeContinuous(object):
     def __init__(self):
         self.label = "Stream Slope Continuous"
-        self.description = "Estimates the slope of each grid cell in a stream network."
+        self.description = "Estimates the slope of each grid cell in a stream network. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/stream_network_analysis.html#StreamSlopeContinuous' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/stream_network_analysis/stream_slope_continuous.rs' target='_blank'>GitHub</a>."
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
@@ -25018,7 +25018,7 @@ class StreamSlopeContinuous(object):
 class TopologicalStreamOrder(object):
     def __init__(self):
         self.label = "Topological Stream Order"
-        self.description = "Assigns each link in a stream network its topological order."
+        self.description = "Assigns each link in a stream network its topological order. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/stream_network_analysis.html#TopologicalStreamOrder' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/stream_network_analysis/topological_stream_order.rs' target='_blank'>GitHub</a>."
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):
@@ -25089,7 +25089,7 @@ class TopologicalStreamOrder(object):
 class TributaryIdentifier(object):
     def __init__(self):
         self.label = "Tributary Identifier"
-        self.description = "Assigns a unique identifier to each tributary in a stream network."
+        self.description = "Assigns a unique identifier to each tributary in a stream network. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/stream_network_analysis.html#TributaryIdentifier' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/stream_network_analysis/tributary_id.rs' target='_blank'>GitHub</a>."
         self.category = "Stream Network Analysis"
 
     def getParameterInfo(self):

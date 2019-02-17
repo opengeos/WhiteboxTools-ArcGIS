@@ -316,6 +316,47 @@ def get_data_type(param):
     return ret
 
 
+def get_github_url(tool_name, category):
+    '''
+    Generate source code link on Github 
+    '''    
+    # prefix = "https://github.com/jblindsay/whitebox-tools/blob/master/src/tools"
+    url = wbt.view_code(tool_name).strip()
+    # url = "{}/{}/{}.rs".format(prefix, category, tool_name)
+    return url
+
+
+def get_github_tag(tool_name, category):
+    '''
+    Get GitHub HTML tag
+    '''    
+    # prefix = "https://github.com/jblindsay/whitebox-tools/blob/master/src/tools"
+    # url = "{}/{}/{}.rs".format(prefix, category, tool_name)
+    url = wbt.view_code(tool_name).strip()
+    html_tag = "<a href='{}' target='_blank'>GitHub</a>".format(url)
+    return html_tag
+
+
+def get_book_url(tool_name, category):
+    '''
+    Get link to WhiteboxTools User Mannual 
+    '''    
+    prefix = "https://jblindsay.github.io/wbt_book/available_tools"
+    url = "{}/{}.html#{}".format(prefix, category, tool_name)
+    return url
+    
+
+
+def get_book_tag(tool_name, category):
+    '''
+    Get User Manual HTML tag
+    '''    
+    prefix = "https://jblindsay.github.io/wbt_book/available_tools"
+    url = "{}/{}.html#{}".format(prefix, category, tool_name)
+    html_tag = "<a href='{}' target='_blank'>WhiteboxTools User Manual</a>".format(url)
+    return html_tag
+
+
 dir_path = os.path.dirname(os.path.realpath(__file__))
 wbt_py = os.path.join(dir_path, "whitebox_tools.py")
 
@@ -337,6 +378,32 @@ toolboxes = {
     "# Math and Stats Tools #": "Math and Stats Tools",
     "# Stream Network Analysis #": "Stream Network Analysis"
 }
+
+github_cls = {
+    "Data Tools": "data_tools",
+    "GIS Analysis": "gis_analysis",
+    "Geomorphometric Analysis": "terrain_analysis",
+    "Hydrological Analysis": "hydro_analysis",
+    "Image Processing Tools": "image_analysis",
+    "LiDAR Tools": "lidar_analysis",
+    "Math and Stats Tools": "math_stat_analysis",
+    "Stream Network Analysis": "stream_network_analysis"
+}
+
+book_cls = {
+    "Data Tools": "data_tools",
+    "GIS Analysis": "gis_analysis",
+    "Geomorphometric Analysis": "geomorphometric_analysis",
+    "Hydrological Analysis": "hydrological_analysis",
+    "Image Processing Tools": "image_processing_tools",
+    "LiDAR Tools": "lidar_tools",
+    "Math and Stats Tools": "mathand_stats_tools",
+    "Stream Network Analysis": "stream_network_analysis"
+}
+
+
+
+
 
 tools_dict = {}
 tool_labels = []
@@ -362,11 +429,15 @@ with open(wbt_py) as f:
                 tool_labels.append(func_label)
                 func_desc = lines[index+1].replace('"""', '').strip()
 
+                github_tag = get_github_tag(func_title, github_cls[category])
+                book_tag = get_book_tag(func_name, book_cls[category])
+                full_desc = "{} View detailed help documentation on {} and source code on {}.".format(func_desc, book_tag, github_tag)
+
                 func_dict = {}
                 func_dict['name'] = func_name
                 func_dict["category"] = category
                 func_dict["label"] = func_label
-                func_dict["description"] = func_desc
+                func_dict["description"] = full_desc
                 
                 tool_index = tool_index + 1
                 func_params = get_tool_params(func_name)
