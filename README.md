@@ -69,7 +69,7 @@ Open any tool within the toolbox and start using it. Check out the [WhiteboxTool
 
 ## Available Tools
 
-The **[WhiteboxTools](https://github.com/jblindsay/whitebox-tools)** library currently contains **400** tools, which are each grouped based on their main function into one of the following categories: Data Tools, GIS Analysis, Hydrological Analysis, Image Analysis, LiDAR Analysis, Mathematical and Statistical Analysis, Stream Network Analysis, and Terrain Analysis. For a listing of available tools, complete with documentation and usage details, please see the [WhiteboxTools User Manual](https://jblindsay.github.io/wbt_book/available_tools/index.html).
+The **[WhiteboxTools](https://github.com/jblindsay/whitebox-tools)** library currently contains **403** tools, which are each grouped based on their main function into one of the following categories: Data Tools, GIS Analysis, Hydrological Analysis, Image Analysis, LiDAR Analysis, Mathematical and Statistical Analysis, Stream Network Analysis, and Terrain Analysis. For a listing of available tools, complete with documentation and usage details, please see the [WhiteboxTools User Manual](https://jblindsay.github.io/wbt_book/available_tools/index.html).
 
 ## Supported Data Formats
 

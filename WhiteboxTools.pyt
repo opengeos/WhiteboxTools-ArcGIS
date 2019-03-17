@@ -32,6 +32,7 @@ tool_labels.append("Basins")
 tool_labels.append("Bilateral Filter")
 tool_labels.append("Block Maximum Gridding")
 tool_labels.append("Block Minimum Gridding")
+tool_labels.append("Boundary Shape Complexity")
 tool_labels.append("Breach Depressions")
 tool_labels.append("Breach Single Cell Pits")
 tool_labels.append("Buffer Raster")
@@ -266,11 +267,12 @@ tool_labels.append("Multiply")
 tool_labels.append("Multiscale Roughness")
 tool_labels.append("Multiscale Roughness Signature")
 tool_labels.append("Multiscale Topographic Position Image")
+tool_labels.append("Narrowness Index")
 tool_labels.append("Nearest Neighbour Gridding")
 tool_labels.append("Negate")
 tool_labels.append("New Raster From Base")
 tool_labels.append("Normal Vectors")
-tool_labels.append("Normalized Difference Vegetation Index")
+tool_labels.append("Normalized Difference Index")
 tool_labels.append("Not")
 tool_labels.append("Not Equal To")
 tool_labels.append("Num Downslope Neighbours")
@@ -343,6 +345,7 @@ tool_labels.append("Sediment Transport Index")
 tool_labels.append("Select Tiles By Polygon")
 tool_labels.append("Set Nodata Value")
 tool_labels.append("Shape Complexity Index")
+tool_labels.append("Shape Complexity Index Raster")
 tool_labels.append("Shreve Stream Magnitude")
 tool_labels.append("Sigmoidal Contrast Stretch")
 tool_labels.append("Sin")
@@ -518,17 +521,20 @@ class Toolbox(object):
         tools.append(Union)
         tools.append(WeightedOverlay)
         tools.append(WeightedSum)
+        tools.append(BoundaryShapeComplexity)
         tools.append(CompactnessRatio)
         tools.append(EdgeProportion)
         tools.append(ElongationRatio)
         tools.append(FindPatchOrClassEdgeCells)
         tools.append(HoleProportion)
         tools.append(LinearityIndex)
+        tools.append(NarrownessIndex)
         tools.append(PatchOrientation)
         tools.append(PerimeterAreaRatio)
         tools.append(RadiusOfGyration)
         tools.append(RelatedCircumscribingCircle)
         tools.append(ShapeComplexityIndex)
+        tools.append(ShapeComplexityIndexRaster)
         tools.append(Aspect)
         tools.append(CircularVarianceOfAspect)
         tools.append(DevFromMeanElev)
@@ -637,7 +643,7 @@ class Toolbox(object):
         tools.append(ModifiedKMeansClustering)
         tools.append(Mosaic)
         tools.append(MosaicWithFeathering)
-        tools.append(NormalizedDifferenceVegetationIndex)
+        tools.append(NormalizedDifferenceIndex)
         tools.append(Opening)
         tools.append(RemoveSpurs)
         tools.append(Resample)
@@ -6319,6 +6325,51 @@ class WeightedSum(object):
         return
 
 
+class BoundaryShapeComplexity(object):
+    def __init__(self):
+        self.label = "Boundary Shape Complexity"
+        self.description = "Calculates the complexity of the boundaries of raster polygons. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#BoundaryShapeComplexity' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/boundary_shape_complexity.rs' target='_blank'>GitHub</a>."
+        self.category = "GIS Analysis"
+
+    def getParameterInfo(self):
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="DERasterDataset",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        params = [input, output]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.boundary_shape_complexity(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class CompactnessRatio(object):
     def __init__(self):
         self.label = "Compactness Ratio"
@@ -6565,6 +6616,51 @@ class LinearityIndex(object):
         return
 
 
+class NarrownessIndex(object):
+    def __init__(self):
+        self.label = "Narrowness Index"
+        self.description = "Calculates the narrowness of raster polygons. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#NarrownessIndex' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/narrowness_index.rs' target='_blank'>GitHub</a>."
+        self.category = "GIS Analysis"
+
+    def getParameterInfo(self):
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="DERasterDataset",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        params = [input, output]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.narrowness_index(input, output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class PatchOrientation(object):
     def __init__(self):
         self.label = "Patch Orientation"
@@ -6760,6 +6856,51 @@ class ShapeComplexityIndex(object):
         result = StringIO()
         sys.stdout = result
         wbt.shape_complexity_index(input)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
+class ShapeComplexityIndexRaster(object):
+    def __init__(self):
+        self.label = "Shape Complexity Index Raster"
+        self.description = "Calculates the complexity of raster polygons or classes. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#ShapeComplexityIndexRaster' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/shape_complexity_raster.rs' target='_blank'>GitHub</a>."
+        self.category = "GIS Analysis"
+
+    def getParameterInfo(self):
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="DERasterDataset",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        params = [input, output]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.shape_complexity_index_raster(input, output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10288,7 +10429,23 @@ class BreachDepressions(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [dem, output, max_depth, max_length]
+        flat_increment = arcpy.Parameter(
+            displayName="Flat increment value (z units)",
+            name="flat_increment",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        fill_pits = arcpy.Parameter(
+            displayName="Fill single-cell pits?",
+            name="fill_pits",
+            datatype="GPBoolean",
+            parameterType="Optional",
+            direction="Input")
+
+        fill_pits.value = "false"
+
+        params = [dem, output, max_depth, max_length, flat_increment, fill_pits]
 
         return params
 
@@ -10303,10 +10460,12 @@ class BreachDepressions(object):
         output = parameters[1].valueAsText
         max_depth = parameters[2].valueAsText
         max_length = parameters[3].valueAsText
+        flat_increment = parameters[4].valueAsText
+        fill_pits = parameters[5].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.breach_depressions(dem, output, max_depth, max_length)
+        wbt.breach_depressions(dem, output, max_depth, max_length, flat_increment, fill_pits)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13540,23 +13699,23 @@ class MosaicWithFeathering(object):
         return
 
 
-class NormalizedDifferenceVegetationIndex(object):
+class NormalizedDifferenceIndex(object):
     def __init__(self):
-        self.label = "Normalized Difference Vegetation Index"
-        self.description = "Calculates the normalized difference vegetation index (NDVI) from near-infrared and red imagery. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#NormalizedDifferenceVegetationIndex' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/ndvi.rs' target='_blank'>GitHub</a>."
+        self.label = "Normalized Difference Index"
+        self.description = "Calculate a normalized-difference index (NDI) from two bands of multispectral image data. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#NormalizedDifferenceIndex' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/normalized_difference_index.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        nir = arcpy.Parameter(
-            displayName="Input Near-Infrared File",
-            name="nir",
+        input1 = arcpy.Parameter(
+            displayName="Input 1 File",
+            name="input1",
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
 
-        red = arcpy.Parameter(
-            displayName="Input Red File",
-            name="red",
+        input2 = arcpy.Parameter(
+            displayName="Input 2 File",
+            name="input2",
             datatype="DERasterDataset",
             parameterType="Required",
             direction="Input")
@@ -13578,14 +13737,16 @@ class NormalizedDifferenceVegetationIndex(object):
 
         clip.value = "0.0"
 
-        osavi = arcpy.Parameter(
-            displayName="Use the optimized soil-adjusted veg index (OSAVI)?",
-            name="osavi",
-            datatype="GPBoolean",
+        correction = arcpy.Parameter(
+            displayName="Correction value",
+            name="correction",
+            datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
-        params = [nir, red, output, clip, osavi]
+        correction.value = "0.0"
+
+        params = [input1, input2, output, clip, correction]
 
         return params
 
@@ -13596,15 +13757,15 @@ class NormalizedDifferenceVegetationIndex(object):
         return
 
     def execute(self, parameters, messages):
-        nir = parameters[0].valueAsText
-        red = parameters[1].valueAsText
+        input1 = parameters[0].valueAsText
+        input2 = parameters[1].valueAsText
         output = parameters[2].valueAsText
         clip = parameters[3].valueAsText
-        osavi = parameters[4].valueAsText
+        correction = parameters[4].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.normalized_difference_vegetation_index(nir, red, output, clip, osavi)
+        wbt.normalized_difference_index(input1, input2, output, clip, correction)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14311,7 +14472,7 @@ class ConservativeSmoothingFilter(object):
 class CornerDetection(object):
     def __init__(self):
         self.label = "Corner Detection"
-        self.description = "Identifies corner patterns in boolean images using hit-and-miss pattern mattching. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#CornerDetection' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/corner_detection.rs' target='_blank'>GitHub</a>."
+        self.description = "Identifies corner patterns in boolean images using hit-and-miss pattern matching. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#CornerDetection' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/corner_detection.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -19548,7 +19709,14 @@ class LidarTinGridding(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [input, output, parameter, returns, resolution, exclude_cls, minz, maxz]
+        max_triangle_edge_length = arcpy.Parameter(
+            displayName="Maximum Triangle Edge Length (optional)",
+            name="max_triangle_edge_length",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input, output, parameter, returns, resolution, exclude_cls, minz, maxz, max_triangle_edge_length]
 
         return params
 
@@ -19567,10 +19735,11 @@ class LidarTinGridding(object):
         exclude_cls = parameters[5].valueAsText
         minz = parameters[6].valueAsText
         maxz = parameters[7].valueAsText
+        max_triangle_edge_length = parameters[8].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_tin_gridding(input, output, parameter, returns, resolution, exclude_cls, minz, maxz)
+        wbt.lidar_tin_gridding(input, output, parameter, returns, resolution, exclude_cls, minz, maxz, max_triangle_edge_length)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
