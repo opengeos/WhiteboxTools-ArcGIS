@@ -1224,7 +1224,7 @@ class AddPointCoordinatesToTable(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.add_point_coordinates_to_table(input)
+        wbt.add_point_coordinates_to_table(input=input)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1269,7 +1269,7 @@ class ConvertNodataToZero(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.convert_nodata_to_zero(input, output)
+        wbt.convert_nodata_to_zero(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1314,7 +1314,7 @@ class ConvertRasterFormat(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.convert_raster_format(input, output)
+        wbt.convert_raster_format(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1369,7 +1369,7 @@ class ExportTableToCsv(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.export_table_to_csv(input, output, headers)
+        wbt.export_table_to_csv(input=input, output=output, headers=headers)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1440,7 +1440,7 @@ class JoinTables(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.join_tables(input1, pkey, input2, fkey, import_field)
+        wbt.join_tables(input1=input1, pkey=pkey, input2=input2, fkey=fkey, import_field=import_field)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1486,7 +1486,7 @@ class LinesToPolygons(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lines_to_polygons(input, output)
+        wbt.lines_to_polygons(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1558,7 +1558,7 @@ class MergeTableWithCsv(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.merge_table_with_csv(input, pkey, csv, fkey, import_field)
+        wbt.merge_table_with_csv(input=input, pkey=pkey, csv=csv, fkey=fkey, import_field=import_field)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1603,7 +1603,7 @@ class MergeVectors(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.merge_vectors(inputs, output)
+        wbt.merge_vectors(inputs=inputs, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1657,7 +1657,7 @@ class MultiPartToSinglePart(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.multi_part_to_single_part(input, output, exclude_holes)
+        wbt.multi_part_to_single_part(input=input, output=output, exclude_holes=exclude_holes)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1724,7 +1724,7 @@ class NewRasterFromBase(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.new_raster_from_base(base, output, value, data_type)
+        wbt.new_raster_from_base(base=base, output=output, value=value, data_type=data_type)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1770,7 +1770,7 @@ class PolygonsToLines(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.polygons_to_lines(input, output)
+        wbt.polygons_to_lines(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1806,7 +1806,7 @@ class PrintGeoTiffTags(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.print_geo_tiff_tags(input)
+        wbt.print_geo_tiff_tags(input=input)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1851,7 +1851,7 @@ class RasterToVectorLines(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.raster_to_vector_lines(input, output)
+        wbt.raster_to_vector_lines(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1896,7 +1896,7 @@ class RasterToVectorPoints(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.raster_to_vector_points(input, output)
+        wbt.raster_to_vector_points(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1932,7 +1932,7 @@ class ReinitializeAttributeTable(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.reinitialize_attribute_table(input)
+        wbt.reinitialize_attribute_table(input=input)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1978,7 +1978,7 @@ class RemovePolygonHoles(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.remove_polygon_holes(input, output)
+        wbt.remove_polygon_holes(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2033,7 +2033,7 @@ class SetNodataValue(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.set_nodata_value(input, output, back_value)
+        wbt.set_nodata_value(input=input, output=output, back_value=back_value)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2086,7 +2086,7 @@ class SinglePartToMultiPart(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.single_part_to_multi_part(input, field, output)
+        wbt.single_part_to_multi_part(input=input, field=field, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2169,7 +2169,7 @@ class VectorLinesToRaster(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.vector_lines_to_raster(input, field, output, nodata, cell_size, base)
+        wbt.vector_lines_to_raster(input=input, field=field, output=output, nodata=nodata, cell_size=cell_size, base=base)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2264,7 +2264,7 @@ class VectorPointsToRaster(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.vector_points_to_raster(input, field, output, assign, nodata, cell_size, base)
+        wbt.vector_points_to_raster(input=input, field=field, output=output, assign=assign, nodata=nodata, cell_size=cell_size, base=base)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2347,7 +2347,7 @@ class VectorPolygonsToRaster(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.vector_polygons_to_raster(input, field, output, nodata, cell_size, base)
+        wbt.vector_polygons_to_raster(input=input, field=field, output=output, nodata=nodata, cell_size=cell_size, base=base)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2414,7 +2414,7 @@ class AggregateRaster(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.aggregate_raster(input, output, agg_factor, type)
+        wbt.aggregate_raster(input=input, output=output, agg_factor=agg_factor, type=type)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2495,7 +2495,7 @@ class BlockMaximumGridding(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.block_maximum_gridding(input, field, use_z, output, cell_size, base)
+        wbt.block_maximum_gridding(input=input, field=field, use_z=use_z, output=output, cell_size=cell_size, base=base)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2576,7 +2576,7 @@ class BlockMinimumGridding(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.block_minimum_gridding(input, field, use_z, output, cell_size, base)
+        wbt.block_minimum_gridding(input=input, field=field, use_z=use_z, output=output, cell_size=cell_size, base=base)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2629,7 +2629,7 @@ class Centroid(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.centroid(input, output, text_output)
+        wbt.centroid(input=input, output=output, text_output=text_output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2673,7 +2673,7 @@ class CentroidVector(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.centroid_vector(input, output)
+        wbt.centroid_vector(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2736,7 +2736,7 @@ class Clump(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.clump(input, output, diag, zero_back)
+        wbt.clump(input=input, output=output, diag=diag, zero_back=zero_back)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2801,7 +2801,7 @@ class ConstructVectorTin(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.construct_vector_tin(input, field, use_z, output)
+        wbt.construct_vector_tin(input=input, field=field, use_z=use_z, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2866,7 +2866,7 @@ class CreateHexagonalVectorGrid(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.create_hexagonal_vector_grid(input, output, width, orientation)
+        wbt.create_hexagonal_vector_grid(input=input, output=output, width=width, orientation=orientation)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2941,7 +2941,7 @@ class CreatePlane(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.create_plane(base, output, gradient, aspect, constant)
+        wbt.create_plane(base=base, output=output, gradient=gradient, aspect=aspect, constant=constant)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3022,7 +3022,7 @@ class CreateRectangularVectorGrid(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.create_rectangular_vector_grid(input, output, width, height, xorig, yorig)
+        wbt.create_rectangular_vector_grid(input=input, output=output, width=width, height=height, xorig=xorig, yorig=yorig)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3086,7 +3086,7 @@ class Dissolve(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.dissolve(input, field, output, snap)
+        wbt.dissolve(input=input, field=field, output=output, snap=snap)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3140,7 +3140,7 @@ class EliminateCoincidentPoints(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.eliminate_coincident_points(input, output, tolerance)
+        wbt.eliminate_coincident_points(input=input, output=output, tolerance=tolerance)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3206,7 +3206,7 @@ class ExtendVectorLines(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.extend_vector_lines(input, output, dist, extend)
+        wbt.extend_vector_lines(input=input, output=output, dist=dist, extend=extend)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3251,7 +3251,7 @@ class ExtractNodes(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.extract_nodes(input, output)
+        wbt.extract_nodes(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3307,7 +3307,7 @@ class ExtractRasterValuesAtPoints(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.extract_raster_values_at_points(inputs, points, out_text)
+        wbt.extract_raster_values_at_points(inputs=inputs, points=points, out_text=out_text)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3364,7 +3364,7 @@ class FindLowestOrHighestPoints(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.find_lowest_or_highest_points(input, output, out_type)
+        wbt.find_lowest_or_highest_points(input=input, output=output, out_type=out_type)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3471,7 +3471,7 @@ class IdwInterpolation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.idw_interpolation(input, field, use_z, output, weight, radius, min_points, cell_size, base)
+        wbt.idw_interpolation(input=input, field=field, use_z=use_z, output=output, weight=weight, radius=radius, min_points=min_points, cell_size=cell_size, base=base)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3516,7 +3516,7 @@ class LayerFootprint(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.layer_footprint(input, output)
+        wbt.layer_footprint(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3560,7 +3560,7 @@ class Medoid(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.medoid(input, output)
+        wbt.medoid(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3627,7 +3627,7 @@ class MinimumBoundingBox(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.minimum_bounding_box(input, output, criterion, features)
+        wbt.minimum_bounding_box(input=input, output=output, criterion=criterion, features=features)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3682,7 +3682,7 @@ class MinimumBoundingCircle(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.minimum_bounding_circle(input, output, features)
+        wbt.minimum_bounding_circle(input=input, output=output, features=features)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3737,7 +3737,7 @@ class MinimumBoundingEnvelope(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.minimum_bounding_envelope(input, output, features)
+        wbt.minimum_bounding_envelope(input=input, output=output, features=features)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3792,7 +3792,7 @@ class MinimumConvexHull(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.minimum_convex_hull(input, output, features)
+        wbt.minimum_convex_hull(input=input, output=output, features=features)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3881,7 +3881,7 @@ class NearestNeighbourGridding(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.nearest_neighbour_gridding(input, field, use_z, output, cell_size, base, max_dist)
+        wbt.nearest_neighbour_gridding(input=input, field=field, use_z=use_z, output=output, cell_size=cell_size, base=base, max_dist=max_dist)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3918,7 +3918,7 @@ class PolygonArea(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.polygon_area(input)
+        wbt.polygon_area(input=input)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3964,7 +3964,7 @@ class PolygonLongAxis(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.polygon_long_axis(input, output)
+        wbt.polygon_long_axis(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4001,7 +4001,7 @@ class PolygonPerimeter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.polygon_perimeter(input)
+        wbt.polygon_perimeter(input=input)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4047,7 +4047,7 @@ class PolygonShortAxis(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.polygon_short_axis(input, output)
+        wbt.polygon_short_axis(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4120,7 +4120,7 @@ class RasterArea(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.raster_area(input, output, out_text, units, zero_back)
+        wbt.raster_area(input=input, output=output, out_text=out_text, units=units, zero_back=zero_back)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4177,7 +4177,7 @@ class RasterCellAssignment(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.raster_cell_assignment(input, output, assign)
+        wbt.raster_cell_assignment(input=input, output=output, assign=assign)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4238,7 +4238,7 @@ class Reclass(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.reclass(input, output, reclass_vals, assign_mode)
+        wbt.reclass(input=input, output=output, reclass_vals=reclass_vals, assign_mode=assign_mode)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4309,7 +4309,7 @@ class ReclassEqualInterval(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.reclass_equal_interval(input, output, interval, start_val, end_val)
+        wbt.reclass_equal_interval(input=input, output=output, interval=interval, start_val=start_val, end_val=end_val)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4362,7 +4362,7 @@ class ReclassFromFile(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.reclass_from_file(input, reclass_file, output)
+        wbt.reclass_from_file(input=input, reclass_file=reclass_file, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4416,7 +4416,7 @@ class SmoothVectors(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.smooth_vectors(input, output, filter)
+        wbt.smooth_vectors(input=input, output=output, filter=filter)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4489,7 +4489,7 @@ class TinGridding(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.tin_gridding(input, field, use_z, output, resolution)
+        wbt.tin_gridding(input=input, field=field, use_z=use_z, output=output, resolution=resolution)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4555,7 +4555,7 @@ class VectorHexBinning(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.vector_hex_binning(input, output, width, orientation)
+        wbt.vector_hex_binning(input=input, output=output, width=width, orientation=orientation)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4601,7 +4601,7 @@ class VoronoiDiagram(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.voronoi_diagram(input, output)
+        wbt.voronoi_diagram(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4662,7 +4662,7 @@ class BufferRaster(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.buffer_raster(input, output, size, gridcells)
+        wbt.buffer_raster(input=input, output=output, size=size, gridcells=gridcells)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4715,7 +4715,7 @@ class CostAllocation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.cost_allocation(source, backlink, output)
+        wbt.cost_allocation(source=source, backlink=backlink, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4777,7 +4777,7 @@ class CostDistance(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.cost_distance(source, cost, out_accum, out_backlink)
+        wbt.cost_distance(source=source, cost=cost, out_accum=out_accum, out_backlink=out_backlink)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4838,7 +4838,7 @@ class CostPathway(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.cost_pathway(destination, backlink, output, zero_background)
+        wbt.cost_pathway(destination=destination, backlink=backlink, output=output, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4883,7 +4883,7 @@ class EuclideanAllocation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.euclidean_allocation(input, output)
+        wbt.euclidean_allocation(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4928,7 +4928,7 @@ class EuclideanDistance(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.euclidean_distance(input, output)
+        wbt.euclidean_distance(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4974,7 +4974,7 @@ class AverageOverlay(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.average_overlay(inputs, output)
+        wbt.average_overlay(inputs=inputs, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5027,7 +5027,7 @@ class Clip(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.clip(input, clip, output)
+        wbt.clip(input=input, clip=clip, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5091,7 +5091,7 @@ class ClipRasterToPolygon(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.clip_raster_to_polygon(input, polygons, output, maintain_dimensions)
+        wbt.clip_raster_to_polygon(input=input, polygons=polygons, output=output, maintain_dimensions=maintain_dimensions)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5145,7 +5145,7 @@ class CountIf(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.count_if(inputs, output, value)
+        wbt.count_if(inputs=inputs, output=output, value=value)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5197,7 +5197,7 @@ class Difference(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.difference(input, overlay, output)
+        wbt.difference(input=input, overlay=overlay, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5250,7 +5250,7 @@ class Erase(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.erase(input, erase, output)
+        wbt.erase(input=input, erase=erase, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5304,7 +5304,7 @@ class ErasePolygonFromRaster(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.erase_polygon_from_raster(input, polygons, output)
+        wbt.erase_polygon_from_raster(input=input, polygons=polygons, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5350,7 +5350,7 @@ class HighestPosition(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.highest_position(inputs, output)
+        wbt.highest_position(inputs=inputs, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5412,7 +5412,7 @@ class Intersect(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.intersect(input, overlay, output, snap)
+        wbt.intersect(input=input, overlay=overlay, output=output, snap=snap)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5467,7 +5467,7 @@ class LineIntersections(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.line_intersections(input1, input2, output)
+        wbt.line_intersections(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5513,7 +5513,7 @@ class LowestPosition(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lowest_position(inputs, output)
+        wbt.lowest_position(inputs=inputs, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5559,7 +5559,7 @@ class MaxAbsoluteOverlay(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.max_absolute_overlay(inputs, output)
+        wbt.max_absolute_overlay(inputs=inputs, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5605,7 +5605,7 @@ class MaxOverlay(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.max_overlay(inputs, output)
+        wbt.max_overlay(inputs=inputs, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5651,7 +5651,7 @@ class MinAbsoluteOverlay(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.min_absolute_overlay(inputs, output)
+        wbt.min_absolute_overlay(inputs=inputs, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5697,7 +5697,7 @@ class MinOverlay(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.min_overlay(inputs, output)
+        wbt.min_overlay(inputs=inputs, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5751,7 +5751,7 @@ class PercentEqualTo(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.percent_equal_to(inputs, comparison, output)
+        wbt.percent_equal_to(inputs=inputs, comparison=comparison, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5805,7 +5805,7 @@ class PercentGreaterThan(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.percent_greater_than(inputs, comparison, output)
+        wbt.percent_greater_than(inputs=inputs, comparison=comparison, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5859,7 +5859,7 @@ class PercentLessThan(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.percent_less_than(inputs, comparison, output)
+        wbt.percent_less_than(inputs=inputs, comparison=comparison, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5913,7 +5913,7 @@ class PickFromList(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.pick_from_list(inputs, pos_input, output)
+        wbt.pick_from_list(inputs=inputs, pos_input=pos_input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5960,7 +5960,7 @@ class Polygonize(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.polygonize(inputs, output)
+        wbt.polygonize(inputs=inputs, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6013,7 +6013,7 @@ class SplitWithLines(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.split_with_lines(input, split, output)
+        wbt.split_with_lines(input=input, split=split, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6059,7 +6059,7 @@ class SumOverlay(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.sum_overlay(inputs, output)
+        wbt.sum_overlay(inputs=inputs, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6121,7 +6121,7 @@ class SymmetricalDifference(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.symmetrical_difference(input, overlay, output, snap)
+        wbt.symmetrical_difference(input=input, overlay=overlay, output=output, snap=snap)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6183,7 +6183,7 @@ class Union(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.union(input, overlay, output, snap)
+        wbt.union(input=input, overlay=overlay, output=output, snap=snap)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6264,7 +6264,7 @@ class WeightedOverlay(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.weighted_overlay(factors, weights, cost, constraints, output, scale_max)
+        wbt.weighted_overlay(factors=factors, weights=weights, cost=cost, constraints=constraints, output=output, scale_max=scale_max)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6318,7 +6318,7 @@ class WeightedSum(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.weighted_sum(inputs, weights, output)
+        wbt.weighted_sum(inputs=inputs, weights=weights, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6363,7 +6363,7 @@ class BoundaryShapeComplexity(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.boundary_shape_complexity(input, output)
+        wbt.boundary_shape_complexity(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6400,7 +6400,7 @@ class CompactnessRatio(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.compactness_ratio(input)
+        wbt.compactness_ratio(input=input)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6453,7 +6453,7 @@ class EdgeProportion(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.edge_proportion(input, output, output_text)
+        wbt.edge_proportion(input=input, output=output, output_text=output_text)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6490,7 +6490,7 @@ class ElongationRatio(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.elongation_ratio(input)
+        wbt.elongation_ratio(input=input)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6535,7 +6535,7 @@ class FindPatchOrClassEdgeCells(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.find_patch_or_class_edge_cells(input, output)
+        wbt.find_patch_or_class_edge_cells(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6572,7 +6572,7 @@ class HoleProportion(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.hole_proportion(input)
+        wbt.hole_proportion(input=input)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6609,7 +6609,7 @@ class LinearityIndex(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.linearity_index(input)
+        wbt.linearity_index(input=input)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6654,7 +6654,7 @@ class NarrownessIndex(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.narrowness_index(input, output)
+        wbt.narrowness_index(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6691,7 +6691,7 @@ class PatchOrientation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.patch_orientation(input)
+        wbt.patch_orientation(input=input)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6728,7 +6728,7 @@ class PerimeterAreaRatio(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.perimeter_area_ratio(input)
+        wbt.perimeter_area_ratio(input=input)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6781,7 +6781,7 @@ class RadiusOfGyration(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.radius_of_gyration(input, output, text_output)
+        wbt.radius_of_gyration(input=input, output=output, text_output=text_output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6818,7 +6818,7 @@ class RelatedCircumscribingCircle(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.related_circumscribing_circle(input)
+        wbt.related_circumscribing_circle(input=input)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6855,7 +6855,7 @@ class ShapeComplexityIndex(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.shape_complexity_index(input)
+        wbt.shape_complexity_index(input=input)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6900,7 +6900,7 @@ class ShapeComplexityIndexRaster(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.shape_complexity_index_raster(input, output)
+        wbt.shape_complexity_index_raster(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6955,7 +6955,7 @@ class Aspect(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.aspect(dem, output, zfactor)
+        wbt.aspect(dem=dem, output=output, zfactor=zfactor)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7010,7 +7010,7 @@ class CircularVarianceOfAspect(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.circular_variance_of_aspect(dem, output, filter)
+        wbt.circular_variance_of_aspect(dem=dem, output=output, filter=filter)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7075,7 +7075,7 @@ class DevFromMeanElev(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.dev_from_mean_elev(dem, output, filterx, filtery)
+        wbt.dev_from_mean_elev(dem=dem, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7140,7 +7140,7 @@ class DiffFromMeanElev(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.diff_from_mean_elev(dem, output, filterx, filtery)
+        wbt.diff_from_mean_elev(dem=dem, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7203,7 +7203,7 @@ class DirectionalRelief(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.directional_relief(dem, output, azimuth, max_dist)
+        wbt.directional_relief(dem=dem, output=output, azimuth=azimuth, max_dist=max_dist)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7270,7 +7270,7 @@ class DownslopeIndex(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.downslope_index(dem, output, drop, out_type)
+        wbt.downslope_index(dem=dem, output=output, drop=drop, out_type=out_type)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7383,7 +7383,7 @@ class DrainagePreservingSmoothing(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.drainage_preserving_smoothing(dem, output, filter, norm_diff, num_iter, max_diff, reduction, dfm, zfactor)
+        wbt.drainage_preserving_smoothing(dem=dem, output=output, filter=filter, norm_diff=norm_diff, num_iter=num_iter, max_diff=max_diff, reduction=reduction, dfm=dfm, zfactor=zfactor)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7458,7 +7458,7 @@ class EdgeDensity(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.edge_density(dem, output, filter, norm_diff, zfactor)
+        wbt.edge_density(dem=dem, output=output, filter=filter, norm_diff=norm_diff, zfactor=zfactor)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7503,7 +7503,7 @@ class ElevAbovePit(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.elev_above_pit(dem, output)
+        wbt.elev_above_pit(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7578,7 +7578,7 @@ class ElevPercentile(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.elev_percentile(dem, output, filterx, filtery, sig_digits)
+        wbt.elev_percentile(dem=dem, output=output, filterx=filterx, filtery=filtery, sig_digits=sig_digits)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7623,7 +7623,7 @@ class ElevRelativeToMinMax(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.elev_relative_to_min_max(dem, output)
+        wbt.elev_relative_to_min_max(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7676,7 +7676,7 @@ class ElevRelativeToWatershedMinMax(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.elev_relative_to_watershed_min_max(dem, watersheds, output)
+        wbt.elev_relative_to_watershed_min_max(dem=dem, watersheds=watersheds, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7769,7 +7769,7 @@ class FeaturePreservingDenoise(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.feature_preserving_denoise(dem, output, filter, norm_diff, num_iter, max_diff, zfactor)
+        wbt.feature_preserving_denoise(dem=dem, output=output, filter=filter, norm_diff=norm_diff, num_iter=num_iter, max_diff=max_diff, zfactor=zfactor)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7834,7 +7834,7 @@ class FetchAnalysis(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.fetch_analysis(dem, output, azimuth, hgt_inc)
+        wbt.fetch_analysis(dem=dem, output=output, azimuth=azimuth, hgt_inc=hgt_inc)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7899,7 +7899,7 @@ class FillMissingData(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.fill_missing_data(input, output, filter, weight)
+        wbt.fill_missing_data(input=input, output=output, filter=filter, weight=weight)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7954,7 +7954,7 @@ class FindRidges(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.find_ridges(dem, output, line_thin)
+        wbt.find_ridges(dem=dem, output=output, line_thin=line_thin)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8029,7 +8029,7 @@ class Hillshade(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.hillshade(dem, output, azimuth, altitude, zfactor)
+        wbt.hillshade(dem=dem, output=output, azimuth=azimuth, altitude=altitude, zfactor=zfactor)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8092,7 +8092,7 @@ class HorizonAngle(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.horizon_angle(dem, output, azimuth, max_dist)
+        wbt.horizon_angle(dem=dem, output=output, azimuth=azimuth, max_dist=max_dist)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8147,7 +8147,7 @@ class HypsometricAnalysis(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.hypsometric_analysis(inputs, watershed, output)
+        wbt.hypsometric_analysis(inputs=inputs, watershed=watershed, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8229,7 +8229,7 @@ class MaxAnisotropyDev(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.max_anisotropy_dev(dem, out_mag, out_scale, min_scale, max_scale, step)
+        wbt.max_anisotropy_dev(dem=dem, out_mag=out_mag, out_scale=out_scale, min_scale=min_scale, max_scale=max_scale, step=step)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8311,7 +8311,7 @@ class MaxAnisotropyDevSignature(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.max_anisotropy_dev_signature(dem, points, output, min_scale, max_scale, step)
+        wbt.max_anisotropy_dev_signature(dem=dem, points=points, output=output, min_scale=min_scale, max_scale=max_scale, step=step)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8364,7 +8364,7 @@ class MaxBranchLength(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.max_branch_length(dem, output, log)
+        wbt.max_branch_length(dem=dem, output=output, log=log)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8444,7 +8444,7 @@ class MaxDifferenceFromMean(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.max_difference_from_mean(dem, out_mag, out_scale, min_scale, max_scale, step)
+        wbt.max_difference_from_mean(dem=dem, out_mag=out_mag, out_scale=out_scale, min_scale=min_scale, max_scale=max_scale, step=step)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8489,7 +8489,7 @@ class MaxDownslopeElevChange(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.max_downslope_elev_change(dem, output)
+        wbt.max_downslope_elev_change(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8569,7 +8569,7 @@ class MaxElevDevSignature(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.max_elev_dev_signature(dem, points, output, min_scale, max_scale, step)
+        wbt.max_elev_dev_signature(dem=dem, points=points, output=output, min_scale=min_scale, max_scale=max_scale, step=step)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8649,7 +8649,7 @@ class MaxElevationDeviation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.max_elevation_deviation(dem, out_mag, out_scale, min_scale, max_scale, step)
+        wbt.max_elevation_deviation(dem=dem, out_mag=out_mag, out_scale=out_scale, min_scale=min_scale, max_scale=max_scale, step=step)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8694,7 +8694,7 @@ class MinDownslopeElevChange(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.min_downslope_elev_change(dem, output)
+        wbt.min_downslope_elev_change(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8776,7 +8776,7 @@ class MultiscaleRoughness(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.multiscale_roughness(dem, out_mag, out_scale, min_scale, max_scale, step)
+        wbt.multiscale_roughness(dem=dem, out_mag=out_mag, out_scale=out_scale, min_scale=min_scale, max_scale=max_scale, step=step)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8858,7 +8858,7 @@ class MultiscaleRoughnessSignature(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.multiscale_roughness_signature(dem, points, output, min_scale, max_scale, step)
+        wbt.multiscale_roughness_signature(dem=dem, points=points, output=output, min_scale=min_scale, max_scale=max_scale, step=step)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8929,7 +8929,7 @@ class MultiscaleTopographicPositionImage(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.multiscale_topographic_position_image(local, meso, broad, output, lightness)
+        wbt.multiscale_topographic_position_image(local=local, meso=meso, broad=broad, output=output, lightness=lightness)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8974,7 +8974,7 @@ class NumDownslopeNeighbours(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.num_downslope_neighbours(dem, output)
+        wbt.num_downslope_neighbours(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9019,7 +9019,7 @@ class NumUpslopeNeighbours(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.num_upslope_neighbours(dem, output)
+        wbt.num_upslope_neighbours(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9104,7 +9104,7 @@ class PennockLandformClass(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.pennock_landform_class(dem, output, slope, prof, plan, zfactor)
+        wbt.pennock_landform_class(dem=dem, output=output, slope=slope, prof=prof, plan=plan, zfactor=zfactor)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9169,7 +9169,7 @@ class PercentElevRange(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.percent_elev_range(dem, output, filterx, filtery)
+        wbt.percent_elev_range(dem=dem, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9224,7 +9224,7 @@ class PlanCurvature(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.plan_curvature(dem, output, zfactor)
+        wbt.plan_curvature(dem=dem, output=output, zfactor=zfactor)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9278,7 +9278,7 @@ class Profile(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.profile(lines, surface, output)
+        wbt.profile(lines=lines, surface=surface, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9333,7 +9333,7 @@ class ProfileCurvature(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.profile_curvature(dem, output, zfactor)
+        wbt.profile_curvature(dem=dem, output=output, zfactor=zfactor)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9398,7 +9398,7 @@ class RelativeAspect(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.relative_aspect(dem, output, azimuth, zfactor)
+        wbt.relative_aspect(dem=dem, output=output, azimuth=azimuth, zfactor=zfactor)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9461,7 +9461,7 @@ class RelativeStreamPowerIndex(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.relative_stream_power_index(sca, slope, output, exponent)
+        wbt.relative_stream_power_index(sca=sca, slope=slope, output=output, exponent=exponent)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9526,7 +9526,7 @@ class RelativeTopographicPosition(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.relative_topographic_position(dem, output, filterx, filtery)
+        wbt.relative_topographic_position(dem=dem, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9591,7 +9591,7 @@ class RemoveOffTerrainObjects(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.remove_off_terrain_objects(dem, output, filter, slope)
+        wbt.remove_off_terrain_objects(dem=dem, output=output, filter=filter, slope=slope)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9646,7 +9646,7 @@ class RuggednessIndex(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.ruggedness_index(dem, output, zfactor)
+        wbt.ruggedness_index(dem=dem, output=output, zfactor=zfactor)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9719,7 +9719,7 @@ class SedimentTransportIndex(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.sediment_transport_index(sca, slope, output, sca_exponent, slope_exponent)
+        wbt.sediment_transport_index(sca=sca, slope=slope, output=output, sca_exponent=sca_exponent, slope_exponent=slope_exponent)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9774,7 +9774,7 @@ class Slope(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.slope(dem, output, zfactor)
+        wbt.slope(dem=dem, output=output, zfactor=zfactor)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9829,7 +9829,7 @@ class SlopeVsElevationPlot(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.slope_vs_elevation_plot(inputs, watershed, output)
+        wbt.slope_vs_elevation_plot(inputs=inputs, watershed=watershed, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9904,7 +9904,7 @@ class StandardDeviationOfSlope(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.standard_deviation_of_slope(input, output, zfactor, filterx, filtery)
+        wbt.standard_deviation_of_slope(input=input, output=output, zfactor=zfactor, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9949,7 +9949,7 @@ class SurfaceAreaRatio(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.surface_area_ratio(dem, output)
+        wbt.surface_area_ratio(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10004,7 +10004,7 @@ class TangentialCurvature(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.tangential_curvature(dem, output, zfactor)
+        wbt.tangential_curvature(dem=dem, output=output, zfactor=zfactor)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10059,7 +10059,7 @@ class TotalCurvature(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.total_curvature(dem, output, zfactor)
+        wbt.total_curvature(dem=dem, output=output, zfactor=zfactor)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10123,7 +10123,7 @@ class Viewshed(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.viewshed(dem, stations, output, height)
+        wbt.viewshed(dem=dem, stations=stations, output=output, height=height)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10188,7 +10188,7 @@ class VisibilityIndex(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.visibility_index(dem, output, height, res_factor)
+        wbt.visibility_index(dem=dem, output=output, height=height, res_factor=res_factor)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10241,7 +10241,7 @@ class WetnessIndex(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.wetness_index(sca, slope, output)
+        wbt.wetness_index(sca=sca, slope=slope, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10286,7 +10286,7 @@ class AverageFlowpathSlope(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.average_flowpath_slope(dem, output)
+        wbt.average_flowpath_slope(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10331,7 +10331,7 @@ class AverageUpslopeFlowpathLength(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.average_upslope_flowpath_length(dem, output)
+        wbt.average_upslope_flowpath_length(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10386,7 +10386,7 @@ class Basins(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.basins(d8_pntr, output, esri_pntr)
+        wbt.basins(d8_pntr=d8_pntr, output=output, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10465,7 +10465,7 @@ class BreachDepressions(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.breach_depressions(dem, output, max_depth, max_length, flat_increment, fill_pits)
+        wbt.breach_depressions(dem=dem, output=output, max_depth=max_depth, max_length=max_length, flat_increment=flat_increment, fill_pits=fill_pits)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10510,7 +10510,7 @@ class BreachSingleCellPits(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.breach_single_cell_pits(dem, output)
+        wbt.breach_single_cell_pits(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10583,7 +10583,7 @@ class D8FlowAccumulation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.d8_flow_accumulation(dem, output, out_type, log, clip)
+        wbt.d8_flow_accumulation(dem=dem, output=output, out_type=out_type, log=log, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10652,7 +10652,7 @@ class D8MassFlux(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.d8_mass_flux(dem, loading, efficiency, absorption, output)
+        wbt.d8_mass_flux(dem=dem, loading=loading, efficiency=efficiency, absorption=absorption, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10707,7 +10707,7 @@ class D8Pointer(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.d8_pointer(dem, output, esri_pntr)
+        wbt.d8_pointer(dem=dem, output=output, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10788,7 +10788,7 @@ class DInfFlowAccumulation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.d_inf_flow_accumulation(dem, output, out_type, threshold, log, clip)
+        wbt.d_inf_flow_accumulation(dem=dem, output=output, out_type=out_type, threshold=threshold, log=log, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10857,7 +10857,7 @@ class DInfMassFlux(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.d_inf_mass_flux(dem, loading, efficiency, absorption, output)
+        wbt.d_inf_mass_flux(dem=dem, loading=loading, efficiency=efficiency, absorption=absorption, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10902,7 +10902,7 @@ class DInfPointer(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.d_inf_pointer(dem, output)
+        wbt.d_inf_pointer(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10955,7 +10955,7 @@ class DepthInSink(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.depth_in_sink(dem, output, zero_background)
+        wbt.depth_in_sink(dem=dem, output=output, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11008,7 +11008,7 @@ class DownslopeDistanceToStream(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.downslope_distance_to_stream(dem, streams, output)
+        wbt.downslope_distance_to_stream(dem=dem, streams=streams, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11079,7 +11079,7 @@ class DownslopeFlowpathLength(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.downslope_flowpath_length(d8_pntr, watersheds, weights, output, esri_pntr)
+        wbt.downslope_flowpath_length(d8_pntr=d8_pntr, watersheds=watersheds, weights=weights, output=output, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11132,7 +11132,7 @@ class ElevationAboveStream(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.elevation_above_stream(dem, streams, output)
+        wbt.elevation_above_stream(dem=dem, streams=streams, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11185,7 +11185,7 @@ class ElevationAboveStreamEuclidean(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.elevation_above_stream_euclidean(dem, streams, output)
+        wbt.elevation_above_stream_euclidean(dem=dem, streams=streams, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11276,7 +11276,7 @@ class Fd8FlowAccumulation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.fd8_flow_accumulation(dem, output, out_type, exponent, threshold, log, clip)
+        wbt.fd8_flow_accumulation(dem=dem, output=output, out_type=out_type, exponent=exponent, threshold=threshold, log=log, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11321,7 +11321,7 @@ class Fd8Pointer(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.fd8_pointer(dem, output)
+        wbt.fd8_pointer(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11375,7 +11375,7 @@ class FillBurn(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.fill_burn(dem, streams, output)
+        wbt.fill_burn(dem=dem, streams=streams, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11430,7 +11430,7 @@ class FillDepressions(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.fill_depressions(dem, output, fix_flats)
+        wbt.fill_depressions(dem=dem, output=output, fix_flats=fix_flats)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11475,7 +11475,7 @@ class FillSingleCellPits(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.fill_single_cell_pits(dem, output)
+        wbt.fill_single_cell_pits(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11520,7 +11520,7 @@ class FindNoFlowCells(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.find_no_flow_cells(dem, output)
+        wbt.find_no_flow_cells(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11573,7 +11573,7 @@ class FindParallelFlow(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.find_parallel_flow(d8_pntr, streams, output)
+        wbt.find_parallel_flow(d8_pntr=d8_pntr, streams=streams, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11627,7 +11627,7 @@ class FlattenLakes(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.flatten_lakes(dem, lakes, output)
+        wbt.flatten_lakes(dem=dem, lakes=lakes, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11672,7 +11672,7 @@ class FloodOrder(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.flood_order(dem, output)
+        wbt.flood_order(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11773,7 +11773,7 @@ class FlowAccumulationFullWorkflow(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.flow_accumulation_full_workflow(dem, out_dem, out_pntr, out_accum, out_type, log, clip, esri_pntr)
+        wbt.flow_accumulation_full_workflow(dem=dem, out_dem=out_dem, out_pntr=out_pntr, out_accum=out_accum, out_type=out_type, log=log, clip=clip, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11828,7 +11828,7 @@ class FlowLengthDiff(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.flow_length_diff(d8_pntr, output, esri_pntr)
+        wbt.flow_length_diff(d8_pntr=d8_pntr, output=output, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11891,7 +11891,7 @@ class Hillslopes(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.hillslopes(d8_pntr, streams, output, esri_pntr)
+        wbt.hillslopes(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11956,7 +11956,7 @@ class ImpoundmentSizeIndex(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.impoundment_size_index(dem, output, out_type, damlength)
+        wbt.impoundment_size_index(dem=dem, output=output, out_type=out_type, damlength=damlength)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12009,7 +12009,7 @@ class Isobasins(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.isobasins(dem, output, size)
+        wbt.isobasins(dem=dem, output=output, size=size)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12071,7 +12071,7 @@ class JensonSnapPourPoints(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.jenson_snap_pour_points(pour_pts, streams, output, snap_dist)
+        wbt.jenson_snap_pour_points(pour_pts=pour_pts, streams=streams, output=output, snap_dist=snap_dist)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12124,7 +12124,7 @@ class LongestFlowpath(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.longest_flowpath(dem, basins, output)
+        wbt.longest_flowpath(dem=dem, basins=basins, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12169,7 +12169,7 @@ class MaxUpslopeFlowpathLength(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.max_upslope_flowpath_length(dem, output)
+        wbt.max_upslope_flowpath_length(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12214,7 +12214,7 @@ class NumInflowingNeighbours(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.num_inflowing_neighbours(dem, output)
+        wbt.num_inflowing_neighbours(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12286,7 +12286,7 @@ class RaiseWalls(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.raise_walls(input, breach, dem, output, height)
+        wbt.raise_walls(input=input, breach=breach, dem=dem, output=output, height=height)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12341,7 +12341,7 @@ class Rho8Pointer(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.rho8_pointer(dem, output, esri_pntr)
+        wbt.rho8_pointer(dem=dem, output=output, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12394,7 +12394,7 @@ class Sink(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.sink(dem, output, zero_background)
+        wbt.sink(dem=dem, output=output, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12456,7 +12456,7 @@ class SnapPourPoints(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.snap_pour_points(pour_pts, flow_accum, output, snap_dist)
+        wbt.snap_pour_points(pour_pts=pour_pts, flow_accum=flow_accum, output=output, snap_dist=snap_dist)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12527,7 +12527,7 @@ class StochasticDepressionAnalysis(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.stochastic_depression_analysis(dem, output, rmse, range, iterations)
+        wbt.stochastic_depression_analysis(dem=dem, output=output, rmse=rmse, range=range, iterations=iterations)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12590,7 +12590,7 @@ class StrahlerOrderBasins(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.strahler_order_basins(d8_pntr, streams, output, esri_pntr)
+        wbt.strahler_order_basins(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12653,7 +12653,7 @@ class Subbasins(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.subbasins(d8_pntr, streams, output, esri_pntr)
+        wbt.subbasins(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12725,7 +12725,7 @@ class TraceDownslopeFlowpaths(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.trace_downslope_flowpaths(seed_pts, d8_pntr, output, esri_pntr, zero_background)
+        wbt.trace_downslope_flowpaths(seed_pts=seed_pts, d8_pntr=d8_pntr, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12789,7 +12789,7 @@ class UnnestBasins(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.unnest_basins(d8_pntr, pour_pts, output, esri_pntr)
+        wbt.unnest_basins(d8_pntr=d8_pntr, pour_pts=pour_pts, output=output, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12853,7 +12853,7 @@ class Watershed(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.watershed(d8_pntr, pour_pts, output, esri_pntr)
+        wbt.watershed(d8_pntr=d8_pntr, pour_pts=pour_pts, output=output, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12917,7 +12917,7 @@ class ChangeVectorAnalysis(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.change_vector_analysis(date1, date2, magnitude, direction)
+        wbt.change_vector_analysis(date1=date1, date2=date2, magnitude=magnitude, direction=direction)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12982,7 +12982,7 @@ class Closing(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.closing(input, output, filterx, filtery)
+        wbt.closing(input=input, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13071,7 +13071,7 @@ class CreateColourComposite(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.create_colour_composite(red, green, blue, opacity, output, enhance, zeros)
+        wbt.create_colour_composite(red=red, green=green, blue=blue, opacity=opacity, output=output, enhance=enhance, zeros=zeros)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13128,7 +13128,7 @@ class FlipImage(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.flip_image(input, output, direction)
+        wbt.flip_image(input=input, output=output, direction=direction)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13216,7 +13216,7 @@ class IhsToRgb(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.ihs_to_rgb(intensity, hue, saturation, red, green, blue, output)
+        wbt.ihs_to_rgb(intensity=intensity, hue=hue, saturation=saturation, red=red, green=green, blue=blue, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13271,7 +13271,7 @@ class ImageStackProfile(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.image_stack_profile(inputs, points, output)
+        wbt.image_stack_profile(inputs=inputs, points=points, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13316,7 +13316,7 @@ class IntegralImage(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.integral_image(input, output)
+        wbt.integral_image(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13421,7 +13421,7 @@ class KMeansClustering(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.k_means_clustering(inputs, output, out_html, classes, max_iterations, class_change, initialize, min_class_size)
+        wbt.k_means_clustering(inputs=inputs, output=output, out_html=out_html, classes=classes, max_iterations=max_iterations, class_change=class_change, initialize=initialize, min_class_size=min_class_size)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13466,7 +13466,7 @@ class LineThinning(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.line_thinning(input, output)
+        wbt.line_thinning(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13559,7 +13559,7 @@ class ModifiedKMeansClustering(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.modified_k_means_clustering(inputs, output, out_html, start_clusters, merger_dist, max_iterations, class_change)
+        wbt.modified_k_means_clustering(inputs=inputs, output=output, out_html=out_html, start_clusters=start_clusters, merger_dist=merger_dist, max_iterations=max_iterations, class_change=class_change)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13617,7 +13617,7 @@ class Mosaic(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.mosaic(inputs, output, method)
+        wbt.mosaic(inputs=inputs, output=output, method=method)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13692,7 +13692,7 @@ class MosaicWithFeathering(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.mosaic_with_feathering(input1, input2, output, method, weight)
+        wbt.mosaic_with_feathering(input1=input1, input2=input2, output=output, method=method, weight=weight)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13765,7 +13765,7 @@ class NormalizedDifferenceIndex(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.normalized_difference_index(input1, input2, output, clip, correction)
+        wbt.normalized_difference_index(input1=input1, input2=input2, output=output, clip=clip, correction=correction)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13830,7 +13830,7 @@ class Opening(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.opening(input, output, filterx, filtery)
+        wbt.opening(input=input, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13885,7 +13885,7 @@ class RemoveSpurs(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.remove_spurs(input, output, iterations)
+        wbt.remove_spurs(input=input, output=output, iterations=iterations)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13942,7 +13942,7 @@ class Resample(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.resample(inputs, destination, method)
+        wbt.resample(inputs=inputs, destination=destination, method=method)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14029,7 +14029,7 @@ class RgbToIhs(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.rgb_to_ihs(red, green, blue, composite, intensity, hue, saturation)
+        wbt.rgb_to_ihs(red=red, green=green, blue=blue, composite=composite, intensity=intensity, hue=hue, saturation=saturation)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14074,7 +14074,7 @@ class SplitColourComposite(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.split_colour_composite(input, output)
+        wbt.split_colour_composite(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14119,7 +14119,7 @@ class ThickenRasterLine(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.thicken_raster_line(input, output)
+        wbt.thicken_raster_line(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14196,7 +14196,7 @@ class TophatTransform(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.tophat_transform(input, output, filterx, filtery, variant)
+        wbt.tophat_transform(input=input, output=output, filterx=filterx, filtery=filtery, variant=variant)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14257,7 +14257,7 @@ class WriteFunctionMemoryInsertion(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.write_function_memory_insertion(input1, input2, input3, output)
+        wbt.write_function_memory_insertion(input1=input1, input2=input2, input3=input3, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14332,7 +14332,7 @@ class AdaptiveFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.adaptive_filter(input, output, filterx, filtery, threshold)
+        wbt.adaptive_filter(input=input, output=output, filterx=filterx, filtery=filtery, threshold=threshold)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14397,7 +14397,7 @@ class BilateralFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.bilateral_filter(input, output, sigma_dist, sigma_int)
+        wbt.bilateral_filter(input=input, output=output, sigma_dist=sigma_dist, sigma_int=sigma_int)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14462,7 +14462,7 @@ class ConservativeSmoothingFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.conservative_smoothing_filter(input, output, filterx, filtery)
+        wbt.conservative_smoothing_filter(input=input, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14507,7 +14507,7 @@ class CornerDetection(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.corner_detection(input, output)
+        wbt.corner_detection(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14572,7 +14572,7 @@ class DiffOfGaussianFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.diff_of_gaussian_filter(input, output, sigma1, sigma2)
+        wbt.diff_of_gaussian_filter(input=input, output=output, sigma1=sigma1, sigma2=sigma2)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14637,7 +14637,7 @@ class DiversityFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.diversity_filter(input, output, filterx, filtery)
+        wbt.diversity_filter(input=input, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14700,7 +14700,7 @@ class EdgePreservingMeanFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.edge_preserving_mean_filter(input, output, filter, threshold)
+        wbt.edge_preserving_mean_filter(input=input, output=output, filter=filter, threshold=threshold)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14767,7 +14767,7 @@ class EmbossFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.emboss_filter(input, output, direction, clip)
+        wbt.emboss_filter(input=input, output=output, direction=direction, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14822,7 +14822,7 @@ class FastAlmostGaussianFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.fast_almost_gaussian_filter(input, output, sigma)
+        wbt.fast_almost_gaussian_filter(input=input, output=output, sigma=sigma)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14877,7 +14877,7 @@ class GaussianFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.gaussian_filter(input, output, sigma)
+        wbt.gaussian_filter(input=input, output=output, sigma=sigma)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14942,7 +14942,7 @@ class HighPassFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.high_pass_filter(input, output, filterx, filtery)
+        wbt.high_pass_filter(input=input, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15017,7 +15017,7 @@ class HighPassMedianFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.high_pass_median_filter(input, output, filterx, filtery, sig_digits)
+        wbt.high_pass_median_filter(input=input, output=output, filterx=filterx, filtery=filtery, sig_digits=sig_digits)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15092,7 +15092,7 @@ class KNearestMeanFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.k_nearest_mean_filter(input, output, filterx, filtery, k)
+        wbt.k_nearest_mean_filter(input=input, output=output, filterx=filterx, filtery=filtery, k=k)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15159,7 +15159,7 @@ class LaplacianFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.laplacian_filter(input, output, variant, clip)
+        wbt.laplacian_filter(input=input, output=output, variant=variant, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15214,7 +15214,7 @@ class LaplacianOfGaussianFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.laplacian_of_gaussian_filter(input, output, sigma)
+        wbt.laplacian_of_gaussian_filter(input=input, output=output, sigma=sigma)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15299,7 +15299,7 @@ class LeeFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lee_filter(input, output, filterx, filtery, sigma, m)
+        wbt.lee_filter(input=input, output=output, filterx=filterx, filtery=filtery, sigma=sigma, m=m)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15374,7 +15374,7 @@ class LineDetectionFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.line_detection_filter(input, output, variant, absvals, clip)
+        wbt.line_detection_filter(input=input, output=output, variant=variant, absvals=absvals, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15439,7 +15439,7 @@ class MajorityFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.majority_filter(input, output, filterx, filtery)
+        wbt.majority_filter(input=input, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15504,7 +15504,7 @@ class MaximumFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.maximum_filter(input, output, filterx, filtery)
+        wbt.maximum_filter(input=input, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15569,7 +15569,7 @@ class MeanFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.mean_filter(input, output, filterx, filtery)
+        wbt.mean_filter(input=input, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15644,7 +15644,7 @@ class MedianFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.median_filter(input, output, filterx, filtery, sig_digits)
+        wbt.median_filter(input=input, output=output, filterx=filterx, filtery=filtery, sig_digits=sig_digits)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15709,7 +15709,7 @@ class MinimumFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.minimum_filter(input, output, filterx, filtery)
+        wbt.minimum_filter(input=input, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15774,7 +15774,7 @@ class OlympicFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.olympic_filter(input, output, filterx, filtery)
+        wbt.olympic_filter(input=input, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15849,7 +15849,7 @@ class PercentileFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.percentile_filter(input, output, filterx, filtery, sig_digits)
+        wbt.percentile_filter(input=input, output=output, filterx=filterx, filtery=filtery, sig_digits=sig_digits)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15904,7 +15904,7 @@ class PrewittFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.prewitt_filter(input, output, clip)
+        wbt.prewitt_filter(input=input, output=output, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15969,7 +15969,7 @@ class RangeFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.range_filter(input, output, filterx, filtery)
+        wbt.range_filter(input=input, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16024,7 +16024,7 @@ class RobertsCrossFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.roberts_cross_filter(input, output, clip)
+        wbt.roberts_cross_filter(input=input, output=output, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16079,7 +16079,7 @@ class ScharrFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.scharr_filter(input, output, clip)
+        wbt.scharr_filter(input=input, output=output, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16146,7 +16146,7 @@ class SobelFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.sobel_filter(input, output, variant, clip)
+        wbt.sobel_filter(input=input, output=output, variant=variant, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16211,7 +16211,7 @@ class StandardDeviationFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.standard_deviation_filter(input, output, filterx, filtery)
+        wbt.standard_deviation_filter(input=input, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16276,7 +16276,7 @@ class TotalFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.total_filter(input, output, filterx, filtery)
+        wbt.total_filter(input=input, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16351,7 +16351,7 @@ class UnsharpMasking(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.unsharp_masking(input, output, sigma, amount, threshold)
+        wbt.unsharp_masking(input=input, output=output, sigma=sigma, amount=amount, threshold=threshold)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16427,7 +16427,7 @@ class UserDefinedWeightsFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.user_defined_weights_filter(input, weights, output, center, normalize)
+        wbt.user_defined_weights_filter(input=input, weights=weights, output=output, center=center, normalize=normalize)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16482,7 +16482,7 @@ class BalanceContrastEnhancement(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.balance_contrast_enhancement(input, output, band_mean)
+        wbt.balance_contrast_enhancement(input=input, output=output, band_mean=band_mean)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16566,7 +16566,7 @@ class CorrectVignetting(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.correct_vignetting(input, pp, output, focal_length, image_width, n)
+        wbt.correct_vignetting(input=input, pp=pp, output=output, focal_length=focal_length, image_width=image_width, n=n)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16631,7 +16631,7 @@ class DirectDecorrelationStretch(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.direct_decorrelation_stretch(input, output, k, clip)
+        wbt.direct_decorrelation_stretch(input=input, output=output, k=k, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16686,7 +16686,7 @@ class GammaCorrection(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.gamma_correction(input, output, gamma)
+        wbt.gamma_correction(input=input, output=output, gamma=gamma)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16741,7 +16741,7 @@ class GaussianContrastStretch(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.gaussian_contrast_stretch(input, output, num_tones)
+        wbt.gaussian_contrast_stretch(input=input, output=output, num_tones=num_tones)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16796,7 +16796,7 @@ class HistogramEqualization(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.histogram_equalization(input, output, num_tones)
+        wbt.histogram_equalization(input=input, output=output, num_tones=num_tones)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16849,7 +16849,7 @@ class HistogramMatching(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.histogram_matching(input, histo_file, output)
+        wbt.histogram_matching(input=input, histo_file=histo_file, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16902,7 +16902,7 @@ class HistogramMatchingTwoImages(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.histogram_matching_two_images(input1, input2, output)
+        wbt.histogram_matching_two_images(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16973,7 +16973,7 @@ class MinMaxContrastStretch(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.min_max_contrast_stretch(input, output, min_val, max_val, num_tones)
+        wbt.min_max_contrast_stretch(input=input, output=output, min_val=min_val, max_val=max_val, num_tones=num_tones)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17062,7 +17062,7 @@ class PanchromaticSharpening(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.panchromatic_sharpening(red, green, blue, composite, pan, output, method)
+        wbt.panchromatic_sharpening(red=red, green=green, blue=blue, composite=composite, pan=pan, output=output, method=method)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17139,7 +17139,7 @@ class PercentageContrastStretch(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.percentage_contrast_stretch(input, output, clip, tail, num_tones)
+        wbt.percentage_contrast_stretch(input=input, output=output, clip=clip, tail=tail, num_tones=num_tones)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17214,7 +17214,7 @@ class SigmoidalContrastStretch(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.sigmoidal_contrast_stretch(input, output, cutoff, gain, num_tones)
+        wbt.sigmoidal_contrast_stretch(input=input, output=output, cutoff=cutoff, gain=gain, num_tones=num_tones)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17279,7 +17279,7 @@ class StandardDeviationContrastStretch(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.standard_deviation_contrast_stretch(input, output, stdev, num_tones)
+        wbt.standard_deviation_contrast_stretch(input=input, output=output, stdev=stdev, num_tones=num_tones)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17345,7 +17345,7 @@ class ClassifyOverlapPoints(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.classify_overlap_points(input, output, resolution, filter)
+        wbt.classify_overlap_points(input=input, output=output, resolution=resolution, filter=filter)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17400,7 +17400,7 @@ class ClipLidarToPolygon(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.clip_lidar_to_polygon(input, polygons, output)
+        wbt.clip_lidar_to_polygon(input=input, polygons=polygons, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17455,7 +17455,7 @@ class ErasePolygonFromLidar(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.erase_polygon_from_lidar(input, polygons, output)
+        wbt.erase_polygon_from_lidar(input=input, polygons=polygons, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17509,7 +17509,7 @@ class FilterLidarScanAngles(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.filter_lidar_scan_angles(input, output, threshold)
+        wbt.filter_lidar_scan_angles(input=input, output=output, threshold=threshold)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17555,7 +17555,7 @@ class FindFlightlineEdgePoints(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.find_flightline_edge_points(input, output)
+        wbt.find_flightline_edge_points(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17611,7 +17611,7 @@ class FlightlineOverlap(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.flightline_overlap(input, output, resolution)
+        wbt.flightline_overlap(input=input, output=output, resolution=resolution)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17649,7 +17649,7 @@ class LasToAscii(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.las_to_ascii(inputs)
+        wbt.las_to_ascii(inputs=inputs)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17686,7 +17686,7 @@ class LasToMultipointShapefile(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.las_to_multipoint_shapefile(input)
+        wbt.las_to_multipoint_shapefile(input=input)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17723,7 +17723,7 @@ class LasToShapefile(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.las_to_shapefile(input)
+        wbt.las_to_shapefile(input=input)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17779,7 +17779,7 @@ class LidarBlockMaximum(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_block_maximum(input, output, resolution)
+        wbt.lidar_block_maximum(input=input, output=output, resolution=resolution)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17835,7 +17835,7 @@ class LidarBlockMinimum(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_block_minimum(input, output, resolution)
+        wbt.lidar_block_minimum(input=input, output=output, resolution=resolution)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17906,7 +17906,7 @@ class LidarClassifySubset(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_classify_subset(base, subset, output, subset_class, nonsubset_class)
+        wbt.lidar_classify_subset(base=base, subset=subset, output=output, subset_class=subset_class, nonsubset_class=nonsubset_class)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17960,7 +17960,7 @@ class LidarColourize(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_colourize(in_lidar, in_image, output)
+        wbt.lidar_colourize(in_lidar=in_lidar, in_image=in_image, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18042,7 +18042,7 @@ class LidarConstructVectorTin(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_construct_vector_tin(input, output, returns, exclude_cls, minz, maxz)
+        wbt.lidar_construct_vector_tin(input=input, output=output, returns=returns, exclude_cls=exclude_cls, minz=minz, maxz=maxz)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18132,7 +18132,7 @@ class LidarElevationSlice(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_elevation_slice(input, output, minz, maxz, cls, inclassval, outclassval)
+        wbt.lidar_elevation_slice(input=input, output=output, minz=minz, maxz=maxz, cls=cls, inclassval=inclassval, outclassval=outclassval)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18238,7 +18238,7 @@ class LidarGroundPointFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_ground_point_filter(input, output, radius, min_neighbours, slope_threshold, height_threshold, classify, slope_norm)
+        wbt.lidar_ground_point_filter(input=input, output=output, radius=radius, min_neighbours=min_neighbours, slope_threshold=slope_threshold, height_threshold=height_threshold, classify=classify, slope_norm=slope_norm)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18304,7 +18304,7 @@ class LidarHexBinning(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_hex_binning(input, output, width, orientation)
+        wbt.lidar_hex_binning(input=input, output=output, width=width, orientation=orientation)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18380,7 +18380,7 @@ class LidarHillshade(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_hillshade(input, output, azimuth, altitude, radius)
+        wbt.lidar_hillshade(input=input, output=output, azimuth=azimuth, altitude=altitude, radius=radius)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18448,7 +18448,7 @@ class LidarHistogram(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_histogram(input, output, parameter, clip)
+        wbt.lidar_histogram(input=input, output=output, parameter=parameter, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18572,7 +18572,7 @@ class LidarIdwInterpolation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_idw_interpolation(input, output, parameter, returns, resolution, weight, radius, exclude_cls, minz, maxz)
+        wbt.lidar_idw_interpolation(input=input, output=output, parameter=parameter, returns=returns, resolution=resolution, weight=weight, radius=radius, exclude_cls=exclude_cls, minz=minz, maxz=maxz)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18634,7 +18634,7 @@ class LidarInfo(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_info(input, output, vlr, geokeys)
+        wbt.lidar_info(input=input, output=output, vlr=vlr, geokeys=geokeys)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18681,7 +18681,7 @@ class LidarJoin(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_join(inputs, output)
+        wbt.lidar_join(inputs=inputs, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18755,7 +18755,7 @@ class LidarKappaIndex(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_kappa_index(input1, input2, output, class_accuracy, resolution)
+        wbt.lidar_kappa_index(input1=input1, input2=input2, output=output, class_accuracy=class_accuracy, resolution=resolution)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18869,7 +18869,7 @@ class LidarNearestNeighbourGridding(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_nearest_neighbour_gridding(input, output, parameter, returns, resolution, radius, exclude_cls, minz, maxz)
+        wbt.lidar_nearest_neighbour_gridding(input=input, output=output, parameter=parameter, returns=returns, resolution=resolution, radius=radius, exclude_cls=exclude_cls, minz=minz, maxz=maxz)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18971,7 +18971,7 @@ class LidarPointDensity(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_point_density(input, output, returns, resolution, radius, exclude_cls, minz, maxz)
+        wbt.lidar_point_density(input=input, output=output, returns=returns, resolution=resolution, radius=radius, exclude_cls=exclude_cls, minz=minz, maxz=maxz)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19060,7 +19060,7 @@ class LidarPointStats(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_point_stats(input, resolution, num_points, num_pulses, z_range, intensity_range, predom_class)
+        wbt.lidar_point_stats(input=input, resolution=resolution, num_points=num_points, num_pulses=num_pulses, z_range=z_range, intensity_range=intensity_range, predom_class=predom_class)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19116,7 +19116,7 @@ class LidarRemoveDuplicates(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_remove_duplicates(input, output, include_z)
+        wbt.lidar_remove_duplicates(input=input, output=output, include_z=include_z)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19182,7 +19182,7 @@ class LidarRemoveOutliers(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_remove_outliers(input, output, radius, elev_diff)
+        wbt.lidar_remove_outliers(input=input, output=output, radius=radius, elev_diff=elev_diff)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19258,7 +19258,7 @@ class LidarSegmentation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_segmentation(input, output, radius, norm_diff, maxzdiff)
+        wbt.lidar_segmentation(input=input, output=output, radius=radius, norm_diff=norm_diff, maxzdiff=maxzdiff)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19342,7 +19342,7 @@ class LidarSegmentationBasedFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_segmentation_based_filter(input, output, radius, norm_diff, maxzdiff, classify)
+        wbt.lidar_segmentation_based_filter(input=input, output=output, radius=radius, norm_diff=norm_diff, maxzdiff=maxzdiff, classify=classify)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19420,7 +19420,7 @@ class LidarThin(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_thin(input, output, resolution, method, save_filtered)
+        wbt.lidar_thin(input=input, output=output, resolution=resolution, method=method, save_filtered=save_filtered)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19494,7 +19494,7 @@ class LidarThinHighDensity(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_thin_high_density(input, output, resolution, density, save_filtered)
+        wbt.lidar_thin_high_density(input=input, output=output, resolution=resolution, density=density, save_filtered=save_filtered)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19581,7 +19581,7 @@ class LidarTile(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_tile(input, width, height, origin_x, origin_y, min_points)
+        wbt.lidar_tile(input=input, width=width, height=height, origin_x=origin_x, origin_y=origin_y, min_points=min_points)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19627,7 +19627,7 @@ class LidarTileFootprint(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_tile_footprint(input, output)
+        wbt.lidar_tile_footprint(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19739,7 +19739,7 @@ class LidarTinGridding(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_tin_gridding(input, output, parameter, returns, resolution, exclude_cls, minz, maxz, max_triangle_edge_length)
+        wbt.lidar_tin_gridding(input=input, output=output, parameter=parameter, returns=returns, resolution=resolution, exclude_cls=exclude_cls, minz=minz, maxz=maxz, max_triangle_edge_length=max_triangle_edge_length)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19795,7 +19795,7 @@ class LidarTophatTransform(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_tophat_transform(input, output, radius)
+        wbt.lidar_tophat_transform(input=input, output=output, radius=radius)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19851,7 +19851,7 @@ class NormalVectors(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.normal_vectors(input, output, radius)
+        wbt.normal_vectors(input=input, output=output, radius=radius)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19904,7 +19904,7 @@ class SelectTilesByPolygon(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.select_tiles_by_polygon(indir, outdir, polygons)
+        wbt.select_tiles_by_polygon(indir=indir, outdir=outdir, polygons=polygons)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19957,7 +19957,7 @@ class And(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.And(input1, input2, output)
+        wbt.And(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20010,7 +20010,7 @@ class Not(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.Not(input1, input2, output)
+        wbt.Not(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20063,7 +20063,7 @@ class Or(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.Or(input1, input2, output)
+        wbt.Or(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20108,7 +20108,7 @@ class AbsoluteValue(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.absolute_value(input, output)
+        wbt.absolute_value(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20161,7 +20161,7 @@ class Add(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.add(input1, input2, output)
+        wbt.add(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20214,7 +20214,7 @@ class Anova(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.anova(input, features, output)
+        wbt.anova(input=input, features=features, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20259,7 +20259,7 @@ class ArcCos(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.arc_cos(input, output)
+        wbt.arc_cos(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20304,7 +20304,7 @@ class ArcSin(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.arc_sin(input, output)
+        wbt.arc_sin(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20349,7 +20349,7 @@ class ArcTan(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.arc_tan(input, output)
+        wbt.arc_tan(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20402,7 +20402,7 @@ class Atan2(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.atan2(input_y, input_x, output)
+        wbt.atan2(input_y=input_y, input_x=input_x, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20447,7 +20447,7 @@ class AttributeCorrelation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.attribute_correlation(input, output)
+        wbt.attribute_correlation(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20501,7 +20501,7 @@ class AttributeHistogram(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.attribute_histogram(input, field, output)
+        wbt.attribute_histogram(input=input, field=field, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20574,7 +20574,7 @@ class AttributeScattergram(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.attribute_scattergram(input, fieldx, fieldy, output, trendline)
+        wbt.attribute_scattergram(input=input, fieldx=fieldx, fieldy=fieldy, output=output, trendline=trendline)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20619,7 +20619,7 @@ class Ceil(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.ceil(input, output)
+        wbt.ceil(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20664,7 +20664,7 @@ class Cos(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.cos(input, output)
+        wbt.cos(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20709,7 +20709,7 @@ class Cosh(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.cosh(input, output)
+        wbt.cosh(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20754,7 +20754,7 @@ class CrispnessIndex(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.crispness_index(input, output)
+        wbt.crispness_index(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20807,7 +20807,7 @@ class CrossTabulation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.cross_tabulation(input1, input2, output)
+        wbt.cross_tabulation(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20852,7 +20852,7 @@ class CumulativeDistribution(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.cumulative_distribution(input, output)
+        wbt.cumulative_distribution(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20897,7 +20897,7 @@ class Decrement(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.decrement(input, output)
+        wbt.decrement(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20950,7 +20950,7 @@ class Divide(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.divide(input1, input2, output)
+        wbt.divide(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21003,7 +21003,7 @@ class EqualTo(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.equal_to(input1, input2, output)
+        wbt.equal_to(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21048,7 +21048,7 @@ class Exp(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.exp(input, output)
+        wbt.exp(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21093,7 +21093,7 @@ class Exp2(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.exp2(input, output)
+        wbt.exp2(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21167,7 +21167,7 @@ class ExtractRasterStatistics(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.extract_raster_statistics(input, features, output, stat, out_table)
+        wbt.extract_raster_statistics(input=input, features=features, output=output, stat=stat, out_table=out_table)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21212,7 +21212,7 @@ class Floor(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.floor(input, output)
+        wbt.floor(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21273,7 +21273,7 @@ class GreaterThan(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.greater_than(input1, input2, output, incl_equals)
+        wbt.greater_than(input1=input1, input2=input2, output=output, incl_equals=incl_equals)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21331,7 +21331,7 @@ class ImageAutocorrelation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.image_autocorrelation(inputs, contiguity, output)
+        wbt.image_autocorrelation(inputs=inputs, contiguity=contiguity, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21377,7 +21377,7 @@ class ImageCorrelation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.image_correlation(inputs, output)
+        wbt.image_correlation(inputs=inputs, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21447,7 +21447,7 @@ class ImageRegression(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.image_regression(input1, input2, output, out_residuals, standardize)
+        wbt.image_regression(input1=input1, input2=input2, output=output, out_residuals=out_residuals, standardize=standardize)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21491,7 +21491,7 @@ class InPlaceAdd(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.in_place_add(input1, input2)
+        wbt.in_place_add(input1=input1, input2=input2)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21535,7 +21535,7 @@ class InPlaceDivide(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.in_place_divide(input1, input2)
+        wbt.in_place_divide(input1=input1, input2=input2)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21579,7 +21579,7 @@ class InPlaceMultiply(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.in_place_multiply(input1, input2)
+        wbt.in_place_multiply(input1=input1, input2=input2)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21623,7 +21623,7 @@ class InPlaceSubtract(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.in_place_subtract(input1, input2)
+        wbt.in_place_subtract(input1=input1, input2=input2)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21668,7 +21668,7 @@ class Increment(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.increment(input, output)
+        wbt.increment(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21721,7 +21721,7 @@ class IntegerDivision(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.integer_division(input1, input2, output)
+        wbt.integer_division(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21766,7 +21766,7 @@ class IsNoData(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.is_no_data(input, output)
+        wbt.is_no_data(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21819,7 +21819,7 @@ class KappaIndex(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.kappa_index(input1, input2, output)
+        wbt.kappa_index(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21872,7 +21872,7 @@ class KsTestForNormality(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.ks_test_for_normality(input, output, num_samples)
+        wbt.ks_test_for_normality(input=input, output=output, num_samples=num_samples)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21933,7 +21933,7 @@ class LessThan(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.less_than(input1, input2, output, incl_equals)
+        wbt.less_than(input1=input1, input2=input2, output=output, incl_equals=incl_equals)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21987,7 +21987,7 @@ class ListUniqueValues(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.list_unique_values(input, field, output)
+        wbt.list_unique_values(input=input, field=field, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22032,7 +22032,7 @@ class Ln(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.ln(input, output)
+        wbt.ln(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22077,7 +22077,7 @@ class Log10(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.log10(input, output)
+        wbt.log10(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22122,7 +22122,7 @@ class Log2(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.log2(input, output)
+        wbt.log2(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22175,7 +22175,7 @@ class Max(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.max(input1, input2, output)
+        wbt.max(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22228,7 +22228,7 @@ class Min(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.min(input1, input2, output)
+        wbt.min(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22281,7 +22281,7 @@ class Modulo(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.modulo(input1, input2, output)
+        wbt.modulo(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22334,7 +22334,7 @@ class Multiply(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.multiply(input1, input2, output)
+        wbt.multiply(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22379,7 +22379,7 @@ class Negate(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.negate(input, output)
+        wbt.negate(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22432,7 +22432,7 @@ class NotEqualTo(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.not_equal_to(input1, input2, output)
+        wbt.not_equal_to(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22485,7 +22485,7 @@ class Power(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.power(input1, input2, output)
+        wbt.power(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22547,7 +22547,7 @@ class PrincipalComponentAnalysis(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.principal_component_analysis(inputs, output, num_comp, standardized)
+        wbt.principal_component_analysis(inputs=inputs, output=output, num_comp=num_comp, standardized=standardized)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22602,7 +22602,7 @@ class Quantiles(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.quantiles(input, output, num_quantiles)
+        wbt.quantiles(input=input, output=output, num_quantiles=num_quantiles)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22647,7 +22647,7 @@ class RandomField(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.random_field(base, output)
+        wbt.random_field(base=base, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22702,7 +22702,7 @@ class RandomSample(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.random_sample(base, output, num_samples)
+        wbt.random_sample(base=base, output=output, num_samples=num_samples)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22747,7 +22747,7 @@ class RasterHistogram(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.raster_histogram(input, output)
+        wbt.raster_histogram(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22783,7 +22783,7 @@ class RasterSummaryStats(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.raster_summary_stats(input)
+        wbt.raster_summary_stats(input=input)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22828,7 +22828,7 @@ class Reciprocal(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.reciprocal(input, output)
+        wbt.reciprocal(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22905,7 +22905,7 @@ class RescaleValueRange(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.rescale_value_range(input, output, out_min_val, out_max_val, clip_min, clip_max)
+        wbt.rescale_value_range(input=input, output=output, out_min_val=out_min_val, out_max_val=out_max_val, clip_min=clip_min, clip_max=clip_max)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22949,7 +22949,7 @@ class RootMeanSquareError(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.root_mean_square_error(input, base)
+        wbt.root_mean_square_error(input=input, base=base)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22994,7 +22994,7 @@ class Round(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.round(input, output)
+        wbt.round(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23039,7 +23039,7 @@ class Sin(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.sin(input, output)
+        wbt.sin(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23084,7 +23084,7 @@ class Sinh(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.sinh(input, output)
+        wbt.sinh(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23129,7 +23129,7 @@ class Square(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.square(input, output)
+        wbt.square(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23174,7 +23174,7 @@ class SquareRoot(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.square_root(input, output)
+        wbt.square_root(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23227,7 +23227,7 @@ class Subtract(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.subtract(input1, input2, output)
+        wbt.subtract(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23272,7 +23272,7 @@ class Tan(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.tan(input, output)
+        wbt.tan(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23317,7 +23317,7 @@ class Tanh(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.tanh(input, output)
+        wbt.tanh(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23362,7 +23362,7 @@ class ToDegrees(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.to_degrees(input, output)
+        wbt.to_degrees(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23407,7 +23407,7 @@ class ToRadians(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.to_radians(input, output)
+        wbt.to_radians(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23462,7 +23462,7 @@ class TrendSurface(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.trend_surface(input, output, order)
+        wbt.trend_surface(input=input, output=output, order=order)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23535,7 +23535,7 @@ class TrendSurfaceVectorPoints(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.trend_surface_vector_points(input, field, output, order, cell_size)
+        wbt.trend_surface_vector_points(input=input, field=field, output=output, order=order, cell_size=cell_size)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23588,7 +23588,7 @@ class Truncate(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.truncate(input, output, num_decimals)
+        wbt.truncate(input=input, output=output, num_decimals=num_decimals)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23651,7 +23651,7 @@ class TurningBandsSimulation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.turning_bands_simulation(base, output, range, iterations)
+        wbt.turning_bands_simulation(base=base, output=output, range=range, iterations=iterations)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23704,7 +23704,7 @@ class Xor(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.xor(input1, input2, output)
+        wbt.xor(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23749,7 +23749,7 @@ class ZScores(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.z_scores(input, output)
+        wbt.z_scores(input=input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23820,7 +23820,7 @@ class DistanceToOutlet(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.distance_to_outlet(d8_pntr, streams, output, esri_pntr, zero_background)
+        wbt.distance_to_outlet(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23881,7 +23881,7 @@ class ExtractStreams(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.extract_streams(flow_accum, output, threshold, zero_background)
+        wbt.extract_streams(flow_accum=flow_accum, output=output, threshold=threshold, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23958,7 +23958,7 @@ class ExtractValleys(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.extract_valleys(dem, output, variant, line_thin, filter)
+        wbt.extract_valleys(dem=dem, output=output, variant=variant, line_thin=line_thin, filter=filter)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24029,7 +24029,7 @@ class FarthestChannelHead(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.farthest_channel_head(d8_pntr, streams, output, esri_pntr, zero_background)
+        wbt.farthest_channel_head(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24100,7 +24100,7 @@ class FindMainStem(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.find_main_stem(d8_pntr, streams, output, esri_pntr, zero_background)
+        wbt.find_main_stem(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24171,7 +24171,7 @@ class HackStreamOrder(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.hack_stream_order(d8_pntr, streams, output, esri_pntr, zero_background)
+        wbt.hack_stream_order(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24242,7 +24242,7 @@ class HortonStreamOrder(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.horton_stream_order(d8_pntr, streams, output, esri_pntr, zero_background)
+        wbt.horton_stream_order(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24313,7 +24313,7 @@ class LengthOfUpstreamChannels(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.length_of_upstream_channels(d8_pntr, streams, output, esri_pntr, zero_background)
+        wbt.length_of_upstream_channels(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24384,7 +24384,7 @@ class LongProfile(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.long_profile(d8_pntr, streams, dem, output, esri_pntr)
+        wbt.long_profile(d8_pntr=d8_pntr, streams=streams, dem=dem, output=output, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24456,7 +24456,7 @@ class LongProfileFromPoints(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.long_profile_from_points(d8_pntr, points, dem, output, esri_pntr)
+        wbt.long_profile_from_points(d8_pntr=d8_pntr, points=points, dem=dem, output=output, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24519,7 +24519,7 @@ class RasterStreamsToVector(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.raster_streams_to_vector(streams, d8_pntr, output, esri_pntr)
+        wbt.raster_streams_to_vector(streams=streams, d8_pntr=d8_pntr, output=output, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24593,7 +24593,7 @@ class RasterizeStreams(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.rasterize_streams(streams, base, output, nodata, feature_id)
+        wbt.rasterize_streams(streams=streams, base=base, output=output, nodata=nodata, feature_id=feature_id)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24664,7 +24664,7 @@ class RemoveShortStreams(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.remove_short_streams(d8_pntr, streams, output, min_length, esri_pntr)
+        wbt.remove_short_streams(d8_pntr=d8_pntr, streams=streams, output=output, min_length=min_length, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24735,7 +24735,7 @@ class ShreveStreamMagnitude(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.shreve_stream_magnitude(d8_pntr, streams, output, esri_pntr, zero_background)
+        wbt.shreve_stream_magnitude(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24806,7 +24806,7 @@ class StrahlerStreamOrder(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.strahler_stream_order(d8_pntr, streams, output, esri_pntr, zero_background)
+        wbt.strahler_stream_order(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24877,7 +24877,7 @@ class StreamLinkClass(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.stream_link_class(d8_pntr, streams, output, esri_pntr, zero_background)
+        wbt.stream_link_class(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24948,7 +24948,7 @@ class StreamLinkIdentifier(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.stream_link_identifier(d8_pntr, streams, output, esri_pntr, zero_background)
+        wbt.stream_link_identifier(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25019,7 +25019,7 @@ class StreamLinkLength(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.stream_link_length(d8_pntr, linkid, output, esri_pntr, zero_background)
+        wbt.stream_link_length(d8_pntr=d8_pntr, linkid=linkid, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25098,7 +25098,7 @@ class StreamLinkSlope(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.stream_link_slope(d8_pntr, linkid, dem, output, esri_pntr, zero_background)
+        wbt.stream_link_slope(d8_pntr=d8_pntr, linkid=linkid, dem=dem, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25177,7 +25177,7 @@ class StreamSlopeContinuous(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.stream_slope_continuous(d8_pntr, streams, dem, output, esri_pntr, zero_background)
+        wbt.stream_slope_continuous(d8_pntr=d8_pntr, streams=streams, dem=dem, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25248,7 +25248,7 @@ class TopologicalStreamOrder(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.topological_stream_order(d8_pntr, streams, output, esri_pntr, zero_background)
+        wbt.topological_stream_order(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25319,7 +25319,7 @@ class TributaryIdentifier(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.tributary_identifier(d8_pntr, streams, output, esri_pntr, zero_background)
+        wbt.tributary_identifier(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)

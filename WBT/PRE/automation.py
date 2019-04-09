@@ -128,6 +128,11 @@ def generate_tool_template(tool):
     '''
     Generate function block of each tool for the toolbox  
     '''
+    tool_params = []
+    for item in tool['parameters']:
+        item_dup = "{}={}".format(item, item)
+        tool_params.append(item_dup)
+
     lines = []
     lines.append('class {}(object):\n'.format(tool['name']))
     lines.append('    def __init__(self):\n')
@@ -149,7 +154,9 @@ def generate_tool_template(tool):
     lines.append('        old_stdout = sys.stdout\n')
     lines.append('        result = StringIO()\n')
     lines.append('        sys.stdout = result\n')
-    line = '        wbt.{}({})\n'.format(to_snakecase(tool['name']), ', '.join(tool['parameters']).replace(", class,", ", cls,"))
+    # line = '        wbt.{}({})\n'.format(to_snakecase(tool['name']), ', '.join(tool['parameters']).replace(", class,", ", cls,"))
+    line = '        wbt.{}({})\n'.format(to_snakecase(tool['name']), ', '.join(tool_params).replace(", class=class,", ", cls=cls,"))
+
     # Deal with name conflict with reserved Python functions (and, or, not)
     if tool['name'] == "And":
         line = line.replace("and", "And")
