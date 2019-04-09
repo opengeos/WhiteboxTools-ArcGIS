@@ -129,9 +129,12 @@ def generate_tool_template(tool):
     Generate function block of each tool for the toolbox  
     '''
     tool_params = []
-    for item in tool['parameters']:
-        item_dup = "{}={}".format(item, item)
-        tool_params.append(item_dup)
+    for index, item in enumerate(tool['parameters']):
+        if index == 0:
+            tool_params.append(item)
+        else:
+            item_dup = "{}={}".format(item, item)
+            tool_params.append(item_dup)
 
     lines = []
     lines.append('class {}(object):\n'.format(tool['name']))
