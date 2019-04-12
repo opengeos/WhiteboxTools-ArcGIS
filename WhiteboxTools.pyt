@@ -2136,14 +2136,14 @@ class VectorLinesToRaster(object):
         nodata.value = "true"
 
         cell_size = arcpy.Parameter(
-            displayName="Cell Size (optional)",
+            displayName="Cell Size",
             name="cell_size",
             datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         base = arcpy.Parameter(
-            displayName="Base Raster File (optional)",
+            displayName="Base Raster File",
             name="base",
             datatype="DERasterDataset",
             parameterType="Optional",
@@ -2230,14 +2230,14 @@ class VectorPointsToRaster(object):
         nodata.value = "true"
 
         cell_size = arcpy.Parameter(
-            displayName="Cell Size (optional)",
+            displayName="Cell Size",
             name="cell_size",
             datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         base = arcpy.Parameter(
-            displayName="Base Raster File (optional)",
+            displayName="Base Raster File",
             name="base",
             datatype="DERasterDataset",
             parameterType="Optional",
@@ -2314,14 +2314,14 @@ class VectorPolygonsToRaster(object):
         nodata.value = "true"
 
         cell_size = arcpy.Parameter(
-            displayName="Cell Size (optional)",
+            displayName="Cell Size",
             name="cell_size",
             datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         base = arcpy.Parameter(
-            displayName="Base Raster File (optional)",
+            displayName="Base Raster File",
             name="base",
             datatype="DERasterDataset",
             parameterType="Optional",
@@ -2462,14 +2462,14 @@ class BlockMaximumGridding(object):
         output.filter.list = ["tif"]
 
         cell_size = arcpy.Parameter(
-            displayName="Cell Size (optional)",
+            displayName="Cell Size",
             name="cell_size",
             datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         base = arcpy.Parameter(
-            displayName="Base Raster File (optional)",
+            displayName="Base Raster File",
             name="base",
             datatype="DERasterDataset",
             parameterType="Optional",
@@ -2543,14 +2543,14 @@ class BlockMinimumGridding(object):
         output.filter.list = ["tif"]
 
         cell_size = arcpy.Parameter(
-            displayName="Cell Size (optional)",
+            displayName="Cell Size",
             name="cell_size",
             datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         base = arcpy.Parameter(
-            displayName="Base Raster File (optional)",
+            displayName="Base Raster File",
             name="base",
             datatype="DERasterDataset",
             parameterType="Optional",
@@ -3435,14 +3435,14 @@ class IdwInterpolation(object):
             direction="Input")
 
         cell_size = arcpy.Parameter(
-            displayName="Cell Size (optional)",
+            displayName="Cell Size",
             name="cell_size",
             datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         base = arcpy.Parameter(
-            displayName="Base Raster File (optional)",
+            displayName="Base Raster File",
             name="base",
             datatype="DERasterDataset",
             parameterType="Optional",
@@ -3840,14 +3840,14 @@ class NearestNeighbourGridding(object):
         output.filter.list = ["tif"]
 
         cell_size = arcpy.Parameter(
-            displayName="Cell Size (optional)",
+            displayName="Cell Size",
             name="cell_size",
             datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         base = arcpy.Parameter(
-            displayName="Base Raster File (optional)",
+            displayName="Base Raster File",
             name="base",
             datatype="DERasterDataset",
             parameterType="Optional",
@@ -7333,6 +7333,8 @@ class DrainagePreservingSmoothing(object):
             parameterType="Optional",
             direction="Input")
 
+        max_diff.value = "0.5"
+
         reduction = arcpy.Parameter(
             displayName="Max. Smoothing Reduction Factor (%)",
             name="reduction",
@@ -7739,6 +7741,8 @@ class FeaturePreservingDenoise(object):
             parameterType="Optional",
             direction="Input")
 
+        max_diff.value = "0.5"
+
         zfactor = arcpy.Parameter(
             displayName="Z Conversion Factor",
             name="zfactor",
@@ -8115,7 +8119,7 @@ class HypsometricAnalysis(object):
         inputs.multiValue = True
 
         watershed = arcpy.Parameter(
-            displayName="Input Watershed Files (optional)",
+            displayName="Input Watershed Files",
             name="watershed",
             datatype="DERasterDataset",
             parameterType="Optional",
@@ -9797,7 +9801,7 @@ class SlopeVsElevationPlot(object):
         inputs.multiValue = True
 
         watershed = arcpy.Parameter(
-            displayName="Input Watershed Files (optional)",
+            displayName="Input Watershed Files",
             name="watershed",
             datatype="DERasterDataset",
             parameterType="Optional",
@@ -11030,14 +11034,14 @@ class DownslopeFlowpathLength(object):
             direction="Input")
 
         watersheds = arcpy.Parameter(
-            displayName="Input Watersheds File (optional)",
+            displayName="Input Watersheds File",
             name="watersheds",
             datatype="DERasterDataset",
             parameterType="Optional",
             direction="Input")
 
         weights = arcpy.Parameter(
-            displayName="Input Weights File (optional)",
+            displayName="Input Weights File",
             name="weights",
             datatype="DERasterDataset",
             parameterType="Optional",
@@ -12236,7 +12240,7 @@ class RaiseWalls(object):
             direction="Input")
 
         breach = arcpy.Parameter(
-            displayName="Input Breach Lines (optional)",
+            displayName="Input Breach Lines",
             name="breach",
             datatype="DEShapefile",
             parameterType="Optional",
@@ -18009,14 +18013,14 @@ class LidarConstructVectorTin(object):
             direction="Input")
 
         minz = arcpy.Parameter(
-            displayName="Minimum Elevation Value (optional)",
+            displayName="Minimum Elevation Value",
             name="minz",
             datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         maxz = arcpy.Parameter(
-            displayName="Maximum Elevation Value (optional)",
+            displayName="Maximum Elevation Value",
             name="maxz",
             datatype="GPDouble",
             parameterType="Optional",
@@ -18535,14 +18539,14 @@ class LidarIdwInterpolation(object):
             direction="Input")
 
         minz = arcpy.Parameter(
-            displayName="Minimum Elevation Value (optional)",
+            displayName="Minimum Elevation Value",
             name="minz",
             datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         maxz = arcpy.Parameter(
-            displayName="Maximum Elevation Value (optional)",
+            displayName="Maximum Elevation Value",
             name="maxz",
             datatype="GPDouble",
             parameterType="Optional",
@@ -18833,14 +18837,14 @@ class LidarNearestNeighbourGridding(object):
             direction="Input")
 
         minz = arcpy.Parameter(
-            displayName="Minimum Elevation Value (optional)",
+            displayName="Minimum Elevation Value",
             name="minz",
             datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         maxz = arcpy.Parameter(
-            displayName="Maximum Elevation Value (optional)",
+            displayName="Maximum Elevation Value",
             name="maxz",
             datatype="GPDouble",
             parameterType="Optional",
@@ -18936,14 +18940,14 @@ class LidarPointDensity(object):
             direction="Input")
 
         minz = arcpy.Parameter(
-            displayName="Minimum Elevation Value (optional)",
+            displayName="Minimum Elevation Value",
             name="minz",
             datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         maxz = arcpy.Parameter(
-            displayName="Maximum Elevation Value (optional)",
+            displayName="Maximum Elevation Value",
             name="maxz",
             datatype="GPDouble",
             parameterType="Optional",
@@ -19696,21 +19700,21 @@ class LidarTinGridding(object):
             direction="Input")
 
         minz = arcpy.Parameter(
-            displayName="Minimum Elevation Value (optional)",
+            displayName="Minimum Elevation Value",
             name="minz",
             datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         maxz = arcpy.Parameter(
-            displayName="Maximum Elevation Value (optional)",
+            displayName="Maximum Elevation Value",
             name="maxz",
             datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         max_triangle_edge_length = arcpy.Parameter(
-            displayName="Maximum Triangle Edge Length (optional)",
+            displayName="Maximum Triangle Edge Length",
             name="max_triangle_edge_length",
             datatype="GPDouble",
             parameterType="Optional",
@@ -22872,14 +22876,14 @@ class RescaleValueRange(object):
             direction="Input")
 
         clip_min = arcpy.Parameter(
-            displayName="Lower-Tail Clip Value (optional)",
+            displayName="Lower-Tail Clip Value",
             name="clip_min",
             datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
 
         clip_max = arcpy.Parameter(
-            displayName="Upper-Tail Clip Value (optional)",
+            displayName="Upper-Tail Clip Value",
             name="clip_max",
             datatype="GPDouble",
             parameterType="Optional",
@@ -23510,10 +23514,10 @@ class TrendSurfaceVectorPoints(object):
         order.value = "1"
 
         cell_size = arcpy.Parameter(
-            displayName="Cell Size (optional)",
+            displayName="Cell Size",
             name="cell_size",
             datatype="GPDouble",
-            parameterType="Optional",
+            parameterType="Required",
             direction="Input")
 
         params = [input, field, output, order, cell_size]

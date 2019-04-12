@@ -71,6 +71,7 @@ def get_tool_params(tool_name):
     params_dict = {}
     for item in param_list:
         param_dict = {}
+        item = item.replace(" (optional)", "")
         index_name = item.find("name")
         index_flags = item.find("flags")
         index_description = item.find("description")
