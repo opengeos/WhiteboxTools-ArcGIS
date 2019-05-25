@@ -25,6 +25,7 @@ tool_labels.append("Attribute Correlation")
 tool_labels.append("Attribute Histogram")
 tool_labels.append("Attribute Scattergram")
 tool_labels.append("Average Flowpath Slope")
+tool_labels.append("Average Normal Vector Angular Deviation")
 tool_labels.append("Average Overlay")
 tool_labels.append("Average Upslope Flowpath Length")
 tool_labels.append("Balance Contrast Enhancement")
@@ -246,6 +247,7 @@ tool_labels.append("Maximum Filter")
 tool_labels.append("Mean Filter")
 tool_labels.append("Median Filter")
 tool_labels.append("Medoid")
+tool_labels.append("Merge Line Segments")
 tool_labels.append("Merge Table With Csv")
 tool_labels.append("Merge Vectors")
 tool_labels.append("Min")
@@ -357,6 +359,7 @@ tool_labels.append("Slope Vs Elevation Plot")
 tool_labels.append("Smooth Vectors")
 tool_labels.append("Snap Pour Points")
 tool_labels.append("Sobel Filter")
+tool_labels.append("Spherical Std Dev Of Normals")
 tool_labels.append("Split Colour Composite")
 tool_labels.append("Split With Lines")
 tool_labels.append("Square")
@@ -508,6 +511,7 @@ class Toolbox(object):
         tools.append(LowestPosition)
         tools.append(MaxAbsoluteOverlay)
         tools.append(MaxOverlay)
+        tools.append(MergeLineSegments)
         tools.append(MinAbsoluteOverlay)
         tools.append(MinOverlay)
         tools.append(PercentEqualTo)
@@ -536,6 +540,7 @@ class Toolbox(object):
         tools.append(ShapeComplexityIndex)
         tools.append(ShapeComplexityIndexRaster)
         tools.append(Aspect)
+        tools.append(AverageNormalVectorAngularDeviation)
         tools.append(CircularVarianceOfAspect)
         tools.append(DevFromMeanElev)
         tools.append(DiffFromMeanElev)
@@ -580,6 +585,7 @@ class Toolbox(object):
         tools.append(SedimentTransportIndex)
         tools.append(Slope)
         tools.append(SlopeVsElevationPlot)
+        tools.append(SphericalStdDevOfNormals)
         tools.append(StandardDeviationOfSlope)
         tools.append(SurfaceAreaRatio)
         tools.append(TangentialCurvature)
@@ -5612,6 +5618,61 @@ class MaxOverlay(object):
         return
 
 
+class MergeLineSegments(object):
+    def __init__(self):
+        self.label = "Merge Line Segments"
+        self.description = "Merges vector line segments into larger features. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#MergeLineSegments' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/merge_line_segments.rs' target='_blank'>GitHub</a>."
+        self.category = "GIS Analysis"
+
+    def getParameterInfo(self):
+        input = arcpy.Parameter(
+            displayName="Input Vector File",
+            name="input",
+            datatype="DEShapefile",
+            parameterType="Required",
+            direction="Input")
+        input.filter.list = ["Polyline"]
+
+        output = arcpy.Parameter(
+            displayName="Output Vector File",
+            name="output",
+            datatype="DEShapefile",
+            parameterType="Required",
+            direction="Output")
+
+        snap = arcpy.Parameter(
+            displayName="Snap Tolerance",
+            name="snap",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        snap.value = "0.0"
+
+        params = [input, output, snap]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        snap = parameters[2].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.merge_line_segments(input, output=output, snap=snap)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class MinAbsoluteOverlay(object):
     def __init__(self):
         self.label = "Min Absolute Overlay"
@@ -6962,6 +7023,61 @@ class Aspect(object):
         return
 
 
+class AverageNormalVectorAngularDeviation(object):
+    def __init__(self):
+        self.label = "Average Normal Vector Angular Deviation"
+        self.description = "Calculates the circular variance of aspect at a scale for a DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#AverageNormalVectorAngularDeviation' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/average_normal_vector_angular_deviation.rs' target='_blank'>GitHub</a>."
+        self.category = "Geomorphometric Analysis"
+
+    def getParameterInfo(self):
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="DERasterDataset",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Raster File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        filter = arcpy.Parameter(
+            displayName="Filter Dimension",
+            name="filter",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+
+        filter.value = "11"
+
+        params = [dem, output, filter]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filter = parameters[2].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.average_normal_vector_angular_deviation(dem, output=output, filter=filter)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class CircularVarianceOfAspect(object):
     def __init__(self):
         self.label = "Circular Variance Of Aspect"
@@ -6977,7 +7093,7 @@ class CircularVarianceOfAspect(object):
             direction="Input")
 
         output = arcpy.Parameter(
-            displayName="Output Roughness Scale File",
+            displayName="Output Raster File",
             name="output",
             datatype="DEFile",
             parameterType="Required",
@@ -9840,6 +9956,61 @@ class SlopeVsElevationPlot(object):
         return
 
 
+class SphericalStdDevOfNormals(object):
+    def __init__(self):
+        self.label = "Spherical Std Dev Of Normals"
+        self.description = "Calculates the spherical standard deviation of surface normals for a DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#SphericalStdDevOfNormals' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/spherical_std_dev_of_normals.rs' target='_blank'>GitHub</a>."
+        self.category = "Geomorphometric Analysis"
+
+    def getParameterInfo(self):
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="DERasterDataset",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Raster File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        filter = arcpy.Parameter(
+            displayName="Filter Dimension",
+            name="filter",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+
+        filter.value = "11"
+
+        params = [dem, output, filter]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        filter = parameters[2].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.spherical_std_dev_of_normals(dem, output=output, filter=filter)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class StandardDeviationOfSlope(object):
     def __init__(self):
         self.label = "Standard Deviation Of Slope"
@@ -12510,7 +12681,7 @@ class StochasticDepressionAnalysis(object):
             parameterType="Optional",
             direction="Input")
 
-        iterations.value = "1000"
+        iterations.value = "100"
 
         params = [dem, output, rmse, range, iterations]
 
@@ -13517,9 +13688,9 @@ class ModifiedKMeansClustering(object):
 
         start_clusters.value = "1000"
 
-        merger_dist = arcpy.Parameter(
+        merge_dist = arcpy.Parameter(
             displayName="Cluster Merger Distance",
-            name="merger_dist",
+            name="merge_dist",
             datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
@@ -13542,7 +13713,7 @@ class ModifiedKMeansClustering(object):
 
         class_change.value = "2.0"
 
-        params = [inputs, output, out_html, start_clusters, merger_dist, max_iterations, class_change]
+        params = [inputs, output, out_html, start_clusters, merge_dist, max_iterations, class_change]
 
         return params
 
@@ -13557,13 +13728,13 @@ class ModifiedKMeansClustering(object):
         output = parameters[1].valueAsText
         out_html = parameters[2].valueAsText
         start_clusters = parameters[3].valueAsText
-        merger_dist = parameters[4].valueAsText
+        merge_dist = parameters[4].valueAsText
         max_iterations = parameters[5].valueAsText
         class_change = parameters[6].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.modified_k_means_clustering(inputs, output=output, out_html=out_html, start_clusters=start_clusters, merger_dist=merger_dist, max_iterations=max_iterations, class_change=class_change)
+        wbt.modified_k_means_clustering(inputs, output=output, out_html=out_html, start_clusters=start_clusters, merge_dist=merge_dist, max_iterations=max_iterations, class_change=class_change)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14054,15 +14225,31 @@ class SplitColourComposite(object):
             parameterType="Required",
             direction="Input")
 
-        output = arcpy.Parameter(
-            displayName="Output File",
-            name="output",
+        red = arcpy.Parameter(
+            displayName="Output Red Band File",
+            name="red",
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["tif"]
+        red.filter.list = ["tif"]
 
-        params = [input, output]
+        green = arcpy.Parameter(
+            displayName="Output Green Band File",
+            name="green",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        green.filter.list = ["tif"]
+
+        blue = arcpy.Parameter(
+            displayName="Output Blue Band File",
+            name="blue",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        blue.filter.list = ["tif"]
+
+        params = [input, red, green, blue]
 
         return params
 
@@ -14074,11 +14261,13 @@ class SplitColourComposite(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
-        output = parameters[1].valueAsText
+        red = parameters[1].valueAsText
+        green = parameters[2].valueAsText
+        blue = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.split_colour_composite(input, output=output)
+        wbt.split_colour_composite(input, red=red, green=green, blue=blue)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19615,7 +19804,16 @@ class LidarTileFootprint(object):
             direction="Output")
         output.filter.list = ["Polygon"]
 
-        params = [input, output]
+        hull = arcpy.Parameter(
+            displayName="Create Convex Hull Around Points",
+            name="hull",
+            datatype="GPBoolean",
+            parameterType="Optional",
+            direction="Input")
+
+        hull.value = "false"
+
+        params = [input, output, hull]
 
         return params
 
@@ -19628,10 +19826,11 @@ class LidarTileFootprint(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         output = parameters[1].valueAsText
+        hull = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_tile_footprint(input, output=output)
+        wbt.lidar_tile_footprint(input, output=output, hull=hull)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23921,7 +24120,7 @@ class ExtractValleys(object):
             parameterType="Required",
             direction="Input")
         variant.filter.type = "ValueList"
-        variant.filter.list = ['Lower Quartile', 'Johnston and Rosenfeld', 'Peucker and Douglas']
+        variant.filter.list = ['LQ', 'JandR', 'PandD']
 
         variant.value = "Lower Quartile"
 

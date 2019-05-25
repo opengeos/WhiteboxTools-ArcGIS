@@ -56,6 +56,25 @@ for more details.
 * Release Notes: *
 ******************
 
+Version 0.16.0 (24-05-2019)
+- Added the MergeLineSegments and SphericalStdDevOfNormals tools.
+- Fixed a bug with reading LAS files with point records with extra bytes. Previously, the LAS decoder
+  assumed the Point Record Length matched that of the LAS specifications (with the variable of the 
+  optional intensity and user data). Some LAS files in the wild (particularly those created using 
+  LASTools and of LAS version 1.2) have larger Point Record Lengths, which presumably carry extra 
+  bytes of information. These extra byes are ignored, but they no longer throw off the decoding.
+- Fixed a bug with writing Big-Ending GeoTIFF files. The 'MM' file header was not correct previously.
+- Significantly reduced the memory requirements of the StochasticDepressionAnalysis tool. The tool 
+  may be somewhat slower as a result, but it should be applicable to larger DEMs than was previously
+  possible.
+- Fixed bugs with the Union and SplitWithLines tools. 
+- WhiteboxTools can now read and write Shapefiles of MultiPointZ, PolyLineZ, and PolygonZ ShapeTypes 
+  missing the optional 'M' values (i.e. measures).
+- SelectTilesByPolygon and LidarTileFootprint are now compatible with LAZ file inputs. Both of these 
+  tools only rely on information in the input LiDAR file's header, which is the same for a LAZ file 
+  as a LAS file.
+- Fixed a bug with writing Saga GIS files (*.sdat) that inverted rasters.
+
 Version 0.15.0 (03-03-2019)
 - The following tools were added to the project:
   BoundaryShapeComplexity
@@ -73,6 +92,14 @@ Version 0.15.0 (03-03-2019)
   for the exclusion of large-area triangles (i.e. low point density) from the gridding.
 - The NormalizedDifferenceVegetationIndex tool has been renamed to NormalizedDifferenceIndex 
   to indicate the more general nature of this tool (i.e. NDVI, NDWI, OSAVI, etc.).
+- Significant changes have been made to the BreachDepressions tool to make it more in-line
+  with the behaviour of the GoSpatial algorithm described in the original Lindsay (2016)
+  paper. These changes include: 1) the inclusion of an optional parameter to fill single-cell
+  pits prior to breaching, 2) the addition of a --flat_increment parameter, which overrides
+  the automatically derived value assigned to flat areas along breach channels (or filled 
+  depressions), and 3) the tool now performs a fast post-breach filling operation, when
+  run in constrained-breaching mode (i.e. when the user specifies values for either 
+  --max_depth or --max_length, placing constraints on the allowable breach channel size).
 
 Version 0.14.1 (10-02-2019)
 - This release largely focuses on bug-fixes rather than feature additions. However, the
