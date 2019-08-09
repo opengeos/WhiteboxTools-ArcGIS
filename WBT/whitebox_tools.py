@@ -6,7 +6,7 @@ See whitebox_example.py for an example of how to use it.
 # This script is part of the WhiteboxTools geospatial library.
 # Authors: Dr. John Lindsay
 # Created: 28/11/2017
-# Last Modified: 22/04/2018
+# Last Modified: 9/8/2019
 # License: MIT
 
 from __future__ import print_function
@@ -15,12 +15,13 @@ from os import path
 import sys
 import platform
 import re
+import subprocess
 # import shutil
 from subprocess import CalledProcessError, Popen, PIPE, STDOUT
 
 
 def default_callback(value):
-    ''' 
+    '''
     A simple default callback that outputs using the print function. When
     tools are called without providing a custom callback, this function
     will be used to print to standard output.
@@ -30,21 +31,21 @@ def default_callback(value):
 
 def to_camelcase(name):
     '''
-    Convert snake_case name to CamelCase name 
+    Convert snake_case name to CamelCase name
     '''
     return ''.join(x.title() for x in name.split('_'))
 
 
 def to_snakecase(name):
     '''
-    Convert CamelCase name to snake_case name 
+    Convert CamelCase name to snake_case name
     '''
     s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
     return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
 
 
 class WhiteboxTools(object):
-    ''' 
+    '''
     An object for interfacing with the WhiteboxTools executable.
     '''
 
@@ -64,25 +65,25 @@ class WhiteboxTools(object):
         self.default_callback = default_callback
 
     def set_whitebox_dir(self, path_str):
-        ''' 
+        '''
         Sets the directory to the WhiteboxTools executable file.
         '''
         self.exe_path = path_str
 
     def set_working_dir(self, path_str):
-        ''' 
+        '''
         Sets the working directory, i.e. the directory in which
-        the data files are located. By setting the working 
+        the data files are located. By setting the working
         directory, tool input parameters that are files need only
         specify the file name rather than the complete file path.
         '''
         self.work_dir = path.normpath(path_str)
 
     def set_verbose_mode(self, val=True):
-        ''' 
+        '''
         Sets verbose mode. If verbose mode is False, tools will not
         print output messages. Tools will frequently provide substantial
-        feedback while they are operating, e.g. updating progress for 
+        feedback while they are operating, e.g. updating progress for
         various sub-routines. When the user has scripted a workflow
         that ties many tools in sequence, this level of tool output
         can be problematic. By setting verbose mode to False, these
@@ -91,11 +92,13 @@ class WhiteboxTools(object):
         self.verbose = val
 
     def run_tool(self, tool_name, args, callback=None):
-        ''' 
+        '''
         Runs a tool and specifies tool arguments.
         Returns 0 if completes without error.
         Returns 1 if error encountered (details are sent to callback).
         Returns 2 if process is cancelled by user.
+
+		9/8/19 - Added code to hide command line window during execution
         '''
         try:
             if callback is None:
@@ -124,8 +127,9 @@ class WhiteboxTools(object):
                     cl += v + " "
                 callback(cl.strip() + "\n")
 
-            proc = Popen(args2, shell=False, stdout=PIPE,
-                         stderr=STDOUT, bufsize=1, universal_newlines=True)
+            startupinfo = subprocess.STARTUPINFO()
+            startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+            proc = Popen(args2, shell=False, stdout=PIPE, stderr=STDOUT, bufsize=1, universal_newlines=True, startupinfo=startupinfo)
 
             while True:
                 line = proc.stdout.readline()
@@ -147,7 +151,7 @@ class WhiteboxTools(object):
             return 1
 
     def help(self):
-        ''' 
+        '''
         Retrieves the help description for WhiteboxTools.
         '''
         try:
@@ -171,7 +175,7 @@ class WhiteboxTools(object):
             return err
 
     def license(self):
-        ''' 
+        '''
         Retrieves the license information for WhiteboxTools.
         '''
         try:
@@ -195,7 +199,7 @@ class WhiteboxTools(object):
             return err
 
     def version(self):
-        ''' 
+        '''
         Retrieves the version information for WhiteboxTools.
         '''
         try:
@@ -219,7 +223,7 @@ class WhiteboxTools(object):
             return err
 
     def tool_help(self, tool_name=''):
-        ''' 
+        '''
         Retrieves the help description for a specific tool.
         '''
         try:
@@ -243,7 +247,7 @@ class WhiteboxTools(object):
             return err
 
     def tool_parameters(self, tool_name):
-        ''' 
+        '''
         Retrieves the tool parameter descriptions for a specific tool.
         '''
         try:
@@ -267,7 +271,7 @@ class WhiteboxTools(object):
             return err
 
     def toolbox(self, tool_name=''):
-        ''' 
+        '''
         Retrieve the toolbox for a specific tool.
         '''
         try:
@@ -291,7 +295,7 @@ class WhiteboxTools(object):
             return err
 
     def view_code(self, tool_name):
-        ''' 
+        '''
         Opens a web browser to view the source code for a specific tool
         on the projects source code repository.
         '''
@@ -316,7 +320,7 @@ class WhiteboxTools(object):
             return err
 
     def list_tools(self, keywords=[]):
-        ''' 
+        '''
         Lists all available tools in WhiteboxTools.
         '''
         try:
@@ -355,25 +359,25 @@ class WhiteboxTools(object):
     # restrict the ability for text editors and IDEs to use autocomplete.
     ########################################################################
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     ##############
     # Data Tools #
     ##############
@@ -383,7 +387,7 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector Points file. 
+        i -- Input vector Points file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -395,8 +399,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -409,8 +413,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -423,9 +427,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector file. 
-        output -- Output raster file. 
-        headers -- Export field names as file header?. 
+        i -- Input vector file.
+        output -- Output raster file.
+        headers -- Export field names as file header?.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -439,11 +443,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input primary vector file (i.e. the table to be modified). 
-        pkey -- Primary key field. 
-        input2 -- Input foreign vector file (i.e. source of data to be imported). 
-        fkey -- Foreign key field. 
-        import_field -- Imported field (all fields will be imported if not specified). 
+        input1 -- Input primary vector file (i.e. the table to be modified).
+        pkey -- Primary key field.
+        input2 -- Input foreign vector file (i.e. source of data to be imported).
+        fkey -- Foreign key field.
+        import_field -- Imported field (all fields will be imported if not specified).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -459,8 +463,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector line file. 
-        output -- Output vector polygon file. 
+        i -- Input vector line file.
+        output -- Output vector polygon file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -473,11 +477,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input primary vector file (i.e. the table to be modified). 
-        pkey -- Primary key field. 
-        csv -- Input CSV file (i.e. source of data to be imported). 
-        fkey -- Foreign key field. 
-        import_field -- Imported field (all fields will be imported if not specified). 
+        i -- Input primary vector file (i.e. the table to be modified).
+        pkey -- Primary key field.
+        csv -- Input CSV file (i.e. source of data to be imported).
+        fkey -- Foreign key field.
+        import_field -- Imported field (all fields will be imported if not specified).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -493,8 +497,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        inputs -- Input vector files. 
-        output -- Output vector file. 
+        inputs -- Input vector files.
+        output -- Output vector file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -507,9 +511,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector line or polygon file. 
-        output -- Output vector line or polygon file. 
-        exclude_holes -- Exclude hole parts from the feature splitting? (holes will continue to belong to their features in output.). 
+        i -- Input vector line or polygon file.
+        output -- Output vector line or polygon file.
+        exclude_holes -- Exclude hole parts from the feature splitting? (holes will continue to belong to their features in output.).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -523,10 +527,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        base -- Input base raster file. 
-        output -- Output raster file. 
-        value -- Constant value to fill raster with; either 'nodata' or numeric value. 
-        data_type -- Output raster data type; options include 'double' (64-bit), 'float' (32-bit), and 'integer' (signed 16-bit) (default is 'float'). 
+        base -- Input base raster file.
+        output -- Output raster file.
+        value -- Constant value to fill raster with; either 'nodata' or numeric value.
+        data_type -- Output raster data type; options include 'double' (64-bit), 'float' (32-bit), and 'integer' (signed 16-bit) (default is 'float').
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -541,8 +545,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector polygon file. 
-        output -- Output vector lines file. 
+        i -- Input vector polygon file.
+        output -- Output vector lines file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -555,7 +559,7 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input GeoTIFF file. 
+        i -- Input GeoTIFF file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -567,8 +571,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster lines file. 
-        output -- Output raster file. 
+        i -- Input raster lines file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -581,8 +585,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output vector points file. 
+        i -- Input raster file.
+        output -- Output vector points file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -595,7 +599,7 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector file. 
+        i -- Input vector file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -607,8 +611,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector polygon file. 
-        output -- Output vector polygon file. 
+        i -- Input vector polygon file.
+        output -- Output vector polygon file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -621,9 +625,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        back_value -- Background value to set to nodata. 
+        i -- Input raster file.
+        output -- Output raster file.
+        back_value -- Background value to set to nodata.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -637,9 +641,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector line or polygon file. 
-        field -- Grouping ID field name in attribute table. 
-        output -- Output vector line or polygon file. 
+        i -- Input vector line or polygon file.
+        field -- Grouping ID field name in attribute table.
+        output -- Output vector line or polygon file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -653,12 +657,12 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector lines file. 
-        field -- Input field name in attribute table. 
-        output -- Output raster file. 
-        nodata -- Background value to set to NoData. Without this flag, it will be set to 0.0. 
-        cell_size -- Optionally specified cell size of output raster. Not used when base raster is specified. 
-        base -- Optionally specified input base raster file. Not used when a cell size is specified. 
+        i -- Input vector lines file.
+        field -- Input field name in attribute table.
+        output -- Output raster file.
+        nodata -- Background value to set to NoData. Without this flag, it will be set to 0.0.
+        cell_size -- Optionally specified cell size of output raster. Not used when base raster is specified.
+        base -- Optionally specified input base raster file. Not used when a cell size is specified.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -675,13 +679,13 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector Points file. 
-        field -- Input field name in attribute table. 
-        output -- Output raster file. 
-        assign -- Assignment operation, where multiple points are in the same grid cell; options include 'first', 'last' (default), 'min', 'max', 'sum'. 
-        nodata -- Background value to set to NoData. Without this flag, it will be set to 0.0. 
-        cell_size -- Optionally specified cell size of output raster. Not used when base raster is specified. 
-        base -- Optionally specified input base raster file. Not used when a cell size is specified. 
+        i -- Input vector Points file.
+        field -- Input field name in attribute table.
+        output -- Output raster file.
+        assign -- Assignment operation, where multiple points are in the same grid cell; options include 'first', 'last' (default), 'min', 'max', 'sum'.
+        nodata -- Background value to set to NoData. Without this flag, it will be set to 0.0.
+        cell_size -- Optionally specified cell size of output raster. Not used when base raster is specified.
+        base -- Optionally specified input base raster file. Not used when a cell size is specified.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -699,12 +703,12 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector polygons file. 
-        field -- Input field name in attribute table. 
-        output -- Output raster file. 
-        nodata -- Background value to set to NoData. Without this flag, it will be set to 0.0. 
-        cell_size -- Optionally specified cell size of output raster. Not used when base raster is specified. 
-        base -- Optionally specified input base raster file. Not used when a cell size is specified. 
+        i -- Input vector polygons file.
+        field -- Input field name in attribute table.
+        output -- Output raster file.
+        nodata -- Background value to set to NoData. Without this flag, it will be set to 0.0.
+        cell_size -- Optionally specified cell size of output raster. Not used when base raster is specified.
+        base -- Optionally specified input base raster file. Not used when a cell size is specified.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -725,10 +729,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        agg_factor -- Aggregation factor, in pixels. 
-        type -- Statistic used to fill output pixels. 
+        i -- Input raster file.
+        output -- Output raster file.
+        agg_factor -- Aggregation factor, in pixels.
+        type -- Statistic used to fill output pixels.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -743,12 +747,12 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector Points file. 
-        field -- Input field name in attribute table. 
-        use_z -- Use z-coordinate instead of field?. 
-        output -- Output raster file. 
-        cell_size -- Optionally specified cell size of output raster. Not used when base raster is specified. 
-        base -- Optionally specified input base raster file. Not used when a cell size is specified. 
+        i -- Input vector Points file.
+        field -- Input field name in attribute table.
+        use_z -- Use z-coordinate instead of field?.
+        output -- Output raster file.
+        cell_size -- Optionally specified cell size of output raster. Not used when base raster is specified.
+        base -- Optionally specified input base raster file. Not used when a cell size is specified.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -765,12 +769,12 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector Points file. 
-        field -- Input field name in attribute table. 
-        use_z -- Use z-coordinate instead of field?. 
-        output -- Output raster file. 
-        cell_size -- Optionally specified cell size of output raster. Not used when base raster is specified. 
-        base -- Optionally specified input base raster file. Not used when a cell size is specified. 
+        i -- Input vector Points file.
+        field -- Input field name in attribute table.
+        use_z -- Use z-coordinate instead of field?.
+        output -- Output raster file.
+        cell_size -- Optionally specified cell size of output raster. Not used when base raster is specified.
+        base -- Optionally specified input base raster file. Not used when a cell size is specified.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -787,9 +791,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        text_output -- Optional text output. 
+        i -- Input raster file.
+        output -- Output raster file.
+        text_output -- Optional text output.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -803,8 +807,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector file. 
-        output -- Output vector file. 
+        i -- Input vector file.
+        output -- Output vector file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -817,10 +821,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        diag -- Flag indicating whether diagonal connections should be considered. 
-        zero_back -- Flag indicating whether zero values should be treated as a background. 
+        i -- Input raster file.
+        output -- Output raster file.
+        diag -- Flag indicating whether diagonal connections should be considered.
+        zero_back -- Flag indicating whether zero values should be treated as a background.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -835,10 +839,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector points file. 
-        field -- Input field name in attribute table. 
-        use_z -- Use the 'z' dimension of the Shapefile's geometry instead of an attribute field?. 
-        output -- Output vector polygon file. 
+        i -- Input vector points file.
+        field -- Input field name in attribute table.
+        use_z -- Use the 'z' dimension of the Shapefile's geometry instead of an attribute field?.
+        output -- Output vector polygon file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -853,10 +857,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input base file. 
-        output -- Output vector polygon file. 
-        width -- The grid cell width. 
-        orientation -- Grid Orientation, 'horizontal' or 'vertical'. 
+        i -- Input base file.
+        output -- Output vector polygon file.
+        width -- The grid cell width.
+        orientation -- Grid Orientation, 'horizontal' or 'vertical'.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -871,11 +875,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        base -- Input base raster file. 
-        output -- Output raster file. 
-        gradient -- Slope gradient in degrees (-85.0 to 85.0). 
-        aspect -- Aspect (direction) in degrees clockwise from north (0.0-360.0). 
-        constant -- Constant value. 
+        base -- Input base raster file.
+        output -- Output raster file.
+        gradient -- Slope gradient in degrees (-85.0 to 85.0).
+        aspect -- Aspect (direction) in degrees clockwise from north (0.0-360.0).
+        constant -- Constant value.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -891,12 +895,12 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input base file. 
-        output -- Output vector polygon file. 
-        width -- The grid cell width. 
-        height -- The grid cell height. 
-        xorig -- The grid origin x-coordinate. 
-        yorig -- The grid origin y-coordinate. 
+        i -- Input base file.
+        output -- Output vector polygon file.
+        width -- The grid cell width.
+        height -- The grid cell height.
+        xorig -- The grid origin x-coordinate.
+        yorig -- The grid origin y-coordinate.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -913,10 +917,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector file. 
-        field -- Dissolve field attribute (optional). 
-        output -- Output vector file. 
-        snap -- Snap tolerance. 
+        i -- Input vector file.
+        field -- Dissolve field attribute (optional).
+        output -- Output vector file.
+        snap -- Snap tolerance.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -931,9 +935,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector file. 
-        output -- Output vector polygon file. 
-        tolerance -- The distance tolerance for points. 
+        i -- Input vector file.
+        output -- Output vector polygon file.
+        tolerance -- The distance tolerance for points.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -947,10 +951,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector polyline file. 
-        output -- Output vector polyline file. 
-        dist -- The distance to extend. 
-        extend -- Extend direction, 'both ends' (default), 'line start', 'line end'. 
+        i -- Input vector polyline file.
+        output -- Output vector polyline file.
+        dist -- The distance to extend.
+        extend -- Extend direction, 'both ends' (default), 'line start', 'line end'.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -965,8 +969,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector lines or polygon file. 
-        output -- Output vector points file. 
+        i -- Input vector lines or polygon file.
+        output -- Output vector points file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -979,9 +983,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        inputs -- Input raster files. 
-        points -- Input vector points file. 
-        out_text -- Output point values as text? Otherwise, the only output is to to the points file's attribute table. 
+        inputs -- Input raster files.
+        points -- Input vector points file.
+        out_text -- Output point values as text? Otherwise, the only output is to to the points file's attribute table.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -995,9 +999,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output vector points file. 
-        out_type -- Output type; one of 'area' (default) and 'volume'. 
+        i -- Input raster file.
+        output -- Output vector points file.
+        out_type -- Output type; one of 'area' (default) and 'volume'.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1011,15 +1015,15 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector Points file. 
-        field -- Input field name in attribute table. 
-        use_z -- Use z-coordinate instead of field?. 
-        output -- Output raster file. 
-        weight -- IDW weight value. 
-        radius -- Search Radius. 
-        min_points -- Minimum number of points. 
-        cell_size -- Optionally specified cell size of output raster. Not used when base raster is specified. 
-        base -- Optionally specified input base raster file. Not used when a cell size is specified. 
+        i -- Input vector Points file.
+        field -- Input field name in attribute table.
+        use_z -- Use z-coordinate instead of field?.
+        output -- Output raster file.
+        weight -- IDW weight value.
+        radius -- Search Radius.
+        min_points -- Minimum number of points.
+        cell_size -- Optionally specified cell size of output raster. Not used when base raster is specified.
+        base -- Optionally specified input base raster file. Not used when a cell size is specified.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1039,8 +1043,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster or vector file. 
-        output -- Output vector polygon file. 
+        i -- Input raster or vector file.
+        output -- Output vector polygon file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1053,8 +1057,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector file. 
-        output -- Output vector file. 
+        i -- Input vector file.
+        output -- Output vector file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1067,10 +1071,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector file. 
-        output -- Output vector polygon file. 
-        criterion -- Minimization criterion; options include 'area' (default), 'length', 'width', and 'perimeter'. 
-        features -- Find the minimum bounding rectangles around each individual vector feature. 
+        i -- Input vector file.
+        output -- Output vector polygon file.
+        criterion -- Minimization criterion; options include 'area' (default), 'length', 'width', and 'perimeter'.
+        features -- Find the minimum bounding rectangles around each individual vector feature.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1085,9 +1089,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector file. 
-        output -- Output vector polygon file. 
-        features -- Find the minimum bounding circle around each individual vector feature. 
+        i -- Input vector file.
+        output -- Output vector polygon file.
+        features -- Find the minimum bounding circle around each individual vector feature.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1101,9 +1105,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector file. 
-        output -- Output vector polygon file. 
-        features -- Find the minimum bounding envelop around each individual vector feature. 
+        i -- Input vector file.
+        output -- Output vector polygon file.
+        features -- Find the minimum bounding envelop around each individual vector feature.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1117,9 +1121,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector file. 
-        output -- Output vector polygon file. 
-        features -- Find the hulls around each vector feature. 
+        i -- Input vector file.
+        output -- Output vector polygon file.
+        features -- Find the hulls around each vector feature.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1133,13 +1137,13 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector Points file. 
-        field -- Input field name in attribute table. 
-        use_z -- Use z-coordinate instead of field?. 
-        output -- Output raster file. 
-        cell_size -- Optionally specified cell size of output raster. Not used when base raster is specified. 
-        base -- Optionally specified input base raster file. Not used when a cell size is specified. 
-        max_dist -- Maximum search distance (optional). 
+        i -- Input vector Points file.
+        field -- Input field name in attribute table.
+        use_z -- Use z-coordinate instead of field?.
+        output -- Output raster file.
+        cell_size -- Optionally specified cell size of output raster. Not used when base raster is specified.
+        base -- Optionally specified input base raster file. Not used when a cell size is specified.
+        max_dist -- Maximum search distance (optional).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1157,7 +1161,7 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector polygon file. 
+        i -- Input vector polygon file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1169,8 +1173,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector polygons file. 
-        output -- Output vector polygon file. 
+        i -- Input vector polygons file.
+        output -- Output vector polygon file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1183,7 +1187,7 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector polygon file. 
+        i -- Input vector polygon file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1195,8 +1199,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector polygons file. 
-        output -- Output vector polygon file. 
+        i -- Input vector polygons file.
+        output -- Output vector polygon file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1209,11 +1213,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        out_text -- Would you like to output polygon areas to text?. 
-        units -- Area units; options include 'grid cells' and 'map units'. 
-        zero_back -- Flag indicating whether zero values should be treated as a background. 
+        i -- Input raster file.
+        output -- Output raster file.
+        out_text -- Would you like to output polygon areas to text?.
+        units -- Area units; options include 'grid cells' and 'map units'.
+        zero_back -- Flag indicating whether zero values should be treated as a background.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1229,9 +1233,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        assign -- Which variable would you like to assign to grid cells? Options include 'column', 'row', 'x', and 'y'. 
+        i -- Input raster file.
+        output -- Output raster file.
+        assign -- Which variable would you like to assign to grid cells? Options include 'column', 'row', 'x', and 'y'.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1245,10 +1249,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        reclass_vals -- Reclassification triplet values (new value; from value; to less than), e.g. '0.0;0.0;1.0;1.0;1.0;2.0'. 
-        assign_mode -- Optional Boolean flag indicating whether to operate in assign mode, reclass_vals values are interpreted as new value; old value pairs. 
+        i -- Input raster file.
+        output -- Output raster file.
+        reclass_vals -- Reclassification triplet values (new value; from value; to less than), e.g. '0.0;0.0;1.0;1.0;1.0;2.0'.
+        assign_mode -- Optional Boolean flag indicating whether to operate in assign mode, reclass_vals values are interpreted as new value; old value pairs.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1263,11 +1267,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        interval -- Class interval size. 
-        start_val -- Optional starting value (default is input minimum value). 
-        end_val -- Optional ending value (default is input maximum value). 
+        i -- Input raster file.
+        output -- Output raster file.
+        interval -- Class interval size.
+        start_val -- Optional starting value (default is input minimum value).
+        end_val -- Optional ending value (default is input maximum value).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1283,9 +1287,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        reclass_file -- Input text file containing reclass ranges. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        reclass_file -- Input text file containing reclass ranges.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1299,9 +1303,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector POLYLINE or POLYGON file. 
-        output -- Output vector file. 
-        filter -- The filter size, any odd integer greater than or equal to 3; default is 3. 
+        i -- Input vector POLYLINE or POLYGON file.
+        output -- Output vector file.
+        filter -- The filter size, any odd integer greater than or equal to 3; default is 3.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1315,11 +1319,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector points file. 
-        field -- Input field name in attribute table. 
-        use_z -- Use the 'z' dimension of the Shapefile's geometry instead of an attribute field?. 
-        output -- Output raster file. 
-        resolution -- Output raster's grid resolution. 
+        i -- Input vector points file.
+        field -- Input field name in attribute table.
+        use_z -- Use the 'z' dimension of the Shapefile's geometry instead of an attribute field?.
+        output -- Output raster file.
+        resolution -- Output raster's grid resolution.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1335,10 +1339,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input base file. 
-        output -- Output vector polygon file. 
-        width -- The grid cell width. 
-        orientation -- Grid Orientation, 'horizontal' or 'vertical'. 
+        i -- Input base file.
+        output -- Output vector polygon file.
+        width -- The grid cell width.
+        orientation -- Grid Orientation, 'horizontal' or 'vertical'.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1353,8 +1357,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector points file. 
-        output -- Output vector polygon file. 
+        i -- Input vector points file.
+        output -- Output vector polygon file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1371,10 +1375,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        size -- Buffer size. 
-        gridcells -- Optional flag to indicate that the 'size' threshold should be measured in grid cells instead of the default map units. 
+        i -- Input raster file.
+        output -- Output raster file.
+        size -- Buffer size.
+        gridcells -- Optional flag to indicate that the 'size' threshold should be measured in grid cells instead of the default map units.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1389,9 +1393,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        source -- Input source raster file. 
-        backlink -- Input backlink raster file generated by the cost-distance tool. 
-        output -- Output raster file. 
+        source -- Input source raster file.
+        backlink -- Input backlink raster file generated by the cost-distance tool.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1405,10 +1409,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        source -- Input source raster file. 
-        cost -- Input cost (friction) raster file. 
-        out_accum -- Output cost accumulation raster file. 
-        out_backlink -- Output backlink raster file. 
+        source -- Input source raster file.
+        cost -- Input cost (friction) raster file.
+        out_accum -- Output cost accumulation raster file.
+        out_backlink -- Output backlink raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1423,10 +1427,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        destination -- Input destination raster file. 
-        backlink -- Input backlink raster file generated by the cost-distance tool. 
-        output -- Output cost pathway raster file. 
-        zero_background -- Flag indicating whether zero values should be treated as a background. 
+        destination -- Input destination raster file.
+        backlink -- Input backlink raster file generated by the cost-distance tool.
+        output -- Output cost pathway raster file.
+        zero_background -- Flag indicating whether zero values should be treated as a background.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1441,8 +1445,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1455,8 +1459,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1473,8 +1477,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        inputs -- Input raster files. 
-        output -- Output raster file. 
+        inputs -- Input raster files.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1487,9 +1491,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector file. 
-        clip -- Input clip polygon vector file. 
-        output -- Output vector file. 
+        i -- Input vector file.
+        clip -- Input clip polygon vector file.
+        output -- Output vector file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1503,10 +1507,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        polygons -- Input vector polygons file. 
-        output -- Output raster file. 
-        maintain_dimensions -- Maintain input raster dimensions?. 
+        i -- Input raster file.
+        polygons -- Input vector polygons file.
+        output -- Output raster file.
+        maintain_dimensions -- Maintain input raster dimensions?.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1521,9 +1525,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        inputs -- Input raster files. 
-        output -- Output raster file. 
-        value -- Search value (e.g. countif value = 5.0). 
+        inputs -- Input raster files.
+        output -- Output raster file.
+        value -- Search value (e.g. countif value = 5.0).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1537,9 +1541,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector file. 
-        overlay -- Input overlay vector file. 
-        output -- Output vector file. 
+        i -- Input vector file.
+        overlay -- Input overlay vector file.
+        output -- Output vector file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1553,9 +1557,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector file. 
-        erase -- Input erase polygon vector file. 
-        output -- Output vector file. 
+        i -- Input vector file.
+        erase -- Input erase polygon vector file.
+        output -- Output vector file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1569,9 +1573,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        polygons -- Input vector polygons file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        polygons -- Input vector polygons file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1585,8 +1589,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        inputs -- Input raster files. 
-        output -- Output raster file. 
+        inputs -- Input raster files.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1599,10 +1603,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector file. 
-        overlay -- Input overlay vector file. 
-        output -- Output vector file. 
-        snap -- Snap tolerance. 
+        i -- Input vector file.
+        overlay -- Input overlay vector file.
+        output -- Output vector file.
+        snap -- Snap tolerance.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1617,9 +1621,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input vector polyline file. 
-        input2 -- Input vector polyline file. 
-        output -- Output vector point file. 
+        input1 -- Input vector polyline file.
+        input2 -- Input vector polyline file.
+        output -- Output vector point file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1633,8 +1637,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        inputs -- Input raster files. 
-        output -- Output raster file. 
+        inputs -- Input raster files.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1647,8 +1651,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        inputs -- Input raster files. 
-        output -- Output raster file. 
+        inputs -- Input raster files.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1661,8 +1665,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        inputs -- Input raster files. 
-        output -- Output raster file. 
+        inputs -- Input raster files.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1675,9 +1679,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector file. 
-        output -- Output vector file. 
-        snap -- Snap tolerance. 
+        i -- Input vector file.
+        output -- Output vector file.
+        snap -- Snap tolerance.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1691,8 +1695,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        inputs -- Input raster files. 
-        output -- Output raster file. 
+        inputs -- Input raster files.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1705,8 +1709,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        inputs -- Input raster files. 
-        output -- Output raster file. 
+        inputs -- Input raster files.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1719,9 +1723,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        inputs -- Input raster files. 
-        comparison -- Input comparison raster file. 
-        output -- Output raster file. 
+        inputs -- Input raster files.
+        comparison -- Input comparison raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1735,9 +1739,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        inputs -- Input raster files. 
-        comparison -- Input comparison raster file. 
-        output -- Output raster file. 
+        inputs -- Input raster files.
+        comparison -- Input comparison raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1751,9 +1755,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        inputs -- Input raster files. 
-        comparison -- Input comparison raster file. 
-        output -- Output raster file. 
+        inputs -- Input raster files.
+        comparison -- Input comparison raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1767,9 +1771,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        inputs -- Input raster files. 
-        pos_input -- Input position raster file. 
-        output -- Output raster file. 
+        inputs -- Input raster files.
+        pos_input -- Input position raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1783,8 +1787,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        inputs -- Input vector polyline file. 
-        output -- Output vector polygon file. 
+        inputs -- Input vector polyline file.
+        output -- Output vector polygon file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1797,9 +1801,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector line or polygon file. 
-        split -- Input vector polyline file. 
-        output -- Output vector file. 
+        i -- Input vector line or polygon file.
+        split -- Input vector polyline file.
+        output -- Output vector file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1813,8 +1817,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        inputs -- Input raster files. 
-        output -- Output raster file. 
+        inputs -- Input raster files.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1827,10 +1831,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector file. 
-        overlay -- Input overlay vector file. 
-        output -- Output vector file. 
-        snap -- Snap tolerance. 
+        i -- Input vector file.
+        overlay -- Input overlay vector file.
+        output -- Output vector file.
+        snap -- Snap tolerance.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1845,10 +1849,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector file. 
-        overlay -- Input overlay vector file. 
-        output -- Output vector file. 
-        snap -- Snap tolerance. 
+        i -- Input vector file.
+        overlay -- Input overlay vector file.
+        output -- Output vector file.
+        snap -- Snap tolerance.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1863,12 +1867,12 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        factors -- Input factor raster files. 
-        weights -- Weight values, contained in quotes and separated by commas or semicolons. Must have the same number as factors. 
-        cost -- Weight values, contained in quotes and separated by commas or semicolons. Must have the same number as factors. 
-        constraints -- Input constraints raster files. 
-        output -- Output raster file. 
-        scale_max -- Suitability scale maximum value (common values are 1.0, 100.0, and 255.0). 
+        factors -- Input factor raster files.
+        weights -- Weight values, contained in quotes and separated by commas or semicolons. Must have the same number as factors.
+        cost -- Weight values, contained in quotes and separated by commas or semicolons. Must have the same number as factors.
+        constraints -- Input constraints raster files.
+        output -- Output raster file.
+        scale_max -- Suitability scale maximum value (common values are 1.0, 100.0, and 255.0).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1885,9 +1889,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        inputs -- Input raster files. 
-        weights -- Weight values, contained in quotes and separated by commas or semicolons. 
-        output -- Output raster file. 
+        inputs -- Input raster files.
+        weights -- Weight values, contained in quotes and separated by commas or semicolons.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1905,8 +1909,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1919,7 +1923,7 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector polygon file. 
+        i -- Input vector polygon file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1931,9 +1935,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        output_text -- flag indicating whether a text report should also be output. 
+        i -- Input raster file.
+        output -- Output raster file.
+        output_text -- flag indicating whether a text report should also be output.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1947,7 +1951,7 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector polygon file. 
+        i -- Input vector polygon file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1959,8 +1963,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1973,7 +1977,7 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector polygon file. 
+        i -- Input vector polygon file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1985,7 +1989,7 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector polygon file. 
+        i -- Input vector polygon file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -1997,8 +2001,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2011,7 +2015,7 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector polygon file. 
+        i -- Input vector polygon file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2023,7 +2027,7 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector polygon file. 
+        i -- Input vector polygon file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2035,9 +2039,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        text_output -- Optional text output. 
+        i -- Input raster file.
+        output -- Output raster file.
+        text_output -- Optional text output.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2051,7 +2055,7 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector polygon file. 
+        i -- Input vector polygon file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2063,7 +2067,7 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector polygon file. 
+        i -- Input vector polygon file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2075,8 +2079,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2093,9 +2097,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        zfactor -- Optional multiplier for when the vertical and horizontal units are not the same. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        zfactor -- Optional multiplier for when the vertical and horizontal units are not the same.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2109,9 +2113,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        filter -- Size of the filter kernel. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        filter -- Size of the filter kernel.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2125,9 +2129,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        filter -- Size of the filter kernel. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        filter -- Size of the filter kernel.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2141,10 +2145,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        filterx -- Size of the filter kernel in the x-direction. 
-        filtery -- Size of the filter kernel in the y-direction. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        filterx -- Size of the filter kernel in the x-direction.
+        filtery -- Size of the filter kernel in the y-direction.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2159,10 +2163,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        filterx -- Size of the filter kernel in the x-direction. 
-        filtery -- Size of the filter kernel in the y-direction. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        filterx -- Size of the filter kernel in the x-direction.
+        filtery -- Size of the filter kernel in the y-direction.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2177,10 +2181,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        azimuth -- Wind azimuth in degrees. 
-        max_dist -- Optional maximum search distance (unspecified if none; in xy units). 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        azimuth -- Wind azimuth in degrees.
+        max_dist -- Optional maximum search distance (unspecified if none; in xy units).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2195,10 +2199,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        drop -- Vertical drop value (default is 2.0). 
-        out_type -- Output type, options include 'tangent', 'degrees', 'radians', 'distance' (default is 'tangent'). 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        drop -- Vertical drop value (default is 2.0).
+        out_type -- Output type, options include 'tangent', 'degrees', 'radians', 'distance' (default is 'tangent').
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2213,15 +2217,15 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        filter -- Size of the filter kernel. 
-        norm_diff -- Maximum difference in normal vectors, in degrees. 
-        num_iter -- Number of iterations. 
-        max_diff -- Maximum allowable absolute elevation change (optional). 
-        reduction -- Maximum Amount to reduce the threshold angle by (0 = full smoothing; 100 = no smoothing). 
-        dfm -- Difference from median threshold (in z-units), determines when a location is low-lying. 
-        zfactor -- Optional multiplier for when the vertical and horizontal units are not the same. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        filter -- Size of the filter kernel.
+        norm_diff -- Maximum difference in normal vectors, in degrees.
+        num_iter -- Number of iterations.
+        max_diff -- Maximum allowable absolute elevation change (optional).
+        reduction -- Maximum Amount to reduce the threshold angle by (0 = full smoothing; 100 = no smoothing).
+        dfm -- Difference from median threshold (in z-units), determines when a location is low-lying.
+        zfactor -- Optional multiplier for when the vertical and horizontal units are not the same.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2241,11 +2245,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        filter -- Size of the filter kernel. 
-        norm_diff -- Maximum difference in normal vectors, in degrees. 
-        zfactor -- Optional multiplier for when the vertical and horizontal units are not the same. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        filter -- Size of the filter kernel.
+        norm_diff -- Maximum difference in normal vectors, in degrees.
+        zfactor -- Optional multiplier for when the vertical and horizontal units are not the same.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2261,8 +2265,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2275,11 +2279,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        filterx -- Size of the filter kernel in the x-direction. 
-        filtery -- Size of the filter kernel in the y-direction. 
-        sig_digits -- Number of significant digits. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        filterx -- Size of the filter kernel in the x-direction.
+        filtery -- Size of the filter kernel in the y-direction.
+        sig_digits -- Number of significant digits.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2295,8 +2299,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2309,9 +2313,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        watersheds -- Input raster watersheds file. 
-        output -- Output raster file. 
+        dem -- Input raster DEM file.
+        watersheds -- Input raster watersheds file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2325,13 +2329,13 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        filter -- Size of the filter kernel. 
-        norm_diff -- Maximum difference in normal vectors, in degrees. 
-        num_iter -- Number of iterations. 
-        max_diff -- Maximum allowable absolute elevation change (optional). 
-        zfactor -- Optional multiplier for when the vertical and horizontal units are not the same. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        filter -- Size of the filter kernel.
+        norm_diff -- Maximum difference in normal vectors, in degrees.
+        num_iter -- Number of iterations.
+        max_diff -- Maximum allowable absolute elevation change (optional).
+        zfactor -- Optional multiplier for when the vertical and horizontal units are not the same.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2349,10 +2353,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        azimuth -- Wind azimuth in degrees in degrees. 
-        hgt_inc -- Height increment value. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        azimuth -- Wind azimuth in degrees in degrees.
+        hgt_inc -- Height increment value.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2367,10 +2371,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        filter -- Filter size (cells). 
-        weight -- IDW weight value. 
+        i -- Input raster file.
+        output -- Output raster file.
+        filter -- Filter size (cells).
+        weight -- IDW weight value.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2385,9 +2389,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        line_thin -- Optional flag indicating whether post-processing line-thinning should be performed. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        line_thin -- Optional flag indicating whether post-processing line-thinning should be performed.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2401,11 +2405,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        azimuth -- Illumination source azimuth in degrees. 
-        altitude -- Illumination source altitude in degrees. 
-        zfactor -- Optional multiplier for when the vertical and horizontal units are not the same. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        azimuth -- Illumination source azimuth in degrees.
+        altitude -- Illumination source altitude in degrees.
+        zfactor -- Optional multiplier for when the vertical and horizontal units are not the same.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2421,10 +2425,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        azimuth -- Wind azimuth in degrees. 
-        max_dist -- Optional maximum search distance (unspecified if none; in xy units). 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        azimuth -- Wind azimuth in degrees.
+        max_dist -- Optional maximum search distance (unspecified if none; in xy units).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2439,9 +2443,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        inputs -- Input DEM files. 
-        watershed -- Input watershed files (optional). 
-        output -- Output HTML file (default name will be based on input file if unspecified). 
+        inputs -- Input DEM files.
+        watershed -- Input watershed files (optional).
+        output -- Output HTML file (default name will be based on input file if unspecified).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2455,12 +2459,12 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        out_mag -- Output raster DEVmax magnitude file. 
-        out_scale -- Output raster DEVmax scale file. 
-        min_scale -- Minimum search neighbourhood radius in grid cells. 
-        max_scale -- Maximum search neighbourhood radius in grid cells. 
-        step -- Step size as any positive non-zero integer. 
+        dem -- Input raster DEM file.
+        out_mag -- Output raster DEVmax magnitude file.
+        out_scale -- Output raster DEVmax scale file.
+        min_scale -- Minimum search neighbourhood radius in grid cells.
+        max_scale -- Maximum search neighbourhood radius in grid cells.
+        step -- Step size as any positive non-zero integer.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2477,12 +2481,12 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        points -- Input vector points file. 
-        output -- Output HTML file. 
-        min_scale -- Minimum search neighbourhood radius in grid cells. 
-        max_scale -- Maximum search neighbourhood radius in grid cells. 
-        step -- Step size as any positive non-zero integer. 
+        dem -- Input raster DEM file.
+        points -- Input vector points file.
+        output -- Output HTML file.
+        min_scale -- Minimum search neighbourhood radius in grid cells.
+        max_scale -- Maximum search neighbourhood radius in grid cells.
+        step -- Step size as any positive non-zero integer.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2499,9 +2503,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        log -- Optional flag to request the output be log-transformed. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        log -- Optional flag to request the output be log-transformed.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2515,12 +2519,12 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        out_mag -- Output raster DIFFmax magnitude file. 
-        out_scale -- Output raster DIFFmax scale file. 
-        min_scale -- Minimum search neighbourhood radius in grid cells. 
-        max_scale -- Maximum search neighbourhood radius in grid cells. 
-        step -- Step size as any positive non-zero integer. 
+        dem -- Input raster DEM file.
+        out_mag -- Output raster DIFFmax magnitude file.
+        out_scale -- Output raster DIFFmax scale file.
+        min_scale -- Minimum search neighbourhood radius in grid cells.
+        max_scale -- Maximum search neighbourhood radius in grid cells.
+        step -- Step size as any positive non-zero integer.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2537,8 +2541,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2551,12 +2555,12 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        points -- Input vector points file. 
-        output -- Output HTML file. 
-        min_scale -- Minimum search neighbourhood radius in grid cells. 
-        max_scale -- Maximum search neighbourhood radius in grid cells. 
-        step -- Step size as any positive non-zero integer. 
+        dem -- Input raster DEM file.
+        points -- Input vector points file.
+        output -- Output HTML file.
+        min_scale -- Minimum search neighbourhood radius in grid cells.
+        max_scale -- Maximum search neighbourhood radius in grid cells.
+        step -- Step size as any positive non-zero integer.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2573,12 +2577,12 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        out_mag -- Output raster DEVmax magnitude file. 
-        out_scale -- Output raster DEVmax scale file. 
-        min_scale -- Minimum search neighbourhood radius in grid cells. 
-        max_scale -- Maximum search neighbourhood radius in grid cells. 
-        step -- Step size as any positive non-zero integer. 
+        dem -- Input raster DEM file.
+        out_mag -- Output raster DEVmax magnitude file.
+        out_scale -- Output raster DEVmax scale file.
+        min_scale -- Minimum search neighbourhood radius in grid cells.
+        max_scale -- Maximum search neighbourhood radius in grid cells.
+        step -- Step size as any positive non-zero integer.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2595,8 +2599,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2609,12 +2613,12 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        out_mag -- Output raster roughness magnitude file. 
-        out_scale -- Output raster roughness scale file. 
-        min_scale -- Minimum search neighbourhood radius in grid cells. 
-        max_scale -- Maximum search neighbourhood radius in grid cells. 
-        step -- Step size as any positive non-zero integer. 
+        dem -- Input raster DEM file.
+        out_mag -- Output raster roughness magnitude file.
+        out_scale -- Output raster roughness scale file.
+        min_scale -- Minimum search neighbourhood radius in grid cells.
+        max_scale -- Maximum search neighbourhood radius in grid cells.
+        step -- Step size as any positive non-zero integer.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2631,12 +2635,12 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        points -- Input vector points file. 
-        output -- Output HTML file. 
-        min_scale -- Minimum search neighbourhood radius in grid cells. 
-        max_scale -- Maximum search neighbourhood radius in grid cells. 
-        step -- Step size as any positive non-zero integer. 
+        dem -- Input raster DEM file.
+        points -- Input vector points file.
+        output -- Output HTML file.
+        min_scale -- Minimum search neighbourhood radius in grid cells.
+        max_scale -- Maximum search neighbourhood radius in grid cells.
+        step -- Step size as any positive non-zero integer.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2653,11 +2657,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        local -- Input local-scale topographic position (DEVmax) raster file. 
-        meso -- Input meso-scale topographic position (DEVmax) raster file. 
-        broad -- Input broad-scale topographic position (DEVmax) raster file. 
-        output -- Output raster file. 
-        lightness -- Image lightness value (default is 1.2). 
+        local -- Input local-scale topographic position (DEVmax) raster file.
+        meso -- Input meso-scale topographic position (DEVmax) raster file.
+        broad -- Input broad-scale topographic position (DEVmax) raster file.
+        output -- Output raster file.
+        lightness -- Image lightness value (default is 1.2).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2673,8 +2677,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2687,8 +2691,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2701,12 +2705,12 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        slope -- Slope threshold value, in degrees (default is 3.0). 
-        prof -- Profile curvature threshold value (default is 0.1). 
-        plan -- Plan curvature threshold value (default is 0.0). 
-        zfactor -- Optional multiplier for when the vertical and horizontal units are not the same. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        slope -- Slope threshold value, in degrees (default is 3.0).
+        prof -- Profile curvature threshold value (default is 0.1).
+        plan -- Plan curvature threshold value (default is 0.0).
+        zfactor -- Optional multiplier for when the vertical and horizontal units are not the same.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2723,10 +2727,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        filterx -- Size of the filter kernel in the x-direction. 
-        filtery -- Size of the filter kernel in the y-direction. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        filterx -- Size of the filter kernel in the x-direction.
+        filtery -- Size of the filter kernel in the y-direction.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2741,9 +2745,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        zfactor -- Optional multiplier for when the vertical and horizontal units are not the same. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        zfactor -- Optional multiplier for when the vertical and horizontal units are not the same.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2757,9 +2761,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        lines -- Input vector line file. 
-        surface -- Input raster surface file. 
-        output -- Output HTML file. 
+        lines -- Input vector line file.
+        surface -- Input raster surface file.
+        output -- Output HTML file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2773,9 +2777,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        zfactor -- Optional multiplier for when the vertical and horizontal units are not the same. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        zfactor -- Optional multiplier for when the vertical and horizontal units are not the same.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2789,10 +2793,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        azimuth -- Illumination source azimuth. 
-        zfactor -- Optional multiplier for when the vertical and horizontal units are not the same. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        azimuth -- Illumination source azimuth.
+        zfactor -- Optional multiplier for when the vertical and horizontal units are not the same.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2807,10 +2811,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        sca -- Input raster specific contributing area (SCA) file. 
-        slope -- Input raster slope file. 
-        output -- Output raster file. 
-        exponent -- SCA exponent value. 
+        sca -- Input raster specific contributing area (SCA) file.
+        slope -- Input raster slope file.
+        output -- Output raster file.
+        exponent -- SCA exponent value.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2825,10 +2829,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        filterx -- Size of the filter kernel in the x-direction. 
-        filtery -- Size of the filter kernel in the y-direction. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        filterx -- Size of the filter kernel in the x-direction.
+        filtery -- Size of the filter kernel in the y-direction.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2843,10 +2847,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        filter -- Filter size (cells). 
-        slope -- Slope threshold value. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        filter -- Filter size (cells).
+        slope -- Slope threshold value.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2861,9 +2865,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        zfactor -- Optional multiplier for when the vertical and horizontal units are not the same. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        zfactor -- Optional multiplier for when the vertical and horizontal units are not the same.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2877,11 +2881,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        sca -- Input raster specific contributing area (SCA) file. 
-        slope -- Input raster slope file. 
-        output -- Output raster file. 
-        sca_exponent -- SCA exponent value. 
-        slope_exponent -- Slope exponent value. 
+        sca -- Input raster specific contributing area (SCA) file.
+        slope -- Input raster slope file.
+        output -- Output raster file.
+        sca_exponent -- SCA exponent value.
+        slope_exponent -- Slope exponent value.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2897,9 +2901,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        zfactor -- Optional multiplier for when the vertical and horizontal units are not the same. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        zfactor -- Optional multiplier for when the vertical and horizontal units are not the same.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2913,9 +2917,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        inputs -- Input DEM files. 
-        watershed -- Input watershed files (optional). 
-        output -- Output HTML file (default name will be based on input file if unspecified). 
+        inputs -- Input DEM files.
+        watershed -- Input watershed files (optional).
+        output -- Output HTML file (default name will be based on input file if unspecified).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2929,9 +2933,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        filter -- Size of the filter kernel. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        filter -- Size of the filter kernel.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2945,11 +2949,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster DEM file. 
-        output -- Output raster DEM file. 
-        zfactor -- Optional multiplier for when the vertical and horizontal units are not the same. 
-        filterx -- Size of the filter kernel in the x-direction. 
-        filtery -- Size of the filter kernel in the y-direction. 
+        i -- Input raster DEM file.
+        output -- Output raster DEM file.
+        zfactor -- Optional multiplier for when the vertical and horizontal units are not the same.
+        filterx -- Size of the filter kernel in the x-direction.
+        filtery -- Size of the filter kernel in the y-direction.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2965,8 +2969,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2979,9 +2983,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        zfactor -- Optional multiplier for when the vertical and horizontal units are not the same. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        zfactor -- Optional multiplier for when the vertical and horizontal units are not the same.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -2995,9 +2999,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        zfactor -- Optional multiplier for when the vertical and horizontal units are not the same. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        zfactor -- Optional multiplier for when the vertical and horizontal units are not the same.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3011,10 +3015,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        stations -- Input viewing station vector file. 
-        output -- Output raster file. 
-        height -- Viewing station height, in z units. 
+        dem -- Input raster DEM file.
+        stations -- Input viewing station vector file.
+        output -- Output raster file.
+        height -- Viewing station height, in z units.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3029,10 +3033,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        height -- Viewing station height, in z units. 
-        res_factor -- The resolution factor determines the density of measured viewsheds. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        height -- Viewing station height, in z units.
+        res_factor -- The resolution factor determines the density of measured viewsheds.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3047,9 +3051,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        sca -- Input raster specific contributing area (SCA) file. 
-        slope -- Input raster slope file. 
-        output -- Output raster file. 
+        sca -- Input raster specific contributing area (SCA) file.
+        slope -- Input raster slope file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3067,8 +3071,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3081,8 +3085,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3095,9 +3099,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        d8_pntr -- Input raster D8 pointer file. 
-        output -- Output raster file. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
+        d8_pntr -- Input raster D8 pointer file.
+        output -- Output raster file.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3111,12 +3115,12 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        max_depth -- Optional maximum breach depth (default is Inf). 
-        max_length -- Optional maximum breach channel length (in grid cells; default is Inf). 
-        flat_increment -- Optional elevation increment applied to flat areas. 
-        fill_pits -- Optional flag indicating whether to fill single-cell pits. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        max_depth -- Optional maximum breach depth (default is Inf).
+        max_length -- Optional maximum breach channel length (in grid cells; default is Inf).
+        flat_increment -- Optional elevation increment applied to flat areas.
+        fill_pits -- Optional flag indicating whether to fill single-cell pits.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3133,8 +3137,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3147,11 +3151,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        out_type -- Output type; one of 'cells' (default), 'catchment area', and 'specific contributing area'. 
-        log -- Optional flag to request the output be log-transformed. 
-        clip -- Optional flag to request clipping the display max by 1%. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        out_type -- Output type; one of 'cells' (default), 'catchment area', and 'specific contributing area'.
+        log -- Optional flag to request the output be log-transformed.
+        clip -- Optional flag to request clipping the display max by 1%.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3167,11 +3171,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        loading -- Input loading raster file. 
-        efficiency -- Input efficiency raster file. 
-        absorption -- Input absorption raster file. 
-        output -- Output raster file. 
+        dem -- Input raster DEM file.
+        loading -- Input loading raster file.
+        efficiency -- Input efficiency raster file.
+        absorption -- Input absorption raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3187,9 +3191,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3203,12 +3207,12 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        out_type -- Output type; one of 'cells', 'sca' (default), and 'ca'. 
-        threshold -- Optional convergence threshold parameter, in grid cells; default is inifinity. 
-        log -- Optional flag to request the output be log-transformed. 
-        clip -- Optional flag to request clipping the display max by 1%. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        out_type -- Output type; one of 'cells', 'sca' (default), and 'ca'.
+        threshold -- Optional convergence threshold parameter, in grid cells; default is inifinity.
+        log -- Optional flag to request the output be log-transformed.
+        clip -- Optional flag to request clipping the display max by 1%.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3225,11 +3229,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        loading -- Input loading raster file. 
-        efficiency -- Input efficiency raster file. 
-        absorption -- Input absorption raster file. 
-        output -- Output raster file. 
+        dem -- Input raster DEM file.
+        loading -- Input loading raster file.
+        efficiency -- Input efficiency raster file.
+        absorption -- Input absorption raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3245,8 +3249,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3259,9 +3263,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        zero_background -- Flag indicating whether the background value of zero should be used. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        zero_background -- Flag indicating whether the background value of zero should be used.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3275,9 +3279,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        streams -- Input raster streams file. 
-        output -- Output raster file. 
+        dem -- Input raster DEM file.
+        streams -- Input raster streams file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3291,11 +3295,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        d8_pntr -- Input D8 pointer raster file. 
-        watersheds -- Optional input watershed raster file. 
-        weights -- Optional input weights raster file. 
-        output -- Output raster file. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
+        d8_pntr -- Input D8 pointer raster file.
+        watersheds -- Optional input watershed raster file.
+        weights -- Optional input weights raster file.
+        output -- Output raster file.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3311,9 +3315,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        streams -- Input raster streams file. 
-        output -- Output raster file. 
+        dem -- Input raster DEM file.
+        streams -- Input raster streams file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3327,9 +3331,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        streams -- Input raster streams file. 
-        output -- Output raster file. 
+        dem -- Input raster DEM file.
+        streams -- Input raster streams file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3343,13 +3347,13 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        out_type -- Output type; one of 'cells', 'specific contributing area' (default), and 'catchment area'. 
-        exponent -- Optional exponent parameter; default is 1.1. 
-        threshold -- Optional convergence threshold parameter, in grid cells; default is inifinity. 
-        log -- Optional flag to request the output be log-transformed. 
-        clip -- Optional flag to request clipping the display max by 1%. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        out_type -- Output type; one of 'cells', 'specific contributing area' (default), and 'catchment area'.
+        exponent -- Optional exponent parameter; default is 1.1.
+        threshold -- Optional convergence threshold parameter, in grid cells; default is inifinity.
+        log -- Optional flag to request the output be log-transformed.
+        clip -- Optional flag to request clipping the display max by 1%.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3367,8 +3371,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3381,9 +3385,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        streams -- Input vector streams file. 
-        output -- Output raster file. 
+        dem -- Input raster DEM file.
+        streams -- Input vector streams file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3397,9 +3401,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        fix_flats -- Optional flag indicating whether flat areas should have a small gradient applied. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        fix_flats -- Optional flag indicating whether flat areas should have a small gradient applied.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3413,8 +3417,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3427,8 +3431,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3441,9 +3445,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        d8_pntr -- Input D8 pointer raster file. 
-        streams -- Input raster streams file. 
-        output -- Output raster file. 
+        d8_pntr -- Input D8 pointer raster file.
+        streams -- Input raster streams file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3457,9 +3461,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        lakes -- Input lakes vector polygons file. 
-        output -- Output raster file. 
+        dem -- Input raster DEM file.
+        lakes -- Input lakes vector polygons file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3473,8 +3477,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3487,14 +3491,14 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        out_dem -- Output raster DEM file. 
-        out_pntr -- Output raster flow pointer file. 
-        out_accum -- Output raster flow accumulation file. 
-        out_type -- Output type; one of 'cells', 'sca' (default), and 'ca'. 
-        log -- Optional flag to request the output be log-transformed. 
-        clip -- Optional flag to request clipping the display max by 1%. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
+        dem -- Input raster DEM file.
+        out_dem -- Output raster DEM file.
+        out_pntr -- Output raster flow pointer file.
+        out_accum -- Output raster flow accumulation file.
+        out_type -- Output type; one of 'cells', 'sca' (default), and 'ca'.
+        log -- Optional flag to request the output be log-transformed.
+        clip -- Optional flag to request clipping the display max by 1%.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3513,9 +3517,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        d8_pntr -- Input D8 pointer raster file. 
-        output -- Output raster file. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
+        d8_pntr -- Input D8 pointer raster file.
+        output -- Output raster file.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3529,10 +3533,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        d8_pntr -- Input raster D8 pointer file. 
-        streams -- Input raster streams file. 
-        output -- Output raster file. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
+        d8_pntr -- Input raster D8 pointer file.
+        streams -- Input raster streams file.
+        output -- Output raster file.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3547,10 +3551,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output file. 
-        out_type -- Output type; one of 'depth' (default), 'volume', and 'area'. 
-        damlength -- Maximum length of thr dam. 
+        dem -- Input raster DEM file.
+        output -- Output file.
+        out_type -- Output type; one of 'depth' (default), 'volume', and 'area'.
+        damlength -- Maximum length of thr dam.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3565,9 +3569,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        size -- Target basin size, in grid cells. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        size -- Target basin size, in grid cells.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3581,10 +3585,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        pour_pts -- Input vector pour points (outlet) file. 
-        streams -- Input raster streams file. 
-        output -- Output vector file. 
-        snap_dist -- Maximum snap distance in map units. 
+        pour_pts -- Input vector pour points (outlet) file.
+        streams -- Input raster streams file.
+        output -- Output vector file.
+        snap_dist -- Maximum snap distance in map units.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3599,9 +3603,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        basins -- Input raster basins file. 
-        output -- Output vector file. 
+        dem -- Input raster DEM file.
+        basins -- Input raster basins file.
+        output -- Output vector file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3615,8 +3619,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3629,8 +3633,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3643,11 +3647,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector lines or polygons file. 
-        breach -- Optional input vector breach lines. 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        height -- Wall height. 
+        i -- Input vector lines or polygons file.
+        breach -- Optional input vector breach lines.
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        height -- Wall height.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3663,9 +3667,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3679,9 +3683,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        zero_background -- Flag indicating whether a background value of zero should be used. 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        zero_background -- Flag indicating whether a background value of zero should be used.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3695,10 +3699,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        pour_pts -- Input vector pour points (outlet) file. 
-        flow_accum -- Input raster D8 flow accumulation file. 
-        output -- Output vector file. 
-        snap_dist -- Maximum snap distance in map units. 
+        pour_pts -- Input vector pour points (outlet) file.
+        flow_accum -- Input raster D8 flow accumulation file.
+        output -- Output vector file.
+        snap_dist -- Maximum snap distance in map units.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3713,11 +3717,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output file. 
-        rmse -- The DEM's root-mean-square-error (RMSE), in z units. This determines error magnitude. 
-        range -- The error field's correlation length, in xy-units. 
-        iterations -- The number of iterations. 
+        dem -- Input raster DEM file.
+        output -- Output file.
+        rmse -- The DEM's root-mean-square-error (RMSE), in z units. This determines error magnitude.
+        range -- The error field's correlation length, in xy-units.
+        iterations -- The number of iterations.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3733,10 +3737,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        d8_pntr -- Input raster D8 pointer file. 
-        streams -- Input raster streams file. 
-        output -- Output raster file. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
+        d8_pntr -- Input raster D8 pointer file.
+        streams -- Input raster streams file.
+        output -- Output raster file.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3751,10 +3755,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        d8_pntr -- Input D8 pointer raster file. 
-        streams -- Input raster streams file. 
-        output -- Output raster file. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
+        d8_pntr -- Input D8 pointer raster file.
+        streams -- Input raster streams file.
+        output -- Output raster file.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3769,11 +3773,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        seed_pts -- Input vector seed points file. 
-        d8_pntr -- Input D8 pointer raster file. 
-        output -- Output raster file. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
-        zero_background -- Flag indicating whether a background value of zero should be used. 
+        seed_pts -- Input vector seed points file.
+        d8_pntr -- Input D8 pointer raster file.
+        output -- Output raster file.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
+        zero_background -- Flag indicating whether a background value of zero should be used.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3789,10 +3793,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        d8_pntr -- Input D8 pointer raster file. 
-        pour_pts -- Input vector pour points (outlet) file. 
-        output -- Output raster file. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
+        d8_pntr -- Input D8 pointer raster file.
+        pour_pts -- Input vector pour points (outlet) file.
+        output -- Output raster file.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3807,10 +3811,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        d8_pntr -- Input D8 pointer raster file. 
-        pour_pts -- Input vector pour points (outlet) file. 
-        output -- Output raster file. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
+        d8_pntr -- Input D8 pointer raster file.
+        pour_pts -- Input vector pour points (outlet) file.
+        output -- Output raster file.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3829,10 +3833,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        date1 -- Input raster files for the earlier date. 
-        date2 -- Input raster files for the later date. 
-        magnitude -- Output vector magnitude raster file. 
-        direction -- Output vector Direction raster file. 
+        date1 -- Input raster files for the earlier date.
+        date2 -- Input raster files for the later date.
+        magnitude -- Output vector magnitude raster file.
+        direction -- Output vector Direction raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3847,10 +3851,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        filterx -- Size of the filter kernel in the x-direction. 
-        filtery -- Size of the filter kernel in the y-direction. 
+        i -- Input raster file.
+        output -- Output raster file.
+        filterx -- Size of the filter kernel in the x-direction.
+        filtery -- Size of the filter kernel in the y-direction.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3865,13 +3869,13 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        red -- Input red band image file. 
-        green -- Input green band image file. 
-        blue -- Input blue band image file. 
-        opacity -- Input opacity band image file (optional). 
-        output -- Output colour composite file. 
-        enhance -- Optional flag indicating whether a balance contrast enhancement is performed. 
-        zeros -- Optional flag to indicate if zeros are nodata values. 
+        red -- Input red band image file.
+        green -- Input green band image file.
+        blue -- Input blue band image file.
+        opacity -- Input opacity band image file (optional).
+        output -- Output colour composite file.
+        enhance -- Optional flag indicating whether a balance contrast enhancement is performed.
+        zeros -- Optional flag to indicate if zeros are nodata values.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3889,9 +3893,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        direction -- Direction of reflection; options include 'v' (vertical), 'h' (horizontal), and 'b' (both). 
+        i -- Input raster file.
+        output -- Output raster file.
+        direction -- Direction of reflection; options include 'v' (vertical), 'h' (horizontal), and 'b' (both).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3905,13 +3909,13 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        intensity -- Input intensity file. 
-        hue -- Input hue file. 
-        saturation -- Input saturation file. 
-        red -- Output red band file. Optionally specified if colour-composite not specified. 
-        green -- Output green band file. Optionally specified if colour-composite not specified. 
-        blue -- Output blue band file. Optionally specified if colour-composite not specified. 
-        output -- Output colour-composite file. Only used if individual bands are not specified. 
+        intensity -- Input intensity file.
+        hue -- Input hue file.
+        saturation -- Input saturation file.
+        red -- Output red band file. Optionally specified if colour-composite not specified.
+        green -- Output green band file. Optionally specified if colour-composite not specified.
+        blue -- Output blue band file. Optionally specified if colour-composite not specified.
+        output -- Output colour-composite file. Only used if individual bands are not specified.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3929,9 +3933,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        inputs -- Input multispectral image files. 
-        points -- Input vector points file. 
-        output -- Output HTML file. 
+        inputs -- Input multispectral image files.
+        points -- Input vector points file.
+        output -- Output HTML file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3945,8 +3949,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3959,14 +3963,14 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        inputs -- Input raster files. 
-        output -- Output raster file. 
-        out_html -- Output HTML report file. 
-        classes -- Number of classes. 
-        max_iterations -- Maximum number of iterations. 
-        class_change -- Minimum percent of cells changed between iterations before completion. 
-        initialize -- How to initialize cluster centres?. 
-        min_class_size -- Minimum class size, in pixels. 
+        inputs -- Input raster files.
+        output -- Output raster file.
+        out_html -- Output HTML report file.
+        classes -- Number of classes.
+        max_iterations -- Maximum number of iterations.
+        class_change -- Minimum percent of cells changed between iterations before completion.
+        initialize -- How to initialize cluster centres?.
+        min_class_size -- Minimum class size, in pixels.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3985,8 +3989,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -3999,13 +4003,13 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        inputs -- Input raster files. 
-        output -- Output raster file. 
-        out_html -- Output HTML report file. 
-        start_clusters -- Initial number of clusters. 
-        merge_dist -- Cluster merger distance. 
-        max_iterations -- Maximum number of iterations. 
-        class_change -- Minimum percent of cells changed between iterations before completion. 
+        inputs -- Input raster files.
+        output -- Output raster file.
+        out_html -- Output HTML report file.
+        start_clusters -- Initial number of clusters.
+        merge_dist -- Cluster merger distance.
+        max_iterations -- Maximum number of iterations.
+        class_change -- Minimum percent of cells changed between iterations before completion.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4023,9 +4027,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        inputs -- Input raster files. 
-        output -- Output raster file. 
-        method -- Resampling method; options include 'nn' (nearest neighbour), 'bilinear', and 'cc' (cubic convolution). 
+        inputs -- Input raster files.
+        output -- Output raster file.
+        method -- Resampling method; options include 'nn' (nearest neighbour), 'bilinear', and 'cc' (cubic convolution).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4039,11 +4043,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input raster file to modify. 
-        input2 -- Input reference raster file. 
-        output -- Output raster file. 
-        method -- Resampling method; options include 'nn' (nearest neighbour), 'bilinear', and 'cc' (cubic convolution). 
-        weight -- . 
+        input1 -- Input raster file to modify.
+        input2 -- Input reference raster file.
+        output -- Output raster file.
+        method -- Resampling method; options include 'nn' (nearest neighbour), 'bilinear', and 'cc' (cubic convolution).
+        weight -- .
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4059,11 +4063,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input image 1 (e.g. near-infrared band). 
-        input2 -- Input image 2 (e.g. red band). 
-        output -- Output raster file. 
-        clip -- Optional amount to clip the distribution tails by, in percent. 
-        correction -- Optional adjustment value (e.g. 1, or 0.16 for the optimal soil adjusted vegetation index, OSAVI). 
+        input1 -- Input image 1 (e.g. near-infrared band).
+        input2 -- Input image 2 (e.g. red band).
+        output -- Output raster file.
+        clip -- Optional amount to clip the distribution tails by, in percent.
+        correction -- Optional adjustment value (e.g. 1, or 0.16 for the optimal soil adjusted vegetation index, OSAVI).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4079,10 +4083,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        filterx -- Size of the filter kernel in the x-direction. 
-        filtery -- Size of the filter kernel in the y-direction. 
+        i -- Input raster file.
+        output -- Output raster file.
+        filterx -- Size of the filter kernel in the x-direction.
+        filtery -- Size of the filter kernel in the y-direction.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4097,9 +4101,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        iterations -- Maximum number of iterations. 
+        i -- Input raster file.
+        output -- Output raster file.
+        iterations -- Maximum number of iterations.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4113,9 +4117,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        inputs -- Input raster files. 
-        destination -- Destination raster file. 
-        method -- Resampling method; options include 'nn' (nearest neighbour), 'bilinear', and 'cc' (cubic convolution). 
+        inputs -- Input raster files.
+        destination -- Destination raster file.
+        method -- Resampling method; options include 'nn' (nearest neighbour), 'bilinear', and 'cc' (cubic convolution).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4129,13 +4133,13 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        red -- Input red band image file. Optionally specified if colour-composite not specified. 
-        green -- Input green band image file. Optionally specified if colour-composite not specified. 
-        blue -- Input blue band image file. Optionally specified if colour-composite not specified. 
-        composite -- Input colour-composite image file. Only used if individual bands are not specified. 
-        intensity -- Output intensity raster file. 
-        hue -- Output hue raster file. 
-        saturation -- Output saturation raster file. 
+        red -- Input red band image file. Optionally specified if colour-composite not specified.
+        green -- Input green band image file. Optionally specified if colour-composite not specified.
+        blue -- Input blue band image file. Optionally specified if colour-composite not specified.
+        composite -- Input colour-composite image file. Only used if individual bands are not specified.
+        intensity -- Output intensity raster file.
+        hue -- Output hue raster file.
+        saturation -- Output saturation raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4153,10 +4157,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input colour composite image file. 
-        red -- Output red band file. 
-        green -- Output green band file. 
-        blue -- Output blue band file. 
+        i -- Input colour composite image file.
+        red -- Output red band file.
+        green -- Output green band file.
+        blue -- Output blue band file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4171,8 +4175,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4185,11 +4189,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        filterx -- Size of the filter kernel in the x-direction. 
-        filtery -- Size of the filter kernel in the y-direction. 
-        variant -- Optional variant value. Options include 'white' and 'black'. 
+        i -- Input raster file.
+        output -- Output raster file.
+        filterx -- Size of the filter kernel in the x-direction.
+        filtery -- Size of the filter kernel in the y-direction.
+        variant -- Optional variant value. Options include 'white' and 'black'.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4205,10 +4209,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input raster file associated with the first date. 
-        input2 -- Input raster file associated with the second date. 
-        input3 -- Optional input raster file associated with the third date. 
-        output -- Output raster file. 
+        input1 -- Input raster file associated with the first date.
+        input2 -- Input raster file associated with the second date.
+        input3 -- Optional input raster file associated with the third date.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4227,11 +4231,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        filterx -- Size of the filter kernel in the x-direction. 
-        filtery -- Size of the filter kernel in the y-direction. 
-        threshold -- Difference from mean threshold, in standard deviations. 
+        i -- Input raster file.
+        output -- Output raster file.
+        filterx -- Size of the filter kernel in the x-direction.
+        filtery -- Size of the filter kernel in the y-direction.
+        threshold -- Difference from mean threshold, in standard deviations.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4247,10 +4251,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        sigma_dist -- Standard deviation in distance in pixels. 
-        sigma_int -- Standard deviation in intensity in pixels. 
+        i -- Input raster file.
+        output -- Output raster file.
+        sigma_dist -- Standard deviation in distance in pixels.
+        sigma_int -- Standard deviation in intensity in pixels.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4265,10 +4269,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        filterx -- Size of the filter kernel in the x-direction. 
-        filtery -- Size of the filter kernel in the y-direction. 
+        i -- Input raster file.
+        output -- Output raster file.
+        filterx -- Size of the filter kernel in the x-direction.
+        filtery -- Size of the filter kernel in the y-direction.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4283,8 +4287,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input boolean image. 
-        output -- Output raster file. 
+        i -- Input boolean image.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4297,10 +4301,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        sigma1 -- Standard deviation distance in pixels. 
-        sigma2 -- Standard deviation distance in pixels. 
+        i -- Input raster file.
+        output -- Output raster file.
+        sigma1 -- Standard deviation distance in pixels.
+        sigma2 -- Standard deviation distance in pixels.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4315,10 +4319,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        filterx -- Size of the filter kernel in the x-direction. 
-        filtery -- Size of the filter kernel in the y-direction. 
+        i -- Input raster file.
+        output -- Output raster file.
+        filterx -- Size of the filter kernel in the x-direction.
+        filtery -- Size of the filter kernel in the y-direction.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4333,10 +4337,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        filter -- Size of the filter kernel. 
-        threshold -- Maximum difference in values. 
+        i -- Input raster file.
+        output -- Output raster file.
+        filter -- Size of the filter kernel.
+        threshold -- Maximum difference in values.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4351,10 +4355,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        direction -- Direction of reflection; options include 'n', 's', 'e', 'w', 'ne', 'se', 'nw', 'sw'. 
-        clip -- Optional amount to clip the distribution tails by, in percent. 
+        i -- Input raster file.
+        output -- Output raster file.
+        direction -- Direction of reflection; options include 'n', 's', 'e', 'w', 'ne', 'se', 'nw', 'sw'.
+        clip -- Optional amount to clip the distribution tails by, in percent.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4369,9 +4373,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        sigma -- Standard deviation distance in pixels. 
+        i -- Input raster file.
+        output -- Output raster file.
+        sigma -- Standard deviation distance in pixels.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4385,9 +4389,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        sigma -- Standard deviation distance in pixels. 
+        i -- Input raster file.
+        output -- Output raster file.
+        sigma -- Standard deviation distance in pixels.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4401,10 +4405,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        filterx -- Size of the filter kernel in the x-direction. 
-        filtery -- Size of the filter kernel in the y-direction. 
+        i -- Input raster file.
+        output -- Output raster file.
+        filterx -- Size of the filter kernel in the x-direction.
+        filtery -- Size of the filter kernel in the y-direction.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4419,11 +4423,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        filterx -- Size of the filter kernel in the x-direction. 
-        filtery -- Size of the filter kernel in the y-direction. 
-        sig_digits -- Number of significant digits. 
+        i -- Input raster file.
+        output -- Output raster file.
+        filterx -- Size of the filter kernel in the x-direction.
+        filtery -- Size of the filter kernel in the y-direction.
+        sig_digits -- Number of significant digits.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4439,11 +4443,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        filterx -- Size of the filter kernel in the x-direction. 
-        filtery -- Size of the filter kernel in the y-direction. 
-        k -- k-value in pixels; this is the number of nearest-valued neighbours to use. 
+        i -- Input raster file.
+        output -- Output raster file.
+        filterx -- Size of the filter kernel in the x-direction.
+        filtery -- Size of the filter kernel in the y-direction.
+        k -- k-value in pixels; this is the number of nearest-valued neighbours to use.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4459,10 +4463,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        variant -- Optional variant value. Options include 3x3(1), 3x3(2), 3x3(3), 3x3(4), 5x5(1), and 5x5(2) (default is 3x3(1)). 
-        clip -- Optional amount to clip the distribution tails by, in percent. 
+        i -- Input raster file.
+        output -- Output raster file.
+        variant -- Optional variant value. Options include 3x3(1), 3x3(2), 3x3(3), 3x3(4), 5x5(1), and 5x5(2) (default is 3x3(1)).
+        clip -- Optional amount to clip the distribution tails by, in percent.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4477,9 +4481,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        sigma -- Standard deviation in pixels. 
+        i -- Input raster file.
+        output -- Output raster file.
+        sigma -- Standard deviation in pixels.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4493,12 +4497,12 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        filterx -- Size of the filter kernel in the x-direction. 
-        filtery -- Size of the filter kernel in the y-direction. 
-        sigma -- Sigma value should be related to the standarad deviation of the distribution of image speckle noise. 
-        m -- M-threshold value the minimum allowable number of pixels within the intensity range. 
+        i -- Input raster file.
+        output -- Output raster file.
+        filterx -- Size of the filter kernel in the x-direction.
+        filtery -- Size of the filter kernel in the y-direction.
+        sigma -- Sigma value should be related to the standarad deviation of the distribution of image speckle noise.
+        m -- M-threshold value the minimum allowable number of pixels within the intensity range.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4515,11 +4519,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        variant -- Optional variant value. Options include 'v' (vertical), 'h' (horizontal), '45', and '135' (default is 'v'). 
-        absvals -- Optional flag indicating whether outputs should be absolute values. 
-        clip -- Optional amount to clip the distribution tails by, in percent. 
+        i -- Input raster file.
+        output -- Output raster file.
+        variant -- Optional variant value. Options include 'v' (vertical), 'h' (horizontal), '45', and '135' (default is 'v').
+        absvals -- Optional flag indicating whether outputs should be absolute values.
+        clip -- Optional amount to clip the distribution tails by, in percent.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4535,10 +4539,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        filterx -- Size of the filter kernel in the x-direction. 
-        filtery -- Size of the filter kernel in the y-direction. 
+        i -- Input raster file.
+        output -- Output raster file.
+        filterx -- Size of the filter kernel in the x-direction.
+        filtery -- Size of the filter kernel in the y-direction.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4553,10 +4557,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        filterx -- Size of the filter kernel in the x-direction. 
-        filtery -- Size of the filter kernel in the y-direction. 
+        i -- Input raster file.
+        output -- Output raster file.
+        filterx -- Size of the filter kernel in the x-direction.
+        filtery -- Size of the filter kernel in the y-direction.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4571,10 +4575,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        filterx -- Size of the filter kernel in the x-direction. 
-        filtery -- Size of the filter kernel in the y-direction. 
+        i -- Input raster file.
+        output -- Output raster file.
+        filterx -- Size of the filter kernel in the x-direction.
+        filtery -- Size of the filter kernel in the y-direction.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4589,11 +4593,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        filterx -- Size of the filter kernel in the x-direction. 
-        filtery -- Size of the filter kernel in the y-direction. 
-        sig_digits -- Number of significant digits. 
+        i -- Input raster file.
+        output -- Output raster file.
+        filterx -- Size of the filter kernel in the x-direction.
+        filtery -- Size of the filter kernel in the y-direction.
+        sig_digits -- Number of significant digits.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4609,10 +4613,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        filterx -- Size of the filter kernel in the x-direction. 
-        filtery -- Size of the filter kernel in the y-direction. 
+        i -- Input raster file.
+        output -- Output raster file.
+        filterx -- Size of the filter kernel in the x-direction.
+        filtery -- Size of the filter kernel in the y-direction.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4627,10 +4631,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        filterx -- Size of the filter kernel in the x-direction. 
-        filtery -- Size of the filter kernel in the y-direction. 
+        i -- Input raster file.
+        output -- Output raster file.
+        filterx -- Size of the filter kernel in the x-direction.
+        filtery -- Size of the filter kernel in the y-direction.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4645,11 +4649,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        filterx -- Size of the filter kernel in the x-direction. 
-        filtery -- Size of the filter kernel in the y-direction. 
-        sig_digits -- Number of significant digits. 
+        i -- Input raster file.
+        output -- Output raster file.
+        filterx -- Size of the filter kernel in the x-direction.
+        filtery -- Size of the filter kernel in the y-direction.
+        sig_digits -- Number of significant digits.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4665,9 +4669,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        clip -- Optional amount to clip the distribution tails by, in percent. 
+        i -- Input raster file.
+        output -- Output raster file.
+        clip -- Optional amount to clip the distribution tails by, in percent.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4681,10 +4685,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        filterx -- Size of the filter kernel in the x-direction. 
-        filtery -- Size of the filter kernel in the y-direction. 
+        i -- Input raster file.
+        output -- Output raster file.
+        filterx -- Size of the filter kernel in the x-direction.
+        filtery -- Size of the filter kernel in the y-direction.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4699,9 +4703,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        clip -- Optional amount to clip the distribution tails by, in percent. 
+        i -- Input raster file.
+        output -- Output raster file.
+        clip -- Optional amount to clip the distribution tails by, in percent.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4715,9 +4719,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        clip -- Optional amount to clip the distribution tails by, in percent. 
+        i -- Input raster file.
+        output -- Output raster file.
+        clip -- Optional amount to clip the distribution tails by, in percent.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4731,10 +4735,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        variant -- Optional variant value. Options include 3x3 and 5x5 (default is 3x3). 
-        clip -- Optional amount to clip the distribution tails by, in percent (default is 0.0). 
+        i -- Input raster file.
+        output -- Output raster file.
+        variant -- Optional variant value. Options include 3x3 and 5x5 (default is 3x3).
+        clip -- Optional amount to clip the distribution tails by, in percent (default is 0.0).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4749,10 +4753,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        filterx -- Size of the filter kernel in the x-direction. 
-        filtery -- Size of the filter kernel in the y-direction. 
+        i -- Input raster file.
+        output -- Output raster file.
+        filterx -- Size of the filter kernel in the x-direction.
+        filtery -- Size of the filter kernel in the y-direction.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4767,10 +4771,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        filterx -- Size of the filter kernel in the x-direction. 
-        filtery -- Size of the filter kernel in the y-direction. 
+        i -- Input raster file.
+        output -- Output raster file.
+        filterx -- Size of the filter kernel in the x-direction.
+        filtery -- Size of the filter kernel in the y-direction.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4785,11 +4789,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        sigma -- Standard deviation distance in pixels. 
-        amount -- A percentage and controls the magnitude of each overshoot. 
-        threshold -- Controls the minimal brightness change that will be sharpened. 
+        i -- Input raster file.
+        output -- Output raster file.
+        sigma -- Standard deviation distance in pixels.
+        amount -- A percentage and controls the magnitude of each overshoot.
+        threshold -- Controls the minimal brightness change that will be sharpened.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4805,11 +4809,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        weights -- Input weights file. 
-        output -- Output raster file. 
-        center -- Kernel center cell; options include 'center', 'upper-left', 'upper-right', 'lower-left', 'lower-right'. 
-        normalize -- Normalize kernel weights? This can reduce edge effects and lessen the impact of data gaps (nodata) but is not suited when the kernel weights sum to zero. 
+        i -- Input raster file.
+        weights -- Input weights file.
+        output -- Output raster file.
+        center -- Kernel center cell; options include 'center', 'upper-left', 'upper-right', 'lower-left', 'lower-right'.
+        normalize -- Normalize kernel weights? This can reduce edge effects and lessen the impact of data gaps (nodata) but is not suited when the kernel weights sum to zero.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4829,9 +4833,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input colour composite image file. 
-        output -- Output raster file. 
-        band_mean -- Band mean value. 
+        i -- Input colour composite image file.
+        output -- Output raster file.
+        band_mean -- Band mean value.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4845,12 +4849,12 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        pp -- Input principal point file. 
-        output -- Output raster file. 
-        focal_length -- Camera focal length, in millimeters. 
-        image_width -- Distance between photograph edges, in millimeters. 
-        n -- The 'n' parameter. 
+        i -- Input raster file.
+        pp -- Input principal point file.
+        output -- Output raster file.
+        focal_length -- Camera focal length, in millimeters.
+        image_width -- Distance between photograph edges, in millimeters.
+        n -- The 'n' parameter.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4867,10 +4871,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input colour composite image file. 
-        output -- Output raster file. 
-        k -- Achromatic factor (k) ranges between 0 (no effect) and 1 (full saturation stretch), although typical values range from 0.3 to 0.7. 
-        clip -- Optional percent to clip the upper tail by during the stretch. 
+        i -- Input colour composite image file.
+        output -- Output raster file.
+        k -- Achromatic factor (k) ranges between 0 (no effect) and 1 (full saturation stretch), although typical values range from 0.3 to 0.7.
+        clip -- Optional percent to clip the upper tail by during the stretch.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4885,9 +4889,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        gamma -- Gamma value. 
+        i -- Input raster file.
+        output -- Output raster file.
+        gamma -- Gamma value.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4901,9 +4905,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        num_tones -- Number of tones in the output image. 
+        i -- Input raster file.
+        output -- Output raster file.
+        num_tones -- Number of tones in the output image.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4917,9 +4921,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        num_tones -- Number of tones in the output image. 
+        i -- Input raster file.
+        output -- Output raster file.
+        num_tones -- Number of tones in the output image.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4933,9 +4937,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        histo_file -- Input reference probability distribution function (pdf) text file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        histo_file -- Input reference probability distribution function (pdf) text file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4949,9 +4953,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input raster file to modify. 
-        input2 -- Input reference raster file. 
-        output -- Output raster file. 
+        input1 -- Input raster file to modify.
+        input2 -- Input reference raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4965,11 +4969,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        min_val -- Lower tail clip value. 
-        max_val -- Upper tail clip value. 
-        num_tones -- Number of tones in the output image. 
+        i -- Input raster file.
+        output -- Output raster file.
+        min_val -- Lower tail clip value.
+        max_val -- Upper tail clip value.
+        num_tones -- Number of tones in the output image.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -4985,13 +4989,13 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        red -- Input red band image file. Optionally specified if colour-composite not specified. 
-        green -- Input green band image file. Optionally specified if colour-composite not specified. 
-        blue -- Input blue band image file. Optionally specified if colour-composite not specified. 
-        composite -- Input colour-composite image file. Only used if individual bands are not specified. 
-        pan -- Input panchromatic band file. 
-        output -- Output colour composite file. 
-        method -- Options include 'brovey' (default) and 'ihs'. 
+        red -- Input red band image file. Optionally specified if colour-composite not specified.
+        green -- Input green band image file. Optionally specified if colour-composite not specified.
+        blue -- Input blue band image file. Optionally specified if colour-composite not specified.
+        composite -- Input colour-composite image file. Only used if individual bands are not specified.
+        pan -- Input panchromatic band file.
+        output -- Output colour composite file.
+        method -- Options include 'brovey' (default) and 'ihs'.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5009,11 +5013,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        clip -- Optional amount to clip the distribution tails by, in percent. 
-        tail -- Specified which tails to clip; options include 'upper', 'lower', and 'both' (default is 'both'). 
-        num_tones -- Number of tones in the output image. 
+        i -- Input raster file.
+        output -- Output raster file.
+        clip -- Optional amount to clip the distribution tails by, in percent.
+        tail -- Specified which tails to clip; options include 'upper', 'lower', and 'both' (default is 'both').
+        num_tones -- Number of tones in the output image.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5029,11 +5033,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        cutoff -- Cutoff value between 0.0 and 0.95. 
-        gain -- Gain value. 
-        num_tones -- Number of tones in the output image. 
+        i -- Input raster file.
+        output -- Output raster file.
+        cutoff -- Cutoff value between 0.0 and 0.95.
+        gain -- Gain value.
+        num_tones -- Number of tones in the output image.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5049,10 +5053,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        stdev -- Standard deviation clip value. 
-        num_tones -- Number of tones in the output image. 
+        i -- Input raster file.
+        output -- Output raster file.
+        stdev -- Standard deviation clip value.
+        num_tones -- Number of tones in the output image.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5071,10 +5075,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file. 
-        output -- Output LiDAR file. 
-        resolution -- The size of the square area used to evaluate nearby points in the LiDAR data. 
-        filter -- Filter out points from overlapping flightlines? If false, overlaps will simply be classified. 
+        i -- Input LiDAR file.
+        output -- Output LiDAR file.
+        resolution -- The size of the square area used to evaluate nearby points in the LiDAR data.
+        filter -- Filter out points from overlapping flightlines? If false, overlaps will simply be classified.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5089,9 +5093,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file. 
-        polygons -- Input vector polygons file. 
-        output -- Output LiDAR file. 
+        i -- Input LiDAR file.
+        polygons -- Input vector polygons file.
+        output -- Output LiDAR file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5105,9 +5109,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file. 
-        polygons -- Input vector polygons file. 
-        output -- Output LiDAR file. 
+        i -- Input LiDAR file.
+        polygons -- Input vector polygons file.
+        output -- Output LiDAR file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5121,9 +5125,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file. 
-        output -- Output LiDAR file. 
-        threshold -- Scan angle threshold. 
+        i -- Input LiDAR file.
+        output -- Output LiDAR file.
+        threshold -- Scan angle threshold.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5137,8 +5141,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file. 
-        output -- Output file. 
+        i -- Input LiDAR file.
+        output -- Output file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5151,9 +5155,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file. 
-        output -- Output file. 
-        resolution -- Output raster's grid resolution. 
+        i -- Input LiDAR file.
+        output -- Output file.
+        resolution -- Output raster's grid resolution.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5167,7 +5171,7 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        inputs -- Input LiDAR files. 
+        inputs -- Input LiDAR files.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5179,7 +5183,7 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file. 
+        i -- Input LiDAR file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5191,7 +5195,7 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file. 
+        i -- Input LiDAR file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5203,9 +5207,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file. 
-        output -- Output file. 
-        resolution -- Output raster's grid resolution. 
+        i -- Input LiDAR file.
+        output -- Output file.
+        resolution -- Output raster's grid resolution.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5219,9 +5223,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file. 
-        output -- Output file. 
-        resolution -- Output raster's grid resolution. 
+        i -- Input LiDAR file.
+        output -- Output file.
+        resolution -- Output raster's grid resolution.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5235,11 +5239,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        base -- Input base LiDAR file. 
-        subset -- Input subset LiDAR file. 
-        output -- Output LiDAR file. 
-        subset_class -- Subset point class value (must be 0-18; see LAS specifications). 
-        nonsubset_class -- Non-subset point class value (must be 0-18; see LAS specifications). 
+        base -- Input base LiDAR file.
+        subset -- Input subset LiDAR file.
+        output -- Output LiDAR file.
+        subset_class -- Subset point class value (must be 0-18; see LAS specifications).
+        nonsubset_class -- Non-subset point class value (must be 0-18; see LAS specifications).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5255,9 +5259,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        in_lidar -- Input LiDAR file. 
-        in_image -- Input colour image file. 
-        output -- Output LiDAR file. 
+        in_lidar -- Input LiDAR file.
+        in_image -- Input colour image file.
+        output -- Output LiDAR file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5271,12 +5275,12 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file (including extension). 
-        output -- Output raster file (including extension). 
-        returns -- Point return types to include; options are 'all' (default), 'last', 'first'. 
-        exclude_cls -- Optional exclude classes from interpolation; Valid class values range from 0 to 18, based on LAS specifications. Example, --exclude_cls='3,4,5,6,7,18'. 
-        minz -- Optional minimum elevation for inclusion in interpolation. 
-        maxz -- Optional maximum elevation for inclusion in interpolation. 
+        i -- Input LiDAR file (including extension).
+        output -- Output raster file (including extension).
+        returns -- Point return types to include; options are 'all' (default), 'last', 'first'.
+        exclude_cls -- Optional exclude classes from interpolation; Valid class values range from 0 to 18, based on LAS specifications. Example, --exclude_cls='3,4,5,6,7,18'.
+        minz -- Optional minimum elevation for inclusion in interpolation.
+        maxz -- Optional maximum elevation for inclusion in interpolation.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5293,13 +5297,13 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file. 
-        output -- Output LiDAR file. 
-        minz -- Minimum elevation value (optional). 
-        maxz -- Maximum elevation value (optional). 
-        cls -- Optional boolean flag indicating whether points outside the range should be retained in output but reclassified. 
-        inclassval -- Optional parameter specifying the class value assigned to points within the slice. 
-        outclassval -- Optional parameter specifying the class value assigned to points within the slice. 
+        i -- Input LiDAR file.
+        output -- Output LiDAR file.
+        minz -- Minimum elevation value (optional).
+        maxz -- Maximum elevation value (optional).
+        cls -- Optional boolean flag indicating whether points outside the range should be retained in output but reclassified.
+        inclassval -- Optional parameter specifying the class value assigned to points within the slice.
+        outclassval -- Optional parameter specifying the class value assigned to points within the slice.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5317,14 +5321,14 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file. 
-        output -- Output LiDAR file. 
-        radius -- Search Radius. 
-        min_neighbours -- The minimum number of neighbouring points within search areas. If fewer points than this threshold are idenfied during the fixed-radius search, a subsequent kNN search is performed to identify the k number of neighbours. 
-        slope_threshold -- Maximum inter-point slope to be considered an off-terrain point. 
-        height_threshold -- Inter-point height difference to be considered an off-terrain point. 
-        classify -- Classify points as ground (2) or off-ground (1). 
-        slope_norm -- Perform initial ground slope normalization?. 
+        i -- Input LiDAR file.
+        output -- Output LiDAR file.
+        radius -- Search Radius.
+        min_neighbours -- The minimum number of neighbouring points within search areas. If fewer points than this threshold are idenfied during the fixed-radius search, a subsequent kNN search is performed to identify the k number of neighbours.
+        slope_threshold -- Maximum inter-point slope to be considered an off-terrain point.
+        height_threshold -- Inter-point height difference to be considered an off-terrain point.
+        classify -- Classify points as ground (2) or off-ground (1).
+        slope_norm -- Perform initial ground slope normalization?.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5343,10 +5347,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input base file. 
-        output -- Output vector polygon file. 
-        width -- The grid cell width. 
-        orientation -- Grid Orientation, 'horizontal' or 'vertical'. 
+        i -- Input base file.
+        output -- Output vector polygon file.
+        width -- The grid cell width.
+        orientation -- Grid Orientation, 'horizontal' or 'vertical'.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5361,11 +5365,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file. 
-        output -- Output file. 
-        azimuth -- Illumination source azimuth in degrees. 
-        altitude -- Illumination source altitude in degrees. 
-        radius -- Search Radius. 
+        i -- Input LiDAR file.
+        output -- Output file.
+        azimuth -- Illumination source azimuth in degrees.
+        altitude -- Illumination source altitude in degrees.
+        radius -- Search Radius.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5381,10 +5385,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file. 
-        output -- Output HTML file (default name will be based on input file if unspecified). 
-        parameter -- Parameter; options are 'elevation' (default), 'intensity', 'scan angle', 'class'. 
-        clip -- Amount to clip distribution tails (in percent). 
+        i -- Input LiDAR file.
+        output -- Output HTML file (default name will be based on input file if unspecified).
+        parameter -- Parameter; options are 'elevation' (default), 'intensity', 'scan angle', 'class'.
+        clip -- Amount to clip distribution tails (in percent).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5399,16 +5403,16 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file (including extension). 
-        output -- Output raster file (including extension). 
-        parameter -- Interpolation parameter; options are 'elevation' (default), 'intensity', 'class', 'scan angle', 'user data'. 
-        returns -- Point return types to include; options are 'all' (default), 'last', 'first'. 
-        resolution -- Output raster's grid resolution. 
-        weight -- IDW weight value. 
-        radius -- Search Radius. 
-        exclude_cls -- Optional exclude classes from interpolation; Valid class values range from 0 to 18, based on LAS specifications. Example, --exclude_cls='3,4,5,6,7,18'. 
-        minz -- Optional minimum elevation for inclusion in interpolation. 
-        maxz -- Optional maximum elevation for inclusion in interpolation. 
+        i -- Input LiDAR file (including extension).
+        output -- Output raster file (including extension).
+        parameter -- Interpolation parameter; options are 'elevation' (default), 'intensity', 'class', 'scan angle', 'user data'.
+        returns -- Point return types to include; options are 'all' (default), 'last', 'first'.
+        resolution -- Output raster's grid resolution.
+        weight -- IDW weight value.
+        radius -- Search Radius.
+        exclude_cls -- Optional exclude classes from interpolation; Valid class values range from 0 to 18, based on LAS specifications. Example, --exclude_cls='3,4,5,6,7,18'.
+        minz -- Optional minimum elevation for inclusion in interpolation.
+        maxz -- Optional maximum elevation for inclusion in interpolation.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5429,10 +5433,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file. 
-        output -- Output HTML file for summary report. 
-        vlr -- Flag indicating whether or not to print the variable length records (VLRs). 
-        geokeys -- Flag indicating whether or not to print the geokeys. 
+        i -- Input LiDAR file.
+        output -- Output HTML file for summary report.
+        vlr -- Flag indicating whether or not to print the variable length records (VLRs).
+        geokeys -- Flag indicating whether or not to print the geokeys.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5447,8 +5451,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        inputs -- Input LiDAR files. 
-        output -- Output LiDAR file. 
+        inputs -- Input LiDAR files.
+        output -- Output LiDAR file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5461,11 +5465,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input LiDAR classification file. 
-        input2 -- Input LiDAR reference file. 
-        output -- Output HTML file. 
-        class_accuracy -- Output classification accuracy raster file. 
-        resolution -- Output raster's grid resolution. 
+        input1 -- Input LiDAR classification file.
+        input2 -- Input LiDAR reference file.
+        output -- Output HTML file.
+        class_accuracy -- Output classification accuracy raster file.
+        resolution -- Output raster's grid resolution.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5481,15 +5485,15 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file (including extension). 
-        output -- Output raster file (including extension). 
-        parameter -- Interpolation parameter; options are 'elevation' (default), 'intensity', 'class', 'scan angle', 'user data'. 
-        returns -- Point return types to include; options are 'all' (default), 'last', 'first'. 
-        resolution -- Output raster's grid resolution. 
-        radius -- Search Radius. 
-        exclude_cls -- Optional exclude classes from interpolation; Valid class values range from 0 to 18, based on LAS specifications. Example, --exclude_cls='3,4,5,6,7,18'. 
-        minz -- Optional minimum elevation for inclusion in interpolation. 
-        maxz -- Optional maximum elevation for inclusion in interpolation. 
+        i -- Input LiDAR file (including extension).
+        output -- Output raster file (including extension).
+        parameter -- Interpolation parameter; options are 'elevation' (default), 'intensity', 'class', 'scan angle', 'user data'.
+        returns -- Point return types to include; options are 'all' (default), 'last', 'first'.
+        resolution -- Output raster's grid resolution.
+        radius -- Search Radius.
+        exclude_cls -- Optional exclude classes from interpolation; Valid class values range from 0 to 18, based on LAS specifications. Example, --exclude_cls='3,4,5,6,7,18'.
+        minz -- Optional minimum elevation for inclusion in interpolation.
+        maxz -- Optional maximum elevation for inclusion in interpolation.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5509,14 +5513,14 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file (including extension). 
-        output -- Output raster file (including extension). 
-        returns -- Point return types to include; options are 'all' (default), 'last', 'first'. 
-        resolution -- Output raster's grid resolution. 
-        radius -- Search Radius. 
-        exclude_cls -- Optional exclude classes from interpolation; Valid class values range from 0 to 18, based on LAS specifications. Example, --exclude_cls='3,4,5,6,7,18'. 
-        minz -- Optional minimum elevation for inclusion in interpolation. 
-        maxz -- Optional maximum elevation for inclusion in interpolation. 
+        i -- Input LiDAR file (including extension).
+        output -- Output raster file (including extension).
+        returns -- Point return types to include; options are 'all' (default), 'last', 'first'.
+        resolution -- Output raster's grid resolution.
+        radius -- Search Radius.
+        exclude_cls -- Optional exclude classes from interpolation; Valid class values range from 0 to 18, based on LAS specifications. Example, --exclude_cls='3,4,5,6,7,18'.
+        minz -- Optional minimum elevation for inclusion in interpolation.
+        maxz -- Optional maximum elevation for inclusion in interpolation.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5535,13 +5539,13 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file. 
-        resolution -- Output raster's grid resolution. 
-        num_points -- Flag indicating whether or not to output the number of points raster. 
-        num_pulses -- Flag indicating whether or not to output the number of pulses raster. 
-        z_range -- Flag indicating whether or not to output the elevation range raster. 
-        intensity_range -- Flag indicating whether or not to output the intensity range raster. 
-        predom_class -- Flag indicating whether or not to output the predominant classification raster. 
+        i -- Input LiDAR file.
+        resolution -- Output raster's grid resolution.
+        num_points -- Flag indicating whether or not to output the number of points raster.
+        num_pulses -- Flag indicating whether or not to output the number of pulses raster.
+        z_range -- Flag indicating whether or not to output the elevation range raster.
+        intensity_range -- Flag indicating whether or not to output the intensity range raster.
+        predom_class -- Flag indicating whether or not to output the predominant classification raster.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5559,9 +5563,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file. 
-        output -- Output LiDAR file. 
-        include_z -- Include z-values in point comparison?. 
+        i -- Input LiDAR file.
+        output -- Output LiDAR file.
+        include_z -- Include z-values in point comparison?.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5575,10 +5579,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file. 
-        output -- Output LiDAR file. 
-        radius -- Search Radius. 
-        elev_diff -- Max. elevation difference. 
+        i -- Input LiDAR file.
+        output -- Output LiDAR file.
+        radius -- Search Radius.
+        elev_diff -- Max. elevation difference.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5593,11 +5597,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file. 
-        output -- Output file. 
-        radius -- Search Radius. 
-        norm_diff -- Maximum difference in normal vectors, in degrees. 
-        maxzdiff -- Maximum difference in elevation (z units) between neighbouring points of the same segment. 
+        i -- Input LiDAR file.
+        output -- Output file.
+        radius -- Search Radius.
+        norm_diff -- Maximum difference in normal vectors, in degrees.
+        maxzdiff -- Maximum difference in elevation (z units) between neighbouring points of the same segment.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5613,12 +5617,12 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file. 
-        output -- Output file. 
-        radius -- Search Radius. 
-        norm_diff -- Maximum difference in normal vectors, in degrees. 
-        maxzdiff -- Maximum difference in elevation (z units) between neighbouring points of the same segment. 
-        classify -- Classify points as ground (2) or off-ground (1). 
+        i -- Input LiDAR file.
+        output -- Output file.
+        radius -- Search Radius.
+        norm_diff -- Maximum difference in normal vectors, in degrees.
+        maxzdiff -- Maximum difference in elevation (z units) between neighbouring points of the same segment.
+        classify -- Classify points as ground (2) or off-ground (1).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5635,11 +5639,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file. 
-        output -- Output LiDAR file. 
-        resolution -- The size of the square area used to evaluate nearby points in the LiDAR data. 
-        method -- Point selection method; options are 'first', 'last', 'lowest' (default), 'highest', 'nearest'. 
-        save_filtered -- Save filtered points to seperate file?. 
+        i -- Input LiDAR file.
+        output -- Output LiDAR file.
+        resolution -- The size of the square area used to evaluate nearby points in the LiDAR data.
+        method -- Point selection method; options are 'first', 'last', 'lowest' (default), 'highest', 'nearest'.
+        save_filtered -- Save filtered points to seperate file?.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5655,11 +5659,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file. 
-        output -- Output LiDAR file. 
-        resolution -- Output raster's grid resolution. 
-        density -- Max. point density (points / m^3). 
-        save_filtered -- Save filtered points to seperate file?. 
+        i -- Input LiDAR file.
+        output -- Output LiDAR file.
+        resolution -- Output raster's grid resolution.
+        density -- Max. point density (points / m^3).
+        save_filtered -- Save filtered points to seperate file?.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5675,12 +5679,12 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file. 
-        width -- Width of tiles in the X dimension; default 1000.0. 
-        height -- Height of tiles in the Y dimension. 
-        origin_x -- Origin point X coordinate for tile grid. 
-        origin_y -- Origin point Y coordinate for tile grid. 
-        min_points -- Minimum number of points contained in a tile for it to be saved. 
+        i -- Input LiDAR file.
+        width -- Width of tiles in the X dimension; default 1000.0.
+        height -- Height of tiles in the Y dimension.
+        origin_x -- Origin point X coordinate for tile grid.
+        origin_y -- Origin point Y coordinate for tile grid.
+        min_points -- Minimum number of points contained in a tile for it to be saved.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5697,9 +5701,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file. 
-        output -- Output vector polygon file. 
-        hull -- Identify the convex hull around points. 
+        i -- Input LiDAR file.
+        output -- Output vector polygon file.
+        hull -- Identify the convex hull around points.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5713,15 +5717,15 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file (including extension). 
-        output -- Output raster file (including extension). 
-        parameter -- Interpolation parameter; options are 'elevation' (default), 'intensity', 'class', 'scan angle', 'user data'. 
-        returns -- Point return types to include; options are 'all' (default), 'last', 'first'. 
-        resolution -- Output raster's grid resolution. 
-        exclude_cls -- Optional exclude classes from interpolation; Valid class values range from 0 to 18, based on LAS specifications. Example, --exclude_cls='3,4,5,6,7,18'. 
-        minz -- Optional minimum elevation for inclusion in interpolation. 
-        maxz -- Optional maximum elevation for inclusion in interpolation. 
-        max_triangle_edge_length -- Optional maximum triangle edge length; triangles larger than this size will not be gridded. 
+        i -- Input LiDAR file (including extension).
+        output -- Output raster file (including extension).
+        parameter -- Interpolation parameter; options are 'elevation' (default), 'intensity', 'class', 'scan angle', 'user data'.
+        returns -- Point return types to include; options are 'all' (default), 'last', 'first'.
+        resolution -- Output raster's grid resolution.
+        exclude_cls -- Optional exclude classes from interpolation; Valid class values range from 0 to 18, based on LAS specifications. Example, --exclude_cls='3,4,5,6,7,18'.
+        minz -- Optional minimum elevation for inclusion in interpolation.
+        maxz -- Optional maximum elevation for inclusion in interpolation.
+        max_triangle_edge_length -- Optional maximum triangle edge length; triangles larger than this size will not be gridded.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5741,9 +5745,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file. 
-        output -- Output LiDAR file. 
-        radius -- Search Radius. 
+        i -- Input LiDAR file.
+        output -- Output LiDAR file.
+        radius -- Search Radius.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5757,9 +5761,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input LiDAR file. 
-        output -- Output LiDAR file. 
-        radius -- Search Radius. 
+        i -- Input LiDAR file.
+        output -- Output LiDAR file.
+        radius -- Search Radius.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5773,9 +5777,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        indir -- Input LAS file source directory. 
-        outdir -- Output directory into which LAS files within the polygon are copied. 
-        polygons -- Input vector polygons file. 
+        indir -- Input LAS file source directory.
+        outdir -- Output directory into which LAS files within the polygon are copied.
+        polygons -- Input vector polygons file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5793,9 +5797,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input raster file. 
-        input2 -- Input raster file. 
-        output -- Output raster file. 
+        input1 -- Input raster file.
+        input2 -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5809,9 +5813,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input raster file. 
-        input2 -- Input raster file. 
-        output -- Output raster file. 
+        input1 -- Input raster file.
+        input2 -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5825,9 +5829,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input raster file. 
-        input2 -- Input raster file. 
-        output -- Output raster file. 
+        input1 -- Input raster file.
+        input2 -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5841,8 +5845,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5855,9 +5859,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input raster file or constant value. 
-        input2 -- Input raster file or constant value. 
-        output -- Output raster file. 
+        input1 -- Input raster file or constant value.
+        input2 -- Input raster file or constant value.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5871,9 +5875,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        features -- Feature definition (or class) raster. 
-        output -- Output HTML file. 
+        i -- Input raster file.
+        features -- Feature definition (or class) raster.
+        output -- Output HTML file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5887,8 +5891,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5901,8 +5905,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5915,8 +5919,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5929,9 +5933,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input_y -- Input y raster file or constant value (rise). 
-        input_x -- Input x raster file or constant value (run). 
-        output -- Output raster file. 
+        input_y -- Input y raster file or constant value (rise).
+        input_x -- Input x raster file or constant value (run).
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5945,8 +5949,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output HTML file (default name will be based on input file if unspecified). 
+        i -- Input raster file.
+        output -- Output HTML file (default name will be based on input file if unspecified).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5959,9 +5963,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        field -- Input field name in attribute table. 
-        output -- Output HTML file (default name will be based on input file if unspecified). 
+        i -- Input raster file.
+        field -- Input field name in attribute table.
+        output -- Output HTML file (default name will be based on input file if unspecified).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5975,11 +5979,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        fieldx -- Input field name in attribute table for the x-axis. 
-        fieldy -- Input field name in attribute table for the y-axis. 
-        output -- Output HTML file (default name will be based on input file if unspecified). 
-        trendline -- Draw the trendline. 
+        i -- Input raster file.
+        fieldx -- Input field name in attribute table for the x-axis.
+        fieldy -- Input field name in attribute table for the y-axis.
+        output -- Output HTML file (default name will be based on input file if unspecified).
+        trendline -- Draw the trendline.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -5995,8 +5999,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6009,8 +6013,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6023,8 +6027,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6037,8 +6041,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Optional output html file (default name will be based on input file if unspecified). 
+        i -- Input raster file.
+        output -- Optional output html file (default name will be based on input file if unspecified).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6051,9 +6055,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input raster file 1. 
-        input2 -- Input raster file 1. 
-        output -- Output HTML file (default name will be based on input file if unspecified). 
+        input1 -- Input raster file 1.
+        input2 -- Input raster file 1.
+        output -- Output HTML file (default name will be based on input file if unspecified).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6067,8 +6071,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6081,8 +6085,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6095,9 +6099,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input raster file or constant value. 
-        input2 -- Input raster file or constant value. 
-        output -- Output raster file. 
+        input1 -- Input raster file or constant value.
+        input2 -- Input raster file or constant value.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6111,9 +6115,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input raster file or constant value. 
-        input2 -- Input raster file or constant value. 
-        output -- Output raster file. 
+        input1 -- Input raster file or constant value.
+        input2 -- Input raster file or constant value.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6127,8 +6131,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6141,8 +6145,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6155,11 +6159,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input data raster file. 
-        features -- Input feature definition raster file. 
-        output -- Output raster file. 
-        stat -- Statistic to extract, including 'average', 'minimum', 'maximum', 'range', 'standard deviation', and 'total'. 
-        out_table -- Output HTML Table file. 
+        i -- Input data raster file.
+        features -- Input feature definition raster file.
+        output -- Output raster file.
+        stat -- Statistic to extract, including 'average', 'minimum', 'maximum', 'range', 'standard deviation', and 'total'.
+        out_table -- Output HTML Table file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6175,8 +6179,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6189,10 +6193,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input raster file or constant value. 
-        input2 -- Input raster file or constant value. 
-        output -- Output raster file. 
-        incl_equals -- Perform a greater-than-or-equal-to operation. 
+        input1 -- Input raster file or constant value.
+        input2 -- Input raster file or constant value.
+        output -- Output raster file.
+        incl_equals -- Perform a greater-than-or-equal-to operation.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6207,9 +6211,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        inputs -- Input raster files. 
-        contiguity -- Contiguity type. 
-        output -- Output HTML file (default name will be based on input file if unspecified). 
+        inputs -- Input raster files.
+        contiguity -- Contiguity type.
+        output -- Output HTML file (default name will be based on input file if unspecified).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6223,8 +6227,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        inputs -- Input raster files. 
-        output -- Output HTML file (default name will be based on input file if unspecified). 
+        inputs -- Input raster files.
+        output -- Output HTML file (default name will be based on input file if unspecified).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6237,11 +6241,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input raster file (independent variable, X). 
-        input2 -- Input raster file (dependent variable, Y). 
-        output -- Output HTML file for regression summary report. 
-        out_residuals -- Output raster regression resdidual file. 
-        standardize -- Optional flag indicating whether to standardize the residuals map. 
+        input1 -- Input raster file (independent variable, X).
+        input2 -- Input raster file (dependent variable, Y).
+        output -- Output HTML file for regression summary report.
+        out_residuals -- Output raster regression resdidual file.
+        standardize -- Optional flag indicating whether to standardize the residuals map.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6257,8 +6261,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input raster file. 
-        input2 -- Input raster file or constant value. 
+        input1 -- Input raster file.
+        input2 -- Input raster file or constant value.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6271,8 +6275,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input raster file. 
-        input2 -- Input raster file or constant value. 
+        input1 -- Input raster file.
+        input2 -- Input raster file or constant value.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6285,8 +6289,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input raster file. 
-        input2 -- Input raster file or constant value. 
+        input1 -- Input raster file.
+        input2 -- Input raster file or constant value.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6299,8 +6303,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input raster file. 
-        input2 -- Input raster file or constant value. 
+        input1 -- Input raster file.
+        input2 -- Input raster file or constant value.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6313,8 +6317,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6327,9 +6331,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input raster file or constant value. 
-        input2 -- Input raster file or constant value. 
-        output -- Output raster file. 
+        input1 -- Input raster file or constant value.
+        input2 -- Input raster file or constant value.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6343,8 +6347,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6357,9 +6361,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input classification raster file. 
-        input2 -- Input reference raster file. 
-        output -- Output HTML file. 
+        input1 -- Input classification raster file.
+        input2 -- Input reference raster file.
+        output -- Output HTML file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6373,9 +6377,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output HTML file. 
-        num_samples -- Number of samples. Leave blank to use whole image. 
+        i -- Input raster file.
+        output -- Output HTML file.
+        num_samples -- Number of samples. Leave blank to use whole image.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6389,10 +6393,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input raster file or constant value. 
-        input2 -- Input raster file or constant value. 
-        output -- Output raster file. 
-        incl_equals -- Perform a less-than-or-equal-to operation. 
+        input1 -- Input raster file or constant value.
+        input2 -- Input raster file or constant value.
+        output -- Output raster file.
+        incl_equals -- Perform a less-than-or-equal-to operation.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6407,9 +6411,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        field -- Input field name in attribute table. 
-        output -- Output HTML file (default name will be based on input file if unspecified). 
+        i -- Input raster file.
+        field -- Input field name in attribute table.
+        output -- Output HTML file (default name will be based on input file if unspecified).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6423,8 +6427,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6437,8 +6441,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6451,8 +6455,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6465,9 +6469,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input raster file or constant value. 
-        input2 -- Input raster file or constant value. 
-        output -- Output raster file. 
+        input1 -- Input raster file or constant value.
+        input2 -- Input raster file or constant value.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6481,9 +6485,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input raster file or constant value. 
-        input2 -- Input raster file or constant value. 
-        output -- Output raster file. 
+        input1 -- Input raster file or constant value.
+        input2 -- Input raster file or constant value.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6497,9 +6501,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input raster file or constant value. 
-        input2 -- Input raster file or constant value. 
-        output -- Output raster file. 
+        input1 -- Input raster file or constant value.
+        input2 -- Input raster file or constant value.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6513,9 +6517,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input raster file or constant value. 
-        input2 -- Input raster file or constant value. 
-        output -- Output raster file. 
+        input1 -- Input raster file or constant value.
+        input2 -- Input raster file or constant value.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6529,8 +6533,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6543,9 +6547,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input raster file or constant value. 
-        input2 -- Input raster file or constant value. 
-        output -- Output raster file. 
+        input1 -- Input raster file or constant value.
+        input2 -- Input raster file or constant value.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6559,9 +6563,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input raster file or constant value. 
-        input2 -- Input raster file or constant value. 
-        output -- Output raster file. 
+        input1 -- Input raster file or constant value.
+        input2 -- Input raster file or constant value.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6575,10 +6579,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        inputs -- Input raster files. 
-        output -- Output HTML report file. 
-        num_comp -- Number of component images to output; <= to num. input images. 
-        standardized -- Perform standardized PCA?. 
+        inputs -- Input raster files.
+        output -- Output HTML report file.
+        num_comp -- Number of component images to output; <= to num. input images.
+        standardized -- Perform standardized PCA?.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6593,9 +6597,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        num_quantiles -- Number of quantiles. 
+        i -- Input raster file.
+        output -- Output raster file.
+        num_quantiles -- Number of quantiles.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6609,8 +6613,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        base -- Input raster file. 
-        output -- Output raster file. 
+        base -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6623,9 +6627,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        base -- Input raster file. 
-        output -- Output raster file. 
-        num_samples -- Number of samples. 
+        base -- Input raster file.
+        output -- Output raster file.
+        num_samples -- Number of samples.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6639,8 +6643,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output HTML file (default name will be based on input file if unspecified). 
+        i -- Input raster file.
+        output -- Output HTML file (default name will be based on input file if unspecified).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6653,7 +6657,7 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
+        i -- Input raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6665,8 +6669,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6679,12 +6683,12 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        out_min_val -- New minimum value in output image. 
-        out_max_val -- New maximum value in output image. 
-        clip_min -- Optional lower tail clip value. 
-        clip_max -- Optional upper tail clip value. 
+        i -- Input raster file.
+        output -- Output raster file.
+        out_min_val -- New minimum value in output image.
+        out_max_val -- New maximum value in output image.
+        clip_min -- Optional lower tail clip value.
+        clip_max -- Optional upper tail clip value.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6701,8 +6705,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        base -- Input base raster file used for comparison. 
+        i -- Input raster file.
+        base -- Input base raster file used for comparison.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6715,8 +6719,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6729,8 +6733,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6743,8 +6747,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6757,8 +6761,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6771,8 +6775,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6785,9 +6789,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input raster file or constant value. 
-        input2 -- Input raster file or constant value. 
-        output -- Output raster file. 
+        input1 -- Input raster file or constant value.
+        input2 -- Input raster file or constant value.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6801,8 +6805,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6815,8 +6819,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6829,8 +6833,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6843,8 +6847,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6857,9 +6861,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        order -- Polynomial order (1 to 10). 
+        i -- Input raster file.
+        output -- Output raster file.
+        order -- Polynomial order (1 to 10).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6873,11 +6877,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input vector Points file. 
-        field -- Input field name in attribute table. 
-        output -- Output raster file. 
-        order -- Polynomial order (1 to 10). 
-        cell_size -- Optionally specified cell size of output raster. Not used when base raster is specified. 
+        i -- Input vector Points file.
+        field -- Input field name in attribute table.
+        output -- Output raster file.
+        order -- Polynomial order (1 to 10).
+        cell_size -- Optionally specified cell size of output raster. Not used when base raster is specified.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6893,9 +6897,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
-        num_decimals -- Number of decimals left after truncation (default is zero). 
+        i -- Input raster file.
+        output -- Output raster file.
+        num_decimals -- Number of decimals left after truncation (default is zero).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6909,10 +6913,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        base -- Input base raster file. 
-        output -- Output file. 
-        range -- The field's range, in xy-units, related to the extent of spatial autocorrelation. 
-        iterations -- The number of iterations. 
+        base -- Input base raster file.
+        output -- Output file.
+        range -- The field's range, in xy-units, related to the extent of spatial autocorrelation.
+        iterations -- The number of iterations.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6927,9 +6931,9 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        input1 -- Input raster file. 
-        input2 -- Input raster file. 
-        output -- Output raster file. 
+        input1 -- Input raster file.
+        input2 -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6943,8 +6947,8 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        i -- Input raster file. 
-        output -- Output raster file. 
+        i -- Input raster file.
+        output -- Output raster file.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6961,11 +6965,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        d8_pntr -- Input raster D8 pointer file. 
-        streams -- Input raster streams file. 
-        output -- Output raster file. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
-        zero_background -- Flag indicating whether a background value of zero should be used. 
+        d8_pntr -- Input raster D8 pointer file.
+        streams -- Input raster streams file.
+        output -- Output raster file.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
+        zero_background -- Flag indicating whether a background value of zero should be used.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6981,10 +6985,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        flow_accum -- Input raster D8 flow accumulation file. 
-        output -- Output raster file. 
-        threshold -- Threshold in flow accumulation values for channelization. 
-        zero_background -- Flag indicating whether a background value of zero should be used. 
+        flow_accum -- Input raster D8 flow accumulation file.
+        output -- Output raster file.
+        threshold -- Threshold in flow accumulation values for channelization.
+        zero_background -- Flag indicating whether a background value of zero should be used.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -6999,11 +7003,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        variant -- Options include 'LQ' (lower quartile), 'JandR' (Johnston and Rosenfeld), and 'PandD' (Peucker and Douglas); default is 'LQ'. 
-        line_thin -- Optional flag indicating whether post-processing line-thinning should be performed. 
-        filter -- Optional argument (only used when variant='lq') providing the filter size, in grid cells, used for lq-filtering (default is 5). 
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        variant -- Options include 'LQ' (lower quartile), 'JandR' (Johnston and Rosenfeld), and 'PandD' (Peucker and Douglas); default is 'LQ'.
+        line_thin -- Optional flag indicating whether post-processing line-thinning should be performed.
+        filter -- Optional argument (only used when variant='lq') providing the filter size, in grid cells, used for lq-filtering (default is 5).
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -7019,11 +7023,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        d8_pntr -- Input raster D8 pointer file. 
-        streams -- Input raster streams file. 
-        output -- Output raster file. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
-        zero_background -- Flag indicating whether a background value of zero should be used. 
+        d8_pntr -- Input raster D8 pointer file.
+        streams -- Input raster streams file.
+        output -- Output raster file.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
+        zero_background -- Flag indicating whether a background value of zero should be used.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -7039,11 +7043,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        d8_pntr -- Input raster D8 pointer file. 
-        streams -- Input raster streams file. 
-        output -- Output raster file. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
-        zero_background -- Flag indicating whether a background value of zero should be used. 
+        d8_pntr -- Input raster D8 pointer file.
+        streams -- Input raster streams file.
+        output -- Output raster file.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
+        zero_background -- Flag indicating whether a background value of zero should be used.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -7059,11 +7063,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        d8_pntr -- Input raster D8 pointer file. 
-        streams -- Input raster streams file. 
-        output -- Output raster file. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
-        zero_background -- Flag indicating whether a background value of zero should be used. 
+        d8_pntr -- Input raster D8 pointer file.
+        streams -- Input raster streams file.
+        output -- Output raster file.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
+        zero_background -- Flag indicating whether a background value of zero should be used.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -7079,11 +7083,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        d8_pntr -- Input raster D8 pointer file. 
-        streams -- Input raster streams file. 
-        output -- Output raster file. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
-        zero_background -- Flag indicating whether a background value of zero should be used. 
+        d8_pntr -- Input raster D8 pointer file.
+        streams -- Input raster streams file.
+        output -- Output raster file.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
+        zero_background -- Flag indicating whether a background value of zero should be used.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -7099,11 +7103,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        d8_pntr -- Input raster D8 pointer file. 
-        streams -- Input raster streams file. 
-        output -- Output raster file. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
-        zero_background -- Flag indicating whether a background value of zero should be used. 
+        d8_pntr -- Input raster D8 pointer file.
+        streams -- Input raster streams file.
+        output -- Output raster file.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
+        zero_background -- Flag indicating whether a background value of zero should be used.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -7119,11 +7123,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        d8_pntr -- Input raster D8 pointer file. 
-        streams -- Input raster streams file. 
-        dem -- Input raster DEM file. 
-        output -- Output HTML file. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
+        d8_pntr -- Input raster D8 pointer file.
+        streams -- Input raster streams file.
+        dem -- Input raster DEM file.
+        output -- Output HTML file.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -7139,11 +7143,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        d8_pntr -- Input raster D8 pointer file. 
-        points -- Input vector points file. 
-        dem -- Input raster DEM file. 
-        output -- Output HTML file. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
+        d8_pntr -- Input raster D8 pointer file.
+        points -- Input vector points file.
+        dem -- Input raster DEM file.
+        output -- Output HTML file.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -7159,10 +7163,10 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        streams -- Input raster streams file. 
-        d8_pntr -- Input raster D8 pointer file. 
-        output -- Output vector file. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
+        streams -- Input raster streams file.
+        d8_pntr -- Input raster D8 pointer file.
+        output -- Output vector file.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -7177,11 +7181,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        streams -- Input vector streams file. 
-        base -- Input base raster file. 
-        output -- Output raster file. 
-        nodata -- Use NoData value for background?. 
-        feature_id -- Use feature number as output value?. 
+        streams -- Input vector streams file.
+        base -- Input base raster file.
+        output -- Output raster file.
+        nodata -- Use NoData value for background?.
+        feature_id -- Use feature number as output value?.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -7197,11 +7201,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        d8_pntr -- Input raster D8 pointer file. 
-        streams -- Input raster streams file. 
-        output -- Output raster file. 
-        min_length -- Minimum tributary length (in map units) used for network prunning. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
+        d8_pntr -- Input raster D8 pointer file.
+        streams -- Input raster streams file.
+        output -- Output raster file.
+        min_length -- Minimum tributary length (in map units) used for network prunning.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -7217,11 +7221,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        d8_pntr -- Input raster D8 pointer file. 
-        streams -- Input raster streams file. 
-        output -- Output raster file. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
-        zero_background -- Flag indicating whether a background value of zero should be used. 
+        d8_pntr -- Input raster D8 pointer file.
+        streams -- Input raster streams file.
+        output -- Output raster file.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
+        zero_background -- Flag indicating whether a background value of zero should be used.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -7237,11 +7241,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        d8_pntr -- Input raster D8 pointer file. 
-        streams -- Input raster streams file. 
-        output -- Output raster file. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
-        zero_background -- Flag indicating whether a background value of zero should be used. 
+        d8_pntr -- Input raster D8 pointer file.
+        streams -- Input raster streams file.
+        output -- Output raster file.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
+        zero_background -- Flag indicating whether a background value of zero should be used.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -7257,11 +7261,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        d8_pntr -- Input raster D8 pointer file. 
-        streams -- Input raster streams file. 
-        output -- Output raster file. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
-        zero_background -- Flag indicating whether a background value of zero should be used. 
+        d8_pntr -- Input raster D8 pointer file.
+        streams -- Input raster streams file.
+        output -- Output raster file.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
+        zero_background -- Flag indicating whether a background value of zero should be used.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -7277,11 +7281,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        d8_pntr -- Input raster D8 pointer file. 
-        streams -- Input raster streams file. 
-        output -- Output raster file. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
-        zero_background -- Flag indicating whether a background value of zero should be used. 
+        d8_pntr -- Input raster D8 pointer file.
+        streams -- Input raster streams file.
+        output -- Output raster file.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
+        zero_background -- Flag indicating whether a background value of zero should be used.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -7297,11 +7301,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        d8_pntr -- Input raster D8 pointer file. 
-        linkid -- Input raster streams link ID (or tributary ID) file. 
-        output -- Output raster file. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
-        zero_background -- Flag indicating whether a background value of zero should be used. 
+        d8_pntr -- Input raster D8 pointer file.
+        linkid -- Input raster streams link ID (or tributary ID) file.
+        output -- Output raster file.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
+        zero_background -- Flag indicating whether a background value of zero should be used.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -7317,12 +7321,12 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        d8_pntr -- Input raster D8 pointer file. 
-        linkid -- Input raster streams link ID (or tributary ID) file. 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
-        zero_background -- Flag indicating whether a background value of zero should be used. 
+        d8_pntr -- Input raster D8 pointer file.
+        linkid -- Input raster streams link ID (or tributary ID) file.
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
+        zero_background -- Flag indicating whether a background value of zero should be used.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -7339,12 +7343,12 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        d8_pntr -- Input raster D8 pointer file. 
-        streams -- Input raster streams file. 
-        dem -- Input raster DEM file. 
-        output -- Output raster file. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
-        zero_background -- Flag indicating whether a background value of zero should be used. 
+        d8_pntr -- Input raster D8 pointer file.
+        streams -- Input raster streams file.
+        dem -- Input raster DEM file.
+        output -- Output raster file.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
+        zero_background -- Flag indicating whether a background value of zero should be used.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -7361,11 +7365,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        d8_pntr -- Input raster D8 pointer file. 
-        streams -- Input raster streams file. 
-        output -- Output raster file. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
-        zero_background -- Flag indicating whether a background value of zero should be used. 
+        d8_pntr -- Input raster D8 pointer file.
+        streams -- Input raster streams file.
+        output -- Output raster file.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
+        zero_background -- Flag indicating whether a background value of zero should be used.
         callback -- Custom function for handling tool text outputs.
         """
         args = []
@@ -7381,11 +7385,11 @@ class WhiteboxTools(object):
 
         Keyword arguments:
 
-        d8_pntr -- Input raster D8 pointer file. 
-        streams -- Input raster streams file. 
-        output -- Output raster file. 
-        esri_pntr -- D8 pointer uses the ESRI style scheme. 
-        zero_background -- Flag indicating whether a background value of zero should be used. 
+        d8_pntr -- Input raster D8 pointer file.
+        streams -- Input raster streams file.
+        output -- Output raster file.
+        esri_pntr -- D8 pointer uses the ESRI style scheme.
+        zero_background -- Flag indicating whether a background value of zero should be used.
         callback -- Custom function for handling tool text outputs.
         """
         args = []

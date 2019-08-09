@@ -420,11 +420,11 @@ tool_labels.append("Z Scores")
 class Toolbox(object):
     def __init__(self):
         """Define the toolbox (the name of the toolbox is the name of the .pyt file)."""
-        self.label = "Toolbox"
-        self.alias = ""
+        self.label = "WhiteboxTools Toolbox"
+        self.alias = "WBT"
 
         # List of tool classes associated with this toolbox
-        tools = []        
+        tools = []
         tools.append(Help)
         tools.append(License)
         tools.append(Version)
@@ -992,7 +992,7 @@ class ListTools(object):
             tools = wbt.list_tools()
         else:
             tools = wbt.list_tools([param0])
-            
+
         for index, tool in enumerate(sorted(tools)):
             messages.addMessage("{}. {}: {}".format(index + 1, tool, tools[tool]))
         return
@@ -1190,12 +1190,12 @@ class RunTool(object):
         param0 = parameters[0].valueAsText
         args = parameters[1].valueAsText
         tool_name = param0.replace(" ", "").strip()
-        dir_path = os.path.dirname(os.path.realpath(__file__))    
+        dir_path = os.path.dirname(os.path.realpath(__file__))
         exe_path = os.path.join(dir_path, "WBT/whitebox_tools.exe")
         cmd = '{} --run={} {}'.format(exe_path, tool_name, args)
         if "-v" not in cmd:
-            cmd = cmd + ' -v'  
-        messages.addMessage(cmd)  
+            cmd = cmd + ' -v'
+        messages.addMessage(cmd)
         messages.addMessage(os.popen(cmd).read().rstrip())
         return
 
@@ -12530,10 +12530,11 @@ class Sink(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
+        # 9/8/19 - Parameter type set to GPRasterLayer, originally it was DERasterDataset
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -12564,12 +12565,14 @@ class Sink(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        dem = ConvertToFullPath(dem)
         output = parameters[1].valueAsText
         zero_background = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
         wbt.sink(dem, output=output, zero_background=zero_background)
+
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25528,4 +25531,17 @@ class TributaryIdentifier(object):
         messages.addMessage(result_string)
         return
 
+#
+# Private functions
+#
+def ConvertToFullPath(value):
+    '''
+    This function takes a single input which could be a layer object or a full path to a dataset source. If it is a layer object it returns the full path to the dataset
+    otherwise it simply returns the data source.
 
+    This is done as the user could have navigated to a data source via the browse button or selected the layer as it was already loaded in the map document.
+
+    WhiteboxTools requires a full path to the dataset.
+    '''
+    desc = arcpy.Describe(value)
+    return desc.catalogPath
