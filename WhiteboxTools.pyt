@@ -12526,7 +12526,7 @@ class Rho8Pointer(object):
 class Sink(object):
     def __init__(self):
         self.label = "Sink"
-        self.description = "Identifies the depressions in a DEM, giving each feature a unique identifier. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#Sink' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/sink.rs' target='_blank'>GitHub</a>."
+        self.description = "Identifies the depressions in a DEM, giving each feature a unique identifier."
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
