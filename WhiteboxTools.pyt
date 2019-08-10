@@ -424,7 +424,7 @@ class Toolbox(object):
         self.alias = "WBT"
 
         # List of tool classes associated with this toolbox
-        tools = []        
+        tools = []
         tools.append(Help)
         tools.append(License)
         tools.append(Version)
@@ -992,7 +992,7 @@ class ListTools(object):
             tools = wbt.list_tools()
         else:
             tools = wbt.list_tools([param0])
-            
+
         for index, tool in enumerate(sorted(tools)):
             messages.addMessage("{}. {}: {}".format(index + 1, tool, tools[tool]))
         return
@@ -1190,12 +1190,12 @@ class RunTool(object):
         param0 = parameters[0].valueAsText
         args = parameters[1].valueAsText
         tool_name = param0.replace(" ", "").strip()
-        dir_path = os.path.dirname(os.path.realpath(__file__))    
+        dir_path = os.path.dirname(os.path.realpath(__file__))
         exe_path = os.path.join(dir_path, "WBT/whitebox_tools.exe")
         cmd = '{} --run={} {}'.format(exe_path, tool_name, args)
         if "-v" not in cmd:
-            cmd = cmd + ' -v'  
-        messages.addMessage(cmd)  
+            cmd = cmd + ' -v'
+        messages.addMessage(cmd)
         messages.addMessage(os.popen(cmd).read().rstrip())
         return
 
@@ -1780,7 +1780,7 @@ class PolygonsToLines(object):
             direction="Output")
         output.filter.list = ["Polyline"]
 
-        params = [input, output]
+        params = [input,output]
 
         return params
 
@@ -1788,6 +1788,35 @@ class PolygonsToLines(object):
         return
 
     def updateMessages(self, parameters):
+
+        bOKtoClear = False
+        if parameters[0].altered:
+            dataset = parameters[0].value # Returns either a layer object or full path to dataset
+            desc = arcpy.Describe(dataset)
+
+            # Check if spatial reference exists for input dataset
+            pSR = desc.spatialReference
+            if pSR.name == "Unknown":
+                parameters[0].setErrorMessage("Input data setting is missing is coordinate information, you can set this with the Define Projection tool.")
+            else:
+                bOKtoClear = True
+
+            # Check if input data is a shapefile, WBT can only process shapefiles
+            if desc.dataType == 'FeatureLayer':
+                desc2 = desc.featureClass
+                if desc2.dataType != "ShapeFile":
+                    parameters[0].setErrorMessage("Input vector dataset must be a ShapeFile")
+                else:
+                    bOKtoClear = True
+            elif desc.dataType == "ShapeFile":
+                # Input is a full path to a shapefile
+                bOKtoClear = True
+            else:
+                # Input is probably a geodatabase featureclass
+                parameters[0].setErrorMessage("Input vector dataset must be a ShapeFile")
+
+            if bOKtoClear:
+                parameters[0].clearMessage()
         return
 
     def execute(self, parameters, messages):
