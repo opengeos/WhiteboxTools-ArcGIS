@@ -15,6 +15,7 @@ from os import path
 import sys
 import platform
 import re
+import subprocess
 # import shutil
 from subprocess import CalledProcessError, Popen, PIPE, STDOUT
 
@@ -124,8 +125,9 @@ class WhiteboxTools(object):
                     cl += v + " "
                 callback(cl.strip() + "\n")
 
-            proc = Popen(args2, shell=False, stdout=PIPE,
-                         stderr=STDOUT, bufsize=1, universal_newlines=True)
+            startupinfo = subprocess.STARTUPINFO()
+            startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+            proc = Popen(args2, shell=False, stdout=PIPE, stderr=STDOUT, bufsize=1, universal_newlines=True, startupinfo=startupinfo)
 
             while True:
                 line = proc.stdout.readline()

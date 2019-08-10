@@ -420,8 +420,8 @@ tool_labels.append("Z Scores")
 class Toolbox(object):
     def __init__(self):
         """Define the toolbox (the name of the toolbox is the name of the .pyt file)."""
-        self.label = "Toolbox"
-        self.alias = ""
+        self.label = "WhiteboxTools Toolbox"
+        self.alias = "WBT"
 
         # List of tool classes associated with this toolbox
         tools = []        
@@ -1210,7 +1210,7 @@ class AddPointCoordinatesToTable(object):
         input = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Point"]
@@ -1227,6 +1227,8 @@ class AddPointCoordinatesToTable(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -1247,7 +1249,7 @@ class ConvertNodataToZero(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -1271,6 +1273,8 @@ class ConvertNodataToZero(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -1292,7 +1296,7 @@ class ConvertRasterFormat(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -1316,6 +1320,8 @@ class ConvertRasterFormat(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -1337,7 +1343,7 @@ class ExportTableToCsv(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
@@ -1370,6 +1376,8 @@ class ExportTableToCsv(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         headers = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -1392,7 +1400,7 @@ class JoinTables(object):
         input1 = arcpy.Parameter(
             displayName="Input Primary Vector File",
             name="input1",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
@@ -1407,7 +1415,7 @@ class JoinTables(object):
         input2 = arcpy.Parameter(
             displayName="Input Foreign Vector File",
             name="input2",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
@@ -1439,8 +1447,12 @@ class JoinTables(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        desc = arcpy.Describe(input1)
+        input1 = desc.catalogPath
         pkey = parameters[1].valueAsText
         input2 = parameters[2].valueAsText
+        desc = arcpy.Describe(input2)
+        input2 = desc.catalogPath
         fkey = parameters[3].valueAsText
         import_field = parameters[4].valueAsText
         old_stdout = sys.stdout
@@ -1463,7 +1475,7 @@ class LinesToPolygons(object):
         input = arcpy.Parameter(
             displayName="Input Line File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Polyline"]
@@ -1488,6 +1500,8 @@ class LinesToPolygons(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -1509,7 +1523,7 @@ class MergeTableWithCsv(object):
         input = arcpy.Parameter(
             displayName="Input Primary Vector File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
@@ -1557,6 +1571,8 @@ class MergeTableWithCsv(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         pkey = parameters[1].valueAsText
         csv = parameters[2].valueAsText
         fkey = parameters[3].valueAsText
@@ -1581,7 +1597,7 @@ class MergeVectors(object):
         inputs = arcpy.Parameter(
             displayName="Input Vector Files",
             name="inputs",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         inputs.multiValue = True
@@ -1626,7 +1642,7 @@ class MultiPartToSinglePart(object):
         input = arcpy.Parameter(
             displayName="Input Line or Polygon File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
@@ -1658,6 +1674,8 @@ class MultiPartToSinglePart(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         exclude_holes = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -1680,7 +1698,7 @@ class NewRasterFromBase(object):
         base = arcpy.Parameter(
             displayName="Input Base File",
             name="base",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -1724,6 +1742,8 @@ class NewRasterFromBase(object):
 
     def execute(self, parameters, messages):
         base = parameters[0].valueAsText
+        desc = arcpy.Describe(base)
+        base = desc.catalogPath
         output = parameters[1].valueAsText
         value = parameters[2].valueAsText
         data_type = parameters[3].valueAsText
@@ -1747,7 +1767,7 @@ class PolygonsToLines(object):
         input = arcpy.Parameter(
             displayName="Input Polygon File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Polygon"]
@@ -1772,6 +1792,8 @@ class PolygonsToLines(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -1793,7 +1815,7 @@ class PrintGeoTiffTags(object):
         input = arcpy.Parameter(
             displayName="Input GeoTIFF Raster File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -1809,6 +1831,8 @@ class PrintGeoTiffTags(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -1829,7 +1853,7 @@ class RasterToVectorLines(object):
         input = arcpy.Parameter(
             displayName="Input Raster Lines File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -1853,6 +1877,8 @@ class RasterToVectorLines(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -1874,7 +1900,7 @@ class RasterToVectorPoints(object):
         input = arcpy.Parameter(
             displayName="Input Raster File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -1898,6 +1924,8 @@ class RasterToVectorPoints(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -1919,7 +1947,7 @@ class ReinitializeAttributeTable(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
@@ -1935,6 +1963,8 @@ class ReinitializeAttributeTable(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -1955,7 +1985,7 @@ class RemovePolygonHoles(object):
         input = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Polygon"]
@@ -1980,6 +2010,8 @@ class RemovePolygonHoles(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -2001,7 +2033,7 @@ class SetNodataValue(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -2034,6 +2066,8 @@ class SetNodataValue(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         back_value = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -2056,7 +2090,7 @@ class SinglePartToMultiPart(object):
         input = arcpy.Parameter(
             displayName="Input Line or Polygon File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
@@ -2087,6 +2121,8 @@ class SinglePartToMultiPart(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -2109,7 +2145,7 @@ class VectorLinesToRaster(object):
         input = arcpy.Parameter(
             displayName="Input Vector Lines File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Polyline"]
@@ -2151,7 +2187,7 @@ class VectorLinesToRaster(object):
         base = arcpy.Parameter(
             displayName="Base Raster File",
             name="base",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Optional",
             direction="Input")
 
@@ -2167,11 +2203,15 @@ class VectorLinesToRaster(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         nodata = parameters[3].valueAsText
         cell_size = parameters[4].valueAsText
         base = parameters[5].valueAsText
+        desc = arcpy.Describe(base)
+        base = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -2192,7 +2232,7 @@ class VectorPointsToRaster(object):
         input = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Point"]
@@ -2245,7 +2285,7 @@ class VectorPointsToRaster(object):
         base = arcpy.Parameter(
             displayName="Base Raster File",
             name="base",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Optional",
             direction="Input")
 
@@ -2261,12 +2301,16 @@ class VectorPointsToRaster(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         assign = parameters[3].valueAsText
         nodata = parameters[4].valueAsText
         cell_size = parameters[5].valueAsText
         base = parameters[6].valueAsText
+        desc = arcpy.Describe(base)
+        base = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -2287,7 +2331,7 @@ class VectorPolygonsToRaster(object):
         input = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Polygon"]
@@ -2329,7 +2373,7 @@ class VectorPolygonsToRaster(object):
         base = arcpy.Parameter(
             displayName="Base Raster File",
             name="base",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Optional",
             direction="Input")
 
@@ -2345,11 +2389,15 @@ class VectorPolygonsToRaster(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         nodata = parameters[3].valueAsText
         cell_size = parameters[4].valueAsText
         base = parameters[5].valueAsText
+        desc = arcpy.Describe(base)
+        base = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -2370,7 +2418,7 @@ class AggregateRaster(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -2414,6 +2462,8 @@ class AggregateRaster(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         agg_factor = parameters[2].valueAsText
         type = parameters[3].valueAsText
@@ -2437,7 +2487,7 @@ class BlockMaximumGridding(object):
         input = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Point"]
@@ -2477,7 +2527,7 @@ class BlockMaximumGridding(object):
         base = arcpy.Parameter(
             displayName="Base Raster File",
             name="base",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Optional",
             direction="Input")
 
@@ -2493,11 +2543,15 @@ class BlockMaximumGridding(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
         cell_size = parameters[4].valueAsText
         base = parameters[5].valueAsText
+        desc = arcpy.Describe(base)
+        base = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -2518,7 +2572,7 @@ class BlockMinimumGridding(object):
         input = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Point"]
@@ -2558,7 +2612,7 @@ class BlockMinimumGridding(object):
         base = arcpy.Parameter(
             displayName="Base Raster File",
             name="base",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Optional",
             direction="Input")
 
@@ -2574,11 +2628,15 @@ class BlockMinimumGridding(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
         cell_size = parameters[4].valueAsText
         base = parameters[5].valueAsText
+        desc = arcpy.Describe(base)
+        base = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -2599,7 +2657,7 @@ class Centroid(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -2630,6 +2688,8 @@ class Centroid(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         text_output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -2652,7 +2712,7 @@ class CentroidVector(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
@@ -2675,6 +2735,8 @@ class CentroidVector(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -2696,7 +2758,7 @@ class Clump(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -2736,6 +2798,8 @@ class Clump(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         diag = parameters[2].valueAsText
         zero_back = parameters[3].valueAsText
@@ -2759,7 +2823,7 @@ class ConstructVectorTin(object):
         input = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Point"]
@@ -2801,6 +2865,8 @@ class ConstructVectorTin(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
@@ -2889,7 +2955,7 @@ class CreatePlane(object):
         base = arcpy.Parameter(
             displayName="Input Base File",
             name="base",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -2940,6 +3006,8 @@ class CreatePlane(object):
 
     def execute(self, parameters, messages):
         base = parameters[0].valueAsText
+        desc = arcpy.Describe(base)
+        base = desc.catalogPath
         output = parameters[1].valueAsText
         gradient = parameters[2].valueAsText
         aspect = parameters[3].valueAsText
@@ -3045,7 +3113,7 @@ class Dissolve(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Polygon"]
@@ -3086,6 +3154,8 @@ class Dissolve(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         snap = parameters[3].valueAsText
@@ -3109,7 +3179,7 @@ class EliminateCoincidentPoints(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Point"]
@@ -3141,6 +3211,8 @@ class EliminateCoincidentPoints(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         tolerance = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -3163,7 +3235,7 @@ class ExtendVectorLines(object):
         input = arcpy.Parameter(
             displayName="Input Vector Lines File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Polyline"]
@@ -3206,6 +3278,8 @@ class ExtendVectorLines(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         dist = parameters[2].valueAsText
         extend = parameters[3].valueAsText
@@ -3229,7 +3303,7 @@ class ExtractNodes(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
@@ -3253,6 +3327,8 @@ class ExtractNodes(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -3274,7 +3350,7 @@ class ExtractRasterValuesAtPoints(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
         inputs.multiValue = True
@@ -3282,7 +3358,7 @@ class ExtractRasterValuesAtPoints(object):
         points = arcpy.Parameter(
             displayName="Input Points File",
             name="points",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         points.filter.list = ["Point"]
@@ -3309,6 +3385,8 @@ class ExtractRasterValuesAtPoints(object):
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
         points = parameters[1].valueAsText
+        desc = arcpy.Describe(points)
+        points = desc.catalogPath
         out_text = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -3330,7 +3408,7 @@ class FindLowestOrHighestPoints(object):
         input = arcpy.Parameter(
             displayName="Input Raster File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -3365,6 +3443,8 @@ class FindLowestOrHighestPoints(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         out_type = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -3387,7 +3467,7 @@ class IdwInterpolation(object):
         input = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Point"]
@@ -3450,7 +3530,7 @@ class IdwInterpolation(object):
         base = arcpy.Parameter(
             displayName="Base Raster File",
             name="base",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Optional",
             direction="Input")
 
@@ -3466,6 +3546,8 @@ class IdwInterpolation(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
@@ -3474,6 +3556,8 @@ class IdwInterpolation(object):
         min_points = parameters[6].valueAsText
         cell_size = parameters[7].valueAsText
         base = parameters[8].valueAsText
+        desc = arcpy.Describe(base)
+        base = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -3539,7 +3623,7 @@ class Medoid(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
@@ -3562,6 +3646,8 @@ class Medoid(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -3583,7 +3669,7 @@ class MinimumBoundingBox(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
@@ -3627,6 +3713,8 @@ class MinimumBoundingBox(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         criterion = parameters[2].valueAsText
         features = parameters[3].valueAsText
@@ -3650,7 +3738,7 @@ class MinimumBoundingCircle(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
@@ -3683,6 +3771,8 @@ class MinimumBoundingCircle(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         features = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -3705,7 +3795,7 @@ class MinimumBoundingEnvelope(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
@@ -3738,6 +3828,8 @@ class MinimumBoundingEnvelope(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         features = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -3760,7 +3852,7 @@ class MinimumConvexHull(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
@@ -3793,6 +3885,8 @@ class MinimumConvexHull(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         features = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -3815,7 +3909,7 @@ class NearestNeighbourGridding(object):
         input = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Point"]
@@ -3855,7 +3949,7 @@ class NearestNeighbourGridding(object):
         base = arcpy.Parameter(
             displayName="Base Raster File",
             name="base",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Optional",
             direction="Input")
 
@@ -3878,11 +3972,15 @@ class NearestNeighbourGridding(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
         cell_size = parameters[4].valueAsText
         base = parameters[5].valueAsText
+        desc = arcpy.Describe(base)
+        base = desc.catalogPath
         max_dist = parameters[6].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -3904,7 +4002,7 @@ class PolygonArea(object):
         input = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Polygon"]
@@ -3921,6 +4019,8 @@ class PolygonArea(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -3941,7 +4041,7 @@ class PolygonLongAxis(object):
         input = arcpy.Parameter(
             displayName="Input Polygon File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Polygon"]
@@ -3966,6 +4066,8 @@ class PolygonLongAxis(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -3987,7 +4089,7 @@ class PolygonPerimeter(object):
         input = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Polygon"]
@@ -4004,6 +4106,8 @@ class PolygonPerimeter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -4024,7 +4128,7 @@ class PolygonShortAxis(object):
         input = arcpy.Parameter(
             displayName="Input Polygon File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Polygon"]
@@ -4049,6 +4153,8 @@ class PolygonShortAxis(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -4070,7 +4176,7 @@ class RasterArea(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -4119,6 +4225,8 @@ class RasterArea(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         out_text = parameters[2].valueAsText
         units = parameters[3].valueAsText
@@ -4143,7 +4251,7 @@ class RasterCellAssignment(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -4178,6 +4286,8 @@ class RasterCellAssignment(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         assign = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -4200,7 +4310,7 @@ class Reclass(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -4238,6 +4348,8 @@ class Reclass(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         reclass_vals = parameters[2].valueAsText
         assign_mode = parameters[3].valueAsText
@@ -4261,7 +4373,7 @@ class ReclassEqualInterval(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -4308,6 +4420,8 @@ class ReclassEqualInterval(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         interval = parameters[2].valueAsText
         start_val = parameters[3].valueAsText
@@ -4332,7 +4446,7 @@ class ReclassFromFile(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -4363,6 +4477,8 @@ class ReclassFromFile(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         reclass_file = parameters[1].valueAsText
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -4385,7 +4501,7 @@ class SmoothVectors(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
@@ -4417,6 +4533,8 @@ class SmoothVectors(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -4439,7 +4557,7 @@ class TinGridding(object):
         input = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Point"]
@@ -4488,6 +4606,8 @@ class TinGridding(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
@@ -4512,7 +4632,7 @@ class VectorHexBinning(object):
         input = arcpy.Parameter(
             displayName="Input Base File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Point"]
@@ -4555,6 +4675,8 @@ class VectorHexBinning(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         width = parameters[2].valueAsText
         orientation = parameters[3].valueAsText
@@ -4578,7 +4700,7 @@ class VoronoiDiagram(object):
         input = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Point"]
@@ -4603,6 +4725,8 @@ class VoronoiDiagram(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -4624,7 +4748,7 @@ class BufferRaster(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -4662,6 +4786,8 @@ class BufferRaster(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         size = parameters[2].valueAsText
         gridcells = parameters[3].valueAsText
@@ -4685,14 +4811,14 @@ class CostAllocation(object):
         source = arcpy.Parameter(
             displayName="Input Source File",
             name="source",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         backlink = arcpy.Parameter(
             displayName="Input Backlink File",
             name="backlink",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -4716,7 +4842,11 @@ class CostAllocation(object):
 
     def execute(self, parameters, messages):
         source = parameters[0].valueAsText
+        desc = arcpy.Describe(source)
+        source = desc.catalogPath
         backlink = parameters[1].valueAsText
+        desc = arcpy.Describe(backlink)
+        backlink = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -4738,14 +4868,14 @@ class CostDistance(object):
         source = arcpy.Parameter(
             displayName="Input Source File",
             name="source",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         cost = arcpy.Parameter(
             displayName="Input Cost (Friction) File",
             name="cost",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -4777,7 +4907,11 @@ class CostDistance(object):
 
     def execute(self, parameters, messages):
         source = parameters[0].valueAsText
+        desc = arcpy.Describe(source)
+        source = desc.catalogPath
         cost = parameters[1].valueAsText
+        desc = arcpy.Describe(cost)
+        cost = desc.catalogPath
         out_accum = parameters[2].valueAsText
         out_backlink = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -4800,14 +4934,14 @@ class CostPathway(object):
         destination = arcpy.Parameter(
             displayName="Input Destination File",
             name="destination",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         backlink = arcpy.Parameter(
             displayName="Input Backlink File",
             name="backlink",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -4838,7 +4972,11 @@ class CostPathway(object):
 
     def execute(self, parameters, messages):
         destination = parameters[0].valueAsText
+        desc = arcpy.Describe(destination)
+        destination = desc.catalogPath
         backlink = parameters[1].valueAsText
+        desc = arcpy.Describe(backlink)
+        backlink = desc.catalogPath
         output = parameters[2].valueAsText
         zero_background = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -4861,7 +4999,7 @@ class EuclideanAllocation(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -4885,6 +5023,8 @@ class EuclideanAllocation(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -4906,7 +5046,7 @@ class EuclideanDistance(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -4930,6 +5070,8 @@ class EuclideanDistance(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -4951,7 +5093,7 @@ class AverageOverlay(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
         inputs.multiValue = True
@@ -4997,14 +5139,14 @@ class Clip(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
         clip = arcpy.Parameter(
             displayName="Input Clip Polygon Vector File",
             name="clip",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         clip.filter.list = ["Polygon"]
@@ -5028,7 +5170,11 @@ class Clip(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         clip = parameters[1].valueAsText
+        desc = arcpy.Describe(clip)
+        clip = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -5050,14 +5196,14 @@ class ClipRasterToPolygon(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         polygons = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="polygons",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         polygons.filter.list = ["Polygon"]
@@ -5091,7 +5237,11 @@ class ClipRasterToPolygon(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         polygons = parameters[1].valueAsText
+        desc = arcpy.Describe(polygons)
+        polygons = desc.catalogPath
         output = parameters[2].valueAsText
         maintain_dimensions = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -5114,7 +5264,7 @@ class CountIf(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
         inputs.multiValue = True
@@ -5168,14 +5318,14 @@ class Difference(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
         overlay = arcpy.Parameter(
             displayName="Input Overlay Vector File",
             name="overlay",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
@@ -5198,7 +5348,11 @@ class Difference(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         overlay = parameters[1].valueAsText
+        desc = arcpy.Describe(overlay)
+        overlay = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -5220,14 +5374,14 @@ class Erase(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
         erase = arcpy.Parameter(
             displayName="Input Erase Polygon Vector File",
             name="erase",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         erase.filter.list = ["Polygon"]
@@ -5251,7 +5405,11 @@ class Erase(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         erase = parameters[1].valueAsText
+        desc = arcpy.Describe(erase)
+        erase = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -5273,14 +5431,14 @@ class ErasePolygonFromRaster(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         polygons = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="polygons",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         polygons.filter.list = ["Polygon"]
@@ -5305,7 +5463,11 @@ class ErasePolygonFromRaster(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         polygons = parameters[1].valueAsText
+        desc = arcpy.Describe(polygons)
+        polygons = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -5327,7 +5489,7 @@ class HighestPosition(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
         inputs.multiValue = True
@@ -5373,14 +5535,14 @@ class Intersect(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
         overlay = arcpy.Parameter(
             displayName="Input Overlay Vector File",
             name="overlay",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
@@ -5412,7 +5574,11 @@ class Intersect(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         overlay = parameters[1].valueAsText
+        desc = arcpy.Describe(overlay)
+        overlay = desc.catalogPath
         output = parameters[2].valueAsText
         snap = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -5435,7 +5601,7 @@ class LineIntersections(object):
         input1 = arcpy.Parameter(
             displayName="Input Vector Lines File",
             name="input1",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input1.filter.list = ["Polyline", "Polygon"]
@@ -5443,7 +5609,7 @@ class LineIntersections(object):
         input2 = arcpy.Parameter(
             displayName="Input Vector Lines File",
             name="input2",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input2.filter.list = ["Polyline", "Polygon"]
@@ -5468,7 +5634,11 @@ class LineIntersections(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        desc = arcpy.Describe(input1)
+        input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
+        desc = arcpy.Describe(input2)
+        input2 = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -5490,7 +5660,7 @@ class LowestPosition(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
         inputs.multiValue = True
@@ -5536,7 +5706,7 @@ class MaxAbsoluteOverlay(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
         inputs.multiValue = True
@@ -5582,7 +5752,7 @@ class MaxOverlay(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
         inputs.multiValue = True
@@ -5628,7 +5798,7 @@ class MergeLineSegments(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Polyline"]
@@ -5661,6 +5831,8 @@ class MergeLineSegments(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         snap = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -5683,7 +5855,7 @@ class MinAbsoluteOverlay(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
         inputs.multiValue = True
@@ -5729,7 +5901,7 @@ class MinOverlay(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
         inputs.multiValue = True
@@ -5775,7 +5947,7 @@ class PercentEqualTo(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
         inputs.multiValue = True
@@ -5783,7 +5955,7 @@ class PercentEqualTo(object):
         comparison = arcpy.Parameter(
             displayName="Input Comparison File",
             name="comparison",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -5808,6 +5980,8 @@ class PercentEqualTo(object):
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
         comparison = parameters[1].valueAsText
+        desc = arcpy.Describe(comparison)
+        comparison = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -5829,7 +6003,7 @@ class PercentGreaterThan(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
         inputs.multiValue = True
@@ -5837,7 +6011,7 @@ class PercentGreaterThan(object):
         comparison = arcpy.Parameter(
             displayName="Input Comparison File",
             name="comparison",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -5862,6 +6036,8 @@ class PercentGreaterThan(object):
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
         comparison = parameters[1].valueAsText
+        desc = arcpy.Describe(comparison)
+        comparison = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -5883,7 +6059,7 @@ class PercentLessThan(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
         inputs.multiValue = True
@@ -5891,7 +6067,7 @@ class PercentLessThan(object):
         comparison = arcpy.Parameter(
             displayName="Input Comparison File",
             name="comparison",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -5916,6 +6092,8 @@ class PercentLessThan(object):
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
         comparison = parameters[1].valueAsText
+        desc = arcpy.Describe(comparison)
+        comparison = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -5937,7 +6115,7 @@ class PickFromList(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
         inputs.multiValue = True
@@ -5945,7 +6123,7 @@ class PickFromList(object):
         pos_input = arcpy.Parameter(
             displayName="Input Position File",
             name="pos_input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -5970,6 +6148,8 @@ class PickFromList(object):
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
         pos_input = parameters[1].valueAsText
+        desc = arcpy.Describe(pos_input)
+        pos_input = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -5991,7 +6171,7 @@ class Polygonize(object):
         inputs = arcpy.Parameter(
             displayName="Input Vector Lines File",
             name="inputs",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         inputs.multiValue = True
@@ -6038,14 +6218,14 @@ class SplitWithLines(object):
         input = arcpy.Parameter(
             displayName="Input Vector Lines or Polygon File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
         split = arcpy.Parameter(
             displayName="Input Vector Lines File",
             name="split",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         split.filter.list = ["Polyline"]
@@ -6069,7 +6249,11 @@ class SplitWithLines(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         split = parameters[1].valueAsText
+        desc = arcpy.Describe(split)
+        split = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -6091,7 +6275,7 @@ class SumOverlay(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
         inputs.multiValue = True
@@ -6137,14 +6321,14 @@ class SymmetricalDifference(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
         overlay = arcpy.Parameter(
             displayName="Input Overlay Vector File",
             name="overlay",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
@@ -6176,7 +6360,11 @@ class SymmetricalDifference(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         overlay = parameters[1].valueAsText
+        desc = arcpy.Describe(overlay)
+        overlay = desc.catalogPath
         output = parameters[2].valueAsText
         snap = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -6199,14 +6387,14 @@ class Union(object):
         input = arcpy.Parameter(
             displayName="Input Vector File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
         overlay = arcpy.Parameter(
             displayName="Input Overlay Vector File",
             name="overlay",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
@@ -6238,7 +6426,11 @@ class Union(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         overlay = parameters[1].valueAsText
+        desc = arcpy.Describe(overlay)
+        overlay = desc.catalogPath
         output = parameters[2].valueAsText
         snap = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -6261,7 +6453,7 @@ class WeightedOverlay(object):
         factors = arcpy.Parameter(
             displayName="Input Factor Files",
             name="factors",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
         factors.multiValue = True
@@ -6283,7 +6475,7 @@ class WeightedOverlay(object):
         constraints = arcpy.Parameter(
             displayName="Input Constraints Files",
             name="constraints",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Optional",
             direction="Input")
         constraints.multiValue = True
@@ -6342,7 +6534,7 @@ class WeightedSum(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
         inputs.multiValue = True
@@ -6396,7 +6588,7 @@ class BoundaryShapeComplexity(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -6420,6 +6612,8 @@ class BoundaryShapeComplexity(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -6441,7 +6635,7 @@ class CompactnessRatio(object):
         input = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Polygon"]
@@ -6458,6 +6652,8 @@ class CompactnessRatio(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -6478,7 +6674,7 @@ class EdgeProportion(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -6509,6 +6705,8 @@ class EdgeProportion(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         output_text = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -6531,7 +6729,7 @@ class ElongationRatio(object):
         input = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Polygon"]
@@ -6548,6 +6746,8 @@ class ElongationRatio(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -6568,7 +6768,7 @@ class FindPatchOrClassEdgeCells(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -6592,6 +6792,8 @@ class FindPatchOrClassEdgeCells(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -6613,7 +6815,7 @@ class HoleProportion(object):
         input = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Polygon"]
@@ -6630,6 +6832,8 @@ class HoleProportion(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -6650,7 +6854,7 @@ class LinearityIndex(object):
         input = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Polygon"]
@@ -6667,6 +6871,8 @@ class LinearityIndex(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -6687,7 +6893,7 @@ class NarrownessIndex(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -6711,6 +6917,8 @@ class NarrownessIndex(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -6732,7 +6940,7 @@ class PatchOrientation(object):
         input = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Polygon"]
@@ -6749,6 +6957,8 @@ class PatchOrientation(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -6769,7 +6979,7 @@ class PerimeterAreaRatio(object):
         input = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Polygon"]
@@ -6786,6 +6996,8 @@ class PerimeterAreaRatio(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -6806,7 +7018,7 @@ class RadiusOfGyration(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -6837,6 +7049,8 @@ class RadiusOfGyration(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         text_output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -6859,7 +7073,7 @@ class RelatedCircumscribingCircle(object):
         input = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Polygon"]
@@ -6876,6 +7090,8 @@ class RelatedCircumscribingCircle(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -6896,7 +7112,7 @@ class ShapeComplexityIndex(object):
         input = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Polygon"]
@@ -6913,6 +7129,8 @@ class ShapeComplexityIndex(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -6933,7 +7151,7 @@ class ShapeComplexityIndexRaster(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -6957,6 +7175,8 @@ class ShapeComplexityIndexRaster(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -6978,7 +7198,7 @@ class Aspect(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -7011,6 +7231,8 @@ class Aspect(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -7033,7 +7255,7 @@ class AverageNormalVectorAngularDeviation(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -7066,6 +7288,8 @@ class AverageNormalVectorAngularDeviation(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -7088,7 +7312,7 @@ class CircularVarianceOfAspect(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -7121,6 +7345,8 @@ class CircularVarianceOfAspect(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -7143,7 +7369,7 @@ class DevFromMeanElev(object):
         dem = arcpy.Parameter(
             displayName="Input File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -7185,6 +7411,8 @@ class DevFromMeanElev(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -7208,7 +7436,7 @@ class DiffFromMeanElev(object):
         dem = arcpy.Parameter(
             displayName="Input File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -7250,6 +7478,8 @@ class DiffFromMeanElev(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -7273,7 +7503,7 @@ class DirectionalRelief(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -7313,6 +7543,8 @@ class DirectionalRelief(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         azimuth = parameters[2].valueAsText
         max_dist = parameters[3].valueAsText
@@ -7336,7 +7568,7 @@ class DownslopeIndex(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -7380,6 +7612,8 @@ class DownslopeIndex(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         drop = parameters[2].valueAsText
         out_type = parameters[3].valueAsText
@@ -7403,7 +7637,7 @@ class DrainagePreservingSmoothing(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -7490,6 +7724,8 @@ class DrainagePreservingSmoothing(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         norm_diff = parameters[3].valueAsText
@@ -7518,7 +7754,7 @@ class EdgeDensity(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -7569,6 +7805,8 @@ class EdgeDensity(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         norm_diff = parameters[3].valueAsText
@@ -7593,7 +7831,7 @@ class ElevAbovePit(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -7617,6 +7855,8 @@ class ElevAbovePit(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -7638,7 +7878,7 @@ class ElevPercentile(object):
         dem = arcpy.Parameter(
             displayName="Input File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -7689,6 +7929,8 @@ class ElevPercentile(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -7713,7 +7955,7 @@ class ElevRelativeToMinMax(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -7737,6 +7979,8 @@ class ElevRelativeToMinMax(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -7758,14 +8002,14 @@ class ElevRelativeToWatershedMinMax(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         watersheds = arcpy.Parameter(
             displayName="Input Watersheds File",
             name="watersheds",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -7789,7 +8033,11 @@ class ElevRelativeToWatershedMinMax(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         watersheds = parameters[1].valueAsText
+        desc = arcpy.Describe(watersheds)
+        watersheds = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -7811,7 +8059,7 @@ class FeaturePreservingDenoise(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -7880,6 +8128,8 @@ class FeaturePreservingDenoise(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         norm_diff = parameters[3].valueAsText
@@ -7906,7 +8156,7 @@ class FetchAnalysis(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -7948,6 +8198,8 @@ class FetchAnalysis(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         azimuth = parameters[2].valueAsText
         hgt_inc = parameters[3].valueAsText
@@ -7971,7 +8223,7 @@ class FillMissingData(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -8013,6 +8265,8 @@ class FillMissingData(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         weight = parameters[3].valueAsText
@@ -8036,7 +8290,7 @@ class FindRidges(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -8069,6 +8323,8 @@ class FindRidges(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         line_thin = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -8091,7 +8347,7 @@ class Hillshade(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -8142,6 +8398,8 @@ class Hillshade(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         azimuth = parameters[2].valueAsText
         altitude = parameters[3].valueAsText
@@ -8166,7 +8424,7 @@ class HorizonAngle(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -8206,6 +8464,8 @@ class HorizonAngle(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         azimuth = parameters[2].valueAsText
         max_dist = parameters[3].valueAsText
@@ -8229,7 +8489,7 @@ class HypsometricAnalysis(object):
         inputs = arcpy.Parameter(
             displayName="Input DEM Files",
             name="inputs",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
         inputs.multiValue = True
@@ -8237,7 +8497,7 @@ class HypsometricAnalysis(object):
         watershed = arcpy.Parameter(
             displayName="Input Watershed Files",
             name="watershed",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Optional",
             direction="Input")
         watershed.multiValue = True
@@ -8284,7 +8544,7 @@ class MaxAnisotropyDev(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -8341,6 +8601,8 @@ class MaxAnisotropyDev(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         out_mag = parameters[1].valueAsText
         out_scale = parameters[2].valueAsText
         min_scale = parameters[3].valueAsText
@@ -8366,14 +8628,14 @@ class MaxAnisotropyDevSignature(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         points = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="points",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         points.filter.list = ["Point"]
@@ -8423,7 +8685,11 @@ class MaxAnisotropyDevSignature(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         points = parameters[1].valueAsText
+        desc = arcpy.Describe(points)
+        points = desc.catalogPath
         output = parameters[2].valueAsText
         min_scale = parameters[3].valueAsText
         max_scale = parameters[4].valueAsText
@@ -8448,7 +8714,7 @@ class MaxBranchLength(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -8479,6 +8745,8 @@ class MaxBranchLength(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         log = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -8501,7 +8769,7 @@ class MaxDifferenceFromMean(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -8556,6 +8824,8 @@ class MaxDifferenceFromMean(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         out_mag = parameters[1].valueAsText
         out_scale = parameters[2].valueAsText
         min_scale = parameters[3].valueAsText
@@ -8581,7 +8851,7 @@ class MaxDownslopeElevChange(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -8605,6 +8875,8 @@ class MaxDownslopeElevChange(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -8626,14 +8898,14 @@ class MaxElevDevSignature(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         points = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="points",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         points.filter.list = ["Point"]
@@ -8681,7 +8953,11 @@ class MaxElevDevSignature(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         points = parameters[1].valueAsText
+        desc = arcpy.Describe(points)
+        points = desc.catalogPath
         output = parameters[2].valueAsText
         min_scale = parameters[3].valueAsText
         max_scale = parameters[4].valueAsText
@@ -8706,7 +8982,7 @@ class MaxElevationDeviation(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -8761,6 +9037,8 @@ class MaxElevationDeviation(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         out_mag = parameters[1].valueAsText
         out_scale = parameters[2].valueAsText
         min_scale = parameters[3].valueAsText
@@ -8786,7 +9064,7 @@ class MinDownslopeElevChange(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -8810,6 +9088,8 @@ class MinDownslopeElevChange(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -8831,7 +9111,7 @@ class MultiscaleRoughness(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -8888,6 +9168,8 @@ class MultiscaleRoughness(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         out_mag = parameters[1].valueAsText
         out_scale = parameters[2].valueAsText
         min_scale = parameters[3].valueAsText
@@ -8913,14 +9195,14 @@ class MultiscaleRoughnessSignature(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         points = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="points",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         points.filter.list = ["Point"]
@@ -8970,7 +9252,11 @@ class MultiscaleRoughnessSignature(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         points = parameters[1].valueAsText
+        desc = arcpy.Describe(points)
+        points = desc.catalogPath
         output = parameters[2].valueAsText
         min_scale = parameters[3].valueAsText
         max_scale = parameters[4].valueAsText
@@ -8995,21 +9281,21 @@ class MultiscaleTopographicPositionImage(object):
         local = arcpy.Parameter(
             displayName="Input Local-Scale File",
             name="local",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         meso = arcpy.Parameter(
             displayName="Input Meso-Scale File",
             name="meso",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         broad = arcpy.Parameter(
             displayName="Input Broad-Scale File",
             name="broad",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -9042,8 +9328,14 @@ class MultiscaleTopographicPositionImage(object):
 
     def execute(self, parameters, messages):
         local = parameters[0].valueAsText
+        desc = arcpy.Describe(local)
+        local = desc.catalogPath
         meso = parameters[1].valueAsText
+        desc = arcpy.Describe(meso)
+        meso = desc.catalogPath
         broad = parameters[2].valueAsText
+        desc = arcpy.Describe(broad)
+        broad = desc.catalogPath
         output = parameters[3].valueAsText
         lightness = parameters[4].valueAsText
         old_stdout = sys.stdout
@@ -9066,7 +9358,7 @@ class NumDownslopeNeighbours(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -9090,6 +9382,8 @@ class NumDownslopeNeighbours(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -9111,7 +9405,7 @@ class NumUpslopeNeighbours(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -9135,6 +9429,8 @@ class NumUpslopeNeighbours(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -9156,7 +9452,7 @@ class PennockLandformClass(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -9216,6 +9512,8 @@ class PennockLandformClass(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         slope = parameters[2].valueAsText
         prof = parameters[3].valueAsText
@@ -9241,7 +9539,7 @@ class PercentElevRange(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -9283,6 +9581,8 @@ class PercentElevRange(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -9306,7 +9606,7 @@ class PlanCurvature(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -9339,6 +9639,8 @@ class PlanCurvature(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -9361,7 +9663,7 @@ class Profile(object):
         lines = arcpy.Parameter(
             displayName="Input Vector Line File",
             name="lines",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         lines.filter.list = ["Polyline"]
@@ -9369,7 +9671,7 @@ class Profile(object):
         surface = arcpy.Parameter(
             displayName="Input Surface File",
             name="surface",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -9393,7 +9695,11 @@ class Profile(object):
 
     def execute(self, parameters, messages):
         lines = parameters[0].valueAsText
+        desc = arcpy.Describe(lines)
+        lines = desc.catalogPath
         surface = parameters[1].valueAsText
+        desc = arcpy.Describe(surface)
+        surface = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -9415,7 +9721,7 @@ class ProfileCurvature(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -9448,6 +9754,8 @@ class ProfileCurvature(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -9470,7 +9778,7 @@ class RelativeAspect(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -9512,6 +9820,8 @@ class RelativeAspect(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         azimuth = parameters[2].valueAsText
         zfactor = parameters[3].valueAsText
@@ -9535,14 +9845,14 @@ class RelativeStreamPowerIndex(object):
         sca = arcpy.Parameter(
             displayName="Input Specific Contributing Area (SCA) File",
             name="sca",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         slope = arcpy.Parameter(
             displayName="Input Slope File",
             name="slope",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -9575,7 +9885,11 @@ class RelativeStreamPowerIndex(object):
 
     def execute(self, parameters, messages):
         sca = parameters[0].valueAsText
+        desc = arcpy.Describe(sca)
+        sca = desc.catalogPath
         slope = parameters[1].valueAsText
+        desc = arcpy.Describe(slope)
+        slope = desc.catalogPath
         output = parameters[2].valueAsText
         exponent = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -9598,7 +9912,7 @@ class RelativeTopographicPosition(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -9640,6 +9954,8 @@ class RelativeTopographicPosition(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -9663,7 +9979,7 @@ class RemoveOffTerrainObjects(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -9705,6 +10021,8 @@ class RemoveOffTerrainObjects(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         slope = parameters[3].valueAsText
@@ -9728,7 +10046,7 @@ class RuggednessIndex(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -9761,6 +10079,8 @@ class RuggednessIndex(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -9783,14 +10103,14 @@ class SedimentTransportIndex(object):
         sca = arcpy.Parameter(
             displayName="Input Specific Contributing Area (SCA) File",
             name="sca",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         slope = arcpy.Parameter(
             displayName="Input Slope File",
             name="slope",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -9832,7 +10152,11 @@ class SedimentTransportIndex(object):
 
     def execute(self, parameters, messages):
         sca = parameters[0].valueAsText
+        desc = arcpy.Describe(sca)
+        sca = desc.catalogPath
         slope = parameters[1].valueAsText
+        desc = arcpy.Describe(slope)
+        slope = desc.catalogPath
         output = parameters[2].valueAsText
         sca_exponent = parameters[3].valueAsText
         slope_exponent = parameters[4].valueAsText
@@ -9856,7 +10180,7 @@ class Slope(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -9889,6 +10213,8 @@ class Slope(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -9911,7 +10237,7 @@ class SlopeVsElevationPlot(object):
         inputs = arcpy.Parameter(
             displayName="Input DEM Files",
             name="inputs",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
         inputs.multiValue = True
@@ -9919,7 +10245,7 @@ class SlopeVsElevationPlot(object):
         watershed = arcpy.Parameter(
             displayName="Input Watershed Files",
             name="watershed",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Optional",
             direction="Input")
         watershed.multiValue = True
@@ -9966,7 +10292,7 @@ class SphericalStdDevOfNormals(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -9999,6 +10325,8 @@ class SphericalStdDevOfNormals(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -10021,7 +10349,7 @@ class StandardDeviationOfSlope(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -10072,6 +10400,8 @@ class StandardDeviationOfSlope(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
         filterx = parameters[3].valueAsText
@@ -10096,7 +10426,7 @@ class SurfaceAreaRatio(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -10120,6 +10450,8 @@ class SurfaceAreaRatio(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -10141,7 +10473,7 @@ class TangentialCurvature(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -10174,6 +10506,8 @@ class TangentialCurvature(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -10196,7 +10530,7 @@ class TotalCurvature(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -10229,6 +10563,8 @@ class TotalCurvature(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -10251,14 +10587,14 @@ class Viewshed(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         stations = arcpy.Parameter(
             displayName="Viewing Station Vector File",
             name="stations",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         stations.filter.list = ["Point"]
@@ -10292,7 +10628,11 @@ class Viewshed(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         stations = parameters[1].valueAsText
+        desc = arcpy.Describe(stations)
+        stations = desc.catalogPath
         output = parameters[2].valueAsText
         height = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -10315,7 +10655,7 @@ class VisibilityIndex(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -10357,6 +10697,8 @@ class VisibilityIndex(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         height = parameters[2].valueAsText
         res_factor = parameters[3].valueAsText
@@ -10380,14 +10722,14 @@ class WetnessIndex(object):
         sca = arcpy.Parameter(
             displayName="Input Specific Contributing Area (SCA) File",
             name="sca",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         slope = arcpy.Parameter(
             displayName="Input Slope File",
             name="slope",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -10411,7 +10753,11 @@ class WetnessIndex(object):
 
     def execute(self, parameters, messages):
         sca = parameters[0].valueAsText
+        desc = arcpy.Describe(sca)
+        sca = desc.catalogPath
         slope = parameters[1].valueAsText
+        desc = arcpy.Describe(slope)
+        slope = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -10433,7 +10779,7 @@ class AverageFlowpathSlope(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -10457,6 +10803,8 @@ class AverageFlowpathSlope(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -10478,7 +10826,7 @@ class AverageUpslopeFlowpathLength(object):
         dem = arcpy.Parameter(
             displayName="Input File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -10502,6 +10850,8 @@ class AverageUpslopeFlowpathLength(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -10523,7 +10873,7 @@ class Basins(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -10556,6 +10906,8 @@ class Basins(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
+        desc = arcpy.Describe(d8_pntr)
+        d8_pntr = desc.catalogPath
         output = parameters[1].valueAsText
         esri_pntr = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -10578,7 +10930,7 @@ class BreachDepressions(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -10632,6 +10984,8 @@ class BreachDepressions(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         max_depth = parameters[2].valueAsText
         max_length = parameters[3].valueAsText
@@ -10657,7 +11011,7 @@ class BreachSingleCellPits(object):
         dem = arcpy.Parameter(
             displayName="Input File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -10681,6 +11035,8 @@ class BreachSingleCellPits(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -10702,7 +11058,7 @@ class D8FlowAccumulation(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -10751,6 +11107,8 @@ class D8FlowAccumulation(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         out_type = parameters[2].valueAsText
         log = parameters[3].valueAsText
@@ -10775,28 +11133,28 @@ class D8MassFlux(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         loading = arcpy.Parameter(
             displayName="Input Loading File",
             name="loading",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         efficiency = arcpy.Parameter(
             displayName="Input Efficiency File",
             name="efficiency",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         absorption = arcpy.Parameter(
             displayName="Input Absorption File",
             name="absorption",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -10820,9 +11178,17 @@ class D8MassFlux(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         loading = parameters[1].valueAsText
+        desc = arcpy.Describe(loading)
+        loading = desc.catalogPath
         efficiency = parameters[2].valueAsText
+        desc = arcpy.Describe(efficiency)
+        efficiency = desc.catalogPath
         absorption = parameters[3].valueAsText
+        desc = arcpy.Describe(absorption)
+        absorption = desc.catalogPath
         output = parameters[4].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -10844,7 +11210,7 @@ class D8Pointer(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -10877,6 +11243,8 @@ class D8Pointer(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         esri_pntr = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -10899,7 +11267,7 @@ class DInfFlowAccumulation(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -10955,6 +11323,8 @@ class DInfFlowAccumulation(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         out_type = parameters[2].valueAsText
         threshold = parameters[3].valueAsText
@@ -10980,28 +11350,28 @@ class DInfMassFlux(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         loading = arcpy.Parameter(
             displayName="Input Loading File",
             name="loading",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         efficiency = arcpy.Parameter(
             displayName="Input Efficiency File",
             name="efficiency",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         absorption = arcpy.Parameter(
             displayName="Input Absorption File",
             name="absorption",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -11025,9 +11395,17 @@ class DInfMassFlux(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         loading = parameters[1].valueAsText
+        desc = arcpy.Describe(loading)
+        loading = desc.catalogPath
         efficiency = parameters[2].valueAsText
+        desc = arcpy.Describe(efficiency)
+        efficiency = desc.catalogPath
         absorption = parameters[3].valueAsText
+        desc = arcpy.Describe(absorption)
+        absorption = desc.catalogPath
         output = parameters[4].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -11049,7 +11427,7 @@ class DInfPointer(object):
         dem = arcpy.Parameter(
             displayName="Input File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -11073,6 +11451,8 @@ class DInfPointer(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -11094,7 +11474,7 @@ class DepthInSink(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -11125,6 +11505,8 @@ class DepthInSink(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         zero_background = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -11147,14 +11529,14 @@ class DownslopeDistanceToStream(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -11178,7 +11560,11 @@ class DownslopeDistanceToStream(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         streams = parameters[1].valueAsText
+        desc = arcpy.Describe(streams)
+        streams = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -11200,21 +11586,21 @@ class DownslopeFlowpathLength(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         watersheds = arcpy.Parameter(
             displayName="Input Watersheds File",
             name="watersheds",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Optional",
             direction="Input")
 
         weights = arcpy.Parameter(
             displayName="Input Weights File",
             name="weights",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Optional",
             direction="Input")
 
@@ -11247,8 +11633,14 @@ class DownslopeFlowpathLength(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
+        desc = arcpy.Describe(d8_pntr)
+        d8_pntr = desc.catalogPath
         watersheds = parameters[1].valueAsText
+        desc = arcpy.Describe(watersheds)
+        watersheds = desc.catalogPath
         weights = parameters[2].valueAsText
+        desc = arcpy.Describe(weights)
+        weights = desc.catalogPath
         output = parameters[3].valueAsText
         esri_pntr = parameters[4].valueAsText
         old_stdout = sys.stdout
@@ -11271,14 +11663,14 @@ class ElevationAboveStream(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -11302,7 +11694,11 @@ class ElevationAboveStream(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         streams = parameters[1].valueAsText
+        desc = arcpy.Describe(streams)
+        streams = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -11324,14 +11720,14 @@ class ElevationAboveStreamEuclidean(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -11355,7 +11751,11 @@ class ElevationAboveStreamEuclidean(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         streams = parameters[1].valueAsText
+        desc = arcpy.Describe(streams)
+        streams = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -11377,7 +11777,7 @@ class Fd8FlowAccumulation(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -11442,6 +11842,8 @@ class Fd8FlowAccumulation(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         out_type = parameters[2].valueAsText
         exponent = parameters[3].valueAsText
@@ -11468,7 +11870,7 @@ class Fd8Pointer(object):
         dem = arcpy.Parameter(
             displayName="Input File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -11492,6 +11894,8 @@ class Fd8Pointer(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -11513,14 +11917,14 @@ class FillBurn(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Vector Streams File",
             name="streams",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         streams.filter.list = ["Polyline"]
@@ -11545,7 +11949,11 @@ class FillBurn(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         streams = parameters[1].valueAsText
+        desc = arcpy.Describe(streams)
+        streams = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -11567,7 +11975,7 @@ class FillDepressions(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -11600,6 +12008,8 @@ class FillDepressions(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         fix_flats = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -11622,7 +12032,7 @@ class FillSingleCellPits(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -11646,6 +12056,8 @@ class FillSingleCellPits(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -11667,7 +12079,7 @@ class FindNoFlowCells(object):
         dem = arcpy.Parameter(
             displayName="Input File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -11691,6 +12103,8 @@ class FindNoFlowCells(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -11712,14 +12126,14 @@ class FindParallelFlow(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -11743,7 +12157,11 @@ class FindParallelFlow(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
+        desc = arcpy.Describe(d8_pntr)
+        d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
+        desc = arcpy.Describe(streams)
+        streams = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -11765,14 +12183,14 @@ class FlattenLakes(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         lakes = arcpy.Parameter(
             displayName="Input Lakes Vector Polygon File",
             name="lakes",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         lakes.filter.list = ["Polygon"]
@@ -11797,7 +12215,11 @@ class FlattenLakes(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         lakes = parameters[1].valueAsText
+        desc = arcpy.Describe(lakes)
+        lakes = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -11819,7 +12241,7 @@ class FloodOrder(object):
         dem = arcpy.Parameter(
             displayName="Input File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -11843,6 +12265,8 @@ class FloodOrder(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -11864,7 +12288,7 @@ class FlowAccumulationFullWorkflow(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -11938,6 +12362,8 @@ class FlowAccumulationFullWorkflow(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         out_dem = parameters[1].valueAsText
         out_pntr = parameters[2].valueAsText
         out_accum = parameters[3].valueAsText
@@ -11965,7 +12391,7 @@ class FlowLengthDiff(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -11998,6 +12424,8 @@ class FlowLengthDiff(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
+        desc = arcpy.Describe(d8_pntr)
+        d8_pntr = desc.catalogPath
         output = parameters[1].valueAsText
         esri_pntr = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -12020,14 +12448,14 @@ class Hillslopes(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -12060,7 +12488,11 @@ class Hillslopes(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
+        desc = arcpy.Describe(d8_pntr)
+        d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
+        desc = arcpy.Describe(streams)
+        streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -12083,7 +12515,7 @@ class ImpoundmentSizeIndex(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -12125,6 +12557,8 @@ class ImpoundmentSizeIndex(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         out_type = parameters[2].valueAsText
         damlength = parameters[3].valueAsText
@@ -12148,7 +12582,7 @@ class Isobasins(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -12179,6 +12613,8 @@ class Isobasins(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         size = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -12201,7 +12637,7 @@ class JensonSnapPourPoints(object):
         pour_pts = arcpy.Parameter(
             displayName="Input Pour Points (Outlet) File",
             name="pour_pts",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         pour_pts.filter.list = ["Point"]
@@ -12209,7 +12645,7 @@ class JensonSnapPourPoints(object):
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -12240,7 +12676,11 @@ class JensonSnapPourPoints(object):
 
     def execute(self, parameters, messages):
         pour_pts = parameters[0].valueAsText
+        desc = arcpy.Describe(pour_pts)
+        pour_pts = desc.catalogPath
         streams = parameters[1].valueAsText
+        desc = arcpy.Describe(streams)
+        streams = desc.catalogPath
         output = parameters[2].valueAsText
         snap_dist = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -12263,14 +12703,14 @@ class LongestFlowpath(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         basins = arcpy.Parameter(
             displayName="Basins File",
             name="basins",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -12294,7 +12734,11 @@ class LongestFlowpath(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         basins = parameters[1].valueAsText
+        desc = arcpy.Describe(basins)
+        basins = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -12316,7 +12760,7 @@ class MaxUpslopeFlowpathLength(object):
         dem = arcpy.Parameter(
             displayName="Input File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -12340,6 +12784,8 @@ class MaxUpslopeFlowpathLength(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -12361,7 +12807,7 @@ class NumInflowingNeighbours(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -12385,6 +12831,8 @@ class NumInflowingNeighbours(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -12406,14 +12854,14 @@ class RaiseWalls(object):
         input = arcpy.Parameter(
             displayName="Input Vector Line or Polygon File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
         breach = arcpy.Parameter(
             displayName="Input Breach Lines",
             name="breach",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Optional",
             direction="Input")
         breach.filter.list = ["Polyline"]
@@ -12421,7 +12869,7 @@ class RaiseWalls(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -12454,8 +12902,14 @@ class RaiseWalls(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         breach = parameters[1].valueAsText
+        desc = arcpy.Describe(breach)
+        breach = desc.catalogPath
         dem = parameters[2].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[3].valueAsText
         height = parameters[4].valueAsText
         old_stdout = sys.stdout
@@ -12478,7 +12932,7 @@ class Rho8Pointer(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -12511,6 +12965,8 @@ class Rho8Pointer(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         esri_pntr = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -12533,7 +12989,7 @@ class Sink(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -12564,6 +13020,8 @@ class Sink(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         zero_background = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -12586,7 +13044,7 @@ class SnapPourPoints(object):
         pour_pts = arcpy.Parameter(
             displayName="Input Pour Points (Outlet) File",
             name="pour_pts",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         pour_pts.filter.list = ["Point"]
@@ -12594,7 +13052,7 @@ class SnapPourPoints(object):
         flow_accum = arcpy.Parameter(
             displayName="Input D8 Flow Accumulation File",
             name="flow_accum",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -12625,7 +13083,11 @@ class SnapPourPoints(object):
 
     def execute(self, parameters, messages):
         pour_pts = parameters[0].valueAsText
+        desc = arcpy.Describe(pour_pts)
+        pour_pts = desc.catalogPath
         flow_accum = parameters[1].valueAsText
+        desc = arcpy.Describe(flow_accum)
+        flow_accum = desc.catalogPath
         output = parameters[2].valueAsText
         snap_dist = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -12648,7 +13110,7 @@ class StochasticDepressionAnalysis(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -12695,6 +13157,8 @@ class StochasticDepressionAnalysis(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         rmse = parameters[2].valueAsText
         range = parameters[3].valueAsText
@@ -12719,14 +13183,14 @@ class StrahlerOrderBasins(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -12759,7 +13223,11 @@ class StrahlerOrderBasins(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
+        desc = arcpy.Describe(d8_pntr)
+        d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
+        desc = arcpy.Describe(streams)
+        streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -12782,14 +13250,14 @@ class Subbasins(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -12822,7 +13290,11 @@ class Subbasins(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
+        desc = arcpy.Describe(d8_pntr)
+        d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
+        desc = arcpy.Describe(streams)
+        streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -12845,7 +13317,7 @@ class TraceDownslopeFlowpaths(object):
         seed_pts = arcpy.Parameter(
             displayName="Input Vector Seed Points File",
             name="seed_pts",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         seed_pts.filter.list = ["Point"]
@@ -12853,7 +13325,7 @@ class TraceDownslopeFlowpaths(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -12893,7 +13365,11 @@ class TraceDownslopeFlowpaths(object):
 
     def execute(self, parameters, messages):
         seed_pts = parameters[0].valueAsText
+        desc = arcpy.Describe(seed_pts)
+        seed_pts = desc.catalogPath
         d8_pntr = parameters[1].valueAsText
+        desc = arcpy.Describe(d8_pntr)
+        d8_pntr = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
@@ -12917,14 +13393,14 @@ class UnnestBasins(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         pour_pts = arcpy.Parameter(
             displayName="Input Pour Points (Outlet) File",
             name="pour_pts",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         pour_pts.filter.list = ["Point"]
@@ -12958,7 +13434,11 @@ class UnnestBasins(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
+        desc = arcpy.Describe(d8_pntr)
+        d8_pntr = desc.catalogPath
         pour_pts = parameters[1].valueAsText
+        desc = arcpy.Describe(pour_pts)
+        pour_pts = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -12981,14 +13461,14 @@ class Watershed(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         pour_pts = arcpy.Parameter(
             displayName="Input Pour Points (Outlet) File",
             name="pour_pts",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         pour_pts.filter.list = ["Point"]
@@ -13022,7 +13502,11 @@ class Watershed(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
+        desc = arcpy.Describe(d8_pntr)
+        d8_pntr = desc.catalogPath
         pour_pts = parameters[1].valueAsText
+        desc = arcpy.Describe(pour_pts)
+        pour_pts = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -13045,7 +13529,7 @@ class ChangeVectorAnalysis(object):
         date1 = arcpy.Parameter(
             displayName="Earlier Date Input Files",
             name="date1",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
         date1.multiValue = True
@@ -13053,7 +13537,7 @@ class ChangeVectorAnalysis(object):
         date2 = arcpy.Parameter(
             displayName="Later Date Input Files",
             name="date2",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
         date2.multiValue = True
@@ -13109,7 +13593,7 @@ class Closing(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -13151,6 +13635,8 @@ class Closing(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -13174,28 +13660,28 @@ class CreateColourComposite(object):
         red = arcpy.Parameter(
             displayName="Input Red Band Image File",
             name="red",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         green = arcpy.Parameter(
             displayName="Input Green Band Image File",
             name="green",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         blue = arcpy.Parameter(
             displayName="Input Blue Band Image File",
             name="blue",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         opacity = arcpy.Parameter(
             displayName="Input Opacity Band Image File (Optional)",
             name="opacity",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Optional",
             direction="Input")
 
@@ -13237,9 +13723,17 @@ class CreateColourComposite(object):
 
     def execute(self, parameters, messages):
         red = parameters[0].valueAsText
+        desc = arcpy.Describe(red)
+        red = desc.catalogPath
         green = parameters[1].valueAsText
+        desc = arcpy.Describe(green)
+        green = desc.catalogPath
         blue = parameters[2].valueAsText
+        desc = arcpy.Describe(blue)
+        blue = desc.catalogPath
         opacity = parameters[3].valueAsText
+        desc = arcpy.Describe(opacity)
+        opacity = desc.catalogPath
         output = parameters[4].valueAsText
         enhance = parameters[5].valueAsText
         zeros = parameters[6].valueAsText
@@ -13263,7 +13757,7 @@ class FlipImage(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -13298,6 +13792,8 @@ class FlipImage(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         direction = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -13320,21 +13816,21 @@ class IhsToRgb(object):
         intensity = arcpy.Parameter(
             displayName="Input Intensity File",
             name="intensity",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         hue = arcpy.Parameter(
             displayName="Input Hue File",
             name="hue",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         saturation = arcpy.Parameter(
             displayName="Input Saturation File",
             name="saturation",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -13382,8 +13878,14 @@ class IhsToRgb(object):
 
     def execute(self, parameters, messages):
         intensity = parameters[0].valueAsText
+        desc = arcpy.Describe(intensity)
+        intensity = desc.catalogPath
         hue = parameters[1].valueAsText
+        desc = arcpy.Describe(hue)
+        hue = desc.catalogPath
         saturation = parameters[2].valueAsText
+        desc = arcpy.Describe(saturation)
+        saturation = desc.catalogPath
         red = parameters[3].valueAsText
         green = parameters[4].valueAsText
         blue = parameters[5].valueAsText
@@ -13408,7 +13910,7 @@ class ImageStackProfile(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
         inputs.multiValue = True
@@ -13416,7 +13918,7 @@ class ImageStackProfile(object):
         points = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="points",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         points.filter.list = ["Point"]
@@ -13442,6 +13944,8 @@ class ImageStackProfile(object):
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
         points = parameters[1].valueAsText
+        desc = arcpy.Describe(points)
+        points = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -13463,7 +13967,7 @@ class IntegralImage(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -13487,6 +13991,8 @@ class IntegralImage(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -13508,7 +14014,7 @@ class KMeansClustering(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
         inputs.multiValue = True
@@ -13613,7 +14119,7 @@ class LineThinning(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -13637,6 +14143,8 @@ class LineThinning(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -13658,7 +14166,7 @@ class ModifiedKMeansClustering(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
         inputs.multiValue = True
@@ -13751,7 +14259,7 @@ class Mosaic(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
         inputs.multiValue = True
@@ -13809,14 +14317,14 @@ class MosaicWithFeathering(object):
         input1 = arcpy.Parameter(
             displayName="Input File To Modify",
             name="input1",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input Reference File",
             name="input2",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -13860,7 +14368,11 @@ class MosaicWithFeathering(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        desc = arcpy.Describe(input1)
+        input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
+        desc = arcpy.Describe(input2)
+        input2 = desc.catalogPath
         output = parameters[2].valueAsText
         method = parameters[3].valueAsText
         weight = parameters[4].valueAsText
@@ -13884,14 +14396,14 @@ class NormalizedDifferenceIndex(object):
         input1 = arcpy.Parameter(
             displayName="Input 1 File",
             name="input1",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input 2 File",
             name="input2",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -13933,7 +14445,11 @@ class NormalizedDifferenceIndex(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        desc = arcpy.Describe(input1)
+        input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
+        desc = arcpy.Describe(input2)
+        input2 = desc.catalogPath
         output = parameters[2].valueAsText
         clip = parameters[3].valueAsText
         correction = parameters[4].valueAsText
@@ -13957,7 +14473,7 @@ class Opening(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -13999,6 +14515,8 @@ class Opening(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -14022,7 +14540,7 @@ class RemoveSpurs(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -14055,6 +14573,8 @@ class RemoveSpurs(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         iterations = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -14077,7 +14597,7 @@ class Resample(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
         inputs.multiValue = True
@@ -14085,7 +14605,7 @@ class Resample(object):
         destination = arcpy.Parameter(
             displayName="Destination File",
             name="destination",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -14113,6 +14633,8 @@ class Resample(object):
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
         destination = parameters[1].valueAsText
+        desc = arcpy.Describe(destination)
+        destination = desc.catalogPath
         method = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -14134,28 +14656,28 @@ class RgbToIhs(object):
         red = arcpy.Parameter(
             displayName="Input Red Band File (optional; only if colour-composite not specified)",
             name="red",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Optional",
             direction="Input")
 
         green = arcpy.Parameter(
             displayName="Input Green Band File (optional; only if colour-composite not specified)",
             name="green",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Optional",
             direction="Input")
 
         blue = arcpy.Parameter(
             displayName="Input Blue Band File (optional; only if colour-composite not specified)",
             name="blue",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Optional",
             direction="Input")
 
         composite = arcpy.Parameter(
             displayName="Input Colour-Composite Image File (optional; only if individual bands not specified)",
             name="composite",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Optional",
             direction="Input")
 
@@ -14195,9 +14717,17 @@ class RgbToIhs(object):
 
     def execute(self, parameters, messages):
         red = parameters[0].valueAsText
+        desc = arcpy.Describe(red)
+        red = desc.catalogPath
         green = parameters[1].valueAsText
+        desc = arcpy.Describe(green)
+        green = desc.catalogPath
         blue = parameters[2].valueAsText
+        desc = arcpy.Describe(blue)
+        blue = desc.catalogPath
         composite = parameters[3].valueAsText
+        desc = arcpy.Describe(composite)
+        composite = desc.catalogPath
         intensity = parameters[4].valueAsText
         hue = parameters[5].valueAsText
         saturation = parameters[6].valueAsText
@@ -14221,7 +14751,7 @@ class SplitColourComposite(object):
         input = arcpy.Parameter(
             displayName="Input Colour Composite Image File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -14261,6 +14791,8 @@ class SplitColourComposite(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         red = parameters[1].valueAsText
         green = parameters[2].valueAsText
         blue = parameters[3].valueAsText
@@ -14284,7 +14816,7 @@ class ThickenRasterLine(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -14308,6 +14840,8 @@ class ThickenRasterLine(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -14329,7 +14863,7 @@ class TophatTransform(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -14382,6 +14916,8 @@ class TophatTransform(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -14406,21 +14942,21 @@ class WriteFunctionMemoryInsertion(object):
         input1 = arcpy.Parameter(
             displayName="First Date Input File",
             name="input1",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Second Date Input File",
             name="input2",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input3 = arcpy.Parameter(
             displayName="Third Date Input File (Optional)",
             name="input3",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Optional",
             direction="Input")
 
@@ -14444,8 +14980,14 @@ class WriteFunctionMemoryInsertion(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        desc = arcpy.Describe(input1)
+        input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
+        desc = arcpy.Describe(input2)
+        input2 = desc.catalogPath
         input3 = parameters[2].valueAsText
+        desc = arcpy.Describe(input3)
+        input3 = desc.catalogPath
         output = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -14467,7 +15009,7 @@ class AdaptiveFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -14518,6 +15060,8 @@ class AdaptiveFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -14542,7 +15086,7 @@ class BilateralFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -14584,6 +15128,8 @@ class BilateralFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         sigma_dist = parameters[2].valueAsText
         sigma_int = parameters[3].valueAsText
@@ -14607,7 +15153,7 @@ class ConservativeSmoothingFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -14649,6 +15195,8 @@ class ConservativeSmoothingFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -14672,7 +15220,7 @@ class CornerDetection(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -14696,6 +15244,8 @@ class CornerDetection(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -14717,7 +15267,7 @@ class DiffOfGaussianFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -14759,6 +15309,8 @@ class DiffOfGaussianFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         sigma1 = parameters[2].valueAsText
         sigma2 = parameters[3].valueAsText
@@ -14782,7 +15334,7 @@ class DiversityFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -14824,6 +15376,8 @@ class DiversityFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -14847,7 +15401,7 @@ class EdgePreservingMeanFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -14887,6 +15441,8 @@ class EdgePreservingMeanFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         threshold = parameters[3].valueAsText
@@ -14910,7 +15466,7 @@ class EmbossFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -14954,6 +15510,8 @@ class EmbossFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         direction = parameters[2].valueAsText
         clip = parameters[3].valueAsText
@@ -14977,7 +15535,7 @@ class FastAlmostGaussianFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -15010,6 +15568,8 @@ class FastAlmostGaussianFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         sigma = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -15032,7 +15592,7 @@ class GaussianFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -15065,6 +15625,8 @@ class GaussianFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         sigma = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -15087,7 +15649,7 @@ class HighPassFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -15129,6 +15691,8 @@ class HighPassFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -15152,7 +15716,7 @@ class HighPassMedianFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -15203,6 +15767,8 @@ class HighPassMedianFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -15227,7 +15793,7 @@ class KNearestMeanFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -15278,6 +15844,8 @@ class KNearestMeanFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -15302,7 +15870,7 @@ class LaplacianFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -15346,6 +15914,8 @@ class LaplacianFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         variant = parameters[2].valueAsText
         clip = parameters[3].valueAsText
@@ -15369,7 +15939,7 @@ class LaplacianOfGaussianFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -15402,6 +15972,8 @@ class LaplacianOfGaussianFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         sigma = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -15424,7 +15996,7 @@ class LeeFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -15484,6 +16056,8 @@ class LeeFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -15509,7 +16083,7 @@ class LineDetectionFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -15560,6 +16134,8 @@ class LineDetectionFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         variant = parameters[2].valueAsText
         absvals = parameters[3].valueAsText
@@ -15584,7 +16160,7 @@ class MajorityFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -15626,6 +16202,8 @@ class MajorityFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -15649,7 +16227,7 @@ class MaximumFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -15691,6 +16269,8 @@ class MaximumFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -15714,7 +16294,7 @@ class MeanFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -15756,6 +16336,8 @@ class MeanFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -15779,7 +16361,7 @@ class MedianFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -15830,6 +16412,8 @@ class MedianFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -15854,7 +16438,7 @@ class MinimumFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -15896,6 +16480,8 @@ class MinimumFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -15919,7 +16505,7 @@ class OlympicFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -15961,6 +16547,8 @@ class OlympicFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -15984,7 +16572,7 @@ class PercentileFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -16035,6 +16623,8 @@ class PercentileFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -16059,7 +16649,7 @@ class PrewittFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -16092,6 +16682,8 @@ class PrewittFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         clip = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -16114,7 +16706,7 @@ class RangeFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -16156,6 +16748,8 @@ class RangeFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -16179,7 +16773,7 @@ class RobertsCrossFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -16212,6 +16806,8 @@ class RobertsCrossFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         clip = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -16234,7 +16830,7 @@ class ScharrFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -16267,6 +16863,8 @@ class ScharrFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         clip = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -16289,7 +16887,7 @@ class SobelFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -16333,6 +16931,8 @@ class SobelFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         variant = parameters[2].valueAsText
         clip = parameters[3].valueAsText
@@ -16356,7 +16956,7 @@ class StandardDeviationFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -16398,6 +16998,8 @@ class StandardDeviationFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -16421,7 +17023,7 @@ class TotalFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -16463,6 +17065,8 @@ class TotalFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -16486,7 +17090,7 @@ class UnsharpMasking(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -16537,6 +17141,8 @@ class UnsharpMasking(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         sigma = parameters[2].valueAsText
         amount = parameters[3].valueAsText
@@ -16561,7 +17167,7 @@ class UserDefinedWeightsFilter(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -16613,6 +17219,8 @@ class UserDefinedWeightsFilter(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         weights = parameters[1].valueAsText
         output = parameters[2].valueAsText
         center = parameters[3].valueAsText
@@ -16637,7 +17245,7 @@ class BalanceContrastEnhancement(object):
         input = arcpy.Parameter(
             displayName="Input Colour Composite Image File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -16670,6 +17278,8 @@ class BalanceContrastEnhancement(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         band_mean = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -16692,14 +17302,14 @@ class CorrectVignetting(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         pp = arcpy.Parameter(
             displayName="Input Principal Point File",
             name="pp",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         pp.filter.list = ["Point"]
@@ -16751,7 +17361,11 @@ class CorrectVignetting(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         pp = parameters[1].valueAsText
+        desc = arcpy.Describe(pp)
+        pp = desc.catalogPath
         output = parameters[2].valueAsText
         focal_length = parameters[3].valueAsText
         image_width = parameters[4].valueAsText
@@ -16776,7 +17390,7 @@ class DirectDecorrelationStretch(object):
         input = arcpy.Parameter(
             displayName="Input Colour Composite Image File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -16818,6 +17432,8 @@ class DirectDecorrelationStretch(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         k = parameters[2].valueAsText
         clip = parameters[3].valueAsText
@@ -16841,7 +17457,7 @@ class GammaCorrection(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -16874,6 +17490,8 @@ class GammaCorrection(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         gamma = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -16896,7 +17514,7 @@ class GaussianContrastStretch(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -16929,6 +17547,8 @@ class GaussianContrastStretch(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         num_tones = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -16951,7 +17571,7 @@ class HistogramEqualization(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -16984,6 +17604,8 @@ class HistogramEqualization(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         num_tones = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -17006,7 +17628,7 @@ class HistogramMatching(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -17037,6 +17659,8 @@ class HistogramMatching(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         histo_file = parameters[1].valueAsText
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -17059,14 +17683,14 @@ class HistogramMatchingTwoImages(object):
         input1 = arcpy.Parameter(
             displayName="Input File To Modify",
             name="input1",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input Reference File",
             name="input2",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -17090,7 +17714,11 @@ class HistogramMatchingTwoImages(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        desc = arcpy.Describe(input1)
+        input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
+        desc = arcpy.Describe(input2)
+        input2 = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -17112,7 +17740,7 @@ class MinMaxContrastStretch(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -17159,6 +17787,8 @@ class MinMaxContrastStretch(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         min_val = parameters[2].valueAsText
         max_val = parameters[3].valueAsText
@@ -17183,35 +17813,35 @@ class PanchromaticSharpening(object):
         red = arcpy.Parameter(
             displayName="Input Red Band File (optional; only if colour-composite not specified)",
             name="red",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Optional",
             direction="Input")
 
         green = arcpy.Parameter(
             displayName="Input Green Band File (optional; only if colour-composite not specified)",
             name="green",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Optional",
             direction="Input")
 
         blue = arcpy.Parameter(
             displayName="Input Blue Band File (optional; only if colour-composite not specified)",
             name="blue",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Optional",
             direction="Input")
 
         composite = arcpy.Parameter(
             displayName="Input Colour-Composite Image File (optional; only if individual bands not specified)",
             name="composite",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Optional",
             direction="Input")
 
         pan = arcpy.Parameter(
             displayName="Input Panchromatic Band File",
             name="pan",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -17246,10 +17876,20 @@ class PanchromaticSharpening(object):
 
     def execute(self, parameters, messages):
         red = parameters[0].valueAsText
+        desc = arcpy.Describe(red)
+        red = desc.catalogPath
         green = parameters[1].valueAsText
+        desc = arcpy.Describe(green)
+        green = desc.catalogPath
         blue = parameters[2].valueAsText
+        desc = arcpy.Describe(blue)
+        blue = desc.catalogPath
         composite = parameters[3].valueAsText
+        desc = arcpy.Describe(composite)
+        composite = desc.catalogPath
         pan = parameters[4].valueAsText
+        desc = arcpy.Describe(pan)
+        pan = desc.catalogPath
         output = parameters[5].valueAsText
         method = parameters[6].valueAsText
         old_stdout = sys.stdout
@@ -17272,7 +17912,7 @@ class PercentageContrastStretch(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -17325,6 +17965,8 @@ class PercentageContrastStretch(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         clip = parameters[2].valueAsText
         tail = parameters[3].valueAsText
@@ -17349,7 +17991,7 @@ class SigmoidalContrastStretch(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -17400,6 +18042,8 @@ class SigmoidalContrastStretch(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         cutoff = parameters[2].valueAsText
         gain = parameters[3].valueAsText
@@ -17424,7 +18068,7 @@ class StandardDeviationContrastStretch(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -17466,6 +18110,8 @@ class StandardDeviationContrastStretch(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         stdev = parameters[2].valueAsText
         num_tones = parameters[3].valueAsText
@@ -17563,7 +18209,7 @@ class ClipLidarToPolygon(object):
         polygons = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="polygons",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         polygons.filter.list = ["Polygon"]
@@ -17589,6 +18235,8 @@ class ClipLidarToPolygon(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         polygons = parameters[1].valueAsText
+        desc = arcpy.Describe(polygons)
+        polygons = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -17618,7 +18266,7 @@ class ErasePolygonFromLidar(object):
         polygons = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="polygons",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         polygons.filter.list = ["Polygon"]
@@ -17644,6 +18292,8 @@ class ErasePolygonFromLidar(object):
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
         polygons = parameters[1].valueAsText
+        desc = arcpy.Describe(polygons)
+        polygons = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -18124,7 +18774,7 @@ class LidarColourize(object):
         in_image = arcpy.Parameter(
             displayName="Input Colour Image File",
             name="in_image",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -18149,6 +18799,8 @@ class LidarColourize(object):
     def execute(self, parameters, messages):
         in_lidar = parameters[0].valueAsText
         in_image = parameters[1].valueAsText
+        desc = arcpy.Describe(in_image)
+        in_image = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -20085,7 +20737,7 @@ class SelectTilesByPolygon(object):
         polygons = arcpy.Parameter(
             displayName="Input Vector Polygon File",
             name="polygons",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         polygons.filter.list = ["Polygon"]
@@ -20104,6 +20756,8 @@ class SelectTilesByPolygon(object):
         indir = parameters[0].valueAsText
         outdir = parameters[1].valueAsText
         polygons = parameters[2].valueAsText
+        desc = arcpy.Describe(polygons)
+        polygons = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -20124,14 +20778,14 @@ class And(object):
         input1 = arcpy.Parameter(
             displayName="Input File",
             name="input1",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File",
             name="input2",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -20155,7 +20809,11 @@ class And(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        desc = arcpy.Describe(input1)
+        input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
+        desc = arcpy.Describe(input2)
+        input2 = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -20177,14 +20835,14 @@ class Not(object):
         input1 = arcpy.Parameter(
             displayName="Input File",
             name="input1",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File",
             name="input2",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -20208,7 +20866,11 @@ class Not(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        desc = arcpy.Describe(input1)
+        input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
+        desc = arcpy.Describe(input2)
+        input2 = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -20230,14 +20892,14 @@ class Or(object):
         input1 = arcpy.Parameter(
             displayName="Input File",
             name="input1",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File",
             name="input2",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -20261,7 +20923,11 @@ class Or(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        desc = arcpy.Describe(input1)
+        input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
+        desc = arcpy.Describe(input2)
+        input2 = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -20283,7 +20949,7 @@ class AbsoluteValue(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -20307,6 +20973,8 @@ class AbsoluteValue(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -20328,14 +20996,14 @@ class Add(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -20381,14 +21049,14 @@ class Anova(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         features = arcpy.Parameter(
             displayName="Feature Definition (Class) File",
             name="features",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -20412,7 +21080,11 @@ class Anova(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         features = parameters[1].valueAsText
+        desc = arcpy.Describe(features)
+        features = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -20434,7 +21106,7 @@ class ArcCos(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -20458,6 +21130,8 @@ class ArcCos(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -20479,7 +21153,7 @@ class ArcSin(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -20503,6 +21177,8 @@ class ArcSin(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -20524,7 +21200,7 @@ class ArcTan(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -20548,6 +21224,8 @@ class ArcTan(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -20569,14 +21247,14 @@ class Atan2(object):
         input_y = arcpy.Parameter(
             displayName="Input Y File Or Constant Value",
             name="input_y",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input_x = arcpy.Parameter(
             displayName="Input X File Or Constant Value",
             name="input_x",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -20622,7 +21300,7 @@ class AttributeCorrelation(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
@@ -20646,6 +21324,8 @@ class AttributeCorrelation(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -20667,7 +21347,7 @@ class AttributeHistogram(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
@@ -20699,6 +21379,8 @@ class AttributeHistogram(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -20721,7 +21403,7 @@ class AttributeScattergram(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
@@ -20770,6 +21452,8 @@ class AttributeScattergram(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         fieldx = parameters[1].valueAsText
         fieldy = parameters[2].valueAsText
         output = parameters[3].valueAsText
@@ -20794,7 +21478,7 @@ class Ceil(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -20818,6 +21502,8 @@ class Ceil(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -20839,7 +21525,7 @@ class Cos(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -20863,6 +21549,8 @@ class Cos(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -20884,7 +21572,7 @@ class Cosh(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -20908,6 +21596,8 @@ class Cosh(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -20929,7 +21619,7 @@ class CrispnessIndex(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -20953,6 +21643,8 @@ class CrispnessIndex(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -20974,14 +21666,14 @@ class CrossTabulation(object):
         input1 = arcpy.Parameter(
             displayName="Input File 1",
             name="input1",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File 2",
             name="input2",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -21005,7 +21697,11 @@ class CrossTabulation(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        desc = arcpy.Describe(input1)
+        input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
+        desc = arcpy.Describe(input2)
+        input2 = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -21027,7 +21723,7 @@ class CumulativeDistribution(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -21051,6 +21747,8 @@ class CumulativeDistribution(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -21072,7 +21770,7 @@ class Decrement(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -21096,6 +21794,8 @@ class Decrement(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -21117,14 +21817,14 @@ class Divide(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -21170,14 +21870,14 @@ class EqualTo(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -21223,7 +21923,7 @@ class Exp(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -21247,6 +21947,8 @@ class Exp(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -21268,7 +21970,7 @@ class Exp2(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -21292,6 +21994,8 @@ class Exp2(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -21313,14 +22017,14 @@ class ExtractRasterStatistics(object):
         input = arcpy.Parameter(
             displayName="Input Data File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         features = arcpy.Parameter(
             displayName="Input Feature Definition File",
             name="features",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -21363,7 +22067,11 @@ class ExtractRasterStatistics(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         features = parameters[1].valueAsText
+        desc = arcpy.Describe(features)
+        features = desc.catalogPath
         output = parameters[2].valueAsText
         stat = parameters[3].valueAsText
         out_table = parameters[4].valueAsText
@@ -21387,7 +22095,7 @@ class Floor(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -21411,6 +22119,8 @@ class Floor(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -21432,14 +22142,14 @@ class GreaterThan(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -21493,7 +22203,7 @@ class ImageAutocorrelation(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
         inputs.multiValue = True
@@ -21551,7 +22261,7 @@ class ImageCorrelation(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
         inputs.multiValue = True
@@ -21597,14 +22307,14 @@ class ImageRegression(object):
         input1 = arcpy.Parameter(
             displayName="Independent Variable (X).",
             name="input1",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Dependent Variable (Y).",
             name="input2",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -21643,7 +22353,11 @@ class ImageRegression(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        desc = arcpy.Describe(input1)
+        input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
+        desc = arcpy.Describe(input2)
+        input2 = desc.catalogPath
         output = parameters[2].valueAsText
         out_residuals = parameters[3].valueAsText
         standardize = parameters[4].valueAsText
@@ -21667,14 +22381,14 @@ class InPlaceAdd(object):
         input1 = arcpy.Parameter(
             displayName="Input Raster File",
             name="input1",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -21690,6 +22404,8 @@ class InPlaceAdd(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        desc = arcpy.Describe(input1)
+        input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -21711,14 +22427,14 @@ class InPlaceDivide(object):
         input1 = arcpy.Parameter(
             displayName="Input Raster File",
             name="input1",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -21734,6 +22450,8 @@ class InPlaceDivide(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        desc = arcpy.Describe(input1)
+        input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -21755,14 +22473,14 @@ class InPlaceMultiply(object):
         input1 = arcpy.Parameter(
             displayName="Input Raster File",
             name="input1",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -21778,6 +22496,8 @@ class InPlaceMultiply(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        desc = arcpy.Describe(input1)
+        input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -21799,14 +22519,14 @@ class InPlaceSubtract(object):
         input1 = arcpy.Parameter(
             displayName="Input Raster File",
             name="input1",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -21822,6 +22542,8 @@ class InPlaceSubtract(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        desc = arcpy.Describe(input1)
+        input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -21843,7 +22565,7 @@ class Increment(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -21867,6 +22589,8 @@ class Increment(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -21888,14 +22612,14 @@ class IntegerDivision(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -21941,7 +22665,7 @@ class IsNoData(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -21965,6 +22689,8 @@ class IsNoData(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -21986,14 +22712,14 @@ class KappaIndex(object):
         input1 = arcpy.Parameter(
             displayName="Input Classification File",
             name="input1",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input Reference File",
             name="input2",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -22017,7 +22743,11 @@ class KappaIndex(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        desc = arcpy.Describe(input1)
+        input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
+        desc = arcpy.Describe(input2)
+        input2 = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -22039,7 +22769,7 @@ class KsTestForNormality(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -22070,6 +22800,8 @@ class KsTestForNormality(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         num_samples = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -22092,14 +22824,14 @@ class LessThan(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -22153,7 +22885,7 @@ class ListUniqueValues(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
@@ -22185,6 +22917,8 @@ class ListUniqueValues(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -22207,7 +22941,7 @@ class Ln(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -22231,6 +22965,8 @@ class Ln(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -22252,7 +22988,7 @@ class Log10(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -22276,6 +23012,8 @@ class Log10(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -22297,7 +23035,7 @@ class Log2(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -22321,6 +23059,8 @@ class Log2(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -22342,14 +23082,14 @@ class Max(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -22395,14 +23135,14 @@ class Min(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -22448,14 +23188,14 @@ class Modulo(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -22501,14 +23241,14 @@ class Multiply(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -22554,7 +23294,7 @@ class Negate(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -22578,6 +23318,8 @@ class Negate(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -22599,14 +23341,14 @@ class NotEqualTo(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -22652,14 +23394,14 @@ class Power(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -22705,7 +23447,7 @@ class PrincipalComponentAnalysis(object):
         inputs = arcpy.Parameter(
             displayName="Input Files",
             name="inputs",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
         inputs.multiValue = True
@@ -22767,7 +23509,7 @@ class Quantiles(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -22800,6 +23542,8 @@ class Quantiles(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         num_quantiles = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -22822,7 +23566,7 @@ class RandomField(object):
         base = arcpy.Parameter(
             displayName="Input Base File",
             name="base",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -22846,6 +23590,8 @@ class RandomField(object):
 
     def execute(self, parameters, messages):
         base = parameters[0].valueAsText
+        desc = arcpy.Describe(base)
+        base = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -22867,7 +23613,7 @@ class RandomSample(object):
         base = arcpy.Parameter(
             displayName="Input Base File",
             name="base",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -22900,6 +23646,8 @@ class RandomSample(object):
 
     def execute(self, parameters, messages):
         base = parameters[0].valueAsText
+        desc = arcpy.Describe(base)
+        base = desc.catalogPath
         output = parameters[1].valueAsText
         num_samples = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -22922,7 +23670,7 @@ class RasterHistogram(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -22946,6 +23694,8 @@ class RasterHistogram(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -22967,7 +23717,7 @@ class RasterSummaryStats(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -22983,6 +23733,8 @@ class RasterSummaryStats(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -23003,7 +23755,7 @@ class Reciprocal(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -23027,6 +23779,8 @@ class Reciprocal(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -23048,7 +23802,7 @@ class RescaleValueRange(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -23100,6 +23854,8 @@ class RescaleValueRange(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         out_min_val = parameters[2].valueAsText
         out_max_val = parameters[3].valueAsText
@@ -23125,14 +23881,14 @@ class RootMeanSquareError(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         base = arcpy.Parameter(
             displayName="Input Base File",
             name="base",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -23148,7 +23904,11 @@ class RootMeanSquareError(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         base = parameters[1].valueAsText
+        desc = arcpy.Describe(base)
+        base = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -23169,7 +23929,7 @@ class Round(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -23193,6 +23953,8 @@ class Round(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -23214,7 +23976,7 @@ class Sin(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -23238,6 +24000,8 @@ class Sin(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -23259,7 +24023,7 @@ class Sinh(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -23283,6 +24047,8 @@ class Sinh(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -23304,7 +24070,7 @@ class Square(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -23328,6 +24094,8 @@ class Square(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -23349,7 +24117,7 @@ class SquareRoot(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -23373,6 +24141,8 @@ class SquareRoot(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -23394,14 +24164,14 @@ class Subtract(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -23447,7 +24217,7 @@ class Tan(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -23471,6 +24241,8 @@ class Tan(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -23492,7 +24264,7 @@ class Tanh(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -23516,6 +24288,8 @@ class Tanh(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -23537,7 +24311,7 @@ class ToDegrees(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -23561,6 +24335,8 @@ class ToDegrees(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -23582,7 +24358,7 @@ class ToRadians(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -23606,6 +24382,8 @@ class ToRadians(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -23627,7 +24405,7 @@ class TrendSurface(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -23660,6 +24438,8 @@ class TrendSurface(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         order = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -23682,7 +24462,7 @@ class TrendSurfaceVectorPoints(object):
         input = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="input",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         input.filter.list = ["Point"]
@@ -23731,6 +24511,8 @@ class TrendSurfaceVectorPoints(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         order = parameters[3].valueAsText
@@ -23755,7 +24537,7 @@ class Truncate(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -23786,6 +24568,8 @@ class Truncate(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         num_decimals = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -23808,7 +24592,7 @@ class TurningBandsSimulation(object):
         base = arcpy.Parameter(
             displayName="Input Base File",
             name="base",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -23848,6 +24632,8 @@ class TurningBandsSimulation(object):
 
     def execute(self, parameters, messages):
         base = parameters[0].valueAsText
+        desc = arcpy.Describe(base)
+        base = desc.catalogPath
         output = parameters[1].valueAsText
         range = parameters[2].valueAsText
         iterations = parameters[3].valueAsText
@@ -23871,14 +24657,14 @@ class Xor(object):
         input1 = arcpy.Parameter(
             displayName="Input File",
             name="input1",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File",
             name="input2",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -23902,7 +24688,11 @@ class Xor(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        desc = arcpy.Describe(input1)
+        input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
+        desc = arcpy.Describe(input2)
+        input2 = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -23924,7 +24714,7 @@ class ZScores(object):
         input = arcpy.Parameter(
             displayName="Input File",
             name="input",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -23948,6 +24738,8 @@ class ZScores(object):
 
     def execute(self, parameters, messages):
         input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -23969,14 +24761,14 @@ class DistanceToOutlet(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -24016,7 +24808,11 @@ class DistanceToOutlet(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
+        desc = arcpy.Describe(d8_pntr)
+        d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
+        desc = arcpy.Describe(streams)
+        streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
@@ -24040,7 +24836,7 @@ class ExtractStreams(object):
         flow_accum = arcpy.Parameter(
             displayName="Input D8 Flow Accumulation File",
             name="flow_accum",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -24078,6 +24874,8 @@ class ExtractStreams(object):
 
     def execute(self, parameters, messages):
         flow_accum = parameters[0].valueAsText
+        desc = arcpy.Describe(flow_accum)
+        flow_accum = desc.catalogPath
         output = parameters[1].valueAsText
         threshold = parameters[2].valueAsText
         zero_background = parameters[3].valueAsText
@@ -24101,7 +24899,7 @@ class ExtractValleys(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -24154,6 +24952,8 @@ class ExtractValleys(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[1].valueAsText
         variant = parameters[2].valueAsText
         line_thin = parameters[3].valueAsText
@@ -24178,14 +24978,14 @@ class FarthestChannelHead(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -24225,7 +25025,11 @@ class FarthestChannelHead(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
+        desc = arcpy.Describe(d8_pntr)
+        d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
+        desc = arcpy.Describe(streams)
+        streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
@@ -24249,14 +25053,14 @@ class FindMainStem(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -24296,7 +25100,11 @@ class FindMainStem(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
+        desc = arcpy.Describe(d8_pntr)
+        d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
+        desc = arcpy.Describe(streams)
+        streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
@@ -24320,14 +25128,14 @@ class HackStreamOrder(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -24367,7 +25175,11 @@ class HackStreamOrder(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
+        desc = arcpy.Describe(d8_pntr)
+        d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
+        desc = arcpy.Describe(streams)
+        streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
@@ -24391,14 +25203,14 @@ class HortonStreamOrder(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -24438,7 +25250,11 @@ class HortonStreamOrder(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
+        desc = arcpy.Describe(d8_pntr)
+        d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
+        desc = arcpy.Describe(streams)
+        streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
@@ -24462,14 +25278,14 @@ class LengthOfUpstreamChannels(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -24509,7 +25325,11 @@ class LengthOfUpstreamChannels(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
+        desc = arcpy.Describe(d8_pntr)
+        d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
+        desc = arcpy.Describe(streams)
+        streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
@@ -24533,21 +25353,21 @@ class LongProfile(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -24580,8 +25400,14 @@ class LongProfile(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
+        desc = arcpy.Describe(d8_pntr)
+        d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
+        desc = arcpy.Describe(streams)
+        streams = desc.catalogPath
         dem = parameters[2].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[3].valueAsText
         esri_pntr = parameters[4].valueAsText
         old_stdout = sys.stdout
@@ -24604,14 +25430,14 @@ class LongProfileFromPoints(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         points = arcpy.Parameter(
             displayName="Input Vector Points File",
             name="points",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         points.filter.list = ["Point"]
@@ -24619,7 +25445,7 @@ class LongProfileFromPoints(object):
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -24652,8 +25478,14 @@ class LongProfileFromPoints(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
+        desc = arcpy.Describe(d8_pntr)
+        d8_pntr = desc.catalogPath
         points = parameters[1].valueAsText
+        desc = arcpy.Describe(points)
+        points = desc.catalogPath
         dem = parameters[2].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[3].valueAsText
         esri_pntr = parameters[4].valueAsText
         old_stdout = sys.stdout
@@ -24676,14 +25508,14 @@ class RasterStreamsToVector(object):
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -24716,7 +25548,11 @@ class RasterStreamsToVector(object):
 
     def execute(self, parameters, messages):
         streams = parameters[0].valueAsText
+        desc = arcpy.Describe(streams)
+        streams = desc.catalogPath
         d8_pntr = parameters[1].valueAsText
+        desc = arcpy.Describe(d8_pntr)
+        d8_pntr = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -24739,7 +25575,7 @@ class RasterizeStreams(object):
         streams = arcpy.Parameter(
             displayName="Input Vector Streams File",
             name="streams",
-            datatype="DEShapefile",
+            datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
         streams.filter.list = ["Polyline"]
@@ -24747,7 +25583,7 @@ class RasterizeStreams(object):
         base = arcpy.Parameter(
             displayName="Input Base Raster File",
             name="base",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -24789,7 +25625,11 @@ class RasterizeStreams(object):
 
     def execute(self, parameters, messages):
         streams = parameters[0].valueAsText
+        desc = arcpy.Describe(streams)
+        streams = desc.catalogPath
         base = parameters[1].valueAsText
+        desc = arcpy.Describe(base)
+        base = desc.catalogPath
         output = parameters[2].valueAsText
         nodata = parameters[3].valueAsText
         feature_id = parameters[4].valueAsText
@@ -24813,14 +25653,14 @@ class RemoveShortStreams(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -24860,7 +25700,11 @@ class RemoveShortStreams(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
+        desc = arcpy.Describe(d8_pntr)
+        d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
+        desc = arcpy.Describe(streams)
+        streams = desc.catalogPath
         output = parameters[2].valueAsText
         min_length = parameters[3].valueAsText
         esri_pntr = parameters[4].valueAsText
@@ -24884,14 +25728,14 @@ class ShreveStreamMagnitude(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -24931,7 +25775,11 @@ class ShreveStreamMagnitude(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
+        desc = arcpy.Describe(d8_pntr)
+        d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
+        desc = arcpy.Describe(streams)
+        streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
@@ -24955,14 +25803,14 @@ class StrahlerStreamOrder(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -25002,7 +25850,11 @@ class StrahlerStreamOrder(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
+        desc = arcpy.Describe(d8_pntr)
+        d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
+        desc = arcpy.Describe(streams)
+        streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
@@ -25026,14 +25878,14 @@ class StreamLinkClass(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -25073,7 +25925,11 @@ class StreamLinkClass(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
+        desc = arcpy.Describe(d8_pntr)
+        d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
+        desc = arcpy.Describe(streams)
+        streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
@@ -25097,14 +25953,14 @@ class StreamLinkIdentifier(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -25144,7 +26000,11 @@ class StreamLinkIdentifier(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
+        desc = arcpy.Describe(d8_pntr)
+        d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
+        desc = arcpy.Describe(streams)
+        streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
@@ -25168,14 +26028,14 @@ class StreamLinkLength(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         linkid = arcpy.Parameter(
             displayName="Input Stream Link (Tributary) ID File",
             name="linkid",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -25215,7 +26075,11 @@ class StreamLinkLength(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
+        desc = arcpy.Describe(d8_pntr)
+        d8_pntr = desc.catalogPath
         linkid = parameters[1].valueAsText
+        desc = arcpy.Describe(linkid)
+        linkid = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
@@ -25239,21 +26103,21 @@ class StreamLinkSlope(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         linkid = arcpy.Parameter(
             displayName="Input Stream Link (Tributary) ID File",
             name="linkid",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -25293,8 +26157,14 @@ class StreamLinkSlope(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
+        desc = arcpy.Describe(d8_pntr)
+        d8_pntr = desc.catalogPath
         linkid = parameters[1].valueAsText
+        desc = arcpy.Describe(linkid)
+        linkid = desc.catalogPath
         dem = parameters[2].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[3].valueAsText
         esri_pntr = parameters[4].valueAsText
         zero_background = parameters[5].valueAsText
@@ -25318,21 +26188,21 @@ class StreamSlopeContinuous(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         dem = arcpy.Parameter(
             displayName="Input DEM File",
             name="dem",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -25372,8 +26242,14 @@ class StreamSlopeContinuous(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
+        desc = arcpy.Describe(d8_pntr)
+        d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
+        desc = arcpy.Describe(streams)
+        streams = desc.catalogPath
         dem = parameters[2].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
         output = parameters[3].valueAsText
         esri_pntr = parameters[4].valueAsText
         zero_background = parameters[5].valueAsText
@@ -25397,14 +26273,14 @@ class TopologicalStreamOrder(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -25444,7 +26320,11 @@ class TopologicalStreamOrder(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
+        desc = arcpy.Describe(d8_pntr)
+        d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
+        desc = arcpy.Describe(streams)
+        streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
@@ -25468,14 +26348,14 @@ class TributaryIdentifier(object):
         d8_pntr = arcpy.Parameter(
             displayName="Input D8 Pointer File",
             name="d8_pntr",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         streams = arcpy.Parameter(
             displayName="Input Streams File",
             name="streams",
-            datatype="DERasterDataset",
+            datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
@@ -25515,7 +26395,11 @@ class TributaryIdentifier(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
+        desc = arcpy.Describe(d8_pntr)
+        d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
+        desc = arcpy.Describe(streams)
+        streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText

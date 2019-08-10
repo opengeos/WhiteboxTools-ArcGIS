@@ -202,6 +202,10 @@ def define_tool_params(params):
             data_type['data_type'] = '"DEFile"'
             data_type['data_filter'] = '["tif"]'
             parameter_type = "Required"   # if a filter is used, the parameter must be changed to required.
+        elif data_type['data_type'] == '"DERasterDataset"' and direction == "Input":
+            data_type['data_type'] = '"GPRasterLayer"'
+        elif data_type['data_type'] == '"DEShapefile"' and direction == "Input":
+            data_type['data_type'] = '"GPFeatureLayer"'
 
         if data_type['data_filter'] == '["html"]':
             parameter_type = "Required"
@@ -244,9 +248,24 @@ def define_execute(params):
     '''
     lines = []
     for index, param in enumerate(params):
+        # get the full path to a input raster or vector layer
+        param_type = params[param]['parameter_type']
+        inputRasVec = []
+        inputRasVec.append({'ExistingFile': 'Raster'})
+        inputRasVec.append({'ExistingFile': {'Vector': 'Point'}})
+        inputRasVec.append({'ExistingFile': {'Vector': 'Line'}})
+        inputRasVec.append({'ExistingFile': {'Vector': 'Polygon'}})
+        inputRasVec.append({'ExistingFile': {'Vector': 'LineOrPolygon'}})
+        inputRasVec.append({'ExistingFile': {'Vector': 'Any'}})
         if param == 'class':
             param = "cls"
+
         lines.append('        {} = parameters[{}].valueAsText\n'.format(param, index))
+
+        if param_type in inputRasVec:
+            lines.append('        desc = arcpy.Describe({})\n'.format(param))
+            lines.append('        {} = desc.catalogPath\n'.format(param))    
+        
     lines = ''.join(lines)    
     return lines
 
