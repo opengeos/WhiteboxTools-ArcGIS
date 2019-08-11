@@ -1,5 +1,6 @@
 import arcpy
 import os
+import time
 from WBT.whitebox_tools import WhiteboxTools
 if sys.version_info < (3, 0):
     from StringIO import StringIO
@@ -1232,10 +1233,32 @@ class AddPointCoordinatesToTable(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
+
+        desc = arcpy.Describe(parameters[0].valueAsText)
+        if desc.dataType == 'FeatureLayer':
+            # Remove layer from Map Document, this needs to be done to remove the file lock that ArcMap imposes upon it
+            arcpy.AddMessage("Removing layer from map to remove file lock")
+            arcpy.Delete_management(parameters[0].valueAsText)  # Deletes the layer in the map
+            arcpy.RefreshTOC()
+            arcpy.RefreshCatalog(input)
+            time.sleep(0.5) # Give OS the time it needs to delete the lock file
+
+        # Execute WBT tool
         wbt.add_point_coordinates_to_table(input)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
+
+        if desc.dataType == 'FeatureLayer':
+            # As input was a layer we need to add the layer back to the map
+            # This code assumes that the layer the user is interacting with is the first DataFrame called "Layers"
+            arcpy.AddMessage("Adding layer to map")
+            layer = arcpy.mapping.Layer(input)
+            mxd = arcpy.mapping.MapDocument("CURRENT")
+            df = arcpy.mapping.ListDataFrames(mxd,"Layers")[0]
+            arcpy.mapping.AddLayer(df,layer)
+            arcpy.RefreshTOC()
+            arcpy.RefreshActiveView()
         return
 
 
