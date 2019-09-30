@@ -2,7 +2,7 @@
 
 [![docs](https://img.shields.io/badge/whitebox-docs-brightgreen.svg)](https://jblindsay.github.io/wbt_book)
 [![ArcGIS](https://img.shields.io/badge/whitebox-ArcGIS-brightgreen.svg)](https://github.com/giswqs/WhiteboxTools-ArcGIS)
-[![python](https://img.shields.io/badge/whitebox-Python-blue.svg)](https://github.com/giswqs/whitebox)
+[![python](https://img.shields.io/badge/whitebox-Python-blue.svg)](https://github.com/giswqs/whitebox-python)
 [![R](https://img.shields.io/badge/whitebox-R-green.svg)](https://github.com/giswqs/whiteboxR)
 [![QGIS](https://img.shields.io/badge/whitebox-QGIS-orange.svg)](https://jblindsay.github.io/wbt_book/qgis_plugin.html)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -12,7 +12,7 @@ ArcGIS Python Toolbox for WhiteboxTools.
 
 This repository is related to the **ArcGIS Python Toolbox for WhiteboxTools**, which is an ArcGIS frontend of a stand-alone executable command-line program called **[WhiteboxTools](https://github.com/jblindsay/whitebox-tools)**.
 
-* Authors: Dr. John Lindsay (<http://www.uoguelph.ca/~hydrogeo/index.html>)
+* Authors: Dr. John Lindsay (<https://jblindsay.github.io/ghrg/index.html>)
 * Contributors: Dr. Qiusheng Wu (<https://wetlands.io> | <https://LidarBlog.com>)
 * WhiteboxTools: <https://github.com/jblindsay/whitebox-tools>
 * User Manual: <https://jblindsay.github.io/wbt_book>
@@ -35,7 +35,7 @@ This repository is related to the **ArcGIS Python Toolbox for WhiteboxTools**, w
 
 ## Description
 
-**WhiteboxTools-ArcGIS** is an ArcGIS Python Toolbox for **WhiteboxTools**, an advanced geospatial data analysis platform developed by Prof. John Lindsay ([webpage](https://www.uoguelph.ca/~hydrogeo/index.html); [jblindsay](https://github.com/jblindsay)) at the University of Guelph's [Geomorphometry and Hydrogeomatics Research Group](https://www.uoguelph.ca/~hydrogeo/index.html). *WhiteboxTools* can be used to perform common geographical information systems (GIS) analysis operations, such as cost-distance analysis, distance buffering, and raster reclassification. Remote sensing and image processing tasks include image enhancement (e.g. panchromatic sharpening, contrast adjustments), image mosaicing, numerous filtering operations, simple classification (k-means), and common image transformations. *WhiteboxTools* also contains advanced tooling for spatial hydrological analysis (e.g. flow-accumulation, watershed delineation, stream network analysis, sink removal), terrain analysis (e.g. common terrain indices such as slope, curvatures, wetness index, hillshading; hypsometric analysis; multi-scale topographic position analysis), and LiDAR data processing. LiDAR point clouds can be interrogated (LidarInfo, LidarHistogram), segmented, tiled and joined, analyized for outliers, interpolated to rasters (DEMs, intensity images), and ground-points can be classified or filtered. *WhiteboxTools* is not a cartographic or spatial data visualization package; instead it is meant to serve as an analytical backend for other data visualization software, mainly GIS. Suggested citation: Lindsay, J. B. (2016). Whitebox GAT: A case study in geomorphometric analysis. _Computers & Geosciences_, 95, 75-84. doi:[10.1016/j.cageo.2016.07.003](http://dx.doi.org/10.1016/j.cageo.2016.07.003).
+**WhiteboxTools-ArcGIS** is an ArcGIS Python Toolbox for **WhiteboxTools**, an advanced geospatial data analysis platform developed by Prof. John Lindsay ([webpage](https://jblindsay.github.io/ghrg/index.html); [jblindsay](https://github.com/jblindsay)) at the University of Guelph's [Geomorphometry and Hydrogeomatics Research Group](https://jblindsay.github.io/ghrg/index.html). *WhiteboxTools* can be used to perform common geographical information systems (GIS) analysis operations, such as cost-distance analysis, distance buffering, and raster reclassification. Remote sensing and image processing tasks include image enhancement (e.g. panchromatic sharpening, contrast adjustments), image mosaicing, numerous filtering operations, simple classification (k-means), and common image transformations. *WhiteboxTools* also contains advanced tooling for spatial hydrological analysis (e.g. flow-accumulation, watershed delineation, stream network analysis, sink removal), terrain analysis (e.g. common terrain indices such as slope, curvatures, wetness index, hillshading; hypsometric analysis; multi-scale topographic position analysis), and LiDAR data processing. LiDAR point clouds can be interrogated (LidarInfo, LidarHistogram), segmented, tiled and joined, analyized for outliers, interpolated to rasters (DEMs, intensity images), and ground-points can be classified or filtered. *WhiteboxTools* is not a cartographic or spatial data visualization package; instead it is meant to serve as an analytical backend for other data visualization software, mainly GIS. Suggested citation: Lindsay, J. B. (2016). Whitebox GAT: A case study in geomorphometric analysis. _Computers & Geosciences_, 95, 75-84. doi:[10.1016/j.cageo.2016.07.003](http://dx.doi.org/10.1016/j.cageo.2016.07.003).
 
 ## Installation
 
@@ -69,7 +69,7 @@ Open any tool within the toolbox and start using it. Check out the [WhiteboxTool
 
 ## Available Tools
 
-The **[WhiteboxTools](https://github.com/jblindsay/whitebox-tools)** library currently contains **403** tools, which are each grouped based on their main function into one of the following categories: Data Tools, GIS Analysis, Hydrological Analysis, Image Analysis, LiDAR Analysis, Mathematical and Statistical Analysis, Stream Network Analysis, and Terrain Analysis. For a listing of available tools, complete with documentation and usage details, please see the [WhiteboxTools User Manual](https://jblindsay.github.io/wbt_book/available_tools/index.html).
+The **[WhiteboxTools](https://github.com/jblindsay/whitebox-tools)** library currently contains **412** tools, which are each grouped based on their main function into one of the following categories: Data Tools, GIS Analysis, Hydrological Analysis, Image Analysis, LiDAR Analysis, Mathematical and Statistical Analysis, Stream Network Analysis, and Terrain Analysis. For a listing of available tools, complete with documentation and usage details, please see the [WhiteboxTools User Manual](https://jblindsay.github.io/wbt_book/available_tools/index.html).
 
 ## Supported Data Formats
 
