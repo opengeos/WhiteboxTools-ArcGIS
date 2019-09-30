@@ -43,6 +43,7 @@ tool_labels.append("Centroid Vector")
 tool_labels.append("Change Vector Analysis")
 tool_labels.append("Circular Variance Of Aspect")
 tool_labels.append("Classify Overlap Points")
+tool_labels.append("Clean Vector")
 tool_labels.append("Clip")
 tool_labels.append("Clip Lidar To Polygon")
 tool_labels.append("Clip Raster To Polygon")
@@ -67,6 +68,7 @@ tool_labels.append("Create Plane")
 tool_labels.append("Create Rectangular Vector Grid")
 tool_labels.append("Crispness Index")
 tool_labels.append("Cross Tabulation")
+tool_labels.append("Csv Points To Vector")
 tool_labels.append("Cumulative Distribution")
 tool_labels.append("D Inf Flow Accumulation")
 tool_labels.append("D Inf Mass Flux")
@@ -89,7 +91,6 @@ tool_labels.append("Divide")
 tool_labels.append("Downslope Distance To Stream")
 tool_labels.append("Downslope Flowpath Length")
 tool_labels.append("Downslope Index")
-tool_labels.append("Drainage Preserving Smoothing")
 tool_labels.append("Edge Density")
 tool_labels.append("Edge Preserving Mean Filter")
 tool_labels.append("Edge Proportion")
@@ -113,7 +114,6 @@ tool_labels.append("Exp2")
 tool_labels.append("Export Table To Csv")
 tool_labels.append("Extend Vector Lines")
 tool_labels.append("Extract Nodes")
-tool_labels.append("Extract Raster Statistics")
 tool_labels.append("Extract Raster Values At Points")
 tool_labels.append("Extract Streams")
 tool_labels.append("Extract Valleys")
@@ -121,12 +121,13 @@ tool_labels.append("Farthest Channel Head")
 tool_labels.append("Fast Almost Gaussian Filter")
 tool_labels.append("Fd8 Flow Accumulation")
 tool_labels.append("Fd8 Pointer")
-tool_labels.append("Feature Preserving Denoise")
+tool_labels.append("Feature Preserving Smoothing")
 tool_labels.append("Fetch Analysis")
 tool_labels.append("Fill Burn")
 tool_labels.append("Fill Depressions")
 tool_labels.append("Fill Missing Data")
 tool_labels.append("Fill Single Cell Pits")
+tool_labels.append("Filter Lidar Classes")
 tool_labels.append("Filter Lidar Scan Angles")
 tool_labels.append("Find Flightline Edge Points")
 tool_labels.append("Find Lowest Or Highest Points")
@@ -208,6 +209,7 @@ tool_labels.append("Lidar Kappa Index")
 tool_labels.append("Lidar Nearest Neighbour Gridding")
 tool_labels.append("Lidar Point Density")
 tool_labels.append("Lidar Point Stats")
+tool_labels.append("Lidar Ransac Planes")
 tool_labels.append("Lidar Remove Duplicates")
 tool_labels.append("Lidar Remove Outliers")
 tool_labels.append("Lidar Segmentation")
@@ -261,6 +263,7 @@ tool_labels.append("Minimum Bounding Envelope")
 tool_labels.append("Minimum Convex Hull")
 tool_labels.append("Minimum Filter")
 tool_labels.append("Modified K Means Clustering")
+tool_labels.append("Modify No Data Value")
 tool_labels.append("Modulo")
 tool_labels.append("Mosaic")
 tool_labels.append("Mosaic With Feathering")
@@ -268,6 +271,8 @@ tool_labels.append("Multi Part To Single Part")
 tool_labels.append("Multiply")
 tool_labels.append("Multiscale Roughness")
 tool_labels.append("Multiscale Roughness Signature")
+tool_labels.append("Multiscale Std Dev Normals")
+tool_labels.append("Multiscale Std Dev Normals Signature")
 tool_labels.append("Multiscale Topographic Position Image")
 tool_labels.append("Narrowness Index")
 tool_labels.append("Nearest Neighbour Gridding")
@@ -415,6 +420,7 @@ tool_labels.append("Wetness Index")
 tool_labels.append("Write Function Memory Insertion")
 tool_labels.append("Xor")
 tool_labels.append("Z Scores")
+tool_labels.append("Zonal Statistics")
 
 
 class Toolbox(object):
@@ -435,13 +441,16 @@ class Toolbox(object):
         tools.append(RunTool)
 
         tools.append(AddPointCoordinatesToTable)
+        tools.append(CleanVector)
         tools.append(ConvertNodataToZero)
         tools.append(ConvertRasterFormat)
+        tools.append(CsvPointsToVector)
         tools.append(ExportTableToCsv)
         tools.append(JoinTables)
         tools.append(LinesToPolygons)
         tools.append(MergeTableWithCsv)
         tools.append(MergeVectors)
+        tools.append(ModifyNoDataValue)
         tools.append(MultiPartToSinglePart)
         tools.append(NewRasterFromBase)
         tools.append(PolygonsToLines)
@@ -546,13 +555,12 @@ class Toolbox(object):
         tools.append(DiffFromMeanElev)
         tools.append(DirectionalRelief)
         tools.append(DownslopeIndex)
-        tools.append(DrainagePreservingSmoothing)
         tools.append(EdgeDensity)
         tools.append(ElevAbovePit)
         tools.append(ElevPercentile)
         tools.append(ElevRelativeToMinMax)
         tools.append(ElevRelativeToWatershedMinMax)
-        tools.append(FeaturePreservingDenoise)
+        tools.append(FeaturePreservingSmoothing)
         tools.append(FetchAnalysis)
         tools.append(FillMissingData)
         tools.append(FindRidges)
@@ -569,6 +577,8 @@ class Toolbox(object):
         tools.append(MinDownslopeElevChange)
         tools.append(MultiscaleRoughness)
         tools.append(MultiscaleRoughnessSignature)
+        tools.append(MultiscaleStdDevNormals)
+        tools.append(MultiscaleStdDevNormalsSignature)
         tools.append(MultiscaleTopographicPositionImage)
         tools.append(NumDownslopeNeighbours)
         tools.append(NumUpslopeNeighbours)
@@ -707,6 +717,7 @@ class Toolbox(object):
         tools.append(ClassifyOverlapPoints)
         tools.append(ClipLidarToPolygon)
         tools.append(ErasePolygonFromLidar)
+        tools.append(FilterLidarClasses)
         tools.append(FilterLidarScanAngles)
         tools.append(FindFlightlineEdgePoints)
         tools.append(FlightlineOverlap)
@@ -730,6 +741,7 @@ class Toolbox(object):
         tools.append(LidarNearestNeighbourGridding)
         tools.append(LidarPointDensity)
         tools.append(LidarPointStats)
+        tools.append(LidarRansacPlanes)
         tools.append(LidarRemoveDuplicates)
         tools.append(LidarRemoveOutliers)
         tools.append(LidarSegmentation)
@@ -766,7 +778,6 @@ class Toolbox(object):
         tools.append(EqualTo)
         tools.append(Exp)
         tools.append(Exp2)
-        tools.append(ExtractRasterStatistics)
         tools.append(Floor)
         tools.append(GreaterThan)
         tools.append(ImageAutocorrelation)
@@ -818,6 +829,7 @@ class Toolbox(object):
         tools.append(TurningBandsSimulation)
         tools.append(Xor)
         tools.append(ZScores)
+        tools.append(ZonalStatistics)
         tools.append(DistanceToOutlet)
         tools.append(ExtractStreams)
         tools.append(ExtractValleys)
@@ -1239,6 +1251,52 @@ class AddPointCoordinatesToTable(object):
         return
 
 
+class CleanVector(object):
+    def __init__(self):
+        self.label = "Clean Vector"
+        self.description = "Removes null features and lines/polygons with fewer than the required number of vertices. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/data_tools.html#CleanVector' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/data_tools/clean_vector.rs' target='_blank'>GitHub</a>."
+        self.category = "Data Tools"
+
+    def getParameterInfo(self):
+        input = arcpy.Parameter(
+            displayName="Input Vector File",
+            name="input",
+            datatype="GPFeatureLayer",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Vector File",
+            name="output",
+            datatype="DEShapefile",
+            parameterType="Required",
+            direction="Output")
+
+        params = [input, output]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
+        output = parameters[1].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.clean_vector(input, output=output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class ConvertNodataToZero(object):
     def __init__(self):
         self.label = "Convert Nodata To Zero"
@@ -1327,6 +1385,79 @@ class ConvertRasterFormat(object):
         result = StringIO()
         sys.stdout = result
         wbt.convert_raster_format(input, output=output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
+class CsvPointsToVector(object):
+    def __init__(self):
+        self.label = "Csv Points To Vector"
+        self.description = "Converts a CSV text file to vector points. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/data_tools.html#CsvPointsToVector' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/data_tools/csv_points_to_vector.rs' target='_blank'>GitHub</a>."
+        self.category = "Data Tools"
+
+    def getParameterInfo(self):
+        input = arcpy.Parameter(
+            displayName="Input CSV File",
+            name="input",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Input")
+        input.filter.list = ["csv"]
+
+        output = arcpy.Parameter(
+            displayName="Output Vector File",
+            name="output",
+            datatype="DEShapefile",
+            parameterType="Required",
+            direction="Output")
+
+        xfield = arcpy.Parameter(
+            displayName="X Field Number (zero-based)",
+            name="xfield",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+
+        xfield.value = "0"
+
+        yfield = arcpy.Parameter(
+            displayName="Y Field Number (zero-based)",
+            name="yfield",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+
+        yfield.value = "1"
+
+        epsg = arcpy.Parameter(
+            displayName="EPSG Projection",
+            name="epsg",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input, output, xfield, yfield, epsg]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        xfield = parameters[2].valueAsText
+        yfield = parameters[3].valueAsText
+        epsg = parameters[4].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.csv_points_to_vector(input, output=output, xfield=xfield, yfield=yfield, epsg=epsg)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1626,6 +1757,54 @@ class MergeVectors(object):
         result = StringIO()
         sys.stdout = result
         wbt.merge_vectors(inputs, output=output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
+class ModifyNoDataValue(object):
+    def __init__(self):
+        self.label = "Modify No Data Value"
+        self.description = "Converts nodata values in a raster to zero. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/data_tools.html#ModifyNoDataValue' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/data_tools/modify_nodata_value.rs' target='_blank'>GitHub</a>."
+        self.category = "Data Tools"
+
+    def getParameterInfo(self):
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        new_value = arcpy.Parameter(
+            displayName="New NoData Value",
+            name="new_value",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        new_value.value = "-32768.0"
+
+        params = [input, new_value]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
+        new_value = parameters[1].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.modify_no_data_value(input, new_value=new_value)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7627,123 +7806,6 @@ class DownslopeIndex(object):
         return
 
 
-class DrainagePreservingSmoothing(object):
-    def __init__(self):
-        self.label = "Drainage Preserving Smoothing"
-        self.description = "Reduces short-scale variation in an input DEM while preserving breaks-in-slope and small drainage features using a modified Sun et al. (2007) algorithm. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#DrainagePreservingSmoothing' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/drainage_preserving_smoothing.rs' target='_blank'>GitHub</a>."
-        self.category = "Geomorphometric Analysis"
-
-    def getParameterInfo(self):
-        dem = arcpy.Parameter(
-            displayName="Input DEM File",
-            name="dem",
-            datatype="GPRasterLayer",
-            parameterType="Required",
-            direction="Input")
-
-        output = arcpy.Parameter(
-            displayName="Output File",
-            name="output",
-            datatype="DEFile",
-            parameterType="Required",
-            direction="Output")
-        output.filter.list = ["tif"]
-
-        filter = arcpy.Parameter(
-            displayName="Filter Size",
-            name="filter",
-            datatype="GPLong",
-            parameterType="Optional",
-            direction="Input")
-
-        filter.value = "11"
-
-        norm_diff = arcpy.Parameter(
-            displayName="Normal Difference Threshold",
-            name="norm_diff",
-            datatype="GPDouble",
-            parameterType="Optional",
-            direction="Input")
-
-        norm_diff.value = "15.0"
-
-        num_iter = arcpy.Parameter(
-            displayName="Iterations",
-            name="num_iter",
-            datatype="GPLong",
-            parameterType="Optional",
-            direction="Input")
-
-        num_iter.value = "3"
-
-        max_diff = arcpy.Parameter(
-            displayName="Maximum Elevation Change",
-            name="max_diff",
-            datatype="GPDouble",
-            parameterType="Optional",
-            direction="Input")
-
-        max_diff.value = "0.5"
-
-        reduction = arcpy.Parameter(
-            displayName="Max. Smoothing Reduction Factor (%)",
-            name="reduction",
-            datatype="GPDouble",
-            parameterType="Optional",
-            direction="Input")
-
-        reduction.value = "80.0"
-
-        dfm = arcpy.Parameter(
-            displayName="Diff. From Median Threshold",
-            name="dfm",
-            datatype="GPDouble",
-            parameterType="Optional",
-            direction="Input")
-
-        dfm.value = "0.15"
-
-        zfactor = arcpy.Parameter(
-            displayName="Z Conversion Factor",
-            name="zfactor",
-            datatype="GPDouble",
-            parameterType="Optional",
-            direction="Input")
-
-        zfactor.value = "1.0"
-
-        params = [dem, output, filter, norm_diff, num_iter, max_diff, reduction, dfm, zfactor]
-
-        return params
-
-    def updateParameters(self, parameters):
-        return
-
-    def updateMessages(self, parameters):
-        return
-
-    def execute(self, parameters, messages):
-        dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
-        output = parameters[1].valueAsText
-        filter = parameters[2].valueAsText
-        norm_diff = parameters[3].valueAsText
-        num_iter = parameters[4].valueAsText
-        max_diff = parameters[5].valueAsText
-        reduction = parameters[6].valueAsText
-        dfm = parameters[7].valueAsText
-        zfactor = parameters[8].valueAsText
-        old_stdout = sys.stdout
-        result = StringIO()
-        sys.stdout = result
-        wbt.drainage_preserving_smoothing(dem, output=output, filter=filter, norm_diff=norm_diff, num_iter=num_iter, max_diff=max_diff, reduction=reduction, dfm=dfm, zfactor=zfactor)
-        sys.stdout = old_stdout
-        result_string = result.getvalue()
-        messages.addMessage(result_string)
-        return
-
-
 class EdgeDensity(object):
     def __init__(self):
         self.label = "Edge Density"
@@ -8049,10 +8111,10 @@ class ElevRelativeToWatershedMinMax(object):
         return
 
 
-class FeaturePreservingDenoise(object):
+class FeaturePreservingSmoothing(object):
     def __init__(self):
-        self.label = "Feature Preserving Denoise"
-        self.description = "Reduces short-scale variation in an input DEM using a modified Sun et al. (2007) algorithm. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#FeaturePreservingDenoise' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/feature_preserving_denoise.rs' target='_blank'>GitHub</a>."
+        self.label = "Feature Preserving Smoothing"
+        self.description = "Reduces short-scale variation in an input DEM using a modified Sun et al. (2007) algorithm. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#FeaturePreservingSmoothing' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/feature_preserving_smoothing.rs' target='_blank'>GitHub</a>."
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
@@ -8139,7 +8201,7 @@ class FeaturePreservingDenoise(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.feature_preserving_denoise(dem, output=output, filter=filter, norm_diff=norm_diff, num_iter=num_iter, max_diff=max_diff, zfactor=zfactor)
+        wbt.feature_preserving_smoothing(dem, output=output, filter=filter, norm_diff=norm_diff, num_iter=num_iter, max_diff=max_diff, zfactor=zfactor)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9265,6 +9327,200 @@ class MultiscaleRoughnessSignature(object):
         result = StringIO()
         sys.stdout = result
         wbt.multiscale_roughness_signature(dem, points=points, output=output, min_scale=min_scale, max_scale=max_scale, step=step)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
+class MultiscaleStdDevNormals(object):
+    def __init__(self):
+        self.label = "Multiscale Std Dev Normals"
+        self.description = "Calculates surface roughness over a range of spatial scales. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#MultiscaleStdDevNormals' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/multiscale_std_dev_normals.rs' target='_blank'>GitHub</a>."
+        self.category = "Geomorphometric Analysis"
+
+    def getParameterInfo(self):
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        out_mag = arcpy.Parameter(
+            displayName="Output Roughness Magnitude File",
+            name="out_mag",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        out_mag.filter.list = ["tif"]
+
+        out_scale = arcpy.Parameter(
+            displayName="Output Roughness Scale File",
+            name="out_scale",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        out_scale.filter.list = ["tif"]
+
+        min_scale = arcpy.Parameter(
+            displayName="Minimum Search Neighbourhood Radius (grid cells)",
+            name="min_scale",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+
+        min_scale.value = "1"
+
+        step = arcpy.Parameter(
+            displayName="Base Step Size",
+            name="step",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+
+        step.value = "1"
+
+        num_steps = arcpy.Parameter(
+            displayName="Number of Steps",
+            name="num_steps",
+            datatype="GPLong",
+            parameterType="Required",
+            direction="Input")
+
+        num_steps.value = "10"
+
+        step_nonlinearity = arcpy.Parameter(
+            displayName="Step Nonlinearity",
+            name="step_nonlinearity",
+            datatype="GPDouble",
+            parameterType="Required",
+            direction="Input")
+
+        step_nonlinearity.value = "1.0"
+
+        params = [dem, out_mag, out_scale, min_scale, step, num_steps, step_nonlinearity]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
+        out_mag = parameters[1].valueAsText
+        out_scale = parameters[2].valueAsText
+        min_scale = parameters[3].valueAsText
+        step = parameters[4].valueAsText
+        num_steps = parameters[5].valueAsText
+        step_nonlinearity = parameters[6].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.multiscale_std_dev_normals(dem, out_mag=out_mag, out_scale=out_scale, min_scale=min_scale, step=step, num_steps=num_steps, step_nonlinearity=step_nonlinearity)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
+class MultiscaleStdDevNormalsSignature(object):
+    def __init__(self):
+        self.label = "Multiscale Std Dev Normals Signature"
+        self.description = "Calculates the surface roughness for points over a range of spatial scales. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#MultiscaleStdDevNormalsSignature' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/multiscale_std_dev_normals_signature.rs' target='_blank'>GitHub</a>."
+        self.category = "Geomorphometric Analysis"
+
+    def getParameterInfo(self):
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        points = arcpy.Parameter(
+            displayName="Input Vector Points File",
+            name="points",
+            datatype="GPFeatureLayer",
+            parameterType="Required",
+            direction="Input")
+        points.filter.list = ["Point"]
+
+        output = arcpy.Parameter(
+            displayName="Output HTML File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["html"]
+
+        min_scale = arcpy.Parameter(
+            displayName="Minimum Search Neighbourhood Radius (grid cells)",
+            name="min_scale",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+
+        min_scale.value = "1"
+
+        step = arcpy.Parameter(
+            displayName="Base Step Size",
+            name="step",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+
+        step.value = "1"
+
+        num_steps = arcpy.Parameter(
+            displayName="Number of Steps",
+            name="num_steps",
+            datatype="GPLong",
+            parameterType="Required",
+            direction="Input")
+
+        num_steps.value = "10"
+
+        step_nonlinearity = arcpy.Parameter(
+            displayName="Step Nonlinearity",
+            name="step_nonlinearity",
+            datatype="GPDouble",
+            parameterType="Required",
+            direction="Input")
+
+        step_nonlinearity.value = "1.0"
+
+        params = [dem, points, output, min_scale, step, num_steps, step_nonlinearity]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
+        points = parameters[1].valueAsText
+        desc = arcpy.Describe(points)
+        points = desc.catalogPath
+        output = parameters[2].valueAsText
+        min_scale = parameters[3].valueAsText
+        step = parameters[4].valueAsText
+        num_steps = parameters[5].valueAsText
+        step_nonlinearity = parameters[6].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.multiscale_std_dev_normals_signature(dem, points=points, output=output, min_scale=min_scale, step=step, num_steps=num_steps, step_nonlinearity=step_nonlinearity)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11996,7 +12252,14 @@ class FillDepressions(object):
 
         fix_flats.value = "true"
 
-        params = [dem, output, fix_flats]
+        flat_increment = arcpy.Parameter(
+            displayName="Flat increment value (z units)",
+            name="flat_increment",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [dem, output, fix_flats, flat_increment]
 
         return params
 
@@ -12012,10 +12275,11 @@ class FillDepressions(object):
         dem = desc.catalogPath
         output = parameters[1].valueAsText
         fix_flats = parameters[2].valueAsText
+        flat_increment = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.fill_depressions(dem, output=output, fix_flats=fix_flats)
+        wbt.fill_depressions(dem, output=output, fix_flats=fix_flats, flat_increment=flat_increment)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18305,6 +18569,60 @@ class ErasePolygonFromLidar(object):
         return
 
 
+class FilterLidarClasses(object):
+    def __init__(self):
+        self.label = "Filter Lidar Classes"
+        self.description = "Removes points in a LAS file with certain specified class values. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#FilterLidarClasses' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/filter_lidar_classes.rs' target='_blank'>GitHub</a>."
+        self.category = "LiDAR Tools"
+
+    def getParameterInfo(self):
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Input")
+        input.filter.list = ["las", "zip"]
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["las", "zip"]
+
+        exclude_cls = arcpy.Parameter(
+            displayName="Exclusion Classes (0-18, based on LAS spec; e.g. 7,18)",
+            name="exclude_cls",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input, output, exclude_cls]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        exclude_cls = parameters[2].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.filter_lidar_classes(input, output=output, exclude_cls=exclude_cls)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class FilterLidarScanAngles(object):
     def __init__(self):
         self.label = "Filter Lidar Scan Angles"
@@ -19061,7 +19379,16 @@ class LidarGroundPointFilter(object):
 
         slope_norm.value = "true"
 
-        params = [input, output, radius, min_neighbours, slope_threshold, height_threshold, classify, slope_norm]
+        height_above_ground = arcpy.Parameter(
+            displayName="Transform output to height above average ground elevation?",
+            name="height_above_ground",
+            datatype="GPBoolean",
+            parameterType="Optional",
+            direction="Input")
+
+        height_above_ground.value = "false"
+
+        params = [input, output, radius, min_neighbours, slope_threshold, height_threshold, classify, slope_norm, height_above_ground]
 
         return params
 
@@ -19080,10 +19407,11 @@ class LidarGroundPointFilter(object):
         height_threshold = parameters[5].valueAsText
         classify = parameters[6].valueAsText
         slope_norm = parameters[7].valueAsText
+        height_above_ground = parameters[8].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_ground_point_filter(input, output=output, radius=radius, min_neighbours=min_neighbours, slope_threshold=slope_threshold, height_threshold=height_threshold, classify=classify, slope_norm=slope_norm)
+        wbt.lidar_ground_point_filter(input, output=output, radius=radius, min_neighbours=min_neighbours, slope_threshold=slope_threshold, height_threshold=height_threshold, classify=classify, slope_norm=slope_norm, height_above_ground=height_above_ground)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19330,7 +19658,7 @@ class LidarIdwInterpolation(object):
             parameterType="Optional",
             direction="Input")
         parameter.filter.type = "ValueList"
-        parameter.filter.list = ['elevation', 'intensity', 'class', 'scan angle', 'user data']
+        parameter.filter.list = ['elevation', 'intensity', 'class', 'return_number', 'number_of_returns', 'scan angle', 'rgb', 'user data']
 
         parameter.value = "elevation"
 
@@ -19637,7 +19965,7 @@ class LidarNearestNeighbourGridding(object):
             parameterType="Optional",
             direction="Input")
         parameter.filter.type = "ValueList"
-        parameter.filter.list = ['elevation', 'intensity', 'class', 'scan angle', 'user data']
+        parameter.filter.list = ['elevation', 'intensity', 'class', 'return_number', 'number_of_returns', 'scan angle', 'rgb', 'user data']
 
         parameter.value = "elevation"
 
@@ -19863,6 +20191,15 @@ class LidarPointStats(object):
             parameterType="Optional",
             direction="Input")
 
+        avg_points_per_pulse = arcpy.Parameter(
+            displayName="Output number of points?",
+            name="avg_points_per_pulse",
+            datatype="GPBoolean",
+            parameterType="Optional",
+            direction="Input")
+
+        avg_points_per_pulse.value = "True"
+
         z_range = arcpy.Parameter(
             displayName="Output elevation range?",
             name="z_range",
@@ -19884,7 +20221,7 @@ class LidarPointStats(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [input, resolution, num_points, num_pulses, z_range, intensity_range, predom_class]
+        params = [input, resolution, num_points, num_pulses, avg_points_per_pulse, z_range, intensity_range, predom_class]
 
         return params
 
@@ -19899,13 +20236,120 @@ class LidarPointStats(object):
         resolution = parameters[1].valueAsText
         num_points = parameters[2].valueAsText
         num_pulses = parameters[3].valueAsText
-        z_range = parameters[4].valueAsText
-        intensity_range = parameters[5].valueAsText
-        predom_class = parameters[6].valueAsText
+        avg_points_per_pulse = parameters[4].valueAsText
+        z_range = parameters[5].valueAsText
+        intensity_range = parameters[6].valueAsText
+        predom_class = parameters[7].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_point_stats(input, resolution=resolution, num_points=num_points, num_pulses=num_pulses, z_range=z_range, intensity_range=intensity_range, predom_class=predom_class)
+        wbt.lidar_point_stats(input, resolution=resolution, num_points=num_points, num_pulses=num_pulses, avg_points_per_pulse=avg_points_per_pulse, z_range=z_range, intensity_range=intensity_range, predom_class=predom_class)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
+class LidarRansacPlanes(object):
+    def __init__(self):
+        self.label = "Lidar Ransac Planes"
+        self.description = "Removes outliers (high and low points) in a LiDAR point cloud. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarRansacPlanes' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/lidar_ransac_planes.rs' target='_blank'>GitHub</a>."
+        self.category = "LiDAR Tools"
+
+    def getParameterInfo(self):
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Input")
+        input.filter.list = ["las", "zip"]
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["las", "zip"]
+
+        radius = arcpy.Parameter(
+            displayName="Search Radius",
+            name="radius",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        radius.value = "2.0"
+
+        num_iter = arcpy.Parameter(
+            displayName="Number of Iterations",
+            name="num_iter",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+
+        num_iter.value = "50"
+
+        num_samples = arcpy.Parameter(
+            displayName="Number of Sample Points",
+            name="num_samples",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+
+        num_samples.value = "5"
+
+        threshold = arcpy.Parameter(
+            displayName="Inliner Threshold",
+            name="threshold",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        threshold.value = "0.35"
+
+        model_size = arcpy.Parameter(
+            displayName="Acceptable Model Size",
+            name="model_size",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+
+        model_size.value = "8"
+
+        classify = arcpy.Parameter(
+            displayName="Classify Points",
+            name="classify",
+            datatype="GPBoolean",
+            parameterType="Optional",
+            direction="Input")
+
+        classify.value = "false"
+
+        params = [input, output, radius, num_iter, num_samples, threshold, model_size, classify]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        radius = parameters[2].valueAsText
+        num_iter = parameters[3].valueAsText
+        num_samples = parameters[4].valueAsText
+        threshold = parameters[5].valueAsText
+        model_size = parameters[6].valueAsText
+        classify = parameters[7].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_ransac_planes(input, output=output, radius=radius, num_iter=num_iter, num_samples=num_samples, threshold=threshold, model_size=model_size, classify=classify)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20009,7 +20453,23 @@ class LidarRemoveOutliers(object):
 
         elev_diff.value = "50.0"
 
-        params = [input, output, radius, elev_diff]
+        use_median = arcpy.Parameter(
+            displayName="Use difference from median elevation?",
+            name="use_median",
+            datatype="GPBoolean",
+            parameterType="Optional",
+            direction="Input")
+
+        classify = arcpy.Parameter(
+            displayName="Classify Points",
+            name="classify",
+            datatype="GPBoolean",
+            parameterType="Optional",
+            direction="Input")
+
+        classify.value = "true"
+
+        params = [input, output, radius, elev_diff, use_median, classify]
 
         return params
 
@@ -20024,10 +20484,12 @@ class LidarRemoveOutliers(object):
         output = parameters[1].valueAsText
         radius = parameters[2].valueAsText
         elev_diff = parameters[3].valueAsText
+        use_median = parameters[4].valueAsText
+        classify = parameters[5].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_remove_outliers(input, output=output, radius=radius, elev_diff=elev_diff)
+        wbt.lidar_remove_outliers(input, output=output, radius=radius, elev_diff=elev_diff, use_median=use_median, classify=classify)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20084,7 +20546,25 @@ class LidarSegmentation(object):
 
         maxzdiff.value = "1.0"
 
-        params = [input, output, radius, norm_diff, maxzdiff]
+        classes = arcpy.Parameter(
+            displayName="Don't Cross Class Boundaries",
+            name="classes",
+            datatype="GPBoolean",
+            parameterType="Required",
+            direction="Input")
+
+        classes.value = "false"
+
+        min_size = arcpy.Parameter(
+            displayName="Minimum Segement Size",
+            name="min_size",
+            datatype="GPLong",
+            parameterType="Required",
+            direction="Input")
+
+        min_size.value = "1"
+
+        params = [input, output, radius, norm_diff, maxzdiff, classes, min_size]
 
         return params
 
@@ -20100,10 +20580,12 @@ class LidarSegmentation(object):
         radius = parameters[2].valueAsText
         norm_diff = parameters[3].valueAsText
         maxzdiff = parameters[4].valueAsText
+        classes = parameters[5].valueAsText
+        min_size = parameters[6].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_segmentation(input, output=output, radius=radius, norm_diff=norm_diff, maxzdiff=maxzdiff)
+        wbt.lidar_segmentation(input, output=output, radius=radius, norm_diff=norm_diff, maxzdiff=maxzdiff, classes=classes, min_size=min_size)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20519,7 +21001,7 @@ class LidarTinGridding(object):
             parameterType="Optional",
             direction="Input")
         parameter.filter.type = "ValueList"
-        parameter.filter.list = ['elevation', 'intensity', 'class', 'scan angle', 'user data']
+        parameter.filter.list = ['elevation', 'intensity', 'class', 'return_number', 'number_of_returns', 'scan angle', 'rgb', 'user data']
 
         parameter.value = "elevation"
 
@@ -22007,84 +22489,6 @@ class Exp2(object):
         return
 
 
-class ExtractRasterStatistics(object):
-    def __init__(self):
-        self.label = "Extract Raster Statistics"
-        self.description = "Extracts descriptive statistics for a group of patches in a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#ExtractRasterStatistics' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/extract_statistics.rs' target='_blank'>GitHub</a>."
-        self.category = "Math and Stats Tools"
-
-    def getParameterInfo(self):
-        input = arcpy.Parameter(
-            displayName="Input Data File",
-            name="input",
-            datatype="GPRasterLayer",
-            parameterType="Required",
-            direction="Input")
-
-        features = arcpy.Parameter(
-            displayName="Input Feature Definition File",
-            name="features",
-            datatype="GPRasterLayer",
-            parameterType="Required",
-            direction="Input")
-
-        output = arcpy.Parameter(
-            displayName="Output Raster File",
-            name="output",
-            datatype="DEFile",
-            parameterType="Required",
-            direction="Output")
-        output.filter.list = ["tif"]
-
-        stat = arcpy.Parameter(
-            displayName="Statistic Type",
-            name="stat",
-            datatype="GPString",
-            parameterType="Optional",
-            direction="Input")
-        stat.filter.type = "ValueList"
-        stat.filter.list = ['average', 'minimum', 'maximum', 'range', 'standard deviation', 'total']
-
-        stat.value = "average"
-
-        out_table = arcpy.Parameter(
-            displayName="Output HTML Table File",
-            name="out_table",
-            datatype="DEFile",
-            parameterType="Required",
-            direction="Output")
-        out_table.filter.list = ["html"]
-
-        params = [input, features, output, stat, out_table]
-
-        return params
-
-    def updateParameters(self, parameters):
-        return
-
-    def updateMessages(self, parameters):
-        return
-
-    def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
-        features = parameters[1].valueAsText
-        desc = arcpy.Describe(features)
-        features = desc.catalogPath
-        output = parameters[2].valueAsText
-        stat = parameters[3].valueAsText
-        out_table = parameters[4].valueAsText
-        old_stdout = sys.stdout
-        result = StringIO()
-        sys.stdout = result
-        wbt.extract_raster_statistics(input, features=features, output=output, stat=stat, out_table=out_table)
-        sys.stdout = old_stdout
-        result_string = result.getvalue()
-        messages.addMessage(result_string)
-        return
-
-
 class Floor(object):
     def __init__(self):
         self.label = "Floor"
@@ -22341,7 +22745,23 @@ class ImageRegression(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [input1, input2, output, out_residuals, standardize]
+        scattergram = arcpy.Parameter(
+            displayName="Output scattergram?",
+            name="scattergram",
+            datatype="GPBoolean",
+            parameterType="Optional",
+            direction="Input")
+
+        num_samples = arcpy.Parameter(
+            displayName="Num. Samples For Scattergram",
+            name="num_samples",
+            datatype="GPLong",
+            parameterType="Required",
+            direction="Input")
+
+        num_samples.value = "1000"
+
+        params = [input1, input2, output, out_residuals, standardize, scattergram, num_samples]
 
         return params
 
@@ -22361,10 +22781,12 @@ class ImageRegression(object):
         output = parameters[2].valueAsText
         out_residuals = parameters[3].valueAsText
         standardize = parameters[4].valueAsText
+        scattergram = parameters[5].valueAsText
+        num_samples = parameters[6].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.image_regression(input1, input2=input2, output=output, out_residuals=out_residuals, standardize=standardize)
+        wbt.image_regression(input1, input2=input2, output=output, out_residuals=out_residuals, standardize=standardize, scattergram=scattergram, num_samples=num_samples)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24751,6 +25173,84 @@ class ZScores(object):
         return
 
 
+class ZonalStatistics(object):
+    def __init__(self):
+        self.label = "Zonal Statistics"
+        self.description = "Extracts descriptive statistics for a group of patches in a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#ZonalStatistics' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/zonal_statistics.rs' target='_blank'>GitHub</a>."
+        self.category = "Math and Stats Tools"
+
+    def getParameterInfo(self):
+        input = arcpy.Parameter(
+            displayName="Input Data File",
+            name="input",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        features = arcpy.Parameter(
+            displayName="Input Feature Definition File",
+            name="features",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Raster File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        stat = arcpy.Parameter(
+            displayName="Statistic Type",
+            name="stat",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+        stat.filter.type = "ValueList"
+        stat.filter.list = ['mean', 'median', 'minimum', 'maximum', 'range', 'standard deviation', 'total']
+
+        stat.value = "mean"
+
+        out_table = arcpy.Parameter(
+            displayName="Output HTML Table File",
+            name="out_table",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        out_table.filter.list = ["html"]
+
+        params = [input, features, output, stat, out_table]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
+        features = parameters[1].valueAsText
+        desc = arcpy.Describe(features)
+        features = desc.catalogPath
+        output = parameters[2].valueAsText
+        stat = parameters[3].valueAsText
+        out_table = parameters[4].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.zonal_statistics(input, features=features, output=output, stat=stat, out_table=out_table)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class DistanceToOutlet(object):
     def __init__(self):
         self.label = "Distance To Outlet"
@@ -24920,7 +25420,7 @@ class ExtractValleys(object):
         variant.filter.type = "ValueList"
         variant.filter.list = ['LQ', 'JandR', 'PandD']
 
-        variant.value = "Lower Quartile"
+        variant.value = "LQ"
 
         line_thin = arcpy.Parameter(
             displayName="Perform line-thinning?",
