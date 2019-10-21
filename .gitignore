@@ -6,6 +6,7 @@ __pycache__/
 whitebox/WBT/
 **/*.tar.xz
 **/*.xml
+**/.access^
 whitebox/testdata/breached.tif
 whitebox/testdata/flow_accum.tif
 whitebox/testdata/smoothed.tif
