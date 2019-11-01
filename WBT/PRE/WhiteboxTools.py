@@ -19,6 +19,9 @@ tool_labels.append("Anova")
 tool_labels.append("Arc Cos")
 tool_labels.append("Arc Sin")
 tool_labels.append("Arc Tan")
+tool_labels.append("Arcosh")
+tool_labels.append("Arsinh")
+tool_labels.append("Artanh")
 tool_labels.append("Aspect")
 tool_labels.append("Atan2")
 tool_labels.append("Attribute Correlation")
@@ -37,6 +40,7 @@ tool_labels.append("Boundary Shape Complexity")
 tool_labels.append("Breach Depressions")
 tool_labels.append("Breach Single Cell Pits")
 tool_labels.append("Buffer Raster")
+tool_labels.append("Burn Streams At Roads")
 tool_labels.append("Ceil")
 tool_labels.append("Centroid")
 tool_labels.append("Centroid Vector")
@@ -189,7 +193,7 @@ tool_labels.append("Las To Ascii")
 tool_labels.append("Las To Multipoint Shapefile")
 tool_labels.append("Las To Shapefile")
 tool_labels.append("Layer Footprint")
-tool_labels.append("Lee Filter")
+tool_labels.append("Lee Sigma Filter")
 tool_labels.append("Length Of Upstream Channels")
 tool_labels.append("Less Than")
 tool_labels.append("Lidar Block Maximum")
@@ -288,6 +292,7 @@ tool_labels.append("Num Upslope Neighbours")
 tool_labels.append("Olympic Filter")
 tool_labels.append("Opening")
 tool_labels.append("Or")
+tool_labels.append("Paired Sample T Test")
 tool_labels.append("Panchromatic Sharpening")
 tool_labels.append("Patch Orientation")
 tool_labels.append("Pennock Landform Class")
@@ -333,7 +338,6 @@ tool_labels.append("Reclass From File")
 tool_labels.append("Reinitialize Attribute Table")
 tool_labels.append("Related Circumscribing Circle")
 tool_labels.append("Relative Aspect")
-tool_labels.append("Relative Stream Power Index")
 tool_labels.append("Relative Topographic Position")
 tool_labels.append("Remove Off Terrain Objects")
 tool_labels.append("Remove Polygon Holes")
@@ -379,6 +383,7 @@ tool_labels.append("Stream Link Class")
 tool_labels.append("Stream Link Identifier")
 tool_labels.append("Stream Link Length")
 tool_labels.append("Stream Link Slope")
+tool_labels.append("Stream Power Index")
 tool_labels.append("Stream Slope Continuous")
 tool_labels.append("Subbasins")
 tool_labels.append("Subtract")
@@ -402,6 +407,7 @@ tool_labels.append("Trend Surface Vector Points")
 tool_labels.append("Tributary Identifier")
 tool_labels.append("Truncate")
 tool_labels.append("Turning Bands Simulation")
+tool_labels.append("Two Sample Ks Test")
 tool_labels.append("Union")
 tool_labels.append("Unnest Basins")
 tool_labels.append("Unsharp Masking")
@@ -417,6 +423,7 @@ tool_labels.append("Watershed")
 tool_labels.append("Weighted Overlay")
 tool_labels.append("Weighted Sum")
 tool_labels.append("Wetness Index")
+tool_labels.append("Wilcoxon Signed Rank Test")
 tool_labels.append("Write Function Memory Insertion")
 tool_labels.append("Xor")
 tool_labels.append("Z Scores")
@@ -588,7 +595,6 @@ class Toolbox(object):
         tools.append(Profile)
         tools.append(ProfileCurvature)
         tools.append(RelativeAspect)
-        tools.append(RelativeStreamPowerIndex)
         tools.append(RelativeTopographicPosition)
         tools.append(RemoveOffTerrainObjects)
         tools.append(RuggednessIndex)
@@ -597,6 +603,7 @@ class Toolbox(object):
         tools.append(SlopeVsElevationPlot)
         tools.append(SphericalStdDevOfNormals)
         tools.append(StandardDeviationOfSlope)
+        tools.append(StreamPowerIndex)
         tools.append(SurfaceAreaRatio)
         tools.append(TangentialCurvature)
         tools.append(TotalCurvature)
@@ -683,7 +690,7 @@ class Toolbox(object):
         tools.append(KNearestMeanFilter)
         tools.append(LaplacianFilter)
         tools.append(LaplacianOfGaussianFilter)
-        tools.append(LeeFilter)
+        tools.append(LeeSigmaFilter)
         tools.append(LineDetectionFilter)
         tools.append(MajorityFilter)
         tools.append(MaximumFilter)
@@ -763,6 +770,9 @@ class Toolbox(object):
         tools.append(ArcCos)
         tools.append(ArcSin)
         tools.append(ArcTan)
+        tools.append(Arcosh)
+        tools.append(Arsinh)
+        tools.append(Artanh)
         tools.append(Atan2)
         tools.append(AttributeCorrelation)
         tools.append(AttributeHistogram)
@@ -803,6 +813,7 @@ class Toolbox(object):
         tools.append(Multiply)
         tools.append(Negate)
         tools.append(NotEqualTo)
+        tools.append(PairedSampleTTest)
         tools.append(Power)
         tools.append(PrincipalComponentAnalysis)
         tools.append(Quantiles)
@@ -827,9 +838,12 @@ class Toolbox(object):
         tools.append(TrendSurfaceVectorPoints)
         tools.append(Truncate)
         tools.append(TurningBandsSimulation)
+        tools.append(TwoSampleKsTest)
+        tools.append(WilcoxonSignedRankTest)
         tools.append(Xor)
         tools.append(ZScores)
         tools.append(ZonalStatistics)
+        tools.append(BurnStreamsAtRoads)
         tools.append(DistanceToOutlet)
         tools.append(ExtractStreams)
         tools.append(ExtractValleys)
@@ -10091,73 +10105,6 @@ class RelativeAspect(object):
         return
 
 
-class RelativeStreamPowerIndex(object):
-    def __init__(self):
-        self.label = "Relative Stream Power Index"
-        self.description = "Calculates the relative stream power index. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#RelativeStreamPowerIndex' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/relative_stream_power_index.rs' target='_blank'>GitHub</a>."
-        self.category = "Geomorphometric Analysis"
-
-    def getParameterInfo(self):
-        sca = arcpy.Parameter(
-            displayName="Input Specific Contributing Area (SCA) File",
-            name="sca",
-            datatype="GPRasterLayer",
-            parameterType="Required",
-            direction="Input")
-
-        slope = arcpy.Parameter(
-            displayName="Input Slope File",
-            name="slope",
-            datatype="GPRasterLayer",
-            parameterType="Required",
-            direction="Input")
-
-        output = arcpy.Parameter(
-            displayName="Output File",
-            name="output",
-            datatype="DEFile",
-            parameterType="Required",
-            direction="Output")
-        output.filter.list = ["tif"]
-
-        exponent = arcpy.Parameter(
-            displayName="Specific Contributing Area (SCA) Exponent",
-            name="exponent",
-            datatype="GPDouble",
-            parameterType="Required",
-            direction="Input")
-
-        exponent.value = "1.0"
-
-        params = [sca, slope, output, exponent]
-
-        return params
-
-    def updateParameters(self, parameters):
-        return
-
-    def updateMessages(self, parameters):
-        return
-
-    def execute(self, parameters, messages):
-        sca = parameters[0].valueAsText
-        desc = arcpy.Describe(sca)
-        sca = desc.catalogPath
-        slope = parameters[1].valueAsText
-        desc = arcpy.Describe(slope)
-        slope = desc.catalogPath
-        output = parameters[2].valueAsText
-        exponent = parameters[3].valueAsText
-        old_stdout = sys.stdout
-        result = StringIO()
-        sys.stdout = result
-        wbt.relative_stream_power_index(sca, slope=slope, output=output, exponent=exponent)
-        sys.stdout = old_stdout
-        result_string = result.getvalue()
-        messages.addMessage(result_string)
-        return
-
-
 class RelativeTopographicPosition(object):
     def __init__(self):
         self.label = "Relative Topographic Position"
@@ -10666,6 +10613,73 @@ class StandardDeviationOfSlope(object):
         result = StringIO()
         sys.stdout = result
         wbt.standard_deviation_of_slope(input, output=output, zfactor=zfactor, filterx=filterx, filtery=filtery)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
+class StreamPowerIndex(object):
+    def __init__(self):
+        self.label = "Stream Power Index"
+        self.description = "Calculates the relative stream power index. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#StreamPowerIndex' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/relative_stream_power_index.rs' target='_blank'>GitHub</a>."
+        self.category = "Geomorphometric Analysis"
+
+    def getParameterInfo(self):
+        sca = arcpy.Parameter(
+            displayName="Input Specific Contributing Area (SCA) File",
+            name="sca",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        slope = arcpy.Parameter(
+            displayName="Input Slope File",
+            name="slope",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        exponent = arcpy.Parameter(
+            displayName="Specific Contributing Area (SCA) Exponent",
+            name="exponent",
+            datatype="GPDouble",
+            parameterType="Required",
+            direction="Input")
+
+        exponent.value = "1.0"
+
+        params = [sca, slope, output, exponent]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        sca = parameters[0].valueAsText
+        desc = arcpy.Describe(sca)
+        sca = desc.catalogPath
+        slope = parameters[1].valueAsText
+        desc = arcpy.Describe(slope)
+        slope = desc.catalogPath
+        output = parameters[2].valueAsText
+        exponent = parameters[3].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.stream_power_index(sca, slope=slope, output=output, exponent=exponent)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16250,10 +16264,10 @@ class LaplacianOfGaussianFilter(object):
         return
 
 
-class LeeFilter(object):
+class LeeSigmaFilter(object):
     def __init__(self):
-        self.label = "Lee Filter"
-        self.description = "Performs a Lee (Sigma) smoothing filter on an image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#LeeFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/lee_filter.rs' target='_blank'>GitHub</a>."
+        self.label = "Lee Sigma Filter"
+        self.description = "Performs a Lee (Sigma) smoothing filter on an image. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/image_processing_tools.html#LeeSigmaFilter' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/image_analysis/lee_filter.rs' target='_blank'>GitHub</a>."
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
@@ -16330,7 +16344,7 @@ class LeeFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lee_filter(input, output=output, filterx=filterx, filtery=filtery, sigma=sigma, m=m)
+        wbt.lee_sigma_filter(input, output=output, filterx=filterx, filtery=filtery, sigma=sigma, m=m)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20192,7 +20206,7 @@ class LidarPointStats(object):
             direction="Input")
 
         avg_points_per_pulse = arcpy.Parameter(
-            displayName="Output number of points?",
+            displayName="Output average number of points per pulse?",
             name="avg_points_per_pulse",
             datatype="GPBoolean",
             parameterType="Optional",
@@ -21713,6 +21727,147 @@ class ArcTan(object):
         result = StringIO()
         sys.stdout = result
         wbt.arc_tan(input, output=output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
+class Arcosh(object):
+    def __init__(self):
+        self.label = "Arcosh"
+        self.description = "Returns the inverse hyperbolic cosine (arcosh) of each values in a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Arcosh' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/arcosh.rs' target='_blank'>GitHub</a>."
+        self.category = "Math and Stats Tools"
+
+    def getParameterInfo(self):
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        params = [input, output]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
+        output = parameters[1].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.arcosh(input, output=output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
+class Arsinh(object):
+    def __init__(self):
+        self.label = "Arsinh"
+        self.description = "Returns the inverse hyperbolic sine (arsinh) of each values in a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Arsinh' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/arsinh.rs' target='_blank'>GitHub</a>."
+        self.category = "Math and Stats Tools"
+
+    def getParameterInfo(self):
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        params = [input, output]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
+        output = parameters[1].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.arsinh(input, output=output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
+class Artanh(object):
+    def __init__(self):
+        self.label = "Artanh"
+        self.description = "Returns the inverse hyperbolic tangent (arctanh) of each values in a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#Artanh' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/artanh.rs' target='_blank'>GitHub</a>."
+        self.category = "Math and Stats Tools"
+
+    def getParameterInfo(self):
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        params = [input, output]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
+        output = parameters[1].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.artanh(input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23806,6 +23961,71 @@ class NotEqualTo(object):
         return
 
 
+class PairedSampleTTest(object):
+    def __init__(self):
+        self.label = "Paired Sample T Test"
+        self.description = "Performs a 2-sample K-S test for significant differences on two input rasters. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#PairedSampleTTest' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/paired_sample_t_test.rs' target='_blank'>GitHub</a>."
+        self.category = "Math and Stats Tools"
+
+    def getParameterInfo(self):
+        input1 = arcpy.Parameter(
+            displayName="First Input File",
+            name="input1",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Second Input File",
+            name="input2",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["html"]
+
+        num_samples = arcpy.Parameter(
+            displayName="Num. Samples (blank for while image)",
+            name="num_samples",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input1, input2, output, num_samples]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        desc = arcpy.Describe(input1)
+        input1 = desc.catalogPath
+        input2 = parameters[1].valueAsText
+        desc = arcpy.Describe(input2)
+        input2 = desc.catalogPath
+        output = parameters[2].valueAsText
+        num_samples = parameters[3].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.paired_sample_t_test(input1, input2=input2, output=output, num_samples=num_samples)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class Power(object):
     def __init__(self):
         self.label = "Power"
@@ -25069,6 +25289,136 @@ class TurningBandsSimulation(object):
         return
 
 
+class TwoSampleKsTest(object):
+    def __init__(self):
+        self.label = "Two Sample Ks Test"
+        self.description = "Performs a 2-sample K-S test for significant differences on two input rasters. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#TwoSampleKsTest' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/two_sample_ks_test.rs' target='_blank'>GitHub</a>."
+        self.category = "Math and Stats Tools"
+
+    def getParameterInfo(self):
+        input1 = arcpy.Parameter(
+            displayName="First Input File",
+            name="input1",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Second Input File",
+            name="input2",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["html"]
+
+        num_samples = arcpy.Parameter(
+            displayName="Num. Samples (blank for while image)",
+            name="num_samples",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input1, input2, output, num_samples]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        desc = arcpy.Describe(input1)
+        input1 = desc.catalogPath
+        input2 = parameters[1].valueAsText
+        desc = arcpy.Describe(input2)
+        input2 = desc.catalogPath
+        output = parameters[2].valueAsText
+        num_samples = parameters[3].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.two_sample_ks_test(input1, input2=input2, output=output, num_samples=num_samples)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
+class WilcoxonSignedRankTest(object):
+    def __init__(self):
+        self.label = "Wilcoxon Signed Rank Test"
+        self.description = "Performs a 2-sample K-S test for significant differences on two input rasters. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#WilcoxonSignedRankTest' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/wilcoxon_signed_rank_test.rs' target='_blank'>GitHub</a>."
+        self.category = "Math and Stats Tools"
+
+    def getParameterInfo(self):
+        input1 = arcpy.Parameter(
+            displayName="First Input File",
+            name="input1",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Second Input File",
+            name="input2",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["html"]
+
+        num_samples = arcpy.Parameter(
+            displayName="Num. Samples (blank for while image)",
+            name="num_samples",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input1, input2, output, num_samples]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        desc = arcpy.Describe(input1)
+        input1 = desc.catalogPath
+        input2 = parameters[1].valueAsText
+        desc = arcpy.Describe(input2)
+        input2 = desc.catalogPath
+        output = parameters[2].valueAsText
+        num_samples = parameters[3].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.wilcoxon_signed_rank_test(input1, input2=input2, output=output, num_samples=num_samples)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class Xor(object):
     def __init__(self):
         self.label = "Xor"
@@ -25245,6 +25595,83 @@ class ZonalStatistics(object):
         result = StringIO()
         sys.stdout = result
         wbt.zonal_statistics(input, features=features, output=output, stat=stat, out_table=out_table)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
+class BurnStreamsAtRoads(object):
+    def __init__(self):
+        self.label = "Burn Streams At Roads"
+        self.description = "Rasterizes vector streams based on Lindsay (2016) method. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/stream_network_analysis.html#BurnStreamsAtRoads' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/burn_streams_at_roads.rs' target='_blank'>GitHub</a>."
+        self.category = "Stream Network Analysis"
+
+    def getParameterInfo(self):
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        streams = arcpy.Parameter(
+            displayName="Input Vector Streams File",
+            name="streams",
+            datatype="GPFeatureLayer",
+            parameterType="Required",
+            direction="Input")
+        streams.filter.list = ["Polyline"]
+
+        roads = arcpy.Parameter(
+            displayName="Input Vector Roads File",
+            name="roads",
+            datatype="GPFeatureLayer",
+            parameterType="Required",
+            direction="Input")
+        roads.filter.list = ["Polyline"]
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        width = arcpy.Parameter(
+            displayName="Road Embankment Width",
+            name="width",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [dem, streams, roads, output, width]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
+        streams = parameters[1].valueAsText
+        desc = arcpy.Describe(streams)
+        streams = desc.catalogPath
+        roads = parameters[2].valueAsText
+        desc = arcpy.Describe(roads)
+        roads = desc.catalogPath
+        output = parameters[3].valueAsText
+        width = parameters[4].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.burn_streams_at_roads(dem, streams=streams, roads=roads, output=output, width=width)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
