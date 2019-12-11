@@ -38,6 +38,7 @@ tool_labels.append("Block Maximum Gridding")
 tool_labels.append("Block Minimum Gridding")
 tool_labels.append("Boundary Shape Complexity")
 tool_labels.append("Breach Depressions")
+tool_labels.append("Breach Depressions Least Cost")
 tool_labels.append("Breach Single Cell Pits")
 tool_labels.append("Buffer Raster")
 tool_labels.append("Burn Streams At Roads")
@@ -46,6 +47,7 @@ tool_labels.append("Centroid")
 tool_labels.append("Centroid Vector")
 tool_labels.append("Change Vector Analysis")
 tool_labels.append("Circular Variance Of Aspect")
+tool_labels.append("Classify Buildings In Lidar")
 tool_labels.append("Classify Overlap Points")
 tool_labels.append("Clean Vector")
 tool_labels.append("Clip")
@@ -129,6 +131,7 @@ tool_labels.append("Feature Preserving Smoothing")
 tool_labels.append("Fetch Analysis")
 tool_labels.append("Fill Burn")
 tool_labels.append("Fill Depressions")
+tool_labels.append("Fill Depressions Wang And Lui")
 tool_labels.append("Fill Missing Data")
 tool_labels.append("Fill Single Cell Pits")
 tool_labels.append("Filter Lidar Classes")
@@ -168,6 +171,7 @@ tool_labels.append("Idw Interpolation")
 tool_labels.append("Ihs To Rgb")
 tool_labels.append("Image Autocorrelation")
 tool_labels.append("Image Correlation")
+tool_labels.append("Image Correlation Neighbourhood Analysis")
 tool_labels.append("Image Regression")
 tool_labels.append("Image Stack Profile")
 tool_labels.append("Impoundment Size Index")
@@ -216,6 +220,7 @@ tool_labels.append("Lidar Point Stats")
 tool_labels.append("Lidar Ransac Planes")
 tool_labels.append("Lidar Remove Duplicates")
 tool_labels.append("Lidar Remove Outliers")
+tool_labels.append("Lidar Rfb Interpolation")
 tool_labels.append("Lidar Segmentation")
 tool_labels.append("Lidar Segmentation Based Filter")
 tool_labels.append("Lidar Thin")
@@ -279,6 +284,7 @@ tool_labels.append("Multiscale Std Dev Normals")
 tool_labels.append("Multiscale Std Dev Normals Signature")
 tool_labels.append("Multiscale Topographic Position Image")
 tool_labels.append("Narrowness Index")
+tool_labels.append("Natural Neighbour Interpolation")
 tool_labels.append("Nearest Neighbour Gridding")
 tool_labels.append("Negate")
 tool_labels.append("New Raster From Base")
@@ -411,6 +417,7 @@ tool_labels.append("Two Sample Ks Test")
 tool_labels.append("Union")
 tool_labels.append("Unnest Basins")
 tool_labels.append("Unsharp Masking")
+tool_labels.append("Upslope Depression Storage")
 tool_labels.append("User Defined Weights Filter")
 tool_labels.append("Vector Hex Binning")
 tool_labels.append("Vector Lines To Raster")
@@ -494,6 +501,7 @@ class Toolbox(object):
         tools.append(MinimumBoundingCircle)
         tools.append(MinimumBoundingEnvelope)
         tools.append(MinimumConvexHull)
+        tools.append(NaturalNeighbourInterpolation)
         tools.append(NearestNeighbourGridding)
         tools.append(PolygonArea)
         tools.append(PolygonLongAxis)
@@ -614,7 +622,9 @@ class Toolbox(object):
         tools.append(AverageUpslopeFlowpathLength)
         tools.append(Basins)
         tools.append(BreachDepressions)
+        tools.append(BreachDepressionsLeastCost)
         tools.append(BreachSingleCellPits)
+        tools.append(BurnStreamsAtRoads)
         tools.append(D8FlowAccumulation)
         tools.append(D8MassFlux)
         tools.append(D8Pointer)
@@ -630,6 +640,7 @@ class Toolbox(object):
         tools.append(Fd8Pointer)
         tools.append(FillBurn)
         tools.append(FillDepressions)
+        tools.append(FillDepressionsWangAndLui)
         tools.append(FillSingleCellPits)
         tools.append(FindNoFlowCells)
         tools.append(FindParallelFlow)
@@ -653,6 +664,7 @@ class Toolbox(object):
         tools.append(Subbasins)
         tools.append(TraceDownslopeFlowpaths)
         tools.append(UnnestBasins)
+        tools.append(UpslopeDepressionStorage)
         tools.append(Watershed)
         tools.append(ChangeVectorAnalysis)
         tools.append(Closing)
@@ -721,6 +733,7 @@ class Toolbox(object):
         tools.append(PercentageContrastStretch)
         tools.append(SigmoidalContrastStretch)
         tools.append(StandardDeviationContrastStretch)
+        tools.append(ClassifyBuildingsInLidar)
         tools.append(ClassifyOverlapPoints)
         tools.append(ClipLidarToPolygon)
         tools.append(ErasePolygonFromLidar)
@@ -751,6 +764,7 @@ class Toolbox(object):
         tools.append(LidarRansacPlanes)
         tools.append(LidarRemoveDuplicates)
         tools.append(LidarRemoveOutliers)
+        tools.append(LidarRfbInterpolation)
         tools.append(LidarSegmentation)
         tools.append(LidarSegmentationBasedFilter)
         tools.append(LidarThin)
@@ -792,6 +806,7 @@ class Toolbox(object):
         tools.append(GreaterThan)
         tools.append(ImageAutocorrelation)
         tools.append(ImageCorrelation)
+        tools.append(ImageCorrelationNeighbourhoodAnalysis)
         tools.append(ImageRegression)
         tools.append(InPlaceAdd)
         tools.append(InPlaceDivide)
@@ -843,7 +858,6 @@ class Toolbox(object):
         tools.append(Xor)
         tools.append(ZScores)
         tools.append(ZonalStatistics)
-        tools.append(BurnStreamsAtRoads)
         tools.append(DistanceToOutlet)
         tools.append(ExtractStreams)
         tools.append(ExtractValleys)
@@ -3046,7 +3060,14 @@ class ConstructVectorTin(object):
             direction="Output")
         output.filter.list = ["Polygon"]
 
-        params = [input, field, use_z, output]
+        max_triangle_edge_length = arcpy.Parameter(
+            displayName="Maximum Triangle Edge Length",
+            name="max_triangle_edge_length",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input, field, use_z, output, max_triangle_edge_length]
 
         return params
 
@@ -3063,10 +3084,11 @@ class ConstructVectorTin(object):
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
+        max_triangle_edge_length = parameters[4].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.construct_vector_tin(input, field=field, use_z=use_z, output=output)
+        wbt.construct_vector_tin(input, field=field, use_z=use_z, output=output, max_triangle_edge_length=max_triangle_edge_length)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4092,6 +4114,101 @@ class MinimumConvexHull(object):
         return
 
 
+class NaturalNeighbourInterpolation(object):
+    def __init__(self):
+        self.label = "Natural Neighbour Interpolation"
+        self.description = "Creates a raster grid based on Sibson's natural neighbour method. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#NaturalNeighbourInterpolation' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/natural_neighbour_interpolation.rs' target='_blank'>GitHub</a>."
+        self.category = "GIS Analysis"
+
+    def getParameterInfo(self):
+        input = arcpy.Parameter(
+            displayName="Input Vector Points File",
+            name="input",
+            datatype="GPFeatureLayer",
+            parameterType="Required",
+            direction="Input")
+        input.filter.list = ["Point"]
+
+        field = arcpy.Parameter(
+            displayName="Field Name",
+            name="field",
+            datatype="Field",
+            parameterType="Optional",
+            direction="Input")
+        field.parameterDependencies = [input.name]
+
+        use_z = arcpy.Parameter(
+            displayName="Use Shapefile 'z' values?",
+            name="use_z",
+            datatype="GPBoolean",
+            parameterType="Optional",
+            direction="Input")
+
+        use_z.value = "false"
+
+        output = arcpy.Parameter(
+            displayName="Output Raster File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        cell_size = arcpy.Parameter(
+            displayName="Cell Size",
+            name="cell_size",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        base = arcpy.Parameter(
+            displayName="Base Raster File",
+            name="base",
+            datatype="GPRasterLayer",
+            parameterType="Optional",
+            direction="Input")
+
+        clip = arcpy.Parameter(
+            displayName="Clip to convex hull?",
+            name="clip",
+            datatype="GPBoolean",
+            parameterType="Optional",
+            direction="Input")
+
+        clip.value = "true"
+
+        params = [input, field, use_z, output, cell_size, base, clip]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
+        field = parameters[1].valueAsText
+        use_z = parameters[2].valueAsText
+        output = parameters[3].valueAsText
+        cell_size = parameters[4].valueAsText
+        base = parameters[5].valueAsText
+        desc = arcpy.Describe(base)
+        base = desc.catalogPath
+        clip = parameters[6].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.natural_neighbour_interpolation(input, field=field, use_z=use_z, output=output, cell_size=cell_size, base=base, clip=clip)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class NearestNeighbourGridding(object):
     def __init__(self):
         self.label = "Nearest Neighbour Gridding"
@@ -4784,10 +4901,24 @@ class TinGridding(object):
             displayName="Grid Resolution",
             name="resolution",
             datatype="GPDouble",
-            parameterType="Required",
+            parameterType="Optional",
             direction="Input")
 
-        params = [input, field, use_z, output, resolution]
+        base = arcpy.Parameter(
+            displayName="Base Raster File",
+            name="base",
+            datatype="GPRasterLayer",
+            parameterType="Optional",
+            direction="Input")
+
+        max_triangle_edge_length = arcpy.Parameter(
+            displayName="Maximum Triangle Edge Length",
+            name="max_triangle_edge_length",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [input, field, use_z, output, resolution, base, max_triangle_edge_length]
 
         return params
 
@@ -4805,10 +4936,14 @@ class TinGridding(object):
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
         resolution = parameters[4].valueAsText
+        base = parameters[5].valueAsText
+        desc = arcpy.Describe(base)
+        base = desc.catalogPath
+        max_triangle_edge_length = parameters[6].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.tin_gridding(input, field=field, use_z=use_z, output=output, resolution=resolution)
+        wbt.tin_gridding(input, field=field, use_z=use_z, output=output, resolution=resolution, base=base, max_triangle_edge_length=max_triangle_edge_length)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11271,6 +11406,97 @@ class BreachDepressions(object):
         return
 
 
+class BreachDepressionsLeastCost(object):
+    def __init__(self):
+        self.label = "Breach Depressions Least Cost"
+        self.description = "Breaches the depressions in a DEM using a least-cost pathway method. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#BreachDepressionsLeastCost' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/breach_depressions_least_cost.rs' target='_blank'>GitHub</a>."
+        self.category = "Hydrological Analysis"
+
+    def getParameterInfo(self):
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        radius = arcpy.Parameter(
+            displayName="Maximum Search Window Radius (cells)",
+            name="radius",
+            datatype="GPLong",
+            parameterType="Required",
+            direction="Input")
+
+        max_cost = arcpy.Parameter(
+            displayName="Maximum Breach Cost (z units)",
+            name="max_cost",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        min_dist = arcpy.Parameter(
+            displayName="Minimize breach distances?",
+            name="min_dist",
+            datatype="GPBoolean",
+            parameterType="Optional",
+            direction="Input")
+
+        min_dist.value = "true"
+
+        flat_increment = arcpy.Parameter(
+            displayName="Flat increment value (z units)",
+            name="flat_increment",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        fill = arcpy.Parameter(
+            displayName="Fill unbreached depressions?",
+            name="fill",
+            datatype="GPBoolean",
+            parameterType="Optional",
+            direction="Input")
+
+        fill.value = "true"
+
+        params = [dem, output, radius, max_cost, min_dist, flat_increment, fill]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
+        output = parameters[1].valueAsText
+        radius = parameters[2].valueAsText
+        max_cost = parameters[3].valueAsText
+        min_dist = parameters[4].valueAsText
+        flat_increment = parameters[5].valueAsText
+        fill = parameters[6].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.breach_depressions_least_cost(dem, output=output, radius=radius, max_cost=max_cost, min_dist=min_dist, flat_increment=flat_increment, fill=fill)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class BreachSingleCellPits(object):
     def __init__(self):
         self.label = "Breach Single Cell Pits"
@@ -11312,6 +11538,83 @@ class BreachSingleCellPits(object):
         result = StringIO()
         sys.stdout = result
         wbt.breach_single_cell_pits(dem, output=output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
+class BurnStreamsAtRoads(object):
+    def __init__(self):
+        self.label = "Burn Streams At Roads"
+        self.description = "Burns-in streams at the sites of road embankments. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#BurnStreamsAtRoads' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/burn_streams_at_roads.rs' target='_blank'>GitHub</a>."
+        self.category = "Hydrological Analysis"
+
+    def getParameterInfo(self):
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        streams = arcpy.Parameter(
+            displayName="Input Vector Streams File",
+            name="streams",
+            datatype="GPFeatureLayer",
+            parameterType="Required",
+            direction="Input")
+        streams.filter.list = ["Polyline"]
+
+        roads = arcpy.Parameter(
+            displayName="Input Vector Roads File",
+            name="roads",
+            datatype="GPFeatureLayer",
+            parameterType="Required",
+            direction="Input")
+        roads.filter.list = ["Polyline"]
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        width = arcpy.Parameter(
+            displayName="Road Embankment Width",
+            name="width",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [dem, streams, roads, output, width]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
+        streams = parameters[1].valueAsText
+        desc = arcpy.Describe(streams)
+        streams = desc.catalogPath
+        roads = parameters[2].valueAsText
+        desc = arcpy.Describe(roads)
+        roads = desc.catalogPath
+        output = parameters[3].valueAsText
+        width = parameters[4].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.burn_streams_at_roads(dem, streams=streams, roads=roads, output=output, width=width)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12273,6 +12576,79 @@ class FillDepressions(object):
             parameterType="Optional",
             direction="Input")
 
+        max_depth = arcpy.Parameter(
+            displayName="Maximum depth (z units)",
+            name="max_depth",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [dem, output, fix_flats, flat_increment, max_depth]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
+        output = parameters[1].valueAsText
+        fix_flats = parameters[2].valueAsText
+        flat_increment = parameters[3].valueAsText
+        max_depth = parameters[4].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.fill_depressions(dem, output=output, fix_flats=fix_flats, flat_increment=flat_increment, max_depth=max_depth)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
+class FillDepressionsWangAndLui(object):
+    def __init__(self):
+        self.label = "Fill Depressions Wang And Lui"
+        self.description = "Fills all of the depressions in a DEM. Depression breaching should be preferred in most cases. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#FillDepressionsWangAndLui' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/fill_depressions_wang_and_lui.rs' target='_blank'>GitHub</a>."
+        self.category = "Hydrological Analysis"
+
+    def getParameterInfo(self):
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        fix_flats = arcpy.Parameter(
+            displayName="Fix flat areas?",
+            name="fix_flats",
+            datatype="GPBoolean",
+            parameterType="Optional",
+            direction="Input")
+
+        fix_flats.value = "true"
+
+        flat_increment = arcpy.Parameter(
+            displayName="Flat increment value (z units)",
+            name="flat_increment",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
         params = [dem, output, fix_flats, flat_increment]
 
         return params
@@ -12293,7 +12669,7 @@ class FillDepressions(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.fill_depressions(dem, output=output, fix_flats=fix_flats, flat_increment=flat_increment)
+        wbt.fill_depressions_wang_and_lui(dem, output=output, fix_flats=fix_flats, flat_increment=flat_increment)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13264,9 +13640,9 @@ class Sink(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        dem = arcpy.Parameter(
+        input = arcpy.Parameter(
             displayName="Input DEM File",
-            name="dem",
+            name="input",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -13286,7 +13662,7 @@ class Sink(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [dem, output, zero_background]
+        params = [input, output, zero_background]
 
         return params
 
@@ -13297,15 +13673,15 @@ class Sink(object):
         return
 
     def execute(self, parameters, messages):
-        dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        input = parameters[0].valueAsText
+        desc = arcpy.Describe(input)
+        input = desc.catalogPath
         output = parameters[1].valueAsText
         zero_background = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.sink(dem, output=output, zero_background=zero_background)
+        wbt.sink(input, output=output, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13723,6 +14099,53 @@ class UnnestBasins(object):
         result = StringIO()
         sys.stdout = result
         wbt.unnest_basins(d8_pntr, pour_pts=pour_pts, output=output, esri_pntr=esri_pntr)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
+class UpslopeDepressionStorage(object):
+    def __init__(self):
+        self.label = "Upslope Depression Storage"
+        self.description = "Estimates the average upslope depression storage depth. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/hydrological_analysis.html#UpslopeDepressionStorage' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/upslope_depression_storage.rs' target='_blank'>GitHub</a>."
+        self.category = "Hydrological Analysis"
+
+    def getParameterInfo(self):
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        params = [dem, output]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        desc = arcpy.Describe(dem)
+        dem = desc.catalogPath
+        output = parameters[1].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.upslope_depression_storage(dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18403,6 +18826,63 @@ class StandardDeviationContrastStretch(object):
         return
 
 
+class ClassifyBuildingsInLidar(object):
+    def __init__(self):
+        self.label = "Classify Buildings In Lidar"
+        self.description = "Reclassifies a LiDAR points that lie within vector building footprints. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#ClassifyBuildingsInLidar' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/classify_buildings.rs' target='_blank'>GitHub</a>."
+        self.category = "LiDAR Tools"
+
+    def getParameterInfo(self):
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Input")
+        input.filter.list = ["las", "zip"]
+
+        buildings = arcpy.Parameter(
+            displayName="Input Building Polygon File",
+            name="buildings",
+            datatype="GPFeatureLayer",
+            parameterType="Required",
+            direction="Input")
+        buildings.filter.list = ["Polygon"]
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["las", "zip"]
+
+        params = [input, buildings, output]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        buildings = parameters[1].valueAsText
+        desc = arcpy.Describe(buildings)
+        buildings = desc.catalogPath
+        output = parameters[2].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.classify_buildings_in_lidar(input, buildings=buildings, output=output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class ClassifyOverlapPoints(object):
     def __init__(self):
         self.label = "Classify Overlap Points"
@@ -19796,12 +20276,16 @@ class LidarInfo(object):
             parameterType="Optional",
             direction="Input")
 
+        vlr.value = "true"
+
         geokeys = arcpy.Parameter(
             displayName="Print the geokeys?",
             name="geokeys",
             datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
+
+        geokeys.value = "true"
 
         params = [input, output, vlr, geokeys]
 
@@ -20504,6 +20988,154 @@ class LidarRemoveOutliers(object):
         result = StringIO()
         sys.stdout = result
         wbt.lidar_remove_outliers(input, output=output, radius=radius, elev_diff=elev_diff, use_median=use_median, classify=classify)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
+class LidarRfbInterpolation(object):
+    def __init__(self):
+        self.label = "Lidar Rfb Interpolation"
+        self.description = "Interpolates LAS files using a radial basis function (RFB) scheme. When the input/output parameters are not specified, the tool interpolates all LAS files contained within the working directory. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarRfbInterpolation' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/lidar_radial_basis_function_interpolation.rs' target='_blank'>GitHub</a>."
+        self.category = "LiDAR Tools"
+
+    def getParameterInfo(self):
+        input = arcpy.Parameter(
+            displayName="Input File",
+            name="input",
+            datatype="DEFile",
+            parameterType="Optional",
+            direction="Input")
+        input.filter.list = ["las", "zip"]
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        parameter = arcpy.Parameter(
+            displayName="Interpolation Parameter",
+            name="parameter",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+        parameter.filter.type = "ValueList"
+        parameter.filter.list = ['elevation', 'intensity', 'class', 'return_number', 'number_of_returns', 'scan angle', 'rgb', 'user data']
+
+        parameter.value = "elevation"
+
+        returns = arcpy.Parameter(
+            displayName="Point Returns Included",
+            name="returns",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+        returns.filter.type = "ValueList"
+        returns.filter.list = ['all', 'last', 'first']
+
+        returns.value = "all"
+
+        resolution = arcpy.Parameter(
+            displayName="Grid Resolution",
+            name="resolution",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        resolution.value = "1.0"
+
+        radius = arcpy.Parameter(
+            displayName="Search Radius",
+            name="radius",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        radius.value = "2.5"
+
+        exclude_cls = arcpy.Parameter(
+            displayName="Exclusion Classes (0-18, based on LAS spec; e.g. 3,4,5,6,7)",
+            name="exclude_cls",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        minz = arcpy.Parameter(
+            displayName="Minimum Elevation Value",
+            name="minz",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        maxz = arcpy.Parameter(
+            displayName="Maximum Elevation Value",
+            name="maxz",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        func_type = arcpy.Parameter(
+            displayName="Radial Basis Function Type",
+            name="func_type",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+        func_type.filter.type = "ValueList"
+        func_type.filter.list = ['ThinPlateSpline', 'PolyHarmonic', 'Gaussian', 'MultiQuadric', 'InverseMultiQuadric']
+
+        func_type.value = "ThinPlateSpline"
+
+        poly_order = arcpy.Parameter(
+            displayName="Polynomial Order",
+            name="poly_order",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+        poly_order.filter.type = "ValueList"
+        poly_order.filter.list = ['none', 'constant', 'affine']
+
+        poly_order.value = "none"
+
+        weight = arcpy.Parameter(
+            displayName="Weight",
+            name="weight",
+            datatype="GPDouble",
+            parameterType="Required",
+            direction="Input")
+
+        weight.value = "0.1"
+
+        params = [input, output, parameter, returns, resolution, radius, exclude_cls, minz, maxz, func_type, poly_order, weight]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        input = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        parameter = parameters[2].valueAsText
+        returns = parameters[3].valueAsText
+        resolution = parameters[4].valueAsText
+        radius = parameters[5].valueAsText
+        exclude_cls = parameters[6].valueAsText
+        minz = parameters[7].valueAsText
+        maxz = parameters[8].valueAsText
+        func_type = parameters[9].valueAsText
+        poly_order = parameters[10].valueAsText
+        weight = parameters[11].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_rfb_interpolation(input, output=output, parameter=parameter, returns=returns, resolution=resolution, radius=radius, exclude_cls=exclude_cls, minz=minz, maxz=maxz, func_type=func_type, poly_order=poly_order, weight=weight)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22850,6 +23482,94 @@ class ImageCorrelation(object):
         result = StringIO()
         sys.stdout = result
         wbt.image_correlation(inputs, output=output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
+class ImageCorrelationNeighbourhoodAnalysis(object):
+    def __init__(self):
+        self.label = "Image Correlation Neighbourhood Analysis"
+        self.description = "Performs image correlation on two input images neighbourhood search windows. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/mathand_stats_tools.html#ImageCorrelationNeighbourhoodAnalysis' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/math_stat_analysis/image_correlation_neighbourhood_analysis.rs' target='_blank'>GitHub</a>."
+        self.category = "Math and Stats Tools"
+
+    def getParameterInfo(self):
+        input1 = arcpy.Parameter(
+            displayName="Image 1",
+            name="input1",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Image 2",
+            name="input2",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        output1 = arcpy.Parameter(
+            displayName="Output Correlation File",
+            name="output1",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output1.filter.list = ["tif"]
+
+        output2 = arcpy.Parameter(
+            displayName="Output Significance File",
+            name="output2",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output2.filter.list = ["tif"]
+
+        filter = arcpy.Parameter(
+            displayName="Filter Size",
+            name="filter",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+
+        filter.value = "11"
+
+        stat = arcpy.Parameter(
+            displayName="Correlation Statistic Type",
+            name="stat",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+        stat.filter.type = "ValueList"
+        stat.filter.list = ['pearson', 'kendall', 'spearman']
+
+        stat.value = "pearson"
+
+        params = [input1, input2, output1, output2, filter, stat]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        return
+
+    def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        desc = arcpy.Describe(input1)
+        input1 = desc.catalogPath
+        input2 = parameters[1].valueAsText
+        desc = arcpy.Describe(input2)
+        input2 = desc.catalogPath
+        output1 = parameters[2].valueAsText
+        output2 = parameters[3].valueAsText
+        filter = parameters[4].valueAsText
+        stat = parameters[5].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.image_correlation_neighbourhood_analysis(input1, input2=input2, output1=output1, output2=output2, filter=filter, stat=stat)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25595,83 +26315,6 @@ class ZonalStatistics(object):
         result = StringIO()
         sys.stdout = result
         wbt.zonal_statistics(input, features=features, output=output, stat=stat, out_table=out_table)
-        sys.stdout = old_stdout
-        result_string = result.getvalue()
-        messages.addMessage(result_string)
-        return
-
-
-class BurnStreamsAtRoads(object):
-    def __init__(self):
-        self.label = "Burn Streams At Roads"
-        self.description = "Rasterizes vector streams based on Lindsay (2016) method. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/stream_network_analysis.html#BurnStreamsAtRoads' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/hydro_analysis/burn_streams_at_roads.rs' target='_blank'>GitHub</a>."
-        self.category = "Stream Network Analysis"
-
-    def getParameterInfo(self):
-        dem = arcpy.Parameter(
-            displayName="Input DEM File",
-            name="dem",
-            datatype="GPRasterLayer",
-            parameterType="Required",
-            direction="Input")
-
-        streams = arcpy.Parameter(
-            displayName="Input Vector Streams File",
-            name="streams",
-            datatype="GPFeatureLayer",
-            parameterType="Required",
-            direction="Input")
-        streams.filter.list = ["Polyline"]
-
-        roads = arcpy.Parameter(
-            displayName="Input Vector Roads File",
-            name="roads",
-            datatype="GPFeatureLayer",
-            parameterType="Required",
-            direction="Input")
-        roads.filter.list = ["Polyline"]
-
-        output = arcpy.Parameter(
-            displayName="Output File",
-            name="output",
-            datatype="DEFile",
-            parameterType="Required",
-            direction="Output")
-        output.filter.list = ["tif"]
-
-        width = arcpy.Parameter(
-            displayName="Road Embankment Width",
-            name="width",
-            datatype="GPDouble",
-            parameterType="Optional",
-            direction="Input")
-
-        params = [dem, streams, roads, output, width]
-
-        return params
-
-    def updateParameters(self, parameters):
-        return
-
-    def updateMessages(self, parameters):
-        return
-
-    def execute(self, parameters, messages):
-        dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
-        streams = parameters[1].valueAsText
-        desc = arcpy.Describe(streams)
-        streams = desc.catalogPath
-        roads = parameters[2].valueAsText
-        desc = arcpy.Describe(roads)
-        roads = desc.catalogPath
-        output = parameters[3].valueAsText
-        width = parameters[4].valueAsText
-        old_stdout = sys.stdout
-        result = StringIO()
-        sys.stdout = result
-        wbt.burn_streams_at_roads(dem, streams=streams, roads=roads, output=output, width=width)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
