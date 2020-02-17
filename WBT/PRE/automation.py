@@ -84,7 +84,10 @@ def get_tool_params(tool_name):
         param_dict['name'] = name
 
         flags = item[index_flags - 1 : index_description -2].replace('"flags":', '')
-        if flags.count("--") == 1 :
+        
+        if ("\"-i\"" in flags) and ("--input" in flags) :
+            flags = "i"
+        elif flags.count("--") == 1 :
             flags = flags.split('--')[1][: -2]
         elif flags.count("--") == 2:
             flags = flags.split('--')[2][: -2]
@@ -131,7 +134,7 @@ def generate_tool_template(tool):
     '''
     tool_params = []
     for index, item in enumerate(tool['parameters']):
-        if index == 0:
+        if index < 0:
             tool_params.append(item)
         else:
             item_dup = "{}={}".format(item, item)
@@ -229,6 +232,11 @@ def define_tool_params(params):
             lines.append('        {}.filter.list = {}\n'.format(param, data_type['data_filter']))
 
         if (items['default_value'] != 'null') and (len(items['default_value']) > 0):
+            if "false" in items['default_value']:
+                items['default_value'] = False
+            elif "true" in items['default_value']:
+                items['default_value'] = True
+
             lines.append('\n        {}.value = {}\n\n'.format(param, items['default_value']))
         else:
             lines.append('\n')

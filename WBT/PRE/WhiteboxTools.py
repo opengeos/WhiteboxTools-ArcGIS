@@ -1247,15 +1247,15 @@ class AddPointCoordinatesToTable(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector Points File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Point"]
+        i.filter.list = ["Point"]
 
-        params = [input]
+        params = [i]
 
         return params
 
@@ -1266,13 +1266,13 @@ class AddPointCoordinatesToTable(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.add_point_coordinates_to_table(input)
+        wbt.add_point_coordinates_to_table(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1286,9 +1286,9 @@ class CleanVector(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
@@ -1300,7 +1300,7 @@ class CleanVector(object):
             parameterType="Required",
             direction="Output")
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -1311,14 +1311,14 @@ class CleanVector(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.clean_vector(input, output=output)
+        wbt.clean_vector(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1332,9 +1332,9 @@ class ConvertNodataToZero(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -1347,7 +1347,7 @@ class ConvertNodataToZero(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -1358,14 +1358,14 @@ class ConvertNodataToZero(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.convert_nodata_to_zero(input, output=output)
+        wbt.convert_nodata_to_zero(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1379,9 +1379,9 @@ class ConvertRasterFormat(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -1394,7 +1394,7 @@ class ConvertRasterFormat(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -1405,14 +1405,14 @@ class ConvertRasterFormat(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.convert_raster_format(input, output=output)
+        wbt.convert_raster_format(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1426,13 +1426,13 @@ class CsvPointsToVector(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input CSV File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["csv"]
+        i.filter.list = ["csv"]
 
         output = arcpy.Parameter(
             displayName="Output Vector File",
@@ -1466,7 +1466,7 @@ class CsvPointsToVector(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [input, output, xfield, yfield, epsg]
+        params = [i, output, xfield, yfield, epsg]
 
         return params
 
@@ -1477,7 +1477,7 @@ class CsvPointsToVector(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         xfield = parameters[2].valueAsText
         yfield = parameters[3].valueAsText
@@ -1485,7 +1485,7 @@ class CsvPointsToVector(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.csv_points_to_vector(input, output=output, xfield=xfield, yfield=yfield, epsg=epsg)
+        wbt.csv_points_to_vector(i=i, output=output, xfield=xfield, yfield=yfield, epsg=epsg)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1499,9 +1499,9 @@ class ExportTableToCsv(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
@@ -1521,9 +1521,9 @@ class ExportTableToCsv(object):
             parameterType="Optional",
             direction="Input")
 
-        headers.value = "true"
+        headers.value = True
 
-        params = [input, output, headers]
+        params = [i, output, headers]
 
         return params
 
@@ -1534,15 +1534,15 @@ class ExportTableToCsv(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         headers = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.export_table_to_csv(input, output=output, headers=headers)
+        wbt.export_table_to_csv(i=i, output=output, headers=headers)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1617,7 +1617,7 @@ class JoinTables(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.join_tables(input1, pkey=pkey, input2=input2, fkey=fkey, import_field=import_field)
+        wbt.join_tables(input1=input1, pkey=pkey, input2=input2, fkey=fkey, import_field=import_field)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1631,13 +1631,13 @@ class LinesToPolygons(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Line File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Polyline"]
+        i.filter.list = ["Polyline"]
 
         output = arcpy.Parameter(
             displayName="Output Polygon File",
@@ -1647,7 +1647,7 @@ class LinesToPolygons(object):
             direction="Output")
         output.filter.list = ["Polygon"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -1658,14 +1658,14 @@ class LinesToPolygons(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lines_to_polygons(input, output=output)
+        wbt.lines_to_polygons(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1679,9 +1679,9 @@ class MergeTableWithCsv(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Primary Vector File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
@@ -1718,7 +1718,7 @@ class MergeTableWithCsv(object):
             direction="Input")
         import_field.parameterDependencies = [csv.name]
 
-        params = [input, pkey, csv, fkey, import_field]
+        params = [i, pkey, csv, fkey, import_field]
 
         return params
 
@@ -1729,9 +1729,9 @@ class MergeTableWithCsv(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         pkey = parameters[1].valueAsText
         csv = parameters[2].valueAsText
         fkey = parameters[3].valueAsText
@@ -1739,7 +1739,7 @@ class MergeTableWithCsv(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.merge_table_with_csv(input, pkey=pkey, csv=csv, fkey=fkey, import_field=import_field)
+        wbt.merge_table_with_csv(i=i, pkey=pkey, csv=csv, fkey=fkey, import_field=import_field)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1753,13 +1753,13 @@ class MergeVectors(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        inputs = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector Files",
-            name="inputs",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        inputs.multiValue = True
+        i.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output Vector File",
@@ -1768,7 +1768,7 @@ class MergeVectors(object):
             parameterType="Required",
             direction="Output")
 
-        params = [inputs, output]
+        params = [i, output]
 
         return params
 
@@ -1779,12 +1779,12 @@ class MergeVectors(object):
         return
 
     def execute(self, parameters, messages):
-        inputs = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.merge_vectors(inputs, output=output)
+        wbt.merge_vectors(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1798,9 +1798,9 @@ class ModifyNoDataValue(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -1814,7 +1814,7 @@ class ModifyNoDataValue(object):
 
         new_value.value = "-32768.0"
 
-        params = [input, new_value]
+        params = [i, new_value]
 
         return params
 
@@ -1825,14 +1825,14 @@ class ModifyNoDataValue(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         new_value = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.modify_no_data_value(input, new_value=new_value)
+        wbt.modify_no_data_value(i=i, new_value=new_value)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1846,9 +1846,9 @@ class MultiPartToSinglePart(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Line or Polygon File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
@@ -1867,9 +1867,9 @@ class MultiPartToSinglePart(object):
             parameterType="Optional",
             direction="Input")
 
-        exclude_holes.value = "true"
+        exclude_holes.value = True
 
-        params = [input, output, exclude_holes]
+        params = [i, output, exclude_holes]
 
         return params
 
@@ -1880,15 +1880,15 @@ class MultiPartToSinglePart(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         exclude_holes = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.multi_part_to_single_part(input, output=output, exclude_holes=exclude_holes)
+        wbt.multi_part_to_single_part(i=i, output=output, exclude_holes=exclude_holes)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1957,7 +1957,7 @@ class NewRasterFromBase(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.new_raster_from_base(base, output=output, value=value, data_type=data_type)
+        wbt.new_raster_from_base(base=base, output=output, value=value, data_type=data_type)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1971,13 +1971,13 @@ class PolygonsToLines(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Polygon File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Polygon"]
+        i.filter.list = ["Polygon"]
 
         output = arcpy.Parameter(
             displayName="Output Line File",
@@ -1987,7 +1987,7 @@ class PolygonsToLines(object):
             direction="Output")
         output.filter.list = ["Polyline"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -1998,14 +1998,14 @@ class PolygonsToLines(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.polygons_to_lines(input, output=output)
+        wbt.polygons_to_lines(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2019,14 +2019,14 @@ class PrintGeoTiffTags(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input GeoTIFF Raster File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
-        params = [input]
+        params = [i]
 
         return params
 
@@ -2037,13 +2037,13 @@ class PrintGeoTiffTags(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.print_geo_tiff_tags(input)
+        wbt.print_geo_tiff_tags(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2057,9 +2057,9 @@ class RasterToVectorLines(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Raster Lines File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -2072,7 +2072,7 @@ class RasterToVectorLines(object):
             direction="Output")
         output.filter.list = ["Polyline"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -2083,14 +2083,14 @@ class RasterToVectorLines(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.raster_to_vector_lines(input, output=output)
+        wbt.raster_to_vector_lines(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2104,9 +2104,9 @@ class RasterToVectorPoints(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Raster File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -2119,7 +2119,7 @@ class RasterToVectorPoints(object):
             direction="Output")
         output.filter.list = ["Point"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -2130,14 +2130,14 @@ class RasterToVectorPoints(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.raster_to_vector_points(input, output=output)
+        wbt.raster_to_vector_points(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2151,14 +2151,14 @@ class ReinitializeAttributeTable(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
 
-        params = [input]
+        params = [i]
 
         return params
 
@@ -2169,13 +2169,13 @@ class ReinitializeAttributeTable(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.reinitialize_attribute_table(input)
+        wbt.reinitialize_attribute_table(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2189,13 +2189,13 @@ class RemovePolygonHoles(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector Polygon File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Polygon"]
+        i.filter.list = ["Polygon"]
 
         output = arcpy.Parameter(
             displayName="Output Polygon File",
@@ -2205,7 +2205,7 @@ class RemovePolygonHoles(object):
             direction="Output")
         output.filter.list = ["Polygon"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -2216,14 +2216,14 @@ class RemovePolygonHoles(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.remove_polygon_holes(input, output=output)
+        wbt.remove_polygon_holes(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2237,9 +2237,9 @@ class SetNodataValue(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -2261,7 +2261,7 @@ class SetNodataValue(object):
 
         back_value.value = "0.0"
 
-        params = [input, output, back_value]
+        params = [i, output, back_value]
 
         return params
 
@@ -2272,15 +2272,15 @@ class SetNodataValue(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         back_value = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.set_nodata_value(input, output=output, back_value=back_value)
+        wbt.set_nodata_value(i=i, output=output, back_value=back_value)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2294,9 +2294,9 @@ class SinglePartToMultiPart(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Line or Polygon File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
@@ -2316,7 +2316,7 @@ class SinglePartToMultiPart(object):
             parameterType="Required",
             direction="Output")
 
-        params = [input, field, output]
+        params = [i, field, output]
 
         return params
 
@@ -2327,15 +2327,15 @@ class SinglePartToMultiPart(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.single_part_to_multi_part(input, field=field, output=output)
+        wbt.single_part_to_multi_part(i=i, field=field, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2349,13 +2349,13 @@ class VectorLinesToRaster(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector Lines File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Polyline"]
+        i.filter.list = ["Polyline"]
 
         field = arcpy.Parameter(
             displayName="Field Name",
@@ -2382,7 +2382,7 @@ class VectorLinesToRaster(object):
             parameterType="Optional",
             direction="Input")
 
-        nodata.value = "true"
+        nodata.value = True
 
         cell_size = arcpy.Parameter(
             displayName="Cell Size",
@@ -2398,7 +2398,7 @@ class VectorLinesToRaster(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [input, field, output, nodata, cell_size, base]
+        params = [i, field, output, nodata, cell_size, base]
 
         return params
 
@@ -2409,9 +2409,9 @@ class VectorLinesToRaster(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         nodata = parameters[3].valueAsText
@@ -2422,7 +2422,7 @@ class VectorLinesToRaster(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.vector_lines_to_raster(input, field=field, output=output, nodata=nodata, cell_size=cell_size, base=base)
+        wbt.vector_lines_to_raster(i=i, field=field, output=output, nodata=nodata, cell_size=cell_size, base=base)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2436,13 +2436,13 @@ class VectorPointsToRaster(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector Points File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Point"]
+        i.filter.list = ["Point"]
 
         field = arcpy.Parameter(
             displayName="Field Name",
@@ -2480,7 +2480,7 @@ class VectorPointsToRaster(object):
             parameterType="Optional",
             direction="Input")
 
-        nodata.value = "true"
+        nodata.value = True
 
         cell_size = arcpy.Parameter(
             displayName="Cell Size",
@@ -2496,7 +2496,7 @@ class VectorPointsToRaster(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [input, field, output, assign, nodata, cell_size, base]
+        params = [i, field, output, assign, nodata, cell_size, base]
 
         return params
 
@@ -2507,9 +2507,9 @@ class VectorPointsToRaster(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         assign = parameters[3].valueAsText
@@ -2521,7 +2521,7 @@ class VectorPointsToRaster(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.vector_points_to_raster(input, field=field, output=output, assign=assign, nodata=nodata, cell_size=cell_size, base=base)
+        wbt.vector_points_to_raster(i=i, field=field, output=output, assign=assign, nodata=nodata, cell_size=cell_size, base=base)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2535,13 +2535,13 @@ class VectorPolygonsToRaster(object):
         self.category = "Data Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector Polygon File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Polygon"]
+        i.filter.list = ["Polygon"]
 
         field = arcpy.Parameter(
             displayName="Field Name",
@@ -2568,7 +2568,7 @@ class VectorPolygonsToRaster(object):
             parameterType="Optional",
             direction="Input")
 
-        nodata.value = "true"
+        nodata.value = True
 
         cell_size = arcpy.Parameter(
             displayName="Cell Size",
@@ -2584,7 +2584,7 @@ class VectorPolygonsToRaster(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [input, field, output, nodata, cell_size, base]
+        params = [i, field, output, nodata, cell_size, base]
 
         return params
 
@@ -2595,9 +2595,9 @@ class VectorPolygonsToRaster(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         nodata = parameters[3].valueAsText
@@ -2608,7 +2608,7 @@ class VectorPolygonsToRaster(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.vector_polygons_to_raster(input, field=field, output=output, nodata=nodata, cell_size=cell_size, base=base)
+        wbt.vector_polygons_to_raster(i=i, field=field, output=output, nodata=nodata, cell_size=cell_size, base=base)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2622,9 +2622,9 @@ class AggregateRaster(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -2657,7 +2657,7 @@ class AggregateRaster(object):
 
         type.value = "mean"
 
-        params = [input, output, agg_factor, type]
+        params = [i, output, agg_factor, type]
 
         return params
 
@@ -2668,16 +2668,16 @@ class AggregateRaster(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         agg_factor = parameters[2].valueAsText
         type = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.aggregate_raster(input, output=output, agg_factor=agg_factor, type=type)
+        wbt.aggregate_raster(i=i, output=output, agg_factor=agg_factor, type=type)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2691,13 +2691,13 @@ class BlockMaximumGridding(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector Points File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Point"]
+        i.filter.list = ["Point"]
 
         field = arcpy.Parameter(
             displayName="Field Name",
@@ -2714,7 +2714,7 @@ class BlockMaximumGridding(object):
             parameterType="Optional",
             direction="Input")
 
-        use_z.value = "false"
+        use_z.value = False
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -2738,7 +2738,7 @@ class BlockMaximumGridding(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [input, field, use_z, output, cell_size, base]
+        params = [i, field, use_z, output, cell_size, base]
 
         return params
 
@@ -2749,9 +2749,9 @@ class BlockMaximumGridding(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
@@ -2762,7 +2762,7 @@ class BlockMaximumGridding(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.block_maximum_gridding(input, field=field, use_z=use_z, output=output, cell_size=cell_size, base=base)
+        wbt.block_maximum_gridding(i=i, field=field, use_z=use_z, output=output, cell_size=cell_size, base=base)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2776,13 +2776,13 @@ class BlockMinimumGridding(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector Points File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Point"]
+        i.filter.list = ["Point"]
 
         field = arcpy.Parameter(
             displayName="Field Name",
@@ -2799,7 +2799,7 @@ class BlockMinimumGridding(object):
             parameterType="Optional",
             direction="Input")
 
-        use_z.value = "false"
+        use_z.value = False
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -2823,7 +2823,7 @@ class BlockMinimumGridding(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [input, field, use_z, output, cell_size, base]
+        params = [i, field, use_z, output, cell_size, base]
 
         return params
 
@@ -2834,9 +2834,9 @@ class BlockMinimumGridding(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
@@ -2847,7 +2847,7 @@ class BlockMinimumGridding(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.block_minimum_gridding(input, field=field, use_z=use_z, output=output, cell_size=cell_size, base=base)
+        wbt.block_minimum_gridding(i=i, field=field, use_z=use_z, output=output, cell_size=cell_size, base=base)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2861,9 +2861,9 @@ class Centroid(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -2883,7 +2883,7 @@ class Centroid(object):
             parameterType="Required",
             direction="Input")
 
-        params = [input, output, text_output]
+        params = [i, output, text_output]
 
         return params
 
@@ -2894,15 +2894,15 @@ class Centroid(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         text_output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.centroid(input, output=output, text_output=text_output)
+        wbt.centroid(i=i, output=output, text_output=text_output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2916,9 +2916,9 @@ class CentroidVector(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
@@ -2930,7 +2930,7 @@ class CentroidVector(object):
             parameterType="Required",
             direction="Output")
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -2941,14 +2941,14 @@ class CentroidVector(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.centroid_vector(input, output=output)
+        wbt.centroid_vector(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2962,9 +2962,9 @@ class Clump(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -2984,7 +2984,7 @@ class Clump(object):
             parameterType="Required",
             direction="Input")
 
-        diag.value = "true"
+        diag.value = True
 
         zero_back = arcpy.Parameter(
             displayName="Treat zero values as background?",
@@ -2993,7 +2993,7 @@ class Clump(object):
             parameterType="Required",
             direction="Input")
 
-        params = [input, output, diag, zero_back]
+        params = [i, output, diag, zero_back]
 
         return params
 
@@ -3004,16 +3004,16 @@ class Clump(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         diag = parameters[2].valueAsText
         zero_back = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.clump(input, output=output, diag=diag, zero_back=zero_back)
+        wbt.clump(i=i, output=output, diag=diag, zero_back=zero_back)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3027,13 +3027,13 @@ class ConstructVectorTin(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector Points File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Point"]
+        i.filter.list = ["Point"]
 
         field = arcpy.Parameter(
             displayName="Field Name",
@@ -3050,7 +3050,7 @@ class ConstructVectorTin(object):
             parameterType="Optional",
             direction="Input")
 
-        use_z.value = "false"
+        use_z.value = False
 
         output = arcpy.Parameter(
             displayName="Output Polygon File",
@@ -3067,7 +3067,7 @@ class ConstructVectorTin(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [input, field, use_z, output, max_triangle_edge_length]
+        params = [i, field, use_z, output, max_triangle_edge_length]
 
         return params
 
@@ -3078,9 +3078,9 @@ class ConstructVectorTin(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
@@ -3088,7 +3088,7 @@ class ConstructVectorTin(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.construct_vector_tin(input, field=field, use_z=use_z, output=output, max_triangle_edge_length=max_triangle_edge_length)
+        wbt.construct_vector_tin(i=i, field=field, use_z=use_z, output=output, max_triangle_edge_length=max_triangle_edge_length)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3102,9 +3102,9 @@ class CreateHexagonalVectorGrid(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Base File",
-            name="input",
+            name="i",
             datatype=["DERasterDataset", "DEShapefile"],
             parameterType="Required",
             direction="Input")
@@ -3135,7 +3135,7 @@ class CreateHexagonalVectorGrid(object):
 
         orientation.value = "horizontal"
 
-        params = [input, output, width, orientation]
+        params = [i, output, width, orientation]
 
         return params
 
@@ -3146,14 +3146,14 @@ class CreateHexagonalVectorGrid(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         width = parameters[2].valueAsText
         orientation = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.create_hexagonal_vector_grid(input, output=output, width=width, orientation=orientation)
+        wbt.create_hexagonal_vector_grid(i=i, output=output, width=width, orientation=orientation)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3230,7 +3230,7 @@ class CreatePlane(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.create_plane(base, output=output, gradient=gradient, aspect=aspect, constant=constant)
+        wbt.create_plane(base=base, output=output, gradient=gradient, aspect=aspect, constant=constant)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3244,9 +3244,9 @@ class CreateRectangularVectorGrid(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Base File",
-            name="input",
+            name="i",
             datatype=["DERasterDataset", "DEShapefile"],
             parameterType="Required",
             direction="Input")
@@ -3291,7 +3291,7 @@ class CreateRectangularVectorGrid(object):
 
         yorig.value = "0"
 
-        params = [input, output, width, height, xorig, yorig]
+        params = [i, output, width, height, xorig, yorig]
 
         return params
 
@@ -3302,7 +3302,7 @@ class CreateRectangularVectorGrid(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         width = parameters[2].valueAsText
         height = parameters[3].valueAsText
@@ -3311,7 +3311,7 @@ class CreateRectangularVectorGrid(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.create_rectangular_vector_grid(input, output=output, width=width, height=height, xorig=xorig, yorig=yorig)
+        wbt.create_rectangular_vector_grid(i=i, output=output, width=width, height=height, xorig=xorig, yorig=yorig)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3325,13 +3325,13 @@ class Dissolve(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Polygon"]
+        i.filter.list = ["Polygon"]
 
         field = arcpy.Parameter(
             displayName="Dissolve Field Attribute",
@@ -3357,7 +3357,7 @@ class Dissolve(object):
 
         snap.value = "0.0"
 
-        params = [input, field, output, snap]
+        params = [i, field, output, snap]
 
         return params
 
@@ -3368,16 +3368,16 @@ class Dissolve(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         snap = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.dissolve(input, field=field, output=output, snap=snap)
+        wbt.dissolve(i=i, field=field, output=output, snap=snap)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3391,13 +3391,13 @@ class EliminateCoincidentPoints(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Point"]
+        i.filter.list = ["Point"]
 
         output = arcpy.Parameter(
             displayName="Output Polygon File",
@@ -3414,7 +3414,7 @@ class EliminateCoincidentPoints(object):
             parameterType="Required",
             direction="Input")
 
-        params = [input, output, tolerance]
+        params = [i, output, tolerance]
 
         return params
 
@@ -3425,15 +3425,15 @@ class EliminateCoincidentPoints(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         tolerance = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.eliminate_coincident_points(input, output=output, tolerance=tolerance)
+        wbt.eliminate_coincident_points(i=i, output=output, tolerance=tolerance)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3447,13 +3447,13 @@ class ExtendVectorLines(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector Lines File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Polyline"]
+        i.filter.list = ["Polyline"]
 
         output = arcpy.Parameter(
             displayName="Output Vector File",
@@ -3481,7 +3481,7 @@ class ExtendVectorLines(object):
 
         extend.value = "both ends"
 
-        params = [input, output, dist, extend]
+        params = [i, output, dist, extend]
 
         return params
 
@@ -3492,16 +3492,16 @@ class ExtendVectorLines(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         dist = parameters[2].valueAsText
         extend = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.extend_vector_lines(input, output=output, dist=dist, extend=extend)
+        wbt.extend_vector_lines(i=i, output=output, dist=dist, extend=extend)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3515,9 +3515,9 @@ class ExtractNodes(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
@@ -3530,7 +3530,7 @@ class ExtractNodes(object):
             direction="Output")
         output.filter.list = ["Point"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -3541,14 +3541,14 @@ class ExtractNodes(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.extract_nodes(input, output=output)
+        wbt.extract_nodes(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3562,13 +3562,13 @@ class ExtractRasterValuesAtPoints(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        inputs = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Files",
-            name="inputs",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
-        inputs.multiValue = True
+        i.multiValue = True
 
         points = arcpy.Parameter(
             displayName="Input Points File",
@@ -3585,9 +3585,9 @@ class ExtractRasterValuesAtPoints(object):
             parameterType="Optional",
             direction="Input")
 
-        out_text.value = "false"
+        out_text.value = False
 
-        params = [inputs, points, out_text]
+        params = [i, points, out_text]
 
         return params
 
@@ -3598,7 +3598,7 @@ class ExtractRasterValuesAtPoints(object):
         return
 
     def execute(self, parameters, messages):
-        inputs = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         points = parameters[1].valueAsText
         desc = arcpy.Describe(points)
         points = desc.catalogPath
@@ -3606,7 +3606,7 @@ class ExtractRasterValuesAtPoints(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.extract_raster_values_at_points(inputs, points=points, out_text=out_text)
+        wbt.extract_raster_values_at_points(i=i, points=points, out_text=out_text)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3620,9 +3620,9 @@ class FindLowestOrHighestPoints(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Raster File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -3646,7 +3646,7 @@ class FindLowestOrHighestPoints(object):
 
         out_type.value = "lowest"
 
-        params = [input, output, out_type]
+        params = [i, output, out_type]
 
         return params
 
@@ -3657,15 +3657,15 @@ class FindLowestOrHighestPoints(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         out_type = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.find_lowest_or_highest_points(input, output=output, out_type=out_type)
+        wbt.find_lowest_or_highest_points(i=i, output=output, out_type=out_type)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3679,13 +3679,13 @@ class IdwInterpolation(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector Points File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Point"]
+        i.filter.list = ["Point"]
 
         field = arcpy.Parameter(
             displayName="Field Name",
@@ -3702,7 +3702,7 @@ class IdwInterpolation(object):
             parameterType="Optional",
             direction="Input")
 
-        use_z.value = "false"
+        use_z.value = False
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -3749,7 +3749,7 @@ class IdwInterpolation(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [input, field, use_z, output, weight, radius, min_points, cell_size, base]
+        params = [i, field, use_z, output, weight, radius, min_points, cell_size, base]
 
         return params
 
@@ -3760,9 +3760,9 @@ class IdwInterpolation(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
@@ -3776,7 +3776,7 @@ class IdwInterpolation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.idw_interpolation(input, field=field, use_z=use_z, output=output, weight=weight, radius=radius, min_points=min_points, cell_size=cell_size, base=base)
+        wbt.idw_interpolation(i=i, field=field, use_z=use_z, output=output, weight=weight, radius=radius, min_points=min_points, cell_size=cell_size, base=base)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3790,9 +3790,9 @@ class LayerFootprint(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Raster or Vector File",
-            name="input",
+            name="i",
             datatype=["DERasterDataset", "DEShapefile"],
             parameterType="Required",
             direction="Input")
@@ -3805,7 +3805,7 @@ class LayerFootprint(object):
             direction="Output")
         output.filter.list = ["Polygon"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -3816,12 +3816,12 @@ class LayerFootprint(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.layer_footprint(input, output=output)
+        wbt.layer_footprint(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3835,9 +3835,9 @@ class Medoid(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
@@ -3849,7 +3849,7 @@ class Medoid(object):
             parameterType="Required",
             direction="Output")
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -3860,14 +3860,14 @@ class Medoid(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.medoid(input, output=output)
+        wbt.medoid(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3881,9 +3881,9 @@ class MinimumBoundingBox(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
@@ -3914,9 +3914,9 @@ class MinimumBoundingBox(object):
             parameterType="Optional",
             direction="Input")
 
-        features.value = "true"
+        features.value = True
 
-        params = [input, output, criterion, features]
+        params = [i, output, criterion, features]
 
         return params
 
@@ -3927,16 +3927,16 @@ class MinimumBoundingBox(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         criterion = parameters[2].valueAsText
         features = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.minimum_bounding_box(input, output=output, criterion=criterion, features=features)
+        wbt.minimum_bounding_box(i=i, output=output, criterion=criterion, features=features)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3950,9 +3950,9 @@ class MinimumBoundingCircle(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
@@ -3972,9 +3972,9 @@ class MinimumBoundingCircle(object):
             parameterType="Optional",
             direction="Input")
 
-        features.value = "true"
+        features.value = True
 
-        params = [input, output, features]
+        params = [i, output, features]
 
         return params
 
@@ -3985,15 +3985,15 @@ class MinimumBoundingCircle(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         features = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.minimum_bounding_circle(input, output=output, features=features)
+        wbt.minimum_bounding_circle(i=i, output=output, features=features)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4007,9 +4007,9 @@ class MinimumBoundingEnvelope(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
@@ -4029,9 +4029,9 @@ class MinimumBoundingEnvelope(object):
             parameterType="Optional",
             direction="Input")
 
-        features.value = "true"
+        features.value = True
 
-        params = [input, output, features]
+        params = [i, output, features]
 
         return params
 
@@ -4042,15 +4042,15 @@ class MinimumBoundingEnvelope(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         features = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.minimum_bounding_envelope(input, output=output, features=features)
+        wbt.minimum_bounding_envelope(i=i, output=output, features=features)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4064,9 +4064,9 @@ class MinimumConvexHull(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
@@ -4086,9 +4086,9 @@ class MinimumConvexHull(object):
             parameterType="Optional",
             direction="Input")
 
-        features.value = "true"
+        features.value = True
 
-        params = [input, output, features]
+        params = [i, output, features]
 
         return params
 
@@ -4099,15 +4099,15 @@ class MinimumConvexHull(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         features = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.minimum_convex_hull(input, output=output, features=features)
+        wbt.minimum_convex_hull(i=i, output=output, features=features)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4121,13 +4121,13 @@ class NaturalNeighbourInterpolation(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector Points File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Point"]
+        i.filter.list = ["Point"]
 
         field = arcpy.Parameter(
             displayName="Field Name",
@@ -4144,7 +4144,7 @@ class NaturalNeighbourInterpolation(object):
             parameterType="Optional",
             direction="Input")
 
-        use_z.value = "false"
+        use_z.value = False
 
         output = arcpy.Parameter(
             displayName="Output Raster File",
@@ -4175,9 +4175,9 @@ class NaturalNeighbourInterpolation(object):
             parameterType="Optional",
             direction="Input")
 
-        clip.value = "true"
+        clip.value = True
 
-        params = [input, field, use_z, output, cell_size, base, clip]
+        params = [i, field, use_z, output, cell_size, base, clip]
 
         return params
 
@@ -4188,9 +4188,9 @@ class NaturalNeighbourInterpolation(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
@@ -4202,7 +4202,7 @@ class NaturalNeighbourInterpolation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.natural_neighbour_interpolation(input, field=field, use_z=use_z, output=output, cell_size=cell_size, base=base, clip=clip)
+        wbt.natural_neighbour_interpolation(i=i, field=field, use_z=use_z, output=output, cell_size=cell_size, base=base, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4216,13 +4216,13 @@ class NearestNeighbourGridding(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector Points File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Point"]
+        i.filter.list = ["Point"]
 
         field = arcpy.Parameter(
             displayName="Field Name",
@@ -4239,7 +4239,7 @@ class NearestNeighbourGridding(object):
             parameterType="Optional",
             direction="Input")
 
-        use_z.value = "false"
+        use_z.value = False
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -4270,7 +4270,7 @@ class NearestNeighbourGridding(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [input, field, use_z, output, cell_size, base, max_dist]
+        params = [i, field, use_z, output, cell_size, base, max_dist]
 
         return params
 
@@ -4281,9 +4281,9 @@ class NearestNeighbourGridding(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
@@ -4295,7 +4295,7 @@ class NearestNeighbourGridding(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.nearest_neighbour_gridding(input, field=field, use_z=use_z, output=output, cell_size=cell_size, base=base, max_dist=max_dist)
+        wbt.nearest_neighbour_gridding(i=i, field=field, use_z=use_z, output=output, cell_size=cell_size, base=base, max_dist=max_dist)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4309,15 +4309,15 @@ class PolygonArea(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector Polygon File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Polygon"]
+        i.filter.list = ["Polygon"]
 
-        params = [input]
+        params = [i]
 
         return params
 
@@ -4328,13 +4328,13 @@ class PolygonArea(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.polygon_area(input)
+        wbt.polygon_area(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4348,13 +4348,13 @@ class PolygonLongAxis(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Polygon File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Polygon"]
+        i.filter.list = ["Polygon"]
 
         output = arcpy.Parameter(
             displayName="Output Polygon File",
@@ -4364,7 +4364,7 @@ class PolygonLongAxis(object):
             direction="Output")
         output.filter.list = ["Polygon"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -4375,14 +4375,14 @@ class PolygonLongAxis(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.polygon_long_axis(input, output=output)
+        wbt.polygon_long_axis(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4396,15 +4396,15 @@ class PolygonPerimeter(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector Polygon File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Polygon"]
+        i.filter.list = ["Polygon"]
 
-        params = [input]
+        params = [i]
 
         return params
 
@@ -4415,13 +4415,13 @@ class PolygonPerimeter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.polygon_perimeter(input)
+        wbt.polygon_perimeter(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4435,13 +4435,13 @@ class PolygonShortAxis(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Polygon File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Polygon"]
+        i.filter.list = ["Polygon"]
 
         output = arcpy.Parameter(
             displayName="Output Polygon File",
@@ -4451,7 +4451,7 @@ class PolygonShortAxis(object):
             direction="Output")
         output.filter.list = ["Polygon"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -4462,14 +4462,14 @@ class PolygonShortAxis(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.polygon_short_axis(input, output=output)
+        wbt.polygon_short_axis(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4483,9 +4483,9 @@ class RasterArea(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -4523,7 +4523,7 @@ class RasterArea(object):
             parameterType="Required",
             direction="Input")
 
-        params = [input, output, out_text, units, zero_back]
+        params = [i, output, out_text, units, zero_back]
 
         return params
 
@@ -4534,9 +4534,9 @@ class RasterArea(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         out_text = parameters[2].valueAsText
         units = parameters[3].valueAsText
@@ -4544,7 +4544,7 @@ class RasterArea(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.raster_area(input, output=output, out_text=out_text, units=units, zero_back=zero_back)
+        wbt.raster_area(i=i, output=output, out_text=out_text, units=units, zero_back=zero_back)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4558,9 +4558,9 @@ class RasterCellAssignment(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -4584,7 +4584,7 @@ class RasterCellAssignment(object):
 
         assign.value = "column"
 
-        params = [input, output, assign]
+        params = [i, output, assign]
 
         return params
 
@@ -4595,15 +4595,15 @@ class RasterCellAssignment(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         assign = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.raster_cell_assignment(input, output=output, assign=assign)
+        wbt.raster_cell_assignment(i=i, output=output, assign=assign)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4617,9 +4617,9 @@ class Reclass(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -4646,7 +4646,7 @@ class Reclass(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [input, output, reclass_vals, assign_mode]
+        params = [i, output, reclass_vals, assign_mode]
 
         return params
 
@@ -4657,16 +4657,16 @@ class Reclass(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         reclass_vals = parameters[2].valueAsText
         assign_mode = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.reclass(input, output=output, reclass_vals=reclass_vals, assign_mode=assign_mode)
+        wbt.reclass(i=i, output=output, reclass_vals=reclass_vals, assign_mode=assign_mode)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4680,9 +4680,9 @@ class ReclassEqualInterval(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -4718,7 +4718,7 @@ class ReclassEqualInterval(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [input, output, interval, start_val, end_val]
+        params = [i, output, interval, start_val, end_val]
 
         return params
 
@@ -4729,9 +4729,9 @@ class ReclassEqualInterval(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         interval = parameters[2].valueAsText
         start_val = parameters[3].valueAsText
@@ -4739,7 +4739,7 @@ class ReclassEqualInterval(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.reclass_equal_interval(input, output=output, interval=interval, start_val=start_val, end_val=end_val)
+        wbt.reclass_equal_interval(i=i, output=output, interval=interval, start_val=start_val, end_val=end_val)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4753,9 +4753,9 @@ class ReclassFromFile(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -4775,7 +4775,7 @@ class ReclassFromFile(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, reclass_file, output]
+        params = [i, reclass_file, output]
 
         return params
 
@@ -4786,15 +4786,15 @@ class ReclassFromFile(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         reclass_file = parameters[1].valueAsText
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.reclass_from_file(input, reclass_file=reclass_file, output=output)
+        wbt.reclass_from_file(i=i, reclass_file=reclass_file, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4808,9 +4808,9 @@ class SmoothVectors(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
@@ -4831,7 +4831,7 @@ class SmoothVectors(object):
 
         filter.value = "3"
 
-        params = [input, output, filter]
+        params = [i, output, filter]
 
         return params
 
@@ -4842,15 +4842,15 @@ class SmoothVectors(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.smooth_vectors(input, output=output, filter=filter)
+        wbt.smooth_vectors(i=i, output=output, filter=filter)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4864,13 +4864,13 @@ class TinGridding(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector Points File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Point"]
+        i.filter.list = ["Point"]
 
         field = arcpy.Parameter(
             displayName="Field Name",
@@ -4887,7 +4887,7 @@ class TinGridding(object):
             parameterType="Optional",
             direction="Input")
 
-        use_z.value = "false"
+        use_z.value = False
 
         output = arcpy.Parameter(
             displayName="Output Raster File",
@@ -4918,7 +4918,7 @@ class TinGridding(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [input, field, use_z, output, resolution, base, max_triangle_edge_length]
+        params = [i, field, use_z, output, resolution, base, max_triangle_edge_length]
 
         return params
 
@@ -4929,9 +4929,9 @@ class TinGridding(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
@@ -4943,7 +4943,7 @@ class TinGridding(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.tin_gridding(input, field=field, use_z=use_z, output=output, resolution=resolution, base=base, max_triangle_edge_length=max_triangle_edge_length)
+        wbt.tin_gridding(i=i, field=field, use_z=use_z, output=output, resolution=resolution, base=base, max_triangle_edge_length=max_triangle_edge_length)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4957,13 +4957,13 @@ class VectorHexBinning(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Base File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Point"]
+        i.filter.list = ["Point"]
 
         output = arcpy.Parameter(
             displayName="Output Polygon File",
@@ -4991,7 +4991,7 @@ class VectorHexBinning(object):
 
         orientation.value = "horizontal"
 
-        params = [input, output, width, orientation]
+        params = [i, output, width, orientation]
 
         return params
 
@@ -5002,16 +5002,16 @@ class VectorHexBinning(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         width = parameters[2].valueAsText
         orientation = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.vector_hex_binning(input, output=output, width=width, orientation=orientation)
+        wbt.vector_hex_binning(i=i, output=output, width=width, orientation=orientation)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5025,13 +5025,13 @@ class VoronoiDiagram(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector Points File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Point"]
+        i.filter.list = ["Point"]
 
         output = arcpy.Parameter(
             displayName="Output Polygon File",
@@ -5041,7 +5041,7 @@ class VoronoiDiagram(object):
             direction="Output")
         output.filter.list = ["Polygon"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -5052,14 +5052,14 @@ class VoronoiDiagram(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.voronoi_diagram(input, output=output)
+        wbt.voronoi_diagram(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5073,9 +5073,9 @@ class BufferRaster(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -5102,7 +5102,7 @@ class BufferRaster(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [input, output, size, gridcells]
+        params = [i, output, size, gridcells]
 
         return params
 
@@ -5113,16 +5113,16 @@ class BufferRaster(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         size = parameters[2].valueAsText
         gridcells = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.buffer_raster(input, output=output, size=size, gridcells=gridcells)
+        wbt.buffer_raster(i=i, output=output, size=size, gridcells=gridcells)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5179,7 +5179,7 @@ class CostAllocation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.cost_allocation(source, backlink=backlink, output=output)
+        wbt.cost_allocation(source=source, backlink=backlink, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5245,7 +5245,7 @@ class CostDistance(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.cost_distance(source, cost=cost, out_accum=out_accum, out_backlink=out_backlink)
+        wbt.cost_distance(source=source, cost=cost, out_accum=out_accum, out_backlink=out_backlink)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5310,7 +5310,7 @@ class CostPathway(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.cost_pathway(destination, backlink=backlink, output=output, zero_background=zero_background)
+        wbt.cost_pathway(destination=destination, backlink=backlink, output=output, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5324,9 +5324,9 @@ class EuclideanAllocation(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -5339,7 +5339,7 @@ class EuclideanAllocation(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -5350,14 +5350,14 @@ class EuclideanAllocation(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.euclidean_allocation(input, output=output)
+        wbt.euclidean_allocation(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5371,9 +5371,9 @@ class EuclideanDistance(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -5386,7 +5386,7 @@ class EuclideanDistance(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -5397,14 +5397,14 @@ class EuclideanDistance(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.euclidean_distance(input, output=output)
+        wbt.euclidean_distance(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5418,13 +5418,13 @@ class AverageOverlay(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        inputs = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Files",
-            name="inputs",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
-        inputs.multiValue = True
+        i.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -5434,7 +5434,7 @@ class AverageOverlay(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [inputs, output]
+        params = [i, output]
 
         return params
 
@@ -5445,12 +5445,12 @@ class AverageOverlay(object):
         return
 
     def execute(self, parameters, messages):
-        inputs = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.average_overlay(inputs, output=output)
+        wbt.average_overlay(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5464,9 +5464,9 @@ class Clip(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
@@ -5486,7 +5486,7 @@ class Clip(object):
             parameterType="Required",
             direction="Output")
 
-        params = [input, clip, output]
+        params = [i, clip, output]
 
         return params
 
@@ -5497,9 +5497,9 @@ class Clip(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         clip = parameters[1].valueAsText
         desc = arcpy.Describe(clip)
         clip = desc.catalogPath
@@ -5507,7 +5507,7 @@ class Clip(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.clip(input, clip=clip, output=output)
+        wbt.clip(i=i, clip=clip, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5521,9 +5521,9 @@ class ClipRasterToPolygon(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -5551,9 +5551,9 @@ class ClipRasterToPolygon(object):
             parameterType="Optional",
             direction="Input")
 
-        maintain_dimensions.value = "false"
+        maintain_dimensions.value = False
 
-        params = [input, polygons, output, maintain_dimensions]
+        params = [i, polygons, output, maintain_dimensions]
 
         return params
 
@@ -5564,9 +5564,9 @@ class ClipRasterToPolygon(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         polygons = parameters[1].valueAsText
         desc = arcpy.Describe(polygons)
         polygons = desc.catalogPath
@@ -5575,7 +5575,7 @@ class ClipRasterToPolygon(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.clip_raster_to_polygon(input, polygons=polygons, output=output, maintain_dimensions=maintain_dimensions)
+        wbt.clip_raster_to_polygon(i=i, polygons=polygons, output=output, maintain_dimensions=maintain_dimensions)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5589,13 +5589,13 @@ class CountIf(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        inputs = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Files",
-            name="inputs",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
-        inputs.multiValue = True
+        i.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -5612,7 +5612,7 @@ class CountIf(object):
             parameterType="Required",
             direction="Input")
 
-        params = [inputs, output, value]
+        params = [i, output, value]
 
         return params
 
@@ -5623,13 +5623,13 @@ class CountIf(object):
         return
 
     def execute(self, parameters, messages):
-        inputs = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         value = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.count_if(inputs, output=output, value=value)
+        wbt.count_if(i=i, output=output, value=value)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5643,9 +5643,9 @@ class Difference(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
@@ -5664,7 +5664,7 @@ class Difference(object):
             parameterType="Required",
             direction="Output")
 
-        params = [input, overlay, output]
+        params = [i, overlay, output]
 
         return params
 
@@ -5675,9 +5675,9 @@ class Difference(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         overlay = parameters[1].valueAsText
         desc = arcpy.Describe(overlay)
         overlay = desc.catalogPath
@@ -5685,7 +5685,7 @@ class Difference(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.difference(input, overlay=overlay, output=output)
+        wbt.difference(i=i, overlay=overlay, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5699,9 +5699,9 @@ class Erase(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
@@ -5721,7 +5721,7 @@ class Erase(object):
             parameterType="Required",
             direction="Output")
 
-        params = [input, erase, output]
+        params = [i, erase, output]
 
         return params
 
@@ -5732,9 +5732,9 @@ class Erase(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         erase = parameters[1].valueAsText
         desc = arcpy.Describe(erase)
         erase = desc.catalogPath
@@ -5742,7 +5742,7 @@ class Erase(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.erase(input, erase=erase, output=output)
+        wbt.erase(i=i, erase=erase, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5756,9 +5756,9 @@ class ErasePolygonFromRaster(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -5779,7 +5779,7 @@ class ErasePolygonFromRaster(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, polygons, output]
+        params = [i, polygons, output]
 
         return params
 
@@ -5790,9 +5790,9 @@ class ErasePolygonFromRaster(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         polygons = parameters[1].valueAsText
         desc = arcpy.Describe(polygons)
         polygons = desc.catalogPath
@@ -5800,7 +5800,7 @@ class ErasePolygonFromRaster(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.erase_polygon_from_raster(input, polygons=polygons, output=output)
+        wbt.erase_polygon_from_raster(i=i, polygons=polygons, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5814,13 +5814,13 @@ class HighestPosition(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        inputs = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Files",
-            name="inputs",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
-        inputs.multiValue = True
+        i.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -5830,7 +5830,7 @@ class HighestPosition(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [inputs, output]
+        params = [i, output]
 
         return params
 
@@ -5841,12 +5841,12 @@ class HighestPosition(object):
         return
 
     def execute(self, parameters, messages):
-        inputs = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.highest_position(inputs, output=output)
+        wbt.highest_position(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5860,9 +5860,9 @@ class Intersect(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
@@ -5890,7 +5890,7 @@ class Intersect(object):
 
         snap.value = "0.0"
 
-        params = [input, overlay, output, snap]
+        params = [i, overlay, output, snap]
 
         return params
 
@@ -5901,9 +5901,9 @@ class Intersect(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         overlay = parameters[1].valueAsText
         desc = arcpy.Describe(overlay)
         overlay = desc.catalogPath
@@ -5912,7 +5912,7 @@ class Intersect(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.intersect(input, overlay=overlay, output=output, snap=snap)
+        wbt.intersect(i=i, overlay=overlay, output=output, snap=snap)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5971,7 +5971,7 @@ class LineIntersections(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.line_intersections(input1, input2=input2, output=output)
+        wbt.line_intersections(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5985,13 +5985,13 @@ class LowestPosition(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        inputs = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Files",
-            name="inputs",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
-        inputs.multiValue = True
+        i.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -6001,7 +6001,7 @@ class LowestPosition(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [inputs, output]
+        params = [i, output]
 
         return params
 
@@ -6012,12 +6012,12 @@ class LowestPosition(object):
         return
 
     def execute(self, parameters, messages):
-        inputs = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lowest_position(inputs, output=output)
+        wbt.lowest_position(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6031,13 +6031,13 @@ class MaxAbsoluteOverlay(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        inputs = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Files",
-            name="inputs",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
-        inputs.multiValue = True
+        i.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -6047,7 +6047,7 @@ class MaxAbsoluteOverlay(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [inputs, output]
+        params = [i, output]
 
         return params
 
@@ -6058,12 +6058,12 @@ class MaxAbsoluteOverlay(object):
         return
 
     def execute(self, parameters, messages):
-        inputs = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.max_absolute_overlay(inputs, output=output)
+        wbt.max_absolute_overlay(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6077,13 +6077,13 @@ class MaxOverlay(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        inputs = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Files",
-            name="inputs",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
-        inputs.multiValue = True
+        i.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -6093,7 +6093,7 @@ class MaxOverlay(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [inputs, output]
+        params = [i, output]
 
         return params
 
@@ -6104,12 +6104,12 @@ class MaxOverlay(object):
         return
 
     def execute(self, parameters, messages):
-        inputs = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.max_overlay(inputs, output=output)
+        wbt.max_overlay(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6123,13 +6123,13 @@ class MergeLineSegments(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Polyline"]
+        i.filter.list = ["Polyline"]
 
         output = arcpy.Parameter(
             displayName="Output Vector File",
@@ -6147,7 +6147,7 @@ class MergeLineSegments(object):
 
         snap.value = "0.0"
 
-        params = [input, output, snap]
+        params = [i, output, snap]
 
         return params
 
@@ -6158,15 +6158,15 @@ class MergeLineSegments(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         snap = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.merge_line_segments(input, output=output, snap=snap)
+        wbt.merge_line_segments(i=i, output=output, snap=snap)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6180,13 +6180,13 @@ class MinAbsoluteOverlay(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        inputs = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Files",
-            name="inputs",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
-        inputs.multiValue = True
+        i.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -6196,7 +6196,7 @@ class MinAbsoluteOverlay(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [inputs, output]
+        params = [i, output]
 
         return params
 
@@ -6207,12 +6207,12 @@ class MinAbsoluteOverlay(object):
         return
 
     def execute(self, parameters, messages):
-        inputs = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.min_absolute_overlay(inputs, output=output)
+        wbt.min_absolute_overlay(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6226,13 +6226,13 @@ class MinOverlay(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        inputs = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Files",
-            name="inputs",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
-        inputs.multiValue = True
+        i.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -6242,7 +6242,7 @@ class MinOverlay(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [inputs, output]
+        params = [i, output]
 
         return params
 
@@ -6253,12 +6253,12 @@ class MinOverlay(object):
         return
 
     def execute(self, parameters, messages):
-        inputs = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.min_overlay(inputs, output=output)
+        wbt.min_overlay(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6272,13 +6272,13 @@ class PercentEqualTo(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        inputs = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Files",
-            name="inputs",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
-        inputs.multiValue = True
+        i.multiValue = True
 
         comparison = arcpy.Parameter(
             displayName="Input Comparison File",
@@ -6295,7 +6295,7 @@ class PercentEqualTo(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [inputs, comparison, output]
+        params = [i, comparison, output]
 
         return params
 
@@ -6306,7 +6306,7 @@ class PercentEqualTo(object):
         return
 
     def execute(self, parameters, messages):
-        inputs = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         comparison = parameters[1].valueAsText
         desc = arcpy.Describe(comparison)
         comparison = desc.catalogPath
@@ -6314,7 +6314,7 @@ class PercentEqualTo(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.percent_equal_to(inputs, comparison=comparison, output=output)
+        wbt.percent_equal_to(i=i, comparison=comparison, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6328,13 +6328,13 @@ class PercentGreaterThan(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        inputs = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Files",
-            name="inputs",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
-        inputs.multiValue = True
+        i.multiValue = True
 
         comparison = arcpy.Parameter(
             displayName="Input Comparison File",
@@ -6351,7 +6351,7 @@ class PercentGreaterThan(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [inputs, comparison, output]
+        params = [i, comparison, output]
 
         return params
 
@@ -6362,7 +6362,7 @@ class PercentGreaterThan(object):
         return
 
     def execute(self, parameters, messages):
-        inputs = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         comparison = parameters[1].valueAsText
         desc = arcpy.Describe(comparison)
         comparison = desc.catalogPath
@@ -6370,7 +6370,7 @@ class PercentGreaterThan(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.percent_greater_than(inputs, comparison=comparison, output=output)
+        wbt.percent_greater_than(i=i, comparison=comparison, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6384,13 +6384,13 @@ class PercentLessThan(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        inputs = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Files",
-            name="inputs",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
-        inputs.multiValue = True
+        i.multiValue = True
 
         comparison = arcpy.Parameter(
             displayName="Input Comparison File",
@@ -6407,7 +6407,7 @@ class PercentLessThan(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [inputs, comparison, output]
+        params = [i, comparison, output]
 
         return params
 
@@ -6418,7 +6418,7 @@ class PercentLessThan(object):
         return
 
     def execute(self, parameters, messages):
-        inputs = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         comparison = parameters[1].valueAsText
         desc = arcpy.Describe(comparison)
         comparison = desc.catalogPath
@@ -6426,7 +6426,7 @@ class PercentLessThan(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.percent_less_than(inputs, comparison=comparison, output=output)
+        wbt.percent_less_than(i=i, comparison=comparison, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6440,13 +6440,13 @@ class PickFromList(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        inputs = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Files",
-            name="inputs",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
-        inputs.multiValue = True
+        i.multiValue = True
 
         pos_input = arcpy.Parameter(
             displayName="Input Position File",
@@ -6463,7 +6463,7 @@ class PickFromList(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [inputs, pos_input, output]
+        params = [i, pos_input, output]
 
         return params
 
@@ -6474,7 +6474,7 @@ class PickFromList(object):
         return
 
     def execute(self, parameters, messages):
-        inputs = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         pos_input = parameters[1].valueAsText
         desc = arcpy.Describe(pos_input)
         pos_input = desc.catalogPath
@@ -6482,7 +6482,7 @@ class PickFromList(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.pick_from_list(inputs, pos_input=pos_input, output=output)
+        wbt.pick_from_list(i=i, pos_input=pos_input, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6496,14 +6496,14 @@ class Polygonize(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        inputs = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector Lines File",
-            name="inputs",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        inputs.multiValue = True
-        inputs.filter.list = ["Polyline"]
+        i.multiValue = True
+        i.filter.list = ["Polyline"]
 
         output = arcpy.Parameter(
             displayName="Output Vector Polygon File",
@@ -6513,7 +6513,7 @@ class Polygonize(object):
             direction="Output")
         output.filter.list = ["Polygon"]
 
-        params = [inputs, output]
+        params = [i, output]
 
         return params
 
@@ -6524,12 +6524,12 @@ class Polygonize(object):
         return
 
     def execute(self, parameters, messages):
-        inputs = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.polygonize(inputs, output=output)
+        wbt.polygonize(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6543,9 +6543,9 @@ class SplitWithLines(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector Lines or Polygon File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
@@ -6565,7 +6565,7 @@ class SplitWithLines(object):
             parameterType="Required",
             direction="Output")
 
-        params = [input, split, output]
+        params = [i, split, output]
 
         return params
 
@@ -6576,9 +6576,9 @@ class SplitWithLines(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         split = parameters[1].valueAsText
         desc = arcpy.Describe(split)
         split = desc.catalogPath
@@ -6586,7 +6586,7 @@ class SplitWithLines(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.split_with_lines(input, split=split, output=output)
+        wbt.split_with_lines(i=i, split=split, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6600,13 +6600,13 @@ class SumOverlay(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        inputs = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Files",
-            name="inputs",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
-        inputs.multiValue = True
+        i.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -6616,7 +6616,7 @@ class SumOverlay(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [inputs, output]
+        params = [i, output]
 
         return params
 
@@ -6627,12 +6627,12 @@ class SumOverlay(object):
         return
 
     def execute(self, parameters, messages):
-        inputs = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.sum_overlay(inputs, output=output)
+        wbt.sum_overlay(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6646,9 +6646,9 @@ class SymmetricalDifference(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
@@ -6676,7 +6676,7 @@ class SymmetricalDifference(object):
 
         snap.value = "0.0"
 
-        params = [input, overlay, output, snap]
+        params = [i, overlay, output, snap]
 
         return params
 
@@ -6687,9 +6687,9 @@ class SymmetricalDifference(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         overlay = parameters[1].valueAsText
         desc = arcpy.Describe(overlay)
         overlay = desc.catalogPath
@@ -6698,7 +6698,7 @@ class SymmetricalDifference(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.symmetrical_difference(input, overlay=overlay, output=output, snap=snap)
+        wbt.symmetrical_difference(i=i, overlay=overlay, output=output, snap=snap)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6712,9 +6712,9 @@ class Union(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
@@ -6742,7 +6742,7 @@ class Union(object):
 
         snap.value = "0.0"
 
-        params = [input, overlay, output, snap]
+        params = [i, overlay, output, snap]
 
         return params
 
@@ -6753,9 +6753,9 @@ class Union(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         overlay = parameters[1].valueAsText
         desc = arcpy.Describe(overlay)
         overlay = desc.catalogPath
@@ -6764,7 +6764,7 @@ class Union(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.union(input, overlay=overlay, output=output, snap=snap)
+        wbt.union(i=i, overlay=overlay, output=output, snap=snap)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6845,7 +6845,7 @@ class WeightedOverlay(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.weighted_overlay(factors, weights=weights, cost=cost, constraints=constraints, output=output, scale_max=scale_max)
+        wbt.weighted_overlay(factors=factors, weights=weights, cost=cost, constraints=constraints, output=output, scale_max=scale_max)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6859,13 +6859,13 @@ class WeightedSum(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        inputs = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Files",
-            name="inputs",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
-        inputs.multiValue = True
+        i.multiValue = True
 
         weights = arcpy.Parameter(
             displayName="Weight Values (e.g. 1.7;3.5;1.2)",
@@ -6882,7 +6882,7 @@ class WeightedSum(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [inputs, weights, output]
+        params = [i, weights, output]
 
         return params
 
@@ -6893,13 +6893,13 @@ class WeightedSum(object):
         return
 
     def execute(self, parameters, messages):
-        inputs = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         weights = parameters[1].valueAsText
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.weighted_sum(inputs, weights=weights, output=output)
+        wbt.weighted_sum(i=i, weights=weights, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6913,9 +6913,9 @@ class BoundaryShapeComplexity(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -6928,7 +6928,7 @@ class BoundaryShapeComplexity(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -6939,14 +6939,14 @@ class BoundaryShapeComplexity(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.boundary_shape_complexity(input, output=output)
+        wbt.boundary_shape_complexity(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6960,15 +6960,15 @@ class CompactnessRatio(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector Polygon File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Polygon"]
+        i.filter.list = ["Polygon"]
 
-        params = [input]
+        params = [i]
 
         return params
 
@@ -6979,13 +6979,13 @@ class CompactnessRatio(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.compactness_ratio(input)
+        wbt.compactness_ratio(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6999,9 +6999,9 @@ class EdgeProportion(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -7021,7 +7021,7 @@ class EdgeProportion(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [input, output, output_text]
+        params = [i, output, output_text]
 
         return params
 
@@ -7032,15 +7032,15 @@ class EdgeProportion(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         output_text = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.edge_proportion(input, output=output, output_text=output_text)
+        wbt.edge_proportion(i=i, output=output, output_text=output_text)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7054,15 +7054,15 @@ class ElongationRatio(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector Polygon File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Polygon"]
+        i.filter.list = ["Polygon"]
 
-        params = [input]
+        params = [i]
 
         return params
 
@@ -7073,13 +7073,13 @@ class ElongationRatio(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.elongation_ratio(input)
+        wbt.elongation_ratio(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7093,9 +7093,9 @@ class FindPatchOrClassEdgeCells(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -7108,7 +7108,7 @@ class FindPatchOrClassEdgeCells(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -7119,14 +7119,14 @@ class FindPatchOrClassEdgeCells(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.find_patch_or_class_edge_cells(input, output=output)
+        wbt.find_patch_or_class_edge_cells(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7140,15 +7140,15 @@ class HoleProportion(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector Polygon File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Polygon"]
+        i.filter.list = ["Polygon"]
 
-        params = [input]
+        params = [i]
 
         return params
 
@@ -7159,13 +7159,13 @@ class HoleProportion(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.hole_proportion(input)
+        wbt.hole_proportion(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7179,15 +7179,15 @@ class LinearityIndex(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector Polygon File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Polygon"]
+        i.filter.list = ["Polygon"]
 
-        params = [input]
+        params = [i]
 
         return params
 
@@ -7198,13 +7198,13 @@ class LinearityIndex(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.linearity_index(input)
+        wbt.linearity_index(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7218,9 +7218,9 @@ class NarrownessIndex(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -7233,7 +7233,7 @@ class NarrownessIndex(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -7244,14 +7244,14 @@ class NarrownessIndex(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.narrowness_index(input, output=output)
+        wbt.narrowness_index(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7265,15 +7265,15 @@ class PatchOrientation(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector Polygon File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Polygon"]
+        i.filter.list = ["Polygon"]
 
-        params = [input]
+        params = [i]
 
         return params
 
@@ -7284,13 +7284,13 @@ class PatchOrientation(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.patch_orientation(input)
+        wbt.patch_orientation(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7304,15 +7304,15 @@ class PerimeterAreaRatio(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector Polygon File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Polygon"]
+        i.filter.list = ["Polygon"]
 
-        params = [input]
+        params = [i]
 
         return params
 
@@ -7323,13 +7323,13 @@ class PerimeterAreaRatio(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.perimeter_area_ratio(input)
+        wbt.perimeter_area_ratio(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7343,9 +7343,9 @@ class RadiusOfGyration(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -7365,7 +7365,7 @@ class RadiusOfGyration(object):
             parameterType="Required",
             direction="Input")
 
-        params = [input, output, text_output]
+        params = [i, output, text_output]
 
         return params
 
@@ -7376,15 +7376,15 @@ class RadiusOfGyration(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         text_output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.radius_of_gyration(input, output=output, text_output=text_output)
+        wbt.radius_of_gyration(i=i, output=output, text_output=text_output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7398,15 +7398,15 @@ class RelatedCircumscribingCircle(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector Polygon File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Polygon"]
+        i.filter.list = ["Polygon"]
 
-        params = [input]
+        params = [i]
 
         return params
 
@@ -7417,13 +7417,13 @@ class RelatedCircumscribingCircle(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.related_circumscribing_circle(input)
+        wbt.related_circumscribing_circle(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7437,15 +7437,15 @@ class ShapeComplexityIndex(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector Polygon File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Polygon"]
+        i.filter.list = ["Polygon"]
 
-        params = [input]
+        params = [i]
 
         return params
 
@@ -7456,13 +7456,13 @@ class ShapeComplexityIndex(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.shape_complexity_index(input)
+        wbt.shape_complexity_index(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7476,9 +7476,9 @@ class ShapeComplexityIndexRaster(object):
         self.category = "GIS Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -7491,7 +7491,7 @@ class ShapeComplexityIndexRaster(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -7502,14 +7502,14 @@ class ShapeComplexityIndexRaster(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.shape_complexity_index_raster(input, output=output)
+        wbt.shape_complexity_index_raster(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7566,7 +7566,7 @@ class Aspect(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.aspect(dem, output=output, zfactor=zfactor)
+        wbt.aspect(dem=dem, output=output, zfactor=zfactor)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7623,7 +7623,7 @@ class AverageNormalVectorAngularDeviation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.average_normal_vector_angular_deviation(dem, output=output, filter=filter)
+        wbt.average_normal_vector_angular_deviation(dem=dem, output=output, filter=filter)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7680,7 +7680,7 @@ class CircularVarianceOfAspect(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.circular_variance_of_aspect(dem, output=output, filter=filter)
+        wbt.circular_variance_of_aspect(dem=dem, output=output, filter=filter)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7694,9 +7694,9 @@ class DevFromMeanElev(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        dem = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="dem",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -7727,7 +7727,7 @@ class DevFromMeanElev(object):
 
         filtery.value = "11"
 
-        params = [dem, output, filterx, filtery]
+        params = [i, output, filterx, filtery]
 
         return params
 
@@ -7738,16 +7738,16 @@ class DevFromMeanElev(object):
         return
 
     def execute(self, parameters, messages):
-        dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.dev_from_mean_elev(dem, output=output, filterx=filterx, filtery=filtery)
+        wbt.dev_from_mean_elev(i=i, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7761,9 +7761,9 @@ class DiffFromMeanElev(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        dem = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="dem",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -7794,7 +7794,7 @@ class DiffFromMeanElev(object):
 
         filtery.value = "11"
 
-        params = [dem, output, filterx, filtery]
+        params = [i, output, filterx, filtery]
 
         return params
 
@@ -7805,16 +7805,16 @@ class DiffFromMeanElev(object):
         return
 
     def execute(self, parameters, messages):
-        dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.diff_from_mean_elev(dem, output=output, filterx=filterx, filtery=filtery)
+        wbt.diff_from_mean_elev(i=i, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7879,7 +7879,7 @@ class DirectionalRelief(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.directional_relief(dem, output=output, azimuth=azimuth, max_dist=max_dist)
+        wbt.directional_relief(dem=dem, output=output, azimuth=azimuth, max_dist=max_dist)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7948,7 +7948,7 @@ class DownslopeIndex(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.downslope_index(dem, output=output, drop=drop, out_type=out_type)
+        wbt.downslope_index(dem=dem, output=output, drop=drop, out_type=out_type)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8025,7 +8025,7 @@ class EdgeDensity(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.edge_density(dem, output=output, filter=filter, norm_diff=norm_diff, zfactor=zfactor)
+        wbt.edge_density(dem=dem, output=output, filter=filter, norm_diff=norm_diff, zfactor=zfactor)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8072,7 +8072,7 @@ class ElevAbovePit(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.elev_above_pit(dem, output=output)
+        wbt.elev_above_pit(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8086,9 +8086,9 @@ class ElevPercentile(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        dem = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="dem",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -8128,7 +8128,7 @@ class ElevPercentile(object):
 
         sig_digits.value = "2"
 
-        params = [dem, output, filterx, filtery, sig_digits]
+        params = [i, output, filterx, filtery, sig_digits]
 
         return params
 
@@ -8139,9 +8139,9 @@ class ElevPercentile(object):
         return
 
     def execute(self, parameters, messages):
-        dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -8149,7 +8149,7 @@ class ElevPercentile(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.elev_percentile(dem, output=output, filterx=filterx, filtery=filtery, sig_digits=sig_digits)
+        wbt.elev_percentile(i=i, output=output, filterx=filterx, filtery=filtery, sig_digits=sig_digits)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8196,7 +8196,7 @@ class ElevRelativeToMinMax(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.elev_relative_to_min_max(dem, output=output)
+        wbt.elev_relative_to_min_max(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8253,7 +8253,7 @@ class ElevRelativeToWatershedMinMax(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.elev_relative_to_watershed_min_max(dem, watersheds=watersheds, output=output)
+        wbt.elev_relative_to_watershed_min_max(dem=dem, watersheds=watersheds, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8350,7 +8350,7 @@ class FeaturePreservingSmoothing(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.feature_preserving_smoothing(dem, output=output, filter=filter, norm_diff=norm_diff, num_iter=num_iter, max_diff=max_diff, zfactor=zfactor)
+        wbt.feature_preserving_smoothing(dem=dem, output=output, filter=filter, norm_diff=norm_diff, num_iter=num_iter, max_diff=max_diff, zfactor=zfactor)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8417,7 +8417,7 @@ class FetchAnalysis(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.fetch_analysis(dem, output=output, azimuth=azimuth, hgt_inc=hgt_inc)
+        wbt.fetch_analysis(dem=dem, output=output, azimuth=azimuth, hgt_inc=hgt_inc)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8431,9 +8431,9 @@ class FillMissingData(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -8464,7 +8464,7 @@ class FillMissingData(object):
 
         weight.value = "2.0"
 
-        params = [input, output, filter, weight]
+        params = [i, output, filter, weight]
 
         return params
 
@@ -8475,16 +8475,16 @@ class FillMissingData(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         weight = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.fill_missing_data(input, output=output, filter=filter, weight=weight)
+        wbt.fill_missing_data(i=i, output=output, filter=filter, weight=weight)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8520,7 +8520,7 @@ class FindRidges(object):
             parameterType="Optional",
             direction="Input")
 
-        line_thin.value = "true"
+        line_thin.value = True
 
         params = [dem, output, line_thin]
 
@@ -8541,7 +8541,7 @@ class FindRidges(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.find_ridges(dem, output=output, line_thin=line_thin)
+        wbt.find_ridges(dem=dem, output=output, line_thin=line_thin)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8618,7 +8618,7 @@ class Hillshade(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.hillshade(dem, output=output, azimuth=azimuth, altitude=altitude, zfactor=zfactor)
+        wbt.hillshade(dem=dem, output=output, azimuth=azimuth, altitude=altitude, zfactor=zfactor)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8683,7 +8683,7 @@ class HorizonAngle(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.horizon_angle(dem, output=output, azimuth=azimuth, max_dist=max_dist)
+        wbt.horizon_angle(dem=dem, output=output, azimuth=azimuth, max_dist=max_dist)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8697,13 +8697,13 @@ class HypsometricAnalysis(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        inputs = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input DEM Files",
-            name="inputs",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
-        inputs.multiValue = True
+        i.multiValue = True
 
         watershed = arcpy.Parameter(
             displayName="Input Watershed Files",
@@ -8721,7 +8721,7 @@ class HypsometricAnalysis(object):
             direction="Output")
         output.filter.list = ["html"]
 
-        params = [inputs, watershed, output]
+        params = [i, watershed, output]
 
         return params
 
@@ -8732,13 +8732,13 @@ class HypsometricAnalysis(object):
         return
 
     def execute(self, parameters, messages):
-        inputs = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         watershed = parameters[1].valueAsText
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.hypsometric_analysis(inputs, watershed=watershed, output=output)
+        wbt.hypsometric_analysis(i=i, watershed=watershed, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8822,7 +8822,7 @@ class MaxAnisotropyDev(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.max_anisotropy_dev(dem, out_mag=out_mag, out_scale=out_scale, min_scale=min_scale, max_scale=max_scale, step=step)
+        wbt.max_anisotropy_dev(dem=dem, out_mag=out_mag, out_scale=out_scale, min_scale=min_scale, max_scale=max_scale, step=step)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8908,7 +8908,7 @@ class MaxAnisotropyDevSignature(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.max_anisotropy_dev_signature(dem, points=points, output=output, min_scale=min_scale, max_scale=max_scale, step=step)
+        wbt.max_anisotropy_dev_signature(dem=dem, points=points, output=output, min_scale=min_scale, max_scale=max_scale, step=step)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8963,7 +8963,7 @@ class MaxBranchLength(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.max_branch_length(dem, output=output, log=log)
+        wbt.max_branch_length(dem=dem, output=output, log=log)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9045,7 +9045,7 @@ class MaxDifferenceFromMean(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.max_difference_from_mean(dem, out_mag=out_mag, out_scale=out_scale, min_scale=min_scale, max_scale=max_scale, step=step)
+        wbt.max_difference_from_mean(dem=dem, out_mag=out_mag, out_scale=out_scale, min_scale=min_scale, max_scale=max_scale, step=step)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9092,7 +9092,7 @@ class MaxDownslopeElevChange(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.max_downslope_elev_change(dem, output=output)
+        wbt.max_downslope_elev_change(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9176,7 +9176,7 @@ class MaxElevDevSignature(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.max_elev_dev_signature(dem, points=points, output=output, min_scale=min_scale, max_scale=max_scale, step=step)
+        wbt.max_elev_dev_signature(dem=dem, points=points, output=output, min_scale=min_scale, max_scale=max_scale, step=step)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9258,7 +9258,7 @@ class MaxElevationDeviation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.max_elevation_deviation(dem, out_mag=out_mag, out_scale=out_scale, min_scale=min_scale, max_scale=max_scale, step=step)
+        wbt.max_elevation_deviation(dem=dem, out_mag=out_mag, out_scale=out_scale, min_scale=min_scale, max_scale=max_scale, step=step)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9305,7 +9305,7 @@ class MinDownslopeElevChange(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.min_downslope_elev_change(dem, output=output)
+        wbt.min_downslope_elev_change(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9389,7 +9389,7 @@ class MultiscaleRoughness(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.multiscale_roughness(dem, out_mag=out_mag, out_scale=out_scale, min_scale=min_scale, max_scale=max_scale, step=step)
+        wbt.multiscale_roughness(dem=dem, out_mag=out_mag, out_scale=out_scale, min_scale=min_scale, max_scale=max_scale, step=step)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9475,7 +9475,7 @@ class MultiscaleRoughnessSignature(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.multiscale_roughness_signature(dem, points=points, output=output, min_scale=min_scale, max_scale=max_scale, step=step)
+        wbt.multiscale_roughness_signature(dem=dem, points=points, output=output, min_scale=min_scale, max_scale=max_scale, step=step)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9571,7 +9571,7 @@ class MultiscaleStdDevNormals(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.multiscale_std_dev_normals(dem, out_mag=out_mag, out_scale=out_scale, min_scale=min_scale, step=step, num_steps=num_steps, step_nonlinearity=step_nonlinearity)
+        wbt.multiscale_std_dev_normals(dem=dem, out_mag=out_mag, out_scale=out_scale, min_scale=min_scale, step=step, num_steps=num_steps, step_nonlinearity=step_nonlinearity)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9669,7 +9669,7 @@ class MultiscaleStdDevNormalsSignature(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.multiscale_std_dev_normals_signature(dem, points=points, output=output, min_scale=min_scale, step=step, num_steps=num_steps, step_nonlinearity=step_nonlinearity)
+        wbt.multiscale_std_dev_normals_signature(dem=dem, points=points, output=output, min_scale=min_scale, step=step, num_steps=num_steps, step_nonlinearity=step_nonlinearity)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9746,7 +9746,7 @@ class MultiscaleTopographicPositionImage(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.multiscale_topographic_position_image(local, meso=meso, broad=broad, output=output, lightness=lightness)
+        wbt.multiscale_topographic_position_image(local=local, meso=meso, broad=broad, output=output, lightness=lightness)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9793,7 +9793,7 @@ class NumDownslopeNeighbours(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.num_downslope_neighbours(dem, output=output)
+        wbt.num_downslope_neighbours(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9840,7 +9840,7 @@ class NumUpslopeNeighbours(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.num_upslope_neighbours(dem, output=output)
+        wbt.num_upslope_neighbours(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9927,7 +9927,7 @@ class PennockLandformClass(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.pennock_landform_class(dem, output=output, slope=slope, prof=prof, plan=plan, zfactor=zfactor)
+        wbt.pennock_landform_class(dem=dem, output=output, slope=slope, prof=prof, plan=plan, zfactor=zfactor)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9941,9 +9941,9 @@ class PercentElevRange(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        dem = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input DEM File",
-            name="dem",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -9974,7 +9974,7 @@ class PercentElevRange(object):
 
         filtery.value = "3"
 
-        params = [dem, output, filterx, filtery]
+        params = [i, output, filterx, filtery]
 
         return params
 
@@ -9985,16 +9985,16 @@ class PercentElevRange(object):
         return
 
     def execute(self, parameters, messages):
-        dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.percent_elev_range(dem, output=output, filterx=filterx, filtery=filtery)
+        wbt.percent_elev_range(i=i, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10051,7 +10051,7 @@ class PlanCurvature(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.plan_curvature(dem, output=output, zfactor=zfactor)
+        wbt.plan_curvature(dem=dem, output=output, zfactor=zfactor)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10109,7 +10109,7 @@ class Profile(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.profile(lines, surface=surface, output=output)
+        wbt.profile(lines=lines, surface=surface, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10166,7 +10166,7 @@ class ProfileCurvature(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.profile_curvature(dem, output=output, zfactor=zfactor)
+        wbt.profile_curvature(dem=dem, output=output, zfactor=zfactor)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10233,7 +10233,7 @@ class RelativeAspect(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.relative_aspect(dem, output=output, azimuth=azimuth, zfactor=zfactor)
+        wbt.relative_aspect(dem=dem, output=output, azimuth=azimuth, zfactor=zfactor)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10300,7 +10300,7 @@ class RelativeTopographicPosition(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.relative_topographic_position(dem, output=output, filterx=filterx, filtery=filtery)
+        wbt.relative_topographic_position(dem=dem, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10314,9 +10314,9 @@ class RemoveOffTerrainObjects(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        dem = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input DEM File",
-            name="dem",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -10347,7 +10347,7 @@ class RemoveOffTerrainObjects(object):
 
         slope.value = "15.0"
 
-        params = [dem, output, filter, slope]
+        params = [i, output, filter, slope]
 
         return params
 
@@ -10358,16 +10358,16 @@ class RemoveOffTerrainObjects(object):
         return
 
     def execute(self, parameters, messages):
-        dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         slope = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.remove_off_terrain_objects(dem, output=output, filter=filter, slope=slope)
+        wbt.remove_off_terrain_objects(i=i, output=output, filter=filter, slope=slope)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10424,7 +10424,7 @@ class RuggednessIndex(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.ruggedness_index(dem, output=output, zfactor=zfactor)
+        wbt.ruggedness_index(dem=dem, output=output, zfactor=zfactor)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10501,7 +10501,7 @@ class SedimentTransportIndex(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.sediment_transport_index(sca, slope=slope, output=output, sca_exponent=sca_exponent, slope_exponent=slope_exponent)
+        wbt.sediment_transport_index(sca=sca, slope=slope, output=output, sca_exponent=sca_exponent, slope_exponent=slope_exponent)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10558,7 +10558,7 @@ class Slope(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.slope(dem, output=output, zfactor=zfactor)
+        wbt.slope(dem=dem, output=output, zfactor=zfactor)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10572,13 +10572,13 @@ class SlopeVsElevationPlot(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        inputs = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input DEM Files",
-            name="inputs",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
-        inputs.multiValue = True
+        i.multiValue = True
 
         watershed = arcpy.Parameter(
             displayName="Input Watershed Files",
@@ -10596,7 +10596,7 @@ class SlopeVsElevationPlot(object):
             direction="Output")
         output.filter.list = ["html"]
 
-        params = [inputs, watershed, output]
+        params = [i, watershed, output]
 
         return params
 
@@ -10607,13 +10607,13 @@ class SlopeVsElevationPlot(object):
         return
 
     def execute(self, parameters, messages):
-        inputs = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         watershed = parameters[1].valueAsText
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.slope_vs_elevation_plot(inputs, watershed=watershed, output=output)
+        wbt.slope_vs_elevation_plot(i=i, watershed=watershed, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10670,7 +10670,7 @@ class SphericalStdDevOfNormals(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.spherical_std_dev_of_normals(dem, output=output, filter=filter)
+        wbt.spherical_std_dev_of_normals(dem=dem, output=output, filter=filter)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10684,9 +10684,9 @@ class StandardDeviationOfSlope(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -10726,7 +10726,7 @@ class StandardDeviationOfSlope(object):
 
         filtery.value = "11"
 
-        params = [input, output, zfactor, filterx, filtery]
+        params = [i, output, zfactor, filterx, filtery]
 
         return params
 
@@ -10737,9 +10737,9 @@ class StandardDeviationOfSlope(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
         filterx = parameters[3].valueAsText
@@ -10747,7 +10747,7 @@ class StandardDeviationOfSlope(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.standard_deviation_of_slope(input, output=output, zfactor=zfactor, filterx=filterx, filtery=filtery)
+        wbt.standard_deviation_of_slope(i=i, output=output, zfactor=zfactor, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10814,7 +10814,7 @@ class StreamPowerIndex(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.stream_power_index(sca, slope=slope, output=output, exponent=exponent)
+        wbt.stream_power_index(sca=sca, slope=slope, output=output, exponent=exponent)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10861,7 +10861,7 @@ class SurfaceAreaRatio(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.surface_area_ratio(dem, output=output)
+        wbt.surface_area_ratio(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10918,7 +10918,7 @@ class TangentialCurvature(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.tangential_curvature(dem, output=output, zfactor=zfactor)
+        wbt.tangential_curvature(dem=dem, output=output, zfactor=zfactor)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10975,7 +10975,7 @@ class TotalCurvature(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.total_curvature(dem, output=output, zfactor=zfactor)
+        wbt.total_curvature(dem=dem, output=output, zfactor=zfactor)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11043,7 +11043,7 @@ class Viewshed(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.viewshed(dem, stations=stations, output=output, height=height)
+        wbt.viewshed(dem=dem, stations=stations, output=output, height=height)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11110,7 +11110,7 @@ class VisibilityIndex(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.visibility_index(dem, output=output, height=height, res_factor=res_factor)
+        wbt.visibility_index(dem=dem, output=output, height=height, res_factor=res_factor)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11167,7 +11167,7 @@ class WetnessIndex(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.wetness_index(sca, slope=slope, output=output)
+        wbt.wetness_index(sca=sca, slope=slope, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11214,7 +11214,7 @@ class AverageFlowpathSlope(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.average_flowpath_slope(dem, output=output)
+        wbt.average_flowpath_slope(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11261,7 +11261,7 @@ class AverageUpslopeFlowpathLength(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.average_upslope_flowpath_length(dem, output=output)
+        wbt.average_upslope_flowpath_length(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11297,7 +11297,7 @@ class Basins(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         params = [d8_pntr, output, esri_pntr]
 
@@ -11318,7 +11318,7 @@ class Basins(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.basins(d8_pntr, output=output, esri_pntr=esri_pntr)
+        wbt.basins(d8_pntr=d8_pntr, output=output, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11375,7 +11375,7 @@ class BreachDepressions(object):
             parameterType="Optional",
             direction="Input")
 
-        fill_pits.value = "false"
+        fill_pits.value = False
 
         params = [dem, output, max_depth, max_length, flat_increment, fill_pits]
 
@@ -11399,7 +11399,7 @@ class BreachDepressions(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.breach_depressions(dem, output=output, max_depth=max_depth, max_length=max_length, flat_increment=flat_increment, fill_pits=fill_pits)
+        wbt.breach_depressions(dem=dem, output=output, max_depth=max_depth, max_length=max_length, flat_increment=flat_increment, fill_pits=fill_pits)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11449,7 +11449,7 @@ class BreachDepressionsLeastCost(object):
             parameterType="Optional",
             direction="Input")
 
-        min_dist.value = "true"
+        min_dist.value = True
 
         flat_increment = arcpy.Parameter(
             displayName="Flat increment value (z units)",
@@ -11465,7 +11465,7 @@ class BreachDepressionsLeastCost(object):
             parameterType="Optional",
             direction="Input")
 
-        fill.value = "true"
+        fill.value = True
 
         params = [dem, output, radius, max_cost, min_dist, flat_increment, fill]
 
@@ -11490,7 +11490,7 @@ class BreachDepressionsLeastCost(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.breach_depressions_least_cost(dem, output=output, radius=radius, max_cost=max_cost, min_dist=min_dist, flat_increment=flat_increment, fill=fill)
+        wbt.breach_depressions_least_cost(dem=dem, output=output, radius=radius, max_cost=max_cost, min_dist=min_dist, flat_increment=flat_increment, fill=fill)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11537,7 +11537,7 @@ class BreachSingleCellPits(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.breach_single_cell_pits(dem, output=output)
+        wbt.breach_single_cell_pits(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11614,7 +11614,7 @@ class BurnStreamsAtRoads(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.burn_streams_at_roads(dem, streams=streams, roads=roads, output=output, width=width)
+        wbt.burn_streams_at_roads(dem=dem, streams=streams, roads=roads, output=output, width=width)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11689,7 +11689,7 @@ class D8FlowAccumulation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.d8_flow_accumulation(dem, output=output, out_type=out_type, log=log, clip=clip)
+        wbt.d8_flow_accumulation(dem=dem, output=output, out_type=out_type, log=log, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11766,7 +11766,7 @@ class D8MassFlux(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.d8_mass_flux(dem, loading=loading, efficiency=efficiency, absorption=absorption, output=output)
+        wbt.d8_mass_flux(dem=dem, loading=loading, efficiency=efficiency, absorption=absorption, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11802,7 +11802,7 @@ class D8Pointer(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         params = [dem, output, esri_pntr]
 
@@ -11823,7 +11823,7 @@ class D8Pointer(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.d8_pointer(dem, output=output, esri_pntr=esri_pntr)
+        wbt.d8_pointer(dem=dem, output=output, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11906,7 +11906,7 @@ class DInfFlowAccumulation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.d_inf_flow_accumulation(dem, output=output, out_type=out_type, threshold=threshold, log=log, clip=clip)
+        wbt.d_inf_flow_accumulation(dem=dem, output=output, out_type=out_type, threshold=threshold, log=log, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11983,7 +11983,7 @@ class DInfMassFlux(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.d_inf_mass_flux(dem, loading=loading, efficiency=efficiency, absorption=absorption, output=output)
+        wbt.d_inf_mass_flux(dem=dem, loading=loading, efficiency=efficiency, absorption=absorption, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12030,7 +12030,7 @@ class DInfPointer(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.d_inf_pointer(dem, output=output)
+        wbt.d_inf_pointer(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12085,7 +12085,7 @@ class DepthInSink(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.depth_in_sink(dem, output=output, zero_background=zero_background)
+        wbt.depth_in_sink(dem=dem, output=output, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12142,7 +12142,7 @@ class DownslopeDistanceToStream(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.downslope_distance_to_stream(dem, streams=streams, output=output)
+        wbt.downslope_distance_to_stream(dem=dem, streams=streams, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12192,7 +12192,7 @@ class DownslopeFlowpathLength(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         params = [d8_pntr, watersheds, weights, output, esri_pntr]
 
@@ -12219,7 +12219,7 @@ class DownslopeFlowpathLength(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.downslope_flowpath_length(d8_pntr, watersheds=watersheds, weights=weights, output=output, esri_pntr=esri_pntr)
+        wbt.downslope_flowpath_length(d8_pntr=d8_pntr, watersheds=watersheds, weights=weights, output=output, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12276,7 +12276,7 @@ class ElevationAboveStream(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.elevation_above_stream(dem, streams=streams, output=output)
+        wbt.elevation_above_stream(dem=dem, streams=streams, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12333,7 +12333,7 @@ class ElevationAboveStreamEuclidean(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.elevation_above_stream_euclidean(dem, streams=streams, output=output)
+        wbt.elevation_above_stream_euclidean(dem=dem, streams=streams, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12426,7 +12426,7 @@ class Fd8FlowAccumulation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.fd8_flow_accumulation(dem, output=output, out_type=out_type, exponent=exponent, threshold=threshold, log=log, clip=clip)
+        wbt.fd8_flow_accumulation(dem=dem, output=output, out_type=out_type, exponent=exponent, threshold=threshold, log=log, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12473,7 +12473,7 @@ class Fd8Pointer(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.fd8_pointer(dem, output=output)
+        wbt.fd8_pointer(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12531,7 +12531,7 @@ class FillBurn(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.fill_burn(dem, streams=streams, output=output)
+        wbt.fill_burn(dem=dem, streams=streams, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12567,7 +12567,7 @@ class FillDepressions(object):
             parameterType="Optional",
             direction="Input")
 
-        fix_flats.value = "true"
+        fix_flats.value = True
 
         flat_increment = arcpy.Parameter(
             displayName="Flat increment value (z units)",
@@ -12604,7 +12604,7 @@ class FillDepressions(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.fill_depressions(dem, output=output, fix_flats=fix_flats, flat_increment=flat_increment, max_depth=max_depth)
+        wbt.fill_depressions(dem=dem, output=output, fix_flats=fix_flats, flat_increment=flat_increment, max_depth=max_depth)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12640,7 +12640,7 @@ class FillDepressionsWangAndLui(object):
             parameterType="Optional",
             direction="Input")
 
-        fix_flats.value = "true"
+        fix_flats.value = True
 
         flat_increment = arcpy.Parameter(
             displayName="Flat increment value (z units)",
@@ -12669,7 +12669,7 @@ class FillDepressionsWangAndLui(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.fill_depressions_wang_and_lui(dem, output=output, fix_flats=fix_flats, flat_increment=flat_increment)
+        wbt.fill_depressions_wang_and_lui(dem=dem, output=output, fix_flats=fix_flats, flat_increment=flat_increment)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12716,7 +12716,7 @@ class FillSingleCellPits(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.fill_single_cell_pits(dem, output=output)
+        wbt.fill_single_cell_pits(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12763,7 +12763,7 @@ class FindNoFlowCells(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.find_no_flow_cells(dem, output=output)
+        wbt.find_no_flow_cells(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12820,7 +12820,7 @@ class FindParallelFlow(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.find_parallel_flow(d8_pntr, streams=streams, output=output)
+        wbt.find_parallel_flow(d8_pntr=d8_pntr, streams=streams, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12878,7 +12878,7 @@ class FlattenLakes(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.flatten_lakes(dem, lakes=lakes, output=output)
+        wbt.flatten_lakes(dem=dem, lakes=lakes, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12925,7 +12925,7 @@ class FloodOrder(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.flood_order(dem, output=output)
+        wbt.flood_order(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13002,7 +13002,7 @@ class FlowAccumulationFullWorkflow(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         params = [dem, out_dem, out_pntr, out_accum, out_type, log, clip, esri_pntr]
 
@@ -13028,7 +13028,7 @@ class FlowAccumulationFullWorkflow(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.flow_accumulation_full_workflow(dem, out_dem=out_dem, out_pntr=out_pntr, out_accum=out_accum, out_type=out_type, log=log, clip=clip, esri_pntr=esri_pntr)
+        wbt.flow_accumulation_full_workflow(dem=dem, out_dem=out_dem, out_pntr=out_pntr, out_accum=out_accum, out_type=out_type, log=log, clip=clip, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13064,7 +13064,7 @@ class FlowLengthDiff(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         params = [d8_pntr, output, esri_pntr]
 
@@ -13085,7 +13085,7 @@ class FlowLengthDiff(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.flow_length_diff(d8_pntr, output=output, esri_pntr=esri_pntr)
+        wbt.flow_length_diff(d8_pntr=d8_pntr, output=output, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13128,7 +13128,7 @@ class Hillslopes(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         params = [d8_pntr, streams, output, esri_pntr]
 
@@ -13152,7 +13152,7 @@ class Hillslopes(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.hillslopes(d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr)
+        wbt.hillslopes(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13219,7 +13219,7 @@ class ImpoundmentSizeIndex(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.impoundment_size_index(dem, output=output, out_type=out_type, damlength=damlength)
+        wbt.impoundment_size_index(dem=dem, output=output, out_type=out_type, damlength=damlength)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13274,7 +13274,7 @@ class Isobasins(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.isobasins(dem, output=output, size=size)
+        wbt.isobasins(dem=dem, output=output, size=size)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13340,7 +13340,7 @@ class JensonSnapPourPoints(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.jenson_snap_pour_points(pour_pts, streams=streams, output=output, snap_dist=snap_dist)
+        wbt.jenson_snap_pour_points(pour_pts=pour_pts, streams=streams, output=output, snap_dist=snap_dist)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13397,7 +13397,7 @@ class LongestFlowpath(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.longest_flowpath(dem, basins=basins, output=output)
+        wbt.longest_flowpath(dem=dem, basins=basins, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13444,7 +13444,7 @@ class MaxUpslopeFlowpathLength(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.max_upslope_flowpath_length(dem, output=output)
+        wbt.max_upslope_flowpath_length(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13491,7 +13491,7 @@ class NumInflowingNeighbours(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.num_inflowing_neighbours(dem, output=output)
+        wbt.num_inflowing_neighbours(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13505,9 +13505,9 @@ class RaiseWalls(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector Line or Polygon File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
@@ -13544,7 +13544,7 @@ class RaiseWalls(object):
 
         height.value = "100.0"
 
-        params = [input, breach, dem, output, height]
+        params = [i, breach, dem, output, height]
 
         return params
 
@@ -13555,9 +13555,9 @@ class RaiseWalls(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         breach = parameters[1].valueAsText
         desc = arcpy.Describe(breach)
         breach = desc.catalogPath
@@ -13569,7 +13569,7 @@ class RaiseWalls(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.raise_walls(input, breach=breach, dem=dem, output=output, height=height)
+        wbt.raise_walls(i=i, breach=breach, dem=dem, output=output, height=height)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13605,7 +13605,7 @@ class Rho8Pointer(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         params = [dem, output, esri_pntr]
 
@@ -13626,7 +13626,7 @@ class Rho8Pointer(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.rho8_pointer(dem, output=output, esri_pntr=esri_pntr)
+        wbt.rho8_pointer(dem=dem, output=output, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13640,9 +13640,9 @@ class Sink(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input DEM File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -13662,7 +13662,7 @@ class Sink(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [input, output, zero_background]
+        params = [i, output, zero_background]
 
         return params
 
@@ -13673,15 +13673,15 @@ class Sink(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         zero_background = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.sink(input, output=output, zero_background=zero_background)
+        wbt.sink(i=i, output=output, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13747,7 +13747,7 @@ class SnapPourPoints(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.snap_pour_points(pour_pts, flow_accum=flow_accum, output=output, snap_dist=snap_dist)
+        wbt.snap_pour_points(pour_pts=pour_pts, flow_accum=flow_accum, output=output, snap_dist=snap_dist)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13820,7 +13820,7 @@ class StochasticDepressionAnalysis(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.stochastic_depression_analysis(dem, output=output, rmse=rmse, range=range, iterations=iterations)
+        wbt.stochastic_depression_analysis(dem=dem, output=output, rmse=rmse, range=range, iterations=iterations)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13863,7 +13863,7 @@ class StrahlerOrderBasins(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         params = [d8_pntr, streams, output, esri_pntr]
 
@@ -13887,7 +13887,7 @@ class StrahlerOrderBasins(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.strahler_order_basins(d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr)
+        wbt.strahler_order_basins(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13930,7 +13930,7 @@ class Subbasins(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         params = [d8_pntr, streams, output, esri_pntr]
 
@@ -13954,7 +13954,7 @@ class Subbasins(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.subbasins(d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr)
+        wbt.subbasins(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13998,7 +13998,7 @@ class TraceDownslopeFlowpaths(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
@@ -14030,7 +14030,7 @@ class TraceDownslopeFlowpaths(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.trace_downslope_flowpaths(seed_pts, d8_pntr=d8_pntr, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
+        wbt.trace_downslope_flowpaths(seed_pts=seed_pts, d8_pntr=d8_pntr, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14074,7 +14074,7 @@ class UnnestBasins(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         params = [d8_pntr, pour_pts, output, esri_pntr]
 
@@ -14098,7 +14098,7 @@ class UnnestBasins(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.unnest_basins(d8_pntr, pour_pts=pour_pts, output=output, esri_pntr=esri_pntr)
+        wbt.unnest_basins(d8_pntr=d8_pntr, pour_pts=pour_pts, output=output, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14145,7 +14145,7 @@ class UpslopeDepressionStorage(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.upslope_depression_storage(dem, output=output)
+        wbt.upslope_depression_storage(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14189,7 +14189,7 @@ class Watershed(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         params = [d8_pntr, pour_pts, output, esri_pntr]
 
@@ -14213,7 +14213,7 @@ class Watershed(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.watershed(d8_pntr, pour_pts=pour_pts, output=output, esri_pntr=esri_pntr)
+        wbt.watershed(d8_pntr=d8_pntr, pour_pts=pour_pts, output=output, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14277,7 +14277,7 @@ class ChangeVectorAnalysis(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.change_vector_analysis(date1, date2=date2, magnitude=magnitude, direction=direction)
+        wbt.change_vector_analysis(date1=date1, date2=date2, magnitude=magnitude, direction=direction)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14291,9 +14291,9 @@ class Closing(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -14324,7 +14324,7 @@ class Closing(object):
 
         filtery.value = "11"
 
-        params = [input, output, filterx, filtery]
+        params = [i, output, filterx, filtery]
 
         return params
 
@@ -14335,16 +14335,16 @@ class Closing(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.closing(input, output=output, filterx=filterx, filtery=filtery)
+        wbt.closing(i=i, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14401,7 +14401,7 @@ class CreateColourComposite(object):
             parameterType="Optional",
             direction="Input")
 
-        enhance.value = "true"
+        enhance.value = True
 
         zeros = arcpy.Parameter(
             displayName="Treat zeros as nodata?",
@@ -14410,7 +14410,7 @@ class CreateColourComposite(object):
             parameterType="Optional",
             direction="Input")
 
-        zeros.value = "false"
+        zeros.value = False
 
         params = [red, green, blue, opacity, output, enhance, zeros]
 
@@ -14441,7 +14441,7 @@ class CreateColourComposite(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.create_colour_composite(red, green=green, blue=blue, opacity=opacity, output=output, enhance=enhance, zeros=zeros)
+        wbt.create_colour_composite(red=red, green=green, blue=blue, opacity=opacity, output=output, enhance=enhance, zeros=zeros)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14455,9 +14455,9 @@ class FlipImage(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -14481,7 +14481,7 @@ class FlipImage(object):
 
         direction.value = "vertical"
 
-        params = [input, output, direction]
+        params = [i, output, direction]
 
         return params
 
@@ -14492,15 +14492,15 @@ class FlipImage(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         direction = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.flip_image(input, output=output, direction=direction)
+        wbt.flip_image(i=i, output=output, direction=direction)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14594,7 +14594,7 @@ class IhsToRgb(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.ihs_to_rgb(intensity, hue=hue, saturation=saturation, red=red, green=green, blue=blue, output=output)
+        wbt.ihs_to_rgb(intensity=intensity, hue=hue, saturation=saturation, red=red, green=green, blue=blue, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14608,13 +14608,13 @@ class ImageStackProfile(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        inputs = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Files",
-            name="inputs",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
-        inputs.multiValue = True
+        i.multiValue = True
 
         points = arcpy.Parameter(
             displayName="Input Vector Points File",
@@ -14632,7 +14632,7 @@ class ImageStackProfile(object):
             direction="Output")
         output.filter.list = ["html"]
 
-        params = [inputs, points, output]
+        params = [i, points, output]
 
         return params
 
@@ -14643,7 +14643,7 @@ class ImageStackProfile(object):
         return
 
     def execute(self, parameters, messages):
-        inputs = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         points = parameters[1].valueAsText
         desc = arcpy.Describe(points)
         points = desc.catalogPath
@@ -14651,7 +14651,7 @@ class ImageStackProfile(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.image_stack_profile(inputs, points=points, output=output)
+        wbt.image_stack_profile(i=i, points=points, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14665,9 +14665,9 @@ class IntegralImage(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -14680,7 +14680,7 @@ class IntegralImage(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -14691,14 +14691,14 @@ class IntegralImage(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.integral_image(input, output=output)
+        wbt.integral_image(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14712,13 +14712,13 @@ class KMeansClustering(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        inputs = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Files",
-            name="inputs",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
-        inputs.multiValue = True
+        i.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output Raster File",
@@ -14781,7 +14781,7 @@ class KMeansClustering(object):
 
         min_class_size.value = "10"
 
-        params = [inputs, output, out_html, classes, max_iterations, class_change, initialize, min_class_size]
+        params = [i, output, out_html, classes, max_iterations, class_change, initialize, min_class_size]
 
         return params
 
@@ -14792,7 +14792,7 @@ class KMeansClustering(object):
         return
 
     def execute(self, parameters, messages):
-        inputs = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         out_html = parameters[2].valueAsText
         classes = parameters[3].valueAsText
@@ -14803,7 +14803,7 @@ class KMeansClustering(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.k_means_clustering(inputs, output=output, out_html=out_html, classes=classes, max_iterations=max_iterations, class_change=class_change, initialize=initialize, min_class_size=min_class_size)
+        wbt.k_means_clustering(i=i, output=output, out_html=out_html, classes=classes, max_iterations=max_iterations, class_change=class_change, initialize=initialize, min_class_size=min_class_size)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14817,9 +14817,9 @@ class LineThinning(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -14832,7 +14832,7 @@ class LineThinning(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -14843,14 +14843,14 @@ class LineThinning(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.line_thinning(input, output=output)
+        wbt.line_thinning(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14864,13 +14864,13 @@ class ModifiedKMeansClustering(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        inputs = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Files",
-            name="inputs",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
-        inputs.multiValue = True
+        i.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output Raster File",
@@ -14922,7 +14922,7 @@ class ModifiedKMeansClustering(object):
 
         class_change.value = "2.0"
 
-        params = [inputs, output, out_html, start_clusters, merge_dist, max_iterations, class_change]
+        params = [i, output, out_html, start_clusters, merge_dist, max_iterations, class_change]
 
         return params
 
@@ -14933,7 +14933,7 @@ class ModifiedKMeansClustering(object):
         return
 
     def execute(self, parameters, messages):
-        inputs = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         out_html = parameters[2].valueAsText
         start_clusters = parameters[3].valueAsText
@@ -14943,7 +14943,7 @@ class ModifiedKMeansClustering(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.modified_k_means_clustering(inputs, output=output, out_html=out_html, start_clusters=start_clusters, merge_dist=merge_dist, max_iterations=max_iterations, class_change=class_change)
+        wbt.modified_k_means_clustering(i=i, output=output, out_html=out_html, start_clusters=start_clusters, merge_dist=merge_dist, max_iterations=max_iterations, class_change=class_change)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14957,13 +14957,13 @@ class Mosaic(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        inputs = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Files",
-            name="inputs",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
-        inputs.multiValue = True
+        i.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -14984,7 +14984,7 @@ class Mosaic(object):
 
         method.value = "cc"
 
-        params = [inputs, output, method]
+        params = [i, output, method]
 
         return params
 
@@ -14995,13 +14995,13 @@ class Mosaic(object):
         return
 
     def execute(self, parameters, messages):
-        inputs = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         method = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.mosaic(inputs, output=output, method=method)
+        wbt.mosaic(i=i, output=output, method=method)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15080,7 +15080,7 @@ class MosaicWithFeathering(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.mosaic_with_feathering(input1, input2=input2, output=output, method=method, weight=weight)
+        wbt.mosaic_with_feathering(input1=input1, input2=input2, output=output, method=method, weight=weight)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15157,7 +15157,7 @@ class NormalizedDifferenceIndex(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.normalized_difference_index(input1, input2=input2, output=output, clip=clip, correction=correction)
+        wbt.normalized_difference_index(input1=input1, input2=input2, output=output, clip=clip, correction=correction)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15171,9 +15171,9 @@ class Opening(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -15204,7 +15204,7 @@ class Opening(object):
 
         filtery.value = "11"
 
-        params = [input, output, filterx, filtery]
+        params = [i, output, filterx, filtery]
 
         return params
 
@@ -15215,16 +15215,16 @@ class Opening(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.opening(input, output=output, filterx=filterx, filtery=filtery)
+        wbt.opening(i=i, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15238,9 +15238,9 @@ class RemoveSpurs(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -15262,7 +15262,7 @@ class RemoveSpurs(object):
 
         iterations.value = "10"
 
-        params = [input, output, iterations]
+        params = [i, output, iterations]
 
         return params
 
@@ -15273,15 +15273,15 @@ class RemoveSpurs(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         iterations = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.remove_spurs(input, output=output, iterations=iterations)
+        wbt.remove_spurs(i=i, output=output, iterations=iterations)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15295,13 +15295,13 @@ class Resample(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        inputs = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Files",
-            name="inputs",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
-        inputs.multiValue = True
+        i.multiValue = True
 
         destination = arcpy.Parameter(
             displayName="Destination File",
@@ -15321,7 +15321,7 @@ class Resample(object):
 
         method.value = "cc"
 
-        params = [inputs, destination, method]
+        params = [i, destination, method]
 
         return params
 
@@ -15332,7 +15332,7 @@ class Resample(object):
         return
 
     def execute(self, parameters, messages):
-        inputs = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         destination = parameters[1].valueAsText
         desc = arcpy.Describe(destination)
         destination = desc.catalogPath
@@ -15340,7 +15340,7 @@ class Resample(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.resample(inputs, destination=destination, method=method)
+        wbt.resample(i=i, destination=destination, method=method)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15435,7 +15435,7 @@ class RgbToIhs(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.rgb_to_ihs(red, green=green, blue=blue, composite=composite, intensity=intensity, hue=hue, saturation=saturation)
+        wbt.rgb_to_ihs(red=red, green=green, blue=blue, composite=composite, intensity=intensity, hue=hue, saturation=saturation)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15449,9 +15449,9 @@ class SplitColourComposite(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Colour Composite Image File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -15480,7 +15480,7 @@ class SplitColourComposite(object):
             direction="Output")
         blue.filter.list = ["tif"]
 
-        params = [input, red, green, blue]
+        params = [i, red, green, blue]
 
         return params
 
@@ -15491,16 +15491,16 @@ class SplitColourComposite(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         red = parameters[1].valueAsText
         green = parameters[2].valueAsText
         blue = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.split_colour_composite(input, red=red, green=green, blue=blue)
+        wbt.split_colour_composite(i=i, red=red, green=green, blue=blue)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15514,9 +15514,9 @@ class ThickenRasterLine(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -15529,7 +15529,7 @@ class ThickenRasterLine(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -15540,14 +15540,14 @@ class ThickenRasterLine(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.thicken_raster_line(input, output=output)
+        wbt.thicken_raster_line(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15561,9 +15561,9 @@ class TophatTransform(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -15605,7 +15605,7 @@ class TophatTransform(object):
 
         variant.value = "white"
 
-        params = [input, output, filterx, filtery, variant]
+        params = [i, output, filterx, filtery, variant]
 
         return params
 
@@ -15616,9 +15616,9 @@ class TophatTransform(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -15626,7 +15626,7 @@ class TophatTransform(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.tophat_transform(input, output=output, filterx=filterx, filtery=filtery, variant=variant)
+        wbt.tophat_transform(i=i, output=output, filterx=filterx, filtery=filtery, variant=variant)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15693,7 +15693,7 @@ class WriteFunctionMemoryInsertion(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.write_function_memory_insertion(input1, input2=input2, input3=input3, output=output)
+        wbt.write_function_memory_insertion(input1=input1, input2=input2, input3=input3, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15707,9 +15707,9 @@ class AdaptiveFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -15749,7 +15749,7 @@ class AdaptiveFilter(object):
 
         threshold.value = "2.0"
 
-        params = [input, output, filterx, filtery, threshold]
+        params = [i, output, filterx, filtery, threshold]
 
         return params
 
@@ -15760,9 +15760,9 @@ class AdaptiveFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -15770,7 +15770,7 @@ class AdaptiveFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.adaptive_filter(input, output=output, filterx=filterx, filtery=filtery, threshold=threshold)
+        wbt.adaptive_filter(i=i, output=output, filterx=filterx, filtery=filtery, threshold=threshold)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15784,9 +15784,9 @@ class BilateralFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -15817,7 +15817,7 @@ class BilateralFilter(object):
 
         sigma_int.value = "1.0"
 
-        params = [input, output, sigma_dist, sigma_int]
+        params = [i, output, sigma_dist, sigma_int]
 
         return params
 
@@ -15828,16 +15828,16 @@ class BilateralFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         sigma_dist = parameters[2].valueAsText
         sigma_int = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.bilateral_filter(input, output=output, sigma_dist=sigma_dist, sigma_int=sigma_int)
+        wbt.bilateral_filter(i=i, output=output, sigma_dist=sigma_dist, sigma_int=sigma_int)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15851,9 +15851,9 @@ class ConservativeSmoothingFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -15884,7 +15884,7 @@ class ConservativeSmoothingFilter(object):
 
         filtery.value = "3"
 
-        params = [input, output, filterx, filtery]
+        params = [i, output, filterx, filtery]
 
         return params
 
@@ -15895,16 +15895,16 @@ class ConservativeSmoothingFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.conservative_smoothing_filter(input, output=output, filterx=filterx, filtery=filtery)
+        wbt.conservative_smoothing_filter(i=i, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15918,9 +15918,9 @@ class CornerDetection(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -15933,7 +15933,7 @@ class CornerDetection(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -15944,14 +15944,14 @@ class CornerDetection(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.corner_detection(input, output=output)
+        wbt.corner_detection(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15965,9 +15965,9 @@ class DiffOfGaussianFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -15998,7 +15998,7 @@ class DiffOfGaussianFilter(object):
 
         sigma2.value = "4.0"
 
-        params = [input, output, sigma1, sigma2]
+        params = [i, output, sigma1, sigma2]
 
         return params
 
@@ -16009,16 +16009,16 @@ class DiffOfGaussianFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         sigma1 = parameters[2].valueAsText
         sigma2 = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.diff_of_gaussian_filter(input, output=output, sigma1=sigma1, sigma2=sigma2)
+        wbt.diff_of_gaussian_filter(i=i, output=output, sigma1=sigma1, sigma2=sigma2)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16032,9 +16032,9 @@ class DiversityFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -16065,7 +16065,7 @@ class DiversityFilter(object):
 
         filtery.value = "11"
 
-        params = [input, output, filterx, filtery]
+        params = [i, output, filterx, filtery]
 
         return params
 
@@ -16076,16 +16076,16 @@ class DiversityFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.diversity_filter(input, output=output, filterx=filterx, filtery=filtery)
+        wbt.diversity_filter(i=i, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16099,9 +16099,9 @@ class EdgePreservingMeanFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -16130,7 +16130,7 @@ class EdgePreservingMeanFilter(object):
             parameterType="Required",
             direction="Input")
 
-        params = [input, output, filter, threshold]
+        params = [i, output, filter, threshold]
 
         return params
 
@@ -16141,16 +16141,16 @@ class EdgePreservingMeanFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         threshold = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.edge_preserving_mean_filter(input, output=output, filter=filter, threshold=threshold)
+        wbt.edge_preserving_mean_filter(i=i, output=output, filter=filter, threshold=threshold)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16164,9 +16164,9 @@ class EmbossFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -16199,7 +16199,7 @@ class EmbossFilter(object):
 
         clip.value = "0.0"
 
-        params = [input, output, direction, clip]
+        params = [i, output, direction, clip]
 
         return params
 
@@ -16210,16 +16210,16 @@ class EmbossFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         direction = parameters[2].valueAsText
         clip = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.emboss_filter(input, output=output, direction=direction, clip=clip)
+        wbt.emboss_filter(i=i, output=output, direction=direction, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16233,9 +16233,9 @@ class FastAlmostGaussianFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -16257,7 +16257,7 @@ class FastAlmostGaussianFilter(object):
 
         sigma.value = "1.8"
 
-        params = [input, output, sigma]
+        params = [i, output, sigma]
 
         return params
 
@@ -16268,15 +16268,15 @@ class FastAlmostGaussianFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         sigma = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.fast_almost_gaussian_filter(input, output=output, sigma=sigma)
+        wbt.fast_almost_gaussian_filter(i=i, output=output, sigma=sigma)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16290,9 +16290,9 @@ class GaussianFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -16314,7 +16314,7 @@ class GaussianFilter(object):
 
         sigma.value = "0.75"
 
-        params = [input, output, sigma]
+        params = [i, output, sigma]
 
         return params
 
@@ -16325,15 +16325,15 @@ class GaussianFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         sigma = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.gaussian_filter(input, output=output, sigma=sigma)
+        wbt.gaussian_filter(i=i, output=output, sigma=sigma)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16347,9 +16347,9 @@ class HighPassFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -16380,7 +16380,7 @@ class HighPassFilter(object):
 
         filtery.value = "11"
 
-        params = [input, output, filterx, filtery]
+        params = [i, output, filterx, filtery]
 
         return params
 
@@ -16391,16 +16391,16 @@ class HighPassFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.high_pass_filter(input, output=output, filterx=filterx, filtery=filtery)
+        wbt.high_pass_filter(i=i, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16414,9 +16414,9 @@ class HighPassMedianFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -16456,7 +16456,7 @@ class HighPassMedianFilter(object):
 
         sig_digits.value = "2"
 
-        params = [input, output, filterx, filtery, sig_digits]
+        params = [i, output, filterx, filtery, sig_digits]
 
         return params
 
@@ -16467,9 +16467,9 @@ class HighPassMedianFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -16477,7 +16477,7 @@ class HighPassMedianFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.high_pass_median_filter(input, output=output, filterx=filterx, filtery=filtery, sig_digits=sig_digits)
+        wbt.high_pass_median_filter(i=i, output=output, filterx=filterx, filtery=filtery, sig_digits=sig_digits)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16491,9 +16491,9 @@ class KNearestMeanFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -16533,7 +16533,7 @@ class KNearestMeanFilter(object):
 
         k.value = "5"
 
-        params = [input, output, filterx, filtery, k]
+        params = [i, output, filterx, filtery, k]
 
         return params
 
@@ -16544,9 +16544,9 @@ class KNearestMeanFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -16554,7 +16554,7 @@ class KNearestMeanFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.k_nearest_mean_filter(input, output=output, filterx=filterx, filtery=filtery, k=k)
+        wbt.k_nearest_mean_filter(i=i, output=output, filterx=filterx, filtery=filtery, k=k)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16568,9 +16568,9 @@ class LaplacianFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -16603,7 +16603,7 @@ class LaplacianFilter(object):
 
         clip.value = "0.0"
 
-        params = [input, output, variant, clip]
+        params = [i, output, variant, clip]
 
         return params
 
@@ -16614,16 +16614,16 @@ class LaplacianFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         variant = parameters[2].valueAsText
         clip = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.laplacian_filter(input, output=output, variant=variant, clip=clip)
+        wbt.laplacian_filter(i=i, output=output, variant=variant, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16637,9 +16637,9 @@ class LaplacianOfGaussianFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -16661,7 +16661,7 @@ class LaplacianOfGaussianFilter(object):
 
         sigma.value = "0.75"
 
-        params = [input, output, sigma]
+        params = [i, output, sigma]
 
         return params
 
@@ -16672,15 +16672,15 @@ class LaplacianOfGaussianFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         sigma = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.laplacian_of_gaussian_filter(input, output=output, sigma=sigma)
+        wbt.laplacian_of_gaussian_filter(i=i, output=output, sigma=sigma)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16694,9 +16694,9 @@ class LeeSigmaFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -16745,7 +16745,7 @@ class LeeSigmaFilter(object):
 
         m.value = "5.0"
 
-        params = [input, output, filterx, filtery, sigma, m]
+        params = [i, output, filterx, filtery, sigma, m]
 
         return params
 
@@ -16756,9 +16756,9 @@ class LeeSigmaFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -16767,7 +16767,7 @@ class LeeSigmaFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lee_sigma_filter(input, output=output, filterx=filterx, filtery=filtery, sigma=sigma, m=m)
+        wbt.lee_sigma_filter(i=i, output=output, filterx=filterx, filtery=filtery, sigma=sigma, m=m)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16781,9 +16781,9 @@ class LineDetectionFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -16823,7 +16823,7 @@ class LineDetectionFilter(object):
 
         clip.value = "0.0"
 
-        params = [input, output, variant, absvals, clip]
+        params = [i, output, variant, absvals, clip]
 
         return params
 
@@ -16834,9 +16834,9 @@ class LineDetectionFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         variant = parameters[2].valueAsText
         absvals = parameters[3].valueAsText
@@ -16844,7 +16844,7 @@ class LineDetectionFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.line_detection_filter(input, output=output, variant=variant, absvals=absvals, clip=clip)
+        wbt.line_detection_filter(i=i, output=output, variant=variant, absvals=absvals, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16858,9 +16858,9 @@ class MajorityFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -16891,7 +16891,7 @@ class MajorityFilter(object):
 
         filtery.value = "11"
 
-        params = [input, output, filterx, filtery]
+        params = [i, output, filterx, filtery]
 
         return params
 
@@ -16902,16 +16902,16 @@ class MajorityFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.majority_filter(input, output=output, filterx=filterx, filtery=filtery)
+        wbt.majority_filter(i=i, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16925,9 +16925,9 @@ class MaximumFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -16958,7 +16958,7 @@ class MaximumFilter(object):
 
         filtery.value = "11"
 
-        params = [input, output, filterx, filtery]
+        params = [i, output, filterx, filtery]
 
         return params
 
@@ -16969,16 +16969,16 @@ class MaximumFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.maximum_filter(input, output=output, filterx=filterx, filtery=filtery)
+        wbt.maximum_filter(i=i, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16992,9 +16992,9 @@ class MeanFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -17025,7 +17025,7 @@ class MeanFilter(object):
 
         filtery.value = "3"
 
-        params = [input, output, filterx, filtery]
+        params = [i, output, filterx, filtery]
 
         return params
 
@@ -17036,16 +17036,16 @@ class MeanFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.mean_filter(input, output=output, filterx=filterx, filtery=filtery)
+        wbt.mean_filter(i=i, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17059,9 +17059,9 @@ class MedianFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -17101,7 +17101,7 @@ class MedianFilter(object):
 
         sig_digits.value = "2"
 
-        params = [input, output, filterx, filtery, sig_digits]
+        params = [i, output, filterx, filtery, sig_digits]
 
         return params
 
@@ -17112,9 +17112,9 @@ class MedianFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -17122,7 +17122,7 @@ class MedianFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.median_filter(input, output=output, filterx=filterx, filtery=filtery, sig_digits=sig_digits)
+        wbt.median_filter(i=i, output=output, filterx=filterx, filtery=filtery, sig_digits=sig_digits)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17136,9 +17136,9 @@ class MinimumFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -17169,7 +17169,7 @@ class MinimumFilter(object):
 
         filtery.value = "11"
 
-        params = [input, output, filterx, filtery]
+        params = [i, output, filterx, filtery]
 
         return params
 
@@ -17180,16 +17180,16 @@ class MinimumFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.minimum_filter(input, output=output, filterx=filterx, filtery=filtery)
+        wbt.minimum_filter(i=i, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17203,9 +17203,9 @@ class OlympicFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -17236,7 +17236,7 @@ class OlympicFilter(object):
 
         filtery.value = "11"
 
-        params = [input, output, filterx, filtery]
+        params = [i, output, filterx, filtery]
 
         return params
 
@@ -17247,16 +17247,16 @@ class OlympicFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.olympic_filter(input, output=output, filterx=filterx, filtery=filtery)
+        wbt.olympic_filter(i=i, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17270,9 +17270,9 @@ class PercentileFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -17312,7 +17312,7 @@ class PercentileFilter(object):
 
         sig_digits.value = "2"
 
-        params = [input, output, filterx, filtery, sig_digits]
+        params = [i, output, filterx, filtery, sig_digits]
 
         return params
 
@@ -17323,9 +17323,9 @@ class PercentileFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -17333,7 +17333,7 @@ class PercentileFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.percentile_filter(input, output=output, filterx=filterx, filtery=filtery, sig_digits=sig_digits)
+        wbt.percentile_filter(i=i, output=output, filterx=filterx, filtery=filtery, sig_digits=sig_digits)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17347,9 +17347,9 @@ class PrewittFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -17371,7 +17371,7 @@ class PrewittFilter(object):
 
         clip.value = "0.0"
 
-        params = [input, output, clip]
+        params = [i, output, clip]
 
         return params
 
@@ -17382,15 +17382,15 @@ class PrewittFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         clip = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.prewitt_filter(input, output=output, clip=clip)
+        wbt.prewitt_filter(i=i, output=output, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17404,9 +17404,9 @@ class RangeFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -17437,7 +17437,7 @@ class RangeFilter(object):
 
         filtery.value = "11"
 
-        params = [input, output, filterx, filtery]
+        params = [i, output, filterx, filtery]
 
         return params
 
@@ -17448,16 +17448,16 @@ class RangeFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.range_filter(input, output=output, filterx=filterx, filtery=filtery)
+        wbt.range_filter(i=i, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17471,9 +17471,9 @@ class RobertsCrossFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -17495,7 +17495,7 @@ class RobertsCrossFilter(object):
 
         clip.value = "0.0"
 
-        params = [input, output, clip]
+        params = [i, output, clip]
 
         return params
 
@@ -17506,15 +17506,15 @@ class RobertsCrossFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         clip = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.roberts_cross_filter(input, output=output, clip=clip)
+        wbt.roberts_cross_filter(i=i, output=output, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17528,9 +17528,9 @@ class ScharrFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -17552,7 +17552,7 @@ class ScharrFilter(object):
 
         clip.value = "0.0"
 
-        params = [input, output, clip]
+        params = [i, output, clip]
 
         return params
 
@@ -17563,15 +17563,15 @@ class ScharrFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         clip = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.scharr_filter(input, output=output, clip=clip)
+        wbt.scharr_filter(i=i, output=output, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17585,9 +17585,9 @@ class SobelFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -17620,7 +17620,7 @@ class SobelFilter(object):
 
         clip.value = "0.0"
 
-        params = [input, output, variant, clip]
+        params = [i, output, variant, clip]
 
         return params
 
@@ -17631,16 +17631,16 @@ class SobelFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         variant = parameters[2].valueAsText
         clip = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.sobel_filter(input, output=output, variant=variant, clip=clip)
+        wbt.sobel_filter(i=i, output=output, variant=variant, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17654,9 +17654,9 @@ class StandardDeviationFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -17687,7 +17687,7 @@ class StandardDeviationFilter(object):
 
         filtery.value = "11"
 
-        params = [input, output, filterx, filtery]
+        params = [i, output, filterx, filtery]
 
         return params
 
@@ -17698,16 +17698,16 @@ class StandardDeviationFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.standard_deviation_filter(input, output=output, filterx=filterx, filtery=filtery)
+        wbt.standard_deviation_filter(i=i, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17721,9 +17721,9 @@ class TotalFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -17754,7 +17754,7 @@ class TotalFilter(object):
 
         filtery.value = "11"
 
-        params = [input, output, filterx, filtery]
+        params = [i, output, filterx, filtery]
 
         return params
 
@@ -17765,16 +17765,16 @@ class TotalFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.total_filter(input, output=output, filterx=filterx, filtery=filtery)
+        wbt.total_filter(i=i, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17788,9 +17788,9 @@ class UnsharpMasking(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -17830,7 +17830,7 @@ class UnsharpMasking(object):
 
         threshold.value = "0.0"
 
-        params = [input, output, sigma, amount, threshold]
+        params = [i, output, sigma, amount, threshold]
 
         return params
 
@@ -17841,9 +17841,9 @@ class UnsharpMasking(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         sigma = parameters[2].valueAsText
         amount = parameters[3].valueAsText
@@ -17851,7 +17851,7 @@ class UnsharpMasking(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.unsharp_masking(input, output=output, sigma=sigma, amount=amount, threshold=threshold)
+        wbt.unsharp_masking(i=i, output=output, sigma=sigma, amount=amount, threshold=threshold)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17865,9 +17865,9 @@ class UserDefinedWeightsFilter(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -17906,9 +17906,9 @@ class UserDefinedWeightsFilter(object):
             parameterType="Optional",
             direction="Input")
 
-        normalize.value = "false"
+        normalize.value = False
 
-        params = [input, weights, output, center, normalize]
+        params = [i, weights, output, center, normalize]
 
         return params
 
@@ -17919,9 +17919,9 @@ class UserDefinedWeightsFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         weights = parameters[1].valueAsText
         output = parameters[2].valueAsText
         center = parameters[3].valueAsText
@@ -17929,7 +17929,7 @@ class UserDefinedWeightsFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.user_defined_weights_filter(input, weights=weights, output=output, center=center, normalize=normalize)
+        wbt.user_defined_weights_filter(i=i, weights=weights, output=output, center=center, normalize=normalize)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17943,9 +17943,9 @@ class BalanceContrastEnhancement(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Colour Composite Image File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -17967,7 +17967,7 @@ class BalanceContrastEnhancement(object):
 
         band_mean.value = "100.0"
 
-        params = [input, output, band_mean]
+        params = [i, output, band_mean]
 
         return params
 
@@ -17978,15 +17978,15 @@ class BalanceContrastEnhancement(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         band_mean = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.balance_contrast_enhancement(input, output=output, band_mean=band_mean)
+        wbt.balance_contrast_enhancement(i=i, output=output, band_mean=band_mean)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18000,9 +18000,9 @@ class CorrectVignetting(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -18050,7 +18050,7 @@ class CorrectVignetting(object):
 
         n.value = "4.0"
 
-        params = [input, pp, output, focal_length, image_width, n]
+        params = [i, pp, output, focal_length, image_width, n]
 
         return params
 
@@ -18061,9 +18061,9 @@ class CorrectVignetting(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         pp = parameters[1].valueAsText
         desc = arcpy.Describe(pp)
         pp = desc.catalogPath
@@ -18074,7 +18074,7 @@ class CorrectVignetting(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.correct_vignetting(input, pp=pp, output=output, focal_length=focal_length, image_width=image_width, n=n)
+        wbt.correct_vignetting(i=i, pp=pp, output=output, focal_length=focal_length, image_width=image_width, n=n)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18088,9 +18088,9 @@ class DirectDecorrelationStretch(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Colour Composite Image File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -18121,7 +18121,7 @@ class DirectDecorrelationStretch(object):
 
         clip.value = "1.0"
 
-        params = [input, output, k, clip]
+        params = [i, output, k, clip]
 
         return params
 
@@ -18132,16 +18132,16 @@ class DirectDecorrelationStretch(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         k = parameters[2].valueAsText
         clip = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.direct_decorrelation_stretch(input, output=output, k=k, clip=clip)
+        wbt.direct_decorrelation_stretch(i=i, output=output, k=k, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18155,9 +18155,9 @@ class GammaCorrection(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -18179,7 +18179,7 @@ class GammaCorrection(object):
 
         gamma.value = "0.5"
 
-        params = [input, output, gamma]
+        params = [i, output, gamma]
 
         return params
 
@@ -18190,15 +18190,15 @@ class GammaCorrection(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         gamma = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.gamma_correction(input, output=output, gamma=gamma)
+        wbt.gamma_correction(i=i, output=output, gamma=gamma)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18212,9 +18212,9 @@ class GaussianContrastStretch(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -18236,7 +18236,7 @@ class GaussianContrastStretch(object):
 
         num_tones.value = "256"
 
-        params = [input, output, num_tones]
+        params = [i, output, num_tones]
 
         return params
 
@@ -18247,15 +18247,15 @@ class GaussianContrastStretch(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         num_tones = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.gaussian_contrast_stretch(input, output=output, num_tones=num_tones)
+        wbt.gaussian_contrast_stretch(i=i, output=output, num_tones=num_tones)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18269,9 +18269,9 @@ class HistogramEqualization(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -18293,7 +18293,7 @@ class HistogramEqualization(object):
 
         num_tones.value = "256"
 
-        params = [input, output, num_tones]
+        params = [i, output, num_tones]
 
         return params
 
@@ -18304,15 +18304,15 @@ class HistogramEqualization(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         num_tones = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.histogram_equalization(input, output=output, num_tones=num_tones)
+        wbt.histogram_equalization(i=i, output=output, num_tones=num_tones)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18326,9 +18326,9 @@ class HistogramMatching(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -18348,7 +18348,7 @@ class HistogramMatching(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, histo_file, output]
+        params = [i, histo_file, output]
 
         return params
 
@@ -18359,15 +18359,15 @@ class HistogramMatching(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         histo_file = parameters[1].valueAsText
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.histogram_matching(input, histo_file=histo_file, output=output)
+        wbt.histogram_matching(i=i, histo_file=histo_file, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18424,7 +18424,7 @@ class HistogramMatchingTwoImages(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.histogram_matching_two_images(input1, input2=input2, output=output)
+        wbt.histogram_matching_two_images(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18438,9 +18438,9 @@ class MinMaxContrastStretch(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -18476,7 +18476,7 @@ class MinMaxContrastStretch(object):
 
         num_tones.value = "256"
 
-        params = [input, output, min_val, max_val, num_tones]
+        params = [i, output, min_val, max_val, num_tones]
 
         return params
 
@@ -18487,9 +18487,9 @@ class MinMaxContrastStretch(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         min_val = parameters[2].valueAsText
         max_val = parameters[3].valueAsText
@@ -18497,7 +18497,7 @@ class MinMaxContrastStretch(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.min_max_contrast_stretch(input, output=output, min_val=min_val, max_val=max_val, num_tones=num_tones)
+        wbt.min_max_contrast_stretch(i=i, output=output, min_val=min_val, max_val=max_val, num_tones=num_tones)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18596,7 +18596,7 @@ class PanchromaticSharpening(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.panchromatic_sharpening(red, green=green, blue=blue, composite=composite, pan=pan, output=output, method=method)
+        wbt.panchromatic_sharpening(red=red, green=green, blue=blue, composite=composite, pan=pan, output=output, method=method)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18610,9 +18610,9 @@ class PercentageContrastStretch(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -18654,7 +18654,7 @@ class PercentageContrastStretch(object):
 
         num_tones.value = "256"
 
-        params = [input, output, clip, tail, num_tones]
+        params = [i, output, clip, tail, num_tones]
 
         return params
 
@@ -18665,9 +18665,9 @@ class PercentageContrastStretch(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         clip = parameters[2].valueAsText
         tail = parameters[3].valueAsText
@@ -18675,7 +18675,7 @@ class PercentageContrastStretch(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.percentage_contrast_stretch(input, output=output, clip=clip, tail=tail, num_tones=num_tones)
+        wbt.percentage_contrast_stretch(i=i, output=output, clip=clip, tail=tail, num_tones=num_tones)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18689,9 +18689,9 @@ class SigmoidalContrastStretch(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -18731,7 +18731,7 @@ class SigmoidalContrastStretch(object):
 
         num_tones.value = "256"
 
-        params = [input, output, cutoff, gain, num_tones]
+        params = [i, output, cutoff, gain, num_tones]
 
         return params
 
@@ -18742,9 +18742,9 @@ class SigmoidalContrastStretch(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         cutoff = parameters[2].valueAsText
         gain = parameters[3].valueAsText
@@ -18752,7 +18752,7 @@ class SigmoidalContrastStretch(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.sigmoidal_contrast_stretch(input, output=output, cutoff=cutoff, gain=gain, num_tones=num_tones)
+        wbt.sigmoidal_contrast_stretch(i=i, output=output, cutoff=cutoff, gain=gain, num_tones=num_tones)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18766,9 +18766,9 @@ class StandardDeviationContrastStretch(object):
         self.category = "Image Processing Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -18799,7 +18799,7 @@ class StandardDeviationContrastStretch(object):
 
         num_tones.value = "256"
 
-        params = [input, output, stdev, num_tones]
+        params = [i, output, stdev, num_tones]
 
         return params
 
@@ -18810,16 +18810,16 @@ class StandardDeviationContrastStretch(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         stdev = parameters[2].valueAsText
         num_tones = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.standard_deviation_contrast_stretch(input, output=output, stdev=stdev, num_tones=num_tones)
+        wbt.standard_deviation_contrast_stretch(i=i, output=output, stdev=stdev, num_tones=num_tones)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18833,13 +18833,13 @@ class ClassifyBuildingsInLidar(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         buildings = arcpy.Parameter(
             displayName="Input Building Polygon File",
@@ -18857,7 +18857,7 @@ class ClassifyBuildingsInLidar(object):
             direction="Output")
         output.filter.list = ["las", "zip"]
 
-        params = [input, buildings, output]
+        params = [i, buildings, output]
 
         return params
 
@@ -18868,7 +18868,7 @@ class ClassifyBuildingsInLidar(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         buildings = parameters[1].valueAsText
         desc = arcpy.Describe(buildings)
         buildings = desc.catalogPath
@@ -18876,7 +18876,7 @@ class ClassifyBuildingsInLidar(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.classify_buildings_in_lidar(input, buildings=buildings, output=output)
+        wbt.classify_buildings_in_lidar(i=i, buildings=buildings, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18890,13 +18890,13 @@ class ClassifyOverlapPoints(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input LiDAR File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -18922,9 +18922,9 @@ class ClassifyOverlapPoints(object):
             parameterType="Optional",
             direction="Input")
 
-        filter.value = "false"
+        filter.value = False
 
-        params = [input, output, resolution, filter]
+        params = [i, output, resolution, filter]
 
         return params
 
@@ -18935,14 +18935,14 @@ class ClassifyOverlapPoints(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         resolution = parameters[2].valueAsText
         filter = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.classify_overlap_points(input, output=output, resolution=resolution, filter=filter)
+        wbt.classify_overlap_points(i=i, output=output, resolution=resolution, filter=filter)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18956,13 +18956,13 @@ class ClipLidarToPolygon(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         polygons = arcpy.Parameter(
             displayName="Input Vector Polygon File",
@@ -18980,7 +18980,7 @@ class ClipLidarToPolygon(object):
             direction="Output")
         output.filter.list = ["las", "zip"]
 
-        params = [input, polygons, output]
+        params = [i, polygons, output]
 
         return params
 
@@ -18991,7 +18991,7 @@ class ClipLidarToPolygon(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         polygons = parameters[1].valueAsText
         desc = arcpy.Describe(polygons)
         polygons = desc.catalogPath
@@ -18999,7 +18999,7 @@ class ClipLidarToPolygon(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.clip_lidar_to_polygon(input, polygons=polygons, output=output)
+        wbt.clip_lidar_to_polygon(i=i, polygons=polygons, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19013,13 +19013,13 @@ class ErasePolygonFromLidar(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         polygons = arcpy.Parameter(
             displayName="Input Vector Polygon File",
@@ -19037,7 +19037,7 @@ class ErasePolygonFromLidar(object):
             direction="Output")
         output.filter.list = ["las", "zip"]
 
-        params = [input, polygons, output]
+        params = [i, polygons, output]
 
         return params
 
@@ -19048,7 +19048,7 @@ class ErasePolygonFromLidar(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         polygons = parameters[1].valueAsText
         desc = arcpy.Describe(polygons)
         polygons = desc.catalogPath
@@ -19056,7 +19056,7 @@ class ErasePolygonFromLidar(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.erase_polygon_from_lidar(input, polygons=polygons, output=output)
+        wbt.erase_polygon_from_lidar(i=i, polygons=polygons, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19070,13 +19070,13 @@ class FilterLidarClasses(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -19093,7 +19093,7 @@ class FilterLidarClasses(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [input, output, exclude_cls]
+        params = [i, output, exclude_cls]
 
         return params
 
@@ -19104,13 +19104,13 @@ class FilterLidarClasses(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         exclude_cls = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.filter_lidar_classes(input, output=output, exclude_cls=exclude_cls)
+        wbt.filter_lidar_classes(i=i, output=output, exclude_cls=exclude_cls)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19124,13 +19124,13 @@ class FilterLidarScanAngles(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -19147,7 +19147,7 @@ class FilterLidarScanAngles(object):
             parameterType="Required",
             direction="Input")
 
-        params = [input, output, threshold]
+        params = [i, output, threshold]
 
         return params
 
@@ -19158,13 +19158,13 @@ class FilterLidarScanAngles(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         threshold = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.filter_lidar_scan_angles(input, output=output, threshold=threshold)
+        wbt.filter_lidar_scan_angles(i=i, output=output, threshold=threshold)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19178,13 +19178,13 @@ class FindFlightlineEdgePoints(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input LiDAR File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -19194,7 +19194,7 @@ class FindFlightlineEdgePoints(object):
             direction="Output")
         output.filter.list = ["las", "zip"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -19205,12 +19205,12 @@ class FindFlightlineEdgePoints(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.find_flightline_edge_points(input, output=output)
+        wbt.find_flightline_edge_points(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19224,13 +19224,13 @@ class FlightlineOverlap(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input LiDAR File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Optional",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -19249,7 +19249,7 @@ class FlightlineOverlap(object):
 
         resolution.value = "1.0"
 
-        params = [input, output, resolution]
+        params = [i, output, resolution]
 
         return params
 
@@ -19260,13 +19260,13 @@ class FlightlineOverlap(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         resolution = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.flightline_overlap(input, output=output, resolution=resolution)
+        wbt.flightline_overlap(i=i, output=output, resolution=resolution)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19280,16 +19280,16 @@ class LasToAscii(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        inputs = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input LiDAR Files",
-            name="inputs",
+            name="i",
             datatype="DEFile",
             parameterType="Required",
             direction="Input")
-        inputs.multiValue = True
-        inputs.filter.list = ["las", "zip"]
+        i.multiValue = True
+        i.filter.list = ["las", "zip"]
 
-        params = [inputs]
+        params = [i]
 
         return params
 
@@ -19300,11 +19300,11 @@ class LasToAscii(object):
         return
 
     def execute(self, parameters, messages):
-        inputs = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.las_to_ascii(inputs)
+        wbt.las_to_ascii(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19318,15 +19318,15 @@ class LasToMultipointShapefile(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input LiDAR File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Optional",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
-        params = [input]
+        params = [i]
 
         return params
 
@@ -19337,11 +19337,11 @@ class LasToMultipointShapefile(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.las_to_multipoint_shapefile(input)
+        wbt.las_to_multipoint_shapefile(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19355,15 +19355,15 @@ class LasToShapefile(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input LiDAR File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Optional",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
-        params = [input]
+        params = [i]
 
         return params
 
@@ -19374,11 +19374,11 @@ class LasToShapefile(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.las_to_shapefile(input)
+        wbt.las_to_shapefile(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19392,13 +19392,13 @@ class LidarBlockMaximum(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input LiDAR File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Optional",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -19417,7 +19417,7 @@ class LidarBlockMaximum(object):
 
         resolution.value = "1.0"
 
-        params = [input, output, resolution]
+        params = [i, output, resolution]
 
         return params
 
@@ -19428,13 +19428,13 @@ class LidarBlockMaximum(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         resolution = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_block_maximum(input, output=output, resolution=resolution)
+        wbt.lidar_block_maximum(i=i, output=output, resolution=resolution)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19448,13 +19448,13 @@ class LidarBlockMinimum(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input LiDAR File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Optional",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -19473,7 +19473,7 @@ class LidarBlockMinimum(object):
 
         resolution.value = "1.0"
 
-        params = [input, output, resolution]
+        params = [i, output, resolution]
 
         return params
 
@@ -19484,13 +19484,13 @@ class LidarBlockMinimum(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         resolution = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_block_minimum(input, output=output, resolution=resolution)
+        wbt.lidar_block_minimum(i=i, output=output, resolution=resolution)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19561,7 +19561,7 @@ class LidarClassifySubset(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_classify_subset(base, subset=subset, output=output, subset_class=subset_class, nonsubset_class=nonsubset_class)
+        wbt.lidar_classify_subset(base=base, subset=subset, output=output, subset_class=subset_class, nonsubset_class=nonsubset_class)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19617,7 +19617,7 @@ class LidarColourize(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_colourize(in_lidar, in_image=in_image, output=output)
+        wbt.lidar_colourize(in_lidar=in_lidar, in_image=in_image, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19631,13 +19631,13 @@ class LidarConstructVectorTin(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Optional",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -19679,7 +19679,7 @@ class LidarConstructVectorTin(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [input, output, returns, exclude_cls, minz, maxz]
+        params = [i, output, returns, exclude_cls, minz, maxz]
 
         return params
 
@@ -19690,7 +19690,7 @@ class LidarConstructVectorTin(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         returns = parameters[2].valueAsText
         exclude_cls = parameters[3].valueAsText
@@ -19699,7 +19699,7 @@ class LidarConstructVectorTin(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_construct_vector_tin(input, output=output, returns=returns, exclude_cls=exclude_cls, minz=minz, maxz=maxz)
+        wbt.lidar_construct_vector_tin(i=i, output=output, returns=returns, exclude_cls=exclude_cls, minz=minz, maxz=maxz)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19713,13 +19713,13 @@ class LidarElevationSlice(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -19768,7 +19768,7 @@ class LidarElevationSlice(object):
 
         outclassval.value = "1"
 
-        params = [input, output, minz, maxz, cls, inclassval, outclassval]
+        params = [i, output, minz, maxz, cls, inclassval, outclassval]
 
         return params
 
@@ -19779,7 +19779,7 @@ class LidarElevationSlice(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         minz = parameters[2].valueAsText
         maxz = parameters[3].valueAsText
@@ -19789,7 +19789,7 @@ class LidarElevationSlice(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_elevation_slice(input, output=output, minz=minz, maxz=maxz, cls=cls, inclassval=inclassval, outclassval=outclassval)
+        wbt.lidar_elevation_slice(i=i, output=output, minz=minz, maxz=maxz, cls=cls, inclassval=inclassval, outclassval=outclassval)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19803,13 +19803,13 @@ class LidarGroundPointFilter(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -19862,7 +19862,7 @@ class LidarGroundPointFilter(object):
             parameterType="Optional",
             direction="Input")
 
-        classify.value = "true"
+        classify.value = True
 
         slope_norm = arcpy.Parameter(
             displayName="Perform initial ground slope normalization?",
@@ -19871,7 +19871,7 @@ class LidarGroundPointFilter(object):
             parameterType="Optional",
             direction="Input")
 
-        slope_norm.value = "true"
+        slope_norm.value = True
 
         height_above_ground = arcpy.Parameter(
             displayName="Transform output to height above average ground elevation?",
@@ -19880,9 +19880,9 @@ class LidarGroundPointFilter(object):
             parameterType="Optional",
             direction="Input")
 
-        height_above_ground.value = "false"
+        height_above_ground.value = False
 
-        params = [input, output, radius, min_neighbours, slope_threshold, height_threshold, classify, slope_norm, height_above_ground]
+        params = [i, output, radius, min_neighbours, slope_threshold, height_threshold, classify, slope_norm, height_above_ground]
 
         return params
 
@@ -19893,7 +19893,7 @@ class LidarGroundPointFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         radius = parameters[2].valueAsText
         min_neighbours = parameters[3].valueAsText
@@ -19905,7 +19905,7 @@ class LidarGroundPointFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_ground_point_filter(input, output=output, radius=radius, min_neighbours=min_neighbours, slope_threshold=slope_threshold, height_threshold=height_threshold, classify=classify, slope_norm=slope_norm, height_above_ground=height_above_ground)
+        wbt.lidar_ground_point_filter(i=i, output=output, radius=radius, min_neighbours=min_neighbours, slope_threshold=slope_threshold, height_threshold=height_threshold, classify=classify, slope_norm=slope_norm, height_above_ground=height_above_ground)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19919,13 +19919,13 @@ class LidarHexBinning(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Base File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output Polygon File",
@@ -19953,7 +19953,7 @@ class LidarHexBinning(object):
 
         orientation.value = "horizontal"
 
-        params = [input, output, width, orientation]
+        params = [i, output, width, orientation]
 
         return params
 
@@ -19964,14 +19964,14 @@ class LidarHexBinning(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         width = parameters[2].valueAsText
         orientation = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_hex_binning(input, output=output, width=width, orientation=orientation)
+        wbt.lidar_hex_binning(i=i, output=output, width=width, orientation=orientation)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19985,13 +19985,13 @@ class LidarHillshade(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input LiDAR File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -20028,7 +20028,7 @@ class LidarHillshade(object):
 
         radius.value = "1.0"
 
-        params = [input, output, azimuth, altitude, radius]
+        params = [i, output, azimuth, altitude, radius]
 
         return params
 
@@ -20039,7 +20039,7 @@ class LidarHillshade(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         azimuth = parameters[2].valueAsText
         altitude = parameters[3].valueAsText
@@ -20047,7 +20047,7 @@ class LidarHillshade(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_hillshade(input, output=output, azimuth=azimuth, altitude=altitude, radius=radius)
+        wbt.lidar_hillshade(i=i, output=output, azimuth=azimuth, altitude=altitude, radius=radius)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20061,13 +20061,13 @@ class LidarHistogram(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input LiDAR File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output HTML File",
@@ -20097,7 +20097,7 @@ class LidarHistogram(object):
 
         clip.value = "1.0"
 
-        params = [input, output, parameter, clip]
+        params = [i, output, parameter, clip]
 
         return params
 
@@ -20108,14 +20108,14 @@ class LidarHistogram(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         parameter = parameters[2].valueAsText
         clip = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_histogram(input, output=output, parameter=parameter, clip=clip)
+        wbt.lidar_histogram(i=i, output=output, parameter=parameter, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20129,13 +20129,13 @@ class LidarIdwInterpolation(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Optional",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -20215,7 +20215,7 @@ class LidarIdwInterpolation(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [input, output, parameter, returns, resolution, weight, radius, exclude_cls, minz, maxz]
+        params = [i, output, parameter, returns, resolution, weight, radius, exclude_cls, minz, maxz]
 
         return params
 
@@ -20226,7 +20226,7 @@ class LidarIdwInterpolation(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         parameter = parameters[2].valueAsText
         returns = parameters[3].valueAsText
@@ -20239,7 +20239,7 @@ class LidarIdwInterpolation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_idw_interpolation(input, output=output, parameter=parameter, returns=returns, resolution=resolution, weight=weight, radius=radius, exclude_cls=exclude_cls, minz=minz, maxz=maxz)
+        wbt.lidar_idw_interpolation(i=i, output=output, parameter=parameter, returns=returns, resolution=resolution, weight=weight, radius=radius, exclude_cls=exclude_cls, minz=minz, maxz=maxz)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20253,13 +20253,13 @@ class LidarInfo(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output Summary Report File",
@@ -20276,7 +20276,7 @@ class LidarInfo(object):
             parameterType="Optional",
             direction="Input")
 
-        vlr.value = "true"
+        vlr.value = True
 
         geokeys = arcpy.Parameter(
             displayName="Print the geokeys?",
@@ -20285,9 +20285,9 @@ class LidarInfo(object):
             parameterType="Optional",
             direction="Input")
 
-        geokeys.value = "true"
+        geokeys.value = True
 
-        params = [input, output, vlr, geokeys]
+        params = [i, output, vlr, geokeys]
 
         return params
 
@@ -20298,14 +20298,14 @@ class LidarInfo(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         vlr = parameters[2].valueAsText
         geokeys = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_info(input, output=output, vlr=vlr, geokeys=geokeys)
+        wbt.lidar_info(i=i, output=output, vlr=vlr, geokeys=geokeys)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20319,14 +20319,14 @@ class LidarJoin(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        inputs = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input LiDAR Files",
-            name="inputs",
+            name="i",
             datatype="DEFile",
             parameterType="Required",
             direction="Input")
-        inputs.multiValue = True
-        inputs.filter.list = ["las", "zip"]
+        i.multiValue = True
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -20336,7 +20336,7 @@ class LidarJoin(object):
             direction="Output")
         output.filter.list = ["las", "zip"]
 
-        params = [inputs, output]
+        params = [i, output]
 
         return params
 
@@ -20347,12 +20347,12 @@ class LidarJoin(object):
         return
 
     def execute(self, parameters, messages):
-        inputs = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_join(inputs, output=output)
+        wbt.lidar_join(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20426,7 +20426,7 @@ class LidarKappaIndex(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_kappa_index(input1, input2=input2, output=output, class_accuracy=class_accuracy, resolution=resolution)
+        wbt.lidar_kappa_index(input1=input1, input2=input2, output=output, class_accuracy=class_accuracy, resolution=resolution)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20440,13 +20440,13 @@ class LidarNearestNeighbourGridding(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Optional",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -20517,7 +20517,7 @@ class LidarNearestNeighbourGridding(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [input, output, parameter, returns, resolution, radius, exclude_cls, minz, maxz]
+        params = [i, output, parameter, returns, resolution, radius, exclude_cls, minz, maxz]
 
         return params
 
@@ -20528,7 +20528,7 @@ class LidarNearestNeighbourGridding(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         parameter = parameters[2].valueAsText
         returns = parameters[3].valueAsText
@@ -20540,7 +20540,7 @@ class LidarNearestNeighbourGridding(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_nearest_neighbour_gridding(input, output=output, parameter=parameter, returns=returns, resolution=resolution, radius=radius, exclude_cls=exclude_cls, minz=minz, maxz=maxz)
+        wbt.lidar_nearest_neighbour_gridding(i=i, output=output, parameter=parameter, returns=returns, resolution=resolution, radius=radius, exclude_cls=exclude_cls, minz=minz, maxz=maxz)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20554,13 +20554,13 @@ class LidarPointDensity(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Optional",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -20620,7 +20620,7 @@ class LidarPointDensity(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [input, output, returns, resolution, radius, exclude_cls, minz, maxz]
+        params = [i, output, returns, resolution, radius, exclude_cls, minz, maxz]
 
         return params
 
@@ -20631,7 +20631,7 @@ class LidarPointDensity(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         returns = parameters[2].valueAsText
         resolution = parameters[3].valueAsText
@@ -20642,7 +20642,7 @@ class LidarPointDensity(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_point_density(input, output=output, returns=returns, resolution=resolution, radius=radius, exclude_cls=exclude_cls, minz=minz, maxz=maxz)
+        wbt.lidar_point_density(i=i, output=output, returns=returns, resolution=resolution, radius=radius, exclude_cls=exclude_cls, minz=minz, maxz=maxz)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20656,13 +20656,13 @@ class LidarPointStats(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input LiDAR File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Optional",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         resolution = arcpy.Parameter(
             displayName="Grid Resolution",
@@ -20719,7 +20719,7 @@ class LidarPointStats(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [input, resolution, num_points, num_pulses, avg_points_per_pulse, z_range, intensity_range, predom_class]
+        params = [i, resolution, num_points, num_pulses, avg_points_per_pulse, z_range, intensity_range, predom_class]
 
         return params
 
@@ -20730,7 +20730,7 @@ class LidarPointStats(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         resolution = parameters[1].valueAsText
         num_points = parameters[2].valueAsText
         num_pulses = parameters[3].valueAsText
@@ -20741,7 +20741,7 @@ class LidarPointStats(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_point_stats(input, resolution=resolution, num_points=num_points, num_pulses=num_pulses, avg_points_per_pulse=avg_points_per_pulse, z_range=z_range, intensity_range=intensity_range, predom_class=predom_class)
+        wbt.lidar_point_stats(i=i, resolution=resolution, num_points=num_points, num_pulses=num_pulses, avg_points_per_pulse=avg_points_per_pulse, z_range=z_range, intensity_range=intensity_range, predom_class=predom_class)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20755,13 +20755,13 @@ class LidarRansacPlanes(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -20823,9 +20823,9 @@ class LidarRansacPlanes(object):
             parameterType="Optional",
             direction="Input")
 
-        classify.value = "false"
+        classify.value = False
 
-        params = [input, output, radius, num_iter, num_samples, threshold, model_size, classify]
+        params = [i, output, radius, num_iter, num_samples, threshold, model_size, classify]
 
         return params
 
@@ -20836,7 +20836,7 @@ class LidarRansacPlanes(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         radius = parameters[2].valueAsText
         num_iter = parameters[3].valueAsText
@@ -20847,7 +20847,7 @@ class LidarRansacPlanes(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_ransac_planes(input, output=output, radius=radius, num_iter=num_iter, num_samples=num_samples, threshold=threshold, model_size=model_size, classify=classify)
+        wbt.lidar_ransac_planes(i=i, output=output, radius=radius, num_iter=num_iter, num_samples=num_samples, threshold=threshold, model_size=model_size, classify=classify)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20861,13 +20861,13 @@ class LidarRemoveDuplicates(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -20884,9 +20884,9 @@ class LidarRemoveDuplicates(object):
             parameterType="Optional",
             direction="Input")
 
-        include_z.value = "false"
+        include_z.value = False
 
-        params = [input, output, include_z]
+        params = [i, output, include_z]
 
         return params
 
@@ -20897,13 +20897,13 @@ class LidarRemoveDuplicates(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         include_z = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_remove_duplicates(input, output=output, include_z=include_z)
+        wbt.lidar_remove_duplicates(i=i, output=output, include_z=include_z)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20917,13 +20917,13 @@ class LidarRemoveOutliers(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -20965,9 +20965,9 @@ class LidarRemoveOutliers(object):
             parameterType="Optional",
             direction="Input")
 
-        classify.value = "true"
+        classify.value = True
 
-        params = [input, output, radius, elev_diff, use_median, classify]
+        params = [i, output, radius, elev_diff, use_median, classify]
 
         return params
 
@@ -20978,7 +20978,7 @@ class LidarRemoveOutliers(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         radius = parameters[2].valueAsText
         elev_diff = parameters[3].valueAsText
@@ -20987,7 +20987,7 @@ class LidarRemoveOutliers(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_remove_outliers(input, output=output, radius=radius, elev_diff=elev_diff, use_median=use_median, classify=classify)
+        wbt.lidar_remove_outliers(i=i, output=output, radius=radius, elev_diff=elev_diff, use_median=use_median, classify=classify)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21001,13 +21001,13 @@ class LidarRfbInterpolation(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Optional",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -21109,7 +21109,7 @@ class LidarRfbInterpolation(object):
 
         weight.value = "0.1"
 
-        params = [input, output, parameter, returns, resolution, radius, exclude_cls, minz, maxz, func_type, poly_order, weight]
+        params = [i, output, parameter, returns, resolution, radius, exclude_cls, minz, maxz, func_type, poly_order, weight]
 
         return params
 
@@ -21120,7 +21120,7 @@ class LidarRfbInterpolation(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         parameter = parameters[2].valueAsText
         returns = parameters[3].valueAsText
@@ -21135,7 +21135,7 @@ class LidarRfbInterpolation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_rfb_interpolation(input, output=output, parameter=parameter, returns=returns, resolution=resolution, radius=radius, exclude_cls=exclude_cls, minz=minz, maxz=maxz, func_type=func_type, poly_order=poly_order, weight=weight)
+        wbt.lidar_rfb_interpolation(i=i, output=output, parameter=parameter, returns=returns, resolution=resolution, radius=radius, exclude_cls=exclude_cls, minz=minz, maxz=maxz, func_type=func_type, poly_order=poly_order, weight=weight)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21149,13 +21149,13 @@ class LidarSegmentation(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input LiDAR File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -21199,7 +21199,7 @@ class LidarSegmentation(object):
             parameterType="Required",
             direction="Input")
 
-        classes.value = "false"
+        classes.value = False
 
         min_size = arcpy.Parameter(
             displayName="Minimum Segement Size",
@@ -21210,7 +21210,7 @@ class LidarSegmentation(object):
 
         min_size.value = "1"
 
-        params = [input, output, radius, norm_diff, maxzdiff, classes, min_size]
+        params = [i, output, radius, norm_diff, maxzdiff, classes, min_size]
 
         return params
 
@@ -21221,7 +21221,7 @@ class LidarSegmentation(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         radius = parameters[2].valueAsText
         norm_diff = parameters[3].valueAsText
@@ -21231,7 +21231,7 @@ class LidarSegmentation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_segmentation(input, output=output, radius=radius, norm_diff=norm_diff, maxzdiff=maxzdiff, classes=classes, min_size=min_size)
+        wbt.lidar_segmentation(i=i, output=output, radius=radius, norm_diff=norm_diff, maxzdiff=maxzdiff, classes=classes, min_size=min_size)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21245,13 +21245,13 @@ class LidarSegmentationBasedFilter(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input LiDAR File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -21295,7 +21295,7 @@ class LidarSegmentationBasedFilter(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [input, output, radius, norm_diff, maxzdiff, classify]
+        params = [i, output, radius, norm_diff, maxzdiff, classify]
 
         return params
 
@@ -21306,7 +21306,7 @@ class LidarSegmentationBasedFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         radius = parameters[2].valueAsText
         norm_diff = parameters[3].valueAsText
@@ -21315,7 +21315,7 @@ class LidarSegmentationBasedFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_segmentation_based_filter(input, output=output, radius=radius, norm_diff=norm_diff, maxzdiff=maxzdiff, classify=classify)
+        wbt.lidar_segmentation_based_filter(i=i, output=output, radius=radius, norm_diff=norm_diff, maxzdiff=maxzdiff, classify=classify)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21329,13 +21329,13 @@ class LidarThin(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input LiDAR File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -21372,9 +21372,9 @@ class LidarThin(object):
             parameterType="Optional",
             direction="Input")
 
-        save_filtered.value = "false"
+        save_filtered.value = False
 
-        params = [input, output, resolution, method, save_filtered]
+        params = [i, output, resolution, method, save_filtered]
 
         return params
 
@@ -21385,7 +21385,7 @@ class LidarThin(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         resolution = parameters[2].valueAsText
         method = parameters[3].valueAsText
@@ -21393,7 +21393,7 @@ class LidarThin(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_thin(input, output=output, resolution=resolution, method=method, save_filtered=save_filtered)
+        wbt.lidar_thin(i=i, output=output, resolution=resolution, method=method, save_filtered=save_filtered)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21407,13 +21407,13 @@ class LidarThinHighDensity(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -21446,9 +21446,9 @@ class LidarThinHighDensity(object):
             parameterType="Optional",
             direction="Input")
 
-        save_filtered.value = "false"
+        save_filtered.value = False
 
-        params = [input, output, resolution, density, save_filtered]
+        params = [i, output, resolution, density, save_filtered]
 
         return params
 
@@ -21459,7 +21459,7 @@ class LidarThinHighDensity(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         resolution = parameters[2].valueAsText
         density = parameters[3].valueAsText
@@ -21467,7 +21467,7 @@ class LidarThinHighDensity(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_thin_high_density(input, output=output, resolution=resolution, density=density, save_filtered=save_filtered)
+        wbt.lidar_thin_high_density(i=i, output=output, resolution=resolution, density=density, save_filtered=save_filtered)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21481,13 +21481,13 @@ class LidarTile(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         width = arcpy.Parameter(
             displayName="Tile Width",
@@ -21534,7 +21534,7 @@ class LidarTile(object):
 
         min_points.value = "2"
 
-        params = [input, width, height, origin_x, origin_y, min_points]
+        params = [i, width, height, origin_x, origin_y, min_points]
 
         return params
 
@@ -21545,7 +21545,7 @@ class LidarTile(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         width = parameters[1].valueAsText
         height = parameters[2].valueAsText
         origin_x = parameters[3].valueAsText
@@ -21554,7 +21554,7 @@ class LidarTile(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_tile(input, width=width, height=height, origin_x=origin_x, origin_y=origin_y, min_points=min_points)
+        wbt.lidar_tile(i=i, width=width, height=height, origin_x=origin_x, origin_y=origin_y, min_points=min_points)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21568,13 +21568,13 @@ class LidarTileFootprint(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input LiDAR File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Optional",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output Polygon File",
@@ -21591,9 +21591,9 @@ class LidarTileFootprint(object):
             parameterType="Optional",
             direction="Input")
 
-        hull.value = "false"
+        hull.value = False
 
-        params = [input, output, hull]
+        params = [i, output, hull]
 
         return params
 
@@ -21604,13 +21604,13 @@ class LidarTileFootprint(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         hull = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_tile_footprint(input, output=output, hull=hull)
+        wbt.lidar_tile_footprint(i=i, output=output, hull=hull)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21624,13 +21624,13 @@ class LidarTinGridding(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Optional",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -21699,7 +21699,7 @@ class LidarTinGridding(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [input, output, parameter, returns, resolution, exclude_cls, minz, maxz, max_triangle_edge_length]
+        params = [i, output, parameter, returns, resolution, exclude_cls, minz, maxz, max_triangle_edge_length]
 
         return params
 
@@ -21710,7 +21710,7 @@ class LidarTinGridding(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         parameter = parameters[2].valueAsText
         returns = parameters[3].valueAsText
@@ -21722,7 +21722,7 @@ class LidarTinGridding(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_tin_gridding(input, output=output, parameter=parameter, returns=returns, resolution=resolution, exclude_cls=exclude_cls, minz=minz, maxz=maxz, max_triangle_edge_length=max_triangle_edge_length)
+        wbt.lidar_tin_gridding(i=i, output=output, parameter=parameter, returns=returns, resolution=resolution, exclude_cls=exclude_cls, minz=minz, maxz=maxz, max_triangle_edge_length=max_triangle_edge_length)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21736,13 +21736,13 @@ class LidarTophatTransform(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -21761,7 +21761,7 @@ class LidarTophatTransform(object):
 
         radius.value = "1.0"
 
-        params = [input, output, radius]
+        params = [i, output, radius]
 
         return params
 
@@ -21772,13 +21772,13 @@ class LidarTophatTransform(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         radius = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_tophat_transform(input, output=output, radius=radius)
+        wbt.lidar_tophat_transform(i=i, output=output, radius=radius)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21792,13 +21792,13 @@ class NormalVectors(object):
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="DEFile",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["las", "zip"]
+        i.filter.list = ["las", "zip"]
 
         output = arcpy.Parameter(
             displayName="Output File",
@@ -21817,7 +21817,7 @@ class NormalVectors(object):
 
         radius.value = "1.0"
 
-        params = [input, output, radius]
+        params = [i, output, radius]
 
         return params
 
@@ -21828,13 +21828,13 @@ class NormalVectors(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         radius = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.normal_vectors(input, output=output, radius=radius)
+        wbt.normal_vectors(i=i, output=output, radius=radius)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21889,7 +21889,7 @@ class SelectTilesByPolygon(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.select_tiles_by_polygon(indir, outdir=outdir, polygons=polygons)
+        wbt.select_tiles_by_polygon(indir=indir, outdir=outdir, polygons=polygons)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21946,7 +21946,7 @@ class And(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.And(input1, input2=input2, output=output)
+        wbt.And(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22003,7 +22003,7 @@ class Not(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.Not(input1, input2=input2, output=output)
+        wbt.Not(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22060,7 +22060,7 @@ class Or(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.Or(input1, input2=input2, output=output)
+        wbt.Or(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22074,9 +22074,9 @@ class AbsoluteValue(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -22089,7 +22089,7 @@ class AbsoluteValue(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -22100,14 +22100,14 @@ class AbsoluteValue(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.absolute_value(input, output=output)
+        wbt.absolute_value(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22160,7 +22160,7 @@ class Add(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.add(input1, input2=input2, output=output)
+        wbt.add(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22174,9 +22174,9 @@ class Anova(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -22196,7 +22196,7 @@ class Anova(object):
             direction="Output")
         output.filter.list = ["html"]
 
-        params = [input, features, output]
+        params = [i, features, output]
 
         return params
 
@@ -22207,9 +22207,9 @@ class Anova(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         features = parameters[1].valueAsText
         desc = arcpy.Describe(features)
         features = desc.catalogPath
@@ -22217,7 +22217,7 @@ class Anova(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.anova(input, features=features, output=output)
+        wbt.anova(i=i, features=features, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22231,9 +22231,9 @@ class ArcCos(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -22246,7 +22246,7 @@ class ArcCos(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -22257,14 +22257,14 @@ class ArcCos(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.arc_cos(input, output=output)
+        wbt.arc_cos(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22278,9 +22278,9 @@ class ArcSin(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -22293,7 +22293,7 @@ class ArcSin(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -22304,14 +22304,14 @@ class ArcSin(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.arc_sin(input, output=output)
+        wbt.arc_sin(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22325,9 +22325,9 @@ class ArcTan(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -22340,7 +22340,7 @@ class ArcTan(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -22351,14 +22351,14 @@ class ArcTan(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.arc_tan(input, output=output)
+        wbt.arc_tan(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22372,9 +22372,9 @@ class Arcosh(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -22387,7 +22387,7 @@ class Arcosh(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -22398,14 +22398,14 @@ class Arcosh(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.arcosh(input, output=output)
+        wbt.arcosh(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22419,9 +22419,9 @@ class Arsinh(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -22434,7 +22434,7 @@ class Arsinh(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -22445,14 +22445,14 @@ class Arsinh(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.arsinh(input, output=output)
+        wbt.arsinh(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22466,9 +22466,9 @@ class Artanh(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -22481,7 +22481,7 @@ class Artanh(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -22492,14 +22492,14 @@ class Artanh(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.artanh(input, output=output)
+        wbt.artanh(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22552,7 +22552,7 @@ class Atan2(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.atan2(input_y, input_x=input_x, output=output)
+        wbt.atan2(input_y=input_y, input_x=input_x, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22566,9 +22566,9 @@ class AttributeCorrelation(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
@@ -22581,7 +22581,7 @@ class AttributeCorrelation(object):
             direction="Output")
         output.filter.list = ["html"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -22592,14 +22592,14 @@ class AttributeCorrelation(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.attribute_correlation(input, output=output)
+        wbt.attribute_correlation(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22613,9 +22613,9 @@ class AttributeHistogram(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
@@ -22636,7 +22636,7 @@ class AttributeHistogram(object):
             direction="Output")
         output.filter.list = ["html"]
 
-        params = [input, field, output]
+        params = [i, field, output]
 
         return params
 
@@ -22647,15 +22647,15 @@ class AttributeHistogram(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.attribute_histogram(input, field=field, output=output)
+        wbt.attribute_histogram(i=i, field=field, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22669,9 +22669,9 @@ class AttributeScattergram(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
@@ -22707,9 +22707,9 @@ class AttributeScattergram(object):
             parameterType="Optional",
             direction="Input")
 
-        trendline.value = "false"
+        trendline.value = False
 
-        params = [input, fieldx, fieldy, output, trendline]
+        params = [i, fieldx, fieldy, output, trendline]
 
         return params
 
@@ -22720,9 +22720,9 @@ class AttributeScattergram(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         fieldx = parameters[1].valueAsText
         fieldy = parameters[2].valueAsText
         output = parameters[3].valueAsText
@@ -22730,7 +22730,7 @@ class AttributeScattergram(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.attribute_scattergram(input, fieldx=fieldx, fieldy=fieldy, output=output, trendline=trendline)
+        wbt.attribute_scattergram(i=i, fieldx=fieldx, fieldy=fieldy, output=output, trendline=trendline)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22744,9 +22744,9 @@ class Ceil(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -22759,7 +22759,7 @@ class Ceil(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -22770,14 +22770,14 @@ class Ceil(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.ceil(input, output=output)
+        wbt.ceil(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22791,9 +22791,9 @@ class Cos(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -22806,7 +22806,7 @@ class Cos(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -22817,14 +22817,14 @@ class Cos(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.cos(input, output=output)
+        wbt.cos(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22838,9 +22838,9 @@ class Cosh(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -22853,7 +22853,7 @@ class Cosh(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -22864,14 +22864,14 @@ class Cosh(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.cosh(input, output=output)
+        wbt.cosh(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22885,9 +22885,9 @@ class CrispnessIndex(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -22900,7 +22900,7 @@ class CrispnessIndex(object):
             direction="Output")
         output.filter.list = ["html"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -22911,14 +22911,14 @@ class CrispnessIndex(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.crispness_index(input, output=output)
+        wbt.crispness_index(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22975,7 +22975,7 @@ class CrossTabulation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.cross_tabulation(input1, input2=input2, output=output)
+        wbt.cross_tabulation(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22989,9 +22989,9 @@ class CumulativeDistribution(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -23004,7 +23004,7 @@ class CumulativeDistribution(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -23015,14 +23015,14 @@ class CumulativeDistribution(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.cumulative_distribution(input, output=output)
+        wbt.cumulative_distribution(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23036,9 +23036,9 @@ class Decrement(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -23051,7 +23051,7 @@ class Decrement(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -23062,14 +23062,14 @@ class Decrement(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.decrement(input, output=output)
+        wbt.decrement(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23122,7 +23122,7 @@ class Divide(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.divide(input1, input2=input2, output=output)
+        wbt.divide(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23175,7 +23175,7 @@ class EqualTo(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.equal_to(input1, input2=input2, output=output)
+        wbt.equal_to(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23189,9 +23189,9 @@ class Exp(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -23204,7 +23204,7 @@ class Exp(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -23215,14 +23215,14 @@ class Exp(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.exp(input, output=output)
+        wbt.exp(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23236,9 +23236,9 @@ class Exp2(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -23251,7 +23251,7 @@ class Exp2(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -23262,14 +23262,14 @@ class Exp2(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.exp2(input, output=output)
+        wbt.exp2(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23283,9 +23283,9 @@ class Floor(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -23298,7 +23298,7 @@ class Floor(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -23309,14 +23309,14 @@ class Floor(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.floor(input, output=output)
+        wbt.floor(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23377,7 +23377,7 @@ class GreaterThan(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.greater_than(input1, input2=input2, output=output, incl_equals=incl_equals)
+        wbt.greater_than(input1=input1, input2=input2, output=output, incl_equals=incl_equals)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23391,13 +23391,13 @@ class ImageAutocorrelation(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        inputs = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Files",
-            name="inputs",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
-        inputs.multiValue = True
+        i.multiValue = True
 
         contiguity = arcpy.Parameter(
             displayName="Contiguity Type",
@@ -23418,7 +23418,7 @@ class ImageAutocorrelation(object):
             direction="Output")
         output.filter.list = ["html"]
 
-        params = [inputs, contiguity, output]
+        params = [i, contiguity, output]
 
         return params
 
@@ -23429,13 +23429,13 @@ class ImageAutocorrelation(object):
         return
 
     def execute(self, parameters, messages):
-        inputs = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         contiguity = parameters[1].valueAsText
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.image_autocorrelation(inputs, contiguity=contiguity, output=output)
+        wbt.image_autocorrelation(i=i, contiguity=contiguity, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23449,13 +23449,13 @@ class ImageCorrelation(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        inputs = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Files",
-            name="inputs",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
-        inputs.multiValue = True
+        i.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output HTML File",
@@ -23465,7 +23465,7 @@ class ImageCorrelation(object):
             direction="Output")
         output.filter.list = ["html"]
 
-        params = [inputs, output]
+        params = [i, output]
 
         return params
 
@@ -23476,12 +23476,12 @@ class ImageCorrelation(object):
         return
 
     def execute(self, parameters, messages):
-        inputs = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.image_correlation(inputs, output=output)
+        wbt.image_correlation(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23569,7 +23569,7 @@ class ImageCorrelationNeighbourhoodAnalysis(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.image_correlation_neighbourhood_analysis(input1, input2=input2, output1=output1, output2=output2, filter=filter, stat=stat)
+        wbt.image_correlation_neighbourhood_analysis(input1=input1, input2=input2, output1=output1, output2=output2, filter=filter, stat=stat)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23661,7 +23661,7 @@ class ImageRegression(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.image_regression(input1, input2=input2, output=output, out_residuals=out_residuals, standardize=standardize, scattergram=scattergram, num_samples=num_samples)
+        wbt.image_regression(input1=input1, input2=input2, output=output, out_residuals=out_residuals, standardize=standardize, scattergram=scattergram, num_samples=num_samples)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23707,7 +23707,7 @@ class InPlaceAdd(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.in_place_add(input1, input2=input2)
+        wbt.in_place_add(input1=input1, input2=input2)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23753,7 +23753,7 @@ class InPlaceDivide(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.in_place_divide(input1, input2=input2)
+        wbt.in_place_divide(input1=input1, input2=input2)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23799,7 +23799,7 @@ class InPlaceMultiply(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.in_place_multiply(input1, input2=input2)
+        wbt.in_place_multiply(input1=input1, input2=input2)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23845,7 +23845,7 @@ class InPlaceSubtract(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.in_place_subtract(input1, input2=input2)
+        wbt.in_place_subtract(input1=input1, input2=input2)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23859,9 +23859,9 @@ class Increment(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -23874,7 +23874,7 @@ class Increment(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -23885,14 +23885,14 @@ class Increment(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.increment(input, output=output)
+        wbt.increment(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23945,7 +23945,7 @@ class IntegerDivision(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.integer_division(input1, input2=input2, output=output)
+        wbt.integer_division(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23959,9 +23959,9 @@ class IsNoData(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -23974,7 +23974,7 @@ class IsNoData(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -23985,14 +23985,14 @@ class IsNoData(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.is_no_data(input, output=output)
+        wbt.is_no_data(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24049,7 +24049,7 @@ class KappaIndex(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.kappa_index(input1, input2=input2, output=output)
+        wbt.kappa_index(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24063,9 +24063,9 @@ class KsTestForNormality(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -24085,7 +24085,7 @@ class KsTestForNormality(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [input, output, num_samples]
+        params = [i, output, num_samples]
 
         return params
 
@@ -24096,15 +24096,15 @@ class KsTestForNormality(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         num_samples = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.ks_test_for_normality(input, output=output, num_samples=num_samples)
+        wbt.ks_test_for_normality(i=i, output=output, num_samples=num_samples)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24165,7 +24165,7 @@ class LessThan(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.less_than(input1, input2=input2, output=output, incl_equals=incl_equals)
+        wbt.less_than(input1=input1, input2=input2, output=output, incl_equals=incl_equals)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24179,9 +24179,9 @@ class ListUniqueValues(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
@@ -24202,7 +24202,7 @@ class ListUniqueValues(object):
             direction="Output")
         output.filter.list = ["html"]
 
-        params = [input, field, output]
+        params = [i, field, output]
 
         return params
 
@@ -24213,15 +24213,15 @@ class ListUniqueValues(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.list_unique_values(input, field=field, output=output)
+        wbt.list_unique_values(i=i, field=field, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24235,9 +24235,9 @@ class Ln(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -24250,7 +24250,7 @@ class Ln(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -24261,14 +24261,14 @@ class Ln(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.ln(input, output=output)
+        wbt.ln(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24282,9 +24282,9 @@ class Log10(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -24297,7 +24297,7 @@ class Log10(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -24308,14 +24308,14 @@ class Log10(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.log10(input, output=output)
+        wbt.log10(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24329,9 +24329,9 @@ class Log2(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -24344,7 +24344,7 @@ class Log2(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -24355,14 +24355,14 @@ class Log2(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.log2(input, output=output)
+        wbt.log2(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24415,7 +24415,7 @@ class Max(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.max(input1, input2=input2, output=output)
+        wbt.max(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24468,7 +24468,7 @@ class Min(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.min(input1, input2=input2, output=output)
+        wbt.min(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24521,7 +24521,7 @@ class Modulo(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.modulo(input1, input2=input2, output=output)
+        wbt.modulo(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24574,7 +24574,7 @@ class Multiply(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.multiply(input1, input2=input2, output=output)
+        wbt.multiply(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24588,9 +24588,9 @@ class Negate(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -24603,7 +24603,7 @@ class Negate(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -24614,14 +24614,14 @@ class Negate(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.negate(input, output=output)
+        wbt.negate(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24674,7 +24674,7 @@ class NotEqualTo(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.not_equal_to(input1, input2=input2, output=output)
+        wbt.not_equal_to(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24739,7 +24739,7 @@ class PairedSampleTTest(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.paired_sample_t_test(input1, input2=input2, output=output, num_samples=num_samples)
+        wbt.paired_sample_t_test(input1=input1, input2=input2, output=output, num_samples=num_samples)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24792,7 +24792,7 @@ class Power(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.power(input1, input2=input2, output=output)
+        wbt.power(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24806,13 +24806,13 @@ class PrincipalComponentAnalysis(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        inputs = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Files",
-            name="inputs",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
-        inputs.multiValue = True
+        i.multiValue = True
 
         output = arcpy.Parameter(
             displayName="Output HTML Report File",
@@ -24836,7 +24836,7 @@ class PrincipalComponentAnalysis(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [inputs, output, num_comp, standardized]
+        params = [i, output, num_comp, standardized]
 
         return params
 
@@ -24847,14 +24847,14 @@ class PrincipalComponentAnalysis(object):
         return
 
     def execute(self, parameters, messages):
-        inputs = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         num_comp = parameters[2].valueAsText
         standardized = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.principal_component_analysis(inputs, output=output, num_comp=num_comp, standardized=standardized)
+        wbt.principal_component_analysis(i=i, output=output, num_comp=num_comp, standardized=standardized)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24868,9 +24868,9 @@ class Quantiles(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -24892,7 +24892,7 @@ class Quantiles(object):
 
         num_quantiles.value = "5"
 
-        params = [input, output, num_quantiles]
+        params = [i, output, num_quantiles]
 
         return params
 
@@ -24903,15 +24903,15 @@ class Quantiles(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         num_quantiles = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.quantiles(input, output=output, num_quantiles=num_quantiles)
+        wbt.quantiles(i=i, output=output, num_quantiles=num_quantiles)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24958,7 +24958,7 @@ class RandomField(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.random_field(base, output=output)
+        wbt.random_field(base=base, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25015,7 +25015,7 @@ class RandomSample(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.random_sample(base, output=output, num_samples=num_samples)
+        wbt.random_sample(base=base, output=output, num_samples=num_samples)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25029,9 +25029,9 @@ class RasterHistogram(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -25044,7 +25044,7 @@ class RasterHistogram(object):
             direction="Output")
         output.filter.list = ["html"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -25055,14 +25055,14 @@ class RasterHistogram(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.raster_histogram(input, output=output)
+        wbt.raster_histogram(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25076,14 +25076,14 @@ class RasterSummaryStats(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
-        params = [input]
+        params = [i]
 
         return params
 
@@ -25094,13 +25094,13 @@ class RasterSummaryStats(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.raster_summary_stats(input)
+        wbt.raster_summary_stats(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25114,9 +25114,9 @@ class Reciprocal(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -25129,7 +25129,7 @@ class Reciprocal(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -25140,14 +25140,14 @@ class Reciprocal(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.reciprocal(input, output=output)
+        wbt.reciprocal(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25161,9 +25161,9 @@ class RescaleValueRange(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -25204,7 +25204,7 @@ class RescaleValueRange(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [input, output, out_min_val, out_max_val, clip_min, clip_max]
+        params = [i, output, out_min_val, out_max_val, clip_min, clip_max]
 
         return params
 
@@ -25215,9 +25215,9 @@ class RescaleValueRange(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         out_min_val = parameters[2].valueAsText
         out_max_val = parameters[3].valueAsText
@@ -25226,7 +25226,7 @@ class RescaleValueRange(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.rescale_value_range(input, output=output, out_min_val=out_min_val, out_max_val=out_max_val, clip_min=clip_min, clip_max=clip_max)
+        wbt.rescale_value_range(i=i, output=output, out_min_val=out_min_val, out_max_val=out_max_val, clip_min=clip_min, clip_max=clip_max)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25240,9 +25240,9 @@ class RootMeanSquareError(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -25254,7 +25254,7 @@ class RootMeanSquareError(object):
             parameterType="Required",
             direction="Input")
 
-        params = [input, base]
+        params = [i, base]
 
         return params
 
@@ -25265,16 +25265,16 @@ class RootMeanSquareError(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         base = parameters[1].valueAsText
         desc = arcpy.Describe(base)
         base = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.root_mean_square_error(input, base=base)
+        wbt.root_mean_square_error(i=i, base=base)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25288,9 +25288,9 @@ class Round(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -25303,7 +25303,7 @@ class Round(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -25314,14 +25314,14 @@ class Round(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.round(input, output=output)
+        wbt.round(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25335,9 +25335,9 @@ class Sin(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -25350,7 +25350,7 @@ class Sin(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -25361,14 +25361,14 @@ class Sin(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.sin(input, output=output)
+        wbt.sin(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25382,9 +25382,9 @@ class Sinh(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -25397,7 +25397,7 @@ class Sinh(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -25408,14 +25408,14 @@ class Sinh(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.sinh(input, output=output)
+        wbt.sinh(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25429,9 +25429,9 @@ class Square(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -25444,7 +25444,7 @@ class Square(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -25455,14 +25455,14 @@ class Square(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.square(input, output=output)
+        wbt.square(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25476,9 +25476,9 @@ class SquareRoot(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -25491,7 +25491,7 @@ class SquareRoot(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -25502,14 +25502,14 @@ class SquareRoot(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.square_root(input, output=output)
+        wbt.square_root(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25562,7 +25562,7 @@ class Subtract(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.subtract(input1, input2=input2, output=output)
+        wbt.subtract(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25576,9 +25576,9 @@ class Tan(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -25591,7 +25591,7 @@ class Tan(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -25602,14 +25602,14 @@ class Tan(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.tan(input, output=output)
+        wbt.tan(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25623,9 +25623,9 @@ class Tanh(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -25638,7 +25638,7 @@ class Tanh(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -25649,14 +25649,14 @@ class Tanh(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.tanh(input, output=output)
+        wbt.tanh(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25670,9 +25670,9 @@ class ToDegrees(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -25685,7 +25685,7 @@ class ToDegrees(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -25696,14 +25696,14 @@ class ToDegrees(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.to_degrees(input, output=output)
+        wbt.to_degrees(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25717,9 +25717,9 @@ class ToRadians(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -25732,7 +25732,7 @@ class ToRadians(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -25743,14 +25743,14 @@ class ToRadians(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.to_radians(input, output=output)
+        wbt.to_radians(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25764,9 +25764,9 @@ class TrendSurface(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -25788,7 +25788,7 @@ class TrendSurface(object):
 
         order.value = "1"
 
-        params = [input, output, order]
+        params = [i, output, order]
 
         return params
 
@@ -25799,15 +25799,15 @@ class TrendSurface(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         order = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.trend_surface(input, output=output, order=order)
+        wbt.trend_surface(i=i, output=output, order=order)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25821,13 +25821,13 @@ class TrendSurfaceVectorPoints(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Vector Points File",
-            name="input",
+            name="i",
             datatype="GPFeatureLayer",
             parameterType="Required",
             direction="Input")
-        input.filter.list = ["Point"]
+        i.filter.list = ["Point"]
 
         field = arcpy.Parameter(
             displayName="Field Name",
@@ -25861,7 +25861,7 @@ class TrendSurfaceVectorPoints(object):
             parameterType="Required",
             direction="Input")
 
-        params = [input, field, output, order, cell_size]
+        params = [i, field, output, order, cell_size]
 
         return params
 
@@ -25872,9 +25872,9 @@ class TrendSurfaceVectorPoints(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         order = parameters[3].valueAsText
@@ -25882,7 +25882,7 @@ class TrendSurfaceVectorPoints(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.trend_surface_vector_points(input, field=field, output=output, order=order, cell_size=cell_size)
+        wbt.trend_surface_vector_points(i=i, field=field, output=output, order=order, cell_size=cell_size)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25896,9 +25896,9 @@ class Truncate(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -25918,7 +25918,7 @@ class Truncate(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [input, output, num_decimals]
+        params = [i, output, num_decimals]
 
         return params
 
@@ -25929,15 +25929,15 @@ class Truncate(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         num_decimals = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.truncate(input, output=output, num_decimals=num_decimals)
+        wbt.truncate(i=i, output=output, num_decimals=num_decimals)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -26002,7 +26002,7 @@ class TurningBandsSimulation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.turning_bands_simulation(base, output=output, range=range, iterations=iterations)
+        wbt.turning_bands_simulation(base=base, output=output, range=range, iterations=iterations)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -26067,7 +26067,7 @@ class TwoSampleKsTest(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.two_sample_ks_test(input1, input2=input2, output=output, num_samples=num_samples)
+        wbt.two_sample_ks_test(input1=input1, input2=input2, output=output, num_samples=num_samples)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -26132,7 +26132,7 @@ class WilcoxonSignedRankTest(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.wilcoxon_signed_rank_test(input1, input2=input2, output=output, num_samples=num_samples)
+        wbt.wilcoxon_signed_rank_test(input1=input1, input2=input2, output=output, num_samples=num_samples)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -26189,7 +26189,7 @@ class Xor(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.xor(input1, input2=input2, output=output)
+        wbt.xor(input1=input1, input2=input2, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -26203,9 +26203,9 @@ class ZScores(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -26218,7 +26218,7 @@ class ZScores(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        params = [input, output]
+        params = [i, output]
 
         return params
 
@@ -26229,14 +26229,14 @@ class ZScores(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.z_scores(input, output=output)
+        wbt.z_scores(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -26250,9 +26250,9 @@ class ZonalStatistics(object):
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
-        input = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input Data File",
-            name="input",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -26291,7 +26291,7 @@ class ZonalStatistics(object):
             direction="Output")
         out_table.filter.list = ["html"]
 
-        params = [input, features, output, stat, out_table]
+        params = [i, features, output, stat, out_table]
 
         return params
 
@@ -26302,9 +26302,9 @@ class ZonalStatistics(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        desc = arcpy.Describe(input)
-        input = desc.catalogPath
+        i = parameters[0].valueAsText
+        desc = arcpy.Describe(i)
+        i = desc.catalogPath
         features = parameters[1].valueAsText
         desc = arcpy.Describe(features)
         features = desc.catalogPath
@@ -26314,7 +26314,7 @@ class ZonalStatistics(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.zonal_statistics(input, features=features, output=output, stat=stat, out_table=out_table)
+        wbt.zonal_statistics(i=i, features=features, output=output, stat=stat, out_table=out_table)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -26357,7 +26357,7 @@ class DistanceToOutlet(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
@@ -26389,7 +26389,7 @@ class DistanceToOutlet(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.distance_to_outlet(d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
+        wbt.distance_to_outlet(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -26452,7 +26452,7 @@ class ExtractStreams(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.extract_streams(flow_accum, output=output, threshold=threshold, zero_background=zero_background)
+        wbt.extract_streams(flow_accum=flow_accum, output=output, threshold=threshold, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -26499,7 +26499,7 @@ class ExtractValleys(object):
             parameterType="Optional",
             direction="Input")
 
-        line_thin.value = "true"
+        line_thin.value = True
 
         filter = arcpy.Parameter(
             displayName="Filter Size (Only For Lower Quartile)",
@@ -26531,7 +26531,7 @@ class ExtractValleys(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.extract_valleys(dem, output=output, variant=variant, line_thin=line_thin, filter=filter)
+        wbt.extract_valleys(dem=dem, output=output, variant=variant, line_thin=line_thin, filter=filter)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -26574,7 +26574,7 @@ class FarthestChannelHead(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
@@ -26606,7 +26606,7 @@ class FarthestChannelHead(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.farthest_channel_head(d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
+        wbt.farthest_channel_head(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -26649,7 +26649,7 @@ class FindMainStem(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
@@ -26681,7 +26681,7 @@ class FindMainStem(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.find_main_stem(d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
+        wbt.find_main_stem(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -26724,7 +26724,7 @@ class HackStreamOrder(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
@@ -26756,7 +26756,7 @@ class HackStreamOrder(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.hack_stream_order(d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
+        wbt.hack_stream_order(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -26799,7 +26799,7 @@ class HortonStreamOrder(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
@@ -26831,7 +26831,7 @@ class HortonStreamOrder(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.horton_stream_order(d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
+        wbt.horton_stream_order(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -26874,7 +26874,7 @@ class LengthOfUpstreamChannels(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
@@ -26906,7 +26906,7 @@ class LengthOfUpstreamChannels(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.length_of_upstream_channels(d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
+        wbt.length_of_upstream_channels(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -26956,7 +26956,7 @@ class LongProfile(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         params = [d8_pntr, streams, dem, output, esri_pntr]
 
@@ -26983,7 +26983,7 @@ class LongProfile(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.long_profile(d8_pntr, streams=streams, dem=dem, output=output, esri_pntr=esri_pntr)
+        wbt.long_profile(d8_pntr=d8_pntr, streams=streams, dem=dem, output=output, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -27034,7 +27034,7 @@ class LongProfileFromPoints(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         params = [d8_pntr, points, dem, output, esri_pntr]
 
@@ -27061,7 +27061,7 @@ class LongProfileFromPoints(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.long_profile_from_points(d8_pntr, points=points, dem=dem, output=output, esri_pntr=esri_pntr)
+        wbt.long_profile_from_points(d8_pntr=d8_pntr, points=points, dem=dem, output=output, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -27104,7 +27104,7 @@ class RasterStreamsToVector(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         params = [streams, d8_pntr, output, esri_pntr]
 
@@ -27128,7 +27128,7 @@ class RasterStreamsToVector(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.raster_streams_to_vector(streams, d8_pntr=d8_pntr, output=output, esri_pntr=esri_pntr)
+        wbt.raster_streams_to_vector(streams=streams, d8_pntr=d8_pntr, output=output, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -27172,7 +27172,7 @@ class RasterizeStreams(object):
             parameterType="Optional",
             direction="Input")
 
-        nodata.value = "true"
+        nodata.value = True
 
         feature_id = arcpy.Parameter(
             displayName="Use feature number as output value?",
@@ -27181,7 +27181,7 @@ class RasterizeStreams(object):
             parameterType="Optional",
             direction="Input")
 
-        feature_id.value = "false"
+        feature_id.value = False
 
         params = [streams, base, output, nodata, feature_id]
 
@@ -27206,7 +27206,7 @@ class RasterizeStreams(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.rasterize_streams(streams, base=base, output=output, nodata=nodata, feature_id=feature_id)
+        wbt.rasterize_streams(streams=streams, base=base, output=output, nodata=nodata, feature_id=feature_id)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -27256,7 +27256,7 @@ class RemoveShortStreams(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         params = [d8_pntr, streams, output, min_length, esri_pntr]
 
@@ -27281,7 +27281,7 @@ class RemoveShortStreams(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.remove_short_streams(d8_pntr, streams=streams, output=output, min_length=min_length, esri_pntr=esri_pntr)
+        wbt.remove_short_streams(d8_pntr=d8_pntr, streams=streams, output=output, min_length=min_length, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -27324,7 +27324,7 @@ class ShreveStreamMagnitude(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
@@ -27356,7 +27356,7 @@ class ShreveStreamMagnitude(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.shreve_stream_magnitude(d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
+        wbt.shreve_stream_magnitude(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -27399,7 +27399,7 @@ class StrahlerStreamOrder(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
@@ -27431,7 +27431,7 @@ class StrahlerStreamOrder(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.strahler_stream_order(d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
+        wbt.strahler_stream_order(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -27474,7 +27474,7 @@ class StreamLinkClass(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
@@ -27506,7 +27506,7 @@ class StreamLinkClass(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.stream_link_class(d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
+        wbt.stream_link_class(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -27549,7 +27549,7 @@ class StreamLinkIdentifier(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
@@ -27581,7 +27581,7 @@ class StreamLinkIdentifier(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.stream_link_identifier(d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
+        wbt.stream_link_identifier(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -27624,7 +27624,7 @@ class StreamLinkLength(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
@@ -27656,7 +27656,7 @@ class StreamLinkLength(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.stream_link_length(d8_pntr, linkid=linkid, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
+        wbt.stream_link_length(d8_pntr=d8_pntr, linkid=linkid, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -27706,7 +27706,7 @@ class StreamLinkSlope(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
@@ -27741,7 +27741,7 @@ class StreamLinkSlope(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.stream_link_slope(d8_pntr, linkid=linkid, dem=dem, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
+        wbt.stream_link_slope(d8_pntr=d8_pntr, linkid=linkid, dem=dem, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -27791,7 +27791,7 @@ class StreamSlopeContinuous(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
@@ -27826,7 +27826,7 @@ class StreamSlopeContinuous(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.stream_slope_continuous(d8_pntr, streams=streams, dem=dem, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
+        wbt.stream_slope_continuous(d8_pntr=d8_pntr, streams=streams, dem=dem, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -27869,7 +27869,7 @@ class TopologicalStreamOrder(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
@@ -27901,7 +27901,7 @@ class TopologicalStreamOrder(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.topological_stream_order(d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
+        wbt.topological_stream_order(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -27944,7 +27944,7 @@ class TributaryIdentifier(object):
             parameterType="Optional",
             direction="Input")
 
-        esri_pntr.value = "false"
+        esri_pntr.value = False
 
         zero_background = arcpy.Parameter(
             displayName="Should a background value of zero be used?",
@@ -27976,7 +27976,7 @@ class TributaryIdentifier(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.tributary_identifier(d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
+        wbt.tributary_identifier(d8_pntr=d8_pntr, streams=streams, output=output, esri_pntr=esri_pntr, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
