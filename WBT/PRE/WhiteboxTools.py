@@ -1692,7 +1692,7 @@ class MergeTableWithCsv(object):
             datatype="Field",
             parameterType="Required",
             direction="Input")
-        pkey.parameterDependencies = [input.name]
+        pkey.parameterDependencies = [i.name]
 
         csv = arcpy.Parameter(
             displayName="Input CSV File",
@@ -2307,7 +2307,7 @@ class SinglePartToMultiPart(object):
             datatype="Field",
             parameterType="Optional",
             direction="Input")
-        field.parameterDependencies = [input.name]
+        field.parameterDependencies = [i.name]
 
         output = arcpy.Parameter(
             displayName="Output Line or Polygon File",
@@ -2363,7 +2363,7 @@ class VectorLinesToRaster(object):
             datatype="Field",
             parameterType="Optional",
             direction="Input")
-        field.parameterDependencies = [input.name]
+        field.parameterDependencies = [i.name]
 
         field.value = "FID"
 
@@ -2450,7 +2450,7 @@ class VectorPointsToRaster(object):
             datatype="Field",
             parameterType="Optional",
             direction="Input")
-        field.parameterDependencies = [input.name]
+        field.parameterDependencies = [i.name]
 
         field.value = "FID"
 
@@ -2549,7 +2549,7 @@ class VectorPolygonsToRaster(object):
             datatype="Field",
             parameterType="Optional",
             direction="Input")
-        field.parameterDependencies = [input.name]
+        field.parameterDependencies = [i.name]
 
         field.value = "FID"
 
@@ -2705,7 +2705,7 @@ class BlockMaximumGridding(object):
             datatype="Field",
             parameterType="Required",
             direction="Input")
-        field.parameterDependencies = [input.name]
+        field.parameterDependencies = [i.name]
 
         use_z = arcpy.Parameter(
             displayName="Use z-coordinate instead of field?",
@@ -2790,7 +2790,7 @@ class BlockMinimumGridding(object):
             datatype="Field",
             parameterType="Required",
             direction="Input")
-        field.parameterDependencies = [input.name]
+        field.parameterDependencies = [i.name]
 
         use_z = arcpy.Parameter(
             displayName="Use z-coordinate instead of field?",
@@ -3041,7 +3041,7 @@ class ConstructVectorTin(object):
             datatype="Field",
             parameterType="Optional",
             direction="Input")
-        field.parameterDependencies = [input.name]
+        field.parameterDependencies = [i.name]
 
         use_z = arcpy.Parameter(
             displayName="Use Shapefile 'z' values?",
@@ -3339,7 +3339,7 @@ class Dissolve(object):
             datatype="Field",
             parameterType="Optional",
             direction="Input")
-        field.parameterDependencies = [input.name]
+        field.parameterDependencies = [i.name]
 
         output = arcpy.Parameter(
             displayName="Output Vector File",
@@ -3693,7 +3693,7 @@ class IdwInterpolation(object):
             datatype="Field",
             parameterType="Required",
             direction="Input")
-        field.parameterDependencies = [input.name]
+        field.parameterDependencies = [i.name]
 
         use_z = arcpy.Parameter(
             displayName="Use z-coordinate instead of field?",
@@ -4135,7 +4135,7 @@ class NaturalNeighbourInterpolation(object):
             datatype="Field",
             parameterType="Optional",
             direction="Input")
-        field.parameterDependencies = [input.name]
+        field.parameterDependencies = [i.name]
 
         use_z = arcpy.Parameter(
             displayName="Use Shapefile 'z' values?",
@@ -4230,7 +4230,7 @@ class NearestNeighbourGridding(object):
             datatype="Field",
             parameterType="Required",
             direction="Input")
-        field.parameterDependencies = [input.name]
+        field.parameterDependencies = [i.name]
 
         use_z = arcpy.Parameter(
             displayName="Use z-coordinate instead of field?",
@@ -4878,7 +4878,7 @@ class TinGridding(object):
             datatype="Field",
             parameterType="Optional",
             direction="Input")
-        field.parameterDependencies = [input.name]
+        field.parameterDependencies = [i.name]
 
         use_z = arcpy.Parameter(
             displayName="Use Shapefile 'z' values?",
@@ -22626,7 +22626,7 @@ class AttributeHistogram(object):
             datatype="Field",
             parameterType="Required",
             direction="Input")
-        field.parameterDependencies = [input.name]
+        field.parameterDependencies = [i.name]
 
         output = arcpy.Parameter(
             displayName="Output HTML File",
@@ -22682,7 +22682,7 @@ class AttributeScattergram(object):
             datatype="Field",
             parameterType="Required",
             direction="Input")
-        fieldx.parameterDependencies = [input.name]
+        fieldx.parameterDependencies = [i.name]
 
         fieldy = arcpy.Parameter(
             displayName="Field Name Y",
@@ -22690,7 +22690,7 @@ class AttributeScattergram(object):
             datatype="Field",
             parameterType="Required",
             direction="Input")
-        fieldy.parameterDependencies = [input.name]
+        fieldy.parameterDependencies = [i.name]
 
         output = arcpy.Parameter(
             displayName="Output HTML File",
@@ -24192,7 +24192,7 @@ class ListUniqueValues(object):
             datatype="Field",
             parameterType="Required",
             direction="Input")
-        field.parameterDependencies = [input.name]
+        field.parameterDependencies = [i.name]
 
         output = arcpy.Parameter(
             displayName="Output HTML File",
@@ -25835,7 +25835,7 @@ class TrendSurfaceVectorPoints(object):
             datatype="Field",
             parameterType="Required",
             direction="Input")
-        field.parameterDependencies = [input.name]
+        field.parameterDependencies = [i.name]
 
         output = arcpy.Parameter(
             displayName="Output File",

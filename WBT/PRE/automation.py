@@ -224,7 +224,7 @@ def define_tool_params(params):
             lines.append('        {}.multiValue = True\n'.format(param))
 
         if len(data_type['dependency_field']) > 0:
-            lines.append('        {}.parameterDependencies = [{}.name]\n'.format(param, data_type['dependency_field']))
+            lines.append('        {}.parameterDependencies = [{}.name]\n'.format(param, data_type['dependency_field']).replace('input.name', 'i.name'))
 
         if data_type['data_filter'] != '[]':
             if data_type['filter_type'] == '"ValueList"':
