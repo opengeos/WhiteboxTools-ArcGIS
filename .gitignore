@@ -24,7 +24,7 @@ WhiteboxTools.pyt.zip
 **/*.tfw
 **/*.tif.ovr
 **/*.CPG
-
+__MACOSX/
 
 
 # C extensions

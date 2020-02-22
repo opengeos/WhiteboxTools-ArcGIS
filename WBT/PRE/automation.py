@@ -1,9 +1,24 @@
+
+##################################################################
+# Steps for updating WhiteboxTools-ArcGIS
+# Step 1 - Delete the existing deveop branch: git branch -D deveop  
+# Step 2 - Create a new deveop branch: git checkout -b deveop
+# Step 3 - Delete the old WhiteboxTools_win_amd64.zip in the root folder if needed
+# Step 4 - Run automation.py
+# Step 5 - Commit and push changes
+# Step 6 - Merge pull request on GitHub
+# Step 7 - Switch to master branch and pull updates: git checkout master | git pull
+##################################################################
+
 import os 
 import re
 import shutil
 import sys
 import ast
 import whitebox
+import tarfile
+import urllib.request
+from zipfile import ZipFile
 
 wbt = whitebox.WhiteboxTools()
 
@@ -396,7 +411,12 @@ def get_book_tag(tool_name, category):
 
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
-wbt_py = os.path.join(dir_path, "whitebox_tools.py")
+wbt_dir = os.path.dirname(dir_path)
+root_dir = os.path.dirname(wbt_dir)
+wbt_win_zip = os.path.join(root_dir, "WhiteboxTools_win_amd64.zip")
+
+# wbt_py = os.path.join(dir_path, "whitebox_tools.py")
+wbt_py = os.path.join(wbt_dir, "whitebox_tools.py")
 
 file_header_py = os.path.join(dir_path, "file_header.py")
 file_toolbox_py = os.path.join(dir_path, "file_toolbox.py")
@@ -405,6 +425,22 @@ file_about_py = os.path.join(dir_path, "file_about.py")
 
 file_wbt_py = os.path.join(dir_path, "WhiteboxTools.py")
 file_wbt_pyt = os.path.join(os.path.dirname(os.path.dirname(dir_path)), "WhiteboxTools.pyt")
+
+if not os.path.exists(wbt_win_zip):
+    print("Downloading WhiteboxTools binary ...")
+    url = "https://jblindsay.github.io/ghrg/WhiteboxTools/WhiteboxTools_win_amd64.zip"
+    urllib.request.urlretrieve(url, wbt_win_zip)   # Download WhiteboxTools
+else:
+    print("WhiteboxTools binary already exists.")
+
+print("Decompressing WhiteboxTools_win_amd64.zip ...")
+with ZipFile(wbt_win_zip, 'r') as zipObj:
+   # Extract all the contents of zip file to the root directory
+   zipObj.extractall(root_dir)
+
+MACOSX = os.path.join(root_dir, "__MACOSX")
+if os.path.exists(MACOSX):
+    shutil.rmtree(MACOSX)
 
 toolboxes = {
     "# Data Tools #": "Data Tools",
