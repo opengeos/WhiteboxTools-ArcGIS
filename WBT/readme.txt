@@ -56,6 +56,30 @@ for more details.
 * Release Notes: *
 ******************
 
+Version 1.1.1 (XX-XX-20XX)
+- Added the RasterToVectorPolygons tool, which now completes the raster-vector conversion tool set.
+- Added the MultiscaleElevationPercentile tool.
+- Added the AttributeCorrelationNeighbourhoodAnalysis tool.
+- Added the RadialBasisFunctionInterpolation tool, which includes a thin-plate spline mode.
+- Added the RasterPerimeter tool to measure the perimeter of raster polygons.
+- Added the MDInfFlowAccumulation tool to perform the MD-infinity flow accumulation of Seibert 
+  and McGlynn (2007).
+- Added the InsertDams tool, which can be used to insert impoundment features at a set of points
+  of interest into a DEM. This tool can be used in combination with the ImpoundmentSizeIndex tool 
+  to create artificial reservoirs/depressions.
+- Modified the LidarRbfInterpolation tool to improve efficiency.
+- Fixed an issue with how floating point attributes were written in Shapefile attribute tables.
+- Updated the LidarSegmentation tool, which now used RANSAC to fit planar models to points.
+- Added the HeightAboveGround tool, to normalize a LiDAR point cloud. Each point's z-value is
+  converted to the height above the nearest ground-classified point.
+- Fixed an issue with the Reclass and ReclassFromFile tool that caused striping.
+- The Relcass and ReclassFromFile tools now take 'min' and 'max' in the reclass string.
+- The watershed tool now accepts either a set of vector points or a raster for the pour points 
+  file. If a raster is specified, all non-zero, non-NoData valued cells will be considered 
+  outlet cells and the watershed labels will be assigned based on these values.
+- The D8 and D-infinity flow accumulation tools now take either an input DEM or a flow pointer raster 
+  as inputs.
+
 Version 1.1.0 (09-12-2019)
 - Added the BreachDepressionsLeastCost tool, which performs a modified form of the Lindsay 
   and Dhun (2015) impact minimizing breaching algorithm. This modified algorithm is very 
@@ -75,7 +99,7 @@ Version 1.1.0 (09-12-2019)
   method on input point data.
 - Added the UpslopeDepressionStorage tool to estimate the average upslope depression 
   storage capacity (DSC).
-- Added the LidarRfbInterpolation tool for performing a radial basis function interpolation
+- Added the LidarRbfInterpolation tool for performing a radial basis function (RBF) interpolation
   of LiDAR data sets.
 - The WhiteboxTools Runner user interface has been significantly improved (many thanks to 
   Rachel Broders for these contributions).
