@@ -280,15 +280,38 @@ def define_execute(params):
         inputRasVec.append({'ExistingFile': {'Vector': 'Polygon'}})
         inputRasVec.append({'ExistingFile': {'Vector': 'LineOrPolygon'}})
         inputRasVec.append({'ExistingFile': {'Vector': 'Any'}})
+
+        optional = False
+
+        if "optional" in params[param].keys():
+            if params[param]['optional'] == 'true':
+                optional = True
+
         if param == 'class':
             param = "cls"
 
         lines.append('        {} = parameters[{}].valueAsText\n'.format(param, index))
 
+        # if param_type in inputRasVec:
+        #     lines.append('        desc = arcpy.Describe({})\n'.format(param))
+        #     lines.append('        {} = desc.catalogPath\n'.format(param))    
+        # if param_type == "Optional":
+        #     lines.append('        if {} is not None:\n'.format(param))
+        #     lines.append('            desc = arcpy.Describe({})\n'.format(param))
+        #     lines.append('            {} = desc.catalogPath\n'.format(param))    
+
+        # if param == "cell_size":
+        #     print(param)
+
         if param_type in inputRasVec:
-            lines.append('        desc = arcpy.Describe({})\n'.format(param))
-            lines.append('        {} = desc.catalogPath\n'.format(param))    
-        
+            lines.append('        if {} is not None:\n'.format(param))
+            lines.append('            desc = arcpy.Describe({})\n'.format(param))
+            lines.append('            {} = desc.catalogPath\n'.format(param))    
+        # elif optional:
+        #     lines.append('        if {} is None:\n'.format(param))
+        #     lines.append('            {} = None\n'.format(param))
+
+
     lines = ''.join(lines)    
     return lines
 

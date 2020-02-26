@@ -1285,8 +1285,9 @@ class AddPointCoordinatesToTable(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -1330,8 +1331,9 @@ class CleanVector(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -1377,8 +1379,9 @@ class ConvertNodataToZero(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -1424,8 +1427,9 @@ class ConvertRasterFormat(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -1553,8 +1557,9 @@ class ExportTableToCsv(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         headers = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -1624,12 +1629,14 @@ class JoinTables(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
-        desc = arcpy.Describe(input1)
-        input1 = desc.catalogPath
+        if input1 is not None:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         pkey = parameters[1].valueAsText
         input2 = parameters[2].valueAsText
-        desc = arcpy.Describe(input2)
-        input2 = desc.catalogPath
+        if input2 is not None:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         fkey = parameters[3].valueAsText
         import_field = parameters[4].valueAsText
         old_stdout = sys.stdout
@@ -1677,8 +1684,9 @@ class LinesToPolygons(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -1748,8 +1756,9 @@ class MergeTableWithCsv(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         pkey = parameters[1].valueAsText
         csv = parameters[2].valueAsText
         fkey = parameters[3].valueAsText
@@ -1844,8 +1853,9 @@ class ModifyNoDataValue(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         new_value = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -1899,8 +1909,9 @@ class MultiPartToSinglePart(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         exclude_holes = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -1967,8 +1978,9 @@ class NewRasterFromBase(object):
 
     def execute(self, parameters, messages):
         base = parameters[0].valueAsText
-        desc = arcpy.Describe(base)
-        base = desc.catalogPath
+        if base is not None:
+            desc = arcpy.Describe(base)
+            base = desc.catalogPath
         output = parameters[1].valueAsText
         value = parameters[2].valueAsText
         data_type = parameters[3].valueAsText
@@ -2017,8 +2029,9 @@ class PolygonsToLines(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -2056,8 +2069,9 @@ class PrintGeoTiffTags(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -2102,8 +2116,9 @@ class RasterToVectorLines(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -2149,8 +2164,9 @@ class RasterToVectorPoints(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -2196,8 +2212,9 @@ class RasterToVectorPolygons(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -2235,8 +2252,9 @@ class ReinitializeAttributeTable(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -2282,8 +2300,9 @@ class RemovePolygonHoles(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -2338,8 +2357,9 @@ class SetNodataValue(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         back_value = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -2393,8 +2413,9 @@ class SinglePartToMultiPart(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -2475,15 +2496,17 @@ class VectorLinesToRaster(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         nodata = parameters[3].valueAsText
         cell_size = parameters[4].valueAsText
         base = parameters[5].valueAsText
-        desc = arcpy.Describe(base)
-        base = desc.catalogPath
+        if base is not None:
+            desc = arcpy.Describe(base)
+            base = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -2573,16 +2596,18 @@ class VectorPointsToRaster(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         assign = parameters[3].valueAsText
         nodata = parameters[4].valueAsText
         cell_size = parameters[5].valueAsText
         base = parameters[6].valueAsText
-        desc = arcpy.Describe(base)
-        base = desc.catalogPath
+        if base is not None:
+            desc = arcpy.Describe(base)
+            base = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -2661,15 +2686,17 @@ class VectorPolygonsToRaster(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         nodata = parameters[3].valueAsText
         cell_size = parameters[4].valueAsText
         base = parameters[5].valueAsText
-        desc = arcpy.Describe(base)
-        base = desc.catalogPath
+        if base is not None:
+            desc = arcpy.Describe(base)
+            base = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -2734,8 +2761,9 @@ class AggregateRaster(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         agg_factor = parameters[2].valueAsText
         type = parameters[3].valueAsText
@@ -2815,15 +2843,17 @@ class BlockMaximumGridding(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
         cell_size = parameters[4].valueAsText
         base = parameters[5].valueAsText
-        desc = arcpy.Describe(base)
-        base = desc.catalogPath
+        if base is not None:
+            desc = arcpy.Describe(base)
+            base = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -2900,15 +2930,17 @@ class BlockMinimumGridding(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
         cell_size = parameters[4].valueAsText
         base = parameters[5].valueAsText
-        desc = arcpy.Describe(base)
-        base = desc.catalogPath
+        if base is not None:
+            desc = arcpy.Describe(base)
+            base = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -2960,8 +2992,9 @@ class Centroid(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         text_output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -3007,8 +3040,9 @@ class CentroidVector(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -3070,8 +3104,9 @@ class Clump(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         diag = parameters[2].valueAsText
         zero_back = parameters[3].valueAsText
@@ -3144,8 +3179,9 @@ class ConstructVectorTin(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
@@ -3286,8 +3322,9 @@ class CreatePlane(object):
 
     def execute(self, parameters, messages):
         base = parameters[0].valueAsText
-        desc = arcpy.Describe(base)
-        base = desc.catalogPath
+        if base is not None:
+            desc = arcpy.Describe(base)
+            base = desc.catalogPath
         output = parameters[1].valueAsText
         gradient = parameters[2].valueAsText
         aspect = parameters[3].valueAsText
@@ -3434,8 +3471,9 @@ class Dissolve(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         snap = parameters[3].valueAsText
@@ -3491,8 +3529,9 @@ class EliminateCoincidentPoints(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         tolerance = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -3558,8 +3597,9 @@ class ExtendVectorLines(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         dist = parameters[2].valueAsText
         extend = parameters[3].valueAsText
@@ -3607,8 +3647,9 @@ class ExtractNodes(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -3665,8 +3706,9 @@ class ExtractRasterValuesAtPoints(object):
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
         points = parameters[1].valueAsText
-        desc = arcpy.Describe(points)
-        points = desc.catalogPath
+        if points is not None:
+            desc = arcpy.Describe(points)
+            points = desc.catalogPath
         out_text = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -3723,8 +3765,9 @@ class FindLowestOrHighestPoints(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         out_type = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -3826,8 +3869,9 @@ class IdwInterpolation(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
@@ -3836,8 +3880,9 @@ class IdwInterpolation(object):
         min_points = parameters[6].valueAsText
         cell_size = parameters[7].valueAsText
         base = parameters[8].valueAsText
-        desc = arcpy.Describe(base)
-        base = desc.catalogPath
+        if base is not None:
+            desc = arcpy.Describe(base)
+            base = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -3926,8 +3971,9 @@ class Medoid(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -3993,8 +4039,9 @@ class MinimumBoundingBox(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         criterion = parameters[2].valueAsText
         features = parameters[3].valueAsText
@@ -4051,8 +4098,9 @@ class MinimumBoundingCircle(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         features = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -4108,8 +4156,9 @@ class MinimumBoundingEnvelope(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         features = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -4165,8 +4214,9 @@ class MinimumConvexHull(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         features = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -4254,15 +4304,17 @@ class NaturalNeighbourInterpolation(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
         cell_size = parameters[4].valueAsText
         base = parameters[5].valueAsText
-        desc = arcpy.Describe(base)
-        base = desc.catalogPath
+        if base is not None:
+            desc = arcpy.Describe(base)
+            base = desc.catalogPath
         clip = parameters[6].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -4347,15 +4399,17 @@ class NearestNeighbourGridding(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
         cell_size = parameters[4].valueAsText
         base = parameters[5].valueAsText
-        desc = arcpy.Describe(base)
-        base = desc.catalogPath
+        if base is not None:
+            desc = arcpy.Describe(base)
+            base = desc.catalogPath
         max_dist = parameters[6].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -4394,8 +4448,9 @@ class PolygonArea(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -4441,8 +4496,9 @@ class PolygonLongAxis(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -4481,8 +4537,9 @@ class PolygonPerimeter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -4528,8 +4585,9 @@ class PolygonShortAxis(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -4652,8 +4710,9 @@ class RadialBasisFunctionInterpolation(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
@@ -4664,8 +4723,9 @@ class RadialBasisFunctionInterpolation(object):
         weight = parameters[8].valueAsText
         cell_size = parameters[9].valueAsText
         base = parameters[10].valueAsText
-        desc = arcpy.Describe(base)
-        base = desc.catalogPath
+        if base is not None:
+            desc = arcpy.Describe(base)
+            base = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -4735,8 +4795,9 @@ class RasterArea(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         out_text = parameters[2].valueAsText
         units = parameters[3].valueAsText
@@ -4796,8 +4857,9 @@ class RasterCellAssignment(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         assign = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -4869,8 +4931,9 @@ class RasterPerimeter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         out_text = parameters[2].valueAsText
         units = parameters[3].valueAsText
@@ -4933,8 +4996,9 @@ class Reclass(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         reclass_vals = parameters[2].valueAsText
         assign_mode = parameters[3].valueAsText
@@ -5005,8 +5069,9 @@ class ReclassEqualInterval(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         interval = parameters[2].valueAsText
         start_val = parameters[3].valueAsText
@@ -5062,8 +5127,9 @@ class ReclassFromFile(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         reclass_file = parameters[1].valueAsText
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -5118,8 +5184,9 @@ class SmoothVectors(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -5205,15 +5272,17 @@ class TinGridding(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
         resolution = parameters[4].valueAsText
         base = parameters[5].valueAsText
-        desc = arcpy.Describe(base)
-        base = desc.catalogPath
+        if base is not None:
+            desc = arcpy.Describe(base)
+            base = desc.catalogPath
         max_triangle_edge_length = parameters[6].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -5278,8 +5347,9 @@ class VectorHexBinning(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         width = parameters[2].valueAsText
         orientation = parameters[3].valueAsText
@@ -5328,8 +5398,9 @@ class VoronoiDiagram(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -5389,8 +5460,9 @@ class BufferRaster(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         size = parameters[2].valueAsText
         gridcells = parameters[3].valueAsText
@@ -5445,11 +5517,13 @@ class CostAllocation(object):
 
     def execute(self, parameters, messages):
         source = parameters[0].valueAsText
-        desc = arcpy.Describe(source)
-        source = desc.catalogPath
+        if source is not None:
+            desc = arcpy.Describe(source)
+            source = desc.catalogPath
         backlink = parameters[1].valueAsText
-        desc = arcpy.Describe(backlink)
-        backlink = desc.catalogPath
+        if backlink is not None:
+            desc = arcpy.Describe(backlink)
+            backlink = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -5510,11 +5584,13 @@ class CostDistance(object):
 
     def execute(self, parameters, messages):
         source = parameters[0].valueAsText
-        desc = arcpy.Describe(source)
-        source = desc.catalogPath
+        if source is not None:
+            desc = arcpy.Describe(source)
+            source = desc.catalogPath
         cost = parameters[1].valueAsText
-        desc = arcpy.Describe(cost)
-        cost = desc.catalogPath
+        if cost is not None:
+            desc = arcpy.Describe(cost)
+            cost = desc.catalogPath
         out_accum = parameters[2].valueAsText
         out_backlink = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -5575,11 +5651,13 @@ class CostPathway(object):
 
     def execute(self, parameters, messages):
         destination = parameters[0].valueAsText
-        desc = arcpy.Describe(destination)
-        destination = desc.catalogPath
+        if destination is not None:
+            desc = arcpy.Describe(destination)
+            destination = desc.catalogPath
         backlink = parameters[1].valueAsText
-        desc = arcpy.Describe(backlink)
-        backlink = desc.catalogPath
+        if backlink is not None:
+            desc = arcpy.Describe(backlink)
+            backlink = desc.catalogPath
         output = parameters[2].valueAsText
         zero_background = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -5626,8 +5704,9 @@ class EuclideanAllocation(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -5673,8 +5752,9 @@ class EuclideanDistance(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -5773,11 +5853,13 @@ class Clip(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         clip = parameters[1].valueAsText
-        desc = arcpy.Describe(clip)
-        clip = desc.catalogPath
+        if clip is not None:
+            desc = arcpy.Describe(clip)
+            clip = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -5840,11 +5922,13 @@ class ClipRasterToPolygon(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         polygons = parameters[1].valueAsText
-        desc = arcpy.Describe(polygons)
-        polygons = desc.catalogPath
+        if polygons is not None:
+            desc = arcpy.Describe(polygons)
+            polygons = desc.catalogPath
         output = parameters[2].valueAsText
         maintain_dimensions = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -5951,11 +6035,13 @@ class Difference(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         overlay = parameters[1].valueAsText
-        desc = arcpy.Describe(overlay)
-        overlay = desc.catalogPath
+        if overlay is not None:
+            desc = arcpy.Describe(overlay)
+            overlay = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -6008,11 +6094,13 @@ class Erase(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         erase = parameters[1].valueAsText
-        desc = arcpy.Describe(erase)
-        erase = desc.catalogPath
+        if erase is not None:
+            desc = arcpy.Describe(erase)
+            erase = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -6066,11 +6154,13 @@ class ErasePolygonFromRaster(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         polygons = parameters[1].valueAsText
-        desc = arcpy.Describe(polygons)
-        polygons = desc.catalogPath
+        if polygons is not None:
+            desc = arcpy.Describe(polygons)
+            polygons = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -6177,11 +6267,13 @@ class Intersect(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         overlay = parameters[1].valueAsText
-        desc = arcpy.Describe(overlay)
-        overlay = desc.catalogPath
+        if overlay is not None:
+            desc = arcpy.Describe(overlay)
+            overlay = desc.catalogPath
         output = parameters[2].valueAsText
         snap = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -6237,11 +6329,13 @@ class LineIntersections(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
-        desc = arcpy.Describe(input1)
-        input1 = desc.catalogPath
+        if input1 is not None:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
-        desc = arcpy.Describe(input2)
-        input2 = desc.catalogPath
+        if input2 is not None:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -6434,8 +6528,9 @@ class MergeLineSegments(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         snap = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -6583,8 +6678,9 @@ class PercentEqualTo(object):
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
         comparison = parameters[1].valueAsText
-        desc = arcpy.Describe(comparison)
-        comparison = desc.catalogPath
+        if comparison is not None:
+            desc = arcpy.Describe(comparison)
+            comparison = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -6639,8 +6735,9 @@ class PercentGreaterThan(object):
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
         comparison = parameters[1].valueAsText
-        desc = arcpy.Describe(comparison)
-        comparison = desc.catalogPath
+        if comparison is not None:
+            desc = arcpy.Describe(comparison)
+            comparison = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -6695,8 +6792,9 @@ class PercentLessThan(object):
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
         comparison = parameters[1].valueAsText
-        desc = arcpy.Describe(comparison)
-        comparison = desc.catalogPath
+        if comparison is not None:
+            desc = arcpy.Describe(comparison)
+            comparison = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -6751,8 +6849,9 @@ class PickFromList(object):
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
         pos_input = parameters[1].valueAsText
-        desc = arcpy.Describe(pos_input)
-        pos_input = desc.catalogPath
+        if pos_input is not None:
+            desc = arcpy.Describe(pos_input)
+            pos_input = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -6852,11 +6951,13 @@ class SplitWithLines(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         split = parameters[1].valueAsText
-        desc = arcpy.Describe(split)
-        split = desc.catalogPath
+        if split is not None:
+            desc = arcpy.Describe(split)
+            split = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -6963,11 +7064,13 @@ class SymmetricalDifference(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         overlay = parameters[1].valueAsText
-        desc = arcpy.Describe(overlay)
-        overlay = desc.catalogPath
+        if overlay is not None:
+            desc = arcpy.Describe(overlay)
+            overlay = desc.catalogPath
         output = parameters[2].valueAsText
         snap = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -7029,11 +7132,13 @@ class Union(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         overlay = parameters[1].valueAsText
-        desc = arcpy.Describe(overlay)
-        overlay = desc.catalogPath
+        if overlay is not None:
+            desc = arcpy.Describe(overlay)
+            overlay = desc.catalogPath
         output = parameters[2].valueAsText
         snap = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -7215,8 +7320,9 @@ class BoundaryShapeComplexity(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -7255,8 +7361,9 @@ class CompactnessRatio(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -7308,8 +7415,9 @@ class EdgeProportion(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         output_text = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -7349,8 +7457,9 @@ class ElongationRatio(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -7395,8 +7504,9 @@ class FindPatchOrClassEdgeCells(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -7435,8 +7545,9 @@ class HoleProportion(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -7474,8 +7585,9 @@ class LinearityIndex(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -7520,8 +7632,9 @@ class NarrownessIndex(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -7560,8 +7673,9 @@ class PatchOrientation(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -7599,8 +7713,9 @@ class PerimeterAreaRatio(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -7652,8 +7767,9 @@ class RadiusOfGyration(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         text_output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -7693,8 +7809,9 @@ class RelatedCircumscribingCircle(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -7732,8 +7849,9 @@ class ShapeComplexityIndex(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -7778,8 +7896,9 @@ class ShapeComplexityIndexRaster(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -7834,8 +7953,9 @@ class Aspect(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -7891,8 +8011,9 @@ class AverageNormalVectorAngularDeviation(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -7948,8 +8069,9 @@ class CircularVarianceOfAspect(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -8014,8 +8136,9 @@ class DevFromMeanElev(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -8081,8 +8204,9 @@ class DiffFromMeanElev(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -8146,8 +8270,9 @@ class DirectionalRelief(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         azimuth = parameters[2].valueAsText
         max_dist = parameters[3].valueAsText
@@ -8215,8 +8340,9 @@ class DownslopeIndex(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         drop = parameters[2].valueAsText
         out_type = parameters[3].valueAsText
@@ -8291,8 +8417,9 @@ class EdgeDensity(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         norm_diff = parameters[3].valueAsText
@@ -8341,8 +8468,9 @@ class ElevAbovePit(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -8415,8 +8543,9 @@ class ElevPercentile(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -8465,8 +8594,9 @@ class ElevRelativeToMinMax(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -8519,11 +8649,13 @@ class ElevRelativeToWatershedMinMax(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         watersheds = parameters[1].valueAsText
-        desc = arcpy.Describe(watersheds)
-        watersheds = desc.catalogPath
+        if watersheds is not None:
+            desc = arcpy.Describe(watersheds)
+            watersheds = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -8614,8 +8746,9 @@ class FeaturePreservingSmoothing(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         norm_diff = parameters[3].valueAsText
@@ -8684,8 +8817,9 @@ class FetchAnalysis(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         azimuth = parameters[2].valueAsText
         hgt_inc = parameters[3].valueAsText
@@ -8751,8 +8885,9 @@ class FillMissingData(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         weight = parameters[3].valueAsText
@@ -8809,8 +8944,9 @@ class FindRidges(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         line_thin = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -8884,8 +9020,9 @@ class Hillshade(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         azimuth = parameters[2].valueAsText
         altitude = parameters[3].valueAsText
@@ -8950,8 +9087,9 @@ class HorizonAngle(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         azimuth = parameters[2].valueAsText
         max_dist = parameters[3].valueAsText
@@ -9087,8 +9225,9 @@ class MaxAnisotropyDev(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         out_mag = parameters[1].valueAsText
         out_scale = parameters[2].valueAsText
         min_scale = parameters[3].valueAsText
@@ -9171,11 +9310,13 @@ class MaxAnisotropyDevSignature(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         points = parameters[1].valueAsText
-        desc = arcpy.Describe(points)
-        points = desc.catalogPath
+        if points is not None:
+            desc = arcpy.Describe(points)
+            points = desc.catalogPath
         output = parameters[2].valueAsText
         min_scale = parameters[3].valueAsText
         max_scale = parameters[4].valueAsText
@@ -9231,8 +9372,9 @@ class MaxBranchLength(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         log = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -9310,8 +9452,9 @@ class MaxDifferenceFromMean(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         out_mag = parameters[1].valueAsText
         out_scale = parameters[2].valueAsText
         min_scale = parameters[3].valueAsText
@@ -9361,8 +9504,9 @@ class MaxDownslopeElevChange(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -9439,11 +9583,13 @@ class MaxElevDevSignature(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         points = parameters[1].valueAsText
-        desc = arcpy.Describe(points)
-        points = desc.catalogPath
+        if points is not None:
+            desc = arcpy.Describe(points)
+            points = desc.catalogPath
         output = parameters[2].valueAsText
         min_scale = parameters[3].valueAsText
         max_scale = parameters[4].valueAsText
@@ -9523,8 +9669,9 @@ class MaxElevationDeviation(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         out_mag = parameters[1].valueAsText
         out_scale = parameters[2].valueAsText
         min_scale = parameters[3].valueAsText
@@ -9574,8 +9721,9 @@ class MinDownslopeElevChange(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -9674,8 +9822,9 @@ class MultiscaleElevationPercentile(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         out_mag = parameters[1].valueAsText
         out_scale = parameters[2].valueAsText
         sig_digits = parameters[3].valueAsText
@@ -9760,8 +9909,9 @@ class MultiscaleRoughness(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         out_mag = parameters[1].valueAsText
         out_scale = parameters[2].valueAsText
         min_scale = parameters[3].valueAsText
@@ -9844,11 +9994,13 @@ class MultiscaleRoughnessSignature(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         points = parameters[1].valueAsText
-        desc = arcpy.Describe(points)
-        points = desc.catalogPath
+        if points is not None:
+            desc = arcpy.Describe(points)
+            points = desc.catalogPath
         output = parameters[2].valueAsText
         min_scale = parameters[3].valueAsText
         max_scale = parameters[4].valueAsText
@@ -9941,8 +10093,9 @@ class MultiscaleStdDevNormals(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         out_mag = parameters[1].valueAsText
         out_scale = parameters[2].valueAsText
         min_scale = parameters[3].valueAsText
@@ -10037,11 +10190,13 @@ class MultiscaleStdDevNormalsSignature(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         points = parameters[1].valueAsText
-        desc = arcpy.Describe(points)
-        points = desc.catalogPath
+        if points is not None:
+            desc = arcpy.Describe(points)
+            points = desc.catalogPath
         output = parameters[2].valueAsText
         min_scale = parameters[3].valueAsText
         step = parameters[4].valueAsText
@@ -10114,14 +10269,17 @@ class MultiscaleTopographicPositionImage(object):
 
     def execute(self, parameters, messages):
         local = parameters[0].valueAsText
-        desc = arcpy.Describe(local)
-        local = desc.catalogPath
+        if local is not None:
+            desc = arcpy.Describe(local)
+            local = desc.catalogPath
         meso = parameters[1].valueAsText
-        desc = arcpy.Describe(meso)
-        meso = desc.catalogPath
+        if meso is not None:
+            desc = arcpy.Describe(meso)
+            meso = desc.catalogPath
         broad = parameters[2].valueAsText
-        desc = arcpy.Describe(broad)
-        broad = desc.catalogPath
+        if broad is not None:
+            desc = arcpy.Describe(broad)
+            broad = desc.catalogPath
         output = parameters[3].valueAsText
         lightness = parameters[4].valueAsText
         old_stdout = sys.stdout
@@ -10168,8 +10326,9 @@ class NumDownslopeNeighbours(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -10215,8 +10374,9 @@ class NumUpslopeNeighbours(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -10298,8 +10458,9 @@ class PennockLandformClass(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         slope = parameters[2].valueAsText
         prof = parameters[3].valueAsText
@@ -10367,8 +10528,9 @@ class PercentElevRange(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -10425,8 +10587,9 @@ class PlanCurvature(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -10481,11 +10644,13 @@ class Profile(object):
 
     def execute(self, parameters, messages):
         lines = parameters[0].valueAsText
-        desc = arcpy.Describe(lines)
-        lines = desc.catalogPath
+        if lines is not None:
+            desc = arcpy.Describe(lines)
+            lines = desc.catalogPath
         surface = parameters[1].valueAsText
-        desc = arcpy.Describe(surface)
-        surface = desc.catalogPath
+        if surface is not None:
+            desc = arcpy.Describe(surface)
+            surface = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -10540,8 +10705,9 @@ class ProfileCurvature(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -10606,8 +10772,9 @@ class RelativeAspect(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         azimuth = parameters[2].valueAsText
         zfactor = parameters[3].valueAsText
@@ -10673,8 +10840,9 @@ class RelativeTopographicPosition(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -10740,8 +10908,9 @@ class RemoveOffTerrainObjects(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         slope = parameters[3].valueAsText
@@ -10798,8 +10967,9 @@ class RuggednessIndex(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -10871,11 +11041,13 @@ class SedimentTransportIndex(object):
 
     def execute(self, parameters, messages):
         sca = parameters[0].valueAsText
-        desc = arcpy.Describe(sca)
-        sca = desc.catalogPath
+        if sca is not None:
+            desc = arcpy.Describe(sca)
+            sca = desc.catalogPath
         slope = parameters[1].valueAsText
-        desc = arcpy.Describe(slope)
-        slope = desc.catalogPath
+        if slope is not None:
+            desc = arcpy.Describe(slope)
+            slope = desc.catalogPath
         output = parameters[2].valueAsText
         sca_exponent = parameters[3].valueAsText
         slope_exponent = parameters[4].valueAsText
@@ -10932,8 +11104,9 @@ class Slope(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -11044,8 +11217,9 @@ class SphericalStdDevOfNormals(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -11119,8 +11293,9 @@ class StandardDeviationOfSlope(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
         filterx = parameters[3].valueAsText
@@ -11185,11 +11360,13 @@ class StreamPowerIndex(object):
 
     def execute(self, parameters, messages):
         sca = parameters[0].valueAsText
-        desc = arcpy.Describe(sca)
-        sca = desc.catalogPath
+        if sca is not None:
+            desc = arcpy.Describe(sca)
+            sca = desc.catalogPath
         slope = parameters[1].valueAsText
-        desc = arcpy.Describe(slope)
-        slope = desc.catalogPath
+        if slope is not None:
+            desc = arcpy.Describe(slope)
+            slope = desc.catalogPath
         output = parameters[2].valueAsText
         exponent = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -11236,8 +11413,9 @@ class SurfaceAreaRatio(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -11292,8 +11470,9 @@ class TangentialCurvature(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -11349,8 +11528,9 @@ class TotalCurvature(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -11414,11 +11594,13 @@ class Viewshed(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         stations = parameters[1].valueAsText
-        desc = arcpy.Describe(stations)
-        stations = desc.catalogPath
+        if stations is not None:
+            desc = arcpy.Describe(stations)
+            stations = desc.catalogPath
         output = parameters[2].valueAsText
         height = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -11483,8 +11665,9 @@ class VisibilityIndex(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         height = parameters[2].valueAsText
         res_factor = parameters[3].valueAsText
@@ -11539,11 +11722,13 @@ class WetnessIndex(object):
 
     def execute(self, parameters, messages):
         sca = parameters[0].valueAsText
-        desc = arcpy.Describe(sca)
-        sca = desc.catalogPath
+        if sca is not None:
+            desc = arcpy.Describe(sca)
+            sca = desc.catalogPath
         slope = parameters[1].valueAsText
-        desc = arcpy.Describe(slope)
-        slope = desc.catalogPath
+        if slope is not None:
+            desc = arcpy.Describe(slope)
+            slope = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -11589,8 +11774,9 @@ class AverageFlowpathSlope(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -11636,8 +11822,9 @@ class AverageUpslopeFlowpathLength(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -11692,8 +11879,9 @@ class Basins(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
-        desc = arcpy.Describe(d8_pntr)
-        d8_pntr = desc.catalogPath
+        if d8_pntr is not None:
+            desc = arcpy.Describe(d8_pntr)
+            d8_pntr = desc.catalogPath
         output = parameters[1].valueAsText
         esri_pntr = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -11770,8 +11958,9 @@ class BreachDepressions(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         max_depth = parameters[2].valueAsText
         max_length = parameters[3].valueAsText
@@ -11860,8 +12049,9 @@ class BreachDepressionsLeastCost(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         dist = parameters[2].valueAsText
         max_cost = parameters[3].valueAsText
@@ -11912,8 +12102,9 @@ class BreachSingleCellPits(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -11982,14 +12173,17 @@ class BurnStreamsAtRoads(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         streams = parameters[1].valueAsText
-        desc = arcpy.Describe(streams)
-        streams = desc.catalogPath
+        if streams is not None:
+            desc = arcpy.Describe(streams)
+            streams = desc.catalogPath
         roads = parameters[2].valueAsText
-        desc = arcpy.Describe(roads)
-        roads = desc.catalogPath
+        if roads is not None:
+            desc = arcpy.Describe(roads)
+            roads = desc.catalogPath
         output = parameters[3].valueAsText
         width = parameters[4].valueAsText
         old_stdout = sys.stdout
@@ -12077,8 +12271,9 @@ class D8FlowAccumulation(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         out_type = parameters[2].valueAsText
         log = parameters[3].valueAsText
@@ -12150,17 +12345,21 @@ class D8MassFlux(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         loading = parameters[1].valueAsText
-        desc = arcpy.Describe(loading)
-        loading = desc.catalogPath
+        if loading is not None:
+            desc = arcpy.Describe(loading)
+            loading = desc.catalogPath
         efficiency = parameters[2].valueAsText
-        desc = arcpy.Describe(efficiency)
-        efficiency = desc.catalogPath
+        if efficiency is not None:
+            desc = arcpy.Describe(efficiency)
+            efficiency = desc.catalogPath
         absorption = parameters[3].valueAsText
-        desc = arcpy.Describe(absorption)
-        absorption = desc.catalogPath
+        if absorption is not None:
+            desc = arcpy.Describe(absorption)
+            absorption = desc.catalogPath
         output = parameters[4].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -12215,8 +12414,9 @@ class D8Pointer(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         esri_pntr = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -12302,8 +12502,9 @@ class DInfFlowAccumulation(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         out_type = parameters[2].valueAsText
         threshold = parameters[3].valueAsText
@@ -12375,17 +12576,21 @@ class DInfMassFlux(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         loading = parameters[1].valueAsText
-        desc = arcpy.Describe(loading)
-        loading = desc.catalogPath
+        if loading is not None:
+            desc = arcpy.Describe(loading)
+            loading = desc.catalogPath
         efficiency = parameters[2].valueAsText
-        desc = arcpy.Describe(efficiency)
-        efficiency = desc.catalogPath
+        if efficiency is not None:
+            desc = arcpy.Describe(efficiency)
+            efficiency = desc.catalogPath
         absorption = parameters[3].valueAsText
-        desc = arcpy.Describe(absorption)
-        absorption = desc.catalogPath
+        if absorption is not None:
+            desc = arcpy.Describe(absorption)
+            absorption = desc.catalogPath
         output = parameters[4].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -12431,8 +12636,9 @@ class DInfPointer(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -12485,8 +12691,9 @@ class DepthInSink(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         zero_background = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -12540,11 +12747,13 @@ class DownslopeDistanceToStream(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         streams = parameters[1].valueAsText
-        desc = arcpy.Describe(streams)
-        streams = desc.catalogPath
+        if streams is not None:
+            desc = arcpy.Describe(streams)
+            streams = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -12613,14 +12822,17 @@ class DownslopeFlowpathLength(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
-        desc = arcpy.Describe(d8_pntr)
-        d8_pntr = desc.catalogPath
+        if d8_pntr is not None:
+            desc = arcpy.Describe(d8_pntr)
+            d8_pntr = desc.catalogPath
         watersheds = parameters[1].valueAsText
-        desc = arcpy.Describe(watersheds)
-        watersheds = desc.catalogPath
+        if watersheds is not None:
+            desc = arcpy.Describe(watersheds)
+            watersheds = desc.catalogPath
         weights = parameters[2].valueAsText
-        desc = arcpy.Describe(weights)
-        weights = desc.catalogPath
+        if weights is not None:
+            desc = arcpy.Describe(weights)
+            weights = desc.catalogPath
         output = parameters[3].valueAsText
         esri_pntr = parameters[4].valueAsText
         old_stdout = sys.stdout
@@ -12674,11 +12886,13 @@ class ElevationAboveStream(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         streams = parameters[1].valueAsText
-        desc = arcpy.Describe(streams)
-        streams = desc.catalogPath
+        if streams is not None:
+            desc = arcpy.Describe(streams)
+            streams = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -12731,11 +12945,13 @@ class ElevationAboveStreamEuclidean(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         streams = parameters[1].valueAsText
-        desc = arcpy.Describe(streams)
-        streams = desc.catalogPath
+        if streams is not None:
+            desc = arcpy.Describe(streams)
+            streams = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -12822,8 +13038,9 @@ class Fd8FlowAccumulation(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         out_type = parameters[2].valueAsText
         exponent = parameters[3].valueAsText
@@ -12874,8 +13091,9 @@ class Fd8Pointer(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -12929,11 +13147,13 @@ class FillBurn(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         streams = parameters[1].valueAsText
-        desc = arcpy.Describe(streams)
-        streams = desc.catalogPath
+        if streams is not None:
+            desc = arcpy.Describe(streams)
+            streams = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -13002,8 +13222,9 @@ class FillDepressions(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         fix_flats = parameters[2].valueAsText
         flat_increment = parameters[3].valueAsText
@@ -13068,8 +13289,9 @@ class FillDepressionsPlanchonAndDarboux(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         fix_flats = parameters[2].valueAsText
         flat_increment = parameters[3].valueAsText
@@ -13133,8 +13355,9 @@ class FillDepressionsWangAndLiu(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         fix_flats = parameters[2].valueAsText
         flat_increment = parameters[3].valueAsText
@@ -13182,8 +13405,9 @@ class FillSingleCellPits(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -13229,8 +13453,9 @@ class FindNoFlowCells(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -13283,11 +13508,13 @@ class FindParallelFlow(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
-        desc = arcpy.Describe(d8_pntr)
-        d8_pntr = desc.catalogPath
+        if d8_pntr is not None:
+            desc = arcpy.Describe(d8_pntr)
+            d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
-        desc = arcpy.Describe(streams)
-        streams = desc.catalogPath
+        if streams is not None:
+            desc = arcpy.Describe(streams)
+            streams = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -13341,11 +13568,13 @@ class FlattenLakes(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         lakes = parameters[1].valueAsText
-        desc = arcpy.Describe(lakes)
-        lakes = desc.catalogPath
+        if lakes is not None:
+            desc = arcpy.Describe(lakes)
+            lakes = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -13391,8 +13620,9 @@ class FloodOrder(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -13488,8 +13718,9 @@ class FlowAccumulationFullWorkflow(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         out_dem = parameters[1].valueAsText
         out_pntr = parameters[2].valueAsText
         out_accum = parameters[3].valueAsText
@@ -13550,8 +13781,9 @@ class FlowLengthDiff(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
-        desc = arcpy.Describe(d8_pntr)
-        d8_pntr = desc.catalogPath
+        if d8_pntr is not None:
+            desc = arcpy.Describe(d8_pntr)
+            d8_pntr = desc.catalogPath
         output = parameters[1].valueAsText
         esri_pntr = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -13614,11 +13846,13 @@ class Hillslopes(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
-        desc = arcpy.Describe(d8_pntr)
-        d8_pntr = desc.catalogPath
+        if d8_pntr is not None:
+            desc = arcpy.Describe(d8_pntr)
+            d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
-        desc = arcpy.Describe(streams)
-        streams = desc.catalogPath
+        if streams is not None:
+            desc = arcpy.Describe(streams)
+            streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -13683,8 +13917,9 @@ class ImpoundmentSizeIndex(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         out_type = parameters[2].valueAsText
         damlength = parameters[3].valueAsText
@@ -13747,11 +13982,13 @@ class InsertDams(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         dam_pts = parameters[1].valueAsText
-        desc = arcpy.Describe(dam_pts)
-        dam_pts = desc.catalogPath
+        if dam_pts is not None:
+            desc = arcpy.Describe(dam_pts)
+            dam_pts = desc.catalogPath
         output = parameters[2].valueAsText
         damlength = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -13805,8 +14042,9 @@ class Isobasins(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         size = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -13868,11 +14106,13 @@ class JensonSnapPourPoints(object):
 
     def execute(self, parameters, messages):
         pour_pts = parameters[0].valueAsText
-        desc = arcpy.Describe(pour_pts)
-        pour_pts = desc.catalogPath
+        if pour_pts is not None:
+            desc = arcpy.Describe(pour_pts)
+            pour_pts = desc.catalogPath
         streams = parameters[1].valueAsText
-        desc = arcpy.Describe(streams)
-        streams = desc.catalogPath
+        if streams is not None:
+            desc = arcpy.Describe(streams)
+            streams = desc.catalogPath
         output = parameters[2].valueAsText
         snap_dist = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -13926,11 +14166,13 @@ class LongestFlowpath(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         basins = parameters[1].valueAsText
-        desc = arcpy.Describe(basins)
-        basins = desc.catalogPath
+        if basins is not None:
+            desc = arcpy.Describe(basins)
+            basins = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -13976,8 +14218,9 @@ class MaxUpslopeFlowpathLength(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -14064,8 +14307,9 @@ class MdInfFlowAccumulation(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         out_type = parameters[2].valueAsText
         exponent = parameters[3].valueAsText
@@ -14116,8 +14360,9 @@ class NumInflowingNeighbours(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -14187,14 +14432,17 @@ class RaiseWalls(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         breach = parameters[1].valueAsText
-        desc = arcpy.Describe(breach)
-        breach = desc.catalogPath
+        if breach is not None:
+            desc = arcpy.Describe(breach)
+            breach = desc.catalogPath
         dem = parameters[2].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[3].valueAsText
         height = parameters[4].valueAsText
         old_stdout = sys.stdout
@@ -14250,8 +14498,9 @@ class Rho8Pointer(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         esri_pntr = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -14305,8 +14554,9 @@ class Sink(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         zero_background = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -14368,11 +14618,13 @@ class SnapPourPoints(object):
 
     def execute(self, parameters, messages):
         pour_pts = parameters[0].valueAsText
-        desc = arcpy.Describe(pour_pts)
-        pour_pts = desc.catalogPath
+        if pour_pts is not None:
+            desc = arcpy.Describe(pour_pts)
+            pour_pts = desc.catalogPath
         flow_accum = parameters[1].valueAsText
-        desc = arcpy.Describe(flow_accum)
-        flow_accum = desc.catalogPath
+        if flow_accum is not None:
+            desc = arcpy.Describe(flow_accum)
+            flow_accum = desc.catalogPath
         output = parameters[2].valueAsText
         snap_dist = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -14442,8 +14694,9 @@ class StochasticDepressionAnalysis(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         rmse = parameters[2].valueAsText
         range = parameters[3].valueAsText
@@ -14508,11 +14761,13 @@ class StrahlerOrderBasins(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
-        desc = arcpy.Describe(d8_pntr)
-        d8_pntr = desc.catalogPath
+        if d8_pntr is not None:
+            desc = arcpy.Describe(d8_pntr)
+            d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
-        desc = arcpy.Describe(streams)
-        streams = desc.catalogPath
+        if streams is not None:
+            desc = arcpy.Describe(streams)
+            streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -14575,11 +14830,13 @@ class Subbasins(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
-        desc = arcpy.Describe(d8_pntr)
-        d8_pntr = desc.catalogPath
+        if d8_pntr is not None:
+            desc = arcpy.Describe(d8_pntr)
+            d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
-        desc = arcpy.Describe(streams)
-        streams = desc.catalogPath
+        if streams is not None:
+            desc = arcpy.Describe(streams)
+            streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -14650,11 +14907,13 @@ class TraceDownslopeFlowpaths(object):
 
     def execute(self, parameters, messages):
         seed_pts = parameters[0].valueAsText
-        desc = arcpy.Describe(seed_pts)
-        seed_pts = desc.catalogPath
+        if seed_pts is not None:
+            desc = arcpy.Describe(seed_pts)
+            seed_pts = desc.catalogPath
         d8_pntr = parameters[1].valueAsText
-        desc = arcpy.Describe(d8_pntr)
-        d8_pntr = desc.catalogPath
+        if d8_pntr is not None:
+            desc = arcpy.Describe(d8_pntr)
+            d8_pntr = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
@@ -14719,11 +14978,13 @@ class UnnestBasins(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
-        desc = arcpy.Describe(d8_pntr)
-        d8_pntr = desc.catalogPath
+        if d8_pntr is not None:
+            desc = arcpy.Describe(d8_pntr)
+            d8_pntr = desc.catalogPath
         pour_pts = parameters[1].valueAsText
-        desc = arcpy.Describe(pour_pts)
-        pour_pts = desc.catalogPath
+        if pour_pts is not None:
+            desc = arcpy.Describe(pour_pts)
+            pour_pts = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -14770,8 +15031,9 @@ class UpslopeDepressionStorage(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -14833,8 +15095,9 @@ class Watershed(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
-        desc = arcpy.Describe(d8_pntr)
-        d8_pntr = desc.catalogPath
+        if d8_pntr is not None:
+            desc = arcpy.Describe(d8_pntr)
+            d8_pntr = desc.catalogPath
         pour_pts = parameters[1].valueAsText
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
@@ -14964,8 +15227,9 @@ class Closing(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -15052,17 +15316,21 @@ class CreateColourComposite(object):
 
     def execute(self, parameters, messages):
         red = parameters[0].valueAsText
-        desc = arcpy.Describe(red)
-        red = desc.catalogPath
+        if red is not None:
+            desc = arcpy.Describe(red)
+            red = desc.catalogPath
         green = parameters[1].valueAsText
-        desc = arcpy.Describe(green)
-        green = desc.catalogPath
+        if green is not None:
+            desc = arcpy.Describe(green)
+            green = desc.catalogPath
         blue = parameters[2].valueAsText
-        desc = arcpy.Describe(blue)
-        blue = desc.catalogPath
+        if blue is not None:
+            desc = arcpy.Describe(blue)
+            blue = desc.catalogPath
         opacity = parameters[3].valueAsText
-        desc = arcpy.Describe(opacity)
-        opacity = desc.catalogPath
+        if opacity is not None:
+            desc = arcpy.Describe(opacity)
+            opacity = desc.catalogPath
         output = parameters[4].valueAsText
         enhance = parameters[5].valueAsText
         zeros = parameters[6].valueAsText
@@ -15121,8 +15389,9 @@ class FlipImage(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         direction = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -15207,14 +15476,17 @@ class IhsToRgb(object):
 
     def execute(self, parameters, messages):
         intensity = parameters[0].valueAsText
-        desc = arcpy.Describe(intensity)
-        intensity = desc.catalogPath
+        if intensity is not None:
+            desc = arcpy.Describe(intensity)
+            intensity = desc.catalogPath
         hue = parameters[1].valueAsText
-        desc = arcpy.Describe(hue)
-        hue = desc.catalogPath
+        if hue is not None:
+            desc = arcpy.Describe(hue)
+            hue = desc.catalogPath
         saturation = parameters[2].valueAsText
-        desc = arcpy.Describe(saturation)
-        saturation = desc.catalogPath
+        if saturation is not None:
+            desc = arcpy.Describe(saturation)
+            saturation = desc.catalogPath
         red = parameters[3].valueAsText
         green = parameters[4].valueAsText
         blue = parameters[5].valueAsText
@@ -15273,8 +15545,9 @@ class ImageStackProfile(object):
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
         points = parameters[1].valueAsText
-        desc = arcpy.Describe(points)
-        points = desc.catalogPath
+        if points is not None:
+            desc = arcpy.Describe(points)
+            points = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -15320,8 +15593,9 @@ class IntegralImage(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -15472,8 +15746,9 @@ class LineThinning(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -15697,11 +15972,13 @@ class MosaicWithFeathering(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
-        desc = arcpy.Describe(input1)
-        input1 = desc.catalogPath
+        if input1 is not None:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
-        desc = arcpy.Describe(input2)
-        input2 = desc.catalogPath
+        if input2 is not None:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         output = parameters[2].valueAsText
         method = parameters[3].valueAsText
         weight = parameters[4].valueAsText
@@ -15774,11 +16051,13 @@ class NormalizedDifferenceIndex(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
-        desc = arcpy.Describe(input1)
-        input1 = desc.catalogPath
+        if input1 is not None:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
-        desc = arcpy.Describe(input2)
-        input2 = desc.catalogPath
+        if input2 is not None:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         output = parameters[2].valueAsText
         clip = parameters[3].valueAsText
         correction = parameters[4].valueAsText
@@ -15844,8 +16123,9 @@ class Opening(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -15902,8 +16182,9 @@ class RemoveSpurs(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         iterations = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -15962,8 +16243,9 @@ class Resample(object):
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
         destination = parameters[1].valueAsText
-        desc = arcpy.Describe(destination)
-        destination = desc.catalogPath
+        if destination is not None:
+            desc = arcpy.Describe(destination)
+            destination = desc.catalogPath
         method = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -16046,17 +16328,21 @@ class RgbToIhs(object):
 
     def execute(self, parameters, messages):
         red = parameters[0].valueAsText
-        desc = arcpy.Describe(red)
-        red = desc.catalogPath
+        if red is not None:
+            desc = arcpy.Describe(red)
+            red = desc.catalogPath
         green = parameters[1].valueAsText
-        desc = arcpy.Describe(green)
-        green = desc.catalogPath
+        if green is not None:
+            desc = arcpy.Describe(green)
+            green = desc.catalogPath
         blue = parameters[2].valueAsText
-        desc = arcpy.Describe(blue)
-        blue = desc.catalogPath
+        if blue is not None:
+            desc = arcpy.Describe(blue)
+            blue = desc.catalogPath
         composite = parameters[3].valueAsText
-        desc = arcpy.Describe(composite)
-        composite = desc.catalogPath
+        if composite is not None:
+            desc = arcpy.Describe(composite)
+            composite = desc.catalogPath
         intensity = parameters[4].valueAsText
         hue = parameters[5].valueAsText
         saturation = parameters[6].valueAsText
@@ -16120,8 +16406,9 @@ class SplitColourComposite(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         red = parameters[1].valueAsText
         green = parameters[2].valueAsText
         blue = parameters[3].valueAsText
@@ -16169,8 +16456,9 @@ class ThickenRasterLine(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -16245,8 +16533,9 @@ class TophatTransform(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -16309,14 +16598,17 @@ class WriteFunctionMemoryInsertion(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
-        desc = arcpy.Describe(input1)
-        input1 = desc.catalogPath
+        if input1 is not None:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
-        desc = arcpy.Describe(input2)
-        input2 = desc.catalogPath
+        if input2 is not None:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         input3 = parameters[2].valueAsText
-        desc = arcpy.Describe(input3)
-        input3 = desc.catalogPath
+        if input3 is not None:
+            desc = arcpy.Describe(input3)
+            input3 = desc.catalogPath
         output = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -16389,8 +16681,9 @@ class AdaptiveFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -16457,8 +16750,9 @@ class BilateralFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         sigma_dist = parameters[2].valueAsText
         sigma_int = parameters[3].valueAsText
@@ -16524,8 +16818,9 @@ class ConservativeSmoothingFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -16573,8 +16868,9 @@ class CornerDetection(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -16638,8 +16934,9 @@ class DiffOfGaussianFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         sigma1 = parameters[2].valueAsText
         sigma2 = parameters[3].valueAsText
@@ -16705,8 +17002,9 @@ class DiversityFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -16770,8 +17068,9 @@ class EdgePreservingMeanFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         threshold = parameters[3].valueAsText
@@ -16839,8 +17138,9 @@ class EmbossFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         direction = parameters[2].valueAsText
         clip = parameters[3].valueAsText
@@ -16897,8 +17197,9 @@ class FastAlmostGaussianFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         sigma = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -16954,8 +17255,9 @@ class GaussianFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         sigma = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -17020,8 +17322,9 @@ class HighPassFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -17096,8 +17399,9 @@ class HighPassMedianFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -17173,8 +17477,9 @@ class KNearestMeanFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -17243,8 +17548,9 @@ class LaplacianFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         variant = parameters[2].valueAsText
         clip = parameters[3].valueAsText
@@ -17301,8 +17607,9 @@ class LaplacianOfGaussianFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         sigma = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -17385,8 +17692,9 @@ class LeeSigmaFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -17463,8 +17771,9 @@ class LineDetectionFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         variant = parameters[2].valueAsText
         absvals = parameters[3].valueAsText
@@ -17531,8 +17840,9 @@ class MajorityFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -17598,8 +17908,9 @@ class MaximumFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -17665,8 +17976,9 @@ class MeanFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -17741,8 +18053,9 @@ class MedianFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -17809,8 +18122,9 @@ class MinimumFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -17876,8 +18190,9 @@ class OlympicFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -17952,8 +18267,9 @@ class PercentileFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -18011,8 +18327,9 @@ class PrewittFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         clip = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -18077,8 +18394,9 @@ class RangeFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -18135,8 +18453,9 @@ class RobertsCrossFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         clip = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -18192,8 +18511,9 @@ class ScharrFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         clip = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -18260,8 +18580,9 @@ class SobelFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         variant = parameters[2].valueAsText
         clip = parameters[3].valueAsText
@@ -18327,8 +18648,9 @@ class StandardDeviationFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -18394,8 +18716,9 @@ class TotalFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -18470,8 +18793,9 @@ class UnsharpMasking(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         sigma = parameters[2].valueAsText
         amount = parameters[3].valueAsText
@@ -18548,8 +18872,9 @@ class UserDefinedWeightsFilter(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         weights = parameters[1].valueAsText
         output = parameters[2].valueAsText
         center = parameters[3].valueAsText
@@ -18607,8 +18932,9 @@ class BalanceContrastEnhancement(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         band_mean = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -18690,11 +19016,13 @@ class CorrectVignetting(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         pp = parameters[1].valueAsText
-        desc = arcpy.Describe(pp)
-        pp = desc.catalogPath
+        if pp is not None:
+            desc = arcpy.Describe(pp)
+            pp = desc.catalogPath
         output = parameters[2].valueAsText
         focal_length = parameters[3].valueAsText
         image_width = parameters[4].valueAsText
@@ -18761,8 +19089,9 @@ class DirectDecorrelationStretch(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         k = parameters[2].valueAsText
         clip = parameters[3].valueAsText
@@ -18819,8 +19148,9 @@ class GammaCorrection(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         gamma = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -18876,8 +19206,9 @@ class GaussianContrastStretch(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         num_tones = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -18933,8 +19264,9 @@ class HistogramEqualization(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         num_tones = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -18988,8 +19320,9 @@ class HistogramMatching(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         histo_file = parameters[1].valueAsText
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -19043,11 +19376,13 @@ class HistogramMatchingTwoImages(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
-        desc = arcpy.Describe(input1)
-        input1 = desc.catalogPath
+        if input1 is not None:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
-        desc = arcpy.Describe(input2)
-        input2 = desc.catalogPath
+        if input2 is not None:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -19116,8 +19451,9 @@ class MinMaxContrastStretch(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         min_val = parameters[2].valueAsText
         max_val = parameters[3].valueAsText
@@ -19205,20 +19541,25 @@ class PanchromaticSharpening(object):
 
     def execute(self, parameters, messages):
         red = parameters[0].valueAsText
-        desc = arcpy.Describe(red)
-        red = desc.catalogPath
+        if red is not None:
+            desc = arcpy.Describe(red)
+            red = desc.catalogPath
         green = parameters[1].valueAsText
-        desc = arcpy.Describe(green)
-        green = desc.catalogPath
+        if green is not None:
+            desc = arcpy.Describe(green)
+            green = desc.catalogPath
         blue = parameters[2].valueAsText
-        desc = arcpy.Describe(blue)
-        blue = desc.catalogPath
+        if blue is not None:
+            desc = arcpy.Describe(blue)
+            blue = desc.catalogPath
         composite = parameters[3].valueAsText
-        desc = arcpy.Describe(composite)
-        composite = desc.catalogPath
+        if composite is not None:
+            desc = arcpy.Describe(composite)
+            composite = desc.catalogPath
         pan = parameters[4].valueAsText
-        desc = arcpy.Describe(pan)
-        pan = desc.catalogPath
+        if pan is not None:
+            desc = arcpy.Describe(pan)
+            pan = desc.catalogPath
         output = parameters[5].valueAsText
         method = parameters[6].valueAsText
         old_stdout = sys.stdout
@@ -19294,8 +19635,9 @@ class PercentageContrastStretch(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         clip = parameters[2].valueAsText
         tail = parameters[3].valueAsText
@@ -19371,8 +19713,9 @@ class SigmoidalContrastStretch(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         cutoff = parameters[2].valueAsText
         gain = parameters[3].valueAsText
@@ -19439,8 +19782,9 @@ class StandardDeviationContrastStretch(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         stdev = parameters[2].valueAsText
         num_tones = parameters[3].valueAsText
@@ -19498,8 +19842,9 @@ class ClassifyBuildingsInLidar(object):
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
         buildings = parameters[1].valueAsText
-        desc = arcpy.Describe(buildings)
-        buildings = desc.catalogPath
+        if buildings is not None:
+            desc = arcpy.Describe(buildings)
+            buildings = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -19621,8 +19966,9 @@ class ClipLidarToPolygon(object):
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
         polygons = parameters[1].valueAsText
-        desc = arcpy.Describe(polygons)
-        polygons = desc.catalogPath
+        if polygons is not None:
+            desc = arcpy.Describe(polygons)
+            polygons = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -19678,8 +20024,9 @@ class ErasePolygonFromLidar(object):
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
         polygons = parameters[1].valueAsText
-        desc = arcpy.Describe(polygons)
-        polygons = desc.catalogPath
+        if polygons is not None:
+            desc = arcpy.Describe(polygons)
+            polygons = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -20285,8 +20632,9 @@ class LidarColourize(object):
     def execute(self, parameters, messages):
         in_lidar = parameters[0].valueAsText
         in_image = parameters[1].valueAsText
-        desc = arcpy.Describe(in_image)
-        in_image = desc.catalogPath
+        if in_image is not None:
+            desc = arcpy.Describe(in_image)
+            in_image = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -22618,8 +22966,9 @@ class SelectTilesByPolygon(object):
         indir = parameters[0].valueAsText
         outdir = parameters[1].valueAsText
         polygons = parameters[2].valueAsText
-        desc = arcpy.Describe(polygons)
-        polygons = desc.catalogPath
+        if polygons is not None:
+            desc = arcpy.Describe(polygons)
+            polygons = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -22671,11 +23020,13 @@ class And(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
-        desc = arcpy.Describe(input1)
-        input1 = desc.catalogPath
+        if input1 is not None:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
-        desc = arcpy.Describe(input2)
-        input2 = desc.catalogPath
+        if input2 is not None:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -22728,11 +23079,13 @@ class Not(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
-        desc = arcpy.Describe(input1)
-        input1 = desc.catalogPath
+        if input1 is not None:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
-        desc = arcpy.Describe(input2)
-        input2 = desc.catalogPath
+        if input2 is not None:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -22785,11 +23138,13 @@ class Or(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
-        desc = arcpy.Describe(input1)
-        input1 = desc.catalogPath
+        if input1 is not None:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
-        desc = arcpy.Describe(input2)
-        input2 = desc.catalogPath
+        if input2 is not None:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -22835,8 +23190,9 @@ class AbsoluteValue(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -22942,11 +23298,13 @@ class Anova(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         features = parameters[1].valueAsText
-        desc = arcpy.Describe(features)
-        features = desc.catalogPath
+        if features is not None:
+            desc = arcpy.Describe(features)
+            features = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -22992,8 +23350,9 @@ class ArcCos(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -23039,8 +23398,9 @@ class ArcSin(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -23086,8 +23446,9 @@ class ArcTan(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -23133,8 +23494,9 @@ class Arcosh(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -23180,8 +23542,9 @@ class Arsinh(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -23227,8 +23590,9 @@ class Artanh(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -23327,8 +23691,9 @@ class AttributeCorrelation(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -23407,8 +23772,9 @@ class AttributeCorrelationNeighbourhoodAnalysis(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field1 = parameters[1].valueAsText
         field2 = parameters[2].valueAsText
         radius = parameters[3].valueAsText
@@ -23466,8 +23832,9 @@ class AttributeHistogram(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -23539,8 +23906,9 @@ class AttributeScattergram(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         fieldx = parameters[1].valueAsText
         fieldy = parameters[2].valueAsText
         output = parameters[3].valueAsText
@@ -23589,8 +23957,9 @@ class Ceil(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -23636,8 +24005,9 @@ class Cos(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -23683,8 +24053,9 @@ class Cosh(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -23730,8 +24101,9 @@ class CrispnessIndex(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -23784,11 +24156,13 @@ class CrossTabulation(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
-        desc = arcpy.Describe(input1)
-        input1 = desc.catalogPath
+        if input1 is not None:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
-        desc = arcpy.Describe(input2)
-        input2 = desc.catalogPath
+        if input2 is not None:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -23834,8 +24208,9 @@ class CumulativeDistribution(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -23881,8 +24256,9 @@ class Decrement(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -24034,8 +24410,9 @@ class Exp(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -24081,8 +24458,9 @@ class Exp2(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -24128,8 +24506,9 @@ class Floor(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -24375,11 +24754,13 @@ class ImageCorrelationNeighbourhoodAnalysis(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
-        desc = arcpy.Describe(input1)
-        input1 = desc.catalogPath
+        if input1 is not None:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
-        desc = arcpy.Describe(input2)
-        input2 = desc.catalogPath
+        if input2 is not None:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         output1 = parameters[2].valueAsText
         output2 = parameters[3].valueAsText
         filter = parameters[4].valueAsText
@@ -24466,11 +24847,13 @@ class ImageRegression(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
-        desc = arcpy.Describe(input1)
-        input1 = desc.catalogPath
+        if input1 is not None:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
-        desc = arcpy.Describe(input2)
-        input2 = desc.catalogPath
+        if input2 is not None:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         output = parameters[2].valueAsText
         out_residuals = parameters[3].valueAsText
         standardize = parameters[4].valueAsText
@@ -24519,8 +24902,9 @@ class InPlaceAdd(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
-        desc = arcpy.Describe(input1)
-        input1 = desc.catalogPath
+        if input1 is not None:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -24565,8 +24949,9 @@ class InPlaceDivide(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
-        desc = arcpy.Describe(input1)
-        input1 = desc.catalogPath
+        if input1 is not None:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -24611,8 +24996,9 @@ class InPlaceMultiply(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
-        desc = arcpy.Describe(input1)
-        input1 = desc.catalogPath
+        if input1 is not None:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -24657,8 +25043,9 @@ class InPlaceSubtract(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
-        desc = arcpy.Describe(input1)
-        input1 = desc.catalogPath
+        if input1 is not None:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -24704,8 +25091,9 @@ class Increment(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -24804,8 +25192,9 @@ class IsNoData(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -24858,11 +25247,13 @@ class KappaIndex(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
-        desc = arcpy.Describe(input1)
-        input1 = desc.catalogPath
+        if input1 is not None:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
-        desc = arcpy.Describe(input2)
-        input2 = desc.catalogPath
+        if input2 is not None:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -24915,8 +25306,9 @@ class KsTestForNormality(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         num_samples = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -25032,8 +25424,9 @@ class ListUniqueValues(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -25080,8 +25473,9 @@ class Ln(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -25127,8 +25521,9 @@ class Log10(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -25174,8 +25569,9 @@ class Log2(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -25433,8 +25829,9 @@ class Negate(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -25547,11 +25944,13 @@ class PairedSampleTTest(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
-        desc = arcpy.Describe(input1)
-        input1 = desc.catalogPath
+        if input1 is not None:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
-        desc = arcpy.Describe(input2)
-        input2 = desc.catalogPath
+        if input2 is not None:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         output = parameters[2].valueAsText
         num_samples = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -25722,8 +26121,9 @@ class Quantiles(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         num_quantiles = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -25770,8 +26170,9 @@ class RandomField(object):
 
     def execute(self, parameters, messages):
         base = parameters[0].valueAsText
-        desc = arcpy.Describe(base)
-        base = desc.catalogPath
+        if base is not None:
+            desc = arcpy.Describe(base)
+            base = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -25826,8 +26227,9 @@ class RandomSample(object):
 
     def execute(self, parameters, messages):
         base = parameters[0].valueAsText
-        desc = arcpy.Describe(base)
-        base = desc.catalogPath
+        if base is not None:
+            desc = arcpy.Describe(base)
+            base = desc.catalogPath
         output = parameters[1].valueAsText
         num_samples = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -25874,8 +26276,9 @@ class RasterHistogram(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -25913,8 +26316,9 @@ class RasterSummaryStats(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -25959,8 +26363,9 @@ class Reciprocal(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -26034,8 +26439,9 @@ class RescaleValueRange(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         out_min_val = parameters[2].valueAsText
         out_max_val = parameters[3].valueAsText
@@ -26084,11 +26490,13 @@ class RootMeanSquareError(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         base = parameters[1].valueAsText
-        desc = arcpy.Describe(base)
-        base = desc.catalogPath
+        if base is not None:
+            desc = arcpy.Describe(base)
+            base = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -26133,8 +26541,9 @@ class Round(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -26180,8 +26589,9 @@ class Sin(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -26227,8 +26637,9 @@ class Sinh(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -26274,8 +26685,9 @@ class Square(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -26321,8 +26733,9 @@ class SquareRoot(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -26421,8 +26834,9 @@ class Tan(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -26468,8 +26882,9 @@ class Tanh(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -26515,8 +26930,9 @@ class ToDegrees(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -26562,8 +26978,9 @@ class ToRadians(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -26618,8 +27035,9 @@ class TrendSurface(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         order = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -26691,8 +27109,9 @@ class TrendSurfaceVectorPoints(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         order = parameters[3].valueAsText
@@ -26748,8 +27167,9 @@ class Truncate(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         num_decimals = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -26812,8 +27232,9 @@ class TurningBandsSimulation(object):
 
     def execute(self, parameters, messages):
         base = parameters[0].valueAsText
-        desc = arcpy.Describe(base)
-        base = desc.catalogPath
+        if base is not None:
+            desc = arcpy.Describe(base)
+            base = desc.catalogPath
         output = parameters[1].valueAsText
         range = parameters[2].valueAsText
         iterations = parameters[3].valueAsText
@@ -26875,11 +27296,13 @@ class TwoSampleKsTest(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
-        desc = arcpy.Describe(input1)
-        input1 = desc.catalogPath
+        if input1 is not None:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
-        desc = arcpy.Describe(input2)
-        input2 = desc.catalogPath
+        if input2 is not None:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         output = parameters[2].valueAsText
         num_samples = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -26940,11 +27363,13 @@ class WilcoxonSignedRankTest(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
-        desc = arcpy.Describe(input1)
-        input1 = desc.catalogPath
+        if input1 is not None:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
-        desc = arcpy.Describe(input2)
-        input2 = desc.catalogPath
+        if input2 is not None:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         output = parameters[2].valueAsText
         num_samples = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -26998,11 +27423,13 @@ class Xor(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
-        desc = arcpy.Describe(input1)
-        input1 = desc.catalogPath
+        if input1 is not None:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
-        desc = arcpy.Describe(input2)
-        input2 = desc.catalogPath
+        if input2 is not None:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -27048,8 +27475,9 @@ class ZScores(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -27121,11 +27549,13 @@ class ZonalStatistics(object):
 
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
-        desc = arcpy.Describe(i)
-        i = desc.catalogPath
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         features = parameters[1].valueAsText
-        desc = arcpy.Describe(features)
-        features = desc.catalogPath
+        if features is not None:
+            desc = arcpy.Describe(features)
+            features = desc.catalogPath
         output = parameters[2].valueAsText
         stat = parameters[3].valueAsText
         out_table = parameters[4].valueAsText
@@ -27196,11 +27626,13 @@ class DistanceToOutlet(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
-        desc = arcpy.Describe(d8_pntr)
-        d8_pntr = desc.catalogPath
+        if d8_pntr is not None:
+            desc = arcpy.Describe(d8_pntr)
+            d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
-        desc = arcpy.Describe(streams)
-        streams = desc.catalogPath
+        if streams is not None:
+            desc = arcpy.Describe(streams)
+            streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
@@ -27262,8 +27694,9 @@ class ExtractStreams(object):
 
     def execute(self, parameters, messages):
         flow_accum = parameters[0].valueAsText
-        desc = arcpy.Describe(flow_accum)
-        flow_accum = desc.catalogPath
+        if flow_accum is not None:
+            desc = arcpy.Describe(flow_accum)
+            flow_accum = desc.catalogPath
         output = parameters[1].valueAsText
         threshold = parameters[2].valueAsText
         zero_background = parameters[3].valueAsText
@@ -27340,8 +27773,9 @@ class ExtractValleys(object):
 
     def execute(self, parameters, messages):
         dem = parameters[0].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         variant = parameters[2].valueAsText
         line_thin = parameters[3].valueAsText
@@ -27413,11 +27847,13 @@ class FarthestChannelHead(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
-        desc = arcpy.Describe(d8_pntr)
-        d8_pntr = desc.catalogPath
+        if d8_pntr is not None:
+            desc = arcpy.Describe(d8_pntr)
+            d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
-        desc = arcpy.Describe(streams)
-        streams = desc.catalogPath
+        if streams is not None:
+            desc = arcpy.Describe(streams)
+            streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
@@ -27488,11 +27924,13 @@ class FindMainStem(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
-        desc = arcpy.Describe(d8_pntr)
-        d8_pntr = desc.catalogPath
+        if d8_pntr is not None:
+            desc = arcpy.Describe(d8_pntr)
+            d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
-        desc = arcpy.Describe(streams)
-        streams = desc.catalogPath
+        if streams is not None:
+            desc = arcpy.Describe(streams)
+            streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
@@ -27563,11 +28001,13 @@ class HackStreamOrder(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
-        desc = arcpy.Describe(d8_pntr)
-        d8_pntr = desc.catalogPath
+        if d8_pntr is not None:
+            desc = arcpy.Describe(d8_pntr)
+            d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
-        desc = arcpy.Describe(streams)
-        streams = desc.catalogPath
+        if streams is not None:
+            desc = arcpy.Describe(streams)
+            streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
@@ -27638,11 +28078,13 @@ class HortonStreamOrder(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
-        desc = arcpy.Describe(d8_pntr)
-        d8_pntr = desc.catalogPath
+        if d8_pntr is not None:
+            desc = arcpy.Describe(d8_pntr)
+            d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
-        desc = arcpy.Describe(streams)
-        streams = desc.catalogPath
+        if streams is not None:
+            desc = arcpy.Describe(streams)
+            streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
@@ -27713,11 +28155,13 @@ class LengthOfUpstreamChannels(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
-        desc = arcpy.Describe(d8_pntr)
-        d8_pntr = desc.catalogPath
+        if d8_pntr is not None:
+            desc = arcpy.Describe(d8_pntr)
+            d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
-        desc = arcpy.Describe(streams)
-        streams = desc.catalogPath
+        if streams is not None:
+            desc = arcpy.Describe(streams)
+            streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
@@ -27788,14 +28232,17 @@ class LongProfile(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
-        desc = arcpy.Describe(d8_pntr)
-        d8_pntr = desc.catalogPath
+        if d8_pntr is not None:
+            desc = arcpy.Describe(d8_pntr)
+            d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
-        desc = arcpy.Describe(streams)
-        streams = desc.catalogPath
+        if streams is not None:
+            desc = arcpy.Describe(streams)
+            streams = desc.catalogPath
         dem = parameters[2].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[3].valueAsText
         esri_pntr = parameters[4].valueAsText
         old_stdout = sys.stdout
@@ -27866,14 +28313,17 @@ class LongProfileFromPoints(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
-        desc = arcpy.Describe(d8_pntr)
-        d8_pntr = desc.catalogPath
+        if d8_pntr is not None:
+            desc = arcpy.Describe(d8_pntr)
+            d8_pntr = desc.catalogPath
         points = parameters[1].valueAsText
-        desc = arcpy.Describe(points)
-        points = desc.catalogPath
+        if points is not None:
+            desc = arcpy.Describe(points)
+            points = desc.catalogPath
         dem = parameters[2].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[3].valueAsText
         esri_pntr = parameters[4].valueAsText
         old_stdout = sys.stdout
@@ -27936,11 +28386,13 @@ class RasterStreamsToVector(object):
 
     def execute(self, parameters, messages):
         streams = parameters[0].valueAsText
-        desc = arcpy.Describe(streams)
-        streams = desc.catalogPath
+        if streams is not None:
+            desc = arcpy.Describe(streams)
+            streams = desc.catalogPath
         d8_pntr = parameters[1].valueAsText
-        desc = arcpy.Describe(d8_pntr)
-        d8_pntr = desc.catalogPath
+        if d8_pntr is not None:
+            desc = arcpy.Describe(d8_pntr)
+            d8_pntr = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -28013,11 +28465,13 @@ class RasterizeStreams(object):
 
     def execute(self, parameters, messages):
         streams = parameters[0].valueAsText
-        desc = arcpy.Describe(streams)
-        streams = desc.catalogPath
+        if streams is not None:
+            desc = arcpy.Describe(streams)
+            streams = desc.catalogPath
         base = parameters[1].valueAsText
-        desc = arcpy.Describe(base)
-        base = desc.catalogPath
+        if base is not None:
+            desc = arcpy.Describe(base)
+            base = desc.catalogPath
         output = parameters[2].valueAsText
         nodata = parameters[3].valueAsText
         feature_id = parameters[4].valueAsText
@@ -28088,11 +28542,13 @@ class RemoveShortStreams(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
-        desc = arcpy.Describe(d8_pntr)
-        d8_pntr = desc.catalogPath
+        if d8_pntr is not None:
+            desc = arcpy.Describe(d8_pntr)
+            d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
-        desc = arcpy.Describe(streams)
-        streams = desc.catalogPath
+        if streams is not None:
+            desc = arcpy.Describe(streams)
+            streams = desc.catalogPath
         output = parameters[2].valueAsText
         min_length = parameters[3].valueAsText
         esri_pntr = parameters[4].valueAsText
@@ -28163,11 +28619,13 @@ class ShreveStreamMagnitude(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
-        desc = arcpy.Describe(d8_pntr)
-        d8_pntr = desc.catalogPath
+        if d8_pntr is not None:
+            desc = arcpy.Describe(d8_pntr)
+            d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
-        desc = arcpy.Describe(streams)
-        streams = desc.catalogPath
+        if streams is not None:
+            desc = arcpy.Describe(streams)
+            streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
@@ -28238,11 +28696,13 @@ class StrahlerStreamOrder(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
-        desc = arcpy.Describe(d8_pntr)
-        d8_pntr = desc.catalogPath
+        if d8_pntr is not None:
+            desc = arcpy.Describe(d8_pntr)
+            d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
-        desc = arcpy.Describe(streams)
-        streams = desc.catalogPath
+        if streams is not None:
+            desc = arcpy.Describe(streams)
+            streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
@@ -28313,11 +28773,13 @@ class StreamLinkClass(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
-        desc = arcpy.Describe(d8_pntr)
-        d8_pntr = desc.catalogPath
+        if d8_pntr is not None:
+            desc = arcpy.Describe(d8_pntr)
+            d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
-        desc = arcpy.Describe(streams)
-        streams = desc.catalogPath
+        if streams is not None:
+            desc = arcpy.Describe(streams)
+            streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
@@ -28388,11 +28850,13 @@ class StreamLinkIdentifier(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
-        desc = arcpy.Describe(d8_pntr)
-        d8_pntr = desc.catalogPath
+        if d8_pntr is not None:
+            desc = arcpy.Describe(d8_pntr)
+            d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
-        desc = arcpy.Describe(streams)
-        streams = desc.catalogPath
+        if streams is not None:
+            desc = arcpy.Describe(streams)
+            streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
@@ -28463,11 +28927,13 @@ class StreamLinkLength(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
-        desc = arcpy.Describe(d8_pntr)
-        d8_pntr = desc.catalogPath
+        if d8_pntr is not None:
+            desc = arcpy.Describe(d8_pntr)
+            d8_pntr = desc.catalogPath
         linkid = parameters[1].valueAsText
-        desc = arcpy.Describe(linkid)
-        linkid = desc.catalogPath
+        if linkid is not None:
+            desc = arcpy.Describe(linkid)
+            linkid = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
@@ -28545,14 +29011,17 @@ class StreamLinkSlope(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
-        desc = arcpy.Describe(d8_pntr)
-        d8_pntr = desc.catalogPath
+        if d8_pntr is not None:
+            desc = arcpy.Describe(d8_pntr)
+            d8_pntr = desc.catalogPath
         linkid = parameters[1].valueAsText
-        desc = arcpy.Describe(linkid)
-        linkid = desc.catalogPath
+        if linkid is not None:
+            desc = arcpy.Describe(linkid)
+            linkid = desc.catalogPath
         dem = parameters[2].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[3].valueAsText
         esri_pntr = parameters[4].valueAsText
         zero_background = parameters[5].valueAsText
@@ -28630,14 +29099,17 @@ class StreamSlopeContinuous(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
-        desc = arcpy.Describe(d8_pntr)
-        d8_pntr = desc.catalogPath
+        if d8_pntr is not None:
+            desc = arcpy.Describe(d8_pntr)
+            d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
-        desc = arcpy.Describe(streams)
-        streams = desc.catalogPath
+        if streams is not None:
+            desc = arcpy.Describe(streams)
+            streams = desc.catalogPath
         dem = parameters[2].valueAsText
-        desc = arcpy.Describe(dem)
-        dem = desc.catalogPath
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[3].valueAsText
         esri_pntr = parameters[4].valueAsText
         zero_background = parameters[5].valueAsText
@@ -28708,11 +29180,13 @@ class TopologicalStreamOrder(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
-        desc = arcpy.Describe(d8_pntr)
-        d8_pntr = desc.catalogPath
+        if d8_pntr is not None:
+            desc = arcpy.Describe(d8_pntr)
+            d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
-        desc = arcpy.Describe(streams)
-        streams = desc.catalogPath
+        if streams is not None:
+            desc = arcpy.Describe(streams)
+            streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
@@ -28783,11 +29257,13 @@ class TributaryIdentifier(object):
 
     def execute(self, parameters, messages):
         d8_pntr = parameters[0].valueAsText
-        desc = arcpy.Describe(d8_pntr)
-        d8_pntr = desc.catalogPath
+        if d8_pntr is not None:
+            desc = arcpy.Describe(d8_pntr)
+            d8_pntr = desc.catalogPath
         streams = parameters[1].valueAsText
-        desc = arcpy.Describe(streams)
-        streams = desc.catalogPath
+        if streams is not None:
+            desc = arcpy.Describe(streams)
+            streams = desc.catalogPath
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
         zero_background = parameters[4].valueAsText
