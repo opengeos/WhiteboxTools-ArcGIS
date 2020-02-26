@@ -306,7 +306,9 @@ def define_execute(params):
         if param_type in inputRasVec:
             lines.append('        if {} is not None:\n'.format(param))
             lines.append('            desc = arcpy.Describe({})\n'.format(param))
-            lines.append('            {} = desc.catalogPath\n'.format(param))    
+            lines.append('            {} = desc.catalogPath\n'.format(param))  
+            lines.append('            if os.path.dirname({}).endswith(".gdb"):\n'.format(param))  
+            lines.append('                 arcpy.AddError("Datasets stored in a Geodatabase are not supported.")\n')
         # elif optional:
         #     lines.append('        if {} is None:\n'.format(param))
         #     lines.append('            {} = None\n'.format(param))
