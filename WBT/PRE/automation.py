@@ -173,7 +173,7 @@ def generate_tool_template(tool):
     lines.append('            if param_str is not None:\n')
     lines.append('                try:\n')
     lines.append('                    desc = arcpy.Describe(param_str)\n')
-    lines.append('                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):\n')
+    lines.append('                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):\n')
     lines.append('                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")\n')
     lines.append('                except:\n')
     lines.append('                    param.clearMessage()\n')
@@ -316,7 +316,7 @@ def define_execute(params):
             lines.append('        if {} is not None:\n'.format(param))
             lines.append('            desc = arcpy.Describe({})\n'.format(param))
             lines.append('            {} = desc.catalogPath\n'.format(param))  
-            lines.append('            if os.path.dirname({}).endswith(".gdb"):\n'.format(param))  
+            lines.append('            if (".gdb" in {}) or (".mdb" in {}):\n'.format(param, param))  
             lines.append('                 arcpy.AddError("Datasets stored in a Geodatabase are not supported.")\n')
         # elif optional:
         #     lines.append('        if {} is None:\n'.format(param))
