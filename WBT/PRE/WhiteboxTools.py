@@ -1281,6 +1281,15 @@ class AddPointCoordinatesToTable(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -1329,6 +1338,15 @@ class CleanVector(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -1379,6 +1397,15 @@ class ConvertNodataToZero(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -1429,6 +1456,15 @@ class ConvertRasterFormat(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -1504,6 +1540,15 @@ class CsvPointsToVector(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -1561,6 +1606,15 @@ class ExportTableToCsv(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -1635,6 +1689,15 @@ class JoinTables(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -1694,6 +1757,15 @@ class LinesToPolygons(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -1768,6 +1840,15 @@ class MergeTableWithCsv(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -1821,6 +1902,15 @@ class MergeVectors(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -1867,6 +1957,15 @@ class ModifyNoDataValue(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -1925,6 +2024,15 @@ class MultiPartToSinglePart(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -1996,6 +2104,15 @@ class NewRasterFromBase(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -2049,6 +2166,15 @@ class PolygonsToLines(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -2091,6 +2217,15 @@ class PrintGeoTiffTags(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -2140,6 +2275,15 @@ class RasterToVectorLines(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -2190,6 +2334,15 @@ class RasterToVectorPoints(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -2240,6 +2393,15 @@ class RasterToVectorPolygons(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -2282,6 +2444,15 @@ class ReinitializeAttributeTable(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -2332,6 +2503,15 @@ class RemovePolygonHoles(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -2391,6 +2571,15 @@ class SetNodataValue(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -2449,6 +2638,15 @@ class SinglePartToMultiPart(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -2534,6 +2732,15 @@ class VectorLinesToRaster(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -2638,6 +2845,15 @@ class VectorPointsToRaster(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -2732,6 +2948,15 @@ class VectorPolygonsToRaster(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -2811,6 +3036,15 @@ class AggregateRaster(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -2895,6 +3129,15 @@ class BlockMaximumGridding(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -2986,6 +3229,15 @@ class BlockMinimumGridding(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -3052,6 +3304,15 @@ class Centroid(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -3102,6 +3363,15 @@ class CentroidVector(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -3168,6 +3438,15 @@ class Clump(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -3245,6 +3524,15 @@ class ConstructVectorTin(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -3316,6 +3604,15 @@ class CreateHexagonalVectorGrid(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -3390,6 +3687,15 @@ class CreatePlane(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -3475,6 +3781,15 @@ class CreateRectangularVectorGrid(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -3541,6 +3856,15 @@ class Dissolve(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -3601,6 +3925,15 @@ class EliminateCoincidentPoints(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -3671,6 +4004,15 @@ class ExtendVectorLines(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -3723,6 +4065,15 @@ class ExtractNodes(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -3783,6 +4134,15 @@ class ExtractRasterValuesAtPoints(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -3845,6 +4205,15 @@ class FindLowestOrHighestPoints(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -3951,6 +4320,15 @@ class IdwInterpolation(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -4013,6 +4391,15 @@ class LayerFootprint(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -4057,6 +4444,15 @@ class Medoid(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -4127,6 +4523,15 @@ class MinimumBoundingBox(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -4188,6 +4593,15 @@ class MinimumBoundingCircle(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -4248,6 +4662,15 @@ class MinimumBoundingEnvelope(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -4308,6 +4731,15 @@ class MinimumConvexHull(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -4400,6 +4832,15 @@ class NaturalNeighbourInterpolation(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -4499,6 +4940,15 @@ class NearestNeighbourGridding(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -4552,6 +5002,15 @@ class PolygonArea(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -4602,6 +5061,15 @@ class PolygonLongAxis(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -4645,6 +5113,15 @@ class PolygonPerimeter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -4695,6 +5172,15 @@ class PolygonShortAxis(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -4822,6 +5308,15 @@ class RadialBasisFunctionInterpolation(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -4911,6 +5406,15 @@ class RasterArea(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -4975,6 +5479,15 @@ class RasterCellAssignment(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -5051,6 +5564,15 @@ class RasterPerimeter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -5118,6 +5640,15 @@ class Reclass(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -5193,6 +5724,15 @@ class ReclassEqualInterval(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -5253,6 +5793,15 @@ class ReclassFromFile(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -5312,6 +5861,15 @@ class SmoothVectors(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -5402,6 +5960,15 @@ class TinGridding(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -5481,6 +6048,15 @@ class VectorHexBinning(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -5534,6 +6110,15 @@ class VoronoiDiagram(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -5598,6 +6183,15 @@ class BufferRaster(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -5657,6 +6251,15 @@ class CostAllocation(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -5728,6 +6331,15 @@ class CostDistance(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -5799,6 +6411,15 @@ class CostPathway(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -5856,6 +6477,15 @@ class EuclideanAllocation(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -5906,6 +6536,15 @@ class EuclideanDistance(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -5957,6 +6596,15 @@ class AverageOverlay(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -6009,6 +6657,15 @@ class Clip(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -6082,6 +6739,15 @@ class ClipRasterToPolygon(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -6147,6 +6813,15 @@ class CountIf(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -6199,6 +6874,15 @@ class Difference(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -6262,6 +6946,15 @@ class Erase(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -6326,6 +7019,15 @@ class ErasePolygonFromRaster(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -6383,6 +7085,15 @@ class HighestPosition(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -6443,6 +7154,15 @@ class Intersect(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -6509,6 +7229,15 @@ class LineIntersections(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -6566,6 +7295,15 @@ class LowestPosition(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -6612,6 +7350,15 @@ class MaxAbsoluteOverlay(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -6658,6 +7405,15 @@ class MaxOverlay(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -6712,6 +7468,15 @@ class MergeLineSegments(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -6764,6 +7529,15 @@ class MinAbsoluteOverlay(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -6810,6 +7584,15 @@ class MinOverlay(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -6863,6 +7646,15 @@ class PercentEqualTo(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -6922,6 +7714,15 @@ class PercentGreaterThan(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -6981,6 +7782,15 @@ class PercentLessThan(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -7040,6 +7850,15 @@ class PickFromList(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -7093,6 +7912,15 @@ class Polygonize(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -7145,6 +7973,15 @@ class SplitWithLines(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -7202,6 +8039,15 @@ class SumOverlay(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -7262,6 +8108,15 @@ class SymmetricalDifference(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -7334,6 +8189,15 @@ class Union(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -7423,6 +8287,15 @@ class WeightedOverlay(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -7480,6 +8353,15 @@ class WeightedSum(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -7526,6 +8408,15 @@ class BoundaryShapeComplexity(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -7569,6 +8460,15 @@ class CompactnessRatio(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -7625,6 +8525,15 @@ class EdgeProportion(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -7669,6 +8578,15 @@ class ElongationRatio(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -7718,6 +8636,15 @@ class FindPatchOrClassEdgeCells(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -7761,6 +8688,15 @@ class HoleProportion(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -7803,6 +8739,15 @@ class LinearityIndex(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -7852,6 +8797,15 @@ class NarrownessIndex(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -7895,6 +8849,15 @@ class PatchOrientation(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -7937,6 +8900,15 @@ class PerimeterAreaRatio(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -7993,6 +8965,15 @@ class RadiusOfGyration(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -8037,6 +9018,15 @@ class RelatedCircumscribingCircle(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -8079,6 +9069,15 @@ class ShapeComplexityIndex(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -8128,6 +9127,15 @@ class ShapeComplexityIndexRaster(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -8187,6 +9195,15 @@ class Aspect(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -8247,6 +9264,15 @@ class AverageNormalVectorAngularDeviation(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -8307,6 +9333,15 @@ class CircularVarianceOfAspect(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -8376,6 +9411,15 @@ class DevFromMeanElev(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -8446,6 +9490,15 @@ class DiffFromMeanElev(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -8514,6 +9567,15 @@ class DirectionalRelief(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -8586,6 +9648,15 @@ class DownslopeIndex(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -8665,6 +9736,15 @@ class EdgeDensity(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -8718,6 +9798,15 @@ class ElevAbovePit(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -8795,6 +9884,15 @@ class ElevPercentile(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -8848,6 +9946,15 @@ class ElevRelativeToMinMax(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -8905,6 +10012,15 @@ class ElevRelativeToWatershedMinMax(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -9006,6 +10122,15 @@ class FeaturePreservingSmoothing(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -9079,6 +10204,15 @@ class FetchAnalysis(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -9149,6 +10283,15 @@ class FillMissingData(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -9210,6 +10353,15 @@ class FindRidges(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -9288,6 +10440,15 @@ class Hillshade(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -9357,6 +10518,15 @@ class HorizonAngle(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -9418,6 +10588,15 @@ class HypsometricAnalysis(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -9497,6 +10676,15 @@ class MaxAnisotropyDev(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -9584,6 +10772,15 @@ class MaxAnisotropyDevSignature(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -9650,6 +10847,15 @@ class MaxBranchLength(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -9732,6 +10938,15 @@ class MaxDifferenceFromMean(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -9786,6 +11001,15 @@ class MaxDownslopeElevChange(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -9867,6 +11091,15 @@ class MaxElevDevSignature(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -9957,6 +11190,15 @@ class MaxElevationDeviation(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -10011,6 +11253,15 @@ class MinDownslopeElevChange(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -10114,6 +11365,15 @@ class MultiscaleElevationPercentile(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -10203,6 +11463,15 @@ class MultiscaleRoughness(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -10290,6 +11559,15 @@ class MultiscaleRoughnessSignature(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -10393,6 +11671,15 @@ class MultiscaleStdDevNormals(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -10492,6 +11779,15 @@ class MultiscaleStdDevNormalsSignature(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -10575,6 +11871,15 @@ class MultiscaleTopographicPositionImage(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -10638,6 +11943,15 @@ class NumDownslopeNeighbours(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -10688,6 +12002,15 @@ class NumUpslopeNeighbours(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -10774,6 +12097,15 @@ class PennockLandformClass(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -10846,6 +12178,15 @@ class PercentElevRange(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -10907,6 +12248,15 @@ class PlanCurvature(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -10966,6 +12316,15 @@ class Profile(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -11031,6 +12390,15 @@ class ProfileCurvature(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -11100,6 +12468,15 @@ class RelativeAspect(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -11170,6 +12547,15 @@ class RelativeTopographicPosition(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -11240,6 +12626,15 @@ class RemoveOffTerrainObjects(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -11301,6 +12696,15 @@ class RuggednessIndex(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -11377,6 +12781,15 @@ class SedimentTransportIndex(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -11444,6 +12857,15 @@ class Slope(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -11504,6 +12926,15 @@ class SlopeVsElevationPlot(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -11559,6 +12990,15 @@ class SphericalStdDevOfNormals(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -11637,6 +13077,15 @@ class StandardDeviationOfSlope(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -11706,6 +13155,15 @@ class StreamPowerIndex(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -11763,6 +13221,15 @@ class SurfaceAreaRatio(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -11822,6 +13289,15 @@ class TangentialCurvature(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -11882,6 +13358,15 @@ class TotalCurvature(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -11950,6 +13435,15 @@ class Viewshed(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -12025,6 +13519,15 @@ class VisibilityIndex(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -12084,6 +13587,15 @@ class WetnessIndex(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -12140,6 +13652,15 @@ class AverageFlowpathSlope(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -12190,6 +13711,15 @@ class AverageUpslopeFlowpathLength(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -12249,6 +13779,15 @@ class Basins(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -12330,6 +13869,15 @@ class BreachDepressions(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -12423,6 +13971,15 @@ class BreachDepressionsLeastCost(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -12478,6 +14035,15 @@ class BreachSingleCellPits(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -12551,6 +14117,15 @@ class BurnStreamsAtRoads(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -12655,6 +14230,15 @@ class D8FlowAccumulation(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -12731,6 +14315,15 @@ class D8MassFlux(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -12808,6 +14401,15 @@ class D8Pointer(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -12898,6 +14500,15 @@ class DInfFlowAccumulation(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -12974,6 +14585,15 @@ class DInfMassFlux(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -13042,6 +14662,15 @@ class DInfPointer(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -13099,6 +14728,15 @@ class DepthInSink(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -13157,6 +14795,15 @@ class DownslopeDistanceToStream(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -13236,6 +14883,15 @@ class DownslopeFlowpathLength(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -13306,6 +14962,15 @@ class ElevationAboveStream(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -13369,6 +15034,15 @@ class ElevationAboveStreamEuclidean(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -13466,6 +15140,15 @@ class Fd8FlowAccumulation(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -13521,6 +15204,15 @@ class Fd8Pointer(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -13579,6 +15271,15 @@ class FillBurn(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -13658,6 +15359,15 @@ class FillDepressions(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -13727,6 +15437,15 @@ class FillDepressionsPlanchonAndDarboux(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -13795,6 +15514,15 @@ class FillDepressionsWangAndLiu(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -13847,6 +15575,15 @@ class FillSingleCellPits(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -13897,6 +15634,15 @@ class FindNoFlowCells(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -13954,6 +15700,15 @@ class FindParallelFlow(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -14018,6 +15773,15 @@ class FlattenLakes(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -14074,6 +15838,15 @@ class FloodOrder(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -14174,6 +15947,15 @@ class FlowAccumulationFullWorkflow(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -14239,6 +16021,15 @@ class FlowLengthDiff(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -14306,6 +16097,15 @@ class Hillslopes(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -14381,6 +16181,15 @@ class ImpoundmentSizeIndex(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -14448,6 +16257,15 @@ class InsertDams(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -14512,6 +16330,15 @@ class Isobasins(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -14578,6 +16405,15 @@ class JensonSnapPourPoints(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -14642,6 +16478,15 @@ class LongestFlowpath(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -14698,6 +16543,15 @@ class MaxUpslopeFlowpathLength(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -14789,6 +16643,15 @@ class MdInfFlowAccumulation(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -14844,6 +16707,15 @@ class NumInflowingNeighbours(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -14918,6 +16790,15 @@ class RaiseWalls(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -14990,6 +16871,15 @@ class Rho8Pointer(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -15048,6 +16938,15 @@ class Sink(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -15114,6 +17013,15 @@ class SnapPourPoints(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -15194,6 +17102,15 @@ class StochasticDepressionAnalysis(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -15263,6 +17180,15 @@ class StrahlerOrderBasins(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -15336,6 +17262,15 @@ class Subbasins(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -15417,6 +17352,15 @@ class TraceDownslopeFlowpaths(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -15492,6 +17436,15 @@ class UnnestBasins(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -15549,6 +17502,15 @@ class UpslopeDepressionStorage(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -15615,6 +17577,15 @@ class Watershed(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -15684,6 +17655,15 @@ class ChangeVectorAnalysis(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -15749,6 +17729,15 @@ class Closing(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -15840,6 +17829,15 @@ class CreateColourComposite(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -15921,6 +17919,15 @@ class FlipImage(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -16010,6 +18017,15 @@ class IhsToRgb(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -16084,6 +18100,15 @@ class ImageStackProfile(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -16135,6 +18160,15 @@ class IntegralImage(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -16239,6 +18273,15 @@ class KMeansClustering(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -16290,6 +18333,15 @@ class LineThinning(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -16383,6 +18435,15 @@ class ModifiedKMeansClustering(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -16445,6 +18506,15 @@ class Mosaic(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -16518,6 +18588,15 @@ class MosaicWithFeathering(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -16601,6 +18680,15 @@ class NormalizedDifferenceIndex(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -16677,6 +18765,15 @@ class Opening(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -16738,6 +18835,15 @@ class RemoveSpurs(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -16800,6 +18906,15 @@ class Resample(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -16888,6 +19003,15 @@ class RgbToIhs(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -16974,6 +19098,15 @@ class SplitColourComposite(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -17026,6 +19159,15 @@ class ThickenRasterLine(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -17105,6 +19247,15 @@ class TophatTransform(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -17172,6 +19323,15 @@ class WriteFunctionMemoryInsertion(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -17261,6 +19421,15 @@ class AdaptiveFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -17332,6 +19501,15 @@ class BilateralFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -17402,6 +19580,15 @@ class ConservativeSmoothingFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -17454,6 +19641,15 @@ class CornerDetection(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -17522,6 +19718,15 @@ class DiffOfGaussianFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -17592,6 +19797,15 @@ class DiversityFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -17660,6 +19874,15 @@ class EdgePreservingMeanFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -17732,6 +19955,15 @@ class EmbossFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -17793,6 +20025,15 @@ class FastAlmostGaussianFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -17853,6 +20094,15 @@ class GaussianFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -17922,6 +20172,15 @@ class HighPassFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -18001,6 +20260,15 @@ class HighPassMedianFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -18081,6 +20349,15 @@ class KNearestMeanFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -18154,6 +20431,15 @@ class LaplacianFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -18215,6 +20501,15 @@ class LaplacianOfGaussianFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -18302,6 +20597,15 @@ class LeeSigmaFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -18383,6 +20687,15 @@ class LineDetectionFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -18454,6 +20767,15 @@ class MajorityFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -18524,6 +20846,15 @@ class MaximumFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -18594,6 +20925,15 @@ class MeanFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -18673,6 +21013,15 @@ class MedianFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -18744,6 +21093,15 @@ class MinimumFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -18814,6 +21172,15 @@ class OlympicFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -18893,6 +21260,15 @@ class PercentileFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -18955,6 +21331,15 @@ class PrewittFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -19024,6 +21409,15 @@ class RangeFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -19085,6 +21479,15 @@ class RobertsCrossFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -19145,6 +21548,15 @@ class ScharrFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -19216,6 +21628,15 @@ class SobelFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -19286,6 +21707,15 @@ class StandardDeviationFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -19356,6 +21786,15 @@ class TotalFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -19435,6 +21874,15 @@ class UnsharpMasking(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -19516,6 +21964,15 @@ class UserDefinedWeightsFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -19578,6 +22035,15 @@ class BalanceContrastEnhancement(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -19664,6 +22130,15 @@ class CorrectVignetting(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -19741,6 +22216,15 @@ class DirectDecorrelationStretch(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -19802,6 +22286,15 @@ class GammaCorrection(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -19862,6 +22355,15 @@ class GaussianContrastStretch(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -19922,6 +22424,15 @@ class HistogramEqualization(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -19980,6 +22491,15 @@ class HistogramMatching(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -20038,6 +22558,15 @@ class HistogramMatchingTwoImages(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -20117,6 +22646,15 @@ class MinMaxContrastStretch(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -20209,6 +22747,15 @@ class PanchromaticSharpening(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -20313,6 +22860,15 @@ class PercentageContrastStretch(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -20393,6 +22949,15 @@ class SigmoidalContrastStretch(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -20464,6 +23029,15 @@ class StandardDeviationContrastStretch(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -20525,6 +23099,15 @@ class ClassifyBuildingsInLidar(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -20595,6 +23178,15 @@ class ClassifyOverlapPoints(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -20651,6 +23243,15 @@ class ClipLidarToPolygon(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -20711,6 +23312,15 @@ class ErasePolygonFromLidar(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -20770,6 +23380,15 @@ class FilterLidarClasses(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -20824,6 +23443,15 @@ class FilterLidarScanAngles(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -20871,6 +23499,15 @@ class FindFlightlineEdgePoints(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -20926,6 +23563,15 @@ class FlightlineOverlap(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -20973,6 +23619,15 @@ class HeightAboveGround(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -21012,6 +23667,15 @@ class LasToAscii(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -21049,6 +23713,15 @@ class LasToMultipointShapefile(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -21086,6 +23759,15 @@ class LasToShapefile(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -21140,6 +23822,15 @@ class LidarBlockMaximum(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -21196,6 +23887,15 @@ class LidarBlockMinimum(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -21265,6 +23965,15 @@ class LidarClassifySubset(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -21321,6 +24030,15 @@ class LidarColourize(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -21405,6 +24123,15 @@ class LidarConstructVectorTin(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -21494,6 +24221,15 @@ class LidarElevationSlice(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -21608,6 +24344,15 @@ class LidarGroundPointFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -21679,6 +24424,15 @@ class LidarHexBinning(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -21754,6 +24508,15 @@ class LidarHillshade(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -21823,6 +24586,15 @@ class LidarHistogram(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -21941,6 +24713,15 @@ class LidarIdwInterpolation(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -22013,6 +24794,15 @@ class LidarInfo(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -22062,6 +24852,15 @@ class LidarJoin(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -22133,6 +24932,15 @@ class LidarKappaIndex(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -22243,6 +25051,15 @@ class LidarNearestNeighbourGridding(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -22346,6 +25163,15 @@ class LidarPointDensity(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -22445,6 +25271,15 @@ class LidarPointStats(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -22560,6 +25395,15 @@ class LidarRansacPlanes(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -22705,6 +25549,15 @@ class LidarRbfInterpolation(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -22770,6 +25623,15 @@ class LidarRemoveDuplicates(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -22851,6 +25713,15 @@ class LidarRemoveOutliers(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -22991,6 +25862,15 @@ class LidarSegmentation(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -23081,6 +25961,15 @@ class LidarSegmentationBasedFilter(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -23160,6 +26049,15 @@ class LidarThin(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -23234,6 +26132,15 @@ class LidarThinHighDensity(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -23320,6 +26227,15 @@ class LidarTile(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -23379,6 +26295,15 @@ class LidarTileFootprint(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -23485,6 +26410,15 @@ class LidarTinGridding(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -23547,6 +26481,15 @@ class LidarTophatTransform(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -23603,6 +26546,15 @@ class NormalVectors(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -23656,6 +26608,15 @@ class SelectTilesByPolygon(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -23714,6 +26675,15 @@ class And(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -23777,6 +26747,15 @@ class Not(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -23840,6 +26819,15 @@ class Or(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -23896,6 +26884,15 @@ class AbsoluteValue(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -23953,6 +26950,15 @@ class Add(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -24006,6 +27012,15 @@ class Anova(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -24062,6 +27077,15 @@ class ArcCos(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -24112,6 +27136,15 @@ class ArcSin(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -24162,6 +27195,15 @@ class ArcTan(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -24212,6 +27254,15 @@ class Arcosh(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -24262,6 +27313,15 @@ class Arsinh(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -24312,6 +27372,15 @@ class Artanh(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -24369,6 +27438,15 @@ class Atan2(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -24415,6 +27493,15 @@ class AttributeCorrelation(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -24498,6 +27585,15 @@ class AttributeCorrelationNeighbourhoodAnalysis(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -24560,6 +27656,15 @@ class AttributeHistogram(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -24636,6 +27741,15 @@ class AttributeScattergram(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -24689,6 +27803,15 @@ class Ceil(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -24739,6 +27862,15 @@ class Cos(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -24789,6 +27921,15 @@ class Cosh(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -24839,6 +27980,15 @@ class CrispnessIndex(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -24896,6 +28046,15 @@ class CrossTabulation(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -24952,6 +28111,15 @@ class CumulativeDistribution(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -25002,6 +28170,15 @@ class Decrement(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -25059,6 +28236,15 @@ class Divide(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -25112,6 +28298,15 @@ class EqualTo(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -25158,6 +28353,15 @@ class Exp(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -25208,6 +28412,15 @@ class Exp2(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -25258,6 +28471,15 @@ class Floor(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -25322,6 +28544,15 @@ class GreaterThan(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -25381,6 +28612,15 @@ class ImageAutocorrelation(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -25428,6 +28668,15 @@ class ImageCorrelation(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -25508,6 +28757,15 @@ class ImageCorrelationNeighbourhoodAnalysis(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -25605,6 +28863,15 @@ class ImageRegression(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -25664,6 +28931,15 @@ class InPlaceAdd(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -25713,6 +28989,15 @@ class InPlaceDivide(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -25762,6 +29047,15 @@ class InPlaceMultiply(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -25811,6 +29105,15 @@ class InPlaceSubtract(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -25861,6 +29164,15 @@ class Increment(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -25918,6 +29230,15 @@ class IntegerDivision(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -25964,6 +29285,15 @@ class IsNoData(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -26021,6 +29351,15 @@ class KappaIndex(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -26084,6 +29423,15 @@ class KsTestForNormality(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -26149,6 +29497,15 @@ class LessThan(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -26204,6 +29561,15 @@ class ListUniqueValues(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -26255,6 +29621,15 @@ class Ln(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -26305,6 +29680,15 @@ class Log10(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -26355,6 +29739,15 @@ class Log2(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -26412,6 +29805,15 @@ class Max(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -26465,6 +29867,15 @@ class Min(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -26518,6 +29929,15 @@ class Modulo(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -26571,6 +29991,15 @@ class Multiply(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -26617,6 +30046,15 @@ class Negate(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -26674,6 +30112,15 @@ class NotEqualTo(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -26734,6 +30181,15 @@ class PairedSampleTTest(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -26798,6 +30254,15 @@ class Power(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -26859,6 +30324,15 @@ class PrincipalComponentAnalysis(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -26915,6 +30389,15 @@ class Quantiles(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -26966,6 +30449,15 @@ class RandomField(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -27025,6 +30517,15 @@ class RandomSample(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -27076,6 +30577,15 @@ class RasterHistogram(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -27118,6 +30628,15 @@ class RasterSummaryStats(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -27167,6 +30686,15 @@ class Reciprocal(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -27245,6 +30773,15 @@ class RescaleValueRange(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -27298,6 +30835,15 @@ class RootMeanSquareError(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -27353,6 +30899,15 @@ class Round(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -27403,6 +30958,15 @@ class Sin(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -27453,6 +31017,15 @@ class Sinh(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -27503,6 +31076,15 @@ class Square(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -27553,6 +31135,15 @@ class SquareRoot(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -27610,6 +31201,15 @@ class Subtract(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -27656,6 +31256,15 @@ class Tan(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -27706,6 +31315,15 @@ class Tanh(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -27756,6 +31374,15 @@ class ToDegrees(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -27806,6 +31433,15 @@ class ToRadians(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -27865,6 +31501,15 @@ class TrendSurface(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -27941,6 +31586,15 @@ class TrendSurfaceVectorPoints(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -28001,6 +31655,15 @@ class Truncate(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -28068,6 +31731,15 @@ class TurningBandsSimulation(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -28134,6 +31806,15 @@ class TwoSampleKsTest(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -28205,6 +31886,15 @@ class WilcoxonSignedRankTest(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -28269,6 +31959,15 @@ class Xor(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -28325,6 +32024,15 @@ class ZScores(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -28401,6 +32109,15 @@ class ZonalStatistics(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -28482,6 +32199,15 @@ class DistanceToOutlet(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -28554,6 +32280,15 @@ class ExtractStreams(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -28635,6 +32370,15 @@ class ExtractValleys(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -28711,6 +32455,15 @@ class FarthestChannelHead(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -28792,6 +32545,15 @@ class FindMainStem(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -28873,6 +32635,15 @@ class HackStreamOrder(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -28954,6 +32725,15 @@ class HortonStreamOrder(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -29035,6 +32815,15 @@ class LengthOfUpstreamChannels(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -29116,6 +32905,15 @@ class LongProfile(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -29203,6 +33001,15 @@ class LongProfileFromPoints(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -29282,6 +33089,15 @@ class RasterStreamsToVector(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -29365,6 +33181,15 @@ class RasterizeStreams(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -29446,6 +33271,15 @@ class RemoveShortStreams(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -29527,6 +33361,15 @@ class ShreveStreamMagnitude(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -29608,6 +33451,15 @@ class StrahlerStreamOrder(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -29689,6 +33541,15 @@ class StreamLinkClass(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -29770,6 +33631,15 @@ class StreamLinkIdentifier(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -29851,6 +33721,15 @@ class StreamLinkLength(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -29939,6 +33818,15 @@ class StreamLinkSlope(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -30033,6 +33921,15 @@ class StreamSlopeContinuous(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -30120,6 +34017,15 @@ class TopologicalStreamOrder(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
@@ -30201,6 +34107,15 @@ class TributaryIdentifier(object):
         return
 
     def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if os.path.dirname(desc.catalogPath).endswith(".gdb"):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
         return
 
     def execute(self, parameters, messages):
