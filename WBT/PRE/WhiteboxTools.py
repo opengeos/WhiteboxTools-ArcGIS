@@ -1286,7 +1286,7 @@ class AddPointCoordinatesToTable(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -1297,7 +1297,7 @@ class AddPointCoordinatesToTable(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         old_stdout = sys.stdout
         result = StringIO()
@@ -1343,7 +1343,7 @@ class CleanVector(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -1354,7 +1354,7 @@ class CleanVector(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -1402,7 +1402,7 @@ class ConvertNodataToZero(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -1413,7 +1413,7 @@ class ConvertNodataToZero(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -1461,7 +1461,7 @@ class ConvertRasterFormat(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -1472,7 +1472,7 @@ class ConvertRasterFormat(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -1545,7 +1545,7 @@ class CsvPointsToVector(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -1611,7 +1611,7 @@ class ExportTableToCsv(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -1622,7 +1622,7 @@ class ExportTableToCsv(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         headers = parameters[2].valueAsText
@@ -1694,7 +1694,7 @@ class JoinTables(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -1705,14 +1705,14 @@ class JoinTables(object):
         if input1 is not None:
             desc = arcpy.Describe(input1)
             input1 = desc.catalogPath
-            if (".gdb" in input1) or (".mdb" in input1):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         pkey = parameters[1].valueAsText
         input2 = parameters[2].valueAsText
         if input2 is not None:
             desc = arcpy.Describe(input2)
             input2 = desc.catalogPath
-            if (".gdb" in input2) or (".mdb" in input2):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         fkey = parameters[3].valueAsText
         import_field = parameters[4].valueAsText
@@ -1762,7 +1762,7 @@ class LinesToPolygons(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -1773,7 +1773,7 @@ class LinesToPolygons(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -1845,7 +1845,7 @@ class MergeTableWithCsv(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -1856,7 +1856,7 @@ class MergeTableWithCsv(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         pkey = parameters[1].valueAsText
         csv = parameters[2].valueAsText
@@ -1907,7 +1907,7 @@ class MergeVectors(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -1962,7 +1962,7 @@ class ModifyNoDataValue(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -1973,7 +1973,7 @@ class ModifyNoDataValue(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         new_value = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -2029,7 +2029,7 @@ class MultiPartToSinglePart(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -2040,7 +2040,7 @@ class MultiPartToSinglePart(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         exclude_holes = parameters[2].valueAsText
@@ -2109,7 +2109,7 @@ class NewRasterFromBase(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -2120,7 +2120,7 @@ class NewRasterFromBase(object):
         if base is not None:
             desc = arcpy.Describe(base)
             base = desc.catalogPath
-            if (".gdb" in base) or (".mdb" in base):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         value = parameters[2].valueAsText
@@ -2171,7 +2171,7 @@ class PolygonsToLines(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -2182,7 +2182,7 @@ class PolygonsToLines(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -2222,7 +2222,7 @@ class PrintGeoTiffTags(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -2233,7 +2233,7 @@ class PrintGeoTiffTags(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         old_stdout = sys.stdout
         result = StringIO()
@@ -2280,7 +2280,7 @@ class RasterToVectorLines(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -2291,7 +2291,7 @@ class RasterToVectorLines(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -2339,7 +2339,7 @@ class RasterToVectorPoints(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -2350,7 +2350,7 @@ class RasterToVectorPoints(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -2398,7 +2398,7 @@ class RasterToVectorPolygons(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -2409,7 +2409,7 @@ class RasterToVectorPolygons(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -2449,7 +2449,7 @@ class ReinitializeAttributeTable(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -2460,7 +2460,7 @@ class ReinitializeAttributeTable(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         old_stdout = sys.stdout
         result = StringIO()
@@ -2508,7 +2508,7 @@ class RemovePolygonHoles(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -2519,7 +2519,7 @@ class RemovePolygonHoles(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -2576,7 +2576,7 @@ class SetNodataValue(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -2587,7 +2587,7 @@ class SetNodataValue(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         back_value = parameters[2].valueAsText
@@ -2643,7 +2643,7 @@ class SinglePartToMultiPart(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -2654,7 +2654,7 @@ class SinglePartToMultiPart(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
@@ -2737,7 +2737,7 @@ class VectorLinesToRaster(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -2748,7 +2748,7 @@ class VectorLinesToRaster(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
@@ -2758,7 +2758,7 @@ class VectorLinesToRaster(object):
         if base is not None:
             desc = arcpy.Describe(base)
             base = desc.catalogPath
-            if (".gdb" in base) or (".mdb" in base):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         old_stdout = sys.stdout
         result = StringIO()
@@ -2850,7 +2850,7 @@ class VectorPointsToRaster(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -2861,7 +2861,7 @@ class VectorPointsToRaster(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
@@ -2872,7 +2872,7 @@ class VectorPointsToRaster(object):
         if base is not None:
             desc = arcpy.Describe(base)
             base = desc.catalogPath
-            if (".gdb" in base) or (".mdb" in base):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         old_stdout = sys.stdout
         result = StringIO()
@@ -2953,7 +2953,7 @@ class VectorPolygonsToRaster(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -2964,7 +2964,7 @@ class VectorPolygonsToRaster(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
@@ -2974,7 +2974,7 @@ class VectorPolygonsToRaster(object):
         if base is not None:
             desc = arcpy.Describe(base)
             base = desc.catalogPath
-            if (".gdb" in base) or (".mdb" in base):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         old_stdout = sys.stdout
         result = StringIO()
@@ -3041,7 +3041,7 @@ class AggregateRaster(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -3052,7 +3052,7 @@ class AggregateRaster(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         agg_factor = parameters[2].valueAsText
@@ -3134,7 +3134,7 @@ class BlockMaximumGridding(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -3145,7 +3145,7 @@ class BlockMaximumGridding(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
@@ -3155,7 +3155,7 @@ class BlockMaximumGridding(object):
         if base is not None:
             desc = arcpy.Describe(base)
             base = desc.catalogPath
-            if (".gdb" in base) or (".mdb" in base):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         old_stdout = sys.stdout
         result = StringIO()
@@ -3234,7 +3234,7 @@ class BlockMinimumGridding(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -3245,7 +3245,7 @@ class BlockMinimumGridding(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
@@ -3255,7 +3255,7 @@ class BlockMinimumGridding(object):
         if base is not None:
             desc = arcpy.Describe(base)
             base = desc.catalogPath
-            if (".gdb" in base) or (".mdb" in base):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         old_stdout = sys.stdout
         result = StringIO()
@@ -3309,7 +3309,7 @@ class Centroid(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -3320,7 +3320,7 @@ class Centroid(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         text_output = parameters[2].valueAsText
@@ -3368,7 +3368,7 @@ class CentroidVector(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -3379,7 +3379,7 @@ class CentroidVector(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -3443,7 +3443,7 @@ class Clump(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -3454,7 +3454,7 @@ class Clump(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         diag = parameters[2].valueAsText
@@ -3529,7 +3529,7 @@ class ConstructVectorTin(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -3540,7 +3540,7 @@ class ConstructVectorTin(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
@@ -3609,7 +3609,7 @@ class CreateHexagonalVectorGrid(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -3692,7 +3692,7 @@ class CreatePlane(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -3703,7 +3703,7 @@ class CreatePlane(object):
         if base is not None:
             desc = arcpy.Describe(base)
             base = desc.catalogPath
-            if (".gdb" in base) or (".mdb" in base):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         gradient = parameters[2].valueAsText
@@ -3786,7 +3786,7 @@ class CreateRectangularVectorGrid(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -3861,7 +3861,7 @@ class Dissolve(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -3872,7 +3872,7 @@ class Dissolve(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
@@ -3930,7 +3930,7 @@ class EliminateCoincidentPoints(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -3941,7 +3941,7 @@ class EliminateCoincidentPoints(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         tolerance = parameters[2].valueAsText
@@ -4009,7 +4009,7 @@ class ExtendVectorLines(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -4020,7 +4020,7 @@ class ExtendVectorLines(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         dist = parameters[2].valueAsText
@@ -4070,7 +4070,7 @@ class ExtractNodes(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -4081,7 +4081,7 @@ class ExtractNodes(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -4139,7 +4139,7 @@ class ExtractRasterValuesAtPoints(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -4151,7 +4151,7 @@ class ExtractRasterValuesAtPoints(object):
         if points is not None:
             desc = arcpy.Describe(points)
             points = desc.catalogPath
-            if (".gdb" in points) or (".mdb" in points):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         out_text = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -4210,7 +4210,7 @@ class FindLowestOrHighestPoints(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -4221,7 +4221,7 @@ class FindLowestOrHighestPoints(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         out_type = parameters[2].valueAsText
@@ -4325,7 +4325,7 @@ class IdwInterpolation(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -4336,7 +4336,7 @@ class IdwInterpolation(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
@@ -4349,7 +4349,7 @@ class IdwInterpolation(object):
         if base is not None:
             desc = arcpy.Describe(base)
             base = desc.catalogPath
-            if (".gdb" in base) or (".mdb" in base):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         old_stdout = sys.stdout
         result = StringIO()
@@ -4396,7 +4396,7 @@ class LayerFootprint(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -4449,7 +4449,7 @@ class Medoid(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -4460,7 +4460,7 @@ class Medoid(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -4528,7 +4528,7 @@ class MinimumBoundingBox(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -4539,7 +4539,7 @@ class MinimumBoundingBox(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         criterion = parameters[2].valueAsText
@@ -4598,7 +4598,7 @@ class MinimumBoundingCircle(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -4609,7 +4609,7 @@ class MinimumBoundingCircle(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         features = parameters[2].valueAsText
@@ -4667,7 +4667,7 @@ class MinimumBoundingEnvelope(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -4678,7 +4678,7 @@ class MinimumBoundingEnvelope(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         features = parameters[2].valueAsText
@@ -4736,7 +4736,7 @@ class MinimumConvexHull(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -4747,7 +4747,7 @@ class MinimumConvexHull(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         features = parameters[2].valueAsText
@@ -4837,7 +4837,7 @@ class NaturalNeighbourInterpolation(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -4848,7 +4848,7 @@ class NaturalNeighbourInterpolation(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
@@ -4858,7 +4858,7 @@ class NaturalNeighbourInterpolation(object):
         if base is not None:
             desc = arcpy.Describe(base)
             base = desc.catalogPath
-            if (".gdb" in base) or (".mdb" in base):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         clip = parameters[6].valueAsText
         old_stdout = sys.stdout
@@ -4945,7 +4945,7 @@ class NearestNeighbourGridding(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -4956,7 +4956,7 @@ class NearestNeighbourGridding(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
@@ -4966,7 +4966,7 @@ class NearestNeighbourGridding(object):
         if base is not None:
             desc = arcpy.Describe(base)
             base = desc.catalogPath
-            if (".gdb" in base) or (".mdb" in base):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         max_dist = parameters[6].valueAsText
         old_stdout = sys.stdout
@@ -5007,7 +5007,7 @@ class PolygonArea(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -5018,7 +5018,7 @@ class PolygonArea(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         old_stdout = sys.stdout
         result = StringIO()
@@ -5066,7 +5066,7 @@ class PolygonLongAxis(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -5077,7 +5077,7 @@ class PolygonLongAxis(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -5118,7 +5118,7 @@ class PolygonPerimeter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -5129,7 +5129,7 @@ class PolygonPerimeter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         old_stdout = sys.stdout
         result = StringIO()
@@ -5177,7 +5177,7 @@ class PolygonShortAxis(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -5188,7 +5188,7 @@ class PolygonShortAxis(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -5313,7 +5313,7 @@ class RadialBasisFunctionInterpolation(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -5324,7 +5324,7 @@ class RadialBasisFunctionInterpolation(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
@@ -5339,7 +5339,7 @@ class RadialBasisFunctionInterpolation(object):
         if base is not None:
             desc = arcpy.Describe(base)
             base = desc.catalogPath
-            if (".gdb" in base) or (".mdb" in base):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         old_stdout = sys.stdout
         result = StringIO()
@@ -5411,7 +5411,7 @@ class RasterArea(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -5422,7 +5422,7 @@ class RasterArea(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         out_text = parameters[2].valueAsText
@@ -5484,7 +5484,7 @@ class RasterCellAssignment(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -5495,7 +5495,7 @@ class RasterCellAssignment(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         assign = parameters[2].valueAsText
@@ -5569,7 +5569,7 @@ class RasterPerimeter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -5580,7 +5580,7 @@ class RasterPerimeter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         out_text = parameters[2].valueAsText
@@ -5645,7 +5645,7 @@ class Reclass(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -5656,7 +5656,7 @@ class Reclass(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         reclass_vals = parameters[2].valueAsText
@@ -5729,7 +5729,7 @@ class ReclassEqualInterval(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -5740,7 +5740,7 @@ class ReclassEqualInterval(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         interval = parameters[2].valueAsText
@@ -5798,7 +5798,7 @@ class ReclassFromFile(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -5809,7 +5809,7 @@ class ReclassFromFile(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         reclass_file = parameters[1].valueAsText
         output = parameters[2].valueAsText
@@ -5866,7 +5866,7 @@ class SmoothVectors(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -5877,7 +5877,7 @@ class SmoothVectors(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
@@ -5965,7 +5965,7 @@ class TinGridding(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -5976,7 +5976,7 @@ class TinGridding(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
@@ -5986,7 +5986,7 @@ class TinGridding(object):
         if base is not None:
             desc = arcpy.Describe(base)
             base = desc.catalogPath
-            if (".gdb" in base) or (".mdb" in base):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         max_triangle_edge_length = parameters[6].valueAsText
         old_stdout = sys.stdout
@@ -6053,7 +6053,7 @@ class VectorHexBinning(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -6064,7 +6064,7 @@ class VectorHexBinning(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         width = parameters[2].valueAsText
@@ -6115,7 +6115,7 @@ class VoronoiDiagram(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -6126,7 +6126,7 @@ class VoronoiDiagram(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -6188,7 +6188,7 @@ class BufferRaster(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -6199,7 +6199,7 @@ class BufferRaster(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         size = parameters[2].valueAsText
@@ -6256,7 +6256,7 @@ class CostAllocation(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -6267,13 +6267,13 @@ class CostAllocation(object):
         if source is not None:
             desc = arcpy.Describe(source)
             source = desc.catalogPath
-            if (".gdb" in source) or (".mdb" in source):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         backlink = parameters[1].valueAsText
         if backlink is not None:
             desc = arcpy.Describe(backlink)
             backlink = desc.catalogPath
-            if (".gdb" in backlink) or (".mdb" in backlink):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -6336,7 +6336,7 @@ class CostDistance(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -6347,13 +6347,13 @@ class CostDistance(object):
         if source is not None:
             desc = arcpy.Describe(source)
             source = desc.catalogPath
-            if (".gdb" in source) or (".mdb" in source):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         cost = parameters[1].valueAsText
         if cost is not None:
             desc = arcpy.Describe(cost)
             cost = desc.catalogPath
-            if (".gdb" in cost) or (".mdb" in cost):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         out_accum = parameters[2].valueAsText
         out_backlink = parameters[3].valueAsText
@@ -6416,7 +6416,7 @@ class CostPathway(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -6427,13 +6427,13 @@ class CostPathway(object):
         if destination is not None:
             desc = arcpy.Describe(destination)
             destination = desc.catalogPath
-            if (".gdb" in destination) or (".mdb" in destination):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         backlink = parameters[1].valueAsText
         if backlink is not None:
             desc = arcpy.Describe(backlink)
             backlink = desc.catalogPath
-            if (".gdb" in backlink) or (".mdb" in backlink):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         zero_background = parameters[3].valueAsText
@@ -6482,7 +6482,7 @@ class EuclideanAllocation(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -6493,7 +6493,7 @@ class EuclideanAllocation(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -6541,7 +6541,7 @@ class EuclideanDistance(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -6552,7 +6552,7 @@ class EuclideanDistance(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -6601,7 +6601,7 @@ class AverageOverlay(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -6662,7 +6662,7 @@ class Clip(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -6673,13 +6673,13 @@ class Clip(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         clip = parameters[1].valueAsText
         if clip is not None:
             desc = arcpy.Describe(clip)
             clip = desc.catalogPath
-            if (".gdb" in clip) or (".mdb" in clip):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -6744,7 +6744,7 @@ class ClipRasterToPolygon(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -6755,13 +6755,13 @@ class ClipRasterToPolygon(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         polygons = parameters[1].valueAsText
         if polygons is not None:
             desc = arcpy.Describe(polygons)
             polygons = desc.catalogPath
-            if (".gdb" in polygons) or (".mdb" in polygons):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         maintain_dimensions = parameters[3].valueAsText
@@ -6818,7 +6818,7 @@ class CountIf(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -6879,7 +6879,7 @@ class Difference(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -6890,13 +6890,13 @@ class Difference(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         overlay = parameters[1].valueAsText
         if overlay is not None:
             desc = arcpy.Describe(overlay)
             overlay = desc.catalogPath
-            if (".gdb" in overlay) or (".mdb" in overlay):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -6951,7 +6951,7 @@ class Erase(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -6962,13 +6962,13 @@ class Erase(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         erase = parameters[1].valueAsText
         if erase is not None:
             desc = arcpy.Describe(erase)
             erase = desc.catalogPath
-            if (".gdb" in erase) or (".mdb" in erase):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -7024,7 +7024,7 @@ class ErasePolygonFromRaster(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -7035,13 +7035,13 @@ class ErasePolygonFromRaster(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         polygons = parameters[1].valueAsText
         if polygons is not None:
             desc = arcpy.Describe(polygons)
             polygons = desc.catalogPath
-            if (".gdb" in polygons) or (".mdb" in polygons):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -7090,7 +7090,7 @@ class HighestPosition(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -7159,7 +7159,7 @@ class Intersect(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -7170,13 +7170,13 @@ class Intersect(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         overlay = parameters[1].valueAsText
         if overlay is not None:
             desc = arcpy.Describe(overlay)
             overlay = desc.catalogPath
-            if (".gdb" in overlay) or (".mdb" in overlay):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         snap = parameters[3].valueAsText
@@ -7234,7 +7234,7 @@ class LineIntersections(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -7245,13 +7245,13 @@ class LineIntersections(object):
         if input1 is not None:
             desc = arcpy.Describe(input1)
             input1 = desc.catalogPath
-            if (".gdb" in input1) or (".mdb" in input1):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         input2 = parameters[1].valueAsText
         if input2 is not None:
             desc = arcpy.Describe(input2)
             input2 = desc.catalogPath
-            if (".gdb" in input2) or (".mdb" in input2):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -7300,7 +7300,7 @@ class LowestPosition(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -7355,7 +7355,7 @@ class MaxAbsoluteOverlay(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -7410,7 +7410,7 @@ class MaxOverlay(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -7473,7 +7473,7 @@ class MergeLineSegments(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -7484,7 +7484,7 @@ class MergeLineSegments(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         snap = parameters[2].valueAsText
@@ -7534,7 +7534,7 @@ class MinAbsoluteOverlay(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -7589,7 +7589,7 @@ class MinOverlay(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -7651,7 +7651,7 @@ class PercentEqualTo(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -7663,7 +7663,7 @@ class PercentEqualTo(object):
         if comparison is not None:
             desc = arcpy.Describe(comparison)
             comparison = desc.catalogPath
-            if (".gdb" in comparison) or (".mdb" in comparison):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -7719,7 +7719,7 @@ class PercentGreaterThan(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -7731,7 +7731,7 @@ class PercentGreaterThan(object):
         if comparison is not None:
             desc = arcpy.Describe(comparison)
             comparison = desc.catalogPath
-            if (".gdb" in comparison) or (".mdb" in comparison):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -7787,7 +7787,7 @@ class PercentLessThan(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -7799,7 +7799,7 @@ class PercentLessThan(object):
         if comparison is not None:
             desc = arcpy.Describe(comparison)
             comparison = desc.catalogPath
-            if (".gdb" in comparison) or (".mdb" in comparison):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -7855,7 +7855,7 @@ class PickFromList(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -7867,7 +7867,7 @@ class PickFromList(object):
         if pos_input is not None:
             desc = arcpy.Describe(pos_input)
             pos_input = desc.catalogPath
-            if (".gdb" in pos_input) or (".mdb" in pos_input):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -7917,7 +7917,7 @@ class Polygonize(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -7978,7 +7978,7 @@ class SplitWithLines(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -7989,13 +7989,13 @@ class SplitWithLines(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         split = parameters[1].valueAsText
         if split is not None:
             desc = arcpy.Describe(split)
             split = desc.catalogPath
-            if (".gdb" in split) or (".mdb" in split):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -8044,7 +8044,7 @@ class SumOverlay(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -8113,7 +8113,7 @@ class SymmetricalDifference(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -8124,13 +8124,13 @@ class SymmetricalDifference(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         overlay = parameters[1].valueAsText
         if overlay is not None:
             desc = arcpy.Describe(overlay)
             overlay = desc.catalogPath
-            if (".gdb" in overlay) or (".mdb" in overlay):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         snap = parameters[3].valueAsText
@@ -8194,7 +8194,7 @@ class Union(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -8205,13 +8205,13 @@ class Union(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         overlay = parameters[1].valueAsText
         if overlay is not None:
             desc = arcpy.Describe(overlay)
             overlay = desc.catalogPath
-            if (".gdb" in overlay) or (".mdb" in overlay):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         snap = parameters[3].valueAsText
@@ -8292,7 +8292,7 @@ class WeightedOverlay(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -8358,7 +8358,7 @@ class WeightedSum(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -8413,7 +8413,7 @@ class BoundaryShapeComplexity(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -8424,7 +8424,7 @@ class BoundaryShapeComplexity(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -8465,7 +8465,7 @@ class CompactnessRatio(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -8476,7 +8476,7 @@ class CompactnessRatio(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         old_stdout = sys.stdout
         result = StringIO()
@@ -8530,7 +8530,7 @@ class EdgeProportion(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -8541,7 +8541,7 @@ class EdgeProportion(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         output_text = parameters[2].valueAsText
@@ -8583,7 +8583,7 @@ class ElongationRatio(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -8594,7 +8594,7 @@ class ElongationRatio(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         old_stdout = sys.stdout
         result = StringIO()
@@ -8641,7 +8641,7 @@ class FindPatchOrClassEdgeCells(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -8652,7 +8652,7 @@ class FindPatchOrClassEdgeCells(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -8693,7 +8693,7 @@ class HoleProportion(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -8704,7 +8704,7 @@ class HoleProportion(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         old_stdout = sys.stdout
         result = StringIO()
@@ -8744,7 +8744,7 @@ class LinearityIndex(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -8755,7 +8755,7 @@ class LinearityIndex(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         old_stdout = sys.stdout
         result = StringIO()
@@ -8802,7 +8802,7 @@ class NarrownessIndex(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -8813,7 +8813,7 @@ class NarrownessIndex(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -8854,7 +8854,7 @@ class PatchOrientation(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -8865,7 +8865,7 @@ class PatchOrientation(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         old_stdout = sys.stdout
         result = StringIO()
@@ -8905,7 +8905,7 @@ class PerimeterAreaRatio(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -8916,7 +8916,7 @@ class PerimeterAreaRatio(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         old_stdout = sys.stdout
         result = StringIO()
@@ -8970,7 +8970,7 @@ class RadiusOfGyration(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -8981,7 +8981,7 @@ class RadiusOfGyration(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         text_output = parameters[2].valueAsText
@@ -9023,7 +9023,7 @@ class RelatedCircumscribingCircle(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -9034,7 +9034,7 @@ class RelatedCircumscribingCircle(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         old_stdout = sys.stdout
         result = StringIO()
@@ -9074,7 +9074,7 @@ class ShapeComplexityIndex(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -9085,7 +9085,7 @@ class ShapeComplexityIndex(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         old_stdout = sys.stdout
         result = StringIO()
@@ -9132,7 +9132,7 @@ class ShapeComplexityIndexRaster(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -9143,7 +9143,7 @@ class ShapeComplexityIndexRaster(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -9200,7 +9200,7 @@ class Aspect(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -9211,7 +9211,7 @@ class Aspect(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
@@ -9269,7 +9269,7 @@ class AverageNormalVectorAngularDeviation(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -9280,7 +9280,7 @@ class AverageNormalVectorAngularDeviation(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
@@ -9338,7 +9338,7 @@ class CircularVarianceOfAspect(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -9349,7 +9349,7 @@ class CircularVarianceOfAspect(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
@@ -9416,7 +9416,7 @@ class DevFromMeanElev(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -9427,7 +9427,7 @@ class DevFromMeanElev(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
@@ -9495,7 +9495,7 @@ class DiffFromMeanElev(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -9506,7 +9506,7 @@ class DiffFromMeanElev(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
@@ -9572,7 +9572,7 @@ class DirectionalRelief(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -9583,7 +9583,7 @@ class DirectionalRelief(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         azimuth = parameters[2].valueAsText
@@ -9653,7 +9653,7 @@ class DownslopeIndex(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -9664,7 +9664,7 @@ class DownslopeIndex(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         drop = parameters[2].valueAsText
@@ -9741,7 +9741,7 @@ class EdgeDensity(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -9752,7 +9752,7 @@ class EdgeDensity(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
@@ -9803,7 +9803,7 @@ class ElevAbovePit(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -9814,7 +9814,7 @@ class ElevAbovePit(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -9889,7 +9889,7 @@ class ElevPercentile(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -9900,7 +9900,7 @@ class ElevPercentile(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
@@ -9951,7 +9951,7 @@ class ElevRelativeToMinMax(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -9962,7 +9962,7 @@ class ElevRelativeToMinMax(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -10017,7 +10017,7 @@ class ElevRelativeToWatershedMinMax(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -10028,13 +10028,13 @@ class ElevRelativeToWatershedMinMax(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         watersheds = parameters[1].valueAsText
         if watersheds is not None:
             desc = arcpy.Describe(watersheds)
             watersheds = desc.catalogPath
-            if (".gdb" in watersheds) or (".mdb" in watersheds):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -10127,7 +10127,7 @@ class FeaturePreservingSmoothing(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -10138,7 +10138,7 @@ class FeaturePreservingSmoothing(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
@@ -10209,7 +10209,7 @@ class FetchAnalysis(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -10220,7 +10220,7 @@ class FetchAnalysis(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         azimuth = parameters[2].valueAsText
@@ -10288,7 +10288,7 @@ class FillMissingData(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -10299,7 +10299,7 @@ class FillMissingData(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
@@ -10358,7 +10358,7 @@ class FindRidges(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -10369,7 +10369,7 @@ class FindRidges(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         line_thin = parameters[2].valueAsText
@@ -10445,7 +10445,7 @@ class Hillshade(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -10456,7 +10456,7 @@ class Hillshade(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         azimuth = parameters[2].valueAsText
@@ -10523,7 +10523,7 @@ class HorizonAngle(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -10534,7 +10534,7 @@ class HorizonAngle(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         azimuth = parameters[2].valueAsText
@@ -10593,7 +10593,7 @@ class HypsometricAnalysis(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -10681,7 +10681,7 @@ class MaxAnisotropyDev(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -10692,7 +10692,7 @@ class MaxAnisotropyDev(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         out_mag = parameters[1].valueAsText
         out_scale = parameters[2].valueAsText
@@ -10777,7 +10777,7 @@ class MaxAnisotropyDevSignature(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -10788,13 +10788,13 @@ class MaxAnisotropyDevSignature(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         points = parameters[1].valueAsText
         if points is not None:
             desc = arcpy.Describe(points)
             points = desc.catalogPath
-            if (".gdb" in points) or (".mdb" in points):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         min_scale = parameters[3].valueAsText
@@ -10852,7 +10852,7 @@ class MaxBranchLength(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -10863,7 +10863,7 @@ class MaxBranchLength(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         log = parameters[2].valueAsText
@@ -10943,7 +10943,7 @@ class MaxDifferenceFromMean(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -10954,7 +10954,7 @@ class MaxDifferenceFromMean(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         out_mag = parameters[1].valueAsText
         out_scale = parameters[2].valueAsText
@@ -11006,7 +11006,7 @@ class MaxDownslopeElevChange(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -11017,7 +11017,7 @@ class MaxDownslopeElevChange(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -11096,7 +11096,7 @@ class MaxElevDevSignature(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -11107,13 +11107,13 @@ class MaxElevDevSignature(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         points = parameters[1].valueAsText
         if points is not None:
             desc = arcpy.Describe(points)
             points = desc.catalogPath
-            if (".gdb" in points) or (".mdb" in points):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         min_scale = parameters[3].valueAsText
@@ -11195,7 +11195,7 @@ class MaxElevationDeviation(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -11206,7 +11206,7 @@ class MaxElevationDeviation(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         out_mag = parameters[1].valueAsText
         out_scale = parameters[2].valueAsText
@@ -11258,7 +11258,7 @@ class MinDownslopeElevChange(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -11269,7 +11269,7 @@ class MinDownslopeElevChange(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -11370,7 +11370,7 @@ class MultiscaleElevationPercentile(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -11381,7 +11381,7 @@ class MultiscaleElevationPercentile(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         out_mag = parameters[1].valueAsText
         out_scale = parameters[2].valueAsText
@@ -11468,7 +11468,7 @@ class MultiscaleRoughness(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -11479,7 +11479,7 @@ class MultiscaleRoughness(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         out_mag = parameters[1].valueAsText
         out_scale = parameters[2].valueAsText
@@ -11564,7 +11564,7 @@ class MultiscaleRoughnessSignature(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -11575,13 +11575,13 @@ class MultiscaleRoughnessSignature(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         points = parameters[1].valueAsText
         if points is not None:
             desc = arcpy.Describe(points)
             points = desc.catalogPath
-            if (".gdb" in points) or (".mdb" in points):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         min_scale = parameters[3].valueAsText
@@ -11676,7 +11676,7 @@ class MultiscaleStdDevNormals(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -11687,7 +11687,7 @@ class MultiscaleStdDevNormals(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         out_mag = parameters[1].valueAsText
         out_scale = parameters[2].valueAsText
@@ -11784,7 +11784,7 @@ class MultiscaleStdDevNormalsSignature(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -11795,13 +11795,13 @@ class MultiscaleStdDevNormalsSignature(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         points = parameters[1].valueAsText
         if points is not None:
             desc = arcpy.Describe(points)
             points = desc.catalogPath
-            if (".gdb" in points) or (".mdb" in points):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         min_scale = parameters[3].valueAsText
@@ -11876,7 +11876,7 @@ class MultiscaleTopographicPositionImage(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -11887,19 +11887,19 @@ class MultiscaleTopographicPositionImage(object):
         if local is not None:
             desc = arcpy.Describe(local)
             local = desc.catalogPath
-            if (".gdb" in local) or (".mdb" in local):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         meso = parameters[1].valueAsText
         if meso is not None:
             desc = arcpy.Describe(meso)
             meso = desc.catalogPath
-            if (".gdb" in meso) or (".mdb" in meso):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         broad = parameters[2].valueAsText
         if broad is not None:
             desc = arcpy.Describe(broad)
             broad = desc.catalogPath
-            if (".gdb" in broad) or (".mdb" in broad):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[3].valueAsText
         lightness = parameters[4].valueAsText
@@ -11948,7 +11948,7 @@ class NumDownslopeNeighbours(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -11959,7 +11959,7 @@ class NumDownslopeNeighbours(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -12007,7 +12007,7 @@ class NumUpslopeNeighbours(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -12018,7 +12018,7 @@ class NumUpslopeNeighbours(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -12102,7 +12102,7 @@ class PennockLandformClass(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -12113,7 +12113,7 @@ class PennockLandformClass(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         slope = parameters[2].valueAsText
@@ -12183,7 +12183,7 @@ class PercentElevRange(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -12194,7 +12194,7 @@ class PercentElevRange(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
@@ -12253,7 +12253,7 @@ class PlanCurvature(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -12264,7 +12264,7 @@ class PlanCurvature(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
@@ -12321,7 +12321,7 @@ class Profile(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -12332,13 +12332,13 @@ class Profile(object):
         if lines is not None:
             desc = arcpy.Describe(lines)
             lines = desc.catalogPath
-            if (".gdb" in lines) or (".mdb" in lines):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         surface = parameters[1].valueAsText
         if surface is not None:
             desc = arcpy.Describe(surface)
             surface = desc.catalogPath
-            if (".gdb" in surface) or (".mdb" in surface):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -12395,7 +12395,7 @@ class ProfileCurvature(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -12406,7 +12406,7 @@ class ProfileCurvature(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
@@ -12473,7 +12473,7 @@ class RelativeAspect(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -12484,7 +12484,7 @@ class RelativeAspect(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         azimuth = parameters[2].valueAsText
@@ -12552,7 +12552,7 @@ class RelativeTopographicPosition(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -12563,7 +12563,7 @@ class RelativeTopographicPosition(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
@@ -12631,7 +12631,7 @@ class RemoveOffTerrainObjects(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -12642,7 +12642,7 @@ class RemoveOffTerrainObjects(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
@@ -12701,7 +12701,7 @@ class RuggednessIndex(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -12712,7 +12712,7 @@ class RuggednessIndex(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
@@ -12786,7 +12786,7 @@ class SedimentTransportIndex(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -12797,13 +12797,13 @@ class SedimentTransportIndex(object):
         if sca is not None:
             desc = arcpy.Describe(sca)
             sca = desc.catalogPath
-            if (".gdb" in sca) or (".mdb" in sca):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         slope = parameters[1].valueAsText
         if slope is not None:
             desc = arcpy.Describe(slope)
             slope = desc.catalogPath
-            if (".gdb" in slope) or (".mdb" in slope):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         sca_exponent = parameters[3].valueAsText
@@ -12862,7 +12862,7 @@ class Slope(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -12873,7 +12873,7 @@ class Slope(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
@@ -12931,7 +12931,7 @@ class SlopeVsElevationPlot(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -12995,7 +12995,7 @@ class SphericalStdDevOfNormals(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -13006,7 +13006,7 @@ class SphericalStdDevOfNormals(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
@@ -13082,7 +13082,7 @@ class StandardDeviationOfSlope(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -13093,7 +13093,7 @@ class StandardDeviationOfSlope(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
@@ -13160,7 +13160,7 @@ class StreamPowerIndex(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -13171,13 +13171,13 @@ class StreamPowerIndex(object):
         if sca is not None:
             desc = arcpy.Describe(sca)
             sca = desc.catalogPath
-            if (".gdb" in sca) or (".mdb" in sca):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         slope = parameters[1].valueAsText
         if slope is not None:
             desc = arcpy.Describe(slope)
             slope = desc.catalogPath
-            if (".gdb" in slope) or (".mdb" in slope):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         exponent = parameters[3].valueAsText
@@ -13226,7 +13226,7 @@ class SurfaceAreaRatio(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -13237,7 +13237,7 @@ class SurfaceAreaRatio(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -13294,7 +13294,7 @@ class TangentialCurvature(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -13305,7 +13305,7 @@ class TangentialCurvature(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
@@ -13363,7 +13363,7 @@ class TotalCurvature(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -13374,7 +13374,7 @@ class TotalCurvature(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
@@ -13440,7 +13440,7 @@ class Viewshed(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -13451,13 +13451,13 @@ class Viewshed(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         stations = parameters[1].valueAsText
         if stations is not None:
             desc = arcpy.Describe(stations)
             stations = desc.catalogPath
-            if (".gdb" in stations) or (".mdb" in stations):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         height = parameters[3].valueAsText
@@ -13524,7 +13524,7 @@ class VisibilityIndex(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -13535,7 +13535,7 @@ class VisibilityIndex(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         height = parameters[2].valueAsText
@@ -13592,7 +13592,7 @@ class WetnessIndex(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -13603,13 +13603,13 @@ class WetnessIndex(object):
         if sca is not None:
             desc = arcpy.Describe(sca)
             sca = desc.catalogPath
-            if (".gdb" in sca) or (".mdb" in sca):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         slope = parameters[1].valueAsText
         if slope is not None:
             desc = arcpy.Describe(slope)
             slope = desc.catalogPath
-            if (".gdb" in slope) or (".mdb" in slope):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -13657,7 +13657,7 @@ class AverageFlowpathSlope(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -13668,7 +13668,7 @@ class AverageFlowpathSlope(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -13716,7 +13716,7 @@ class AverageUpslopeFlowpathLength(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -13727,7 +13727,7 @@ class AverageUpslopeFlowpathLength(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -13784,7 +13784,7 @@ class Basins(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -13795,7 +13795,7 @@ class Basins(object):
         if d8_pntr is not None:
             desc = arcpy.Describe(d8_pntr)
             d8_pntr = desc.catalogPath
-            if (".gdb" in d8_pntr) or (".mdb" in d8_pntr):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         esri_pntr = parameters[2].valueAsText
@@ -13874,7 +13874,7 @@ class BreachDepressions(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -13885,7 +13885,7 @@ class BreachDepressions(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         max_depth = parameters[2].valueAsText
@@ -13976,7 +13976,7 @@ class BreachDepressionsLeastCost(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -13987,7 +13987,7 @@ class BreachDepressionsLeastCost(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         dist = parameters[2].valueAsText
@@ -14040,7 +14040,7 @@ class BreachSingleCellPits(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -14051,7 +14051,7 @@ class BreachSingleCellPits(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -14122,7 +14122,7 @@ class BurnStreamsAtRoads(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -14133,19 +14133,19 @@ class BurnStreamsAtRoads(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         streams = parameters[1].valueAsText
         if streams is not None:
             desc = arcpy.Describe(streams)
             streams = desc.catalogPath
-            if (".gdb" in streams) or (".mdb" in streams):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         roads = parameters[2].valueAsText
         if roads is not None:
             desc = arcpy.Describe(roads)
             roads = desc.catalogPath
-            if (".gdb" in roads) or (".mdb" in roads):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[3].valueAsText
         width = parameters[4].valueAsText
@@ -14235,7 +14235,7 @@ class D8FlowAccumulation(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -14246,7 +14246,7 @@ class D8FlowAccumulation(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         out_type = parameters[2].valueAsText
@@ -14320,7 +14320,7 @@ class D8MassFlux(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -14331,25 +14331,25 @@ class D8MassFlux(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         loading = parameters[1].valueAsText
         if loading is not None:
             desc = arcpy.Describe(loading)
             loading = desc.catalogPath
-            if (".gdb" in loading) or (".mdb" in loading):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         efficiency = parameters[2].valueAsText
         if efficiency is not None:
             desc = arcpy.Describe(efficiency)
             efficiency = desc.catalogPath
-            if (".gdb" in efficiency) or (".mdb" in efficiency):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         absorption = parameters[3].valueAsText
         if absorption is not None:
             desc = arcpy.Describe(absorption)
             absorption = desc.catalogPath
-            if (".gdb" in absorption) or (".mdb" in absorption):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[4].valueAsText
         old_stdout = sys.stdout
@@ -14406,7 +14406,7 @@ class D8Pointer(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -14417,7 +14417,7 @@ class D8Pointer(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         esri_pntr = parameters[2].valueAsText
@@ -14505,7 +14505,7 @@ class DInfFlowAccumulation(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -14516,7 +14516,7 @@ class DInfFlowAccumulation(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         out_type = parameters[2].valueAsText
@@ -14590,7 +14590,7 @@ class DInfMassFlux(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -14601,25 +14601,25 @@ class DInfMassFlux(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         loading = parameters[1].valueAsText
         if loading is not None:
             desc = arcpy.Describe(loading)
             loading = desc.catalogPath
-            if (".gdb" in loading) or (".mdb" in loading):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         efficiency = parameters[2].valueAsText
         if efficiency is not None:
             desc = arcpy.Describe(efficiency)
             efficiency = desc.catalogPath
-            if (".gdb" in efficiency) or (".mdb" in efficiency):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         absorption = parameters[3].valueAsText
         if absorption is not None:
             desc = arcpy.Describe(absorption)
             absorption = desc.catalogPath
-            if (".gdb" in absorption) or (".mdb" in absorption):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[4].valueAsText
         old_stdout = sys.stdout
@@ -14667,7 +14667,7 @@ class DInfPointer(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -14678,7 +14678,7 @@ class DInfPointer(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -14733,7 +14733,7 @@ class DepthInSink(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -14744,7 +14744,7 @@ class DepthInSink(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         zero_background = parameters[2].valueAsText
@@ -14800,7 +14800,7 @@ class DownslopeDistanceToStream(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -14811,13 +14811,13 @@ class DownslopeDistanceToStream(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         streams = parameters[1].valueAsText
         if streams is not None:
             desc = arcpy.Describe(streams)
             streams = desc.catalogPath
-            if (".gdb" in streams) or (".mdb" in streams):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -14888,7 +14888,7 @@ class DownslopeFlowpathLength(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -14899,19 +14899,19 @@ class DownslopeFlowpathLength(object):
         if d8_pntr is not None:
             desc = arcpy.Describe(d8_pntr)
             d8_pntr = desc.catalogPath
-            if (".gdb" in d8_pntr) or (".mdb" in d8_pntr):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         watersheds = parameters[1].valueAsText
         if watersheds is not None:
             desc = arcpy.Describe(watersheds)
             watersheds = desc.catalogPath
-            if (".gdb" in watersheds) or (".mdb" in watersheds):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         weights = parameters[2].valueAsText
         if weights is not None:
             desc = arcpy.Describe(weights)
             weights = desc.catalogPath
-            if (".gdb" in weights) or (".mdb" in weights):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[3].valueAsText
         esri_pntr = parameters[4].valueAsText
@@ -14967,7 +14967,7 @@ class ElevationAboveStream(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -14978,13 +14978,13 @@ class ElevationAboveStream(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         streams = parameters[1].valueAsText
         if streams is not None:
             desc = arcpy.Describe(streams)
             streams = desc.catalogPath
-            if (".gdb" in streams) or (".mdb" in streams):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -15039,7 +15039,7 @@ class ElevationAboveStreamEuclidean(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -15050,13 +15050,13 @@ class ElevationAboveStreamEuclidean(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         streams = parameters[1].valueAsText
         if streams is not None:
             desc = arcpy.Describe(streams)
             streams = desc.catalogPath
-            if (".gdb" in streams) or (".mdb" in streams):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -15145,7 +15145,7 @@ class Fd8FlowAccumulation(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -15156,7 +15156,7 @@ class Fd8FlowAccumulation(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         out_type = parameters[2].valueAsText
@@ -15209,7 +15209,7 @@ class Fd8Pointer(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -15220,7 +15220,7 @@ class Fd8Pointer(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -15276,7 +15276,7 @@ class FillBurn(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -15287,13 +15287,13 @@ class FillBurn(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         streams = parameters[1].valueAsText
         if streams is not None:
             desc = arcpy.Describe(streams)
             streams = desc.catalogPath
-            if (".gdb" in streams) or (".mdb" in streams):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -15364,7 +15364,7 @@ class FillDepressions(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -15375,7 +15375,7 @@ class FillDepressions(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         fix_flats = parameters[2].valueAsText
@@ -15442,7 +15442,7 @@ class FillDepressionsPlanchonAndDarboux(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -15453,7 +15453,7 @@ class FillDepressionsPlanchonAndDarboux(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         fix_flats = parameters[2].valueAsText
@@ -15519,7 +15519,7 @@ class FillDepressionsWangAndLiu(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -15530,7 +15530,7 @@ class FillDepressionsWangAndLiu(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         fix_flats = parameters[2].valueAsText
@@ -15580,7 +15580,7 @@ class FillSingleCellPits(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -15591,7 +15591,7 @@ class FillSingleCellPits(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -15639,7 +15639,7 @@ class FindNoFlowCells(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -15650,7 +15650,7 @@ class FindNoFlowCells(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -15705,7 +15705,7 @@ class FindParallelFlow(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -15716,13 +15716,13 @@ class FindParallelFlow(object):
         if d8_pntr is not None:
             desc = arcpy.Describe(d8_pntr)
             d8_pntr = desc.catalogPath
-            if (".gdb" in d8_pntr) or (".mdb" in d8_pntr):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         streams = parameters[1].valueAsText
         if streams is not None:
             desc = arcpy.Describe(streams)
             streams = desc.catalogPath
-            if (".gdb" in streams) or (".mdb" in streams):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -15778,7 +15778,7 @@ class FlattenLakes(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -15789,13 +15789,13 @@ class FlattenLakes(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         lakes = parameters[1].valueAsText
         if lakes is not None:
             desc = arcpy.Describe(lakes)
             lakes = desc.catalogPath
-            if (".gdb" in lakes) or (".mdb" in lakes):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -15843,7 +15843,7 @@ class FloodOrder(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -15854,7 +15854,7 @@ class FloodOrder(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -15952,7 +15952,7 @@ class FlowAccumulationFullWorkflow(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -15963,7 +15963,7 @@ class FlowAccumulationFullWorkflow(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         out_dem = parameters[1].valueAsText
         out_pntr = parameters[2].valueAsText
@@ -16026,7 +16026,7 @@ class FlowLengthDiff(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -16037,7 +16037,7 @@ class FlowLengthDiff(object):
         if d8_pntr is not None:
             desc = arcpy.Describe(d8_pntr)
             d8_pntr = desc.catalogPath
-            if (".gdb" in d8_pntr) or (".mdb" in d8_pntr):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         esri_pntr = parameters[2].valueAsText
@@ -16102,7 +16102,7 @@ class Hillslopes(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -16113,13 +16113,13 @@ class Hillslopes(object):
         if d8_pntr is not None:
             desc = arcpy.Describe(d8_pntr)
             d8_pntr = desc.catalogPath
-            if (".gdb" in d8_pntr) or (".mdb" in d8_pntr):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         streams = parameters[1].valueAsText
         if streams is not None:
             desc = arcpy.Describe(streams)
             streams = desc.catalogPath
-            if (".gdb" in streams) or (".mdb" in streams):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
@@ -16186,7 +16186,7 @@ class ImpoundmentSizeIndex(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -16197,7 +16197,7 @@ class ImpoundmentSizeIndex(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         out_type = parameters[2].valueAsText
@@ -16262,7 +16262,7 @@ class InsertDams(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -16273,13 +16273,13 @@ class InsertDams(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         dam_pts = parameters[1].valueAsText
         if dam_pts is not None:
             desc = arcpy.Describe(dam_pts)
             dam_pts = desc.catalogPath
-            if (".gdb" in dam_pts) or (".mdb" in dam_pts):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         damlength = parameters[3].valueAsText
@@ -16335,7 +16335,7 @@ class Isobasins(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -16346,7 +16346,7 @@ class Isobasins(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         size = parameters[2].valueAsText
@@ -16410,7 +16410,7 @@ class JensonSnapPourPoints(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -16421,13 +16421,13 @@ class JensonSnapPourPoints(object):
         if pour_pts is not None:
             desc = arcpy.Describe(pour_pts)
             pour_pts = desc.catalogPath
-            if (".gdb" in pour_pts) or (".mdb" in pour_pts):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         streams = parameters[1].valueAsText
         if streams is not None:
             desc = arcpy.Describe(streams)
             streams = desc.catalogPath
-            if (".gdb" in streams) or (".mdb" in streams):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         snap_dist = parameters[3].valueAsText
@@ -16483,7 +16483,7 @@ class LongestFlowpath(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -16494,13 +16494,13 @@ class LongestFlowpath(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         basins = parameters[1].valueAsText
         if basins is not None:
             desc = arcpy.Describe(basins)
             basins = desc.catalogPath
-            if (".gdb" in basins) or (".mdb" in basins):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -16548,7 +16548,7 @@ class MaxUpslopeFlowpathLength(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -16559,7 +16559,7 @@ class MaxUpslopeFlowpathLength(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -16648,7 +16648,7 @@ class MdInfFlowAccumulation(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -16659,7 +16659,7 @@ class MdInfFlowAccumulation(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         out_type = parameters[2].valueAsText
@@ -16712,7 +16712,7 @@ class NumInflowingNeighbours(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -16723,7 +16723,7 @@ class NumInflowingNeighbours(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -16795,7 +16795,7 @@ class RaiseWalls(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -16806,19 +16806,19 @@ class RaiseWalls(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         breach = parameters[1].valueAsText
         if breach is not None:
             desc = arcpy.Describe(breach)
             breach = desc.catalogPath
-            if (".gdb" in breach) or (".mdb" in breach):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         dem = parameters[2].valueAsText
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[3].valueAsText
         height = parameters[4].valueAsText
@@ -16876,7 +16876,7 @@ class Rho8Pointer(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -16887,7 +16887,7 @@ class Rho8Pointer(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         esri_pntr = parameters[2].valueAsText
@@ -16943,7 +16943,7 @@ class Sink(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -16954,7 +16954,7 @@ class Sink(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         zero_background = parameters[2].valueAsText
@@ -17018,7 +17018,7 @@ class SnapPourPoints(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -17029,13 +17029,13 @@ class SnapPourPoints(object):
         if pour_pts is not None:
             desc = arcpy.Describe(pour_pts)
             pour_pts = desc.catalogPath
-            if (".gdb" in pour_pts) or (".mdb" in pour_pts):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         flow_accum = parameters[1].valueAsText
         if flow_accum is not None:
             desc = arcpy.Describe(flow_accum)
             flow_accum = desc.catalogPath
-            if (".gdb" in flow_accum) or (".mdb" in flow_accum):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         snap_dist = parameters[3].valueAsText
@@ -17107,7 +17107,7 @@ class StochasticDepressionAnalysis(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -17118,7 +17118,7 @@ class StochasticDepressionAnalysis(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         rmse = parameters[2].valueAsText
@@ -17185,7 +17185,7 @@ class StrahlerOrderBasins(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -17196,13 +17196,13 @@ class StrahlerOrderBasins(object):
         if d8_pntr is not None:
             desc = arcpy.Describe(d8_pntr)
             d8_pntr = desc.catalogPath
-            if (".gdb" in d8_pntr) or (".mdb" in d8_pntr):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         streams = parameters[1].valueAsText
         if streams is not None:
             desc = arcpy.Describe(streams)
             streams = desc.catalogPath
-            if (".gdb" in streams) or (".mdb" in streams):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
@@ -17267,7 +17267,7 @@ class Subbasins(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -17278,13 +17278,13 @@ class Subbasins(object):
         if d8_pntr is not None:
             desc = arcpy.Describe(d8_pntr)
             d8_pntr = desc.catalogPath
-            if (".gdb" in d8_pntr) or (".mdb" in d8_pntr):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         streams = parameters[1].valueAsText
         if streams is not None:
             desc = arcpy.Describe(streams)
             streams = desc.catalogPath
-            if (".gdb" in streams) or (".mdb" in streams):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
@@ -17357,7 +17357,7 @@ class TraceDownslopeFlowpaths(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -17368,13 +17368,13 @@ class TraceDownslopeFlowpaths(object):
         if seed_pts is not None:
             desc = arcpy.Describe(seed_pts)
             seed_pts = desc.catalogPath
-            if (".gdb" in seed_pts) or (".mdb" in seed_pts):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         d8_pntr = parameters[1].valueAsText
         if d8_pntr is not None:
             desc = arcpy.Describe(d8_pntr)
             d8_pntr = desc.catalogPath
-            if (".gdb" in d8_pntr) or (".mdb" in d8_pntr):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
@@ -17441,7 +17441,7 @@ class UnnestBasins(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -17452,13 +17452,13 @@ class UnnestBasins(object):
         if d8_pntr is not None:
             desc = arcpy.Describe(d8_pntr)
             d8_pntr = desc.catalogPath
-            if (".gdb" in d8_pntr) or (".mdb" in d8_pntr):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         pour_pts = parameters[1].valueAsText
         if pour_pts is not None:
             desc = arcpy.Describe(pour_pts)
             pour_pts = desc.catalogPath
-            if (".gdb" in pour_pts) or (".mdb" in pour_pts):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
@@ -17507,7 +17507,7 @@ class UpslopeDepressionStorage(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -17518,7 +17518,7 @@ class UpslopeDepressionStorage(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -17582,7 +17582,7 @@ class Watershed(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -17593,7 +17593,7 @@ class Watershed(object):
         if d8_pntr is not None:
             desc = arcpy.Describe(d8_pntr)
             d8_pntr = desc.catalogPath
-            if (".gdb" in d8_pntr) or (".mdb" in d8_pntr):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         pour_pts = parameters[1].valueAsText
         output = parameters[2].valueAsText
@@ -17660,7 +17660,7 @@ class ChangeVectorAnalysis(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -17734,7 +17734,7 @@ class Closing(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -17745,7 +17745,7 @@ class Closing(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
@@ -17834,7 +17834,7 @@ class CreateColourComposite(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -17845,25 +17845,25 @@ class CreateColourComposite(object):
         if red is not None:
             desc = arcpy.Describe(red)
             red = desc.catalogPath
-            if (".gdb" in red) or (".mdb" in red):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         green = parameters[1].valueAsText
         if green is not None:
             desc = arcpy.Describe(green)
             green = desc.catalogPath
-            if (".gdb" in green) or (".mdb" in green):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         blue = parameters[2].valueAsText
         if blue is not None:
             desc = arcpy.Describe(blue)
             blue = desc.catalogPath
-            if (".gdb" in blue) or (".mdb" in blue):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         opacity = parameters[3].valueAsText
         if opacity is not None:
             desc = arcpy.Describe(opacity)
             opacity = desc.catalogPath
-            if (".gdb" in opacity) or (".mdb" in opacity):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[4].valueAsText
         enhance = parameters[5].valueAsText
@@ -17924,7 +17924,7 @@ class FlipImage(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -17935,7 +17935,7 @@ class FlipImage(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         direction = parameters[2].valueAsText
@@ -18022,7 +18022,7 @@ class IhsToRgb(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -18033,19 +18033,19 @@ class IhsToRgb(object):
         if intensity is not None:
             desc = arcpy.Describe(intensity)
             intensity = desc.catalogPath
-            if (".gdb" in intensity) or (".mdb" in intensity):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         hue = parameters[1].valueAsText
         if hue is not None:
             desc = arcpy.Describe(hue)
             hue = desc.catalogPath
-            if (".gdb" in hue) or (".mdb" in hue):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         saturation = parameters[2].valueAsText
         if saturation is not None:
             desc = arcpy.Describe(saturation)
             saturation = desc.catalogPath
-            if (".gdb" in saturation) or (".mdb" in saturation):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         red = parameters[3].valueAsText
         green = parameters[4].valueAsText
@@ -18105,7 +18105,7 @@ class ImageStackProfile(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -18117,7 +18117,7 @@ class ImageStackProfile(object):
         if points is not None:
             desc = arcpy.Describe(points)
             points = desc.catalogPath
-            if (".gdb" in points) or (".mdb" in points):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -18165,7 +18165,7 @@ class IntegralImage(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -18176,7 +18176,7 @@ class IntegralImage(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -18278,7 +18278,7 @@ class KMeansClustering(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -18338,7 +18338,7 @@ class LineThinning(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -18349,7 +18349,7 @@ class LineThinning(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -18440,7 +18440,7 @@ class ModifiedKMeansClustering(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -18511,7 +18511,7 @@ class Mosaic(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -18593,7 +18593,7 @@ class MosaicWithFeathering(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -18604,13 +18604,13 @@ class MosaicWithFeathering(object):
         if input1 is not None:
             desc = arcpy.Describe(input1)
             input1 = desc.catalogPath
-            if (".gdb" in input1) or (".mdb" in input1):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         input2 = parameters[1].valueAsText
         if input2 is not None:
             desc = arcpy.Describe(input2)
             input2 = desc.catalogPath
-            if (".gdb" in input2) or (".mdb" in input2):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         method = parameters[3].valueAsText
@@ -18685,7 +18685,7 @@ class NormalizedDifferenceIndex(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -18696,13 +18696,13 @@ class NormalizedDifferenceIndex(object):
         if input1 is not None:
             desc = arcpy.Describe(input1)
             input1 = desc.catalogPath
-            if (".gdb" in input1) or (".mdb" in input1):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         input2 = parameters[1].valueAsText
         if input2 is not None:
             desc = arcpy.Describe(input2)
             input2 = desc.catalogPath
-            if (".gdb" in input2) or (".mdb" in input2):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         clip = parameters[3].valueAsText
@@ -18770,7 +18770,7 @@ class Opening(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -18781,7 +18781,7 @@ class Opening(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
@@ -18840,7 +18840,7 @@ class RemoveSpurs(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -18851,7 +18851,7 @@ class RemoveSpurs(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         iterations = parameters[2].valueAsText
@@ -18911,7 +18911,7 @@ class Resample(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -18923,7 +18923,7 @@ class Resample(object):
         if destination is not None:
             desc = arcpy.Describe(destination)
             destination = desc.catalogPath
-            if (".gdb" in destination) or (".mdb" in destination):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         method = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -19008,7 +19008,7 @@ class RgbToIhs(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -19019,25 +19019,25 @@ class RgbToIhs(object):
         if red is not None:
             desc = arcpy.Describe(red)
             red = desc.catalogPath
-            if (".gdb" in red) or (".mdb" in red):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         green = parameters[1].valueAsText
         if green is not None:
             desc = arcpy.Describe(green)
             green = desc.catalogPath
-            if (".gdb" in green) or (".mdb" in green):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         blue = parameters[2].valueAsText
         if blue is not None:
             desc = arcpy.Describe(blue)
             blue = desc.catalogPath
-            if (".gdb" in blue) or (".mdb" in blue):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         composite = parameters[3].valueAsText
         if composite is not None:
             desc = arcpy.Describe(composite)
             composite = desc.catalogPath
-            if (".gdb" in composite) or (".mdb" in composite):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         intensity = parameters[4].valueAsText
         hue = parameters[5].valueAsText
@@ -19103,7 +19103,7 @@ class SplitColourComposite(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -19114,7 +19114,7 @@ class SplitColourComposite(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         red = parameters[1].valueAsText
         green = parameters[2].valueAsText
@@ -19164,7 +19164,7 @@ class ThickenRasterLine(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -19175,7 +19175,7 @@ class ThickenRasterLine(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -19252,7 +19252,7 @@ class TophatTransform(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -19263,7 +19263,7 @@ class TophatTransform(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
@@ -19328,7 +19328,7 @@ class WriteFunctionMemoryInsertion(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -19339,19 +19339,19 @@ class WriteFunctionMemoryInsertion(object):
         if input1 is not None:
             desc = arcpy.Describe(input1)
             input1 = desc.catalogPath
-            if (".gdb" in input1) or (".mdb" in input1):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         input2 = parameters[1].valueAsText
         if input2 is not None:
             desc = arcpy.Describe(input2)
             input2 = desc.catalogPath
-            if (".gdb" in input2) or (".mdb" in input2):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         input3 = parameters[2].valueAsText
         if input3 is not None:
             desc = arcpy.Describe(input3)
             input3 = desc.catalogPath
-            if (".gdb" in input3) or (".mdb" in input3):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -19426,7 +19426,7 @@ class AdaptiveFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -19437,7 +19437,7 @@ class AdaptiveFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
@@ -19506,7 +19506,7 @@ class BilateralFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -19517,7 +19517,7 @@ class BilateralFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         sigma_dist = parameters[2].valueAsText
@@ -19585,7 +19585,7 @@ class ConservativeSmoothingFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -19596,7 +19596,7 @@ class ConservativeSmoothingFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
@@ -19646,7 +19646,7 @@ class CornerDetection(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -19657,7 +19657,7 @@ class CornerDetection(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -19723,7 +19723,7 @@ class DiffOfGaussianFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -19734,7 +19734,7 @@ class DiffOfGaussianFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         sigma1 = parameters[2].valueAsText
@@ -19802,7 +19802,7 @@ class DiversityFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -19813,7 +19813,7 @@ class DiversityFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
@@ -19879,7 +19879,7 @@ class EdgePreservingMeanFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -19890,7 +19890,7 @@ class EdgePreservingMeanFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
@@ -19960,7 +19960,7 @@ class EmbossFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -19971,7 +19971,7 @@ class EmbossFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         direction = parameters[2].valueAsText
@@ -20030,7 +20030,7 @@ class FastAlmostGaussianFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -20041,7 +20041,7 @@ class FastAlmostGaussianFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         sigma = parameters[2].valueAsText
@@ -20099,7 +20099,7 @@ class GaussianFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -20110,7 +20110,7 @@ class GaussianFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         sigma = parameters[2].valueAsText
@@ -20177,7 +20177,7 @@ class HighPassFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -20188,7 +20188,7 @@ class HighPassFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
@@ -20265,7 +20265,7 @@ class HighPassMedianFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -20276,7 +20276,7 @@ class HighPassMedianFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
@@ -20354,7 +20354,7 @@ class KNearestMeanFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -20365,7 +20365,7 @@ class KNearestMeanFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
@@ -20436,7 +20436,7 @@ class LaplacianFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -20447,7 +20447,7 @@ class LaplacianFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         variant = parameters[2].valueAsText
@@ -20506,7 +20506,7 @@ class LaplacianOfGaussianFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -20517,7 +20517,7 @@ class LaplacianOfGaussianFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         sigma = parameters[2].valueAsText
@@ -20602,7 +20602,7 @@ class LeeSigmaFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -20613,7 +20613,7 @@ class LeeSigmaFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
@@ -20692,7 +20692,7 @@ class LineDetectionFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -20703,7 +20703,7 @@ class LineDetectionFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         variant = parameters[2].valueAsText
@@ -20772,7 +20772,7 @@ class MajorityFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -20783,7 +20783,7 @@ class MajorityFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
@@ -20851,7 +20851,7 @@ class MaximumFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -20862,7 +20862,7 @@ class MaximumFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
@@ -20930,7 +20930,7 @@ class MeanFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -20941,7 +20941,7 @@ class MeanFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
@@ -21018,7 +21018,7 @@ class MedianFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -21029,7 +21029,7 @@ class MedianFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
@@ -21098,7 +21098,7 @@ class MinimumFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -21109,7 +21109,7 @@ class MinimumFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
@@ -21177,7 +21177,7 @@ class OlympicFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -21188,7 +21188,7 @@ class OlympicFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
@@ -21265,7 +21265,7 @@ class PercentileFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -21276,7 +21276,7 @@ class PercentileFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
@@ -21336,7 +21336,7 @@ class PrewittFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -21347,7 +21347,7 @@ class PrewittFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         clip = parameters[2].valueAsText
@@ -21414,7 +21414,7 @@ class RangeFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -21425,7 +21425,7 @@ class RangeFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
@@ -21484,7 +21484,7 @@ class RobertsCrossFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -21495,7 +21495,7 @@ class RobertsCrossFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         clip = parameters[2].valueAsText
@@ -21553,7 +21553,7 @@ class ScharrFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -21564,7 +21564,7 @@ class ScharrFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         clip = parameters[2].valueAsText
@@ -21633,7 +21633,7 @@ class SobelFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -21644,7 +21644,7 @@ class SobelFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         variant = parameters[2].valueAsText
@@ -21712,7 +21712,7 @@ class StandardDeviationFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -21723,7 +21723,7 @@ class StandardDeviationFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
@@ -21791,7 +21791,7 @@ class TotalFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -21802,7 +21802,7 @@ class TotalFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
@@ -21879,7 +21879,7 @@ class UnsharpMasking(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -21890,7 +21890,7 @@ class UnsharpMasking(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         sigma = parameters[2].valueAsText
@@ -21969,7 +21969,7 @@ class UserDefinedWeightsFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -21980,7 +21980,7 @@ class UserDefinedWeightsFilter(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         weights = parameters[1].valueAsText
         output = parameters[2].valueAsText
@@ -22040,7 +22040,7 @@ class BalanceContrastEnhancement(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -22051,7 +22051,7 @@ class BalanceContrastEnhancement(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         band_mean = parameters[2].valueAsText
@@ -22135,7 +22135,7 @@ class CorrectVignetting(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -22146,13 +22146,13 @@ class CorrectVignetting(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         pp = parameters[1].valueAsText
         if pp is not None:
             desc = arcpy.Describe(pp)
             pp = desc.catalogPath
-            if (".gdb" in pp) or (".mdb" in pp):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         focal_length = parameters[3].valueAsText
@@ -22221,7 +22221,7 @@ class DirectDecorrelationStretch(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -22232,7 +22232,7 @@ class DirectDecorrelationStretch(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         k = parameters[2].valueAsText
@@ -22291,7 +22291,7 @@ class GammaCorrection(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -22302,7 +22302,7 @@ class GammaCorrection(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         gamma = parameters[2].valueAsText
@@ -22360,7 +22360,7 @@ class GaussianContrastStretch(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -22371,7 +22371,7 @@ class GaussianContrastStretch(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         num_tones = parameters[2].valueAsText
@@ -22429,7 +22429,7 @@ class HistogramEqualization(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -22440,7 +22440,7 @@ class HistogramEqualization(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         num_tones = parameters[2].valueAsText
@@ -22496,7 +22496,7 @@ class HistogramMatching(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -22507,7 +22507,7 @@ class HistogramMatching(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         histo_file = parameters[1].valueAsText
         output = parameters[2].valueAsText
@@ -22563,7 +22563,7 @@ class HistogramMatchingTwoImages(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -22574,13 +22574,13 @@ class HistogramMatchingTwoImages(object):
         if input1 is not None:
             desc = arcpy.Describe(input1)
             input1 = desc.catalogPath
-            if (".gdb" in input1) or (".mdb" in input1):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         input2 = parameters[1].valueAsText
         if input2 is not None:
             desc = arcpy.Describe(input2)
             input2 = desc.catalogPath
-            if (".gdb" in input2) or (".mdb" in input2):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -22651,7 +22651,7 @@ class MinMaxContrastStretch(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -22662,7 +22662,7 @@ class MinMaxContrastStretch(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         min_val = parameters[2].valueAsText
@@ -22752,7 +22752,7 @@ class PanchromaticSharpening(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -22763,31 +22763,31 @@ class PanchromaticSharpening(object):
         if red is not None:
             desc = arcpy.Describe(red)
             red = desc.catalogPath
-            if (".gdb" in red) or (".mdb" in red):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         green = parameters[1].valueAsText
         if green is not None:
             desc = arcpy.Describe(green)
             green = desc.catalogPath
-            if (".gdb" in green) or (".mdb" in green):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         blue = parameters[2].valueAsText
         if blue is not None:
             desc = arcpy.Describe(blue)
             blue = desc.catalogPath
-            if (".gdb" in blue) or (".mdb" in blue):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         composite = parameters[3].valueAsText
         if composite is not None:
             desc = arcpy.Describe(composite)
             composite = desc.catalogPath
-            if (".gdb" in composite) or (".mdb" in composite):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         pan = parameters[4].valueAsText
         if pan is not None:
             desc = arcpy.Describe(pan)
             pan = desc.catalogPath
-            if (".gdb" in pan) or (".mdb" in pan):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[5].valueAsText
         method = parameters[6].valueAsText
@@ -22865,7 +22865,7 @@ class PercentageContrastStretch(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -22876,7 +22876,7 @@ class PercentageContrastStretch(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         clip = parameters[2].valueAsText
@@ -22954,7 +22954,7 @@ class SigmoidalContrastStretch(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -22965,7 +22965,7 @@ class SigmoidalContrastStretch(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         cutoff = parameters[2].valueAsText
@@ -23034,7 +23034,7 @@ class StandardDeviationContrastStretch(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -23045,7 +23045,7 @@ class StandardDeviationContrastStretch(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         stdev = parameters[2].valueAsText
@@ -23104,7 +23104,7 @@ class ClassifyBuildingsInLidar(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -23116,7 +23116,7 @@ class ClassifyBuildingsInLidar(object):
         if buildings is not None:
             desc = arcpy.Describe(buildings)
             buildings = desc.catalogPath
-            if (".gdb" in buildings) or (".mdb" in buildings):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -23183,7 +23183,7 @@ class ClassifyOverlapPoints(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -23248,7 +23248,7 @@ class ClipLidarToPolygon(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -23260,7 +23260,7 @@ class ClipLidarToPolygon(object):
         if polygons is not None:
             desc = arcpy.Describe(polygons)
             polygons = desc.catalogPath
-            if (".gdb" in polygons) or (".mdb" in polygons):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -23317,7 +23317,7 @@ class ErasePolygonFromLidar(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -23329,7 +23329,7 @@ class ErasePolygonFromLidar(object):
         if polygons is not None:
             desc = arcpy.Describe(polygons)
             polygons = desc.catalogPath
-            if (".gdb" in polygons) or (".mdb" in polygons):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -23385,7 +23385,7 @@ class FilterLidarClasses(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -23448,7 +23448,7 @@ class FilterLidarScanAngles(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -23504,7 +23504,7 @@ class FindFlightlineEdgePoints(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -23568,7 +23568,7 @@ class FlightlineOverlap(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -23624,7 +23624,7 @@ class HeightAboveGround(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -23672,7 +23672,7 @@ class LasToAscii(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -23718,7 +23718,7 @@ class LasToMultipointShapefile(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -23764,7 +23764,7 @@ class LasToShapefile(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -23827,7 +23827,7 @@ class LidarBlockMaximum(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -23892,7 +23892,7 @@ class LidarBlockMinimum(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -23970,7 +23970,7 @@ class LidarClassifySubset(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -24035,7 +24035,7 @@ class LidarColourize(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -24047,7 +24047,7 @@ class LidarColourize(object):
         if in_image is not None:
             desc = arcpy.Describe(in_image)
             in_image = desc.catalogPath
-            if (".gdb" in in_image) or (".mdb" in in_image):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -24128,7 +24128,7 @@ class LidarConstructVectorTin(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -24226,7 +24226,7 @@ class LidarElevationSlice(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -24349,7 +24349,7 @@ class LidarGroundPointFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -24429,7 +24429,7 @@ class LidarHexBinning(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -24513,7 +24513,7 @@ class LidarHillshade(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -24591,7 +24591,7 @@ class LidarHistogram(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -24718,7 +24718,7 @@ class LidarIdwInterpolation(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -24799,7 +24799,7 @@ class LidarInfo(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -24857,7 +24857,7 @@ class LidarJoin(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -24937,7 +24937,7 @@ class LidarKappaIndex(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -25056,7 +25056,7 @@ class LidarNearestNeighbourGridding(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -25168,7 +25168,7 @@ class LidarPointDensity(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -25276,7 +25276,7 @@ class LidarPointStats(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -25400,7 +25400,7 @@ class LidarRansacPlanes(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -25554,7 +25554,7 @@ class LidarRbfInterpolation(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -25628,7 +25628,7 @@ class LidarRemoveDuplicates(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -25718,7 +25718,7 @@ class LidarRemoveOutliers(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -25867,7 +25867,7 @@ class LidarSegmentation(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -25966,7 +25966,7 @@ class LidarSegmentationBasedFilter(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -26054,7 +26054,7 @@ class LidarThin(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -26137,7 +26137,7 @@ class LidarThinHighDensity(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -26232,7 +26232,7 @@ class LidarTile(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -26300,7 +26300,7 @@ class LidarTileFootprint(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -26415,7 +26415,7 @@ class LidarTinGridding(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -26486,7 +26486,7 @@ class LidarTophatTransform(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -26551,7 +26551,7 @@ class NormalVectors(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -26613,7 +26613,7 @@ class SelectTilesByPolygon(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -26626,7 +26626,7 @@ class SelectTilesByPolygon(object):
         if polygons is not None:
             desc = arcpy.Describe(polygons)
             polygons = desc.catalogPath
-            if (".gdb" in polygons) or (".mdb" in polygons):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         old_stdout = sys.stdout
         result = StringIO()
@@ -26680,7 +26680,7 @@ class And(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -26691,13 +26691,13 @@ class And(object):
         if input1 is not None:
             desc = arcpy.Describe(input1)
             input1 = desc.catalogPath
-            if (".gdb" in input1) or (".mdb" in input1):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         input2 = parameters[1].valueAsText
         if input2 is not None:
             desc = arcpy.Describe(input2)
             input2 = desc.catalogPath
-            if (".gdb" in input2) or (".mdb" in input2):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -26752,7 +26752,7 @@ class Not(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -26763,13 +26763,13 @@ class Not(object):
         if input1 is not None:
             desc = arcpy.Describe(input1)
             input1 = desc.catalogPath
-            if (".gdb" in input1) or (".mdb" in input1):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         input2 = parameters[1].valueAsText
         if input2 is not None:
             desc = arcpy.Describe(input2)
             input2 = desc.catalogPath
-            if (".gdb" in input2) or (".mdb" in input2):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -26824,7 +26824,7 @@ class Or(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -26835,13 +26835,13 @@ class Or(object):
         if input1 is not None:
             desc = arcpy.Describe(input1)
             input1 = desc.catalogPath
-            if (".gdb" in input1) or (".mdb" in input1):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         input2 = parameters[1].valueAsText
         if input2 is not None:
             desc = arcpy.Describe(input2)
             input2 = desc.catalogPath
-            if (".gdb" in input2) or (".mdb" in input2):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -26889,7 +26889,7 @@ class AbsoluteValue(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -26900,7 +26900,7 @@ class AbsoluteValue(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -26955,7 +26955,7 @@ class Add(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -27017,7 +27017,7 @@ class Anova(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -27028,13 +27028,13 @@ class Anova(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         features = parameters[1].valueAsText
         if features is not None:
             desc = arcpy.Describe(features)
             features = desc.catalogPath
-            if (".gdb" in features) or (".mdb" in features):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -27082,7 +27082,7 @@ class ArcCos(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -27093,7 +27093,7 @@ class ArcCos(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -27141,7 +27141,7 @@ class ArcSin(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -27152,7 +27152,7 @@ class ArcSin(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -27200,7 +27200,7 @@ class ArcTan(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -27211,7 +27211,7 @@ class ArcTan(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -27259,7 +27259,7 @@ class Arcosh(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -27270,7 +27270,7 @@ class Arcosh(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -27318,7 +27318,7 @@ class Arsinh(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -27329,7 +27329,7 @@ class Arsinh(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -27377,7 +27377,7 @@ class Artanh(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -27388,7 +27388,7 @@ class Artanh(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -27443,7 +27443,7 @@ class Atan2(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -27498,7 +27498,7 @@ class AttributeCorrelation(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -27509,7 +27509,7 @@ class AttributeCorrelation(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -27590,7 +27590,7 @@ class AttributeCorrelationNeighbourhoodAnalysis(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -27601,7 +27601,7 @@ class AttributeCorrelationNeighbourhoodAnalysis(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         field1 = parameters[1].valueAsText
         field2 = parameters[2].valueAsText
@@ -27661,7 +27661,7 @@ class AttributeHistogram(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -27672,7 +27672,7 @@ class AttributeHistogram(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
@@ -27746,7 +27746,7 @@ class AttributeScattergram(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -27757,7 +27757,7 @@ class AttributeScattergram(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         fieldx = parameters[1].valueAsText
         fieldy = parameters[2].valueAsText
@@ -27808,7 +27808,7 @@ class Ceil(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -27819,7 +27819,7 @@ class Ceil(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -27867,7 +27867,7 @@ class Cos(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -27878,7 +27878,7 @@ class Cos(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -27926,7 +27926,7 @@ class Cosh(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -27937,7 +27937,7 @@ class Cosh(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -27985,7 +27985,7 @@ class CrispnessIndex(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -27996,7 +27996,7 @@ class CrispnessIndex(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -28051,7 +28051,7 @@ class CrossTabulation(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -28062,13 +28062,13 @@ class CrossTabulation(object):
         if input1 is not None:
             desc = arcpy.Describe(input1)
             input1 = desc.catalogPath
-            if (".gdb" in input1) or (".mdb" in input1):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         input2 = parameters[1].valueAsText
         if input2 is not None:
             desc = arcpy.Describe(input2)
             input2 = desc.catalogPath
-            if (".gdb" in input2) or (".mdb" in input2):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -28116,7 +28116,7 @@ class CumulativeDistribution(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -28127,7 +28127,7 @@ class CumulativeDistribution(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -28175,7 +28175,7 @@ class Decrement(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -28186,7 +28186,7 @@ class Decrement(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -28241,7 +28241,7 @@ class Divide(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -28303,7 +28303,7 @@ class EqualTo(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -28358,7 +28358,7 @@ class Exp(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -28369,7 +28369,7 @@ class Exp(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -28417,7 +28417,7 @@ class Exp2(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -28428,7 +28428,7 @@ class Exp2(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -28476,7 +28476,7 @@ class Floor(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -28487,7 +28487,7 @@ class Floor(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -28549,7 +28549,7 @@ class GreaterThan(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -28617,7 +28617,7 @@ class ImageAutocorrelation(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -28673,7 +28673,7 @@ class ImageCorrelation(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -28762,7 +28762,7 @@ class ImageCorrelationNeighbourhoodAnalysis(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -28773,13 +28773,13 @@ class ImageCorrelationNeighbourhoodAnalysis(object):
         if input1 is not None:
             desc = arcpy.Describe(input1)
             input1 = desc.catalogPath
-            if (".gdb" in input1) or (".mdb" in input1):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         input2 = parameters[1].valueAsText
         if input2 is not None:
             desc = arcpy.Describe(input2)
             input2 = desc.catalogPath
-            if (".gdb" in input2) or (".mdb" in input2):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output1 = parameters[2].valueAsText
         output2 = parameters[3].valueAsText
@@ -28868,7 +28868,7 @@ class ImageRegression(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -28879,13 +28879,13 @@ class ImageRegression(object):
         if input1 is not None:
             desc = arcpy.Describe(input1)
             input1 = desc.catalogPath
-            if (".gdb" in input1) or (".mdb" in input1):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         input2 = parameters[1].valueAsText
         if input2 is not None:
             desc = arcpy.Describe(input2)
             input2 = desc.catalogPath
-            if (".gdb" in input2) or (".mdb" in input2):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         out_residuals = parameters[3].valueAsText
@@ -28936,7 +28936,7 @@ class InPlaceAdd(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -28947,7 +28947,7 @@ class InPlaceAdd(object):
         if input1 is not None:
             desc = arcpy.Describe(input1)
             input1 = desc.catalogPath
-            if (".gdb" in input1) or (".mdb" in input1):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         input2 = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -28994,7 +28994,7 @@ class InPlaceDivide(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -29005,7 +29005,7 @@ class InPlaceDivide(object):
         if input1 is not None:
             desc = arcpy.Describe(input1)
             input1 = desc.catalogPath
-            if (".gdb" in input1) or (".mdb" in input1):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         input2 = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -29052,7 +29052,7 @@ class InPlaceMultiply(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -29063,7 +29063,7 @@ class InPlaceMultiply(object):
         if input1 is not None:
             desc = arcpy.Describe(input1)
             input1 = desc.catalogPath
-            if (".gdb" in input1) or (".mdb" in input1):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         input2 = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -29110,7 +29110,7 @@ class InPlaceSubtract(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -29121,7 +29121,7 @@ class InPlaceSubtract(object):
         if input1 is not None:
             desc = arcpy.Describe(input1)
             input1 = desc.catalogPath
-            if (".gdb" in input1) or (".mdb" in input1):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         input2 = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -29169,7 +29169,7 @@ class Increment(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -29180,7 +29180,7 @@ class Increment(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -29235,7 +29235,7 @@ class IntegerDivision(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -29290,7 +29290,7 @@ class IsNoData(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -29301,7 +29301,7 @@ class IsNoData(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -29356,7 +29356,7 @@ class KappaIndex(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -29367,13 +29367,13 @@ class KappaIndex(object):
         if input1 is not None:
             desc = arcpy.Describe(input1)
             input1 = desc.catalogPath
-            if (".gdb" in input1) or (".mdb" in input1):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         input2 = parameters[1].valueAsText
         if input2 is not None:
             desc = arcpy.Describe(input2)
             input2 = desc.catalogPath
-            if (".gdb" in input2) or (".mdb" in input2):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -29428,7 +29428,7 @@ class KsTestForNormality(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -29439,7 +29439,7 @@ class KsTestForNormality(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         num_samples = parameters[2].valueAsText
@@ -29502,7 +29502,7 @@ class LessThan(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -29566,7 +29566,7 @@ class ListUniqueValues(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -29577,7 +29577,7 @@ class ListUniqueValues(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
@@ -29626,7 +29626,7 @@ class Ln(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -29637,7 +29637,7 @@ class Ln(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -29685,7 +29685,7 @@ class Log10(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -29696,7 +29696,7 @@ class Log10(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -29744,7 +29744,7 @@ class Log2(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -29755,7 +29755,7 @@ class Log2(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -29810,7 +29810,7 @@ class Max(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -29872,7 +29872,7 @@ class Min(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -29934,7 +29934,7 @@ class Modulo(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -29996,7 +29996,7 @@ class Multiply(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -30051,7 +30051,7 @@ class Negate(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -30062,7 +30062,7 @@ class Negate(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -30117,7 +30117,7 @@ class NotEqualTo(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -30186,7 +30186,7 @@ class PairedSampleTTest(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -30197,13 +30197,13 @@ class PairedSampleTTest(object):
         if input1 is not None:
             desc = arcpy.Describe(input1)
             input1 = desc.catalogPath
-            if (".gdb" in input1) or (".mdb" in input1):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         input2 = parameters[1].valueAsText
         if input2 is not None:
             desc = arcpy.Describe(input2)
             input2 = desc.catalogPath
-            if (".gdb" in input2) or (".mdb" in input2):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         num_samples = parameters[3].valueAsText
@@ -30259,7 +30259,7 @@ class Power(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -30329,7 +30329,7 @@ class PrincipalComponentAnalysis(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -30394,7 +30394,7 @@ class Quantiles(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -30405,7 +30405,7 @@ class Quantiles(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         num_quantiles = parameters[2].valueAsText
@@ -30454,7 +30454,7 @@ class RandomField(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -30465,7 +30465,7 @@ class RandomField(object):
         if base is not None:
             desc = arcpy.Describe(base)
             base = desc.catalogPath
-            if (".gdb" in base) or (".mdb" in base):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -30522,7 +30522,7 @@ class RandomSample(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -30533,7 +30533,7 @@ class RandomSample(object):
         if base is not None:
             desc = arcpy.Describe(base)
             base = desc.catalogPath
-            if (".gdb" in base) or (".mdb" in base):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         num_samples = parameters[2].valueAsText
@@ -30582,7 +30582,7 @@ class RasterHistogram(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -30593,7 +30593,7 @@ class RasterHistogram(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -30633,7 +30633,7 @@ class RasterSummaryStats(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -30644,7 +30644,7 @@ class RasterSummaryStats(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         old_stdout = sys.stdout
         result = StringIO()
@@ -30691,7 +30691,7 @@ class Reciprocal(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -30702,7 +30702,7 @@ class Reciprocal(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -30778,7 +30778,7 @@ class RescaleValueRange(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -30789,7 +30789,7 @@ class RescaleValueRange(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         out_min_val = parameters[2].valueAsText
@@ -30840,7 +30840,7 @@ class RootMeanSquareError(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -30851,13 +30851,13 @@ class RootMeanSquareError(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         base = parameters[1].valueAsText
         if base is not None:
             desc = arcpy.Describe(base)
             base = desc.catalogPath
-            if (".gdb" in base) or (".mdb" in base):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         old_stdout = sys.stdout
         result = StringIO()
@@ -30904,7 +30904,7 @@ class Round(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -30915,7 +30915,7 @@ class Round(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -30963,7 +30963,7 @@ class Sin(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -30974,7 +30974,7 @@ class Sin(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -31022,7 +31022,7 @@ class Sinh(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -31033,7 +31033,7 @@ class Sinh(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -31081,7 +31081,7 @@ class Square(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -31092,7 +31092,7 @@ class Square(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -31140,7 +31140,7 @@ class SquareRoot(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -31151,7 +31151,7 @@ class SquareRoot(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -31206,7 +31206,7 @@ class Subtract(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -31261,7 +31261,7 @@ class Tan(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -31272,7 +31272,7 @@ class Tan(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -31320,7 +31320,7 @@ class Tanh(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -31331,7 +31331,7 @@ class Tanh(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -31379,7 +31379,7 @@ class ToDegrees(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -31390,7 +31390,7 @@ class ToDegrees(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -31438,7 +31438,7 @@ class ToRadians(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -31449,7 +31449,7 @@ class ToRadians(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -31506,7 +31506,7 @@ class TrendSurface(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -31517,7 +31517,7 @@ class TrendSurface(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         order = parameters[2].valueAsText
@@ -31591,7 +31591,7 @@ class TrendSurfaceVectorPoints(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -31602,7 +31602,7 @@ class TrendSurfaceVectorPoints(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
@@ -31660,7 +31660,7 @@ class Truncate(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -31671,7 +31671,7 @@ class Truncate(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         num_decimals = parameters[2].valueAsText
@@ -31736,7 +31736,7 @@ class TurningBandsSimulation(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -31747,7 +31747,7 @@ class TurningBandsSimulation(object):
         if base is not None:
             desc = arcpy.Describe(base)
             base = desc.catalogPath
-            if (".gdb" in base) or (".mdb" in base):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         range = parameters[2].valueAsText
@@ -31811,7 +31811,7 @@ class TwoSampleKsTest(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -31822,13 +31822,13 @@ class TwoSampleKsTest(object):
         if input1 is not None:
             desc = arcpy.Describe(input1)
             input1 = desc.catalogPath
-            if (".gdb" in input1) or (".mdb" in input1):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         input2 = parameters[1].valueAsText
         if input2 is not None:
             desc = arcpy.Describe(input2)
             input2 = desc.catalogPath
-            if (".gdb" in input2) or (".mdb" in input2):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         num_samples = parameters[3].valueAsText
@@ -31891,7 +31891,7 @@ class WilcoxonSignedRankTest(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -31902,13 +31902,13 @@ class WilcoxonSignedRankTest(object):
         if input1 is not None:
             desc = arcpy.Describe(input1)
             input1 = desc.catalogPath
-            if (".gdb" in input1) or (".mdb" in input1):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         input2 = parameters[1].valueAsText
         if input2 is not None:
             desc = arcpy.Describe(input2)
             input2 = desc.catalogPath
-            if (".gdb" in input2) or (".mdb" in input2):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         num_samples = parameters[3].valueAsText
@@ -31964,7 +31964,7 @@ class Xor(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -31975,13 +31975,13 @@ class Xor(object):
         if input1 is not None:
             desc = arcpy.Describe(input1)
             input1 = desc.catalogPath
-            if (".gdb" in input1) or (".mdb" in input1):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         input2 = parameters[1].valueAsText
         if input2 is not None:
             desc = arcpy.Describe(input2)
             input2 = desc.catalogPath
-            if (".gdb" in input2) or (".mdb" in input2):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -32029,7 +32029,7 @@ class ZScores(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -32040,7 +32040,7 @@ class ZScores(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
@@ -32114,7 +32114,7 @@ class ZonalStatistics(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -32125,13 +32125,13 @@ class ZonalStatistics(object):
         if i is not None:
             desc = arcpy.Describe(i)
             i = desc.catalogPath
-            if (".gdb" in i) or (".mdb" in i):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         features = parameters[1].valueAsText
         if features is not None:
             desc = arcpy.Describe(features)
             features = desc.catalogPath
-            if (".gdb" in features) or (".mdb" in features):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         stat = parameters[3].valueAsText
@@ -32204,7 +32204,7 @@ class DistanceToOutlet(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -32215,13 +32215,13 @@ class DistanceToOutlet(object):
         if d8_pntr is not None:
             desc = arcpy.Describe(d8_pntr)
             d8_pntr = desc.catalogPath
-            if (".gdb" in d8_pntr) or (".mdb" in d8_pntr):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         streams = parameters[1].valueAsText
         if streams is not None:
             desc = arcpy.Describe(streams)
             streams = desc.catalogPath
-            if (".gdb" in streams) or (".mdb" in streams):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
@@ -32285,7 +32285,7 @@ class ExtractStreams(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -32296,7 +32296,7 @@ class ExtractStreams(object):
         if flow_accum is not None:
             desc = arcpy.Describe(flow_accum)
             flow_accum = desc.catalogPath
-            if (".gdb" in flow_accum) or (".mdb" in flow_accum):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         threshold = parameters[2].valueAsText
@@ -32375,7 +32375,7 @@ class ExtractValleys(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -32386,7 +32386,7 @@ class ExtractValleys(object):
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[1].valueAsText
         variant = parameters[2].valueAsText
@@ -32460,7 +32460,7 @@ class FarthestChannelHead(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -32471,13 +32471,13 @@ class FarthestChannelHead(object):
         if d8_pntr is not None:
             desc = arcpy.Describe(d8_pntr)
             d8_pntr = desc.catalogPath
-            if (".gdb" in d8_pntr) or (".mdb" in d8_pntr):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         streams = parameters[1].valueAsText
         if streams is not None:
             desc = arcpy.Describe(streams)
             streams = desc.catalogPath
-            if (".gdb" in streams) or (".mdb" in streams):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
@@ -32550,7 +32550,7 @@ class FindMainStem(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -32561,13 +32561,13 @@ class FindMainStem(object):
         if d8_pntr is not None:
             desc = arcpy.Describe(d8_pntr)
             d8_pntr = desc.catalogPath
-            if (".gdb" in d8_pntr) or (".mdb" in d8_pntr):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         streams = parameters[1].valueAsText
         if streams is not None:
             desc = arcpy.Describe(streams)
             streams = desc.catalogPath
-            if (".gdb" in streams) or (".mdb" in streams):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
@@ -32640,7 +32640,7 @@ class HackStreamOrder(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -32651,13 +32651,13 @@ class HackStreamOrder(object):
         if d8_pntr is not None:
             desc = arcpy.Describe(d8_pntr)
             d8_pntr = desc.catalogPath
-            if (".gdb" in d8_pntr) or (".mdb" in d8_pntr):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         streams = parameters[1].valueAsText
         if streams is not None:
             desc = arcpy.Describe(streams)
             streams = desc.catalogPath
-            if (".gdb" in streams) or (".mdb" in streams):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
@@ -32730,7 +32730,7 @@ class HortonStreamOrder(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -32741,13 +32741,13 @@ class HortonStreamOrder(object):
         if d8_pntr is not None:
             desc = arcpy.Describe(d8_pntr)
             d8_pntr = desc.catalogPath
-            if (".gdb" in d8_pntr) or (".mdb" in d8_pntr):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         streams = parameters[1].valueAsText
         if streams is not None:
             desc = arcpy.Describe(streams)
             streams = desc.catalogPath
-            if (".gdb" in streams) or (".mdb" in streams):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
@@ -32820,7 +32820,7 @@ class LengthOfUpstreamChannels(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -32831,13 +32831,13 @@ class LengthOfUpstreamChannels(object):
         if d8_pntr is not None:
             desc = arcpy.Describe(d8_pntr)
             d8_pntr = desc.catalogPath
-            if (".gdb" in d8_pntr) or (".mdb" in d8_pntr):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         streams = parameters[1].valueAsText
         if streams is not None:
             desc = arcpy.Describe(streams)
             streams = desc.catalogPath
-            if (".gdb" in streams) or (".mdb" in streams):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
@@ -32910,7 +32910,7 @@ class LongProfile(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -32921,19 +32921,19 @@ class LongProfile(object):
         if d8_pntr is not None:
             desc = arcpy.Describe(d8_pntr)
             d8_pntr = desc.catalogPath
-            if (".gdb" in d8_pntr) or (".mdb" in d8_pntr):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         streams = parameters[1].valueAsText
         if streams is not None:
             desc = arcpy.Describe(streams)
             streams = desc.catalogPath
-            if (".gdb" in streams) or (".mdb" in streams):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         dem = parameters[2].valueAsText
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[3].valueAsText
         esri_pntr = parameters[4].valueAsText
@@ -33006,7 +33006,7 @@ class LongProfileFromPoints(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -33017,19 +33017,19 @@ class LongProfileFromPoints(object):
         if d8_pntr is not None:
             desc = arcpy.Describe(d8_pntr)
             d8_pntr = desc.catalogPath
-            if (".gdb" in d8_pntr) or (".mdb" in d8_pntr):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         points = parameters[1].valueAsText
         if points is not None:
             desc = arcpy.Describe(points)
             points = desc.catalogPath
-            if (".gdb" in points) or (".mdb" in points):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         dem = parameters[2].valueAsText
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[3].valueAsText
         esri_pntr = parameters[4].valueAsText
@@ -33094,7 +33094,7 @@ class RasterStreamsToVector(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -33105,13 +33105,13 @@ class RasterStreamsToVector(object):
         if streams is not None:
             desc = arcpy.Describe(streams)
             streams = desc.catalogPath
-            if (".gdb" in streams) or (".mdb" in streams):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         d8_pntr = parameters[1].valueAsText
         if d8_pntr is not None:
             desc = arcpy.Describe(d8_pntr)
             d8_pntr = desc.catalogPath
-            if (".gdb" in d8_pntr) or (".mdb" in d8_pntr):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
@@ -33186,7 +33186,7 @@ class RasterizeStreams(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -33197,13 +33197,13 @@ class RasterizeStreams(object):
         if streams is not None:
             desc = arcpy.Describe(streams)
             streams = desc.catalogPath
-            if (".gdb" in streams) or (".mdb" in streams):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         base = parameters[1].valueAsText
         if base is not None:
             desc = arcpy.Describe(base)
             base = desc.catalogPath
-            if (".gdb" in base) or (".mdb" in base):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         nodata = parameters[3].valueAsText
@@ -33276,7 +33276,7 @@ class RemoveShortStreams(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -33287,13 +33287,13 @@ class RemoveShortStreams(object):
         if d8_pntr is not None:
             desc = arcpy.Describe(d8_pntr)
             d8_pntr = desc.catalogPath
-            if (".gdb" in d8_pntr) or (".mdb" in d8_pntr):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         streams = parameters[1].valueAsText
         if streams is not None:
             desc = arcpy.Describe(streams)
             streams = desc.catalogPath
-            if (".gdb" in streams) or (".mdb" in streams):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         min_length = parameters[3].valueAsText
@@ -33366,7 +33366,7 @@ class ShreveStreamMagnitude(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -33377,13 +33377,13 @@ class ShreveStreamMagnitude(object):
         if d8_pntr is not None:
             desc = arcpy.Describe(d8_pntr)
             d8_pntr = desc.catalogPath
-            if (".gdb" in d8_pntr) or (".mdb" in d8_pntr):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         streams = parameters[1].valueAsText
         if streams is not None:
             desc = arcpy.Describe(streams)
             streams = desc.catalogPath
-            if (".gdb" in streams) or (".mdb" in streams):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
@@ -33456,7 +33456,7 @@ class StrahlerStreamOrder(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -33467,13 +33467,13 @@ class StrahlerStreamOrder(object):
         if d8_pntr is not None:
             desc = arcpy.Describe(d8_pntr)
             d8_pntr = desc.catalogPath
-            if (".gdb" in d8_pntr) or (".mdb" in d8_pntr):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         streams = parameters[1].valueAsText
         if streams is not None:
             desc = arcpy.Describe(streams)
             streams = desc.catalogPath
-            if (".gdb" in streams) or (".mdb" in streams):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
@@ -33546,7 +33546,7 @@ class StreamLinkClass(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -33557,13 +33557,13 @@ class StreamLinkClass(object):
         if d8_pntr is not None:
             desc = arcpy.Describe(d8_pntr)
             d8_pntr = desc.catalogPath
-            if (".gdb" in d8_pntr) or (".mdb" in d8_pntr):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         streams = parameters[1].valueAsText
         if streams is not None:
             desc = arcpy.Describe(streams)
             streams = desc.catalogPath
-            if (".gdb" in streams) or (".mdb" in streams):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
@@ -33636,7 +33636,7 @@ class StreamLinkIdentifier(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -33647,13 +33647,13 @@ class StreamLinkIdentifier(object):
         if d8_pntr is not None:
             desc = arcpy.Describe(d8_pntr)
             d8_pntr = desc.catalogPath
-            if (".gdb" in d8_pntr) or (".mdb" in d8_pntr):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         streams = parameters[1].valueAsText
         if streams is not None:
             desc = arcpy.Describe(streams)
             streams = desc.catalogPath
-            if (".gdb" in streams) or (".mdb" in streams):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
@@ -33726,7 +33726,7 @@ class StreamLinkLength(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -33737,13 +33737,13 @@ class StreamLinkLength(object):
         if d8_pntr is not None:
             desc = arcpy.Describe(d8_pntr)
             d8_pntr = desc.catalogPath
-            if (".gdb" in d8_pntr) or (".mdb" in d8_pntr):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         linkid = parameters[1].valueAsText
         if linkid is not None:
             desc = arcpy.Describe(linkid)
             linkid = desc.catalogPath
-            if (".gdb" in linkid) or (".mdb" in linkid):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
@@ -33823,7 +33823,7 @@ class StreamLinkSlope(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -33834,19 +33834,19 @@ class StreamLinkSlope(object):
         if d8_pntr is not None:
             desc = arcpy.Describe(d8_pntr)
             d8_pntr = desc.catalogPath
-            if (".gdb" in d8_pntr) or (".mdb" in d8_pntr):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         linkid = parameters[1].valueAsText
         if linkid is not None:
             desc = arcpy.Describe(linkid)
             linkid = desc.catalogPath
-            if (".gdb" in linkid) or (".mdb" in linkid):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         dem = parameters[2].valueAsText
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[3].valueAsText
         esri_pntr = parameters[4].valueAsText
@@ -33926,7 +33926,7 @@ class StreamSlopeContinuous(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -33937,19 +33937,19 @@ class StreamSlopeContinuous(object):
         if d8_pntr is not None:
             desc = arcpy.Describe(d8_pntr)
             d8_pntr = desc.catalogPath
-            if (".gdb" in d8_pntr) or (".mdb" in d8_pntr):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         streams = parameters[1].valueAsText
         if streams is not None:
             desc = arcpy.Describe(streams)
             streams = desc.catalogPath
-            if (".gdb" in streams) or (".mdb" in streams):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         dem = parameters[2].valueAsText
         if dem is not None:
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
-            if (".gdb" in dem) or (".mdb" in dem):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[3].valueAsText
         esri_pntr = parameters[4].valueAsText
@@ -34022,7 +34022,7 @@ class TopologicalStreamOrder(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -34033,13 +34033,13 @@ class TopologicalStreamOrder(object):
         if d8_pntr is not None:
             desc = arcpy.Describe(d8_pntr)
             d8_pntr = desc.catalogPath
-            if (".gdb" in d8_pntr) or (".mdb" in d8_pntr):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         streams = parameters[1].valueAsText
         if streams is not None:
             desc = arcpy.Describe(streams)
             streams = desc.catalogPath
-            if (".gdb" in streams) or (".mdb" in streams):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
@@ -34112,7 +34112,7 @@ class TributaryIdentifier(object):
             if param_str is not None:
                 try:
                     desc = arcpy.Describe(param_str)
-                    if (".gdb" in desc.catalogPath) or (".mdb" in desc.catalogPath):
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                         param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
                 except:
                     param.clearMessage()
@@ -34123,13 +34123,13 @@ class TributaryIdentifier(object):
         if d8_pntr is not None:
             desc = arcpy.Describe(d8_pntr)
             d8_pntr = desc.catalogPath
-            if (".gdb" in d8_pntr) or (".mdb" in d8_pntr):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         streams = parameters[1].valueAsText
         if streams is not None:
             desc = arcpy.Describe(streams)
             streams = desc.catalogPath
-            if (".gdb" in streams) or (".mdb" in streams):
+            if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
                  arcpy.AddError("Datasets stored in a Geodatabase are not supported.")
         output = parameters[2].valueAsText
         esri_pntr = parameters[3].valueAsText
