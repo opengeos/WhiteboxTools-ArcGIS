@@ -49,6 +49,7 @@ def write_header(file_path, tool_list):
     f_header = open(file_path, "w")
     f_header.write("import arcpy\n")
     f_header.write("import os\n")
+    f_header.write("import webbrowser\n")
     f_header.write("from WBT.whitebox_tools import WhiteboxTools\n")
     f_header.write('if sys.version_info < (3, 0):\n')
     f_header.write('    from StringIO import StringIO\n')

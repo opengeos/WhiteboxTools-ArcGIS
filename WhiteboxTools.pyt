@@ -1,5 +1,6 @@
 import arcpy
 import os
+import webbrowser
 from WBT.whitebox_tools import WhiteboxTools
 if sys.version_info < (3, 0):
     from StringIO import StringIO
@@ -1192,7 +1193,9 @@ class ViewCode(object):
     def execute(self, parameters, messages):
         """The source code of the tool."""
         param0 = parameters[0].valueAsText
-        tool_name = param0.replace(" ", "").strip()
+        tool_name = param0.replace(" ", "").strip()        
+        messages.addMessage("Opening default browser...")
+        webbrowser.get('windows-default').open(wbt.view_code(tool_name))
         messages.addMessage(wbt.view_code(tool_name))
         return
 

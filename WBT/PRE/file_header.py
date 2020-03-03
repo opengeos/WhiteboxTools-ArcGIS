@@ -1,5 +1,6 @@
 import arcpy
 import os
+import webbrowser
 from WBT.whitebox_tools import WhiteboxTools
 if sys.version_info < (3, 0):
     from StringIO import StringIO
