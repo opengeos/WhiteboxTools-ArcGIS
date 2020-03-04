@@ -302,23 +302,23 @@ def define_execute(params):
 
         lines.append('        {} = parameters[{}].valueAsText\n'.format(param, index))
 
-        # if param_type in inputRasVec:
+        if param_type in inputRasVec:
         #     lines.append('        desc = arcpy.Describe({})\n'.format(param))
         #     lines.append('        {} = desc.catalogPath\n'.format(param))    
         # if param_type == "Optional":
-        #     lines.append('        if {} is not None:\n'.format(param))
-        #     lines.append('            desc = arcpy.Describe({})\n'.format(param))
-        #     lines.append('            {} = desc.catalogPath\n'.format(param))    
+            lines.append('        if {} is not None:\n'.format(param))
+            lines.append('            desc = arcpy.Describe({})\n'.format(param))
+            lines.append('            {} = desc.catalogPath\n'.format(param))    
 
         # if param == "cell_size":
         #     print(param)
 
-        if param_type in inputRasVec:
-            lines.append('        if {} is not None:\n'.format(param))
-            lines.append('            desc = arcpy.Describe({})\n'.format(param))
-            lines.append('            {} = desc.catalogPath\n'.format(param))  
-            lines.append('            if (".gdb\\\\" in desc.catalogPath) or (".mdb\\\\" in desc.catalogPath):\n')  
-            lines.append('                 arcpy.AddError("Datasets stored in a Geodatabase are not supported.")\n')
+        # if param_type in inputRasVec:
+        #     lines.append('        if {} is not None:\n'.format(param))
+        #     lines.append('            desc = arcpy.Describe({})\n'.format(param))
+        #     lines.append('            {} = desc.catalogPath\n'.format(param))  
+        #     lines.append('            if (".gdb\\\\" in desc.catalogPath) or (".mdb\\\\" in desc.catalogPath):\n')  
+        #     lines.append('                 arcpy.AddError("Datasets stored in a Geodatabase are not supported.")\n')
         # elif optional:
         #     lines.append('        if {} is None:\n'.format(param))
         #     lines.append('            {} = None\n'.format(param))
