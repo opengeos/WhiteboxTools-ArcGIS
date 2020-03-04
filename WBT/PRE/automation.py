@@ -101,7 +101,9 @@ def get_tool_params(tool_name):
 
         flags = item[index_flags - 1 : index_description -2].replace('"flags":', '')
         
-        if ("\"-i\"" in flags) and ("--input" in flags) :
+        if ("\"-i\"" in flags) and ("--inputs" in flags) :
+            flags = "inputs"
+        elif ("\"-i\"" in flags) and ("--input" in flags) :
             flags = "i"
         elif flags.count("--") == 1 :
             flags = flags.split('--')[1][: -2]
@@ -109,6 +111,7 @@ def get_tool_params(tool_name):
             flags = flags.split('--')[2][: -2]
         else:
             flags = flags.split('-')[1][: -2]
+
         param_dict['flags'] = flags
 
         desc = item[index_description - 1 : index_parameter_type - 2].replace('"description":', '')
@@ -186,6 +189,7 @@ def generate_tool_template(tool):
     lines.append('        old_stdout = sys.stdout\n')
     lines.append('        result = StringIO()\n')
     lines.append('        sys.stdout = result\n')
+
     # line = '        wbt.{}({})\n'.format(to_snakecase(tool['name']), ', '.join(tool['parameters']).replace(", class,", ", cls,"))
     line = '        wbt.{}({})\n'.format(to_snakecase(tool['name']), ', '.join(tool_params).replace(", class=class,", ", cls=cls,"))
 
@@ -225,6 +229,9 @@ def define_tool_params(params):
             param = "cls"
 
         data_type = get_data_type(items['parameter_type'])
+
+        # if data_type['multi_value'] and param == "i":
+        #     param = "inputs"
 
         if data_type['data_type'] == '"DERasterDataset"' and direction == "Output":
             data_type['data_type'] = '"DEFile"'
@@ -297,10 +304,23 @@ def define_execute(params):
             if params[param]['optional'] == 'true':
                 optional = True
 
+        # deal with multi-value input
+        items = params[param]
+        data_type = get_data_type(items['parameter_type'])
+        # if data_type['multi_value'] and param == 'i':
+        #     param = "inputs"
+
         if param == 'class':
             param = "cls"
 
+        # deal with multi-value inputs
         lines.append('        {} = parameters[{}].valueAsText\n'.format(param, index))
+        if data_type['multi_value']:
+            lines.append('        items = {}.split(";")\n'.format(param))
+            lines.append('        items_path = []\n')
+            lines.append('        for item in items:\n')
+            lines.append('            items_path.append(arcpy.Describe(item).catalogPath)\n')
+            lines.append('        {} = ";".join(items_path)\n'.format(param))
 
         if param_type in inputRasVec:
         #     lines.append('        desc = arcpy.Describe({})\n'.format(param))
