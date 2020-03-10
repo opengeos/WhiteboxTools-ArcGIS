@@ -130,6 +130,9 @@ def get_tool_params(tool_name):
 
         params_dict[flags] = param_dict
 
+        # if tool_name == 'Divide':
+        #     print("start debugging")
+
     return params_dict
 
 
@@ -292,6 +295,7 @@ def define_execute(params):
         param_type = params[param]['parameter_type']
         inputRasVec = []
         inputRasVec.append({'ExistingFile': 'Raster'})
+        # inputRasVec.append({'ExistingFileOrFloat': 'Raster'})
         inputRasVec.append({'ExistingFile': {'Vector': 'Point'}})
         inputRasVec.append({'ExistingFile': {'Vector': 'Line'}})
         inputRasVec.append({'ExistingFile': {'Vector': 'Polygon'}})
@@ -329,6 +333,10 @@ def define_execute(params):
             lines.append('        if {} is not None:\n'.format(param))
             lines.append('            desc = arcpy.Describe({})\n'.format(param))
             lines.append('            {} = desc.catalogPath\n'.format(param))    
+        elif param_type == {'ExistingFileOrFloat': 'Raster'}:
+            lines.append('        if ({} is not None) and {}.isnumeric() == False:\n'.format(param, param))
+            lines.append('            desc = arcpy.Describe({})\n'.format(param))
+            lines.append('            {} = desc.catalogPath\n'.format(param))   
 
         # if param == "cell_size":
         #     print(param)

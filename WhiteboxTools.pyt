@@ -26414,7 +26414,13 @@ class Add(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        if (input1 is not None) and input1.isnumeric() == False:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
+        if (input2 is not None) and input2.isnumeric() == False:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -26886,7 +26892,13 @@ class Atan2(object):
 
     def execute(self, parameters, messages):
         input_y = parameters[0].valueAsText
+        if (input_y is not None) and input_y.isnumeric() == False:
+            desc = arcpy.Describe(input_y)
+            input_y = desc.catalogPath
         input_x = parameters[1].valueAsText
+        if (input_x is not None) and input_x.isnumeric() == False:
+            desc = arcpy.Describe(input_x)
+            input_x = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -27660,7 +27672,13 @@ class Divide(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        if (input1 is not None) and input1.isnumeric() == False:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
+        if (input2 is not None) and input2.isnumeric() == False:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -27722,7 +27740,13 @@ class EqualTo(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        if (input1 is not None) and input1.isnumeric() == False:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
+        if (input2 is not None) and input2.isnumeric() == False:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -27962,7 +27986,13 @@ class GreaterThan(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        if (input1 is not None) and input1.isnumeric() == False:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
+        if (input2 is not None) and input2.isnumeric() == False:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         output = parameters[2].valueAsText
         incl_equals = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -28355,6 +28385,9 @@ class InPlaceAdd(object):
             desc = arcpy.Describe(input1)
             input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
+        if (input2 is not None) and input2.isnumeric() == False:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -28411,6 +28444,9 @@ class InPlaceDivide(object):
             desc = arcpy.Describe(input1)
             input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
+        if (input2 is not None) and input2.isnumeric() == False:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -28467,6 +28503,9 @@ class InPlaceMultiply(object):
             desc = arcpy.Describe(input1)
             input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
+        if (input2 is not None) and input2.isnumeric() == False:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -28523,6 +28562,9 @@ class InPlaceSubtract(object):
             desc = arcpy.Describe(input1)
             input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
+        if (input2 is not None) and input2.isnumeric() == False:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -28640,7 +28682,13 @@ class IntegerDivision(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        if (input1 is not None) and input1.isnumeric() == False:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
+        if (input2 is not None) and input2.isnumeric() == False:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -28899,7 +28947,13 @@ class LessThan(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        if (input1 is not None) and input1.isnumeric() == False:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
+        if (input2 is not None) and input2.isnumeric() == False:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         output = parameters[2].valueAsText
         incl_equals = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -29199,7 +29253,13 @@ class Max(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        if (input1 is not None) and input1.isnumeric() == False:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
+        if (input2 is not None) and input2.isnumeric() == False:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -29261,7 +29321,13 @@ class Min(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        if (input1 is not None) and input1.isnumeric() == False:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
+        if (input2 is not None) and input2.isnumeric() == False:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -29323,7 +29389,13 @@ class Modulo(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        if (input1 is not None) and input1.isnumeric() == False:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
+        if (input2 is not None) and input2.isnumeric() == False:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -29385,7 +29457,13 @@ class Multiply(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        if (input1 is not None) and input1.isnumeric() == False:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
+        if (input2 is not None) and input2.isnumeric() == False:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -29504,7 +29582,13 @@ class NotEqualTo(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        if (input1 is not None) and input1.isnumeric() == False:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
+        if (input2 is not None) and input2.isnumeric() == False:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -29642,7 +29726,13 @@ class Power(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        if (input1 is not None) and input1.isnumeric() == False:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
+        if (input2 is not None) and input2.isnumeric() == False:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -30566,7 +30656,13 @@ class Subtract(object):
 
     def execute(self, parameters, messages):
         input1 = parameters[0].valueAsText
+        if (input1 is not None) and input1.isnumeric() == False:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
         input2 = parameters[1].valueAsText
+        if (input2 is not None) and input2.isnumeric() == False:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
