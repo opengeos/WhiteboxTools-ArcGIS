@@ -26374,14 +26374,14 @@ class Add(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
@@ -26852,14 +26852,14 @@ class Atan2(object):
         input_y = arcpy.Parameter(
             displayName="Input Y File Or Constant Value",
             name="input_y",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
         input_x = arcpy.Parameter(
             displayName="Input X File Or Constant Value",
             name="input_x",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
@@ -27632,14 +27632,14 @@ class Divide(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
@@ -27700,14 +27700,14 @@ class EqualTo(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
@@ -27939,14 +27939,14 @@ class GreaterThan(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
@@ -28356,7 +28356,7 @@ class InPlaceAdd(object):
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
@@ -28415,7 +28415,7 @@ class InPlaceDivide(object):
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
@@ -28474,7 +28474,7 @@ class InPlaceMultiply(object):
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
@@ -28533,7 +28533,7 @@ class InPlaceSubtract(object):
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
@@ -28642,14 +28642,14 @@ class IntegerDivision(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
@@ -28900,14 +28900,14 @@ class LessThan(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
@@ -29213,14 +29213,14 @@ class Max(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
@@ -29281,14 +29281,14 @@ class Min(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
@@ -29349,14 +29349,14 @@ class Modulo(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
@@ -29417,14 +29417,14 @@ class Multiply(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
@@ -29542,14 +29542,14 @@ class NotEqualTo(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
@@ -29686,14 +29686,14 @@ class Power(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
@@ -30616,14 +30616,14 @@ class Subtract(object):
         input1 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input1",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 
         input2 = arcpy.Parameter(
             displayName="Input File Or Constant Value",
             name="input2",
-            datatype="GPRasterLayer",
+            datatype=["GPRasterLayer", "GPDouble"],
             parameterType="Required",
             direction="Input")
 

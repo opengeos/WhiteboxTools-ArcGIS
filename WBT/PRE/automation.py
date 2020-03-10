@@ -244,6 +244,8 @@ def define_tool_params(params):
             data_type['data_type'] = '"GPRasterLayer"'
         elif data_type['data_type'] == '"DEShapefile"' and direction == "Input":
             data_type['data_type'] = '"GPFeatureLayer"'
+        elif data_type['data_type'] == '["DERasterDataset", "GPDouble"]' and direction == "Input":
+            data_type['data_type'] = '["GPRasterLayer", "GPDouble"]'
 
         if data_type['data_filter'] == '["html"]':
             parameter_type = "Required"
@@ -380,7 +382,9 @@ def get_data_type(param):
         'Html': '"DEFile"',
         'Lidar': '"DEFile"',
         'Vector': '"DEShapefile"',
-        'RasterAndVector': '["DERasterDataset", "DEShapefile"]'
+        'RasterAndVector': '["DERasterDataset", "DEShapefile"]',
+        'ExistingFileOrFloat': '["DERasterDataset", "GPDouble"]'
+
     }
 
     vector_filters = {
@@ -422,6 +426,10 @@ def get_data_type(param):
                 dependency_field = param[item][1].replace('--', '')                
             else:
                 data_type = '"GPString"'
+
+            if param == {'ExistingFileOrFloat': 'Raster'}:
+                data_type = '["DERasterDataset", "GPDouble"]'
+
     ret = {}
     ret['data_type'] = data_type
     ret['data_filter'] = data_filter
