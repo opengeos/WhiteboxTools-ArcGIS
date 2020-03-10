@@ -336,9 +336,14 @@ def define_execute(params):
             lines.append('            desc = arcpy.Describe({})\n'.format(param))
             lines.append('            {} = desc.catalogPath\n'.format(param))    
         elif param_type == {'ExistingFileOrFloat': 'Raster'}:
-            lines.append('        if ({} is not None) and {}.isnumeric() == False:\n'.format(param, param))
-            lines.append('            desc = arcpy.Describe({})\n'.format(param))
-            lines.append('            {} = desc.catalogPath\n'.format(param))   
+            lines.append('        if {} is not None:\n'.format(param))
+            lines.append('            try:\n')    
+            lines.append('                {} = str(float({}))\n'.format(param, param))   
+            lines.append('            except:\n')    
+            lines.append('                desc = arcpy.Describe({})\n'.format(param))
+            lines.append('                {} = desc.catalogPath\n'.format(param))   
+                      
+            # lines.append('        if ({} is not None) and {}.isnumeric() == False:\n'.format(param, param))
 
         # if param == "cell_size":
         #     print(param)
