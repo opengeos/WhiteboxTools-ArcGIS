@@ -6,11 +6,14 @@
 [![R](https://img.shields.io/badge/whitebox-R-green.svg)](https://github.com/giswqs/whiteboxR)
 [![QGIS](https://img.shields.io/badge/whitebox-QGIS-orange.svg)](https://jblindsay.github.io/wbt_book/qgis_plugin.html)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Twitter Follow](https://img.shields.io/twitter/follow/giswqs?style=social)](https://twitter.com/giswqs)
 [![Donate](https://img.shields.io/badge/Donate-Buy%20me%20a%20coffee-yellowgreen.svg)](https://www.buymeacoffee.com/giswqs)
 
 ArcGIS Python Toolbox for WhiteboxTools.
 
 This repository is related to the **ArcGIS Python Toolbox for WhiteboxTools**, which is an ArcGIS frontend of a stand-alone executable command-line program called **[WhiteboxTools](https://github.com/jblindsay/whitebox-tools)**.
+
+![Note](https://i.imgur.com/Ic8BA7C.png) **Important Note:** This toolbox only supports **ArcGIS Pro and ArcGIS 10.6 or newer**. Don't waste your time trying it on ArcGIS 10.5 or older versions. 
 
 * Authors: Dr. John Lindsay (<https://jblindsay.github.io/ghrg/index.html>)
 * Contributors: Dr. Qiusheng Wu (<https://wetlands.io> | <https://LidarBlog.com>)
