@@ -56,7 +56,34 @@ for more details.
 * Release Notes: *
 ******************
 
-Version 1.1.1 (XX-XX-20XX)
+Version 1.3.0 (07-06-2020)
+- Tools will now output DEFLATE compressed GeoTIFFs when the --compress_rasters parameter is used.
+- Added support for a newly developed compressed LiDAR data format, the ZLidar file. All tools
+  that accepted LAS file inputs and produced LAS outputs can now use '*.zlidar' files as well. I 
+  have also added the LasToZlidar and ZlidarToLas tools to perform conversions. While the ZLidar
+  format does not yield compression rates quite as good as the popular LAZ file format, you can  
+  expect ZLidar files to be between 20-30% of the size of the equivalent LAS file. A file  
+  specification will be published in the near future to describe the open ZLidar data format.
+- Added the AsciiToLas tool.
+- Added the ContoursFromRaster tool for creating a vector contour coverage from a raster surface model (DEM).
+- Added the ContoursFromPoints tool for creating a vector contour coverage from vector points.
+- Added the UpdateNodataCells tool.
+- Modified the Slope tool to optionally output in degrees, radians, or percent gradient.
+- Modified the Mosaic tool, which now runs much faster with large numbers of input tiles.
+- The vector-to-raster conversion tools now preserve input projections.
+- Fixed a bug in the RasterToVectorPolygons tool.
+- Fixed several bugs in the MergeTableWithCsv tool.
+- Modified the FillMissingData tool to allow for the exclusion of edge-connected NoData cells from the operation.
+  This is better for irregular shaped DEMs that have large areas of NoData surrounding the valid data.
+- The LidarConstructVectorTin tool has been depreciated. The tool was not creating the proper output.
+  Furthermore, since the number of points in the average LiDAR tile is usually many million, this tool
+  would usually produce Shapefiles that exceed the maximum allowable number of shape geometries. If 
+  a vector TIN is required for a LiDAR point set, users should convert the file to a Shapefile and then
+  use the ConstructVectorTin tool instead. And of course, if you are interested in a raster TIN from a 
+  LiDAR file, use the LidarTinGridding tool instead. 
+- FlattenLakes now handles multipart lake polygons.
+
+Version 1.2.0 (21-02-2020)
 - Added the RasterToVectorPolygons tool, which now completes the raster-vector conversion tool set.
 - Added the MultiscaleElevationPercentile tool.
 - Added the AttributeCorrelationNeighbourhoodAnalysis tool.
@@ -67,11 +94,11 @@ Version 1.1.1 (XX-XX-20XX)
 - Added the InsertDams tool, which can be used to insert impoundment features at a set of points
   of interest into a DEM. This tool can be used in combination with the ImpoundmentSizeIndex tool 
   to create artificial reservoirs/depressions.
+- Added the HeightAboveGround tool, to normalize a LiDAR point cloud. Each point's z-value is
+  converted to the height above the nearest ground-classified point.
 - Modified the LidarRbfInterpolation tool to improve efficiency.
 - Fixed an issue with how floating point attributes were written in Shapefile attribute tables.
 - Updated the LidarSegmentation tool, which now used RANSAC to fit planar models to points.
-- Added the HeightAboveGround tool, to normalize a LiDAR point cloud. Each point's z-value is
-  converted to the height above the nearest ground-classified point.
 - Fixed an issue with the Reclass and ReclassFromFile tool that caused striping.
 - The Relcass and ReclassFromFile tools now take 'min' and 'max' in the reclass string.
 - The watershed tool now accepts either a set of vector points or a raster for the pour points 

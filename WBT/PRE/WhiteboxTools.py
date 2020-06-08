@@ -23,6 +23,7 @@ tool_labels.append("Arc Tan")
 tool_labels.append("Arcosh")
 tool_labels.append("Arsinh")
 tool_labels.append("Artanh")
+tool_labels.append("Ascii To Las")
 tool_labels.append("Aspect")
 tool_labels.append("Atan2")
 tool_labels.append("Attribute Correlation")
@@ -60,6 +61,8 @@ tool_labels.append("Clump")
 tool_labels.append("Compactness Ratio")
 tool_labels.append("Conservative Smoothing Filter")
 tool_labels.append("Construct Vector Tin")
+tool_labels.append("Contours From Points")
+tool_labels.append("Contours From Raster")
 tool_labels.append("Convert Nodata To Zero")
 tool_labels.append("Convert Raster Format")
 tool_labels.append("Corner Detection")
@@ -201,6 +204,7 @@ tool_labels.append("Laplacian Of Gaussian Filter")
 tool_labels.append("Las To Ascii")
 tool_labels.append("Las To Multipoint Shapefile")
 tool_labels.append("Las To Shapefile")
+tool_labels.append("Las To Zlidar")
 tool_labels.append("Layer Footprint")
 tool_labels.append("Lee Sigma Filter")
 tool_labels.append("Length Of Upstream Channels")
@@ -209,7 +213,6 @@ tool_labels.append("Lidar Block Maximum")
 tool_labels.append("Lidar Block Minimum")
 tool_labels.append("Lidar Classify Subset")
 tool_labels.append("Lidar Colourize")
-tool_labels.append("Lidar Construct Vector Tin")
 tool_labels.append("Lidar Elevation Slice")
 tool_labels.append("Lidar Ground Point Filter")
 tool_labels.append("Lidar Hex Binning")
@@ -427,6 +430,7 @@ tool_labels.append("Two Sample Ks Test")
 tool_labels.append("Union")
 tool_labels.append("Unnest Basins")
 tool_labels.append("Unsharp Masking")
+tool_labels.append("Update Nodata Cells")
 tool_labels.append("Upslope Depression Storage")
 tool_labels.append("User Defined Weights Filter")
 tool_labels.append("Vector Hex Binning")
@@ -444,6 +448,7 @@ tool_labels.append("Wilcoxon Signed Rank Test")
 tool_labels.append("Write Function Memory Insertion")
 tool_labels.append("Xor")
 tool_labels.append("Z Scores")
+tool_labels.append("Zlidar To Las")
 tool_labels.append("Zonal Statistics")
 
 
@@ -560,6 +565,7 @@ class Toolbox(object):
         tools.append(SumOverlay)
         tools.append(SymmetricalDifference)
         tools.append(Union)
+        tools.append(UpdateNodataCells)
         tools.append(WeightedOverlay)
         tools.append(WeightedSum)
         tools.append(BoundaryShapeComplexity)
@@ -579,6 +585,8 @@ class Toolbox(object):
         tools.append(Aspect)
         tools.append(AverageNormalVectorAngularDeviation)
         tools.append(CircularVarianceOfAspect)
+        tools.append(ContoursFromPoints)
+        tools.append(ContoursFromRaster)
         tools.append(DevFromMeanElev)
         tools.append(DiffFromMeanElev)
         tools.append(DirectionalRelief)
@@ -750,6 +758,7 @@ class Toolbox(object):
         tools.append(PercentageContrastStretch)
         tools.append(SigmoidalContrastStretch)
         tools.append(StandardDeviationContrastStretch)
+        tools.append(AsciiToLas)
         tools.append(ClassifyBuildingsInLidar)
         tools.append(ClassifyOverlapPoints)
         tools.append(ClipLidarToPolygon)
@@ -762,11 +771,11 @@ class Toolbox(object):
         tools.append(LasToAscii)
         tools.append(LasToMultipointShapefile)
         tools.append(LasToShapefile)
+        tools.append(LasToZlidar)
         tools.append(LidarBlockMaximum)
         tools.append(LidarBlockMinimum)
         tools.append(LidarClassifySubset)
         tools.append(LidarColourize)
-        tools.append(LidarConstructVectorTin)
         tools.append(LidarElevationSlice)
         tools.append(LidarGroundPointFilter)
         tools.append(LidarHexBinning)
@@ -793,6 +802,7 @@ class Toolbox(object):
         tools.append(LidarTophatTransform)
         tools.append(NormalVectors)
         tools.append(SelectTilesByPolygon)
+        tools.append(ZlidarToLas)
         tools.append(And)
         tools.append(Not)
         tools.append(Or)
@@ -2359,7 +2369,7 @@ class RasterToVectorPolygons(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Point"]
+        output.filter.list = ["Polygon"]
 
         params = [i, output]
 
@@ -4954,7 +4964,7 @@ class PolygonLongAxis(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Polygon"]
+        output.filter.list = ["Polyline"]
 
         params = [i, output]
 
@@ -5061,7 +5071,7 @@ class PolygonShortAxis(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Polygon"]
+        output.filter.list = ["Polyline"]
 
         params = [i, output]
 
@@ -8098,6 +8108,74 @@ class Union(object):
         return
 
 
+class UpdateNodataCells(object):
+    def __init__(self):
+        self.label = "Update Nodata Cells"
+        self.description = "Replaces the NoData values in an input raster with the corresponding values contained in a second update layer. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#UpdateNodataCells' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/update_nodata_cells.rs' target='_blank'>GitHub</a>."
+        self.category = "GIS Analysis"
+
+    def getParameterInfo(self):
+        input1 = arcpy.Parameter(
+            displayName="Input File 1",
+            name="input1",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        input2 = arcpy.Parameter(
+            displayName="Input File 2 (Update Layer)",
+            name="input2",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        params = [input1, input2, output]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        input1 = parameters[0].valueAsText
+        if input1 is not None:
+            desc = arcpy.Describe(input1)
+            input1 = desc.catalogPath
+        input2 = parameters[1].valueAsText
+        if input2 is not None:
+            desc = arcpy.Describe(input2)
+            input2 = desc.catalogPath
+        output = parameters[2].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.update_nodata_cells(input1=input1, input2=input2, output=output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class WeightedOverlay(object):
     def __init__(self):
         self.label = "Weighted Overlay"
@@ -9217,6 +9295,218 @@ class CircularVarianceOfAspect(object):
         return
 
 
+class ContoursFromPoints(object):
+    def __init__(self):
+        self.label = "Contours From Points"
+        self.description = "Creates a contour coverage from a set of input points. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#ContoursFromPoints' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/contours_from_points.rs' target='_blank'>GitHub</a>."
+        self.category = "Geomorphometric Analysis"
+
+    def getParameterInfo(self):
+        i = arcpy.Parameter(
+            displayName="Input Vector Points File",
+            name="i",
+            datatype="GPFeatureLayer",
+            parameterType="Required",
+            direction="Input")
+        i.filter.list = ["Point"]
+
+        field = arcpy.Parameter(
+            displayName="Field Name",
+            name="field",
+            datatype="Field",
+            parameterType="Optional",
+            direction="Input")
+        field.parameterDependencies = [i.name]
+
+        use_z = arcpy.Parameter(
+            displayName="Use Shapefile 'z' values?",
+            name="use_z",
+            datatype="GPBoolean",
+            parameterType="Optional",
+            direction="Input")
+
+        use_z.value = False
+
+        output = arcpy.Parameter(
+            displayName="Output Vector Lines File",
+            name="output",
+            datatype="DEShapefile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["Polyline"]
+
+        max_triangle_edge_length = arcpy.Parameter(
+            displayName="Maximum Triangle Edge Length",
+            name="max_triangle_edge_length",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        interval = arcpy.Parameter(
+            displayName="Contour Interval",
+            name="interval",
+            datatype="GPDouble",
+            parameterType="Required",
+            direction="Input")
+
+        interval.value = "10.0"
+
+        base = arcpy.Parameter(
+            displayName="Base Contour",
+            name="base",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        base.value = "0.0"
+
+        smooth = arcpy.Parameter(
+            displayName="Smoothing Filter Size",
+            name="smooth",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+
+        smooth.value = "5"
+
+        params = [i, field, use_z, output, max_triangle_edge_length, interval, base, smooth]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
+        field = parameters[1].valueAsText
+        use_z = parameters[2].valueAsText
+        output = parameters[3].valueAsText
+        max_triangle_edge_length = parameters[4].valueAsText
+        interval = parameters[5].valueAsText
+        base = parameters[6].valueAsText
+        smooth = parameters[7].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.contours_from_points(i=i, field=field, use_z=use_z, output=output, max_triangle_edge_length=max_triangle_edge_length, interval=interval, base=base, smooth=smooth)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
+class ContoursFromRaster(object):
+    def __init__(self):
+        self.label = "Contours From Raster"
+        self.description = "Derives a vector contour coverage from a raster surface. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#ContoursFromRaster' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/contours_from_raster.rs' target='_blank'>GitHub</a>."
+        self.category = "Geomorphometric Analysis"
+
+    def getParameterInfo(self):
+        i = arcpy.Parameter(
+            displayName="Input Raster Surface File",
+            name="i",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Contour File",
+            name="output",
+            datatype="DEShapefile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["Polyline"]
+
+        interval = arcpy.Parameter(
+            displayName="Contour Interval",
+            name="interval",
+            datatype="GPDouble",
+            parameterType="Required",
+            direction="Input")
+
+        interval.value = "10.0"
+
+        base = arcpy.Parameter(
+            displayName="Base Contour",
+            name="base",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        base.value = "0.0"
+
+        smooth = arcpy.Parameter(
+            displayName="Smoothing Filter Size",
+            name="smooth",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+
+        smooth.value = "9"
+
+        tolerance = arcpy.Parameter(
+            displayName="Tolerance",
+            name="tolerance",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        tolerance.value = "10.0"
+
+        params = [i, output, interval, base, smooth, tolerance]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
+        output = parameters[1].valueAsText
+        interval = parameters[2].valueAsText
+        base = parameters[3].valueAsText
+        smooth = parameters[4].valueAsText
+        tolerance = parameters[5].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.contours_from_raster(i=i, output=output, interval=interval, base=base, smooth=smooth, tolerance=tolerance)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class DevFromMeanElev(object):
     def __init__(self):
         self.label = "Dev From Mean Elev"
@@ -10105,7 +10395,16 @@ class FillMissingData(object):
 
         weight.value = "2.0"
 
-        params = [i, output, filter, weight]
+        no_edges = arcpy.Parameter(
+            displayName="Exclude edge-of-raster-connected NoData cells?",
+            name="no_edges",
+            datatype="GPBoolean",
+            parameterType="Optional",
+            direction="Input")
+
+        no_edges.value = True
+
+        params = [i, output, filter, weight, no_edges]
 
         return params
 
@@ -10132,10 +10431,11 @@ class FillMissingData(object):
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         weight = parameters[3].valueAsText
+        no_edges = parameters[4].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.fill_missing_data(i=i, output=output, filter=filter, weight=weight)
+        wbt.fill_missing_data(i=i, output=output, filter=filter, weight=weight, no_edges=no_edges)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12613,7 +12913,18 @@ class Slope(object):
 
         zfactor.value = "1.0"
 
-        params = [dem, output, zfactor]
+        units = arcpy.Parameter(
+            displayName="Units",
+            name="units",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+        units.filter.type = "ValueList"
+        units.filter.list = ['degrees', 'radians', 'percent']
+
+        units.value = "degrees"
+
+        params = [dem, output, zfactor, units]
 
         return params
 
@@ -12639,10 +12950,11 @@ class Slope(object):
             dem = desc.catalogPath
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
+        units = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.slope(dem=dem, output=output, zfactor=zfactor)
+        wbt.slope(dem=dem, output=output, zfactor=zfactor, units=units)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15812,9 +16124,9 @@ class ImpoundmentSizeIndex(object):
             parameterType="Optional",
             direction="Input")
         out_type.filter.type = "ValueList"
-        out_type.filter.list = ['depth', 'volume', 'area']
+        out_type.filter.list = ['mean depth', 'volume', 'area', 'max depth']
 
-        out_type.value = "depth"
+        out_type.value = "mean depth"
 
         damlength = arcpy.Parameter(
             displayName="Max dam length (grid cells)",
@@ -18068,7 +18380,7 @@ class Mosaic(object):
             displayName="Input Files",
             name="inputs",
             datatype="GPRasterLayer",
-            parameterType="Required",
+            parameterType="Optional",
             direction="Input")
         inputs.multiValue = True
 
@@ -18089,7 +18401,7 @@ class Mosaic(object):
         method.filter.type = "ValueList"
         method.filter.list = ['nn', 'bilinear', 'cc']
 
-        method.value = "cc"
+        method.value = "nn"
 
         params = [inputs, output, method]
 
@@ -22525,6 +22837,74 @@ class StandardDeviationContrastStretch(object):
         return
 
 
+class AsciiToLas(object):
+    def __init__(self):
+        self.label = "Ascii To Las"
+        self.description = "Converts one or more ASCII files containing LiDAR points into LAS files. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#AsciiToLas' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/ascii_to_las.rs' target='_blank'>GitHub</a>."
+        self.category = "LiDAR Tools"
+
+    def getParameterInfo(self):
+        inputs = arcpy.Parameter(
+            displayName="Input LiDAR point ASCII Files (.csv)",
+            name="inputs",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Input")
+        inputs.multiValue = True
+        inputs.filter.list = ["csv"]
+
+        pattern = arcpy.Parameter(
+            displayName="Pattern",
+            name="pattern",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+
+        proj = arcpy.Parameter(
+            displayName="Well-known-text (WKT) string or EPSG code",
+            name="proj",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [inputs, pattern, proj]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        items = inputs.split(";")
+        items_path = []
+        for item in items:
+            items_path.append(arcpy.Describe(item).catalogPath)
+        inputs = ";".join(items_path)
+        pattern = parameters[1].valueAsText
+        proj = parameters[2].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.ascii_to_las(inputs=inputs, pattern=pattern, proj=proj)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class ClassifyBuildingsInLidar(object):
     def __init__(self):
         self.label = "Classify Buildings In Lidar"
@@ -23246,6 +23626,66 @@ class LasToShapefile(object):
         return
 
 
+class LasToZlidar(object):
+    def __init__(self):
+        self.label = "Las To Zlidar"
+        self.description = "Converts one or more LAS files into the zlidar compressed LiDAR data format. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LasToZlidar' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/las_to_zlidar.rs' target='_blank'>GitHub</a>."
+        self.category = "LiDAR Tools"
+
+    def getParameterInfo(self):
+        inputs = arcpy.Parameter(
+            displayName="Input LAS Files",
+            name="inputs",
+            datatype="DEFile",
+            parameterType="Optional",
+            direction="Input")
+        inputs.multiValue = True
+        inputs.filter.list = ["las", "zip"]
+
+        outdir = arcpy.Parameter(
+            displayName="Output Directory",
+            name="outdir",
+            datatype="DEFolder",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [inputs, outdir]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        items = inputs.split(";")
+        items_path = []
+        for item in items:
+            items_path.append(arcpy.Describe(item).catalogPath)
+        inputs = ";".join(items_path)
+        outdir = parameters[1].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.las_to_zlidar(inputs=inputs, outdir=outdir)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class LidarBlockMaximum(object):
     def __init__(self):
         self.label = "Lidar Block Maximum"
@@ -23516,97 +23956,6 @@ class LidarColourize(object):
         result = StringIO()
         sys.stdout = result
         wbt.lidar_colourize(in_lidar=in_lidar, in_image=in_image, output=output)
-        sys.stdout = old_stdout
-        result_string = result.getvalue()
-        messages.addMessage(result_string)
-        return
-
-
-class LidarConstructVectorTin(object):
-    def __init__(self):
-        self.label = "Lidar Construct Vector Tin"
-        self.description = "Creates a vector triangular irregular network (TIN) fitted to LiDAR points. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarConstructVectorTin' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/lidar_construct_vector_tin.rs' target='_blank'>GitHub</a>."
-        self.category = "LiDAR Tools"
-
-    def getParameterInfo(self):
-        i = arcpy.Parameter(
-            displayName="Input File",
-            name="i",
-            datatype="DEFile",
-            parameterType="Optional",
-            direction="Input")
-        i.filter.list = ["las", "zip"]
-
-        output = arcpy.Parameter(
-            displayName="Output File",
-            name="output",
-            datatype="DEFile",
-            parameterType="Required",
-            direction="Output")
-        output.filter.list = ["tif"]
-
-        returns = arcpy.Parameter(
-            displayName="Point Returns Included",
-            name="returns",
-            datatype="GPString",
-            parameterType="Optional",
-            direction="Input")
-        returns.filter.type = "ValueList"
-        returns.filter.list = ['all', 'last', 'first']
-
-        returns.value = "all"
-
-        exclude_cls = arcpy.Parameter(
-            displayName="Exclusion Classes (0-18, based on LAS spec; e.g. 3,4,5,6,7)",
-            name="exclude_cls",
-            datatype="GPString",
-            parameterType="Optional",
-            direction="Input")
-
-        minz = arcpy.Parameter(
-            displayName="Minimum Elevation Value",
-            name="minz",
-            datatype="GPDouble",
-            parameterType="Optional",
-            direction="Input")
-
-        maxz = arcpy.Parameter(
-            displayName="Maximum Elevation Value",
-            name="maxz",
-            datatype="GPDouble",
-            parameterType="Optional",
-            direction="Input")
-
-        params = [i, output, returns, exclude_cls, minz, maxz]
-
-        return params
-
-    def updateParameters(self, parameters):
-        return
-
-    def updateMessages(self, parameters):
-        for param in parameters:
-            param_str = param.valueAsText
-            if param_str is not None:
-                try:
-                    desc = arcpy.Describe(param_str)
-                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
-                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
-                except:
-                    param.clearMessage()
-        return
-
-    def execute(self, parameters, messages):
-        i = parameters[0].valueAsText
-        output = parameters[1].valueAsText
-        returns = parameters[2].valueAsText
-        exclude_cls = parameters[3].valueAsText
-        minz = parameters[4].valueAsText
-        maxz = parameters[5].valueAsText
-        old_stdout = sys.stdout
-        result = StringIO()
-        sys.stdout = result
-        wbt.lidar_construct_vector_tin(i=i, output=output, returns=returns, exclude_cls=exclude_cls, minz=minz, maxz=maxz)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -26097,6 +26446,66 @@ class SelectTilesByPolygon(object):
         result = StringIO()
         sys.stdout = result
         wbt.select_tiles_by_polygon(indir=indir, outdir=outdir, polygons=polygons)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
+class ZlidarToLas(object):
+    def __init__(self):
+        self.label = "Zlidar To Las"
+        self.description = "Converts one or more zlidar files into the LAS data format. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#ZlidarToLas' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/zlidar_to_las.rs' target='_blank'>GitHub</a>."
+        self.category = "LiDAR Tools"
+
+    def getParameterInfo(self):
+        inputs = arcpy.Parameter(
+            displayName="Input ZLidar Files",
+            name="inputs",
+            datatype="DEFile",
+            parameterType="Optional",
+            direction="Input")
+        inputs.multiValue = True
+        inputs.filter.list = ["las", "zip"]
+
+        outdir = arcpy.Parameter(
+            displayName="Output Directory",
+            name="outdir",
+            datatype="DEFolder",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [inputs, outdir]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        items = inputs.split(";")
+        items_path = []
+        for item in items:
+            items_path.append(arcpy.Describe(item).catalogPath)
+        inputs = ";".join(items_path)
+        outdir = parameters[1].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.zlidar_to_las(inputs=inputs, outdir=outdir)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
