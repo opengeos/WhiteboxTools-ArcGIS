@@ -1,8 +1,8 @@
 
 ##################################################################
 # Steps for updating WhiteboxTools-ArcGIS
-# Step 1 - Delete the existing deveop branch: git branch -D deveop  
-# Step 2 - Create a new deveop branch: git checkout -b deveop
+# Step 1 - Delete the existing develop branch: git branch -D develop  
+# Step 2 - Create a new develop branch: git checkout -b develop
 # Step 3 - Delete the old WhiteboxTools_win_amd64.zip in the root folder if needed
 # Step 4 - Run automation.py
 # Step 5 - Commit and push changes
