@@ -174,6 +174,7 @@ tool_labels.append("Hole Proportion")
 tool_labels.append("Horizon Angle")
 tool_labels.append("Horton Stream Order")
 tool_labels.append("Hypsometric Analysis")
+tool_labels.append("Hypsometrically Tinted Hillshade")
 tool_labels.append("Idw Interpolation")
 tool_labels.append("Ihs To Rgb")
 tool_labels.append("Image Autocorrelation")
@@ -229,6 +230,7 @@ tool_labels.append("Lidar Ransac Planes")
 tool_labels.append("Lidar Rbf Interpolation")
 tool_labels.append("Lidar Remove Duplicates")
 tool_labels.append("Lidar Remove Outliers")
+tool_labels.append("Lidar Rooftop Analysis")
 tool_labels.append("Lidar Segmentation")
 tool_labels.append("Lidar Segmentation Based Filter")
 tool_labels.append("Lidar Thin")
@@ -286,6 +288,7 @@ tool_labels.append("Modulo")
 tool_labels.append("Mosaic")
 tool_labels.append("Mosaic With Feathering")
 tool_labels.append("Multi Part To Single Part")
+tool_labels.append("Multidirectional Hillshade")
 tool_labels.append("Multiply")
 tool_labels.append("Multiscale Elevation Percentile")
 tool_labels.append("Multiscale Roughness")
@@ -603,6 +606,7 @@ class Toolbox(object):
         tools.append(Hillshade)
         tools.append(HorizonAngle)
         tools.append(HypsometricAnalysis)
+        tools.append(HypsometricallyTintedHillshade)
         tools.append(MaxAnisotropyDev)
         tools.append(MaxAnisotropyDevSignature)
         tools.append(MaxBranchLength)
@@ -611,6 +615,7 @@ class Toolbox(object):
         tools.append(MaxElevDevSignature)
         tools.append(MaxElevationDeviation)
         tools.append(MinDownslopeElevChange)
+        tools.append(MultidirectionalHillshade)
         tools.append(MultiscaleElevationPercentile)
         tools.append(MultiscaleRoughness)
         tools.append(MultiscaleRoughnessSignature)
@@ -792,6 +797,7 @@ class Toolbox(object):
         tools.append(LidarRbfInterpolation)
         tools.append(LidarRemoveDuplicates)
         tools.append(LidarRemoveOutliers)
+        tools.append(LidarRooftopAnalysis)
         tools.append(LidarSegmentation)
         tools.append(LidarSegmentationBasedFilter)
         tools.append(LidarThin)
@@ -10745,6 +10751,145 @@ class HypsometricAnalysis(object):
         return
 
 
+class HypsometricallyTintedHillshade(object):
+    def __init__(self):
+        self.label = "Hypsometrically Tinted Hillshade"
+        self.description = "Creates an colour shaded relief image from an input DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#HypsometricallyTintedHillshade' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/hypsometrically_tinted_hillshade.rs' target='_blank'>GitHub</a>."
+        self.category = "Geomorphometric Analysis"
+
+    def getParameterInfo(self):
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        altitude = arcpy.Parameter(
+            displayName="Illumination Source Altitude (degrees)",
+            name="altitude",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        altitude.value = "45.0"
+
+        hs_weight = arcpy.Parameter(
+            displayName="Hillshade Weight",
+            name="hs_weight",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        hs_weight.value = "0.5"
+
+        brightness = arcpy.Parameter(
+            displayName="Brightness",
+            name="brightness",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        brightness.value = "0.5"
+
+        atmospheric = arcpy.Parameter(
+            displayName="Atmospheric Effects",
+            name="atmospheric",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        atmospheric.value = "0.0"
+
+        palette = arcpy.Parameter(
+            displayName="Palette",
+            name="palette",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+        palette.filter.type = "ValueList"
+        palette.filter.list = ['atlas', 'high_relief', 'arid', 'soft', 'muted', 'purple', 'viridi', 'gn_yl', 'pi_y_g', 'bl_yl_rd', 'deep']
+
+        palette.value = "atlas"
+
+        reverse = arcpy.Parameter(
+            displayName="Reverse palette?",
+            name="reverse",
+            datatype="GPBoolean",
+            parameterType="Optional",
+            direction="Input")
+
+        reverse.value = False
+
+        zfactor = arcpy.Parameter(
+            displayName="Z Conversion Factor",
+            name="zfactor",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        zfactor.value = "1.0"
+
+        full_mode = arcpy.Parameter(
+            displayName="Full 360-degree hillshade mode?",
+            name="full_mode",
+            datatype="GPBoolean",
+            parameterType="Optional",
+            direction="Input")
+
+        full_mode.value = False
+
+        params = [dem, output, altitude, hs_weight, brightness, atmospheric, palette, reverse, zfactor, full_mode]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
+        output = parameters[1].valueAsText
+        altitude = parameters[2].valueAsText
+        hs_weight = parameters[3].valueAsText
+        brightness = parameters[4].valueAsText
+        atmospheric = parameters[5].valueAsText
+        palette = parameters[6].valueAsText
+        reverse = parameters[7].valueAsText
+        zfactor = parameters[8].valueAsText
+        full_mode = parameters[9].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.hypsometrically_tinted_hillshade(dem=dem, output=output, altitude=altitude, hs_weight=hs_weight, brightness=brightness, atmospheric=atmospheric, palette=palette, reverse=reverse, zfactor=zfactor, full_mode=full_mode)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class MaxAnisotropyDev(object):
     def __init__(self):
         self.label = "Max Anisotropy Dev"
@@ -11388,6 +11533,93 @@ class MinDownslopeElevChange(object):
         result = StringIO()
         sys.stdout = result
         wbt.min_downslope_elev_change(dem=dem, output=output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
+class MultidirectionalHillshade(object):
+    def __init__(self):
+        self.label = "Multidirectional Hillshade"
+        self.description = "Calculates a multi-direction hillshade raster from an input DEM. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#MultidirectionalHillshade' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/multidirectional_hillshade.rs' target='_blank'>GitHub</a>."
+        self.category = "Geomorphometric Analysis"
+
+    def getParameterInfo(self):
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        altitude = arcpy.Parameter(
+            displayName="Altitude (degrees)",
+            name="altitude",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        altitude.value = "45.0"
+
+        zfactor = arcpy.Parameter(
+            displayName="Z Conversion Factor",
+            name="zfactor",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        zfactor.value = "1.0"
+
+        full_mode = arcpy.Parameter(
+            displayName="Full 360-degree mode?",
+            name="full_mode",
+            datatype="GPBoolean",
+            parameterType="Optional",
+            direction="Input")
+
+        full_mode.value = False
+
+        params = [dem, output, altitude, zfactor, full_mode]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
+        output = parameters[1].valueAsText
+        altitude = parameters[2].valueAsText
+        zfactor = parameters[3].valueAsText
+        full_mode = parameters[4].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.multidirectional_hillshade(dem=dem, output=output, altitude=altitude, zfactor=zfactor, full_mode=full_mode)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25551,6 +25783,163 @@ class LidarRemoveOutliers(object):
         result = StringIO()
         sys.stdout = result
         wbt.lidar_remove_outliers(i=i, output=output, radius=radius, elev_diff=elev_diff, use_median=use_median, classify=classify)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
+class LidarRooftopAnalysis(object):
+    def __init__(self):
+        self.label = "Lidar Rooftop Analysis"
+        self.description = "Identifies roof segments in a LiDAR point cloud. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarRooftopAnalysis' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/lidar_rooftop_analysis.rs' target='_blank'>GitHub</a>."
+        self.category = "LiDAR Tools"
+
+    def getParameterInfo(self):
+        i = arcpy.Parameter(
+            displayName="Input File",
+            name="i",
+            datatype="DEFile",
+            parameterType="Optional",
+            direction="Input")
+        i.filter.list = ["las", "zip"]
+
+        buildings = arcpy.Parameter(
+            displayName="Input Building Footprint Polygon File",
+            name="buildings",
+            datatype="GPFeatureLayer",
+            parameterType="Required",
+            direction="Input")
+        buildings.filter.list = ["Polygon"]
+
+        output = arcpy.Parameter(
+            displayName="Output Polygon File",
+            name="output",
+            datatype="DEShapefile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["Polygon"]
+
+        radius = arcpy.Parameter(
+            displayName="Search Radius",
+            name="radius",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        radius.value = "2.0"
+
+        num_iter = arcpy.Parameter(
+            displayName="Number of Iterations",
+            name="num_iter",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+
+        num_iter.value = "50"
+
+        num_samples = arcpy.Parameter(
+            displayName="Number of Sample Points",
+            name="num_samples",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+
+        num_samples.value = "10"
+
+        threshold = arcpy.Parameter(
+            displayName="Inlier Threshold",
+            name="threshold",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        threshold.value = "0.15"
+
+        model_size = arcpy.Parameter(
+            displayName="Acceptable Model Size",
+            name="model_size",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+
+        model_size.value = "15"
+
+        max_slope = arcpy.Parameter(
+            displayName="Maximum Planar Slope",
+            name="max_slope",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        max_slope.value = "65.0"
+
+        norm_diff = arcpy.Parameter(
+            displayName="Normal Difference Threshold",
+            name="norm_diff",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        norm_diff.value = "10.0"
+
+        azimuth = arcpy.Parameter(
+            displayName="Azimuth (degrees)",
+            name="azimuth",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        azimuth.value = "180.0"
+
+        altitude = arcpy.Parameter(
+            displayName="Altitude (degrees)",
+            name="altitude",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        altitude.value = "30.0"
+
+        params = [i, buildings, output, radius, num_iter, num_samples, threshold, model_size, max_slope, norm_diff, azimuth, altitude]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        i = parameters[0].valueAsText
+        buildings = parameters[1].valueAsText
+        if buildings is not None:
+            desc = arcpy.Describe(buildings)
+            buildings = desc.catalogPath
+        output = parameters[2].valueAsText
+        radius = parameters[3].valueAsText
+        num_iter = parameters[4].valueAsText
+        num_samples = parameters[5].valueAsText
+        threshold = parameters[6].valueAsText
+        model_size = parameters[7].valueAsText
+        max_slope = parameters[8].valueAsText
+        norm_diff = parameters[9].valueAsText
+        azimuth = parameters[10].valueAsText
+        altitude = parameters[11].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_rooftop_analysis(i=i, buildings=buildings, output=output, radius=radius, num_iter=num_iter, num_samples=num_samples, threshold=threshold, model_size=model_size, max_slope=max_slope, norm_diff=norm_diff, azimuth=azimuth, altitude=altitude)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
