@@ -9520,9 +9520,9 @@ class DevFromMeanElev(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        i = arcpy.Parameter(
+        dem = arcpy.Parameter(
             displayName="Input File",
-            name="i",
+            name="dem",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -9553,7 +9553,7 @@ class DevFromMeanElev(object):
 
         filtery.value = "11"
 
-        params = [i, output, filterx, filtery]
+        params = [dem, output, filterx, filtery]
 
         return params
 
@@ -9573,17 +9573,17 @@ class DevFromMeanElev(object):
         return
 
     def execute(self, parameters, messages):
-        i = parameters[0].valueAsText
-        if i is not None:
-            desc = arcpy.Describe(i)
-            i = desc.catalogPath
+        dem = parameters[0].valueAsText
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.dev_from_mean_elev(i=i, output=output, filterx=filterx, filtery=filtery)
+        wbt.dev_from_mean_elev(dem=dem, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9597,9 +9597,9 @@ class DiffFromMeanElev(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        i = arcpy.Parameter(
+        dem = arcpy.Parameter(
             displayName="Input File",
-            name="i",
+            name="dem",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -9630,7 +9630,7 @@ class DiffFromMeanElev(object):
 
         filtery.value = "11"
 
-        params = [i, output, filterx, filtery]
+        params = [dem, output, filterx, filtery]
 
         return params
 
@@ -9650,17 +9650,17 @@ class DiffFromMeanElev(object):
         return
 
     def execute(self, parameters, messages):
-        i = parameters[0].valueAsText
-        if i is not None:
-            desc = arcpy.Describe(i)
-            i = desc.catalogPath
+        dem = parameters[0].valueAsText
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.diff_from_mean_elev(i=i, output=output, filterx=filterx, filtery=filtery)
+        wbt.diff_from_mean_elev(dem=dem, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9972,9 +9972,9 @@ class ElevPercentile(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        i = arcpy.Parameter(
+        dem = arcpy.Parameter(
             displayName="Input File",
-            name="i",
+            name="dem",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -10014,7 +10014,7 @@ class ElevPercentile(object):
 
         sig_digits.value = "2"
 
-        params = [i, output, filterx, filtery, sig_digits]
+        params = [dem, output, filterx, filtery, sig_digits]
 
         return params
 
@@ -10034,10 +10034,10 @@ class ElevPercentile(object):
         return
 
     def execute(self, parameters, messages):
-        i = parameters[0].valueAsText
-        if i is not None:
-            desc = arcpy.Describe(i)
-            i = desc.catalogPath
+        dem = parameters[0].valueAsText
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -10045,7 +10045,7 @@ class ElevPercentile(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.elev_percentile(i=i, output=output, filterx=filterx, filtery=filtery, sig_digits=sig_digits)
+        wbt.elev_percentile(dem=dem, output=output, filterx=filterx, filtery=filtery, sig_digits=sig_digits)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12455,9 +12455,9 @@ class PercentElevRange(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        i = arcpy.Parameter(
+        dem = arcpy.Parameter(
             displayName="Input DEM File",
-            name="i",
+            name="dem",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -12488,7 +12488,7 @@ class PercentElevRange(object):
 
         filtery.value = "3"
 
-        params = [i, output, filterx, filtery]
+        params = [dem, output, filterx, filtery]
 
         return params
 
@@ -12508,17 +12508,17 @@ class PercentElevRange(object):
         return
 
     def execute(self, parameters, messages):
-        i = parameters[0].valueAsText
-        if i is not None:
-            desc = arcpy.Describe(i)
-            i = desc.catalogPath
+        dem = parameters[0].valueAsText
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.percent_elev_range(i=i, output=output, filterx=filterx, filtery=filtery)
+        wbt.percent_elev_range(dem=dem, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12889,9 +12889,9 @@ class RemoveOffTerrainObjects(object):
         self.category = "Geomorphometric Analysis"
 
     def getParameterInfo(self):
-        i = arcpy.Parameter(
+        dem = arcpy.Parameter(
             displayName="Input DEM File",
-            name="i",
+            name="dem",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -12922,7 +12922,7 @@ class RemoveOffTerrainObjects(object):
 
         slope.value = "15.0"
 
-        params = [i, output, filter, slope]
+        params = [dem, output, filter, slope]
 
         return params
 
@@ -12942,17 +12942,17 @@ class RemoveOffTerrainObjects(object):
         return
 
     def execute(self, parameters, messages):
-        i = parameters[0].valueAsText
-        if i is not None:
-            desc = arcpy.Describe(i)
-            i = desc.catalogPath
+        dem = parameters[0].valueAsText
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         slope = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.remove_off_terrain_objects(i=i, output=output, filter=filter, slope=slope)
+        wbt.remove_off_terrain_objects(dem=dem, output=output, filter=filter, slope=slope)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17072,9 +17072,9 @@ class Sink(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        i = arcpy.Parameter(
+        dem = arcpy.Parameter(
             displayName="Input DEM File",
-            name="i",
+            name="dem",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -17094,7 +17094,7 @@ class Sink(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [i, output, zero_background]
+        params = [dem, output, zero_background]
 
         return params
 
@@ -17114,16 +17114,16 @@ class Sink(object):
         return
 
     def execute(self, parameters, messages):
-        i = parameters[0].valueAsText
-        if i is not None:
-            desc = arcpy.Describe(i)
-            i = desc.catalogPath
+        dem = parameters[0].valueAsText
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
         output = parameters[1].valueAsText
         zero_background = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.sink(i=i, output=output, zero_background=zero_background)
+        wbt.sink(dem=dem, output=output, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
