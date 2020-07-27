@@ -103,7 +103,7 @@ def get_tool_params(tool_name):
         
         if ("\"-i\"" in flags) and ("--inputs" in flags) :
             flags = "inputs"
-        elif ("\"-i\"" in flags) and ("--input" in flags) and  ("--dem" in flags):
+        elif ("\"-i\"" in flags) and ("--input" in flags) and  ("--dem" in flags) and (tool_name.lower() != 'sink'):
                 flags = "dem"       
         elif ("\"-i\"" in flags) and ("--input" in flags) :
             flags = "i"

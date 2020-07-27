@@ -17072,9 +17072,9 @@ class Sink(object):
         self.category = "Hydrological Analysis"
 
     def getParameterInfo(self):
-        dem = arcpy.Parameter(
+        i = arcpy.Parameter(
             displayName="Input DEM File",
-            name="dem",
+            name="i",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
@@ -17094,7 +17094,7 @@ class Sink(object):
             parameterType="Optional",
             direction="Input")
 
-        params = [dem, output, zero_background]
+        params = [i, output, zero_background]
 
         return params
 
@@ -17114,16 +17114,16 @@ class Sink(object):
         return
 
     def execute(self, parameters, messages):
-        dem = parameters[0].valueAsText
-        if dem is not None:
-            desc = arcpy.Describe(dem)
-            dem = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         zero_background = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.sink(dem=dem, output=output, zero_background=zero_background)
+        wbt.sink(i=i, output=output, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
