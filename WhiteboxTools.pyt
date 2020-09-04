@@ -142,6 +142,7 @@ tool_labels.append("Fill Missing Data")
 tool_labels.append("Fill Single Cell Pits")
 tool_labels.append("Filter Lidar Classes")
 tool_labels.append("Filter Lidar Scan Angles")
+tool_labels.append("Filter Raster Features By Area")
 tool_labels.append("Find Flightline Edge Points")
 tool_labels.append("Find Lowest Or Highest Points")
 tool_labels.append("Find Main Stem")
@@ -214,6 +215,7 @@ tool_labels.append("Lidar Block Maximum")
 tool_labels.append("Lidar Block Minimum")
 tool_labels.append("Lidar Classify Subset")
 tool_labels.append("Lidar Colourize")
+tool_labels.append("Lidar Digital Surface Model")
 tool_labels.append("Lidar Elevation Slice")
 tool_labels.append("Lidar Ground Point Filter")
 tool_labels.append("Lidar Hex Binning")
@@ -253,6 +255,7 @@ tool_labels.append("Long Profile From Points")
 tool_labels.append("Longest Flowpath")
 tool_labels.append("Lowest Position")
 tool_labels.append("Majority Filter")
+tool_labels.append("Map Off Terrain Objects")
 tool_labels.append("Max")
 tool_labels.append("Max Absolute Overlay")
 tool_labels.append("Max Anisotropy Dev")
@@ -416,6 +419,7 @@ tool_labels.append("Tan")
 tool_labels.append("Tangential Curvature")
 tool_labels.append("Tanh")
 tool_labels.append("Thicken Raster Line")
+tool_labels.append("Time In Daylight")
 tool_labels.append("Tin Gridding")
 tool_labels.append("To Degrees")
 tool_labels.append("To Radians")
@@ -512,6 +516,7 @@ class Toolbox(object):
         tools.append(ExtendVectorLines)
         tools.append(ExtractNodes)
         tools.append(ExtractRasterValuesAtPoints)
+        tools.append(FilterRasterFeaturesByArea)
         tools.append(FindLowestOrHighestPoints)
         tools.append(IdwInterpolation)
         tools.append(LayerFootprint)
@@ -607,6 +612,7 @@ class Toolbox(object):
         tools.append(HorizonAngle)
         tools.append(HypsometricAnalysis)
         tools.append(HypsometricallyTintedHillshade)
+        tools.append(MapOffTerrainObjects)
         tools.append(MaxAnisotropyDev)
         tools.append(MaxAnisotropyDevSignature)
         tools.append(MaxBranchLength)
@@ -641,6 +647,7 @@ class Toolbox(object):
         tools.append(StreamPowerIndex)
         tools.append(SurfaceAreaRatio)
         tools.append(TangentialCurvature)
+        tools.append(TimeInDaylight)
         tools.append(TotalCurvature)
         tools.append(Viewshed)
         tools.append(VisibilityIndex)
@@ -781,6 +788,7 @@ class Toolbox(object):
         tools.append(LidarBlockMinimum)
         tools.append(LidarClassifySubset)
         tools.append(LidarColourize)
+        tools.append(LidarDigitalSurfaceModel)
         tools.append(LidarElevationSlice)
         tools.append(LidarGroundPointFilter)
         tools.append(LidarHexBinning)
@@ -4103,6 +4111,83 @@ class ExtractRasterValuesAtPoints(object):
         result = StringIO()
         sys.stdout = result
         wbt.extract_raster_values_at_points(inputs=inputs, points=points, out_text=out_text)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
+class FilterRasterFeaturesByArea(object):
+    def __init__(self):
+        self.label = "Filter Raster Features By Area"
+        self.description = "Removes small-area features from a raster. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/gis_analysis.html#FilterRasterFeaturesByArea' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/gis_analysis/filter_raster_features_by_area.rs' target='_blank'>GitHub</a>."
+        self.category = "GIS Analysis"
+
+    def getParameterInfo(self):
+        i = arcpy.Parameter(
+            displayName="Input File",
+            name="i",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        threshold = arcpy.Parameter(
+            displayName="Area Threshold (grid cells)",
+            name="threshold",
+            datatype="GPLong",
+            parameterType="Required",
+            direction="Input")
+
+        background = arcpy.Parameter(
+            displayName="Background Value",
+            name="background",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+        background.filter.type = "ValueList"
+        background.filter.list = ['zero', 'nodata']
+
+        background.value = "zero"
+
+        params = [i, output, threshold, background]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
+        output = parameters[1].valueAsText
+        threshold = parameters[2].valueAsText
+        background = parameters[3].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.filter_raster_features_by_area(i=i, output=output, threshold=threshold, background=background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9129,8 +9214,6 @@ class Aspect(object):
             parameterType="Optional",
             direction="Input")
 
-        zfactor.value = "1.0"
-
         params = [dem, output, zfactor]
 
         return params
@@ -9868,8 +9951,6 @@ class EdgeDensity(object):
             parameterType="Optional",
             direction="Input")
 
-        zfactor.value = "1.0"
-
         params = [dem, output, filter, norm_diff, zfactor]
 
         return params
@@ -10242,8 +10323,6 @@ class FeaturePreservingSmoothing(object):
             parameterType="Optional",
             direction="Input")
 
-        zfactor.value = "1.0"
-
         params = [dem, output, filter, norm_diff, num_iter, max_diff, zfactor]
 
         return params
@@ -10562,8 +10641,6 @@ class Hillshade(object):
             parameterType="Optional",
             direction="Input")
 
-        zfactor.value = "1.0"
-
         params = [dem, output, azimuth, altitude, zfactor]
 
         return params
@@ -10639,6 +10716,8 @@ class HorizonAngle(object):
             datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
+
+        max_dist.value = "100.0"
 
         params = [dem, output, azimuth, max_dist]
 
@@ -10836,8 +10915,6 @@ class HypsometricallyTintedHillshade(object):
             parameterType="Optional",
             direction="Input")
 
-        zfactor.value = "1.0"
-
         full_mode = arcpy.Parameter(
             displayName="Full 360-degree hillshade mode?",
             name="full_mode",
@@ -10884,6 +10961,83 @@ class HypsometricallyTintedHillshade(object):
         result = StringIO()
         sys.stdout = result
         wbt.hypsometrically_tinted_hillshade(dem=dem, output=output, altitude=altitude, hs_weight=hs_weight, brightness=brightness, atmospheric=atmospheric, palette=palette, reverse=reverse, zfactor=zfactor, full_mode=full_mode)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
+class MapOffTerrainObjects(object):
+    def __init__(self):
+        self.label = "Map Off Terrain Objects"
+        self.description = "Maps off-terrain objects in a digital elevation model (DEM). View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#MapOffTerrainObjects' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/map_otos.rs' target='_blank'>GitHub</a>."
+        self.category = "Geomorphometric Analysis"
+
+    def getParameterInfo(self):
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        max_slope = arcpy.Parameter(
+            displayName="Maximum Slope",
+            name="max_slope",
+            datatype="GPDouble",
+            parameterType="Required",
+            direction="Input")
+
+        max_slope.value = "40.0"
+
+        min_size = arcpy.Parameter(
+            displayName="Minimum Feature Size",
+            name="min_size",
+            datatype="GPLong",
+            parameterType="Required",
+            direction="Input")
+
+        min_size.value = "1"
+
+        params = [dem, output, max_slope, min_size]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
+        output = parameters[1].valueAsText
+        max_slope = parameters[2].valueAsText
+        min_size = parameters[3].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.map_off_terrain_objects(dem=dem, output=output, max_slope=max_slope, min_size=min_size)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11576,8 +11730,6 @@ class MultidirectionalHillshade(object):
             datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
-
-        zfactor.value = "1.0"
 
         full_mode = arcpy.Parameter(
             displayName="Full 360-degree mode?",
@@ -12407,8 +12559,6 @@ class PennockLandformClass(object):
             parameterType="Optional",
             direction="Input")
 
-        zfactor.value = "1.0"
-
         params = [dem, output, slope, prof, plan, zfactor]
 
         return params
@@ -12554,8 +12704,6 @@ class PlanCurvature(object):
             parameterType="Optional",
             direction="Input")
 
-        zfactor.value = "1.0"
-
         params = [dem, output, zfactor]
 
         return params
@@ -12690,8 +12838,6 @@ class ProfileCurvature(object):
             parameterType="Optional",
             direction="Input")
 
-        zfactor.value = "1.0"
-
         params = [dem, output, zfactor]
 
         return params
@@ -12765,8 +12911,6 @@ class RelativeAspect(object):
             datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
-
-        zfactor.value = "1.0"
 
         params = [dem, output, azimuth, zfactor]
 
@@ -12988,8 +13132,6 @@ class RuggednessIndex(object):
             parameterType="Optional",
             direction="Input")
 
-        zfactor.value = "1.0"
-
         params = [dem, output, zfactor]
 
         return params
@@ -13142,8 +13284,6 @@ class Slope(object):
             datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
-
-        zfactor.value = "1.0"
 
         units = arcpy.Parameter(
             displayName="Units",
@@ -13362,8 +13502,6 @@ class StandardDeviationOfSlope(object):
             datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
-
-        zfactor.value = "1.0"
 
         filterx = arcpy.Parameter(
             displayName="Filter X-Dimension",
@@ -13585,8 +13723,6 @@ class TangentialCurvature(object):
             parameterType="Optional",
             direction="Input")
 
-        zfactor.value = "1.0"
-
         params = [dem, output, zfactor]
 
         return params
@@ -13623,6 +13759,149 @@ class TangentialCurvature(object):
         return
 
 
+class TimeInDaylight(object):
+    def __init__(self):
+        self.label = "Time In Daylight"
+        self.description = "Calculates the proportion of time a location is within an area of shadow. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/geomorphometric_analysis.html#TimeInDaylight' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/terrain_analysis/time_in_daylight.rs' target='_blank'>GitHub</a>."
+        self.category = "Geomorphometric Analysis"
+
+    def getParameterInfo(self):
+        dem = arcpy.Parameter(
+            displayName="Input DEM File",
+            name="dem",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        az_fraction = arcpy.Parameter(
+            displayName="Azimuth Fraction",
+            name="az_fraction",
+            datatype="GPDouble",
+            parameterType="Required",
+            direction="Input")
+
+        az_fraction.value = "10.0"
+
+        max_dist = arcpy.Parameter(
+            displayName="Maximum Search Distance",
+            name="max_dist",
+            datatype="GPDouble",
+            parameterType="Required",
+            direction="Input")
+
+        max_dist.value = "100.0"
+
+        lat = arcpy.Parameter(
+            displayName="Centre Point Latitude",
+            name="lat",
+            datatype="GPDouble",
+            parameterType="Required",
+            direction="Input")
+
+        long = arcpy.Parameter(
+            displayName="Centre Point Longitude",
+            name="long",
+            datatype="GPDouble",
+            parameterType="Required",
+            direction="Input")
+
+        utc_offset = arcpy.Parameter(
+            displayName="UTC Offset (e.g. -04:00, +06:00)",
+            name="utc_offset",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        utc_offset.value = "00:00"
+
+        start_day = arcpy.Parameter(
+            displayName="Start Day Of The Year (1-365)",
+            name="start_day",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+
+        start_day.value = "1"
+
+        end_day = arcpy.Parameter(
+            displayName="End Day Of The Year (1-365)",
+            name="end_day",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+
+        end_day.value = "365"
+
+        start_time = arcpy.Parameter(
+            displayName="Starting Hour (24-hour time: HH:MM:SS e.g. 05:00:00)",
+            name="start_time",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        start_time.value = "00:00:00"
+
+        end_time = arcpy.Parameter(
+            displayName="Ending Hour (24-hour time: HH:MM:SS e.g. 21:00:00)",
+            name="end_time",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        end_time.value = "23:59:59"
+
+        params = [dem, output, az_fraction, max_dist, lat, long, utc_offset, start_day, end_day, start_time, end_time]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
+        output = parameters[1].valueAsText
+        az_fraction = parameters[2].valueAsText
+        max_dist = parameters[3].valueAsText
+        lat = parameters[4].valueAsText
+        long = parameters[5].valueAsText
+        utc_offset = parameters[6].valueAsText
+        start_day = parameters[7].valueAsText
+        end_day = parameters[8].valueAsText
+        start_time = parameters[9].valueAsText
+        end_time = parameters[10].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.time_in_daylight(dem=dem, output=output, az_fraction=az_fraction, max_dist=max_dist, lat=lat, long=long, utc_offset=utc_offset, start_day=start_day, end_day=end_day, start_time=start_time, end_time=end_time)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class TotalCurvature(object):
     def __init__(self):
         self.label = "Total Curvature"
@@ -13651,8 +13930,6 @@ class TotalCurvature(object):
             datatype="GPDouble",
             parameterType="Optional",
             direction="Input")
-
-        zfactor.value = "1.0"
 
         params = [dem, output, zfactor]
 
@@ -16510,7 +16787,16 @@ class Isobasins(object):
             parameterType="Required",
             direction="Input")
 
-        params = [dem, output, size]
+        connections = arcpy.Parameter(
+            displayName="Output basin upstream-downstream connections?",
+            name="connections",
+            datatype="GPBoolean",
+            parameterType="Optional",
+            direction="Input")
+
+        connections.value = False
+
+        params = [dem, output, size, connections]
 
         return params
 
@@ -16536,10 +16822,11 @@ class Isobasins(object):
             dem = desc.catalogPath
         output = parameters[1].valueAsText
         size = parameters[2].valueAsText
+        connections = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.isobasins(dem=dem, output=output, size=size)
+        wbt.isobasins(dem=dem, output=output, size=size, connections=connections)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19010,11 +19297,26 @@ class Resample(object):
             direction="Input")
         inputs.multiValue = True
 
-        destination = arcpy.Parameter(
-            displayName="Destination File",
-            name="destination",
-            datatype="GPRasterLayer",
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
             parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        cell_size = arcpy.Parameter(
+            displayName="Cell Size",
+            name="cell_size",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        base = arcpy.Parameter(
+            displayName="Base Raster File",
+            name="base",
+            datatype="GPRasterLayer",
+            parameterType="Optional",
             direction="Input")
 
         method = arcpy.Parameter(
@@ -19028,7 +19330,7 @@ class Resample(object):
 
         method.value = "cc"
 
-        params = [inputs, destination, method]
+        params = [inputs, output, cell_size, base, method]
 
         return params
 
@@ -19054,15 +19356,17 @@ class Resample(object):
         for item in items:
             items_path.append(arcpy.Describe(item).catalogPath)
         inputs = ";".join(items_path)
-        destination = parameters[1].valueAsText
-        if destination is not None:
-            desc = arcpy.Describe(destination)
-            destination = desc.catalogPath
-        method = parameters[2].valueAsText
+        output = parameters[1].valueAsText
+        cell_size = parameters[2].valueAsText
+        base = parameters[3].valueAsText
+        if base is not None:
+            desc = arcpy.Describe(base)
+            base = desc.catalogPath
+        method = parameters[4].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.resample(inputs=inputs, destination=destination, method=method)
+        wbt.resample(inputs=inputs, output=output, cell_size=cell_size, base=base, method=method)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24194,6 +24498,105 @@ class LidarColourize(object):
         return
 
 
+class LidarDigitalSurfaceModel(object):
+    def __init__(self):
+        self.label = "Lidar Digital Surface Model"
+        self.description = "Creates a top-surface digital surface model (DSM) from a LiDAR point cloud. View detailed help documentation on <a href='https://jblindsay.github.io/wbt_book/available_tools/lidar_tools.html#LidarDigitalSurfaceModel' target='_blank'>WhiteboxTools User Manual</a> and source code on <a href='https://github.com/jblindsay/whitebox-tools//tree/master/src/tools/lidar_analysis/lidar_dsm.rs' target='_blank'>GitHub</a>."
+        self.category = "LiDAR Tools"
+
+    def getParameterInfo(self):
+        i = arcpy.Parameter(
+            displayName="Input File",
+            name="i",
+            datatype="DEFile",
+            parameterType="Optional",
+            direction="Input")
+        i.filter.list = ["las", "zip"]
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        resolution = arcpy.Parameter(
+            displayName="Grid Resolution",
+            name="resolution",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        resolution.value = "1.0"
+
+        radius = arcpy.Parameter(
+            displayName="Search Radius",
+            name="radius",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        radius.value = "0.5"
+
+        minz = arcpy.Parameter(
+            displayName="Minimum Elevation Value",
+            name="minz",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        maxz = arcpy.Parameter(
+            displayName="Maximum Elevation Value",
+            name="maxz",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        max_triangle_edge_length = arcpy.Parameter(
+            displayName="Maximum Triangle Edge Length",
+            name="max_triangle_edge_length",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [i, output, resolution, radius, minz, maxz, max_triangle_edge_length]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        i = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        resolution = parameters[2].valueAsText
+        radius = parameters[3].valueAsText
+        minz = parameters[4].valueAsText
+        maxz = parameters[5].valueAsText
+        max_triangle_edge_length = parameters[6].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_digital_surface_model(i=i, output=output, resolution=resolution, radius=radius, minz=minz, maxz=maxz, max_triangle_edge_length=max_triangle_edge_length)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class LidarElevationSlice(object):
     def __init__(self):
         self.label = "Lidar Elevation Slice"
@@ -25435,7 +25838,16 @@ class LidarRansacPlanes(object):
 
         classify.value = False
 
-        params = [i, output, radius, num_iter, num_samples, threshold, model_size, max_slope, classify]
+        last_returns = arcpy.Parameter(
+            displayName="Last Returns Only",
+            name="last_returns",
+            datatype="GPBoolean",
+            parameterType="Optional",
+            direction="Input")
+
+        last_returns.value = False
+
+        params = [i, output, radius, num_iter, num_samples, threshold, model_size, max_slope, classify, last_returns]
 
         return params
 
@@ -25464,10 +25876,11 @@ class LidarRansacPlanes(object):
         model_size = parameters[6].valueAsText
         max_slope = parameters[7].valueAsText
         classify = parameters[8].valueAsText
+        last_returns = parameters[9].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_ransac_planes(i=i, output=output, radius=radius, num_iter=num_iter, num_samples=num_samples, threshold=threshold, model_size=model_size, max_slope=max_slope, classify=classify)
+        wbt.lidar_ransac_planes(i=i, output=output, radius=radius, num_iter=num_iter, num_samples=num_samples, threshold=threshold, model_size=model_size, max_slope=max_slope, classify=classify, last_returns=last_returns)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25857,7 +26270,7 @@ class LidarRooftopAnalysis(object):
         threshold.value = "0.15"
 
         model_size = arcpy.Parameter(
-            displayName="Acceptable Model Size",
+            displayName="Acceptable Model Size (points)",
             name="model_size",
             datatype="GPLong",
             parameterType="Optional",
@@ -25866,7 +26279,7 @@ class LidarRooftopAnalysis(object):
         model_size.value = "15"
 
         max_slope = arcpy.Parameter(
-            displayName="Maximum Planar Slope",
+            displayName="Maximum Planar Slope (degrees)",
             name="max_slope",
             datatype="GPDouble",
             parameterType="Optional",
@@ -25875,7 +26288,7 @@ class LidarRooftopAnalysis(object):
         max_slope.value = "65.0"
 
         norm_diff = arcpy.Parameter(
-            displayName="Normal Difference Threshold",
+            displayName="Normal Difference Threshold (degrees)",
             name="norm_diff",
             datatype="GPDouble",
             parameterType="Optional",
@@ -26585,6 +26998,8 @@ class LidarTinGridding(object):
             datatype="GPString",
             parameterType="Optional",
             direction="Input")
+
+        exclude_cls.value = "7,18"
 
         minz = arcpy.Parameter(
             displayName="Minimum Elevation Value",
