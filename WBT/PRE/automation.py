@@ -13,10 +13,8 @@
 import os 
 import re
 import shutil
-import sys
 import ast
 import whitebox
-import tarfile
 import urllib.request
 from zipfile import ZipFile
 
@@ -71,17 +69,48 @@ def get_tool_params(tool_name):
     '''
     out_str = wbt.tool_parameters(tool_name)
     start_index = out_str.index('[') + 1
-    end_index = len(out_str.strip()) - 2
+    if "EXE_NAME" in out_str:
+        end_index = out_str.rfind("]") 
+    else:
+        end_index = len(out_str.strip()) - 2
     params = out_str[start_index : end_index]
-
-    sub_params = params.split('{"name"')
+    if "EXE_NAME" in out_str:
+        sub_params = params.split('{"default_value"')
+    else:
+        sub_params = params.split('{"name"')
     param_list = []
 
     for param in sub_params:
         param = param.strip()
         if len(param) > 0:
-            item = '"name"' + param
-            item = item[ : item.rfind("}")].strip()
+            if "EXE_NAME" in out_str:
+                if not param.endswith('},'):
+                    item = '"default_value"' + param[:-1] + ','
+                else:
+                    item = '"default_value"' + param[:-2] + ','
+                name_start = item.find('"name"')
+                name_end = item.find(",", name_start) + 1
+                name = item[name_start: name_end]
+                flags_start = item.find('"flags"')
+                flags_end = item.find('],', flags_start) + 2
+                flags = item[flags_start: flags_end]
+                desc_start = item.find('"description"')
+                desc_end = item.find('",', desc_start) + 2
+                desc = item[desc_start: desc_end]
+                ptype_start = item.find('"parameter_type"')
+                ptype_end = len(item) + 1
+                ptype = item[ptype_start: ptype_end]
+                default_start = item.find('"default_value"')
+                default_end = item.find(',', default_start) + 1
+                default = item[default_start: default_end]
+                optional_start = item.find('"optional"')
+                optional_end = item.find(',', optional_start) + 1
+                optional = item[optional_start: optional_end]
+                item = name + flags + desc + ptype + default + optional
+            else:
+                item = '"name"' + param
+                item = item[ : item.rfind("}")].strip()
+
             param_list.append(item)
 
     params_dict = {}
@@ -121,7 +150,11 @@ def get_tool_params(tool_name):
         param_dict['description'] = desc
 
         param_type = item[index_parameter_type - 1 : index_default_value - 2].replace('"parameter_type":', '')
-        param_type = ast.literal_eval(param_type)
+        try:
+            param_type = ast.literal_eval(param_type)
+        except:
+            pass
+
         param_dict['parameter_type'] = param_type
 
         default_value = item[index_default_value - 1 : index_optional - 2].replace('"default_value":', '')
@@ -396,8 +429,11 @@ def get_data_type(param):
 
     vector_filters = {
         'Point': '["Point"]',
+        'Points': '["Point"]',
         'Line': '["Polyline"]',
+        'Lines': '["Polyline"]',
         'Polygon': '["Polygon"]',
+        'Polygons': '["Polygon"]',
         'LineOrPolygon': '["Polyline", "Polygon"]',
         'Any': '[]'
     }
@@ -464,6 +500,11 @@ def get_github_tag(tool_name, category):
     # prefix = "https://github.com/jblindsay/whitebox-tools/blob/master/src/tools"
     # url = "{}/{}/{}.rs".format(prefix, category, tool_name)
     url = wbt.view_code(tool_name).strip()
+    # print(tool_name)
+    # if tool_name == "split_vector_lines":
+    #     print(url)
+    if "RUST_BACKTRACE" in url:
+        url = "https://github.com/jblindsay/whitebox-tools/tree/master/whitebox-tools-app/src/tools"
     html_tag = "<a href='{}' target='_blank'>GitHub</a>".format(url)
     return html_tag
 
@@ -506,7 +547,7 @@ file_wbt_pyt = os.path.join(os.path.dirname(os.path.dirname(dir_path)), "Whitebo
 
 if not os.path.exists(wbt_win_zip):
     print("Downloading WhiteboxTools binary ...")
-    url = "https://jblindsay.github.io/ghrg/WhiteboxTools/WhiteboxTools_win_amd64.zip"
+    url = "https://www.whiteboxgeo.com/WBT_Windows/WhiteboxTools_win_amd64.zip"
     urllib.request.urlretrieve(url, wbt_win_zip)   # Download WhiteboxTools
 else:
     print("WhiteboxTools binary already exists.")
@@ -528,6 +569,7 @@ toolboxes = {
     "# Image Processing Tools #": "Image Processing Tools",
     "# LiDAR Tools #": "LiDAR Tools",
     "# Math and Stats Tools #": "Math and Stats Tools",
+    "# Precision Agriculture #": "Precision Agriculture",
     "# Stream Network Analysis #": "Stream Network Analysis"
 }
 
@@ -539,6 +581,7 @@ github_cls = {
     "Image Processing Tools": "image_analysis",
     "LiDAR Tools": "lidar_analysis",
     "Math and Stats Tools": "math_stat_analysis",
+    "Precision Agriculture": "precision_agriculture",
     "Stream Network Analysis": "stream_network_analysis"
 }
 
@@ -550,6 +593,7 @@ book_cls = {
     "Image Processing Tools": "image_processing_tools",
     "LiDAR Tools": "lidar_tools",
     "Math and Stats Tools": "mathand_stats_tools",
+    "Precision Agriculture": "precision_agriculture",
     "Stream Network Analysis": "stream_network_analysis"
 }
 
@@ -581,6 +625,7 @@ with open(wbt_py) as f:
                 tool_labels.append(func_label)
                 func_desc = lines[index+1].replace('"""', '').strip()
 
+        
                 github_tag = get_github_tag(func_title, github_cls[category])
                 book_tag = get_book_tag(func_name, book_cls[category])
                 full_desc = "{} View detailed help documentation on {} and source code on {}.".format(func_desc, book_tag, github_tag)

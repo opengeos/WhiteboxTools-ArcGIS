@@ -16,11 +16,12 @@ This repository is related to the **ArcGIS Python Toolbox for WhiteboxTools**, w
 ![Note](https://i.imgur.com/Ic8BA7C.png) **Important Note:** This toolbox only supports **ArcGIS Pro and ArcGIS 10.6 or newer**. Don't waste your time trying it on ArcGIS 10.5 or older versions. 
 
 * Authors: Dr. John Lindsay (<https://jblindsay.github.io/ghrg/index.html>)
-* Contributors: Dr. Qiusheng Wu (<https://wetlands.io> | <https://LidarBlog.com>)
+* Contributors: Dr. Qiusheng Wu (<https://wetlands.io> | <https://blog.gishub.com>)
 * WhiteboxTools: <https://github.com/jblindsay/whitebox-tools>
 * User Manual: <https://jblindsay.github.io/wbt_book>
 * WhiteboxTools-ArcGIS: <https://github.com/giswqs/WhiteboxTools-ArcGIS>
 * WhiteboxTools-Python: <https://github.com/giswqs/whitebox>
+* WhiteboxTools-Jupyter: <https://github.com/giswqs/whiteboxgui>
 * WhiteboxTools-R: <https://github.com/giswqs/whiteboxR>
 * Free software: [MIT license](https://opensource.org/licenses/MIT)
 
@@ -72,7 +73,7 @@ Open any tool within the toolbox and start using it. Check out the [WhiteboxTool
 
 ## Available Tools
 
-The **[WhiteboxTools](https://github.com/jblindsay/whitebox-tools)** library currently contains **440** tools, which are each grouped based on their main function into one of the following categories: Data Tools, GIS Analysis, Hydrological Analysis, Image Analysis, LiDAR Analysis, Mathematical and Statistical Analysis, Stream Network Analysis, and Terrain Analysis. For a listing of available tools, complete with documentation and usage details, please see the [WhiteboxTools User Manual](https://jblindsay.github.io/wbt_book/available_tools/index.html).
+The **[WhiteboxTools](https://github.com/jblindsay/whitebox-tools)** library currently contains **468** tools, which are each grouped based on their main function into one of the following categories: Data Tools, GIS Analysis, Hydrological Analysis, Image Analysis, LiDAR Analysis, Mathematical and Statistical Analysis, Stream Network Analysis, and Terrain Analysis. For a listing of available tools, complete with documentation and usage details, please see the [WhiteboxTools User Manual](https://jblindsay.github.io/wbt_book/available_tools/index.html).
 
 ## Supported Data Formats
 
