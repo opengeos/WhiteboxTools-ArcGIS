@@ -301,7 +301,11 @@ def define_tool_params(params):
         if data_type['data_filter'] != '[]':
             if data_type['filter_type'] == '"ValueList"':
                 lines.append('        {}.filter.type = "ValueList"\n'.format(param))
-            lines.append('        {}.filter.list = {}\n'.format(param, data_type['data_filter']))
+
+            if (data_type['data_filter'] in ['["Point"]', '["Polyline"]', '["Polygon"]', '["las", "zip"]']) and direction == "Output":
+                pass
+            else:
+                lines.append('        {}.filter.list = {}\n'.format(param, data_type['data_filter']))
 
         if (items['default_value'] != 'null') and (len(items['default_value']) > 0):
             if "false" in items['default_value']:

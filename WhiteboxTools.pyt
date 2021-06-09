@@ -1802,7 +1802,6 @@ class LinesToPolygons(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Polygon"]
 
         params = [i, output]
 
@@ -2206,7 +2205,6 @@ class PolygonsToLines(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Polyline"]
 
         params = [i, output]
 
@@ -2311,7 +2309,6 @@ class RasterToVectorLines(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Polyline"]
 
         params = [i, output]
 
@@ -2368,7 +2365,6 @@ class RasterToVectorPoints(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Point"]
 
         params = [i, output]
 
@@ -2425,7 +2421,6 @@ class RasterToVectorPolygons(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Polygon"]
 
         params = [i, output]
 
@@ -2531,7 +2526,6 @@ class RemovePolygonHoles(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Polygon"]
 
         params = [i, output]
 
@@ -3511,7 +3505,6 @@ class ConstructVectorTin(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Polygon"]
 
         max_triangle_edge_length = arcpy.Parameter(
             displayName="Maximum Triangle Edge Length",
@@ -3578,7 +3571,6 @@ class CreateHexagonalVectorGrid(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Polygon"]
 
         width = arcpy.Parameter(
             displayName="Hexagon Width",
@@ -3739,7 +3731,6 @@ class CreateRectangularVectorGrid(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Polygon"]
 
         width = arcpy.Parameter(
             displayName="Grid Cell Width",
@@ -3906,7 +3897,6 @@ class EliminateCoincidentPoints(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Point"]
 
         tolerance = arcpy.Parameter(
             displayName="Distance Tolerance",
@@ -3972,7 +3962,6 @@ class ExtendVectorLines(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Polyline"]
 
         dist = arcpy.Parameter(
             displayName="Extend Distance",
@@ -4049,7 +4038,6 @@ class ExtractNodes(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Point"]
 
         params = [i, output]
 
@@ -4256,7 +4244,6 @@ class FindLowestOrHighestPoints(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Point"]
 
         out_type = arcpy.Parameter(
             displayName="Output Type",
@@ -4447,7 +4434,6 @@ class LayerFootprint(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Polygon"]
 
         params = [i, output]
 
@@ -4557,7 +4543,6 @@ class MinimumBoundingBox(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Polygon"]
 
         criterion = arcpy.Parameter(
             displayName="Minimization Criterion",
@@ -4636,7 +4621,6 @@ class MinimumBoundingCircle(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Polygon"]
 
         features = arcpy.Parameter(
             displayName="Find bounding circle around each individual feature.",
@@ -4703,7 +4687,6 @@ class MinimumBoundingEnvelope(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Polygon"]
 
         features = arcpy.Parameter(
             displayName="Find bounding envelop around each individual feature.",
@@ -4770,7 +4753,6 @@ class MinimumConvexHull(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Polygon"]
 
         features = arcpy.Parameter(
             displayName="Find hulls around each individual feature.",
@@ -5097,7 +5079,6 @@ class PolygonLongAxis(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Polyline"]
 
         params = [i, output]
 
@@ -5204,7 +5185,6 @@ class PolygonShortAxis(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Polyline"]
 
         params = [i, output]
 
@@ -5934,7 +5914,6 @@ class SplitVectorLines(object):
             datatype="DEShapefile",
             parameterType="Optional",
             direction="Output")
-        output.filter.list = ["Polyline"]
 
         length = arcpy.Parameter(
             displayName="Max Segment Length",
@@ -6101,7 +6080,6 @@ class VectorHexBinning(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Polygon"]
 
         width = arcpy.Parameter(
             displayName="Hexagon Width",
@@ -6179,7 +6157,6 @@ class VoronoiDiagram(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Polygon"]
 
         params = [i, output]
 
@@ -7269,7 +7246,6 @@ class LineIntersections(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Point"]
 
         params = [input1, input2, output]
 
@@ -7983,7 +7959,6 @@ class Polygonize(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Polygon"]
 
         params = [inputs, output]
 
@@ -9382,7 +9357,6 @@ class AssessRoute(object):
             datatype="DEShapefile",
             parameterType="Optional",
             direction="Output")
-        output.filter.list = ["Polyline"]
 
         length = arcpy.Parameter(
             displayName="Max Segment Length",
@@ -9612,7 +9586,6 @@ class ContoursFromPoints(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Polyline"]
 
         max_triangle_edge_length = arcpy.Parameter(
             displayName="Maximum Triangle Edge Length",
@@ -9709,7 +9682,6 @@ class ContoursFromRaster(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Polyline"]
 
         interval = arcpy.Parameter(
             displayName="Contour Interval",
@@ -17651,7 +17623,6 @@ class JensonSnapPourPoints(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Point"]
 
         snap_dist = arcpy.Parameter(
             displayName="Maximum Snap Distance (map units)",
@@ -17727,7 +17698,6 @@ class LongestFlowpath(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Polyline"]
 
         params = [dem, basins, output]
 
@@ -18302,7 +18272,6 @@ class SnapPourPoints(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Point"]
 
         snap_dist = arcpy.Parameter(
             displayName="Maximum Snap Distance (map units)",
@@ -24895,7 +24864,6 @@ class ClassifyBuildingsInLidar(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["las", "zip"]
 
         params = [i, buildings, output]
 
@@ -24954,7 +24922,6 @@ class ClassifyOverlapPoints(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["las", "zip"]
 
         resolution = arcpy.Parameter(
             displayName="Sample Resolution",
@@ -25037,7 +25004,6 @@ class ClipLidarToPolygon(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["las", "zip"]
 
         params = [i, polygons, output]
 
@@ -25104,7 +25070,6 @@ class ErasePolygonFromLidar(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["las", "zip"]
 
         params = [i, polygons, output]
 
@@ -25163,7 +25128,6 @@ class FilterLidarClasses(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["las", "zip"]
 
         exclude_cls = arcpy.Parameter(
             displayName="Exclusion Classes (0-18, based on LAS spec; e.g. 7,18)",
@@ -25226,7 +25190,6 @@ class FilterLidarScanAngles(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["las", "zip"]
 
         threshold = arcpy.Parameter(
             displayName="Threshold (degrees)",
@@ -25289,7 +25252,6 @@ class FindFlightlineEdgePoints(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["las", "zip"]
 
         params = [i, output]
 
@@ -25828,7 +25790,6 @@ class LidarClassifySubset(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["las", "zip"]
 
         subset_class = arcpy.Parameter(
             displayName="Subset Point Class Value",
@@ -25907,7 +25868,6 @@ class LidarColourize(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["las", "zip"]
 
         params = [in_lidar, in_image, output]
 
@@ -26065,7 +26025,6 @@ class LidarElevationSlice(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["las", "zip"]
 
         minz = arcpy.Parameter(
             displayName="Minimum Elevation Value",
@@ -26164,7 +26123,6 @@ class LidarGroundPointFilter(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["las", "zip"]
 
         radius = arcpy.Parameter(
             displayName="Search Radius",
@@ -26289,7 +26247,6 @@ class LidarHexBinning(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Polygon"]
 
         width = arcpy.Parameter(
             displayName="Hexagon Width",
@@ -26364,7 +26321,6 @@ class LidarHillshade(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["las", "zip"]
 
         azimuth = arcpy.Parameter(
             displayName="Azimuth (degrees)",
@@ -26735,7 +26691,6 @@ class LidarJoin(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["las", "zip"]
 
         params = [inputs, output]
 
@@ -27220,7 +27175,6 @@ class LidarRansacPlanes(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["las", "zip"]
 
         radius = arcpy.Parameter(
             displayName="Search Radius",
@@ -27512,7 +27466,6 @@ class LidarRemoveDuplicates(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["las", "zip"]
 
         include_z = arcpy.Parameter(
             displayName="Include z-values in point comparison?",
@@ -27577,7 +27530,6 @@ class LidarRemoveOutliers(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["las", "zip"]
 
         radius = arcpy.Parameter(
             displayName="Search Radius",
@@ -27678,7 +27630,6 @@ class LidarRooftopAnalysis(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Polygon"]
 
         radius = arcpy.Parameter(
             displayName="Search Radius",
@@ -27827,7 +27778,6 @@ class LidarSegmentation(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["las", "zip"]
 
         radius = arcpy.Parameter(
             displayName="Search Radius",
@@ -27982,7 +27932,6 @@ class LidarSegmentationBasedFilter(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["las", "zip"]
 
         radius = arcpy.Parameter(
             displayName="Search Radius",
@@ -28188,7 +28137,6 @@ class LidarSortByTime(object):
             datatype="DEFile",
             parameterType="Optional",
             direction="Output")
-        output.filter.list = ["las", "zip"]
 
         params = [i, output]
 
@@ -28243,7 +28191,6 @@ class LidarThin(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["las", "zip"]
 
         resolution = arcpy.Parameter(
             displayName="Sample Resolution",
@@ -28330,7 +28277,6 @@ class LidarThinHighDensity(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["las", "zip"]
 
         resolution = arcpy.Parameter(
             displayName="Grid Resolution",
@@ -28509,7 +28455,6 @@ class LidarTileFootprint(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Polygon"]
 
         hull = arcpy.Parameter(
             displayName="Create Convex Hull Around Points",
@@ -28697,7 +28642,6 @@ class LidarTophatTransform(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["las", "zip"]
 
         radius = arcpy.Parameter(
             displayName="Search Radius",
@@ -28762,7 +28706,6 @@ class NormalVectors(object):
             datatype="DEFile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["las", "zip"]
 
         radius = arcpy.Parameter(
             displayName="Search Radius",
@@ -34640,7 +34583,6 @@ class RecreatePassLines(object):
             datatype="DEShapefile",
             parameterType="Optional",
             direction="Output")
-        output_lines.filter.list = ["Polyline"]
 
         output_points = arcpy.Parameter(
             displayName="Output Points",
@@ -34648,7 +34590,6 @@ class RecreatePassLines(object):
             datatype="DEShapefile",
             parameterType="Optional",
             direction="Output")
-        output_points.filter.list = ["Point"]
 
         max_change_in_heading = arcpy.Parameter(
             displayName="Max Change In Heading (degrees)",
@@ -34729,7 +34670,6 @@ class YieldFilter(object):
             datatype="DEShapefile",
             parameterType="Optional",
             direction="Output")
-        output.filter.list = ["Point"]
 
         width = arcpy.Parameter(
             displayName="Swath Width",
@@ -34833,7 +34773,6 @@ class YieldMap(object):
             datatype="DEShapefile",
             parameterType="Optional",
             direction="Output")
-        output.filter.list = ["Polygon"]
 
         width = arcpy.Parameter(
             displayName="Swath Width",
@@ -35772,7 +35711,6 @@ class RasterStreamsToVector(object):
             datatype="DEShapefile",
             parameterType="Required",
             direction="Output")
-        output.filter.list = ["Polyline"]
 
         esri_pntr = arcpy.Parameter(
             displayName="Does the pointer file use the ESRI pointer scheme?",
