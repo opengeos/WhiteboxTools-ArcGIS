@@ -361,11 +361,12 @@ def define_execute(params):
         # deal with multi-value inputs
         lines.append('        {} = parameters[{}].valueAsText\n'.format(param, index))
         if data_type['multi_value']:
-            lines.append('        items = {}.split(";")\n'.format(param))
-            lines.append('        items_path = []\n')
-            lines.append('        for item in items:\n')
-            lines.append('            items_path.append(arcpy.Describe(item).catalogPath)\n')
-            lines.append('        {} = ";".join(items_path)\n'.format(param))
+            lines.append('        if {} is not None:\n'.format(param))
+            lines.append('            items = {}.split(";")\n'.format(param))
+            lines.append('            items_path = []\n')
+            lines.append('            for item in items:\n')
+            lines.append('                items_path.append(arcpy.Describe(item).catalogPath)\n')
+            lines.append('            {} = ";".join(items_path)\n'.format(param))
 
         if param_type in inputRasVec:
         #     lines.append('        desc = arcpy.Describe({})\n'.format(param))

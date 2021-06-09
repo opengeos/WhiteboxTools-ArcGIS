@@ -1965,11 +1965,12 @@ class MergeVectors(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -4127,11 +4128,12 @@ class ExtractRasterValuesAtPoints(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         points = parameters[1].valueAsText
         if points is not None:
             desc = arcpy.Describe(points)
@@ -6645,11 +6647,12 @@ class AverageOverlay(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -6859,11 +6862,12 @@ class CountIf(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         output = parameters[1].valueAsText
         value = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -7124,11 +7128,12 @@ class HighestPosition(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -7330,11 +7335,12 @@ class LowestPosition(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -7390,11 +7396,12 @@ class MaxAbsoluteOverlay(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -7450,11 +7457,12 @@ class MaxOverlay(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -7577,11 +7585,12 @@ class MinAbsoluteOverlay(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -7637,11 +7646,12 @@ class MinOverlay(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -7704,11 +7714,12 @@ class PercentEqualTo(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         comparison = parameters[1].valueAsText
         if comparison is not None:
             desc = arcpy.Describe(comparison)
@@ -7775,11 +7786,12 @@ class PercentGreaterThan(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         comparison = parameters[1].valueAsText
         if comparison is not None:
             desc = arcpy.Describe(comparison)
@@ -7846,11 +7858,12 @@ class PercentLessThan(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         comparison = parameters[1].valueAsText
         if comparison is not None:
             desc = arcpy.Describe(comparison)
@@ -7917,11 +7930,12 @@ class PickFromList(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         pos_input = parameters[1].valueAsText
         if pos_input is not None:
             desc = arcpy.Describe(pos_input)
@@ -7981,11 +7995,12 @@ class Polygonize(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -8109,11 +8124,12 @@ class SumOverlay(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -8422,19 +8438,21 @@ class WeightedOverlay(object):
 
     def execute(self, parameters, messages):
         factors = parameters[0].valueAsText
-        items = factors.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        factors = ";".join(items_path)
+        if factors is not None:
+            items = factors.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            factors = ";".join(items_path)
         weights = parameters[1].valueAsText
         cost = parameters[2].valueAsText
         constraints = parameters[3].valueAsText
-        items = constraints.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        constraints = ";".join(items_path)
+        if constraints is not None:
+            items = constraints.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            constraints = ";".join(items_path)
         output = parameters[4].valueAsText
         scale_max = parameters[5].valueAsText
         old_stdout = sys.stdout
@@ -8498,11 +8516,12 @@ class WeightedSum(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         weights = parameters[1].valueAsText
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -11119,17 +11138,19 @@ class HypsometricAnalysis(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         watershed = parameters[1].valueAsText
-        items = watershed.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        watershed = ";".join(items_path)
+        if watershed is not None:
+            items = watershed.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            watershed = ";".join(items_path)
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -13911,17 +13932,19 @@ class SlopeVsElevationPlot(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         watershed = parameters[1].valueAsText
-        items = watershed.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        watershed = ";".join(items_path)
+        if watershed is not None:
+            items = watershed.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            watershed = ";".join(items_path)
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -18917,17 +18940,19 @@ class ChangeVectorAnalysis(object):
 
     def execute(self, parameters, messages):
         date1 = parameters[0].valueAsText
-        items = date1.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        date1 = ";".join(items_path)
+        if date1 is not None:
+            items = date1.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            date1 = ";".join(items_path)
         date2 = parameters[1].valueAsText
-        items = date2.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        date2 = ";".join(items_path)
+        if date2 is not None:
+            items = date2.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            date2 = ";".join(items_path)
         magnitude = parameters[2].valueAsText
         direction = parameters[3].valueAsText
         old_stdout = sys.stdout
@@ -19496,11 +19521,12 @@ class ImageStackProfile(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         points = parameters[1].valueAsText
         if points is not None:
             desc = arcpy.Describe(points)
@@ -19685,11 +19711,12 @@ class Mosaic(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         output = parameters[1].valueAsText
         method = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -20093,11 +20120,12 @@ class Resample(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         output = parameters[1].valueAsText
         cell_size = parameters[2].valueAsText
         base = parameters[3].valueAsText
@@ -20582,11 +20610,12 @@ class EvaluateTrainingSites(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         polys = parameters[1].valueAsText
         field = parameters[2].valueAsText
         output = parameters[3].valueAsText
@@ -20671,11 +20700,12 @@ class ImageSegmentation(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         output = parameters[1].valueAsText
         threshold = parameters[2].valueAsText
         steps = parameters[3].valueAsText
@@ -20787,11 +20817,12 @@ class KMeansClustering(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         output = parameters[1].valueAsText
         out_html = parameters[2].valueAsText
         classes = parameters[3].valueAsText
@@ -20875,11 +20906,12 @@ class MinDistClassification(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         polys = parameters[1].valueAsText
         field = parameters[2].valueAsText
         output = parameters[3].valueAsText
@@ -20980,11 +21012,12 @@ class ModifiedKMeansClustering(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         output = parameters[1].valueAsText
         out_html = parameters[2].valueAsText
         start_clusters = parameters[3].valueAsText
@@ -21060,11 +21093,12 @@ class ParallelepipedClassification(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         polys = parameters[1].valueAsText
         field = parameters[2].valueAsText
         output = parameters[3].valueAsText
@@ -24818,11 +24852,12 @@ class AsciiToLas(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         pattern = parameters[1].valueAsText
         proj = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -25442,11 +25477,12 @@ class LasToAscii(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
@@ -25613,11 +25649,12 @@ class LasToZlidar(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         outdir = parameters[1].valueAsText
         compress = parameters[2].valueAsText
         level = parameters[3].valueAsText
@@ -26713,11 +26750,12 @@ class LidarJoin(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -28858,11 +28896,12 @@ class ZlidarToLas(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         outdir = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -30861,11 +30900,12 @@ class ImageAutocorrelation(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         contiguity = parameters[1].valueAsText
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
@@ -30922,11 +30962,12 @@ class ImageCorrelation(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -31563,11 +31604,12 @@ class InversePrincipalComponentAnalysis(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         report = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
@@ -32791,11 +32833,12 @@ class PrincipalComponentAnalysis(object):
 
     def execute(self, parameters, messages):
         inputs = parameters[0].valueAsText
-        items = inputs.split(";")
-        items_path = []
-        for item in items:
-            items_path.append(arcpy.Describe(item).catalogPath)
-        inputs = ";".join(items_path)
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
         output = parameters[1].valueAsText
         num_comp = parameters[2].valueAsText
         standardized = parameters[3].valueAsText
