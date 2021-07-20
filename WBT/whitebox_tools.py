@@ -215,7 +215,7 @@ class WhiteboxTools(object):
             if tool_name is None:
                 args.append("--license")
             else:
-                args.append(f"--license={tool_name}")
+                args.append("--license={}".format(tool_name))
 
             proc = Popen(args, shell=False, stdout=PIPE,
                          stderr=STDOUT, bufsize=1, universal_newlines=True)
