@@ -518,7 +518,7 @@ def get_book_url(tool_name, category):
     '''
     Get link to WhiteboxTools User Mannual 
     '''    
-    prefix = "https://jblindsay.github.io/wbt_book/available_tools"
+    prefix = "https://www.whiteboxgeo.com/manual/wbt_book/available_tools"
     url = "{}/{}.html#{}".format(prefix, category, tool_name)
     return url
     
@@ -528,7 +528,7 @@ def get_book_tag(tool_name, category):
     '''
     Get User Manual HTML tag
     '''    
-    prefix = "https://jblindsay.github.io/wbt_book/available_tools"
+    prefix = "https://www.whiteboxgeo.com/manual/wbt_book/available_tools"
     url = "{}/{}.html#{}".format(prefix, category, tool_name)
     html_tag = "<a href='{}' target='_blank'>WhiteboxTools User Manual</a>".format(url)
     return html_tag
