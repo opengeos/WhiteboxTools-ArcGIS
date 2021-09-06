@@ -12,7 +12,7 @@ The following commands are recognized:
 -h, --help       Prints help information.
 -l, --license    Prints the whitebox-tools license.
 --listtools      Lists all available tools. Keywords may also be used, --listtools slope.
--r, --run        Runs a tool; used in conjuction with --wd flag; -r="LidarInfo".
+-r, --run        Runs a tool; used in conjunction with --wd flag; -r="LidarInfo".
 --toolbox        Prints the toolbox associated with a tool; --toolbox=Slope.
 --toolhelp       Prints the help associated with a tool; --toolhelp="LidarInfo".
 --toolparameters Prints the parameters (in json form) for a specific tool; --toolparameters="LidarInfo".
@@ -43,7 +43,7 @@ specifying tool parameters. To run this interface, simply type:
 
 python3 wb_runner.py
 
-Or, if Python 3 is the default Python intepreter:
+Or, if Python 3 is the default Python interpreter:
 
 python wb_runner.py
 
@@ -56,8 +56,97 @@ for more details.
 * Release Notes: *
 ******************
 
-Version 1.5.0 (XX-XX-2020)
+Version 2.0.0 (30-08-2021)
+- The most important feature in this release is the addition of support for reading and writing the LAZ
+  compressed LiDAR format for all of the LiDAR tools in WBT.
+- Added the RasterCalculator tool for performing complex mathematical operations on input rasters.
+- Added the ConditionalEvaluation tool for performing an if-then-else operation on an input raster.
+- Added the EdgeContamination tool to identify grid cells for which the upslope area extends beyond
+  the data extent.
+- Added the ExposureTowardsWind tool.
+- Added the QuinnFlowAccumulation tool to perform a Quinn et al. (1995) flow accumulation operation.
+- Added the QinFlowAccumulation tool to perform a Qin et al. (2007) flow accumulation operation.
+- Added the Rho8FlowAccumulation tool to perform a Fairfield and Leymarie (1991) flow accumulation 
+  operation.
+- LidarHistogram now allows a GPS time parameter, which can be useful for determining the number of
+  flightlines in a LiDAR tile.
+- Fixed a bug with the Resample tool that created an artifact when reampling to resolutions less than 
+  one meter.
+- Fixed a bug that prevented plugin tools from being discovered by the open-core when run from the command
+  line on PATH when the working directory was something other than WBT.
+- Fixed several bugs in the ContoursFromPoints tool.
+- Fixed the z_factor calculation for large-extent DEMs in geographic coordinates for the geomorphometric
+  shape metric tools, e.g. slope, aspect, hillshade, and curvatures. The new approach calculates a different
+  z_factor conversion value for each row in the raster, rather than using a single value based on the raster 
+  mid-point latitude. This should help improve the accuracy of these shape indices on large-extent rasters 
+  in geographic coordinate systems.
+- Fixed several bugs in the isobasins and D8 flow accumulation tool.
+- The NewRasterFromBase tool now accepts a vector base file (and grid cell size) as well as a raster.
+- The WhiteboxTools user manual has had a refresh and is now hosted at: 
+  https://www.whiteboxgeo.com/manual/wbt_book/intro.html
+- We have added numerous tools to the WhiteboxTools Extensions. For details see:
+  https://www.whiteboxgeo.com/whitebox-geospatial-extensions/
+
+Version 1.5.0 (31-05-2021)
+- This release does not include very many new tools. Despite this, this is probably one of the largest 
+  releases yet. We have made extensive changes to the codebase, improving functionality in many 
+  significant ways. Therefore, we're very excited to announce the release of v1.5.
+- Probably the most exciting change is the introduction of plugin tools. Up until now, WBT has had a 
+  monolithic architecture, where all of the tools live within a single binary. This architecture has 
+  provided a number of benefits up until now. However, as the number of tools in WBT grows, it becomes
+  increasingly difficult to maintain this program structure - in particular, compile times have grown
+  significantly since the projects start. A plugin architecture provides much greater flexibility in 
+  this regard. Single tool plugins can be created, placed within the new 'plugins' folder within the 
+  WBT directory, and the whitebox_tools.exe binary will treat these plugins like any other tool within
+  the monolith. This also means that WBT users can develop their own custom tools, without the required 
+  know-how of figuring out how to integrate their tool into the large WBT code-base. The user manual
+  will be updated shortly to describe how this process works. For now, there is only one plugin tool 
+  example in the open-core (SplitVectorLines) although several other plugins have been developed (more 
+  on this below). The one downside of the new plugin architecture is that the size of the WBT download
+  will inevitably grow, as individual tool executables will be larger than the single monolith. We 
+  believe that this is an acceptable compromise. 
+- In order to accommodate plugin tools, we have significantly changed the codebase. Most significantly 
+  We have pulled the code associated with low-level functions, the so-called 'plumbing' code, (e.g. 
+  code for reading and writing various data files) into separate sub-repositories. In this way, the 
+  tools in the monolith and the plugin tools can both use this code without duplication.
+- WBT now has persistent environment variables contained within a 'settings.json' file within the WBT 
+  folder. Currently, these settings including 'verbose_mode', 'working_directory', 'compress_rasters', 
+  and 'max_procs'. More environment variables may be added in later releases. The fact that verbose mode
+  the working directory, and the compress_rasters flag are now persistent does have implications for the
+  Python and R front-ends and for the way these settings are used. The user manual will be updated 
+  shortly to reflect these changes.
+- We introduced the 'max_procs' setting. Now, all tools that run in parallel, or partially parallelize,
+  can be restricted to a maximum number of processes. Before, WBT would simply use all of the available
+  cores in the machine it was running on. While this is still the default (`max_procs: -1`), there are
+  certain conditions where this behaviour is undesirable. For example, when WBT is run on large servers 
+  or cloud-computing environments where a great many cores are shared among many users, it can be 
+  problematic when a single user/program consumes all of the available cores. This setting limits 
+  the maximum number of procs.
 - Added the EmbankmentMapping tool for mapping transportation embankments (road, rail) in LiDAR DEMs.
+- Added the SplitVectorLines tool. This tool will parse an input line vector into a series of segments
+  of a specified length. It is also an example of a WBT plugin.
+- The code has been updated to reflect the new zLidar v1.1 specification, which has significantly improved 
+  compression rates (testing shows it is between 91% and 109% of LAZ), greater flexibility (users may
+  specify the degree of compression versus speed of reading/writing), and numerous bug fixes. The zLidar 
+  specification webpage will soon be updated to reflect the new version. Further news on this front, 
+  it has come to our attention recently that there is now a Rust-based LAZ encoder/decoder, which provides 
+  an opportunity for us to add LAZ support in a future version of WBT. We are currently evaluating this
+  as an option.
+- We are trying to be more engaging with the WBT user community. In this regard, we have set up a new
+  Google Groups forum for user to ask questions (https://groups.google.com/g/whiteboxtools), and have a 
+  new Twitter account (@whiteboxgeo) and newsletter to make announcements. Feel free to sign up for 
+  either if you're interested in staying in touch. 
+- Lastly, we are very pleased to announce the creation of WhiteboxTools Geospatial Inc., a new company 
+  based on providing extension services around the open-source WBT platform. It is our vision that this
+  company will provide a way of making the ongoing development of the WBT open-core more sustainable in 
+  the future, by enabling developers to work full-time on the project. Please read my 'open letter to the 
+  WBT community' (https://www.whiteboxgeo.com/open-letter-whiteboxtools-community/) for more details 
+  about this exciting development. Our plan is to maintain, and continue development of, the open-core of 
+  WBT, while providing plugin extensions that enhance the core capabilities. To begin with, we are launching
+  the Whitebox General Toolset Extension, a set of (currently) 19 tools to help GIS professionals with their
+  everyday workflows. Please see the newly redesigned WBT webpage at www.whiteboxgeo.com for more details.
+  If you have been interested in supporting the WBT project in the past and haven't known how, buying a 
+  license for the General Toolset Extension is a wonderful way of doing so.
 
 Version 1.4.0 (04-09-2020)
 - Added the TimeInDaylight model tool for modelling the proportion of daytime that a location is not in shadow.
@@ -299,7 +388,7 @@ Version 0.14.0 (27-01-2019)
 
 
 Version 0.13.0 (08-01-2019)
-- The release largely focusses on bug-fixes rather than adding new features. The
+- The release largely focuses on bug-fixes rather than adding new features. The
  following tools were added to the project:
     MosaicWithFeathering
 - Support was added for GeoTIFF MODELTRANSFORMATIONTAG (Tag 33920).
@@ -323,7 +412,7 @@ Version 0.13.0 (08-01-2019)
   of the overall accuracy per grid cell (i.e. percent agreement).
 - Fixed a bug with the RasterStreamsToVector tool that resulted in overlapping
   traced streams.
-- The D8FlowAccumulation tool has been modifed to use a fixed flow-width to 
+- The D8FlowAccumulation tool has been modified to use a fixed flow-width to 
   calculate specific contributing area, equal to the average grid cell resolution. 
   The tool previously used a variable flow-width for SCA calculations, however,
   1. this differs from the constant value used in Whitebox GAT, and 2. a 
@@ -363,7 +452,7 @@ Version 0.12.0 (22-11-2018)
 - Modified the algorithm used by the CostDistance tool from an iterative method of
   finding the minimum cost surface to one that uses a priority-flood approach. This
   is far more efficient. Also, there was a bug in the original code that was the 
-  result of a mis-match between the neighbouring cell distances and the back-link 
+  result of a mismatch between the neighbouring cell distances and the back-link 
   direction. In some cases this resulted in an infinite loop, which is now resolved.
 - Improvements have been made to the WhiteboxTools GeoTIFF reader. A bug has been
   fixed that prevented tile-oriented (in contrast to the more common strip-oriented)
@@ -376,7 +465,7 @@ Version 0.12.0 (22-11-2018)
 Version 0.11.0 (01-10-2018)
 - This release is marked by the addition of several vector data processing capabilities. 
   Most notably, this includes support for TINing and TIN based gridding (vector and 
-  LiDAR), as well as several vector patch shape indicies. The following tools were 
+  LiDAR), as well as several vector patch shape indices. The following tools were 
   added to the project:
     AddPointCoordinatesToTable
     CentroidVector
@@ -606,7 +695,7 @@ Version 0.3.1 (15-02-2018)
 - No new tools have been added to this release. Instead the focus was on improving and enhancing
   LAS file support and fixing a numbe of bugs. These include the following:
 - Support has been added in the LAS file reader for handling Point Record Formats 4-11 in the 
-  LAS 1.4 specificiations. This includes enhanced support for 64-bit LAS files. This change 
+  LAS 1.4 specifications. This includes enhanced support for 64-bit LAS files. This change 
   resulted in cascading changes throughout the LiDAR infrastructure and LiDAR tools. Future 
   work will focus on writing LAS files in 1.4 format, instead of the current 1.3 format that is
   saved.

@@ -1,0 +1,74 @@
+{
+    "tool_name": "QinFlowAccumulation",
+    "exe": "qin_flow_accumulation",
+    "short_description": "This tool calculates Qin et al. (2007) flow accumulation.",
+    "toolbox": "Hydrological Analysis",
+    "license": "MIT",
+    "example": ".*EXE_NAME -r=QinFlowAccumulation --dem=DEM.tif --output=QinMFD.tif --out_type='specific contributing area' --exponent=15.0 --max_slope=30.0 --threshold=10000",
+    "parameters": [
+        {
+            "name": "Input DEM Raster",
+            "flags": ["-d", "--dem"],
+            "description": "Name of the input DEM raster file; must be depressionless.",
+            "parameter_type": {"ExistingFile":"Raster"},
+            "default_value": null,
+            "optional": false
+        },
+        {
+            "name": "Output Raster File",
+            "flags": ["--output"],
+            "description": "Name of the output raster file.",
+            "parameter_type": {"NewFile":"Raster"},
+            "default_value": null,
+            "optional": false
+        },
+        {
+            "name": "Output Type",
+            "flags": ["--out_type"],
+            "description": "Output type; one of 'cells', 'specific contributing area' (default), and 'catchment area'.",
+            "parameter_type": {"OptionList": ["cells", "specific contributing area", "catchment area"]},
+            "default_value": "specific contributing area",
+            "optional": true
+        },
+        {
+            "name": "Upper-bound Exponent Parameter",
+            "flags": ["--exponent"],
+            "description": "Optional upper-bound exponent parameter; default is 10.0.",
+            "parameter_type": "Float",
+            "default_value": "10.0",
+            "optional": true
+        },
+        {
+            "name": "Upper-bound Slope Parameter (in degrees)",
+            "flags": ["--max_slope"],
+            "description": "Optional upper-bound slope parameter, in degrees (0-90); default is 45.0.",
+            "parameter_type": "Float",
+            "default_value": "45.0",
+            "optional": true
+        },
+        {
+            "name": "Convergence Threshold (grid cells; blank for none)",
+            "flags": ["--threshold"],
+            "description": "Optional convergence threshold parameter, in grid cells; default is inifinity.",
+            "parameter_type": "Float",
+            "default_value": null,
+            "optional": true
+        },
+        {
+            "name": "Log-transform the output?",
+            "flags": ["--log"],
+            "description": "Log-transform the output values?",
+            "parameter_type": "Boolean",
+            "default_value": "false",
+            "optional": true
+        },
+        {
+            "name": "Clip the upper tail by 1%?",
+            "flags": ["--clip"],
+            "description": "Optional flag to request clipping the display max by 1%.",
+            "parameter_type": "Boolean",
+            "default_value": "false",
+            "optional": true
+        }
+    ]
+}
