@@ -1,7 +1,7 @@
 {
     "tool_name": "SplitVectorLines",
     "exe": "split_vector_lines",
-    "short_description": "This tool can be used to approximate the harvester pass lines from yield points.",
+    "short_description": "This tool can be used to split a vector line coverage into even-lengthed segments.",
     "toolbox": "GIS Analysis",
     "license": "MIT",
     "example": ">> .*EXE_NAME -r=SplitVectorLines -i=input.shp -o=line_segments.shp --length=100.0",
@@ -10,7 +10,7 @@
             "name": "Input Lines",
             "flags": ["-i", "--input"],
             "description": "Name of the input lines shapefile.",
-            "parameter_type": {"ExistingFile":{"Vector":"Lines"}},
+            "parameter_type": {"ExistingFile":{"Vector":"Line"}},
             "default_value": null,
             "optional": false
         },
@@ -18,7 +18,7 @@
             "name": "Output Lines",
             "flags": ["-o", "--output"],
             "description": "Name of the output lines shapefile.",
-            "parameter_type": {"NewFile":{"Vector":"Lines"}},
+            "parameter_type": {"NewFile":{"Vector":"Line"}},
             "default_value": null,
             "optional": false
         },
