@@ -130,7 +130,7 @@ def generate_tool_template(tool):
     # line = '        wbt.{}({})\n'.format(to_snakecase(tool['name']), ', '.join(tool['parameters']).replace(", class,", ", cls,"))
     line = "        wbt.{}({})\n".format(
         to_snakecase(tool["name"]),
-        ", ".join(tool_params).replace(", class=class,", ", cls=cls,"),
+        ", ".join(tool_params).replace(", class=class,", ", cls=cls,").replace("input=input", "i=i"),
     )
 
     # Deal with name conflict with reserved Python functions (and, or, not)
@@ -276,6 +276,9 @@ def define_execute(params):
 
         if param == "class":
             param = "cls"
+
+        if param == "input":
+            param = "i"
 
         # deal with multi-value inputs
         lines.append("        {} = parameters[{}].valueAsText\n".format(param, index))

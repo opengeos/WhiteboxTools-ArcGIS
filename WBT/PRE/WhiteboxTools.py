@@ -1407,15 +1407,15 @@ class AbsoluteValue(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.absolute_value(input=input, output=output)
+        wbt.absolute_value(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1488,10 +1488,10 @@ class AdaptiveFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -1499,7 +1499,7 @@ class AdaptiveFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.adaptive_filter(input=input, output=output, filterx=filterx, filtery=filtery, threshold=threshold)
+        wbt.adaptive_filter(i=i, output=output, filterx=filterx, filtery=filtery, threshold=threshold)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1615,14 +1615,14 @@ class AddPointCoordinatesToTable(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.add_point_coordinates_to_table(input=input)
+        wbt.add_point_coordinates_to_table(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1689,17 +1689,17 @@ class AggregateRaster(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         agg_factor = parameters[2].valueAsText
         type = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.aggregate_raster(input=input, output=output, agg_factor=agg_factor, type=type)
+        wbt.aggregate_raster(i=i, output=output, agg_factor=agg_factor, type=type)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1823,10 +1823,10 @@ class Anova(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         features = parameters[1].valueAsText
         if features is not None:
             desc = arcpy.Describe(features)
@@ -1835,7 +1835,7 @@ class Anova(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.anova(input=input, features=features, output=output)
+        wbt.anova(i=i, features=features, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1884,15 +1884,15 @@ class ArcCos(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.arc_cos(input=input, output=output)
+        wbt.arc_cos(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1941,15 +1941,15 @@ class ArcSin(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.arc_sin(input=input, output=output)
+        wbt.arc_sin(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -1998,15 +1998,15 @@ class ArcTan(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.arc_tan(input=input, output=output)
+        wbt.arc_tan(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2055,15 +2055,15 @@ class Arcosh(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.arcosh(input=input, output=output)
+        wbt.arcosh(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2112,15 +2112,15 @@ class Arsinh(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.arsinh(input=input, output=output)
+        wbt.arsinh(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2169,15 +2169,15 @@ class Artanh(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.artanh(input=input, output=output)
+        wbt.artanh(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2518,15 +2518,15 @@ class AttributeCorrelation(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.attribute_correlation(input=input, output=output)
+        wbt.attribute_correlation(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2607,10 +2607,10 @@ class AttributeCorrelationNeighbourhoodAnalysis(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field1 = parameters[1].valueAsText
         field2 = parameters[2].valueAsText
         radius = parameters[3].valueAsText
@@ -2619,7 +2619,7 @@ class AttributeCorrelationNeighbourhoodAnalysis(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.attribute_correlation_neighbourhood_analysis(input=input, field1=field1, field2=field2, radius=radius, min_points=min_points, stat=stat)
+        wbt.attribute_correlation_neighbourhood_analysis(i=i, field1=field1, field2=field2, radius=radius, min_points=min_points, stat=stat)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2676,16 +2676,16 @@ class AttributeHistogram(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.attribute_histogram(input=input, field=field, output=output)
+        wbt.attribute_histogram(i=i, field=field, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -2758,10 +2758,10 @@ class AttributeScattergram(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         fieldx = parameters[1].valueAsText
         fieldy = parameters[2].valueAsText
         output = parameters[3].valueAsText
@@ -2769,7 +2769,7 @@ class AttributeScattergram(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.attribute_scattergram(input=input, fieldx=fieldx, fieldy=fieldy, output=output, trendline=trendline)
+        wbt.attribute_scattergram(i=i, fieldx=fieldx, fieldy=fieldy, output=output, trendline=trendline)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3067,16 +3067,16 @@ class BalanceContrastEnhancement(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         band_mean = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.balance_contrast_enhancement(input=input, output=output, band_mean=band_mean)
+        wbt.balance_contrast_enhancement(i=i, output=output, band_mean=band_mean)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3207,17 +3207,17 @@ class BilateralFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         sigma_dist = parameters[2].valueAsText
         sigma_int = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.bilateral_filter(input=input, output=output, sigma_dist=sigma_dist, sigma_int=sigma_int)
+        wbt.bilateral_filter(i=i, output=output, sigma_dist=sigma_dist, sigma_int=sigma_int)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3297,10 +3297,10 @@ class BlockMaximumGridding(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
@@ -3312,7 +3312,7 @@ class BlockMaximumGridding(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.block_maximum_gridding(input=input, field=field, use_z=use_z, output=output, cell_size=cell_size, base=base)
+        wbt.block_maximum_gridding(i=i, field=field, use_z=use_z, output=output, cell_size=cell_size, base=base)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3392,10 +3392,10 @@ class BlockMinimumGridding(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
@@ -3407,7 +3407,7 @@ class BlockMinimumGridding(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.block_minimum_gridding(input=input, field=field, use_z=use_z, output=output, cell_size=cell_size, base=base)
+        wbt.block_minimum_gridding(i=i, field=field, use_z=use_z, output=output, cell_size=cell_size, base=base)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3456,15 +3456,15 @@ class BoundaryShapeComplexity(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.boundary_shape_complexity(input=input, output=output)
+        wbt.boundary_shape_complexity(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -3773,17 +3773,17 @@ class BufferRaster(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         size = parameters[2].valueAsText
         gridcells = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.buffer_raster(input=input, output=output, size=size, gridcells=gridcells)
+        wbt.buffer_raster(i=i, output=output, size=size, gridcells=gridcells)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4014,15 +4014,15 @@ class Ceil(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.ceil(input=input, output=output)
+        wbt.ceil(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4078,16 +4078,16 @@ class Centroid(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         text_output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.centroid(input=input, output=output, text_output=text_output)
+        wbt.centroid(i=i, output=output, text_output=text_output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4135,15 +4135,15 @@ class CentroidVector(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.centroid_vector(input=input, output=output)
+        wbt.centroid_vector(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4351,7 +4351,7 @@ class ClassifyBuildingsInLidar(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         buildings = parameters[1].valueAsText
         if buildings is not None:
             desc = arcpy.Describe(buildings)
@@ -4360,7 +4360,7 @@ class ClassifyBuildingsInLidar(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.classify_buildings_in_lidar(input=input, buildings=buildings, output=output)
+        wbt.classify_buildings_in_lidar(i=i, buildings=buildings, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4425,14 +4425,14 @@ class ClassifyOverlapPoints(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         resolution = parameters[2].valueAsText
         filter = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.classify_overlap_points(input=input, output=output, resolution=resolution, filter=filter)
+        wbt.classify_overlap_points(i=i, output=output, resolution=resolution, filter=filter)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4480,15 +4480,15 @@ class CleanVector(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.clean_vector(input=input, output=output)
+        wbt.clean_vector(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4544,10 +4544,10 @@ class Clip(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         clip = parameters[1].valueAsText
         if clip is not None:
             desc = arcpy.Describe(clip)
@@ -4556,7 +4556,7 @@ class Clip(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.clip(input=input, clip=clip, output=output)
+        wbt.clip(i=i, clip=clip, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4613,7 +4613,7 @@ class ClipLidarToPolygon(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         polygons = parameters[1].valueAsText
         if polygons is not None:
             desc = arcpy.Describe(polygons)
@@ -4622,7 +4622,7 @@ class ClipLidarToPolygon(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.clip_lidar_to_polygon(input=input, polygons=polygons, output=output)
+        wbt.clip_lidar_to_polygon(i=i, polygons=polygons, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4687,10 +4687,10 @@ class ClipRasterToPolygon(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         polygons = parameters[1].valueAsText
         if polygons is not None:
             desc = arcpy.Describe(polygons)
@@ -4700,7 +4700,7 @@ class ClipRasterToPolygon(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.clip_raster_to_polygon(input=input, polygons=polygons, output=output, maintain_dimensions=maintain_dimensions)
+        wbt.clip_raster_to_polygon(i=i, polygons=polygons, output=output, maintain_dimensions=maintain_dimensions)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4765,17 +4765,17 @@ class Closing(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.closing(input=input, output=output, filterx=filterx, filtery=filtery)
+        wbt.closing(i=i, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4839,17 +4839,17 @@ class Clump(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         diag = parameters[2].valueAsText
         zero_back = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.clump(input=input, output=output, diag=diag, zero_back=zero_back)
+        wbt.clump(i=i, output=output, diag=diag, zero_back=zero_back)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4891,14 +4891,14 @@ class CompactnessRatio(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.compactness_ratio(input=input)
+        wbt.compactness_ratio(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5055,17 +5055,17 @@ class ConservativeSmoothingFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.conservative_smoothing_filter(input=input, output=output, filterx=filterx, filtery=filtery)
+        wbt.conservative_smoothing_filter(i=i, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5137,10 +5137,10 @@ class ConstructVectorTin(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
@@ -5148,7 +5148,7 @@ class ConstructVectorTin(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.construct_vector_tin(input=input, field=field, use_z=use_z, output=output, max_triangle_edge_length=max_triangle_edge_length)
+        wbt.construct_vector_tin(i=i, field=field, use_z=use_z, output=output, max_triangle_edge_length=max_triangle_edge_length)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5244,10 +5244,10 @@ class ContoursFromPoints(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
@@ -5258,7 +5258,7 @@ class ContoursFromPoints(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.contours_from_points(input=input, field=field, use_z=use_z, output=output, max_triangle_edge_length=max_triangle_edge_length, interval=interval, base=base, smooth=smooth)
+        wbt.contours_from_points(i=i, field=field, use_z=use_z, output=output, max_triangle_edge_length=max_triangle_edge_length, interval=interval, base=base, smooth=smooth)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5338,10 +5338,10 @@ class ContoursFromRaster(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         interval = parameters[2].valueAsText
         base = parameters[3].valueAsText
@@ -5350,7 +5350,7 @@ class ContoursFromRaster(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.contours_from_raster(input=input, output=output, interval=interval, base=base, smooth=smooth, tolerance=tolerance)
+        wbt.contours_from_raster(i=i, output=output, interval=interval, base=base, smooth=smooth, tolerance=tolerance)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5399,15 +5399,15 @@ class ConvertNodataToZero(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.convert_nodata_to_zero(input=input, output=output)
+        wbt.convert_nodata_to_zero(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5456,15 +5456,15 @@ class ConvertRasterFormat(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.convert_raster_format(input=input, output=output)
+        wbt.convert_raster_format(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5513,15 +5513,15 @@ class CornerDetection(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.corner_detection(input=input, output=output)
+        wbt.corner_detection(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5602,10 +5602,10 @@ class CorrectVignetting(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         pp = parameters[1].valueAsText
         if pp is not None:
             desc = arcpy.Describe(pp)
@@ -5617,7 +5617,7 @@ class CorrectVignetting(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.correct_vignetting(input=input, pp=pp, output=output, focal_length=focal_length, image_width=image_width, n=n)
+        wbt.correct_vignetting(i=i, pp=pp, output=output, focal_length=focal_length, image_width=image_width, n=n)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5666,15 +5666,15 @@ class Cos(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.cos(input=input, output=output)
+        wbt.cos(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -5723,15 +5723,15 @@ class Cosh(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.cosh(input=input, output=output)
+        wbt.cosh(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6194,14 +6194,14 @@ class CreateHexagonalVectorGrid(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         width = parameters[2].valueAsText
         orientation = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.create_hexagonal_vector_grid(input=input, output=output, width=width, orientation=orientation)
+        wbt.create_hexagonal_vector_grid(i=i, output=output, width=width, orientation=orientation)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6363,7 +6363,7 @@ class CreateRectangularVectorGrid(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         width = parameters[2].valueAsText
         height = parameters[3].valueAsText
@@ -6372,7 +6372,7 @@ class CreateRectangularVectorGrid(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.create_rectangular_vector_grid(input=input, output=output, width=width, height=height, xorig=xorig, yorig=yorig)
+        wbt.create_rectangular_vector_grid(i=i, output=output, width=width, height=height, xorig=xorig, yorig=yorig)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6421,15 +6421,15 @@ class CrispnessIndex(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.crispness_index(input=input, output=output)
+        wbt.crispness_index(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6569,7 +6569,7 @@ class CsvPointsToVector(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         xfield = parameters[2].valueAsText
         yfield = parameters[3].valueAsText
@@ -6577,7 +6577,7 @@ class CsvPointsToVector(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.csv_points_to_vector(input=input, output=output, xfield=xfield, yfield=yfield, epsg=epsg)
+        wbt.csv_points_to_vector(i=i, output=output, xfield=xfield, yfield=yfield, epsg=epsg)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6626,15 +6626,15 @@ class CumulativeDistribution(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.cumulative_distribution(input=input, output=output)
+        wbt.cumulative_distribution(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6722,10 +6722,10 @@ class D8FlowAccumulation(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         out_type = parameters[2].valueAsText
         log = parameters[3].valueAsText
@@ -6735,7 +6735,7 @@ class D8FlowAccumulation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.d8_flow_accumulation(input=input, output=output, out_type=out_type, log=log, clip=clip, pntr=pntr, esri_pntr=esri_pntr)
+        wbt.d8_flow_accumulation(i=i, output=output, out_type=out_type, log=log, clip=clip, pntr=pntr, esri_pntr=esri_pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -6978,10 +6978,10 @@ class DInfFlowAccumulation(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         out_type = parameters[2].valueAsText
         threshold = parameters[3].valueAsText
@@ -6991,7 +6991,7 @@ class DInfFlowAccumulation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.d_inf_flow_accumulation(input=input, output=output, out_type=out_type, threshold=threshold, log=log, clip=clip, pntr=pntr)
+        wbt.d_inf_flow_accumulation(i=i, output=output, out_type=out_type, threshold=threshold, log=log, clip=clip, pntr=pntr)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7187,15 +7187,15 @@ class Decrement(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.decrement(input=input, output=output)
+        wbt.decrement(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7475,17 +7475,17 @@ class DiffOfGaussianFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         sigma1 = parameters[2].valueAsText
         sigma2 = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.diff_of_gaussian_filter(input=input, output=output, sigma1=sigma1, sigma2=sigma2)
+        wbt.diff_of_gaussian_filter(i=i, output=output, sigma1=sigma1, sigma2=sigma2)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7540,10 +7540,10 @@ class Difference(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         overlay = parameters[1].valueAsText
         if overlay is not None:
             desc = arcpy.Describe(overlay)
@@ -7552,7 +7552,7 @@ class Difference(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.difference(input=input, overlay=overlay, output=output)
+        wbt.difference(i=i, overlay=overlay, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7617,17 +7617,17 @@ class DirectDecorrelationStretch(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         k = parameters[2].valueAsText
         clip = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.direct_decorrelation_stretch(input=input, output=output, k=k, clip=clip)
+        wbt.direct_decorrelation_stretch(i=i, output=output, k=k, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7766,17 +7766,17 @@ class Dissolve(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         snap = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.dissolve(input=input, field=field, output=output, snap=snap)
+        wbt.dissolve(i=i, field=field, output=output, snap=snap)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7926,17 +7926,17 @@ class DiversityFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.diversity_filter(input=input, output=output, filterx=filterx, filtery=filtery)
+        wbt.diversity_filter(i=i, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8474,17 +8474,17 @@ class EdgePreservingMeanFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         threshold = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.edge_preserving_mean_filter(input=input, output=output, filter=filter, threshold=threshold)
+        wbt.edge_preserving_mean_filter(i=i, output=output, filter=filter, threshold=threshold)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -8540,16 +8540,16 @@ class EdgeProportion(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         output_text = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.edge_proportion(input=input, output=output, output_text=output_text)
+        wbt.edge_proportion(i=i, output=output, output_text=output_text)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9007,16 +9007,16 @@ class EliminateCoincidentPoints(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         tolerance = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.eliminate_coincident_points(input=input, output=output, tolerance=tolerance)
+        wbt.eliminate_coincident_points(i=i, output=output, tolerance=tolerance)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9058,14 +9058,14 @@ class ElongationRatio(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.elongation_ratio(input=input)
+        wbt.elongation_ratio(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9273,17 +9273,17 @@ class EmbossFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         direction = parameters[2].valueAsText
         clip = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.emboss_filter(input=input, output=output, direction=direction, clip=clip)
+        wbt.emboss_filter(i=i, output=output, direction=direction, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9413,10 +9413,10 @@ class Erase(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         erase = parameters[1].valueAsText
         if erase is not None:
             desc = arcpy.Describe(erase)
@@ -9425,7 +9425,7 @@ class Erase(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.erase(input=input, erase=erase, output=output)
+        wbt.erase(i=i, erase=erase, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9482,7 +9482,7 @@ class ErasePolygonFromLidar(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         polygons = parameters[1].valueAsText
         if polygons is not None:
             desc = arcpy.Describe(polygons)
@@ -9491,7 +9491,7 @@ class ErasePolygonFromLidar(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.erase_polygon_from_lidar(input=input, polygons=polygons, output=output)
+        wbt.erase_polygon_from_lidar(i=i, polygons=polygons, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9548,10 +9548,10 @@ class ErasePolygonFromRaster(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         polygons = parameters[1].valueAsText
         if polygons is not None:
             desc = arcpy.Describe(polygons)
@@ -9560,7 +9560,7 @@ class ErasePolygonFromRaster(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.erase_polygon_from_raster(input=input, polygons=polygons, output=output)
+        wbt.erase_polygon_from_raster(i=i, polygons=polygons, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9609,15 +9609,15 @@ class EuclideanAllocation(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.euclidean_allocation(input=input, output=output)
+        wbt.euclidean_allocation(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9666,15 +9666,15 @@ class EuclideanDistance(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.euclidean_distance(input=input, output=output)
+        wbt.euclidean_distance(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9804,15 +9804,15 @@ class Exp(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.exp(input=input, output=output)
+        wbt.exp(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9861,15 +9861,15 @@ class Exp2(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.exp2(input=input, output=output)
+        wbt.exp2(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -9926,16 +9926,16 @@ class ExportTableToCsv(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         headers = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.export_table_to_csv(input=input, output=output, headers=headers)
+        wbt.export_table_to_csv(i=i, output=output, headers=headers)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10079,17 +10079,17 @@ class ExtendVectorLines(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         dist = parameters[2].valueAsText
         extend = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.extend_vector_lines(input=input, output=output, dist=dist, extend=extend)
+        wbt.extend_vector_lines(i=i, output=output, dist=dist, extend=extend)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10137,15 +10137,15 @@ class ExtractNodes(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.extract_nodes(input=input, output=output)
+        wbt.extract_nodes(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -10677,16 +10677,16 @@ class FastAlmostGaussianFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         sigma = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.fast_almost_gaussian_filter(input=input, output=output, sigma=sigma)
+        wbt.fast_almost_gaussian_filter(i=i, output=output, sigma=sigma)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11234,10 +11234,10 @@ class FillMissingData(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         weight = parameters[3].valueAsText
@@ -11245,7 +11245,7 @@ class FillMissingData(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.fill_missing_data(input=input, output=output, filter=filter, weight=weight, no_edges=no_edges)
+        wbt.fill_missing_data(i=i, output=output, filter=filter, weight=weight, no_edges=no_edges)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11358,13 +11358,13 @@ class FilterLidarClasses(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         exclude_cls = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.filter_lidar_classes(input=input, output=output, exclude_cls=exclude_cls)
+        wbt.filter_lidar_classes(i=i, output=output, exclude_cls=exclude_cls)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11420,13 +11420,13 @@ class FilterLidarScanAngles(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         threshold = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.filter_lidar_scan_angles(input=input, output=output, threshold=threshold)
+        wbt.filter_lidar_scan_angles(i=i, output=output, threshold=threshold)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11492,17 +11492,17 @@ class FilterRasterFeaturesByArea(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         threshold = parameters[2].valueAsText
         background = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.filter_raster_features_by_area(input=input, output=output, threshold=threshold, background=background)
+        wbt.filter_raster_features_by_area(i=i, output=output, threshold=threshold, background=background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11551,12 +11551,12 @@ class FindFlightlineEdgePoints(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.find_flightline_edge_points(input=input, output=output)
+        wbt.find_flightline_edge_points(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11614,16 +11614,16 @@ class FindLowestOrHighestPoints(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         out_type = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.find_lowest_or_highest_points(input=input, output=output, out_type=out_type)
+        wbt.find_lowest_or_highest_points(i=i, output=output, out_type=out_type)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -11882,15 +11882,15 @@ class FindPatchOrClassEdgeCells(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.find_patch_or_class_edge_cells(input=input, output=output)
+        wbt.find_patch_or_class_edge_cells(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12147,13 +12147,13 @@ class FlightlineOverlap(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         resolution = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.flightline_overlap(input=input, output=output, resolution=resolution)
+        wbt.flightline_overlap(i=i, output=output, resolution=resolution)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12212,16 +12212,16 @@ class FlipImage(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         direction = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.flip_image(input=input, output=output, direction=direction)
+        wbt.flip_image(i=i, output=output, direction=direction)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12327,15 +12327,15 @@ class Floor(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.floor(input=input, output=output)
+        wbt.floor(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12569,16 +12569,16 @@ class GammaCorrection(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         gamma = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.gamma_correction(input=input, output=output, gamma=gamma)
+        wbt.gamma_correction(i=i, output=output, gamma=gamma)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12635,16 +12635,16 @@ class GaussianContrastStretch(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         num_tones = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.gaussian_contrast_stretch(input=input, output=output, num_tones=num_tones)
+        wbt.gaussian_contrast_stretch(i=i, output=output, num_tones=num_tones)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12701,16 +12701,16 @@ class GaussianFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         sigma = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.gaussian_filter(input=input, output=output, sigma=sigma)
+        wbt.gaussian_filter(i=i, output=output, sigma=sigma)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12927,12 +12927,12 @@ class HeightAboveGround(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.height_above_ground(input=input, output=output)
+        wbt.height_above_ground(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -12997,17 +12997,17 @@ class HighPassFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.high_pass_filter(input=input, output=output, filterx=filterx, filtery=filtery)
+        wbt.high_pass_filter(i=i, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13080,10 +13080,10 @@ class HighPassMedianFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -13091,7 +13091,7 @@ class HighPassMedianFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.high_pass_median_filter(input=input, output=output, filterx=filterx, filtery=filtery, sig_digits=sig_digits)
+        wbt.high_pass_median_filter(i=i, output=output, filterx=filterx, filtery=filtery, sig_digits=sig_digits)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13369,16 +13369,16 @@ class HistogramEqualization(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         num_tones = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.histogram_equalization(input=input, output=output, num_tones=num_tones)
+        wbt.histogram_equalization(i=i, output=output, num_tones=num_tones)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13434,16 +13434,16 @@ class HistogramMatching(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         histo_file = parameters[1].valueAsText
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.histogram_matching(input=input, histo_file=histo_file, output=output)
+        wbt.histogram_matching(i=i, histo_file=histo_file, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13553,14 +13553,14 @@ class HoleProportion(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.hole_proportion(input=input)
+        wbt.hole_proportion(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14111,10 +14111,10 @@ class IdwInterpolation(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
@@ -14129,7 +14129,7 @@ class IdwInterpolation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.idw_interpolation(input=input, field=field, use_z=use_z, output=output, weight=weight, radius=radius, min_points=min_points, cell_size=cell_size, base=base)
+        wbt.idw_interpolation(i=i, field=field, use_z=use_z, output=output, weight=weight, radius=radius, min_points=min_points, cell_size=cell_size, base=base)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15257,15 +15257,15 @@ class Increment(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.increment(input=input, output=output)
+        wbt.increment(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15465,15 +15465,15 @@ class IntegralImage(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.integral_image(input=input, output=output)
+        wbt.integral_image(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15536,10 +15536,10 @@ class Intersect(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         overlay = parameters[1].valueAsText
         if overlay is not None:
             desc = arcpy.Describe(overlay)
@@ -15549,7 +15549,7 @@ class Intersect(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.intersect(input=input, overlay=overlay, output=output, snap=snap)
+        wbt.intersect(i=i, overlay=overlay, output=output, snap=snap)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -15659,15 +15659,15 @@ class IsNoData(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.is_no_data(input=input, output=output)
+        wbt.is_no_data(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16092,10 +16092,10 @@ class KNearestMeanFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -16103,7 +16103,7 @@ class KNearestMeanFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.k_nearest_mean_filter(input=input, output=output, filterx=filterx, filtery=filtery, k=k)
+        wbt.k_nearest_mean_filter(i=i, output=output, filterx=filterx, filtery=filtery, k=k)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16227,16 +16227,16 @@ class KsTestForNormality(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         num_samples = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.ks_test_for_normality(input=input, output=output, num_samples=num_samples)
+        wbt.ks_test_for_normality(i=i, output=output, num_samples=num_samples)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16303,17 +16303,17 @@ class LaplacianFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         variant = parameters[2].valueAsText
         clip = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.laplacian_filter(input=input, output=output, variant=variant, clip=clip)
+        wbt.laplacian_filter(i=i, output=output, variant=variant, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16370,16 +16370,16 @@ class LaplacianOfGaussianFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         sigma = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.laplacian_of_gaussian_filter(input=input, output=output, sigma=sigma)
+        wbt.laplacian_of_gaussian_filter(i=i, output=output, sigma=sigma)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16529,11 +16529,11 @@ class LasToMultipointShapefile(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.las_to_multipoint_shapefile(input=input)
+        wbt.las_to_multipoint_shapefile(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16575,11 +16575,11 @@ class LasToShapefile(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.las_to_shapefile(input=input)
+        wbt.las_to_shapefile(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16708,12 +16708,12 @@ class LayerFootprint(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.layer_footprint(input=input, output=output)
+        wbt.layer_footprint(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -16849,10 +16849,10 @@ class LeeSigmaFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -16861,7 +16861,7 @@ class LeeSigmaFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lee_sigma_filter(input=input, output=output, filterx=filterx, filtery=filtery, sigma=sigma, m=m)
+        wbt.lee_sigma_filter(i=i, output=output, filterx=filterx, filtery=filtery, sigma=sigma, m=m)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17086,13 +17086,13 @@ class LidarBlockMaximum(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         resolution = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_block_maximum(input=input, output=output, resolution=resolution)
+        wbt.lidar_block_maximum(i=i, output=output, resolution=resolution)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17150,13 +17150,13 @@ class LidarBlockMinimum(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         resolution = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_block_minimum(input=input, output=output, resolution=resolution)
+        wbt.lidar_block_minimum(i=i, output=output, resolution=resolution)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17513,7 +17513,7 @@ class LidarDigitalSurfaceModel(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         resolution = parameters[2].valueAsText
         radius = parameters[3].valueAsText
@@ -17523,7 +17523,7 @@ class LidarDigitalSurfaceModel(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_digital_surface_model(input=input, output=output, resolution=resolution, radius=radius, minz=minz, maxz=maxz, max_triangle_edge_length=max_triangle_edge_length)
+        wbt.lidar_digital_surface_model(i=i, output=output, resolution=resolution, radius=radius, minz=minz, maxz=maxz, max_triangle_edge_length=max_triangle_edge_length)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17609,7 +17609,7 @@ class LidarElevationSlice(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         minz = parameters[2].valueAsText
         maxz = parameters[3].valueAsText
@@ -17619,7 +17619,7 @@ class LidarElevationSlice(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_elevation_slice(input=input, output=output, minz=minz, maxz=maxz, cls=cls, inclassval=inclassval, outclassval=outclassval)
+        wbt.lidar_elevation_slice(i=i, output=output, minz=minz, maxz=maxz, cls=cls, inclassval=inclassval, outclassval=outclassval)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17724,7 +17724,7 @@ class LidarGroundPointFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         radius = parameters[2].valueAsText
         min_neighbours = parameters[3].valueAsText
@@ -17736,7 +17736,7 @@ class LidarGroundPointFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_ground_point_filter(input=input, output=output, radius=radius, min_neighbours=min_neighbours, slope_threshold=slope_threshold, height_threshold=height_threshold, classify=classify, slope_norm=slope_norm, height_above_ground=height_above_ground)
+        wbt.lidar_ground_point_filter(i=i, output=output, radius=radius, min_neighbours=min_neighbours, slope_threshold=slope_threshold, height_threshold=height_threshold, classify=classify, slope_norm=slope_norm, height_above_ground=height_above_ground)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17802,14 +17802,14 @@ class LidarHexBinning(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         width = parameters[2].valueAsText
         orientation = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_hex_binning(input=input, output=output, width=width, orientation=orientation)
+        wbt.lidar_hex_binning(i=i, output=output, width=width, orientation=orientation)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17882,7 +17882,7 @@ class LidarHillshade(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         azimuth = parameters[2].valueAsText
         altitude = parameters[3].valueAsText
@@ -17890,7 +17890,7 @@ class LidarHillshade(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_hillshade(input=input, output=output, azimuth=azimuth, altitude=altitude, radius=radius)
+        wbt.lidar_hillshade(i=i, output=output, azimuth=azimuth, altitude=altitude, radius=radius)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -17958,14 +17958,14 @@ class LidarHistogram(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         parameter = parameters[2].valueAsText
         clip = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_histogram(input=input, output=output, parameter=parameter, clip=clip)
+        wbt.lidar_histogram(i=i, output=output, parameter=parameter, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18080,7 +18080,7 @@ class LidarIdwInterpolation(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         parameter = parameters[2].valueAsText
         returns = parameters[3].valueAsText
@@ -18093,7 +18093,7 @@ class LidarIdwInterpolation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_idw_interpolation(input=input, output=output, parameter=parameter, returns=returns, resolution=resolution, weight=weight, radius=radius, exclude_cls=exclude_cls, minz=minz, maxz=maxz)
+        wbt.lidar_idw_interpolation(i=i, output=output, parameter=parameter, returns=returns, resolution=resolution, weight=weight, radius=radius, exclude_cls=exclude_cls, minz=minz, maxz=maxz)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18159,14 +18159,14 @@ class LidarInfo(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         vlr = parameters[2].valueAsText
         geokeys = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_info(input=input, output=output, vlr=vlr, geokeys=geokeys)
+        wbt.lidar_info(i=i, output=output, vlr=vlr, geokeys=geokeys)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18416,7 +18416,7 @@ class LidarNearestNeighbourGridding(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         parameter = parameters[2].valueAsText
         returns = parameters[3].valueAsText
@@ -18428,7 +18428,7 @@ class LidarNearestNeighbourGridding(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_nearest_neighbour_gridding(input=input, output=output, parameter=parameter, returns=returns, resolution=resolution, radius=radius, exclude_cls=exclude_cls, minz=minz, maxz=maxz)
+        wbt.lidar_nearest_neighbour_gridding(i=i, output=output, parameter=parameter, returns=returns, resolution=resolution, radius=radius, exclude_cls=exclude_cls, minz=minz, maxz=maxz)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18525,7 +18525,7 @@ class LidarPointDensity(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         returns = parameters[2].valueAsText
         resolution = parameters[3].valueAsText
@@ -18536,7 +18536,7 @@ class LidarPointDensity(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_point_density(input=input, output=output, returns=returns, resolution=resolution, radius=radius, exclude_cls=exclude_cls, minz=minz, maxz=maxz)
+        wbt.lidar_point_density(i=i, output=output, returns=returns, resolution=resolution, radius=radius, exclude_cls=exclude_cls, minz=minz, maxz=maxz)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18684,7 +18684,7 @@ class LidarPointStats(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         resolution = parameters[1].valueAsText
         num_points = parameters[2].valueAsText
         num_pulses = parameters[3].valueAsText
@@ -18695,7 +18695,7 @@ class LidarPointStats(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_point_stats(input=input, resolution=resolution, num_points=num_points, num_pulses=num_pulses, avg_points_per_pulse=avg_points_per_pulse, z_range=z_range, intensity_range=intensity_range, predom_class=predom_class)
+        wbt.lidar_point_stats(i=i, resolution=resolution, num_points=num_points, num_pulses=num_pulses, avg_points_per_pulse=avg_points_per_pulse, z_range=z_range, intensity_range=intensity_range, predom_class=predom_class)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18808,7 +18808,7 @@ class LidarRansacPlanes(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         radius = parameters[2].valueAsText
         num_iter = parameters[3].valueAsText
@@ -18821,7 +18821,7 @@ class LidarRansacPlanes(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_ransac_planes(input=input, output=output, radius=radius, num_iter=num_iter, num_samples=num_samples, threshold=threshold, model_size=model_size, max_slope=max_slope, classify=classify, last_returns=last_returns)
+        wbt.lidar_ransac_planes(i=i, output=output, radius=radius, num_iter=num_iter, num_samples=num_samples, threshold=threshold, model_size=model_size, max_slope=max_slope, classify=classify, last_returns=last_returns)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -18956,7 +18956,7 @@ class LidarRbfInterpolation(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         parameter = parameters[2].valueAsText
         returns = parameters[3].valueAsText
@@ -18971,7 +18971,7 @@ class LidarRbfInterpolation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_rbf_interpolation(input=input, output=output, parameter=parameter, returns=returns, resolution=resolution, num_points=num_points, exclude_cls=exclude_cls, minz=minz, maxz=maxz, func_type=func_type, poly_order=poly_order, weight=weight)
+        wbt.lidar_rbf_interpolation(i=i, output=output, parameter=parameter, returns=returns, resolution=resolution, num_points=num_points, exclude_cls=exclude_cls, minz=minz, maxz=maxz, func_type=func_type, poly_order=poly_order, weight=weight)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19028,13 +19028,13 @@ class LidarRemoveDuplicates(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         include_z = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_remove_duplicates(input=input, output=output, include_z=include_z)
+        wbt.lidar_remove_duplicates(i=i, output=output, include_z=include_z)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19114,7 +19114,7 @@ class LidarRemoveOutliers(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         radius = parameters[2].valueAsText
         elev_diff = parameters[3].valueAsText
@@ -19123,7 +19123,7 @@ class LidarRemoveOutliers(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_remove_outliers(input=input, output=output, radius=radius, elev_diff=elev_diff, use_median=use_median, classify=classify)
+        wbt.lidar_remove_outliers(i=i, output=output, radius=radius, elev_diff=elev_diff, use_median=use_median, classify=classify)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19252,7 +19252,7 @@ class LidarRooftopAnalysis(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         buildings = parameters[1].valueAsText
         if buildings is not None:
             desc = arcpy.Describe(buildings)
@@ -19270,7 +19270,7 @@ class LidarRooftopAnalysis(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_rooftop_analysis(input=input, buildings=buildings, output=output, radius=radius, num_iter=num_iter, num_samples=num_samples, threshold=threshold, model_size=model_size, max_slope=max_slope, norm_diff=norm_diff, azimuth=azimuth, altitude=altitude)
+        wbt.lidar_rooftop_analysis(i=i, buildings=buildings, output=output, radius=radius, num_iter=num_iter, num_samples=num_samples, threshold=threshold, model_size=model_size, max_slope=max_slope, norm_diff=norm_diff, azimuth=azimuth, altitude=altitude)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19399,7 +19399,7 @@ class LidarSegmentation(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         radius = parameters[2].valueAsText
         num_iter = parameters[3].valueAsText
@@ -19414,7 +19414,7 @@ class LidarSegmentation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_segmentation(input=input, output=output, radius=radius, num_iter=num_iter, num_samples=num_samples, threshold=threshold, model_size=model_size, max_slope=max_slope, norm_diff=norm_diff, maxzdiff=maxzdiff, classes=classes, ground=ground)
+        wbt.lidar_segmentation(i=i, output=output, radius=radius, num_iter=num_iter, num_samples=num_samples, threshold=threshold, model_size=model_size, max_slope=max_slope, norm_diff=norm_diff, maxzdiff=maxzdiff, classes=classes, ground=ground)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19494,7 +19494,7 @@ class LidarSegmentationBasedFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         radius = parameters[2].valueAsText
         norm_diff = parameters[3].valueAsText
@@ -19503,7 +19503,7 @@ class LidarSegmentationBasedFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_segmentation_based_filter(input=input, output=output, radius=radius, norm_diff=norm_diff, maxzdiff=maxzdiff, classify=classify)
+        wbt.lidar_segmentation_based_filter(i=i, output=output, radius=radius, norm_diff=norm_diff, maxzdiff=maxzdiff, classify=classify)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19774,7 +19774,7 @@ class LidarTinGridding(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         parameter = parameters[2].valueAsText
         returns = parameters[3].valueAsText
@@ -19786,7 +19786,7 @@ class LidarTinGridding(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_tin_gridding(input=input, output=output, parameter=parameter, returns=returns, resolution=resolution, exclude_cls=exclude_cls, minz=minz, maxz=maxz, max_triangle_edge_length=max_triangle_edge_length)
+        wbt.lidar_tin_gridding(i=i, output=output, parameter=parameter, returns=returns, resolution=resolution, exclude_cls=exclude_cls, minz=minz, maxz=maxz, max_triangle_edge_length=max_triangle_edge_length)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19861,7 +19861,7 @@ class LidarThin(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         resolution = parameters[2].valueAsText
         method = parameters[3].valueAsText
@@ -19869,7 +19869,7 @@ class LidarThin(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_thin(input=input, output=output, resolution=resolution, method=method, save_filtered=save_filtered)
+        wbt.lidar_thin(i=i, output=output, resolution=resolution, method=method, save_filtered=save_filtered)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -19941,7 +19941,7 @@ class LidarThinHighDensity(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         resolution = parameters[2].valueAsText
         density = parameters[3].valueAsText
@@ -19949,7 +19949,7 @@ class LidarThinHighDensity(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_thin_high_density(input=input, output=output, resolution=resolution, density=density, save_filtered=save_filtered)
+        wbt.lidar_thin_high_density(i=i, output=output, resolution=resolution, density=density, save_filtered=save_filtered)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20031,7 +20031,7 @@ class LidarTile(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         width = parameters[1].valueAsText
         height = parameters[2].valueAsText
         origin_x = parameters[3].valueAsText
@@ -20040,7 +20040,7 @@ class LidarTile(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_tile(input=input, width=width, height=height, origin_x=origin_x, origin_y=origin_y, min_points=min_points)
+        wbt.lidar_tile(i=i, width=width, height=height, origin_x=origin_x, origin_y=origin_y, min_points=min_points)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20097,13 +20097,13 @@ class LidarTileFootprint(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         hull = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_tile_footprint(input=input, output=output, hull=hull)
+        wbt.lidar_tile_footprint(i=i, output=output, hull=hull)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20160,13 +20160,13 @@ class LidarTophatTransform(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         radius = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_tophat_transform(input=input, output=output, radius=radius)
+        wbt.lidar_tophat_transform(i=i, output=output, radius=radius)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20240,10 +20240,10 @@ class LineDetectionFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         variant = parameters[2].valueAsText
         absvals = parameters[3].valueAsText
@@ -20251,7 +20251,7 @@ class LineDetectionFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.line_detection_filter(input=input, output=output, variant=variant, absvals=absvals, clip=clip)
+        wbt.line_detection_filter(i=i, output=output, variant=variant, absvals=absvals, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20369,15 +20369,15 @@ class LineThinning(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.line_thinning(input=input, output=output)
+        wbt.line_thinning(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20419,14 +20419,14 @@ class LinearityIndex(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.linearity_index(input=input)
+        wbt.linearity_index(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20475,15 +20475,15 @@ class LinesToPolygons(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lines_to_polygons(input=input, output=output)
+        wbt.lines_to_polygons(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20540,16 +20540,16 @@ class ListUniqueValues(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.list_unique_values(input=input, field=field, output=output)
+        wbt.list_unique_values(i=i, field=field, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20598,15 +20598,15 @@ class Ln(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.ln(input=input, output=output)
+        wbt.ln(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20655,15 +20655,15 @@ class Log10(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.log10(input=input, output=output)
+        wbt.log10(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20712,15 +20712,15 @@ class Log2(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.log2(input=input, output=output)
+        wbt.log2(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -21258,17 +21258,17 @@ class MajorityFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.majority_filter(input=input, output=output, filterx=filterx, filtery=filtery)
+        wbt.majority_filter(i=i, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22246,17 +22246,17 @@ class MaximumFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.maximum_filter(input=input, output=output, filterx=filterx, filtery=filtery)
+        wbt.maximum_filter(i=i, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22321,17 +22321,17 @@ class MeanFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.mean_filter(input=input, output=output, filterx=filterx, filtery=filtery)
+        wbt.mean_filter(i=i, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22404,10 +22404,10 @@ class MedianFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -22415,7 +22415,7 @@ class MedianFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.median_filter(input=input, output=output, filterx=filterx, filtery=filtery, sig_digits=sig_digits)
+        wbt.median_filter(i=i, output=output, filterx=filterx, filtery=filtery, sig_digits=sig_digits)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22463,15 +22463,15 @@ class Medoid(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.medoid(input=input, output=output)
+        wbt.medoid(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22528,16 +22528,16 @@ class MergeLineSegments(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         snap = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.merge_line_segments(input=input, output=output, snap=snap)
+        wbt.merge_line_segments(i=i, output=output, snap=snap)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -22610,10 +22610,10 @@ class MergeTableWithCsv(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         pkey = parameters[1].valueAsText
         csv = parameters[2].valueAsText
         fkey = parameters[3].valueAsText
@@ -22621,7 +22621,7 @@ class MergeTableWithCsv(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.merge_table_with_csv(input=input, pkey=pkey, csv=csv, fkey=fkey, import_field=import_field)
+        wbt.merge_table_with_csv(i=i, pkey=pkey, csv=csv, fkey=fkey, import_field=import_field)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23033,10 +23033,10 @@ class MinMaxContrastStretch(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         min_val = parameters[2].valueAsText
         max_val = parameters[3].valueAsText
@@ -23044,7 +23044,7 @@ class MinMaxContrastStretch(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.min_max_contrast_stretch(input=input, output=output, min_val=min_val, max_val=max_val, num_tones=num_tones)
+        wbt.min_max_contrast_stretch(i=i, output=output, min_val=min_val, max_val=max_val, num_tones=num_tones)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23171,17 +23171,17 @@ class MinimumBoundingBox(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         criterion = parameters[2].valueAsText
         features = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.minimum_bounding_box(input=input, output=output, criterion=criterion, features=features)
+        wbt.minimum_bounding_box(i=i, output=output, criterion=criterion, features=features)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23237,16 +23237,16 @@ class MinimumBoundingCircle(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         features = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.minimum_bounding_circle(input=input, output=output, features=features)
+        wbt.minimum_bounding_circle(i=i, output=output, features=features)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23302,16 +23302,16 @@ class MinimumBoundingEnvelope(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         features = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.minimum_bounding_envelope(input=input, output=output, features=features)
+        wbt.minimum_bounding_envelope(i=i, output=output, features=features)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23367,16 +23367,16 @@ class MinimumConvexHull(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         features = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.minimum_convex_hull(input=input, output=output, features=features)
+        wbt.minimum_convex_hull(i=i, output=output, features=features)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23441,17 +23441,17 @@ class MinimumFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.minimum_filter(input=input, output=output, filterx=filterx, filtery=filtery)
+        wbt.minimum_filter(i=i, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23605,15 +23605,15 @@ class ModifyNoDataValue(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         new_value = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.modify_no_data_value(input=input, new_value=new_value)
+        wbt.modify_no_data_value(i=i, new_value=new_value)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23903,16 +23903,16 @@ class MultiPartToSinglePart(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         exclude_holes = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.multi_part_to_single_part(input=input, output=output, exclude_holes=exclude_holes)
+        wbt.multi_part_to_single_part(i=i, output=output, exclude_holes=exclude_holes)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24711,15 +24711,15 @@ class NarrownessIndex(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.narrowness_index(input=input, output=output)
+        wbt.narrowness_index(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24807,10 +24807,10 @@ class NaturalNeighbourInterpolation(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
@@ -24823,7 +24823,7 @@ class NaturalNeighbourInterpolation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.natural_neighbour_interpolation(input=input, field=field, use_z=use_z, output=output, cell_size=cell_size, base=base, clip=clip)
+        wbt.natural_neighbour_interpolation(i=i, field=field, use_z=use_z, output=output, cell_size=cell_size, base=base, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24910,10 +24910,10 @@ class NearestNeighbourGridding(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
@@ -24926,7 +24926,7 @@ class NearestNeighbourGridding(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.nearest_neighbour_gridding(input=input, field=field, use_z=use_z, output=output, cell_size=cell_size, base=base, max_dist=max_dist)
+        wbt.nearest_neighbour_gridding(i=i, field=field, use_z=use_z, output=output, cell_size=cell_size, base=base, max_dist=max_dist)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -24975,15 +24975,15 @@ class Negate(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.negate(input=input, output=output)
+        wbt.negate(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25122,13 +25122,13 @@ class NormalVectors(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
+        i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         radius = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.normal_vectors(input=input, output=output, radius=radius)
+        wbt.normal_vectors(i=i, output=output, radius=radius)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25592,17 +25592,17 @@ class OlympicFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.olympic_filter(input=input, output=output, filterx=filterx, filtery=filtery)
+        wbt.olympic_filter(i=i, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -25667,17 +25667,17 @@ class Opening(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.opening(input=input, output=output, filterx=filterx, filtery=filtery)
+        wbt.opening(i=i, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -26131,14 +26131,14 @@ class PatchOrientation(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.patch_orientation(input=input)
+        wbt.patch_orientation(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -26596,10 +26596,10 @@ class PercentageContrastStretch(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         clip = parameters[2].valueAsText
         tail = parameters[3].valueAsText
@@ -26607,7 +26607,7 @@ class PercentageContrastStretch(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.percentage_contrast_stretch(input=input, output=output, clip=clip, tail=tail, num_tones=num_tones)
+        wbt.percentage_contrast_stretch(i=i, output=output, clip=clip, tail=tail, num_tones=num_tones)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -26680,10 +26680,10 @@ class PercentileFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -26691,7 +26691,7 @@ class PercentileFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.percentile_filter(input=input, output=output, filterx=filterx, filtery=filtery, sig_digits=sig_digits)
+        wbt.percentile_filter(i=i, output=output, filterx=filterx, filtery=filtery, sig_digits=sig_digits)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -26733,14 +26733,14 @@ class PerimeterAreaRatio(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.perimeter_area_ratio(input=input)
+        wbt.perimeter_area_ratio(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -26987,14 +26987,14 @@ class PolygonArea(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.polygon_area(input=input)
+        wbt.polygon_area(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -27043,15 +27043,15 @@ class PolygonLongAxis(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.polygon_long_axis(input=input, output=output)
+        wbt.polygon_long_axis(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -27093,14 +27093,14 @@ class PolygonPerimeter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.polygon_perimeter(input=input)
+        wbt.polygon_perimeter(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -27149,15 +27149,15 @@ class PolygonShortAxis(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.polygon_short_axis(input=input, output=output)
+        wbt.polygon_short_axis(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -27267,15 +27267,15 @@ class PolygonsToLines(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.polygons_to_lines(input=input, output=output)
+        wbt.polygons_to_lines(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -27406,16 +27406,16 @@ class PrewittFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         clip = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.prewitt_filter(input=input, output=output, clip=clip)
+        wbt.prewitt_filter(i=i, output=output, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -27533,14 +27533,14 @@ class PrintGeoTiffTags(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.print_geo_tiff_tags(input=input)
+        wbt.print_geo_tiff_tags(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -27843,16 +27843,16 @@ class Quantiles(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         num_quantiles = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.quantiles(input=input, output=output, num_quantiles=num_quantiles)
+        wbt.quantiles(i=i, output=output, num_quantiles=num_quantiles)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -28077,10 +28077,10 @@ class RadialBasisFunctionInterpolation(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
@@ -28097,7 +28097,7 @@ class RadialBasisFunctionInterpolation(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.radial_basis_function_interpolation(input=input, field=field, use_z=use_z, output=output, radius=radius, min_points=min_points, func_type=func_type, poly_order=poly_order, weight=weight, cell_size=cell_size, base=base)
+        wbt.radial_basis_function_interpolation(i=i, field=field, use_z=use_z, output=output, radius=radius, min_points=min_points, func_type=func_type, poly_order=poly_order, weight=weight, cell_size=cell_size, base=base)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -28153,16 +28153,16 @@ class RadiusOfGyration(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         text_output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.radius_of_gyration(input=input, output=output, text_output=text_output)
+        wbt.radius_of_gyration(i=i, output=output, text_output=text_output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -28234,10 +28234,10 @@ class RaiseWalls(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         breach = parameters[1].valueAsText
         if breach is not None:
             desc = arcpy.Describe(breach)
@@ -28251,7 +28251,7 @@ class RaiseWalls(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.raise_walls(input=input, breach=breach, dem=dem, output=output, height=height)
+        wbt.raise_walls(i=i, breach=breach, dem=dem, output=output, height=height)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -28439,17 +28439,17 @@ class RangeFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.range_filter(input=input, output=output, filterx=filterx, filtery=filtery)
+        wbt.range_filter(i=i, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -28522,10 +28522,10 @@ class RasterArea(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         out_text = parameters[2].valueAsText
         units = parameters[3].valueAsText
@@ -28533,7 +28533,7 @@ class RasterArea(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.raster_area(input=input, output=output, out_text=out_text, units=units, zero_back=zero_back)
+        wbt.raster_area(i=i, output=output, out_text=out_text, units=units, zero_back=zero_back)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -28645,16 +28645,16 @@ class RasterCellAssignment(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         assign = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.raster_cell_assignment(input=input, output=output, assign=assign)
+        wbt.raster_cell_assignment(i=i, output=output, assign=assign)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -28703,15 +28703,15 @@ class RasterHistogram(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.raster_histogram(input=input, output=output)
+        wbt.raster_histogram(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -28784,10 +28784,10 @@ class RasterPerimeter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         out_text = parameters[2].valueAsText
         units = parameters[3].valueAsText
@@ -28795,7 +28795,7 @@ class RasterPerimeter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.raster_perimeter(input=input, output=output, out_text=out_text, units=units, zero_back=zero_back)
+        wbt.raster_perimeter(i=i, output=output, out_text=out_text, units=units, zero_back=zero_back)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -28912,14 +28912,14 @@ class RasterSummaryStats(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.raster_summary_stats(input=input)
+        wbt.raster_summary_stats(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -28967,15 +28967,15 @@ class RasterToVectorLines(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.raster_to_vector_lines(input=input, output=output)
+        wbt.raster_to_vector_lines(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -29023,15 +29023,15 @@ class RasterToVectorPoints(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.raster_to_vector_points(input=input, output=output)
+        wbt.raster_to_vector_points(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -29079,15 +29079,15 @@ class RasterToVectorPolygons(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.raster_to_vector_polygons(input=input, output=output)
+        wbt.raster_to_vector_polygons(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -29223,15 +29223,15 @@ class Reciprocal(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.reciprocal(input=input, output=output)
+        wbt.reciprocal(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -29294,17 +29294,17 @@ class Reclass(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         reclass_vals = parameters[2].valueAsText
         assign_mode = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.reclass(input=input, output=output, reclass_vals=reclass_vals, assign_mode=assign_mode)
+        wbt.reclass(i=i, output=output, reclass_vals=reclass_vals, assign_mode=assign_mode)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -29375,10 +29375,10 @@ class ReclassEqualInterval(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         interval = parameters[2].valueAsText
         start_val = parameters[3].valueAsText
@@ -29386,7 +29386,7 @@ class ReclassEqualInterval(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.reclass_equal_interval(input=input, output=output, interval=interval, start_val=start_val, end_val=end_val)
+        wbt.reclass_equal_interval(i=i, output=output, interval=interval, start_val=start_val, end_val=end_val)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -29442,16 +29442,16 @@ class ReclassFromFile(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         reclass_file = parameters[1].valueAsText
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.reclass_from_file(input=input, reclass_file=reclass_file, output=output)
+        wbt.reclass_from_file(i=i, reclass_file=reclass_file, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -29688,14 +29688,14 @@ class ReinitializeAttributeTable(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.reinitialize_attribute_table(input=input)
+        wbt.reinitialize_attribute_table(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -29737,14 +29737,14 @@ class RelatedCircumscribingCircle(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.related_circumscribing_circle(input=input)
+        wbt.related_circumscribing_circle(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -30100,15 +30100,15 @@ class RemovePolygonHoles(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.remove_polygon_holes(input=input, output=output)
+        wbt.remove_polygon_holes(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -30250,16 +30250,16 @@ class RemoveSpurs(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         iterations = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.remove_spurs(input=input, output=output, iterations=iterations)
+        wbt.remove_spurs(i=i, output=output, iterations=iterations)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -30491,10 +30491,10 @@ class RescaleValueRange(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         out_min_val = parameters[2].valueAsText
         out_max_val = parameters[3].valueAsText
@@ -30503,7 +30503,7 @@ class RescaleValueRange(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.rescale_value_range(input=input, output=output, out_min_val=out_min_val, out_max_val=out_max_val, clip_min=clip_min, clip_max=clip_max)
+        wbt.rescale_value_range(i=i, output=output, out_min_val=out_min_val, out_max_val=out_max_val, clip_min=clip_min, clip_max=clip_max)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -30838,16 +30838,16 @@ class RobertsCrossFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         clip = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.roberts_cross_filter(input=input, output=output, clip=clip)
+        wbt.roberts_cross_filter(i=i, output=output, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -30895,10 +30895,10 @@ class RootMeanSquareError(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         base = parameters[1].valueAsText
         if base is not None:
             desc = arcpy.Describe(base)
@@ -30906,7 +30906,7 @@ class RootMeanSquareError(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.root_mean_square_error(input=input, base=base)
+        wbt.root_mean_square_error(i=i, base=base)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -30955,15 +30955,15 @@ class Round(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.round(input=input, output=output)
+        wbt.round(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -31085,16 +31085,16 @@ class ScharrFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         clip = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.scharr_filter(input=input, output=output, clip=clip)
+        wbt.scharr_filter(i=i, output=output, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -31302,16 +31302,16 @@ class SetNodataValue(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         back_value = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.set_nodata_value(input=input, output=output, back_value=back_value)
+        wbt.set_nodata_value(i=i, output=output, back_value=back_value)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -31582,14 +31582,14 @@ class ShapeComplexityIndex(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.shape_complexity_index(input=input)
+        wbt.shape_complexity_index(i=i)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -31638,15 +31638,15 @@ class ShapeComplexityIndexRaster(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.shape_complexity_index_raster(input=input, output=output)
+        wbt.shape_complexity_index_raster(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -31804,10 +31804,10 @@ class SigmoidalContrastStretch(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         cutoff = parameters[2].valueAsText
         gain = parameters[3].valueAsText
@@ -31815,7 +31815,7 @@ class SigmoidalContrastStretch(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.sigmoidal_contrast_stretch(input=input, output=output, cutoff=cutoff, gain=gain, num_tones=num_tones)
+        wbt.sigmoidal_contrast_stretch(i=i, output=output, cutoff=cutoff, gain=gain, num_tones=num_tones)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -31864,15 +31864,15 @@ class Sin(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.sin(input=input, output=output)
+        wbt.sin(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -31928,16 +31928,16 @@ class SinglePartToMultiPart(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.single_part_to_multi_part(input=input, field=field, output=output)
+        wbt.single_part_to_multi_part(i=i, field=field, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -31986,15 +31986,15 @@ class Sinh(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.sinh(input=input, output=output)
+        wbt.sinh(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -32050,16 +32050,16 @@ class Sink(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         zero_background = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.sink(input=input, output=output, zero_background=zero_background)
+        wbt.sink(i=i, output=output, zero_background=zero_background)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -32267,16 +32267,16 @@ class SmoothVectors(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filter = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.smooth_vectors(input=input, output=output, filter=filter)
+        wbt.smooth_vectors(i=i, output=output, filter=filter)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -32503,17 +32503,17 @@ class SobelFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         variant = parameters[2].valueAsText
         clip = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.sobel_filter(input=input, output=output, variant=variant, clip=clip)
+        wbt.sobel_filter(i=i, output=output, variant=variant, clip=clip)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -32644,17 +32644,17 @@ class SplitColourComposite(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         red = parameters[1].valueAsText
         green = parameters[2].valueAsText
         blue = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.split_colour_composite(input=input, red=red, green=green, blue=blue)
+        wbt.split_colour_composite(i=i, red=red, green=green, blue=blue)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -32775,10 +32775,10 @@ class SplitWithLines(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         split = parameters[1].valueAsText
         if split is not None:
             desc = arcpy.Describe(split)
@@ -32787,7 +32787,7 @@ class SplitWithLines(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.split_with_lines(input=input, split=split, output=output)
+        wbt.split_with_lines(i=i, split=split, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -32836,15 +32836,15 @@ class Square(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.square(input=input, output=output)
+        wbt.square(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -32893,15 +32893,15 @@ class SquareRoot(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.square_root(input=input, output=output)
+        wbt.square_root(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -32966,17 +32966,17 @@ class StandardDeviationContrastStretch(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         stdev = parameters[2].valueAsText
         num_tones = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.standard_deviation_contrast_stretch(input=input, output=output, stdev=stdev, num_tones=num_tones)
+        wbt.standard_deviation_contrast_stretch(i=i, output=output, stdev=stdev, num_tones=num_tones)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -33041,17 +33041,17 @@ class StandardDeviationFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.standard_deviation_filter(input=input, output=output, filterx=filterx, filtery=filtery)
+        wbt.standard_deviation_filter(i=i, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -33123,10 +33123,10 @@ class StandardDeviationOfSlope(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         zfactor = parameters[2].valueAsText
         filterx = parameters[3].valueAsText
@@ -33134,7 +33134,7 @@ class StandardDeviationOfSlope(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.standard_deviation_of_slope(input=input, output=output, zfactor=zfactor, filterx=filterx, filtery=filtery)
+        wbt.standard_deviation_of_slope(i=i, output=output, zfactor=zfactor, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -34234,10 +34234,10 @@ class SymmetricalDifference(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         overlay = parameters[1].valueAsText
         if overlay is not None:
             desc = arcpy.Describe(overlay)
@@ -34247,7 +34247,7 @@ class SymmetricalDifference(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.symmetrical_difference(input=input, overlay=overlay, output=output, snap=snap)
+        wbt.symmetrical_difference(i=i, overlay=overlay, output=output, snap=snap)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -34334,10 +34334,10 @@ class TinGridding(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         use_z = parameters[2].valueAsText
         output = parameters[3].valueAsText
@@ -34350,7 +34350,7 @@ class TinGridding(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.tin_gridding(input=input, field=field, use_z=use_z, output=output, resolution=resolution, base=base, max_triangle_edge_length=max_triangle_edge_length)
+        wbt.tin_gridding(i=i, field=field, use_z=use_z, output=output, resolution=resolution, base=base, max_triangle_edge_length=max_triangle_edge_length)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -34399,15 +34399,15 @@ class Tan(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.tan(input=input, output=output)
+        wbt.tan(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -34521,15 +34521,15 @@ class Tanh(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.tanh(input=input, output=output)
+        wbt.tanh(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -34578,15 +34578,15 @@ class ThickenRasterLine(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.thicken_raster_line(input=input, output=output)
+        wbt.thicken_raster_line(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -34771,15 +34771,15 @@ class ToDegrees(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.to_degrees(input=input, output=output)
+        wbt.to_degrees(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -34828,15 +34828,15 @@ class ToRadians(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.to_radians(input=input, output=output)
+        wbt.to_radians(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -34911,10 +34911,10 @@ class TophatTransform(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
@@ -34922,7 +34922,7 @@ class TophatTransform(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.tophat_transform(input=input, output=output, filterx=filterx, filtery=filtery, variant=variant)
+        wbt.tophat_transform(i=i, output=output, filterx=filterx, filtery=filtery, variant=variant)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -35266,17 +35266,17 @@ class TotalFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         filterx = parameters[2].valueAsText
         filtery = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.total_filter(input=input, output=output, filterx=filterx, filtery=filtery)
+        wbt.total_filter(i=i, output=output, filterx=filterx, filtery=filtery)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -35419,16 +35419,16 @@ class TrendSurface(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         order = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.trend_surface(input=input, output=output, order=order)
+        wbt.trend_surface(i=i, output=output, order=order)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -35501,10 +35501,10 @@ class TrendSurfaceVectorPoints(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         order = parameters[3].valueAsText
@@ -35512,7 +35512,7 @@ class TrendSurfaceVectorPoints(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.trend_surface_vector_points(input=input, field=field, output=output, order=order, cell_size=cell_size)
+        wbt.trend_surface_vector_points(i=i, field=field, output=output, order=order, cell_size=cell_size)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -35653,16 +35653,16 @@ class Truncate(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         num_decimals = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.truncate(input=input, output=output, num_decimals=num_decimals)
+        wbt.truncate(i=i, output=output, num_decimals=num_decimals)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -35875,10 +35875,10 @@ class Union(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         overlay = parameters[1].valueAsText
         if overlay is not None:
             desc = arcpy.Describe(overlay)
@@ -35888,7 +35888,7 @@ class Union(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.union(input=input, overlay=overlay, output=output, snap=snap)
+        wbt.union(i=i, overlay=overlay, output=output, snap=snap)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -36039,10 +36039,10 @@ class UnsharpMasking(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         sigma = parameters[2].valueAsText
         amount = parameters[3].valueAsText
@@ -36050,7 +36050,7 @@ class UnsharpMasking(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.unsharp_masking(input=input, output=output, sigma=sigma, amount=amount, threshold=threshold)
+        wbt.unsharp_masking(i=i, output=output, sigma=sigma, amount=amount, threshold=threshold)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -36250,10 +36250,10 @@ class UserDefinedWeightsFilter(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         weights = parameters[1].valueAsText
         output = parameters[2].valueAsText
         center = parameters[3].valueAsText
@@ -36261,7 +36261,7 @@ class UserDefinedWeightsFilter(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.user_defined_weights_filter(input=input, weights=weights, output=output, center=center, normalize=normalize)
+        wbt.user_defined_weights_filter(i=i, weights=weights, output=output, center=center, normalize=normalize)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -36327,17 +36327,17 @@ class VectorHexBinning(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         width = parameters[2].valueAsText
         orientation = parameters[3].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.vector_hex_binning(input=input, output=output, width=width, orientation=orientation)
+        wbt.vector_hex_binning(i=i, output=output, width=width, orientation=orientation)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -36418,10 +36418,10 @@ class VectorLinesToRaster(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         nodata = parameters[3].valueAsText
@@ -36433,7 +36433,7 @@ class VectorLinesToRaster(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.vector_lines_to_raster(input=input, field=field, output=output, nodata=nodata, cell_size=cell_size, base=base)
+        wbt.vector_lines_to_raster(i=i, field=field, output=output, nodata=nodata, cell_size=cell_size, base=base)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -36524,10 +36524,10 @@ class VectorPointsToRaster(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         assign = parameters[3].valueAsText
@@ -36540,7 +36540,7 @@ class VectorPointsToRaster(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.vector_points_to_raster(input=input, field=field, output=output, assign=assign, nodata=nodata, cell_size=cell_size, base=base)
+        wbt.vector_points_to_raster(i=i, field=field, output=output, assign=assign, nodata=nodata, cell_size=cell_size, base=base)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -36621,10 +36621,10 @@ class VectorPolygonsToRaster(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         field = parameters[1].valueAsText
         output = parameters[2].valueAsText
         nodata = parameters[3].valueAsText
@@ -36636,7 +36636,7 @@ class VectorPolygonsToRaster(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.vector_polygons_to_raster(input=input, field=field, output=output, nodata=nodata, cell_size=cell_size, base=base)
+        wbt.vector_polygons_to_raster(i=i, field=field, output=output, nodata=nodata, cell_size=cell_size, base=base)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -36924,15 +36924,15 @@ class VoronoiDiagram(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.voronoi_diagram(input=input, output=output)
+        wbt.voronoi_diagram(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -37808,15 +37808,15 @@ class ZScores(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         output = parameters[1].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.z_scores(input=input, output=output)
+        wbt.z_scores(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -37951,10 +37951,10 @@ class ZonalStatistics(object):
         return
 
     def execute(self, parameters, messages):
-        input = parameters[0].valueAsText
-        if input is not None:
-            desc = arcpy.Describe(input)
-            input = desc.catalogPath
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
         features = parameters[1].valueAsText
         if features is not None:
             desc = arcpy.Describe(features)
@@ -37965,7 +37965,7 @@ class ZonalStatistics(object):
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.zonal_statistics(input=input, features=features, output=output, stat=stat, out_table=out_table)
+        wbt.zonal_statistics(i=i, features=features, output=output, stat=stat, out_table=out_table)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
