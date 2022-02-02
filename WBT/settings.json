@@ -1,6 +1,6 @@
 {
   "verbose_mode": true,
-  "working_directory": "/Users/johnlindsay/Documents/data/Catfish_Creek_Test_Site_1/",
+  "working_directory": "C:\\Users\\John Lindsay\\Documents\\Data\\",
   "compress_rasters": true,
   "max_procs": -1
 }
