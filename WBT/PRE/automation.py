@@ -97,8 +97,7 @@ def generate_tool_template(tool):
     lines.append("class {}(object):\n".format(tool["name"]))
     lines.append("    def __init__(self):\n")
     lines.append('        self.label = "{}"\n'.format(tool["label"]))
-    lines.append('        self.description = "{}"\n'.format(
-        tool["description"]))
+    lines.append('        self.description = "{}"\n'.format(tool["description"]))
     lines.append('        self.category = "{}"\n\n'.format(tool["category"]))
     lines.append("    def getParameterInfo(self):\n")
     # Loop through parameters
@@ -132,8 +131,9 @@ def generate_tool_template(tool):
     # line = '        wbt.{}({})\n'.format(to_snakecase(tool['name']), ', '.join(tool['parameters']).replace(", class,", ", cls,"))
     line = "        wbt.{}({})\n".format(
         to_snakecase(tool["name"]),
-        ", ".join(tool_params).replace(", class=class,",
-                                       ", cls=cls,").replace("input=input", "i=i"),
+        ", ".join(tool_params)
+        .replace(", class=class,", ", cls=cls,")
+        .replace("input=input", "i=i"),
     )
 
     # Deal with name conflict with reserved Python functions (and, or, not)
@@ -197,10 +197,8 @@ def define_tool_params(params):
         lines.append("        {} = arcpy.Parameter(\n".format(param))
         lines.append('            displayName="{}",\n'.format(items["name"]))
         lines.append('            name="{}",\n'.format(param))
-        lines.append("            datatype={},\n".format(
-            data_type["data_type"]))
-        lines.append(
-            '            parameterType="{}",\n'.format(parameter_type))
+        lines.append("            datatype={},\n".format(data_type["data_type"]))
+        lines.append('            parameterType="{}",\n'.format(parameter_type))
         lines.append('            direction="{}")\n'.format(direction))
 
         if data_type["multi_value"]:
@@ -217,8 +215,7 @@ def define_tool_params(params):
 
         if data_type["data_filter"] != "[]":
             if data_type["filter_type"] == '"ValueList"':
-                lines.append(
-                    '        {}.filter.type = "ValueList"\n'.format(param))
+                lines.append('        {}.filter.type = "ValueList"\n'.format(param))
 
             if (
                 data_type["data_filter"]
@@ -240,8 +237,7 @@ def define_tool_params(params):
                     items["default_value"] = True
 
                 lines.append(
-                    "        {}.value = '{}'\n\n".format(
-                        param, items["default_value"])
+                    "        {}.value = '{}'\n\n".format(param, items["default_value"])
                 )
         else:
             lines.append("\n")
@@ -291,8 +287,7 @@ def define_execute(params):
             param = "i"
 
         # deal with multi-value inputs
-        lines.append(
-            "        {} = parameters[{}].valueAsText\n".format(param, index))
+        lines.append("        {} = parameters[{}].valueAsText\n".format(param, index))
         if data_type["multi_value"]:
             lines.append("        if {} is not None:\n".format(param))
             lines.append('            items = {}.split(";")\n'.format(param))
@@ -301,27 +296,22 @@ def define_execute(params):
             lines.append(
                 "                items_path.append(arcpy.Describe(item).catalogPath)\n"
             )
-            lines.append(
-                '            {} = ";".join(items_path)\n'.format(param))
+            lines.append('            {} = ";".join(items_path)\n'.format(param))
 
         if param_type in inputRasVec:
             #     lines.append('        desc = arcpy.Describe({})\n'.format(param))
             #     lines.append('        {} = desc.catalogPath\n'.format(param))
             # if param_type == "Optional":
             lines.append("        if {} is not None:\n".format(param))
-            lines.append(
-                "            desc = arcpy.Describe({})\n".format(param))
+            lines.append("            desc = arcpy.Describe({})\n".format(param))
             lines.append("            {} = desc.catalogPath\n".format(param))
         elif param_type == {"ExistingFileOrFloat": "Raster"}:
             lines.append("        if {} is not None:\n".format(param))
             lines.append("            try:\n")
-            lines.append(
-                "                {} = str(float({}))\n".format(param, param))
+            lines.append("                {} = str(float({}))\n".format(param, param))
             lines.append("            except:\n")
-            lines.append(
-                "                desc = arcpy.Describe({})\n".format(param))
-            lines.append(
-                "                {} = desc.catalogPath\n".format(param))
+            lines.append("                desc = arcpy.Describe({})\n".format(param))
+            lines.append("                {} = desc.catalogPath\n".format(param))
 
             # lines.append('        if ({} is not None) and {}.isnumeric() == False:\n'.format(param, param))
 
@@ -467,8 +457,7 @@ def get_book_tag(tool_name, category):
     """
     prefix = "https://www.whiteboxgeo.com/manual/wbt_book/available_tools"
     url = "{}/{}.html#{}".format(prefix, category, tool_name)
-    html_tag = "<a href='{}' target='_blank'>WhiteboxTools User Manual</a>".format(
-        url)
+    html_tag = "<a href='{}' target='_blank'>WhiteboxTools User Manual</a>".format(url)
     return html_tag
 
 
@@ -550,7 +539,10 @@ with open(wbt_py) as f:
     for line in lines:
         if line.strip() == "import urllib.request":
             line = ""
-        if line.strip() == "from subprocess import CalledProcessError, Popen, PIPE, STDOUT":
+        if (
+            line.strip()
+            == "from subprocess import CalledProcessError, Popen, PIPE, STDOUT"
+        ):
             line = """
 from subprocess import CalledProcessError, Popen, PIPE, STDOUT
 if sys.version_info.major == 2:
@@ -564,13 +556,16 @@ else:
             line = '                    print("Warning: Unrecognized extension ext_name {}. Installing the GTE instead...".format(ext_name))\n'
         if line.strip() == "for entry in os.scandir(f'./{unzipped_dir_name}'):":
             line = "            for entry in os.scandir('./{}'.format(unzipped_dir_name)):\n"
-        if line.strip() == "new_path = entry.path.replace(f'{unzipped_dir_name}', 'plugins')":
+        if (
+            line.strip()
+            == "new_path = entry.path.replace(f'{unzipped_dir_name}', 'plugins')"
+        ):
             line = "                new_path = entry.path.replace('{}'.format(unzipped_dir_name), 'plugins')\n"
         if line.strip() == "if os.path.exists(f'./{unzipped_dir_name}'):":
             line = "            if os.path.exists('./{}'.format(unzipped_dir_name)):\n"
         if line.strip() == "shutil.rmtree(f'./{unzipped_dir_name}')":
             line = "                shutil.rmtree('./{}'.format(unzipped_dir_name))\n"
-        if "urllib.request" in line:
+        if "urllib.request" in line and "import" not in line:
             line = line.replace("urllib.request", "urlopen")
 
         outlines.append(line)
