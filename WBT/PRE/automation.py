@@ -570,7 +570,7 @@ else:
             line = "            if os.path.exists('./{}'.format(unzipped_dir_name)):\n"
         if line.strip() == "shutil.rmtree(f'./{unzipped_dir_name}')":
             line = "                shutil.rmtree('./{}'.format(unzipped_dir_name))\n"
-        if "urllib.request" in line:
+        if "urllib.request" in line and "import" not in line:
             line = line.replace("urllib.request", "urlopen")
 
         outlines.append(line)

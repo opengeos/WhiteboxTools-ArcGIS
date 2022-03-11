@@ -23,7 +23,7 @@ from subprocess import CalledProcessError, Popen, PIPE, STDOUT
 if sys.version_info.major == 2:
     import urllib2 as urlopen
 else:
-    import urlopen as urlopen
+    import urllib.request as urlopen
             
 running_windows = platform.system() == 'Windows'
 
