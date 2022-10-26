@@ -560,6 +560,8 @@ else:
             """
         if 'f"={toolname}"' in line:
             line = '                args.append("={}".format(toolname))'
+        if line.strip() == 'args2.append(f"--max_procs={val}")':
+            line = '            args2.append("--max_procs={}".format(val))'
         if 'f"Warning: Unrecognized extension ext_name {ext_name}' in line:
             line = '                    print("Warning: Unrecognized extension ext_name {}. Installing the GTE instead...".format(ext_name))\n'
         if line.strip() == "for entry in os.scandir(f'./{unzipped_dir_name}'):":
