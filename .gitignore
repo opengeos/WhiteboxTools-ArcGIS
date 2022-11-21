@@ -126,3 +126,4 @@ ENV/
 
 # mypy
 .mypy_cache/
+WBT/img/.DS_Store

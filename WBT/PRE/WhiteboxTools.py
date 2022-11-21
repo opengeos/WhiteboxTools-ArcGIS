@@ -45,6 +45,7 @@ tool_labels.append("Boundary Shape Complexity")
 tool_labels.append("Breach Depressions")
 tool_labels.append("Breach Depressions Least Cost")
 tool_labels.append("Breach Single Cell Pits")
+tool_labels.append("Breakline Mapping")
 tool_labels.append("Buffer Raster")
 tool_labels.append("Burn Streams At Roads")
 tool_labels.append("Canny Edge Detection")
@@ -54,6 +55,7 @@ tool_labels.append("Centroid Vector")
 tool_labels.append("Change Vector Analysis")
 tool_labels.append("Circular Variance Of Aspect")
 tool_labels.append("Classify Buildings In Lidar")
+tool_labels.append("Classify Lidar")
 tool_labels.append("Classify Overlap Points")
 tool_labels.append("Clean Vector")
 tool_labels.append("Clip")
@@ -61,8 +63,11 @@ tool_labels.append("Clip Lidar To Polygon")
 tool_labels.append("Clip Raster To Polygon")
 tool_labels.append("Closing")
 tool_labels.append("Clump")
+tool_labels.append("Colourize Based On Class")
+tool_labels.append("Colourize Based On Point Returns")
 tool_labels.append("Compactness Ratio")
 tool_labels.append("Conditional Evaluation")
+tool_labels.append("Conditioned Latin Hypercube")
 tool_labels.append("Conservative Smoothing Filter")
 tool_labels.append("Construct Vector Tin")
 tool_labels.append("Contours From Points")
@@ -95,6 +100,7 @@ tool_labels.append("D8 Pointer")
 tool_labels.append("Dbscan")
 tool_labels.append("Decrement")
 tool_labels.append("Depth In Sink")
+tool_labels.append("Depth To Water")
 tool_labels.append("Dev From Mean Elev")
 tool_labels.append("Diff From Mean Elev")
 tool_labels.append("Diff Of Gaussian Filter")
@@ -151,6 +157,7 @@ tool_labels.append("Fill Depressions Planchon And Darboux")
 tool_labels.append("Fill Depressions Wang And Liu")
 tool_labels.append("Fill Missing Data")
 tool_labels.append("Fill Single Cell Pits")
+tool_labels.append("Filter Lidar")
 tool_labels.append("Filter Lidar Classes")
 tool_labels.append("Filter Lidar Scan Angles")
 tool_labels.append("Filter Raster Features By Area")
@@ -180,7 +187,9 @@ tool_labels.append("Generating Function")
 tool_labels.append("Geomorphons")
 tool_labels.append("Greater Than")
 tool_labels.append("Hack Stream Order")
+tool_labels.append("Heat Map")
 tool_labels.append("Height Above Ground")
+tool_labels.append("High Pass Bilateral Filter")
 tool_labels.append("High Pass Filter")
 tool_labels.append("High Pass Median Filter")
 tool_labels.append("Highest Position")
@@ -244,6 +253,7 @@ tool_labels.append("Lidar Classify Subset")
 tool_labels.append("Lidar Colourize")
 tool_labels.append("Lidar Contour")
 tool_labels.append("Lidar Digital Surface Model")
+tool_labels.append("Lidar Eigenvalue Features")
 tool_labels.append("Lidar Elevation Slice")
 tool_labels.append("Lidar Ground Point Filter")
 tool_labels.append("Lidar Hex Binning")
@@ -266,7 +276,6 @@ tool_labels.append("Lidar Segmentation")
 tool_labels.append("Lidar Segmentation Based Filter")
 tool_labels.append("Lidar Shift")
 tool_labels.append("Lidar Sibson Interpolation")
-tool_labels.append("Lidar Sort By Time")
 tool_labels.append("Lidar Thin")
 tool_labels.append("Lidar Thin High Density")
 tool_labels.append("Lidar Tile")
@@ -304,6 +313,7 @@ tool_labels.append("Max Elevation Deviation")
 tool_labels.append("Max Overlay")
 tool_labels.append("Max Upslope Elev Change")
 tool_labels.append("Max Upslope Flowpath Length")
+tool_labels.append("Max Upslope Value")
 tool_labels.append("Maximal Curvature")
 tool_labels.append("Maximum Filter")
 tool_labels.append("Md Inf Flow Accumulation")
@@ -327,6 +337,7 @@ tool_labels.append("Minimum Bounding Envelope")
 tool_labels.append("Minimum Convex Hull")
 tool_labels.append("Minimum Filter")
 tool_labels.append("Modified K Means Clustering")
+tool_labels.append("Modify Lidar")
 tool_labels.append("Modify No Data Value")
 tool_labels.append("Modulo")
 tool_labels.append("Mosaic")
@@ -334,6 +345,7 @@ tool_labels.append("Mosaic With Feathering")
 tool_labels.append("Multi Part To Single Part")
 tool_labels.append("Multidirectional Hillshade")
 tool_labels.append("Multiply")
+tool_labels.append("Multiply Overlay")
 tool_labels.append("Multiscale Elevation Percentile")
 tool_labels.append("Multiscale Roughness")
 tool_labels.append("Multiscale Roughness Signature")
@@ -370,6 +382,7 @@ tool_labels.append("Percentile Filter")
 tool_labels.append("Perimeter Area Ratio")
 tool_labels.append("Phi Coefficient")
 tool_labels.append("Pick From List")
+tool_labels.append("Piecewise Contrast Stretch")
 tool_labels.append("Plan Curvature")
 tool_labels.append("Polygon Area")
 tool_labels.append("Polygon Long Axis")
@@ -410,6 +423,7 @@ tool_labels.append("Reclass")
 tool_labels.append("Reclass Equal Interval")
 tool_labels.append("Reclass From File")
 tool_labels.append("Reconcile Multiple Headers")
+tool_labels.append("Recover Flightline Info")
 tool_labels.append("Recreate Pass Lines")
 tool_labels.append("Reinitialize Attribute Table")
 tool_labels.append("Related Circumscribing Circle")
@@ -454,8 +468,10 @@ tool_labels.append("Smooth Vectors")
 tool_labels.append("Smooth Vegetation Residual")
 tool_labels.append("Snap Pour Points")
 tool_labels.append("Sobel Filter")
+tool_labels.append("Sort Lidar")
 tool_labels.append("Spherical Std Dev Of Normals")
 tool_labels.append("Split Colour Composite")
+tool_labels.append("Split Lidar")
 tool_labels.append("Split Vector Lines")
 tool_labels.append("Split With Lines")
 tool_labels.append("Square")
@@ -493,6 +509,7 @@ tool_labels.append("Topological Stream Order")
 tool_labels.append("Total Curvature")
 tool_labels.append("Total Filter")
 tool_labels.append("Trace Downslope Flowpaths")
+tool_labels.append("Travelling Salesman Problem")
 tool_labels.append("Trend Surface")
 tool_labels.append("Trend Surface Vector Points")
 tool_labels.append("Tributary Identifier")
@@ -582,6 +599,7 @@ class Toolbox(object):
         tools.append(BreachDepressions)
         tools.append(BreachDepressionsLeastCost)
         tools.append(BreachSingleCellPits)
+        tools.append(BreaklineMapping)
         tools.append(BufferRaster)
         tools.append(BurnStreamsAtRoads)
         tools.append(CannyEdgeDetection)
@@ -591,6 +609,7 @@ class Toolbox(object):
         tools.append(ChangeVectorAnalysis)
         tools.append(CircularVarianceOfAspect)
         tools.append(ClassifyBuildingsInLidar)
+        tools.append(ClassifyLidar)
         tools.append(ClassifyOverlapPoints)
         tools.append(CleanVector)
         tools.append(Clip)
@@ -598,8 +617,11 @@ class Toolbox(object):
         tools.append(ClipRasterToPolygon)
         tools.append(Closing)
         tools.append(Clump)
+        tools.append(ColourizeBasedOnClass)
+        tools.append(ColourizeBasedOnPointReturns)
         tools.append(CompactnessRatio)
         tools.append(ConditionalEvaluation)
+        tools.append(ConditionedLatinHypercube)
         tools.append(ConservativeSmoothingFilter)
         tools.append(ConstructVectorTin)
         tools.append(ContoursFromPoints)
@@ -632,6 +654,7 @@ class Toolbox(object):
         tools.append(Dbscan)
         tools.append(Decrement)
         tools.append(DepthInSink)
+        tools.append(DepthToWater)
         tools.append(DevFromMeanElev)
         tools.append(DiffFromMeanElev)
         tools.append(DiffOfGaussianFilter)
@@ -688,6 +711,7 @@ class Toolbox(object):
         tools.append(FillDepressionsWangAndLiu)
         tools.append(FillMissingData)
         tools.append(FillSingleCellPits)
+        tools.append(FilterLidar)
         tools.append(FilterLidarClasses)
         tools.append(FilterLidarScanAngles)
         tools.append(FilterRasterFeaturesByArea)
@@ -717,7 +741,9 @@ class Toolbox(object):
         tools.append(Geomorphons)
         tools.append(GreaterThan)
         tools.append(HackStreamOrder)
+        tools.append(HeatMap)
         tools.append(HeightAboveGround)
+        tools.append(HighPassBilateralFilter)
         tools.append(HighPassFilter)
         tools.append(HighPassMedianFilter)
         tools.append(HighestPosition)
@@ -781,6 +807,7 @@ class Toolbox(object):
         tools.append(LidarColourize)
         tools.append(LidarContour)
         tools.append(LidarDigitalSurfaceModel)
+        tools.append(LidarEigenvalueFeatures)
         tools.append(LidarElevationSlice)
         tools.append(LidarGroundPointFilter)
         tools.append(LidarHexBinning)
@@ -803,7 +830,6 @@ class Toolbox(object):
         tools.append(LidarSegmentationBasedFilter)
         tools.append(LidarShift)
         tools.append(LidarSibsonInterpolation)
-        tools.append(LidarSortByTime)
         tools.append(LidarTinGridding)
         tools.append(LidarThin)
         tools.append(LidarThinHighDensity)
@@ -842,6 +868,7 @@ class Toolbox(object):
         tools.append(MaxOverlay)
         tools.append(MaxUpslopeElevChange)
         tools.append(MaxUpslopeFlowpathLength)
+        tools.append(MaxUpslopeValue)
         tools.append(MaximalCurvature)
         tools.append(MaximumFilter)
         tools.append(MeanCurvature)
@@ -864,6 +891,7 @@ class Toolbox(object):
         tools.append(MinimumConvexHull)
         tools.append(MinimumFilter)
         tools.append(ModifiedKMeansClustering)
+        tools.append(ModifyLidar)
         tools.append(ModifyNoDataValue)
         tools.append(Modulo)
         tools.append(Mosaic)
@@ -871,6 +899,7 @@ class Toolbox(object):
         tools.append(MultiPartToSinglePart)
         tools.append(MultidirectionalHillshade)
         tools.append(Multiply)
+        tools.append(MultiplyOverlay)
         tools.append(MultiscaleElevationPercentile)
         tools.append(MultiscaleRoughness)
         tools.append(MultiscaleRoughnessSignature)
@@ -907,6 +936,7 @@ class Toolbox(object):
         tools.append(PerimeterAreaRatio)
         tools.append(PhiCoefficient)
         tools.append(PickFromList)
+        tools.append(PiecewiseContrastStretch)
         tools.append(PlanCurvature)
         tools.append(PolygonArea)
         tools.append(PolygonLongAxis)
@@ -947,6 +977,7 @@ class Toolbox(object):
         tools.append(ReclassEqualInterval)
         tools.append(ReclassFromFile)
         tools.append(ReconcileMultipleHeaders)
+        tools.append(RecoverFlightlineInfo)
         tools.append(RecreatePassLines)
         tools.append(ReinitializeAttributeTable)
         tools.append(RelatedCircumscribingCircle)
@@ -991,8 +1022,10 @@ class Toolbox(object):
         tools.append(SmoothVegetationResidual)
         tools.append(SnapPourPoints)
         tools.append(SobelFilter)
+        tools.append(SortLidar)
         tools.append(SphericalStdDevOfNormals)
         tools.append(SplitColourComposite)
+        tools.append(SplitLidar)
         tools.append(SplitVectorLines)
         tools.append(SplitWithLines)
         tools.append(Square)
@@ -1030,6 +1063,7 @@ class Toolbox(object):
         tools.append(TotalCurvature)
         tools.append(TotalFilter)
         tools.append(TraceDownslopeFlowpaths)
+        tools.append(TravellingSalesmanProblem)
         tools.append(TrendSurface)
         tools.append(TrendSurfaceVectorPoints)
         tools.append(TributaryIdentifier)
@@ -3854,6 +3888,80 @@ class BreachSingleCellPits(object):
         return
 
 
+class BreaklineMapping(object):
+    def __init__(self):
+        self.label = "Breakline Mapping"
+        self.description = "This tool maps breaklines from an input DEM."
+        self.category = "Geomorphometric Analysis"
+
+    def getParameterInfo(self):
+        dem = arcpy.Parameter(
+            displayName="Input Raster Image",
+            name="dem",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Vector Lines File",
+            name="output",
+            datatype="DEShapefile",
+            parameterType="Required",
+            direction="Output")
+
+        threshold = arcpy.Parameter(
+            displayName="Threshold Value",
+            name="threshold",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+        threshold.value = '2.0'
+
+        min_length = arcpy.Parameter(
+            displayName="Min. Line Length (In Grid Cells)",
+            name="min_length",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+        min_length.value = '3'
+
+        params = [dem, output, threshold, min_length]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
+        output = parameters[1].valueAsText
+        threshold = parameters[2].valueAsText
+        min_length = parameters[3].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.breakline_mapping(dem=dem, output=output, threshold=threshold, min_length=min_length)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class BufferRaster(object):
     def __init__(self):
         self.label = "Buffer Raster"
@@ -4504,6 +4612,123 @@ class ClassifyBuildingsInLidar(object):
         return
 
 
+class ClassifyLidar(object):
+    def __init__(self):
+        self.label = "Classify Lidar"
+        self.description = "Classify points within a LiDAR point cloud based on point properties."
+        self.category = "LiDAR Tools"
+
+    def getParameterInfo(self):
+        i = arcpy.Parameter(
+            displayName="Input LiDAR Points",
+            name="i",
+            datatype="DEFile",
+            parameterType="Optional",
+            direction="Input")
+        i.filter.list = ["las", "zip"]
+
+        output = arcpy.Parameter(
+            displayName="Output LiDAR Points",
+            name="output",
+            datatype="DEFile",
+            parameterType="Optional",
+            direction="Output")
+
+        radius = arcpy.Parameter(
+            displayName="Search Distance:",
+            name="radius",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+        radius.value = '1.5'
+
+        grd_threshold = arcpy.Parameter(
+            displayName="Ground Threshold:",
+            name="grd_threshold",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+        grd_threshold.value = '0.1'
+
+        oto_threshold = arcpy.Parameter(
+            displayName="Off-Terrain Object Threshold:",
+            name="oto_threshold",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+        oto_threshold.value = '2.0'
+
+        planarity_threshold = arcpy.Parameter(
+            displayName="Planarity Threshold:",
+            name="planarity_threshold",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+        planarity_threshold.value = '0.85'
+
+        linearity_threshold = arcpy.Parameter(
+            displayName="Linearity Threshold:",
+            name="linearity_threshold",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+        linearity_threshold.value = '0.70'
+
+        iterations = arcpy.Parameter(
+            displayName="Number of Iterations:",
+            name="iterations",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+        iterations.value = '30'
+
+        facade_threshold = arcpy.Parameter(
+            displayName="Facade Threshold:",
+            name="facade_threshold",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+        facade_threshold.value = '0.5'
+
+        params = [i, output, radius, grd_threshold, oto_threshold, planarity_threshold, linearity_threshold, iterations, facade_threshold]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        i = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        radius = parameters[2].valueAsText
+        grd_threshold = parameters[3].valueAsText
+        oto_threshold = parameters[4].valueAsText
+        planarity_threshold = parameters[5].valueAsText
+        linearity_threshold = parameters[6].valueAsText
+        iterations = parameters[7].valueAsText
+        facade_threshold = parameters[8].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.classify_lidar(i=i, output=output, radius=radius, grd_threshold=grd_threshold, oto_threshold=oto_threshold, planarity_threshold=planarity_threshold, linearity_threshold=linearity_threshold, iterations=iterations, facade_threshold=facade_threshold)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class ClassifyOverlapPoints(object):
     def __init__(self):
         self.label = "Classify Overlap Points"
@@ -4534,6 +4759,16 @@ class ClassifyOverlapPoints(object):
             direction="Input")
         resolution.value = '2.0'
 
+        criterion = arcpy.Parameter(
+            displayName="Overlap Criterion",
+            name="criterion",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+        criterion.filter.type = "ValueList"
+        criterion.filter.list = ['max scan angle', 'not min point source ID', 'not min time', 'multiple point source IDs']
+        criterion.value = 'max scan angle'
+
         filter = arcpy.Parameter(
             displayName="Filter out points from overlapping flightlines?",
             name="filter",
@@ -4542,7 +4777,7 @@ class ClassifyOverlapPoints(object):
             direction="Input")
         filter.value = 'False'
 
-        params = [i, output, resolution, filter]
+        params = [i, output, resolution, criterion, filter]
 
         return params
 
@@ -4565,11 +4800,12 @@ class ClassifyOverlapPoints(object):
         i = parameters[0].valueAsText
         output = parameters[1].valueAsText
         resolution = parameters[2].valueAsText
-        filter = parameters[3].valueAsText
+        criterion = parameters[3].valueAsText
+        filter = parameters[4].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.classify_overlap_points(i=i, output=output, resolution=resolution, filter=filter)
+        wbt.classify_overlap_points(i=i, output=output, resolution=resolution, criterion=criterion, filter=filter)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -4802,7 +5038,7 @@ class ClipRasterToPolygon(object):
             datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
-        maintain_dimensions.value = 'False'
+        maintain_dimensions.value = 'True'
 
         params = [i, polygons, output, maintain_dimensions]
 
@@ -4993,6 +5229,191 @@ class Clump(object):
         return
 
 
+class ColourizeBasedOnClass(object):
+    def __init__(self):
+        self.label = "Colourize Based On Class"
+        self.description = "Sets the RGB values of a LiDAR point cloud based on the point classification values."
+        self.category = "LiDAR Tools"
+
+    def getParameterInfo(self):
+        i = arcpy.Parameter(
+            displayName="Input LiDAR Points",
+            name="i",
+            datatype="DEFile",
+            parameterType="Optional",
+            direction="Input")
+        i.filter.list = ["las", "zip"]
+
+        output = arcpy.Parameter(
+            displayName="Output LiDAR Points",
+            name="output",
+            datatype="DEFile",
+            parameterType="Optional",
+            direction="Output")
+
+        intensity_blending = arcpy.Parameter(
+            displayName="Intensity Blending Amount (0-100%):",
+            name="intensity_blending",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+        intensity_blending.value = '50.0'
+
+        clr_str = arcpy.Parameter(
+            displayName="Colour values:",
+            name="clr_str",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+        use_unique_clrs_for_buildings = arcpy.Parameter(
+            displayName="Use unique colours for each building?",
+            name="use_unique_clrs_for_buildings",
+            datatype="GPBoolean",
+            parameterType="Optional",
+            direction="Input")
+        use_unique_clrs_for_buildings.value = 'False'
+
+        radius = arcpy.Parameter(
+            displayName="Search Distance:",
+            name="radius",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+        params = [i, output, intensity_blending, clr_str, use_unique_clrs_for_buildings, radius]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        i = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        intensity_blending = parameters[2].valueAsText
+        clr_str = parameters[3].valueAsText
+        use_unique_clrs_for_buildings = parameters[4].valueAsText
+        radius = parameters[5].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.colourize_based_on_class(i=i, output=output, intensity_blending=intensity_blending, clr_str=clr_str, use_unique_clrs_for_buildings=use_unique_clrs_for_buildings, radius=radius)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
+class ColourizeBasedOnPointReturns(object):
+    def __init__(self):
+        self.label = "Colourize Based On Point Returns"
+        self.description = "Sets the RGB values of a LiDAR point cloud based on the point returns."
+        self.category = "LiDAR Tools"
+
+    def getParameterInfo(self):
+        i = arcpy.Parameter(
+            displayName="Input LiDAR Points",
+            name="i",
+            datatype="DEFile",
+            parameterType="Optional",
+            direction="Input")
+        i.filter.list = ["las", "zip"]
+
+        output = arcpy.Parameter(
+            displayName="Output LiDAR Points",
+            name="output",
+            datatype="DEFile",
+            parameterType="Optional",
+            direction="Output")
+
+        intensity_blending = arcpy.Parameter(
+            displayName="Intensity Blending Amount (0-100%):",
+            name="intensity_blending",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+        intensity_blending.value = '50.0'
+
+        only = arcpy.Parameter(
+            displayName="Only Return Colour",
+            name="only",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+        only.value = '(230,214,170)'
+
+        first = arcpy.Parameter(
+            displayName="First Return Colour",
+            name="first",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+        first.value = '(0,140,0)'
+
+        intermediate = arcpy.Parameter(
+            displayName="Intermediate Return Colour",
+            name="intermediate",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+        intermediate.value = '(255,0,255)'
+
+        last = arcpy.Parameter(
+            displayName="Last Return Colour",
+            name="last",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+        last.value = '(0,0,255)'
+
+        params = [i, output, intensity_blending, only, first, intermediate, last]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        i = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        intensity_blending = parameters[2].valueAsText
+        only = parameters[3].valueAsText
+        first = parameters[4].valueAsText
+        intermediate = parameters[5].valueAsText
+        last = parameters[6].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.colourize_based_on_point_returns(i=i, output=output, intensity_blending=intensity_blending, only=only, first=first, intermediate=intermediate, last=last)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class CompactnessRatio(object):
     def __init__(self):
         self.label = "Compactness Ratio"
@@ -5045,7 +5466,7 @@ class CompactnessRatio(object):
 class ConditionalEvaluation(object):
     def __init__(self):
         self.label = "Conditional Evaluation"
-        self.description = "This tool performs a conditional evaluaton (if-then-else) operation on a raster."
+        self.description = "This tool performs a conditional evaluation (if-then-else) operation on a raster."
         self.category = "Math and Stats Tools"
 
     def getParameterInfo(self):
@@ -5128,6 +5549,145 @@ class ConditionalEvaluation(object):
         result = StringIO()
         sys.stdout = result
         wbt.conditional_evaluation(i=i, statement=statement, true=true, false=false, output=output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
+class ConditionedLatinHypercube(object):
+    def __init__(self):
+        self.label = "Conditioned Latin Hypercube"
+        self.description = "Implements conditioned Latin Hypercube sampling."
+        self.category = "Math and Stats Tools"
+
+    def getParameterInfo(self):
+        inputs = arcpy.Parameter(
+            displayName="Input Raster",
+            name="inputs",
+            datatype=["DERasterDataset"],
+            parameterType="Required",
+            direction="Input")
+        inputs.multiValue = True
+
+        output = arcpy.Parameter(
+            displayName="Output shapefile",
+            name="output",
+            datatype="DEShapefile",
+            parameterType="Required",
+            direction="Output")
+
+        samples = arcpy.Parameter(
+            displayName="Number of sample sites",
+            name="samples",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+        samples.value = '500'
+
+        iterations = arcpy.Parameter(
+            displayName="Number of resampling iterations",
+            name="iterations",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+        iterations.value = '25000'
+
+        seed = arcpy.Parameter(
+            displayName="RNG seed",
+            name="seed",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+
+        prob = arcpy.Parameter(
+            displayName="Random resample probability",
+            name="prob",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+        prob.value = '0.5'
+
+        threshold = arcpy.Parameter(
+            displayName="Objective function threshold.",
+            name="threshold",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        temp = arcpy.Parameter(
+            displayName="Initial annealing temperature",
+            name="temp",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+        temp.value = '1.0'
+
+        temp_decay = arcpy.Parameter(
+            displayName="Temperature decay factor",
+            name="temp_decay",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+        temp_decay.value = '0.05'
+
+        cycle = arcpy.Parameter(
+            displayName="Annealing cycle duration",
+            name="cycle",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+        cycle.value = '10'
+
+        average = arcpy.Parameter(
+            displayName="Average the continuous Obj. Func.",
+            name="average",
+            datatype="GPBoolean",
+            parameterType="Optional",
+            direction="Input")
+        average.value = 'False'
+
+        params = [inputs, output, samples, iterations, seed, prob, threshold, temp, temp_decay, cycle, average]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
+        output = parameters[1].valueAsText
+        samples = parameters[2].valueAsText
+        iterations = parameters[3].valueAsText
+        seed = parameters[4].valueAsText
+        prob = parameters[5].valueAsText
+        threshold = parameters[6].valueAsText
+        temp = parameters[7].valueAsText
+        temp_decay = parameters[8].valueAsText
+        cycle = parameters[9].valueAsText
+        average = parameters[10].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.conditioned_latin_hypercube(inputs=inputs, output=output, samples=samples, iterations=iterations, seed=seed, prob=prob, threshold=threshold, temp=temp, temp_decay=temp_decay, cycle=cycle, average=average)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -7569,6 +8129,87 @@ class DepthInSink(object):
         return
 
 
+class DepthToWater(object):
+    def __init__(self):
+        self.label = "Depth To Water"
+        self.description = "This tool calculates cartographic depth-to-water (DTW) index."
+        self.category = "Hydrological Analysis"
+
+    def getParameterInfo(self):
+        dem = arcpy.Parameter(
+            displayName="Input Raster DEM",
+            name="dem",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        streams = arcpy.Parameter(
+            displayName="Input Streams Vector",
+            name="streams",
+            datatype="GPFeatureLayer",
+            parameterType="Optional",
+            direction="Input")
+        streams.filter.list = ["Polyline"]
+
+        lakes = arcpy.Parameter(
+            displayName="Input Lakes Vector",
+            name="lakes",
+            datatype="GPFeatureLayer",
+            parameterType="Optional",
+            direction="Input")
+        lakes.filter.list = ["Polygon"]
+
+        output = arcpy.Parameter(
+            displayName="Output Raster Image",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        params = [dem, streams, lakes, output]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
+        streams = parameters[1].valueAsText
+        if streams is not None:
+            desc = arcpy.Describe(streams)
+            streams = desc.catalogPath
+        lakes = parameters[2].valueAsText
+        if lakes is not None:
+            desc = arcpy.Describe(lakes)
+            lakes = desc.catalogPath
+        output = parameters[3].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.depth_to_water(dem=dem, streams=streams, lakes=lakes, output=output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class DevFromMeanElev(object):
     def __init__(self):
         self.label = "Dev From Mean Elev"
@@ -9351,7 +9992,7 @@ class EliminateCoincidentPoints(object):
         i.filter.list = ["Point"]
 
         output = arcpy.Parameter(
-            displayName="Output Polygon File",
+            displayName="Output Points File",
             name="output",
             datatype="DEShapefile",
             parameterType="Required",
@@ -11686,6 +12327,67 @@ class FillSingleCellPits(object):
         return
 
 
+class FilterLidar(object):
+    def __init__(self):
+        self.label = "Filter Lidar"
+        self.description = "Filters points within a LiDAR point cloud based on point properties."
+        self.category = "LiDAR Tools"
+
+    def getParameterInfo(self):
+        i = arcpy.Parameter(
+            displayName="Input LiDAR Points",
+            name="i",
+            datatype="DEFile",
+            parameterType="Optional",
+            direction="Input")
+        i.filter.list = ["las", "zip"]
+
+        output = arcpy.Parameter(
+            displayName="Output LiDAR Points",
+            name="output",
+            datatype="DEFile",
+            parameterType="Optional",
+            direction="Output")
+
+        statement = arcpy.Parameter(
+            displayName="Statement:",
+            name="statement",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+        params = [i, output, statement]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        i = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        statement = parameters[2].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.filter_lidar(i=i, output=output, statement=statement)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class FilterLidarClasses(object):
     def __init__(self):
         self.label = "Filter Lidar Classes"
@@ -12476,7 +13178,7 @@ class FlattenLakes(object):
 class FlightlineOverlap(object):
     def __init__(self):
         self.label = "Flightline Overlap"
-        self.description = "Reads a LiDAR (LAS) point file and outputs a raster containing the number of overlapping flight lines in each grid cell."
+        self.description = "Reads a LiDAR (LAS) point file and outputs a raster containing the number of overlapping flight-lines in each grid cell."
         self.category = "LiDAR Tools"
 
     def getParameterInfo(self):
@@ -13542,14 +14244,14 @@ class Geomorphons(object):
 
     def getParameterInfo(self):
         dem = arcpy.Parameter(
-            displayName="Input DEM File",
+            displayName="Input DEM file.",
             name="dem",
             datatype="GPRasterLayer",
             parameterType="Required",
             direction="Input")
 
         output = arcpy.Parameter(
-            displayName="Output File",
+            displayName="Output file.",
             name="output",
             datatype="DEFile",
             parameterType="Required",
@@ -13557,7 +14259,7 @@ class Geomorphons(object):
         output.filter.list = ["tif"]
 
         search = arcpy.Parameter(
-            displayName="Search distance",
+            displayName="Search distance (cells).",
             name="search",
             datatype="GPLong",
             parameterType="Required",
@@ -13565,30 +14267,46 @@ class Geomorphons(object):
         search.value = '50'
 
         threshold = arcpy.Parameter(
-            displayName="Flatness Threshold",
+            displayName="Flatness threshold (degrees).",
             name="threshold",
             datatype="GPDouble",
             parameterType="Required",
             direction="Input")
         threshold.value = '0.0'
 
-        tdist = arcpy.Parameter(
-            displayName="Flatness Distance",
-            name="tdist",
+        fdist = arcpy.Parameter(
+            displayName="Flatness distance (cells).",
+            name="fdist",
             datatype="GPLong",
             parameterType="Required",
             direction="Input")
-        tdist.value = '0'
+        fdist.value = '0'
+
+        skip = arcpy.Parameter(
+            displayName="Skip distance (cells).",
+            name="skip",
+            datatype="GPLong",
+            parameterType="Required",
+            direction="Input")
+        skip.value = '0'
 
         forms = arcpy.Parameter(
-            displayName=" Output Forms",
+            displayName="Output forms",
             name="forms",
             datatype="GPBoolean",
             parameterType="Optional",
             direction="Input")
         forms.value = 'True'
 
-        params = [dem, output, search, threshold, tdist, forms]
+        residuals = arcpy.Parameter(
+            displayName="Analyze residuals",
+            name="residuals",
+            datatype="GPBoolean",
+            parameterType="Optional",
+            direction="Input")
+        residuals.value = 'False'
+
+        params = [dem, output, search, threshold, fdist, skip, forms, residuals]
 
         return params
 
@@ -13615,12 +14333,14 @@ class Geomorphons(object):
         output = parameters[1].valueAsText
         search = parameters[2].valueAsText
         threshold = parameters[3].valueAsText
-        tdist = parameters[4].valueAsText
-        forms = parameters[5].valueAsText
+        fdist = parameters[4].valueAsText
+        skip = parameters[5].valueAsText
+        forms = parameters[6].valueAsText
+        residuals = parameters[7].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.geomorphons(dem=dem, output=output, search=search, threshold=threshold, tdist=tdist, forms=forms)
+        wbt.geomorphons(dem=dem, output=output, search=search, threshold=threshold, fdist=fdist, skip=skip, forms=forms, residuals=residuals)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -13794,6 +14514,108 @@ class HackStreamOrder(object):
         return
 
 
+class HeatMap(object):
+    def __init__(self):
+        self.label = "Heat Map"
+        self.description = "This tool calculates a heat map, or kernel density estimation (KDE), for an input point set."
+        self.category = "GIS Analysis"
+
+    def getParameterInfo(self):
+        i = arcpy.Parameter(
+            displayName="Input Points",
+            name="i",
+            datatype="GPFeatureLayer",
+            parameterType="Required",
+            direction="Input")
+        i.filter.list = ["Point"]
+
+        weight_field = arcpy.Parameter(
+            displayName="Weight Field Name (Optional)",
+            name="weight_field",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Raster Image",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        bandwidth = arcpy.Parameter(
+            displayName="Bandwidth",
+            name="bandwidth",
+            datatype="GPDouble",
+            parameterType="Required",
+            direction="Input")
+        kernel = arcpy.Parameter(
+            displayName="Kernel Type",
+            name="kernel",
+            datatype="GPString",
+            parameterType="Optional",
+            direction="Input")
+        kernel.filter.type = "ValueList"
+        kernel.filter.list = ['uniform', 'triangular', 'epanechnikov', 'quartic', 'triweight', 'tricube', 'gaussian', 'cosine', 'logistic', 'sigmoid', 'silverman']
+        kernel.value = 'quartic'
+
+        cell_size = arcpy.Parameter(
+            displayName="Output Raster Cell Size (Optional)",
+            name="cell_size",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+        base = arcpy.Parameter(
+            displayName="Base Raster (Optional)",
+            name="base",
+            datatype="GPRasterLayer",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [i, weight_field, output, bandwidth, kernel, cell_size, base]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
+        weight_field = parameters[1].valueAsText
+        output = parameters[2].valueAsText
+        bandwidth = parameters[3].valueAsText
+        kernel = parameters[4].valueAsText
+        cell_size = parameters[5].valueAsText
+        base = parameters[6].valueAsText
+        if base is not None:
+            desc = arcpy.Describe(base)
+            base = desc.catalogPath
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.heat_map(i=i, weight_field=weight_field, output=output, bandwidth=bandwidth, kernel=kernel, cell_size=cell_size, base=base)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class HeightAboveGround(object):
     def __init__(self):
         self.label = "Height Above Ground"
@@ -13843,6 +14665,81 @@ class HeightAboveGround(object):
         result = StringIO()
         sys.stdout = result
         wbt.height_above_ground(i=i, output=output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
+class HighPassBilateralFilter(object):
+    def __init__(self):
+        self.label = "High Pass Bilateral Filter"
+        self.description = "Performs a high-pass bilateral filter, by differencing an input image by the bilateral filter by Tomasi and Manduchi (1998)."
+        self.category = "Image Processing Tools"
+
+    def getParameterInfo(self):
+        i = arcpy.Parameter(
+            displayName="Input File",
+            name="i",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        sigma_dist = arcpy.Parameter(
+            displayName="Distance Standard Deviation (pixels)",
+            name="sigma_dist",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+        sigma_dist.value = '0.75'
+
+        sigma_int = arcpy.Parameter(
+            displayName="Intensity Standard Deviation (intensity units)",
+            name="sigma_int",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+        sigma_int.value = '1.0'
+
+        params = [i, output, sigma_dist, sigma_int]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
+        output = parameters[1].valueAsText
+        sigma_dist = parameters[2].valueAsText
+        sigma_int = parameters[3].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.high_pass_bilateral_filter(i=i, output=output, sigma_dist=sigma_dist, sigma_int=sigma_int)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -14932,7 +15829,7 @@ class HypsometricallyTintedHillshade(object):
             parameterType="Optional",
             direction="Input")
         palette.filter.type = "ValueList"
-        palette.filter.list = ['atlas', 'high_relief', 'arid', 'soft', 'muted', 'purple', 'viridi', 'gn_yl', 'pi_y_g', 'bl_yl_rd', 'deep']
+        palette.filter.list = ['atlas', 'high_relief', 'arid', 'soft', 'muted', 'purple', 'viridis', 'gn_yl', 'pi_y_g', 'bl_yl_rd', 'deep']
         palette.value = 'atlas'
 
         reverse = arcpy.Parameter(
@@ -16850,7 +17747,7 @@ class JoinTables(object):
             displayName="Imported Field",
             name="import_field",
             datatype="Field",
-            parameterType="Required",
+            parameterType="Optional",
             direction="Input")
         import_field.parameterDependencies = [input2.name]
 
@@ -18752,6 +19649,68 @@ class LidarDigitalSurfaceModel(object):
         return
 
 
+class LidarEigenvalueFeatures(object):
+    def __init__(self):
+        self.label = "Lidar Eigenvalue Features"
+        self.description = "Calculate eigenvalue-based metrics from a LiDAR point cloud."
+        self.category = "LiDAR Tools"
+
+    def getParameterInfo(self):
+        i = arcpy.Parameter(
+            displayName="Input LiDAR Points",
+            name="i",
+            datatype="DEFile",
+            parameterType="Optional",
+            direction="Input")
+        i.filter.list = ["las", "zip"]
+
+        num_neighbours = arcpy.Parameter(
+            displayName="Number of Neighbours:",
+            name="num_neighbours",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+
+        radius = arcpy.Parameter(
+            displayName="Search Distance:",
+            name="radius",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+
+        params = [i, num_neighbours, radius]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        i = parameters[0].valueAsText
+        num_neighbours = parameters[1].valueAsText
+        radius = parameters[2].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.lidar_eigenvalue_features(i=i, num_neighbours=num_neighbours, radius=radius)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class LidarElevationSlice(object):
     def __init__(self):
         self.label = "Lidar Elevation Slice"
@@ -19345,6 +20304,14 @@ class LidarInfo(object):
             direction="Output")
         output.filter.list = ["html"]
 
+        density = arcpy.Parameter(
+            displayName="Calculate the average point density and nominal point spacing?",
+            name="density",
+            datatype="GPBoolean",
+            parameterType="Optional",
+            direction="Input")
+        density.value = 'True'
+
         vlr = arcpy.Parameter(
             displayName="Print the variable length records (VLRs)?",
             name="vlr",
@@ -19361,7 +20328,7 @@ class LidarInfo(object):
             direction="Input")
         geokeys.value = 'True'
 
-        params = [i, output, vlr, geokeys]
+        params = [i, output, density, vlr, geokeys]
 
         return params
 
@@ -19383,12 +20350,13 @@ class LidarInfo(object):
     def execute(self, parameters, messages):
         i = parameters[0].valueAsText
         output = parameters[1].valueAsText
-        vlr = parameters[2].valueAsText
-        geokeys = parameters[3].valueAsText
+        density = parameters[2].valueAsText
+        vlr = parameters[3].valueAsText
+        geokeys = parameters[4].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.lidar_info(i=i, output=output, vlr=vlr, geokeys=geokeys)
+        wbt.lidar_info(i=i, output=output, density=density, vlr=vlr, geokeys=geokeys)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -20911,60 +21879,6 @@ class LidarSibsonInterpolation(object):
         result = StringIO()
         sys.stdout = result
         wbt.lidar_sibson_interpolation(i=i, output=output, parameter=parameter, returns=returns, resolution=resolution, exclude_cls=exclude_cls, minz=minz, maxz=maxz)
-        sys.stdout = old_stdout
-        result_string = result.getvalue()
-        messages.addMessage(result_string)
-        return
-
-
-class LidarSortByTime(object):
-    def __init__(self):
-        self.label = "Lidar Sort By Time"
-        self.description = "This sorts the points in a LiDAR file by the GPS time."
-        self.category = "LiDAR Tools"
-
-    def getParameterInfo(self):
-        i = arcpy.Parameter(
-            displayName="Input LiDAR Points",
-            name="i",
-            datatype="DEFile",
-            parameterType="Required",
-            direction="Input")
-        i.filter.list = ["las", "zip"]
-
-        output = arcpy.Parameter(
-            displayName="Output LiDAR Points",
-            name="output",
-            datatype="DEFile",
-            parameterType="Required",
-            direction="Output")
-
-        params = [i, output]
-
-        return params
-
-    def updateParameters(self, parameters):
-        return
-
-    def updateMessages(self, parameters):
-        for param in parameters:
-            param_str = param.valueAsText
-            if param_str is not None:
-                try:
-                    desc = arcpy.Describe(param_str)
-                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
-                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
-                except:
-                    param.clearMessage()
-        return
-
-    def execute(self, parameters, messages):
-        i = parameters[0].valueAsText
-        output = parameters[1].valueAsText
-        old_stdout = sys.stdout
-        result = StringIO()
-        sys.stdout = result
-        wbt.lidar_sort_by_time(i=i, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -23810,6 +24724,74 @@ class MaxUpslopeFlowpathLength(object):
         return
 
 
+class MaxUpslopeValue(object):
+    def __init__(self):
+        self.label = "Max Upslope Value"
+        self.description = "This tool calculates the maximum upslope value from an input values raster along flowpaths."
+        self.category = "Hydrological Analysis"
+
+    def getParameterInfo(self):
+        dem = arcpy.Parameter(
+            displayName="Input DEM",
+            name="dem",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        values = arcpy.Parameter(
+            displayName="Values Raster File",
+            name="values",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Raster File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        params = [dem, values, output]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        dem = parameters[0].valueAsText
+        if dem is not None:
+            desc = arcpy.Describe(dem)
+            dem = desc.catalogPath
+        values = parameters[1].valueAsText
+        if values is not None:
+            desc = arcpy.Describe(values)
+            values = desc.catalogPath
+        output = parameters[2].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.max_upslope_value(dem=dem, values=values, output=output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class MaximalCurvature(object):
     def __init__(self):
         self.label = "Maximal Curvature"
@@ -25407,6 +26389,67 @@ class ModifiedKMeansClustering(object):
         return
 
 
+class ModifyLidar(object):
+    def __init__(self):
+        self.label = "Modify Lidar"
+        self.description = "Modify points within a LiDAR point cloud based on point properties."
+        self.category = "LiDAR Tools"
+
+    def getParameterInfo(self):
+        i = arcpy.Parameter(
+            displayName="Input LiDAR Points",
+            name="i",
+            datatype="DEFile",
+            parameterType="Optional",
+            direction="Input")
+        i.filter.list = ["las", "zip"]
+
+        output = arcpy.Parameter(
+            displayName="Output LiDAR Points",
+            name="output",
+            datatype="DEFile",
+            parameterType="Optional",
+            direction="Output")
+
+        statement = arcpy.Parameter(
+            displayName="Statement:",
+            name="statement",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+        params = [i, output, statement]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        i = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        statement = parameters[2].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.modify_lidar(i=i, output=output, statement=statement)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class ModifyNoDataValue(object):
     def __init__(self):
         self.label = "Modify No Data Value"
@@ -25914,6 +26957,67 @@ class Multiply(object):
         result = StringIO()
         sys.stdout = result
         wbt.multiply(input1=input1, input2=input2, output=output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
+class MultiplyOverlay(object):
+    def __init__(self):
+        self.label = "Multiply Overlay"
+        self.description = "Calculates the sum for each grid cell from a group of raster images."
+        self.category = "GIS Analysis"
+
+    def getParameterInfo(self):
+        inputs = arcpy.Parameter(
+            displayName="Input Files",
+            name="inputs",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+        inputs.multiValue = True
+
+        output = arcpy.Parameter(
+            displayName="Output File",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        params = [inputs, output]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        inputs = parameters[0].valueAsText
+        if inputs is not None:
+            items = inputs.split(";")
+            items_path = []
+            for item in items:
+                items_path.append(arcpy.Describe(item).catalogPath)
+            inputs = ";".join(items_path)
+        output = parameters[1].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.multiply_overlay(inputs=inputs, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -27701,7 +28805,7 @@ class PairedSampleTTest(object):
         output.filter.list = ["html"]
 
         num_samples = arcpy.Parameter(
-            displayName="Num. Samples (blank for while image)",
+            displayName="Num. Samples (blank for whole image)",
             name="num_samples",
             datatype="GPLong",
             parameterType="Optional",
@@ -28725,6 +29829,79 @@ class PickFromList(object):
         result = StringIO()
         sys.stdout = result
         wbt.pick_from_list(inputs=inputs, pos_input=pos_input, output=output)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
+class PiecewiseContrastStretch(object):
+    def __init__(self):
+        self.label = "Piecewise Contrast Stretch"
+        self.description = "Performs a piecewise contrast stretch on an input image."
+        self.category = "Image Processing Tools"
+
+    def getParameterInfo(self):
+        i = arcpy.Parameter(
+            displayName="Input Raster Image",
+            name="i",
+            datatype="GPRasterLayer",
+            parameterType="Required",
+            direction="Input")
+
+        output = arcpy.Parameter(
+            displayName="Output Raster Image",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+        output.filter.list = ["tif"]
+
+        function = arcpy.Parameter(
+            displayName="Piecewise Function Break-points:",
+            name="function",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+        greytones = arcpy.Parameter(
+            displayName="Number of Output Greytones:",
+            name="greytones",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+        greytones.value = '1024'
+
+        params = [i, output, function, greytones]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
+        output = parameters[1].valueAsText
+        function = parameters[2].valueAsText
+        greytones = parameters[3].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.piecewise_contrast_stretch(i=i, output=output, function=function, greytones=greytones)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -31669,6 +32846,96 @@ class ReconcileMultipleHeaders(object):
         return
 
 
+class RecoverFlightlineInfo(object):
+    def __init__(self):
+        self.label = "Recover Flightline Info"
+        self.description = "Associates LiDAR points by their flightlines."
+        self.category = "LiDAR Tools"
+
+    def getParameterInfo(self):
+        i = arcpy.Parameter(
+            displayName="Input LiDAR Points",
+            name="i",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Input")
+        i.filter.list = ["las", "zip"]
+
+        output = arcpy.Parameter(
+            displayName="Output LiDAR Points",
+            name="output",
+            datatype="DEFile",
+            parameterType="Required",
+            direction="Output")
+
+        max_time_diff = arcpy.Parameter(
+            displayName="Maximum In-Flightline Time Difference (seconds)",
+            name="max_time_diff",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+        max_time_diff.value = '5.0'
+
+        pt_src_id = arcpy.Parameter(
+            displayName="Add flightline info to the Point Source ID?",
+            name="pt_src_id",
+            datatype="GPBoolean",
+            parameterType="Optional",
+            direction="Input")
+        pt_src_id.value = 'False'
+
+        user_data = arcpy.Parameter(
+            displayName="Add flightline info to the User Data?",
+            name="user_data",
+            datatype="GPBoolean",
+            parameterType="Optional",
+            direction="Input")
+        user_data.value = 'False'
+
+        rgb = arcpy.Parameter(
+            displayName="Add flightline info to the RGB colour data?",
+            name="rgb",
+            datatype="GPBoolean",
+            parameterType="Optional",
+            direction="Input")
+        rgb.value = 'False'
+
+        params = [i, output, max_time_diff, pt_src_id, user_data, rgb]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        i = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        max_time_diff = parameters[2].valueAsText
+        pt_src_id = parameters[3].valueAsText
+        user_data = parameters[4].valueAsText
+        rgb = parameters[5].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.recover_flightline_info(i=i, output=output, max_time_diff=max_time_diff, pt_src_id=pt_src_id, user_data=user_data, rgb=rgb)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class RecreatePassLines(object):
     def __init__(self):
         self.label = "Recreate Pass Lines"
@@ -33248,14 +34515,7 @@ class RuggednessIndex(object):
             direction="Output")
         output.filter.list = ["tif"]
 
-        zfactor = arcpy.Parameter(
-            displayName="Z Conversion Factor",
-            name="zfactor",
-            datatype="GPDouble",
-            parameterType="Optional",
-            direction="Input")
-
-        params = [dem, output, zfactor]
+        params = [dem, output]
 
         return params
 
@@ -33280,11 +34540,10 @@ class RuggednessIndex(object):
             desc = arcpy.Describe(dem)
             dem = desc.catalogPath
         output = parameters[1].valueAsText
-        zfactor = parameters[2].valueAsText
         old_stdout = sys.stdout
         result = StringIO()
         sys.stdout = result
-        wbt.ruggedness_index(dem=dem, output=output, zfactor=zfactor)
+        wbt.ruggedness_index(dem=dem, output=output)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -34926,6 +36185,67 @@ class SobelFilter(object):
         return
 
 
+class SortLidar(object):
+    def __init__(self):
+        self.label = "Sort Lidar"
+        self.description = "Sorts LiDAR points based on their properties."
+        self.category = "LiDAR Tools"
+
+    def getParameterInfo(self):
+        i = arcpy.Parameter(
+            displayName="Input LiDAR Points",
+            name="i",
+            datatype="DEFile",
+            parameterType="Optional",
+            direction="Input")
+        i.filter.list = ["las", "zip"]
+
+        output = arcpy.Parameter(
+            displayName="Output LiDAR Points",
+            name="output",
+            datatype="DEFile",
+            parameterType="Optional",
+            direction="Output")
+
+        criteria = arcpy.Parameter(
+            displayName="Sort Criteria:",
+            name="criteria",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+        params = [i, output, criteria]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        i = parameters[0].valueAsText
+        output = parameters[1].valueAsText
+        criteria = parameters[2].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.sort_lidar(i=i, output=output, criteria=criteria)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class SphericalStdDevOfNormals(object):
     def __init__(self):
         self.label = "Spherical Std Dev Of Normals"
@@ -35061,6 +36381,79 @@ class SplitColourComposite(object):
         result = StringIO()
         sys.stdout = result
         wbt.split_colour_composite(i=i, red=red, green=green, blue=blue)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
+class SplitLidar(object):
+    def __init__(self):
+        self.label = "Split Lidar"
+        self.description = "Splits LiDAR points up into a series of new files based on their properties."
+        self.category = "LiDAR Tools"
+
+    def getParameterInfo(self):
+        i = arcpy.Parameter(
+            displayName="Input LiDAR Points",
+            name="i",
+            datatype="DEFile",
+            parameterType="Optional",
+            direction="Input")
+        i.filter.list = ["las", "zip"]
+
+        criterion = arcpy.Parameter(
+            displayName="Split Criterion",
+            name="criterion",
+            datatype="GPString",
+            parameterType="Required",
+            direction="Input")
+        criterion.filter.type = "ValueList"
+        criterion.filter.list = ['num_pts', 'x', 'y', 'z', 'intensity', 'class', 'user_data', 'point_source_id', 'scan_angle', 'time']
+        criterion.value = 'num_pts'
+
+        interval = arcpy.Parameter(
+            displayName="Interval",
+            name="interval",
+            datatype="GPDouble",
+            parameterType="Optional",
+            direction="Input")
+        min_pts = arcpy.Parameter(
+            displayName="Minimum Number of Points",
+            name="min_pts",
+            datatype="GPLong",
+            parameterType="Optional",
+            direction="Input")
+        min_pts.value = '5'
+
+        params = [i, criterion, interval, min_pts]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        i = parameters[0].valueAsText
+        criterion = parameters[1].valueAsText
+        interval = parameters[2].valueAsText
+        min_pts = parameters[3].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.split_lidar(i=i, criterion=criterion, interval=interval, min_pts=min_pts)
         sys.stdout = old_stdout
         result_string = result.getvalue()
         messages.addMessage(result_string)
@@ -38048,6 +39441,72 @@ class TraceDownslopeFlowpaths(object):
         return
 
 
+class TravellingSalesmanProblem(object):
+    def __init__(self):
+        self.label = "Travelling Salesman Problem"
+        self.description = "This tool finds approximate solutions to travelling salesman problems, the goal of which is to identify the shortest route connecting a set of locations."
+        self.category = "GIS Analysis"
+
+    def getParameterInfo(self):
+        i = arcpy.Parameter(
+            displayName="Input Points",
+            name="i",
+            datatype="GPFeatureLayer",
+            parameterType="Required",
+            direction="Input")
+        i.filter.list = ["Point"]
+
+        output = arcpy.Parameter(
+            displayName="Output Lines",
+            name="output",
+            datatype="DEShapefile",
+            parameterType="Required",
+            direction="Output")
+
+        duration = arcpy.Parameter(
+            displayName="Max Duration",
+            name="duration",
+            datatype="GPLong",
+            parameterType="Required",
+            direction="Input")
+        duration.value = '60'
+
+        params = [i, output, duration]
+
+        return params
+
+    def updateParameters(self, parameters):
+        return
+
+    def updateMessages(self, parameters):
+        for param in parameters:
+            param_str = param.valueAsText
+            if param_str is not None:
+                try:
+                    desc = arcpy.Describe(param_str)
+                    if (".gdb\\" in desc.catalogPath) or (".mdb\\" in desc.catalogPath):
+                        param.setErrorMessage("Datasets stored in a Geodatabase are not supported.")
+                except:
+                    param.clearMessage()
+        return
+
+    def execute(self, parameters, messages):
+        i = parameters[0].valueAsText
+        if i is not None:
+            desc = arcpy.Describe(i)
+            i = desc.catalogPath
+        output = parameters[1].valueAsText
+        duration = parameters[2].valueAsText
+        old_stdout = sys.stdout
+        result = StringIO()
+        sys.stdout = result
+        wbt.travelling_salesman_problem(i=i, output=output, duration=duration)
+        sys.stdout = old_stdout
+        result_string = result.getvalue()
+        messages.addMessage(result_string)
+        return
+
+
 class TrendSurface(object):
     def __init__(self):
         self.label = "Trend Surface"
@@ -38154,7 +39613,7 @@ class TrendSurfaceVectorPoints(object):
         order.value = '1'
 
         cell_size = arcpy.Parameter(
-            displayName="Cell Size (optional)",
+            displayName="Cell Size",
             name="cell_size",
             datatype="GPDouble",
             parameterType="Required",
@@ -39233,7 +40692,7 @@ class VectorPointsToRaster(object):
             parameterType="Optional",
             direction="Input")
         assign.filter.type = "ValueList"
-        assign.filter.list = ['first', 'last', 'min', 'max', 'sum']
+        assign.filter.list = ['first', 'last', 'min', 'max', 'sum', 'number']
         assign.value = 'last'
 
         nodata = arcpy.Parameter(
