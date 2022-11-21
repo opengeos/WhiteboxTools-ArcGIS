@@ -1,5 +1,6 @@
 ##################################################################
 # Steps for updating WhiteboxTools-ArcGIS
+# Step 0: - Update the whitebox_tools.json file in the whiteboxgui repository
 # Step 1 - Delete the existing develop branch: git branch -D develop
 # Step 2 - Create a new develop branch: git checkout -b develop
 # Step 3 - Delete the old WhiteboxTools_win_amd64.zip in the root folder if needed
@@ -368,6 +369,7 @@ def get_data_type(param):
         "Vector": '"DEShapefile"',
         "RasterAndVector": '["DERasterDataset", "DEShapefile"]',
         "ExistingFileOrFloat": '["DERasterDataset", "GPDouble"]',
+        "ExistingFile": '["DERasterDataset"]',
     }
 
     vector_filters = {
@@ -534,6 +536,7 @@ with open(file_about_py) as f:
     f_wbt.writelines(lines)
 
 for tool_name in tools_dict:
+    print(tool_name)
     lines = generate_tool_template(tools_dict[tool_name])
     f_wbt.writelines(lines)
 
