@@ -56,6 +56,39 @@ for more details.
 * Release Notes: *
 ******************
 
+Version 2.3.0 (30-03-2023)
+- Added the new Whitebox Runner v2.0. This version of WbRunner is an entirely new application with many 
+  advancements over the previous version of the WbRunner. It is now written in pure Rust (compared with 
+  the old Python TkInter app) using the egui user-interface library. It has a more modern feel, is 
+  cross-platform, and has no dependencies (including Python). You can now open multiple tools simultaneously. 
+- WbRunner is now the preferred way now for installing the Whitebox Toolset Extension (WTE).
+- Added the LaunchWbRunner and InstallWbExtension tools so that the Whitebox Runner will be more 
+  accessible from other Whitebox frontends. This way users will always have a good fall-back if the 
+  frontend is not up-to-date with the WBT backend, since WbRunner is always current with the installed 
+  version of WBT.
+- Added the IndividualTreeDetection tool for identifying points in a LiDAR point cloud that are associated 
+  with the tops of individual trees.
+- Added the NormalizeLidar tool for normalizing LiDAR point clouds, i.e., converting their z-values 
+  from elevation to height-above-ground.
+- Natural Resources Canada (NRCan) has sponsored the open-sourcing of two tools contained in the extension,
+  VectorStreamNetworkAnalysis and RepairStreamVectorTopology. These two tools are are now available in the 
+  WbT Open Core.
+- Fixed a bug with the LidarShift tool. The tool was calculating the shift in transformed coordinates
+  incorrectly leading to very strange outputs.
+- The MultiscaleTopographicPositionImage tool now takes an optional hillshade image as input.
+- Lowered the peak memory requirement of the D8FlowAccumulation tool.
+- Fixed a bug with the location of the settings.json file when running plugin tools, that sometimes
+  led to the file being located in a top-level directory, and therefore sometimes yielding a 
+  permissions error when running on systems without admin rights.
+- Fixed a bug with the vector attribute table reader that caused issue with the VectorPolygonsToRaster 
+  tool.
+- Fixed a bugs in the HorizonAngle and ExposureTowardsWindFlux tools.
+- Added a point time interpolation parameter to the LidarNearestNeighbourGridding tool.
+- Added the ListUniqueValuesRaster tool.
+- Fixed a bug with the SetNodataValue tool, where the raster data type is updated to a signed integer
+  if the background value is negative and the input image has an unsigned data type.
+- Added a 'mean' option to the VectorPointsToRaster tool.
+
 Version 2.2.0 (23-10-2022)
 - Added the TravellingSalesmanProblem tool for identifying short routes connecting multiple locations.
 - Added the HeatMap tool for performing kernel density estimation (KDE) from vector points.

@@ -26,6 +26,7 @@ WhiteboxTools.pyt.zip
 **/*.CPG
 __MACOSX/
 whitebox_tools-v*.exe
+WBT/img/._*
 
 
 # C extensions
@@ -127,3 +128,5 @@ ENV/
 # mypy
 .mypy_cache/
 WBT/img/.DS_Store
+WBT/whitebox_runner.exe
+WBT/settings.json

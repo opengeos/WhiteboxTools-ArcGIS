@@ -1,6 +1,6 @@
 {
   "verbose_mode": true,
   "working_directory": "/Users/johnlindsay/Downloads/",
-  "compress_rasters": true,
+  "compress_rasters": false,
   "max_procs": -1
 }
