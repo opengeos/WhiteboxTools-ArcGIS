@@ -75,7 +75,7 @@ def get_wbt_dict():
         dict: The dictionary containing information for all tools.
     """
 
-    url = "https://github.com/giswqs/whiteboxgui/raw/master/whiteboxgui/data/whitebox_tools.json"
+    url = "https://github.com/opengeos/whiteboxgui/raw/master/whiteboxgui/data/whitebox_tools.json"
     response = urlopen(url)
     wbt_dict = json.loads(response.read())
 
