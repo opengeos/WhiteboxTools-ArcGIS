@@ -1,12 +1,11 @@
 # WhiteboxTools-ArcGIS
 
 [![docs](https://img.shields.io/badge/whitebox-docs-brightgreen.svg)](https://www.whiteboxgeo.com/manual/wbt_book/preface.html)
-[![ArcGIS](https://img.shields.io/badge/whitebox-ArcGIS-brightgreen.svg)](https://github.com/giswqs/WhiteboxTools-ArcGIS)
-[![python](https://img.shields.io/badge/whitebox-Python-blue.svg)](https://github.com/giswqs/whitebox-python)
-[![R](https://img.shields.io/badge/whitebox-R-green.svg)](https://github.com/giswqs/whiteboxR)
+[![ArcGIS](https://img.shields.io/badge/whitebox-ArcGIS-brightgreen.svg)](https://github.com/opengeos/WhiteboxTools-ArcGIS)
+[![python](https://img.shields.io/badge/whitebox-Python-blue.svg)](https://github.com/opengeos/whitebox-python)
+[![R](https://img.shields.io/badge/whitebox-R-green.svg)](https://github.com/opengeos/whiteboxR)
 [![QGIS](https://img.shields.io/badge/whitebox-QGIS-orange.svg)](https://www.whiteboxgeo.com/manual/wbt_book/qgis_plugin.html)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Twitter Follow](https://img.shields.io/twitter/follow/giswqs?style=social)](https://twitter.com/giswqs)
 [![Donate](https://img.shields.io/badge/Donate-Buy%20me%20a%20coffee-yellowgreen.svg)](https://www.buymeacoffee.com/giswqs)
 
 ArcGIS Python Toolbox for WhiteboxTools.
@@ -15,31 +14,35 @@ This repository is related to the **ArcGIS Python Toolbox for WhiteboxTools**, w
 
 ![Note](https://i.imgur.com/Ic8BA7C.png) **Important Note:** This toolbox only supports **ArcGIS Pro and ArcGIS 10.6 or newer**. Don't waste your time trying it on ArcGIS 10.5 or older versions. 
 
-* Authors: Dr. John Lindsay (<https://www.whiteboxgeo.com/manual/ghrg/index.html>)
-* Contributors: Dr. Qiusheng Wu (<https://wetlands.io> | <https://blog.gishub.com>)
+* Authors: John Lindsay (<https://jblindsay.github.io/ghrg/index.html>)
+* Contributors: Qiusheng Wu (<https://wetlands.io>)
 * WhiteboxTools: <https://github.com/jblindsay/whitebox-tools>
 * User Manual: <https://www.whiteboxgeo.com/manual/wbt_book/preface.html>
-* WhiteboxTools-ArcGIS: <https://github.com/giswqs/WhiteboxTools-ArcGIS>
-* WhiteboxTools-Python: <https://github.com/giswqs/whitebox>
-* WhiteboxTools-Jupyter: <https://github.com/giswqs/whiteboxgui>
-* WhiteboxTools-R: <https://github.com/giswqs/whiteboxR>
+* WhiteboxTools-ArcGIS: <https://github.com/opengeos/WhiteboxTools-ArcGIS>
+* WhiteboxTools-Python: <https://github.com/opengeos/whitebox>
+* WhiteboxTools-Jupyter: <https://github.com/opengeos/whiteboxgui>
+* WhiteboxTools-R: <https://github.com/opengeos/whiteboxR>
 * Free software: [MIT license](https://opensource.org/licenses/MIT)
 
 **Contents**
 
-1. [Description](#description)
-2. [Installation](#installation)
-3. [Usage](#usage)
-4. [Available Tools](#available-tools)
-5. [Supported Data Formats](#supported-data-formats)
-6. [Contributing](#contributing)
-7. [License](#license)
-8. [Reporting Bugs](#reporting-bugs)
-9. [Toolbox Screenshots](#toolbox-screenshots)
+- [WhiteboxTools-ArcGIS](#whiteboxtools-arcgis)
+  - [Description](#description)
+  - [Installation](#installation)
+    - [Step 1: Download the toolbox](#step-1-download-the-toolbox)
+    - [Step 2: Connect to the toolbox](#step-2-connect-to-the-toolbox)
+  - [Usage](#usage)
+  - [Tutorials](#tutorials)
+  - [Available Tools](#available-tools)
+  - [Supported Data Formats](#supported-data-formats)
+  - [Contributing](#contributing)
+  - [License](#license)
+  - [Reporting Bugs](#reporting-bugs)
+  - [Toolbox Screenshots](#toolbox-screenshots)
 
 ## Description
 
-**WhiteboxTools-ArcGIS** is an ArcGIS Python Toolbox for **WhiteboxTools**, an advanced geospatial data analysis platform developed by Prof. John Lindsay ([webpage](https://www.whiteboxgeo.com/manual/ghrg/index.html); [jblindsay](https://github.com/jblindsay)) at the University of Guelph's [Geomorphometry and Hydrogeomatics Research Group](https://www.whiteboxgeo.com/manual/ghrg/index.html). *WhiteboxTools* can be used to perform common geographical information systems (GIS) analysis operations, such as cost-distance analysis, distance buffering, and raster reclassification. Remote sensing and image processing tasks include image enhancement (e.g. panchromatic sharpening, contrast adjustments), image mosaicing, numerous filtering operations, simple classification (k-means), and common image transformations. *WhiteboxTools* also contains advanced tooling for spatial hydrological analysis (e.g. flow-accumulation, watershed delineation, stream network analysis, sink removal), terrain analysis (e.g. common terrain indices such as slope, curvatures, wetness index, hillshading; hypsometric analysis; multi-scale topographic position analysis), and LiDAR data processing. LiDAR point clouds can be interrogated (LidarInfo, LidarHistogram), segmented, tiled and joined, analyized for outliers, interpolated to rasters (DEMs, intensity images), and ground-points can be classified or filtered. *WhiteboxTools* is not a cartographic or spatial data visualization package; instead it is meant to serve as an analytical backend for other data visualization software, mainly GIS. Suggested citation: Lindsay, J. B. (2016). Whitebox GAT: A case study in geomorphometric analysis. _Computers & Geosciences_, 95, 75-84. doi:[10.1016/j.cageo.2016.07.003](http://dx.doi.org/10.1016/j.cageo.2016.07.003).
+**WhiteboxTools-ArcGIS** is an ArcGIS Python Toolbox for **WhiteboxTools**, an advanced geospatial data analysis platform developed by Prof. John Lindsay ([webpage](https://jblindsay.github.io/ghrg/index.html); [jblindsay](https://github.com/jblindsay)) at the University of Guelph's [Geomorphometry and Hydrogeomatics Research Group](https://jblindsay.github.io/ghrg/index.html). *WhiteboxTools* can be used to perform common geographical information systems (GIS) analysis operations, such as cost-distance analysis, distance buffering, and raster reclassification. Remote sensing and image processing tasks include image enhancement (e.g. panchromatic sharpening, contrast adjustments), image mosaicing, numerous filtering operations, simple classification (k-means), and common image transformations. *WhiteboxTools* also contains advanced tooling for spatial hydrological analysis (e.g. flow-accumulation, watershed delineation, stream network analysis, sink removal), terrain analysis (e.g. common terrain indices such as slope, curvatures, wetness index, hillshading; hypsometric analysis; multi-scale topographic position analysis), and LiDAR data processing. LiDAR point clouds can be interrogated (LidarInfo, LidarHistogram), segmented, tiled and joined, analyized for outliers, interpolated to rasters (DEMs, intensity images), and ground-points can be classified or filtered. *WhiteboxTools* is not a cartographic or spatial data visualization package; instead it is meant to serve as an analytical backend for other data visualization software, mainly GIS. Suggested citation: Lindsay, J. B. (2016). Whitebox GAT: A case study in geomorphometric analysis. _Computers & Geosciences_, 95, 75-84. doi:[10.1016/j.cageo.2016.07.003](http://dx.doi.org/10.1016/j.cageo.2016.07.003).
 
 ## Installation
 
@@ -71,6 +74,12 @@ Open any tool within the toolbox and start using it. Check out the [WhiteboxTool
 
 ![](https://i.imgur.com/4c9RLZY.png)
 
+## Tutorials
+
+[Introducing WhiteboxTools frontends (Python, Jupyter, ArcGIS, R)](https://youtu.be/cv33vkpwta0)
+
+[![](https://img.youtube.com/vi/cv33vkpwta0/0.jpg)](https://youtu.be/cv33vkpwta0)
+
 ## Available Tools
 
 The **[WhiteboxTools](https://github.com/jblindsay/whitebox-tools)** library currently contains **468** tools, which are each grouped based on their main function into one of the following categories: Data Tools, GIS Analysis, Hydrological Analysis, Image Analysis, LiDAR Analysis, Mathematical and Statistical Analysis, Stream Network Analysis, and Terrain Analysis. For a listing of available tools, complete with documentation and usage details, please see the [WhiteboxTools User Manual](https://www.whiteboxgeo.com/manual/wbt_book/available_tools/index.html).
@@ -87,7 +96,7 @@ LiDAR data can be read/written in the common [LAS](https://www.asprs.org/committ
 
 If you would like to contribute to the project as a developer, follow these instructions to get started:
 
-1. Fork the WhiteboxTools-ArcGIS repository (<https://github.com/giswqs/WhiteboxTools-ArcGIS>)
+1. Fork the WhiteboxTools-ArcGIS repository (<https://github.com/opengeos/WhiteboxTools-ArcGIS>)
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
@@ -101,7 +110,7 @@ The **ArcGIS Toolbox for WhiteboxTools** is distributed under the [MIT license](
 
 ## Reporting Bugs
 
-**ArcGIS Toolbox for WhiteboxTools** is distributed as is and without warranty of suitability for application. If you encounter flaws with the software (i.e. bugs) please report the issue. Providing a detailed description of the conditions under which the bug occurred will help to identify the bug. *Use the [Issues tracker](https://github.com/giswqs/WhiteboxTools-ArcGIS/issues) on GitHub to report issues with the software and to request feature enchancements.* Please do not email Dr. Qiusheng Wu or Dr. John Lindsay directly with bugs.
+**ArcGIS Toolbox for WhiteboxTools** is distributed as is and without warranty of suitability for application. If you encounter flaws with the software (i.e. bugs) please report the issue. Providing a detailed description of the conditions under which the bug occurred will help to identify the bug. *Use the [Issues tracker](https://github.com/opengeos/WhiteboxTools-ArcGIS/issues) on GitHub to report issues with the software and to request feature enchancements.* Please do not email Dr. Qiusheng Wu or Dr. John Lindsay directly with bugs.
 
 ## Toolbox Screenshots
 
