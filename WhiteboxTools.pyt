@@ -1,5 +1,5 @@
 import arcpy
-import os
+import os, sys
 import webbrowser
 from WBT.whitebox_tools import WhiteboxTools
 if sys.version_info < (3, 0):
